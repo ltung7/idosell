@@ -1,0 +1,28 @@
+{
+  "name": "idosell",
+  "version": "0.0.1",
+  "description": "Idosell 3 REST connector",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ltung7/idosell.git"
+  },
+  "keywords": [
+    "idosell",
+    "rest"
+  ],
+  "author": "Tung Le",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ltung7/idosell.git/issues"
+  },
+  "homepage": "https://github.com/ltung7/idosell.git",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dayjs": "^1.11.10"
+  },
+  "type": "module"
+}
