@@ -8,6 +8,7 @@ export const paramsProxy = {
             }
             else if (object.custom && typeof object.custom[property] === 'function') {
                 const param = object.custom[property](...value);
+                console.log({ param })
                 Object.assign(object.params, param);
             }
             else object.params[property] = value[0];

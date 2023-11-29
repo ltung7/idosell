@@ -15,6 +15,8 @@ const catchIdosellError = (err) => {
 }
 
 export const sendRequest = async (request) => {
+    console.log(request)
+    // return;
     const headers = {
         'X-API-KEY': request.auth.apiKey,
         Accept: 'application/json'
