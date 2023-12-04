@@ -4,7 +4,8 @@ import { page } from "../helpers.js";
 export const getWmsStocksdocumentsProductsProxy = (object) => {
     object.gate = { method: 'get', node: '/wms/stocksdocuments/products' }
     object.custom = {
-        page: page(false)
+        page
     };
+    object.snakeCase = true;
     return new Proxy(object, paramsProxy);
 }

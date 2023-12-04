@@ -4,7 +4,8 @@ import { page } from "../helpers.js";
 export const getWarrantiesProxy = (object) => {
     object.gate = { method: 'get', node: '/warranties/warranties' }
     object.custom = {
-        page: page(false)
+        page
     };
+    object.snakeCase = true;
     return new Proxy(object, paramsProxy);
 }

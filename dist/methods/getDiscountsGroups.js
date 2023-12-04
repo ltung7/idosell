@@ -4,7 +4,8 @@ import { page } from "../helpers.js";
 export const getDiscountsGroupsProxy = (object) => {
     object.gate = { method: 'get', node: '/discounts/groups' }
     object.custom = {
-        page: page(false)
+        page
     };
+    object.snakeCase = true;
     return new Proxy(object, paramsProxy);
 }

@@ -22,7 +22,8 @@
   "homepage": "https://github.com/ltung7/idosell.git",
   "dependencies": {
     "axios": "^1.6.2",
-    "dayjs": "^1.11.10"
+    "dayjs": "^1.11.10",
+    "qs": "^6.11.2"
   },
   "type": "module"
 }
