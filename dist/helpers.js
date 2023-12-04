@@ -47,8 +47,8 @@ export const dateRangeType = ({ nodeName, fromName, toName, typeName, values, fo
     node[typeName] = dateType;
 
     if (nested) {
-        params[nested] = {};
-        params[nested][nodeName] = node;
+        param[nested] = {};
+        param[nested][nodeName] = node;
     } else param[nodeName] = node;
     return param;
 }

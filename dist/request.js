@@ -1,5 +1,5 @@
 import axios from "axios";
-import fs from "fs";
+import util from 'util';
 
 const DECODE_TABLE = [
     [ 'Å\x82', "ł" ],
@@ -14,21 +14,21 @@ const catchIdosellError = (err) => {
     throw new Error(`${err.response.status}: ${message}`) 
 }
 
-export const sendRequest = async (request) => {
-    console.log(request)
-    // return;
+export const sendRequest = async (request, options = {}) => {
     const headers = {
         'X-API-KEY': request.auth.apiKey,
         Accept: 'application/json'
     }
     const { method, node } = request.gate;
     let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
+    if (options.log) {
+        console.log(util.inspect({ params: request.params, method, url }, {showHidden: false, depth: null, colors: true}))
+    }
     
     if (method === 'get') {
         url += '?' + new URLSearchParams(request.params);
         return axios.get(url, { headers }).then(response => response.data).catch(catchIdosellError);
     } else {
-        console.log(method, url, request.params, headers)
         return axios[method](url, { params: request.params }, { headers }).then(response => response.data).catch(catchIdosellError);
     }    
 }

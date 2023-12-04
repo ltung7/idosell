@@ -4,7 +4,7 @@ export const paramsProxy = {
     get: (object, property) => {
         return (...value) => {
             if (property === 'exec') {
-                return sendRequest(object);
+                return sendRequest(object, value[0]);
             }
             else if (object.custom && typeof object.custom[property] === 'function') {
                 const param = object.custom[property](...value);
