@@ -264,7 +264,6 @@ import { getWmsSuppliersProxy } from "./methods/getWmsSuppliers.js";
 import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
 
 /**
- * Method that enables extracting customer balance information from existing customer accounts.
  * @typedef {Object} GetClientsBalanceRequest
  * @property {(client_numbers: Array<Integer>) => GetClientsBalanceRequest} client_numbers Customer Id
  * @property {(text_search: String) => GetClientsBalanceRequest} text_search Text search through customer data.
@@ -281,7 +280,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that allows for customer account balance operations.
  * @typedef {Object} PostClientsBalanceRequest
  * @property {(clientId: Integer) => PostClientsBalanceRequest} clientId Unique client's number.
  * @property {(operation: String) => PostClientsBalanceRequest} operation Operation: - add, - remove.
@@ -293,7 +291,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables extracting customer account details.
  * @typedef {Object} GetClientsRequest
  * @property {(clientsIds: Array<Integer>) => GetClientsRequest} clientsIds Customer numbers.
  * @property {(clientCodesExternal: Array<String>) => GetClientsRequest} clientCodesExternal External system codes list
@@ -313,21 +310,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding new customer accounts to the IdoSell Shop administration panel.
  * @typedef {Object} PostClientsRequest
  * @property {(clients: Array<Object>) => PostClientsRequest} clients Customer data.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method enables modifying existing customer account data.
  * @typedef {Object} PutClientsRequest
  * @property {(clients: Array<Object>) => PutClientsRequest} clients Customer data.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to download information about customers from the CRM module assigned to stores to which the user has rights.
  * @typedef {Object} GetClientsCrmRequest
  * @property {(clientLogin: String) => GetClientsCrmRequest} clientLogin Customer's login.
  * @property {(clientIsWholesaler: 'yes'|'no') => GetClientsCrmRequest} clientIsWholesaler Determines, whether client is a wholesaler.
@@ -367,14 +361,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * #!MetodaPozwalaNaUsuwanieNiewykorzystanychAdresowDostawDlaKontKlientow!#
  * @typedef {Object} DeleteClientsDeliveryAddressRequest
  * @property {(clients: Array<Object>) => DeleteClientsDeliveryAddressRequest} clients Customer data.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables extracting information about delivery addresses assigned to existing customer accounts.
  * @typedef {Object} GetClientsDeliveryAddressRequest
  * @property {(clientCodesExternal: Array<String>) => GetClientsDeliveryAddressRequest} clientCodesExternal External system codes list.
  * @property {(clientIds: Array<Integer>) => GetClientsDeliveryAddressRequest} clientIds Customer ID.
@@ -383,21 +375,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding delivery address details to existing customer accounts.
  * @typedef {Object} PostClientsDeliveryAddressRequest
  * @property {(clients: Array<Object>) => PostClientsDeliveryAddressRequest} clients Customer data.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing the delivery address details for existing customer accounts.
  * @typedef {Object} PutClientsDeliveryAddressRequest
  * @property {(clients: Array<Object>) => PutClientsDeliveryAddressRequest} clients Customer data.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables setting external system codes for existing customer accounts.
  * @typedef {Object} PutClientsExternalCodeRequest
  * @property {(client_id: Integer) => PutClientsExternalCodeRequest} client_id 
  * @property {(client_login: String) => PutClientsExternalCodeRequest} client_login Customer's login.
@@ -406,21 +395,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Enables gift card blocking
  * @typedef {Object} PutClientsGiftcardsBlockRequest
  * @property {(giftCards: Array<Object>) => PutClientsGiftcardsBlockRequest} giftCards List of gift cards
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables deleting a single or a list of gift cards
  * @typedef {Object} DeleteClientsGiftcardsRequest
  * @property {(giftCards: Array<Object>) => DeleteClientsGiftcardsRequest} giftCards List of gift cards
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables searching for gift cards and retrieving information about indicated gift cards
  * @typedef {Object} GetClientsGiftcardsRequest
  * @property {(giftCards: Array<Object>) => GetClientsGiftcardsRequest} giftCards List of gift cards
  * @property {(searchGiftCards: Object) => GetClientsGiftcardsRequest} searchGiftCards element is an element array of type searchGiftCards
@@ -431,21 +417,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Enables adding new gift cards with the selected card type
  * @typedef {Object} PostClientsGiftcardsRequest
  * @property {(giftCards: Array<Object>) => PostClientsGiftcardsRequest} giftCards List of cards to add
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables editing gift parameters, e.g. changing its balance, validity date, number or PIN
  * @typedef {Object} PutClientsGiftcardsRequest
  * @property {(giftCards: Array<Object>) => PutClientsGiftcardsRequest} giftCards List of cards to edit
  * @property {function} exec Excecute request
  */
 
 /**
- * Allows for downloading all types of gift cards defined in the administration panel
  * @typedef {Object} GetClientsGiftcardsTypesRequest
  * @property {(resultsPage: Integer) => GetClientsGiftcardsTypesRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsGiftcardsTypesRequest} resultsLimit Number of results on page. Value from 1 to 100
@@ -455,14 +438,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Enables gift card unblocking
  * @typedef {Object} PutClientsGiftcardsUnblockRequest
  * @property {(giftCards: Array<Object>) => PutClientsGiftcardsUnblockRequest} giftCards List of gift cards
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables extracting information about loyalty cards available in the administration panel.
  * @typedef {Object} GetClientsMembershipCardsRequest
  * @property {(id: Integer) => GetClientsMembershipCardsRequest} id Customer ID.
  * @property {(login: String) => GetClientsMembershipCardsRequest} login Customer's login.
@@ -470,7 +451,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables assigning loyalty cards to customer accounts.
  * @typedef {Object} PutClientsMembershipCardsRequest
  * @property {(id: Integer) => PutClientsMembershipCardsRequest} id Customer ID.
  * @property {(login: String) => PutClientsMembershipCardsRequest} login Customer's login.
@@ -479,7 +459,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables extracting a list of customer accounts that agreed / did not agree to receiving text message newsletters.
  * @typedef {Object} GetClientsNewsletterEmailSMSRequest
  * @property {(shops: Array<Object>) => GetClientsNewsletterEmailSMSRequest} shops 
  * @property {(language: String) => GetClientsNewsletterEmailSMSRequest} language Customer language ID.
@@ -493,7 +472,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables extracting a list of customer accounts that agreed / did not agree to receiving email newsletters.
  * @typedef {Object} GetClientsNewsletterEmailShopsRequest
  * @property {(shops: Array<Object>) => GetClientsNewsletterEmailShopsRequest} shops 
  * @property {(language: String) => GetClientsNewsletterEmailShopsRequest} language Customer language ID.
@@ -507,14 +485,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * #!MetodaPozwalaNaUsuwanieNiewykorzystanychAdresowNabywcy!#
  * @typedef {Object} DeleteClientsPayerAddressRequest
  * @property {(payers: Array<Object>) => DeleteClientsPayerAddressRequest} payers 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to retrieve buyer's addresses from sales documents, for existing customer accounts in the IdoSell administration panel.
  * @typedef {Object} GetClientsPayerAddressRequest
  * @property {(clientId: String) => GetClientsPayerAddressRequest} clientId Unique client's number.
  * @property {(resultsPage: Integer) => GetClientsPayerAddressRequest} resultsPage Page with results number. Numeration starts from 0
@@ -525,28 +501,24 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to add buyer's addresses to sales documents, for existing customer accounts in the IdoSell administration panel.
  * @typedef {Object} PostClientsPayerAddressRequest
  * @property {(payers: Array<Object>) => PostClientsPayerAddressRequest} payers 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to modify buyer's addresses in sales documents, for existing customer accounts in the IdoSell administration panel.
  * @typedef {Object} PutClientsPayerAddressRequest
  * @property {(payers: Array<Object>) => PutClientsPayerAddressRequest} payers 
  * @property {function} exec Excecute request
  */
 
 /**
- * The getClients method returns a list of customer IDs assigned to an individual price list
  * @typedef {Object} GetClientsPricelistsClientsRequest
  * @property {(priceListId: Integer) => GetClientsPricelistsClientsRequest} priceListId Individual price list ID.
  * @property {function} exec Excecute request
  */
 
 /**
- * The setClients method allows you to assign customers to an individual price list
  * @typedef {Object} PutClientsPricelistsClientsRequest
  * @property {(priceListId: Integer) => PutClientsPricelistsClientsRequest} priceListId Individual price list ID.
  * @property {(clientsIds: Array<Integer>) => PutClientsPricelistsClientsRequest} clientsIds Customer numbers.
@@ -554,14 +526,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The delete method enables to delete an individual pricelist. The pricelist must not be associated with any customer. In order to check the clients related to the given group, the getClients method shall be used.
  * @typedef {Object} DeleteClientsPricelistsRequest
  * @property {(priceListId: Integer) => DeleteClientsPricelistsRequest} priceListId Individual price list ID.
  * @property {function} exec Excecute request
  */
 
 /**
- * The get method allows you to download individual price lists available in the administration panel
  * @typedef {Object} GetClientsPricelistsRequest
  * @property {(priceListIds: Array<Integer>) => GetClientsPricelistsRequest} priceListIds List of individual price lists.
  * @property {(returnElements: Array<String>) => GetClientsPricelistsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
@@ -573,7 +543,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The insert method enables you to add a new individual price list to the administration panel
  * @typedef {Object} PostClientsPricelistsRequest
  * @property {(priceListName: String) => PostClientsPricelistsRequest} priceListName Name of individual price list.
  * @property {(onlyOrderProductsWithManuallySetPrices: 'yes'|'no') => PostClientsPricelistsRequest} onlyOrderProductsWithManuallySetPrices Restrict visibility to products listed in price list (other products will remain hidden) - yes - no
@@ -582,7 +551,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The update method allows you to change the individual price list.
  * @typedef {Object} PutClientsPricelistsRequest
  * @property {(priceListId: Integer) => PutClientsPricelistsRequest} priceListId Individual price list ID.
  * @property {(priceListName: String) => PutClientsPricelistsRequest} priceListName Name of individual price list.
@@ -592,7 +560,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The getProducts method enables the retrieval of products from an individual price list together with the price
  * @typedef {Object} GetClientsPricelistsProductsRequest
  * @property {(priceListId: Integer) => GetClientsPricelistsProductsRequest} priceListId Individual price list ID.
  * @property {(resultsPage: Integer) => GetClientsPricelistsProductsRequest} resultsPage Page with results number. Numeration starts from 0
@@ -603,7 +570,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The setProducts method allows you to add goods to an individual price list and specify their price
  * @typedef {Object} PutClientsPricelistsProductsRequest
  * @property {(priceListId: Integer) => PutClientsPricelistsProductsRequest} priceListId Individual price list ID.
  * @property {(products: Array<Object>) => PutClientsPricelistsProductsRequest} products Products list.
@@ -615,7 +581,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The rename method enables changing the name of an individual price list
  * @typedef {Object} PutClientsPricelistsRenameRequest
  * @property {(priceListName: String) => PutClientsPricelistsRenameRequest} priceListName Name of individual price list.
  * @property {(priceListId: Integer) => PutClientsPricelistsRenameRequest} priceListId Individual price list ID.
@@ -623,13 +588,11 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting information about active customer loyalty cards assigned to customer accounts in the administration panel.
  * @typedef {Object} GetClientsPricesActiveCardRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables extracting information about discount groups configured in the administration panel.
  * @typedef {Object} GetClientsPricesDiscountGroupsRequest
  * @property {(clientDiscountGroupsNumbers: Array<Integer>) => GetClientsPricesDiscountGroupsRequest} clientDiscountGroupsNumbers Customer groups.
  * @property {(returnElements: Array<String>) => GetClientsPricesDiscountGroupsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
@@ -641,7 +604,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that allows for extracting information about individual discounts assigned to customer accounts.
  * @typedef {Object} GetClientsPricesDiscountsRequest
  * @property {(clientsIds: Array<Integer>) => GetClientsPricesDiscountsRequest} clientsIds Customer numbers.
  * @property {(clientTextSearch: String) => GetClientsPricesDiscountsRequest} clientTextSearch Text search through customer data.
@@ -658,7 +620,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables assigning individual discount to existing customer accounts.
  * @typedef {Object} PutClientsPricesDiscountsRequest
  * @property {(customers: Object) => PutClientsPricesDiscountsRequest} customers 
  * @property {(discount_type: String) => PutClientsPricesDiscountsRequest} discount_type Discount type, possible values: - simple
@@ -668,7 +629,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables extracting information about the amount of loyalty points collected by customers in a loyalty program.
  * @typedef {Object} GetClientsProfitPointsRequest
  * @property {(clientsIds: Array<Integer>) => GetClientsProfitPointsRequest} clientsIds Customer numbers.
  * @property {(clientTextSearch: String) => GetClientsProfitPointsRequest} clientTextSearch Text search through customer data.
@@ -684,7 +644,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that allows for adding loyalty points to the balances of existing customer accounts.
  * @typedef {Object} PostClientsProfitPointsRequest
  * @property {(client_id: Integer) => PostClientsProfitPointsRequest} client_id 
  * @property {(operation: String) => PostClientsProfitPointsRequest} operation Operation: - add, - remove.
@@ -695,40 +654,36 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to retrieve the list of administrative regions available in the IdoSell administration panel.
  * @typedef {Object} GetClientsProvinceListRequest
  * @property {(country_code: String) => GetClientsProvinceListRequest} country_code Country code in ISO 3166-1 standard.
  * @property {function} exec Excecute request
  */
 
 /**
- * Use this method to delete all tags assigned to a customer
  * @typedef {Object} DeleteClientsTagsClearRequest
  * @property {(clientId: Integer) => DeleteClientsTagsClearRequest} clientId Unique client's number.
  * @property {function} exec Excecute request
  */
 
 /**
- * Use this method to delete selected tags assigned to a customer
  * @typedef {Object} DeleteClientsTagsRequest
+ * @property {(params: Array<Object>) => DeleteClientsTagsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * Use this method to retrieve all tags assigned to a client
  * @typedef {Object} GetClientsTagsRequest
  * @property {(clientId: Integer) => GetClientsTagsRequest} clientId Unique client's number.
  * @property {function} exec Excecute request
  */
 
 /**
- * Use this method to add new tags and their associated values to the client
  * @typedef {Object} PostClientsTagsRequest
+ * @property {(params: Array<Object>) => PostClientsTagsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * The method is used to update the value of the tags assigned to the client. A tag with value 0 is detached from the client
  * @typedef {Object} PutClientsTagsRequest
  * @property {(clientId: Integer) => PutClientsTagsRequest} clientId Unique client's number.
  * @property {(clientTags: Array<Object>) => PutClientsTagsRequest} clientTags 
@@ -736,13 +691,11 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Retrieves information about assigned couriers to delivery profiles
  * @typedef {Object} GetCouriersAssignedToShippingProfilesRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns all couriers available for a given country. It also returns information whether the courier service handles personal collections.
  * @typedef {Object} GetCouriersRequest
  * @property {(countryCode: String) => GetCouriersRequest} countryCode Country code in ISO 3166-1 standard.
  * @property {(resultsPage: Integer) => GetCouriersRequest} resultsPage Page with results number. Numeration starts from 0
@@ -753,14 +706,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method enables cancelling personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
  * @typedef {Object} DeleteCouriersPickupPointsRequest
  * @property {(pickupPointDeleteRequests: Array<Object>) => DeleteCouriersPickupPointsRequest} pickupPointDeleteRequests 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method returns personal collection points within its own network of collection points and for integrated couriers.
  * @typedef {Object} GetCouriersPickupPointsRequest
  * @property {(courierId: Integer) => GetCouriersPickupPointsRequest} courierId Courier ID.
  * @property {(pickupPointId: String) => GetCouriersPickupPointsRequest} pickupPointId Collection point ID.
@@ -773,21 +724,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method enables adding personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
  * @typedef {Object} PostCouriersPickupPointsRequest
  * @property {(pickupPoints: Array<Object>) => PostCouriersPickupPointsRequest} pickupPoints 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method enables updating personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
  * @typedef {Object} PutCouriersPickupPointsRequest
  * @property {(pickupPoints: Array<Object>) => PutCouriersPickupPointsRequest} pickupPoints 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to set the default delivery profile for the given region.
  * @typedef {Object} PutDeliveriesDefaultProfilesRequest
  * @property {(regionId: Integer) => PutDeliveriesDefaultProfilesRequest} regionId Country ID
  * @property {(shopId: Integer) => PutDeliveriesDefaultProfilesRequest} shopId Shop Id
@@ -797,7 +745,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows to download all of the delivery profiles defined in the administration panel
  * @typedef {Object} GetDeliveriesProfilesRequest
  * @property {(resultsPage: Integer) => GetDeliveriesProfilesRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetDeliveriesProfilesRequest} resultsLimit Number of results on page. Value from 1 to 100
@@ -807,14 +754,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to download a list of regions supporting deliveries.
  * @typedef {Object} GetDeliveriesRegionsRequest
  * @property {(shopId: Integer) => GetDeliveriesRegionsRequest} shopId Shop Id
  * @property {function} exec Excecute request
  */
 
 /**
- * #!UmozliwiaDodanieRegionuDoWskazanegoKraju!#
  * @typedef {Object} PostDeliveriesRegionsRequest
  * @property {(regionName: String) => PostDeliveriesRegionsRequest} regionName Name of the region in the panel
  * @property {(shopId: Integer) => PostDeliveriesRegionsRequest} shopId Shop Id
@@ -825,21 +770,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * getClientsAssignedToDiscountGroup - returns the list of customer IDs assigned to an indicated discount group. In order to assign a discount group, use setClients method in API Clients.
  * @typedef {Object} GetDiscountsGroupsClientsRequest
  * @property {(discountGroupId: Integer) => GetDiscountsGroupsClientsRequest} discountGroupId Discount group ID
  * @property {function} exec Excecute request
  */
 
 /**
- * deleteDiscountGroup - allows to remove a discount group. The condition for conducting this process is no customers assigned to the indicated group. In order to check the assigned customers use getClientsAssignedToDiscountGroup method. 
  * @typedef {Object} DeleteDiscountsGroupsRequest
  * @property {(discountGroupId: Integer) => DeleteDiscountsGroupsRequest} discountGroupId Discount group ID
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables extracting information about discount groups configured in the administration panel.
  * @typedef {Object} GetDiscountsGroupsRequest
  * @property {(group_numbers: Array<Integer>) => GetDiscountsGroupsRequest} group_numbers 
  * @property {(return_elements: Array<String>) => GetDiscountsGroupsRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
@@ -851,14 +793,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * addDiscountGroup - allows to add a new discount group in the administration panel. The discount group is added by default with the setting "Discount for products - yes, but different for indicated groups".
  * @typedef {Object} PostDiscountsGroupsRequest
  * @property {(discountGroupName: String) => PostDiscountsGroupsRequest} discountGroupName Discount group name
  * @property {function} exec Excecute request
  */
 
 /**
- * editDiscountGroup - allows to change a discount group name
  * @typedef {Object} PutDiscountsGroupsRequest
  * @property {(discountGroupId: Integer) => PutDiscountsGroupsRequest} discountGroupId Discount group ID
  * @property {(discountGroupName: String) => PutDiscountsGroupsRequest} discountGroupName Discount group name
@@ -866,7 +806,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows the removal of products from a discount group
  * @typedef {Object} DeleteDiscountsGroupsProductsRequest
  * @property {(discountGroupId: Integer) => DeleteDiscountsGroupsProductsRequest} discountGroupId Discount group ID
  * @property {(products: Array<Integer>) => DeleteDiscountsGroupsProductsRequest} products Products list.
@@ -878,7 +817,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows products to be added to a discount group and their price to be specified in the discount group
  * @typedef {Object} PutDiscountsGroupsProductsRequest
  * @property {(discountGroupId: Integer) => PutDiscountsGroupsProductsRequest} discountGroupId Discount group ID
  * @property {(products: Array<Object>) => PutDiscountsGroupsProductsRequest} products Products list.
@@ -890,50 +828,50 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * blockRebateCard method - allows to block an indicated discount card, eg. when it is assumed that its number has been made available publicly. The blocked card can be unblocked with the method unblockRebateCard.
  * @typedef {Object} PutDiscountsRebatesBlockCardRequest
+ * @property {(card_number: String) => PutDiscountsRebatesBlockCardRequest} card_number Card number
  * @property {function} exec Excecute request
  */
 
 /**
- * deleteUnusedRebateCards method allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
  * @typedef {Object} DeleteDiscountsRebatesCardRequest
+ * @property {(campaign_id: Integer) => DeleteDiscountsRebatesCardRequest} campaign_id Discount card type
  * @property {function} exec Excecute request
  */
 
 /**
- * addRebateCard method - allows to upload new card numbers to already existing discount card types in the administration panel. Cards uploaded such way retrieve settings, regarding the discount amount, from the type of cards to which they are uploaded. Every card can also have individual, independent discount settings which can be set in the administration panel..
  * @typedef {Object} PostDiscountsRebatesCardRequest
+ * @property {(campaign_id: Integer) => PostDiscountsRebatesCardRequest} campaign_id Discount card type
+ * @property {(card_number: String) => PostDiscountsRebatesCardRequest} card_number Card number
  * @property {function} exec Excecute request
  */
 
 /**
- * deleteUnusedRebateCodes method - allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
  * @typedef {Object} DeleteDiscountsRebatesCodeRequest
+ * @property {(campaign_id: Integer) => DeleteDiscountsRebatesCodeRequest} campaign_id Campaign ID
  * @property {function} exec Excecute request
  */
 
 /**
- * addRebateCode method - allows to upload new code numbers to already existing rebate campaigns in the administration panel. The codes uploaded in such way retrieve settings, regarding the discount amount, from a campaign to which they are uploaded. Each discount code can also have individual, independent discount settings which can be set in the administration panel.
  * @typedef {Object} PostDiscountsRebatesCodeRequest
+ * @property {(campaign_id: Integer) => PostDiscountsRebatesCodeRequest} campaign_id Campaign ID
+ * @property {(code_number: String) => PostDiscountsRebatesCodeRequest} code_number Code
  * @property {function} exec Excecute request
  */
 
 /**
- * unblockRebateCard method - allows to unblock discount cards. Block cards with the blockRebateCard method.
  * @typedef {Object} PutDiscountsRebatesUnblockCardRequest
+ * @property {(card_number: String) => PutDiscountsRebatesUnblockCardRequest} card_number Card number
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables deleting blog or news entry
  * @typedef {Object} DeleteEntriesRequest
  * @property {(entryId: Integer) => DeleteEntriesRequest} entryId Entry ID
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables downloading blog or news entry data
  * @typedef {Object} GetEntriesRequest
  * @property {(entryId: Integer) => GetEntriesRequest} entryId Entry ID
  * @property {(langId: String) => GetEntriesRequest} langId Language ID
@@ -941,7 +879,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Enables adding blog or news entry 
  * @typedef {Object} PostEntriesRequest
  * @property {(shopId: Integer) => PostEntriesRequest} shopId Shop Id
  * @property {(date: String) => PostEntriesRequest} date Date of creating an entry
@@ -956,7 +893,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Enables changing blog or news entry in the shop
  * @typedef {Object} PutEntriesRequest
  * @property {(entryId: Integer) => PutEntriesRequest} entryId Entry ID
  * @property {(shopId: Integer) => PutEntriesRequest} shopId Shop Id
@@ -973,14 +909,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows you to download a list of sites on which a blog entry or a news item can be published.
  * @typedef {Object} GetEntriesPagesToDisplayRequest
  * @property {(langId: String) => GetEntriesPagesToDisplayRequest} langId Language ID
  * @property {function} exec Excecute request
  */
 
 /**
- * The method returns information about filter settings in menu nodes.
  * @typedef {Object} GetMenuFilterRequest
  * @property {(shopId: Integer) => GetMenuFilterRequest} shopId Shop Id
  * @property {(languageId: String) => GetMenuFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -990,7 +924,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to manage filter settings in menu nodes.
  * @typedef {Object} PutMenuFilterRequest
  * @property {(shopId: Integer) => PutMenuFilterRequest} shopId Shop Id
  * @property {(languageId: String) => PutMenuFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -1002,13 +935,13 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables deleting existing menu elements.
  * @typedef {Object} DeleteMenuRequest
+ * @property {(menu_list: Array<Object>) => DeleteMenuRequest} menu_list 
+ * @property {(settings: Object) => DeleteMenuRequest} settings Settings.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns information about menus and menu elements.
  * @typedef {Object} GetMenuRequest
  * @property {(shop_id: Integer) => GetMenuRequest} shop_id Shop Id.
  * @property {(menu_id: Integer) => GetMenuRequest} menu_id Tree menu ID.
@@ -1020,25 +953,27 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding new menu elements.
  * @typedef {Object} PostMenuRequest
+ * @property {(menu_list: Array<Object>) => PostMenuRequest} menu_list 
+ * @property {(settings: Object) => PostMenuRequest} settings Settings
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing existing menu elements.
  * @typedef {Object} PutMenuRequest
+ * @property {(menu_list: Array<Object>) => PutMenuRequest} menu_list 
+ * @property {(settings: Object) => PutMenuRequest} settings Settings.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables sorting of menu elements.
  * @typedef {Object} PutMenuSortRequest
+ * @property {(menu_list: Array<Object>) => PutMenuSortRequest} menu_list 
+ * @property {(settings: Object) => PutMenuSortRequest} settings Settings
  * @property {function} exec Excecute request
  */
 
 /**
- * The method is used to retrieve information about the margins of the goods of the order.
  * @typedef {Object} GetOrdersAnalyticsRequest
  * @property {(orders: Array<Object>) => GetOrdersAnalyticsRequest} orders Orders.
  * @property {(serialNumbers: Array<Integer>) => GetOrdersAnalyticsRequest} serialNumbers Define orders by passing array of values
@@ -1046,7 +981,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting information about external listings assigned to orders in the administration panel.
  * @typedef {Object} GetOrdersAuctionDetailsRequest
  * @property {(orders: Array<Object>) => GetOrdersAuctionDetailsRequest} orders Orders.
  * @property {(ids: Array<String>) => GetOrdersAuctionDetailsRequest} ids Define orders by passing array of values
@@ -1055,7 +989,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Array
  * @typedef {Object} PutOrdersClientRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersClientRequest} orderSerialNumber Order serial number.
  * @property {(clientId: Integer) => PutOrdersClientRequest} clientId Unique client's number.
@@ -1063,7 +996,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables changing the courier handling the shipment for an order.
  * @typedef {Object} PutOrdersCourierRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersCourierRequest} orderSerialNumber Order serial number.
  * @property {(courierId: Integer) => PutOrdersCourierRequest} courierId Courier ID.
@@ -1072,7 +1004,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables editing the delivery address details for an order in the administration panel.
  * @typedef {Object} PutOrdersDeliveryAddressRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersDeliveryAddressRequest} orderSerialNumber Order serial number.
  * @property {(clientDeliveryAddressId: Integer) => PutOrdersDeliveryAddressRequest} clientDeliveryAddressId Delivery address ID.
@@ -1081,7 +1012,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * #!MetodaSluzyDoPodzialuZamowienia!#
  * @typedef {Object} PutOrdersDevideRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersDevideRequest} orderSerialNumber Order serial number.
  * @property {(products: Array<Object>) => PutOrdersDevideRequest} products Products list.
@@ -1090,27 +1020,23 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to delete documents added to the order in the IdoSell administration panel.
  * @typedef {Object} DeleteOrdersDocumentsRequest
  * @property {(documents: Array<Object>) => DeleteOrdersDocumentsRequest} documents List of documents.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables extracting information about documents issued for orders in the administration panel.
  * @typedef {Object} GetOrdersDocumentsRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to add TIFF, BMP, PNG, JPG, JPEG, GIF or PDF documents to the order in the IdoSell Shop administration panel.
  * @typedef {Object} PostOrdersDocumentsRequest
  * @property {(documents: Array<Object>) => PostOrdersDocumentsRequest} documents List of documents.
  * @property {function} exec Excecute request
  */
 
 /**
- * This method returns sales and warehouse documents in the universal EDI (Electronic Data Interchange) format.
  * @typedef {Object} GetOrdersExportdocumentsEPPRequest
  * @property {(dateBegin: String) => GetOrdersExportdocumentsEPPRequest} dateBegin Beginning date in YYYY-MM-DD HH:MM:SS format.
  * @property {(dateEnd: String) => GetOrdersExportdocumentsEPPRequest} dateEnd Ending date in YYYY-MM-DD HH:MM:SS format.
@@ -1122,7 +1048,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * #!MetodaZwracaDokumentySprzedazoweIMagazynoweWUniwersalnymFormacieJPK!#.
  * @typedef {Object} GetOrdersExportdocumentsJPKRequest
  * @property {(documentType: 'JPK_FA'|'JPK_MAG'|'JPK_VAT') => GetOrdersExportdocumentsJPKRequest} documentType Document type
  * @property {(fileId: Integer) => GetOrdersExportdocumentsJPKRequest} fileId JPK file identifier to download.
@@ -1140,14 +1065,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting information about the handler currently assigned to an order.
  * @typedef {Object} GetOrdersHandlerRequest
  * @property {(orderSerialNumber: Integer) => GetOrdersHandlerRequest} orderSerialNumber Order serial number.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enabled assigning a handler to an order.
  * @typedef {Object} PutOrdersHandlerRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersHandlerRequest} orderSerialNumber Order serial number.
  * @property {(orderOperatorLogin: String) => PutOrdersHandlerRequest} orderOperatorLogin Order handler.
@@ -1155,14 +1078,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method allows to retrieve orders history from the IdoSell Shop panel
  * @typedef {Object} GetOrdersHistoryRequest
  * @property {(orderSerialNumber: Integer) => GetOrdersHistoryRequest} orderSerialNumber Order serial number.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method allows to remove image attachments from the details of the specified order.
  * @typedef {Object} DeleteOrdersImagesRequest
  * @property {(order: Object) => DeleteOrdersImagesRequest} order 
  * @property {(images: Array<Object>) => DeleteOrdersImagesRequest} images List of attachment IDs to be removed from the details of the selected order
@@ -1170,7 +1091,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method allows downloading image attachment data from the details of the specified order.
  * @typedef {Object} GetOrdersImagesRequest
  * @property {(imageId: Integer) => GetOrdersImagesRequest} imageId Attachment ID (Photos)
  * @property {(orderSerialNumber: Integer) => GetOrdersImagesRequest} orderSerialNumber Order serial number
@@ -1178,7 +1098,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method allows to add image attachments to the details of the specified order.
  * @typedef {Object} PostOrdersImagesRequest
  * @property {(userName: String) => PostOrdersImagesRequest} userName Login
  * @property {(settings: Object) => PostOrdersImagesRequest} settings 
@@ -1188,14 +1107,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method is used to generate parcels and printouts for a courier.
  * @typedef {Object} GetOrdersLabelsRequest
  * @property {(orderSerialNumber: Integer) => GetOrdersLabelsRequest} orderSerialNumber Order serial number.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows for downloading information about reviews issued for orders available in the IdoSell Shop administration panel.
  * @typedef {Object} GetOrdersOpinionsRequest
  * @property {(opinion: Object) => GetOrdersOpinionsRequest} opinion Review identification
  * @property {(orders: Object) => GetOrdersOpinionsRequest} orders Orders.
@@ -1212,7 +1129,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Evaluation of the usefulness of opinions issued for orders.
  * @typedef {Object} GetOrdersOpinionsRateRequest
  * @property {(id: Integer) => GetOrdersOpinionsRateRequest} id 
  * @property {(operation: 'positive'|'negative') => GetOrdersOpinionsRateRequest} operation 
@@ -1220,7 +1136,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables extracting information about orders present in the IdoSell Shop administration panel.
  * @typedef {Object} ListOrdersRequest
  * @property {(orderPrepaidStatus: String) => ListOrdersRequest} orderPrepaidStatus Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered.
  * @property {(ordersStatuses: Array<String>) => ListOrdersRequest} ordersStatuses Order status. Status list: "new" - not handled, "finished" - completed, "false" - false, "lost" - lost, "on_order" - in progress, "packed" - being picked, "ready" - ready, "returned" - return, "canceled" - canceled by customer, "complainted" - complaint, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "suspended" - on hold, "joined" - merged, "finished_ext" - handled in FA application.
@@ -1265,7 +1180,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables extracting information about orders present in the IdoSell Shop administration panel.
  * @typedef {Object} GetOrdersRequest
  * @property {(ordersIds: Array<String>) => GetOrdersRequest} ordersIds Orders IDs.
  * @property {(ordersSerialNumbers: Array<Integer>) => GetOrdersRequest} ordersSerialNumbers Order serial numbers.
@@ -1274,21 +1188,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that is used for adding new retail or wholesale orders to a shop in the administration panel.
  * @typedef {Object} PostOrdersRequest
  * @property {(orders: Array<Object>) => PostOrdersRequest} orders Orders.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing an order in the administration panel. It allows, for example, to change the products included in the order or change its status.
  * @typedef {Object} PutOrdersRequest
  * @property {(orders: Array<Object>) => PutOrdersRequest} orders Orders.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables getting a list of parcels assigned to an order.
  * @typedef {Object} GetOrdersPackagesRequest
  * @property {(deliveryPackageNumbers: Array<String>) => GetOrdersPackagesRequest} deliveryPackageNumbers Consignments numbers.
  * @property {(events: Array<Object>) => GetOrdersPackagesRequest} events Element, package is assigned to
@@ -1297,21 +1208,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables editing parcels already assigned to an order.
  * @typedef {Object} PostOrdersPackagesRequest
  * @property {(orderPackages: Array<Object>) => PostOrdersPackagesRequest} orderPackages List of parcels assigned to the order Maximum default number: 100 parcels.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing parcels already assigned to an order.
  * @typedef {Object} PutOrdersPackagesRequest
  * @property {(orderPackages: Array<Object>) => PutOrdersPackagesRequest} orderPackages List of parcels assigned to the order Maximum default number: 100 parcels.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to change the collection point in the order.
  * @typedef {Object} PutOrdersPickupPointRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersPickupPointRequest} orderSerialNumber Order serial number.
  * @property {(pickupPointId: String) => PutOrdersPickupPointRequest} pickupPointId Collection point ID.
@@ -1319,7 +1227,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting a VAT invoice issued for an order added to the administration panel by the IAI POS application.
  * @typedef {Object} GetOrdersPrinterDocumentsRequest
  * @property {(user: String) => GetOrdersPrinterDocumentsRequest} user 
  * @property {(printScenarioAction: String) => GetOrdersPrinterDocumentsRequest} printScenarioAction 
@@ -1331,28 +1238,24 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding serial numbers to products in an order.
  * @typedef {Object} PutOrdersProductsSerialNumbersRequest
  * @property {(orders: Array<Object>) => PutOrdersProductsSerialNumbersRequest} orders Orders.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables setting price margins for products in an order.
  * @typedef {Object} PutOrdersProfitMarginRequest
  * @property {(orders: Array<Object>) => PutOrdersProfitMarginRequest} orders Orders.
  * @property {function} exec Excecute request
  */
 
 /**
- * #!MetodaSluzyDoPobieraniaInformacjiOOplacalnosciZamowienia!#
  * @typedef {Object} GetOrdersProfitabilityRequest
  * @property {(orderSerialNumber: Integer) => GetOrdersProfitabilityRequest} orderSerialNumber Order serial number.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing the delivery costs for an order in the administration panel.
  * @typedef {Object} PutOrdersShippingCostsRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersShippingCostsRequest} orderSerialNumber Order serial number.
  * @property {(deliveryCost: Number) => PutOrdersShippingCostsRequest} deliveryCost Delivery cost.
@@ -1361,7 +1264,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * It allows you to download information about unclosed orders located in the store's administration panel. Orders with a status of false and lost are considered closed. Orders with a status of false and lost are considered closed.
  * @typedef {Object} ListOrdersUnfinishedRequest
  * @property {(orderPrepaidStatus: String) => ListOrdersUnfinishedRequest} orderPrepaidStatus Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered.
  * @property {(ordersStatuses: Array<String>) => ListOrdersUnfinishedRequest} ordersStatuses Order status. Status list: "new" - not handled, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "finished_ext" - handled in FA application.
@@ -1400,14 +1302,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting information about which warehouse an order is being handled from.
  * @typedef {Object} GetOrdersWarehouseRequest
  * @property {(orderSerialNumber: Integer) => GetOrdersWarehouseRequest} orderSerialNumber Order serial number.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables setting which warehouse an order is handled from.
  * @typedef {Object} PutOrdersWarehouseRequest
  * @property {(orderSerialNumber: Integer) => PutOrdersWarehouseRequest} orderSerialNumber Order serial number.
  * @property {(stockId: Integer) => PutOrdersWarehouseRequest} stockId Stock ID
@@ -1417,7 +1317,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to download labels for the courier from orders, complaints and returns.
  * @typedef {Object} GetPackagesLabelsRequest
  * @property {(eventId: Integer) => GetPackagesLabelsRequest} eventId Id.
  * @property {(eventType: 'order'|'rma'|'return') => GetPackagesLabelsRequest} eventType Event type
@@ -1425,7 +1324,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method is used to generate shipments and printouts for the courier in orders, complaints and returns. When generating a label with a default courier configuration, it is not necessary to complete the shipment configuration options. To generate a custom label, you must additionally forward the shipment configuration options available to the courier in a given event (parcelParameters node). Completable configuration options can be checked using the getPackages method.
  * @typedef {Object} PostPackagesLabelsRequest
  * @property {(eventId: Integer) => PostPackagesLabelsRequest} eventId Id.
  * @property {(eventType: 'order'|'rma'|'return') => PostPackagesLabelsRequest} eventType Type.
@@ -1435,7 +1333,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting a list of parcels assigned to an order.
  * @typedef {Object} GetPackagesRequest
  * @property {(deliveryPackageNumbers: Array<String>) => GetPackagesRequest} deliveryPackageNumbers Consignments numbers.
  * @property {(events: Array<Object>) => GetPackagesRequest} events Element, package is assigned to
@@ -1444,21 +1341,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding parcels to an order.
  * @typedef {Object} PostPackagesRequest
  * @property {(orderPackages: Array<Object>) => PostPackagesRequest} orderPackages List of parcels assigned to the order Maximum default number: 100 parcels.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing parcels already assigned to an order.
  * @typedef {Object} PutPackagesRequest
  * @property {(orderPackages: Array<Object>) => PutPackagesRequest} orderPackages List of parcels assigned to the order Maximum default number: 100 parcels.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables cancelling payments for orders in the administration panel.
  * @typedef {Object} PostPaymentsCancelRequest
  * @property {(sourceType: 'order'|'return'|'rma') => PostPaymentsCancelRequest} sourceType Defines payment category. For the payments regarding returns, enter 'return'.
  * @property {(paymentNumber: String) => PostPaymentsCancelRequest} paymentNumber Payment number - [order no.]-[payment no.], i.e. 1234-1.
@@ -1466,7 +1360,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to send refund requests (so called cashback) for payments managed by external payment systems which have such option available..
  * @typedef {Object} PostPaymentsCashbackRequest
  * @property {(sourceType: 'order'|'return') => PostPaymentsCashbackRequest} sourceType 
  * @property {(paymentNumber: String) => PostPaymentsCashbackRequest} paymentNumber Payment number - [order no.]-[payment no.], i.e. 1234-1.
@@ -1475,7 +1368,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables accepting payments for orders in the administration panel.
  * @typedef {Object} PutPaymentsConfirmRequest
  * @property {(sourceType: 'order'|'return'|'rma') => PutPaymentsConfirmRequest} sourceType Defines payment category. For the payments regarding returns, enter 'return'.
  * @property {(paymentNumber: String) => PutPaymentsConfirmRequest} paymentNumber Payment number - [order no.]-[payment no.], i.e. 1234-1.
@@ -1484,14 +1376,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting information about payment methods available in the administration panel.
  * @typedef {Object} GetPaymentsFormsRequest
  * @property {(activeOnly: 'yes'|'no') => GetPaymentsFormsRequest} activeOnly Return only active forms of payment.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables getting information about payments for orders in the administration panel.
  * @typedef {Object} GetPaymentsRequest
  * @property {(paymentNumber: String) => GetPaymentsRequest} paymentNumber Payment number consists of: source ID (order / return ID) and the payment ordinal number, e.g. 1234-1.
  * @property {(sourceType: 'order'|'return'|'rma') => GetPaymentsRequest} sourceType Source type.
@@ -1499,7 +1389,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding payments to orders in the administration panel.
  * @typedef {Object} PostPaymentsRequest
  * @property {(sourceId: Integer) => PostPaymentsRequest} sourceId Source ID.
  * @property {(sourceType: 'order'|'return'|'rma') => PostPaymentsRequest} sourceType Source type.
@@ -1514,7 +1403,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables editing payments for orders in the administration panel.
  * @typedef {Object} PutPaymentsRequest
  * @property {(sourceType: 'order'|'return'|'rma') => PutPaymentsRequest} sourceType Defines payment category. For the payments regarding returns, enter 'return'.
  * @property {(paymentNumber: String) => PutPaymentsRequest} paymentNumber Payment number - [order no.]-[payment no.], i.e. 1234-1.
@@ -1529,7 +1417,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows to download all of the payment profiles defined in the administration panel
  * @typedef {Object} GetPaymentsProfilesRequest
  * @property {(resultsPage: Integer) => GetPaymentsProfilesRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetPaymentsProfilesRequest} resultsLimit Number of results on page. Value from 1 to 100
@@ -1539,7 +1426,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding withdrawals for orders in the administration panel.
  * @typedef {Object} PostPaymentsRepaymentRequest
  * @property {(source_id: Integer) => PostPaymentsRepaymentRequest} source_id Returns ID.
  * @property {(source_type: String) => PostPaymentsRepaymentRequest} source_type Defines payment category. For the payments regarding returns, enter 'return'.
@@ -1552,7 +1438,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to download, among others, information on identifiers, names and size codes, their available stock quantity and locations in the warehouse based on scanned bar codes.
  * @typedef {Object} GetProductsSKUbyBarcodeRequest
  * @property {(productIndices: Array<String>) => GetProductsSKUbyBarcodeRequest} productIndices List of sought products by indexes.
  * @property {(searchOnlyInCodeIai: Boolean) => GetProductsSKUbyBarcodeRequest} searchOnlyInCodeIai Search for products only by IAI code
@@ -1560,14 +1445,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding and editing product attachments.
  * @typedef {Object} PutProductsAttachmentsRequest
  * @property {(productsAttachments: Array<Object>) => PutProductsAttachmentsRequest} productsAttachments 
  * @property {function} exec Excecute request
  */
 
 /**
- * Allows for downloading information about auctions and auction categories to which the product has been assigned (for a maximum of 100 products in one request)
  * @typedef {Object} GetProductsAuctionsRequest
  * @property {(products: Array<Object>) => GetProductsAuctionsRequest} products Products list.
  * @property {(auctionSites: Array<String>) => GetProductsAuctionsRequest} auctionSites Array of auction site IDs
@@ -1580,14 +1463,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to remove brands from the administration panel..
  * @typedef {Object} DeleteProductsBrandsRequest
  * @property {(ids: Array<Integer>) => DeleteProductsBrandsRequest} ids #!IdentyfikatoryProducentow!#
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns information about brands available in the IdoSell Shop administration panel.
  * @typedef {Object} GetProductsBrandsRequest
  * @property {(results_page: Integer) => GetProductsBrandsRequest} results_page Result page number.
  * @property {(results_limit: Integer) => GetProductsBrandsRequest} results_limit Number of results on page.
@@ -1598,21 +1479,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to update brands information available in the administration panel..
  * @typedef {Object} PostProductsBrandsRequest
  * @property {(producers: Array<Object>) => PostProductsBrandsRequest} producers List of manufacturers assigned to sought products.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows you to update brands information available in the administration panel..
  * @typedef {Object} PutProductsBrandsRequest
  * @property {(producers: Array<Object>) => PutProductsBrandsRequest} producers List of manufacturers assigned to sought products.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows you to download a list of filters for brands (manufacturers) available in the IdoSell administration panel.
  * @typedef {Object} GetProductsBrandsFilterRequest
  * @property {(shopId: Integer) => GetProductsBrandsFilterRequest} shopId Shop Id
  * @property {(languageId: String) => GetProductsBrandsFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -1621,7 +1499,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to manage filter settings for brands (manufacturers).
  * @typedef {Object} PutProductsBrandsFilterRequest
  * @property {(shopId: Integer) => PutProductsBrandsFilterRequest} shopId Shop Id
  * @property {(languageId: String) => PutProductsBrandsFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -1632,37 +1509,36 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * createBundle method allows to create a new product with a type: set and to assign existing products as a set components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
  * @typedef {Object} PostProductsBundlesRequest
+ * @property {(params: Array<Object>) => PostProductsBundlesRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * removeProductsFromBundle method allows to remove indicated set components
  * @typedef {Object} DeleteProductsBundlesProductsRequest
+ * @property {(params: Array<Object>) => DeleteProductsBundlesProductsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * addProductsToBundle method allows to add components to existing sets in the administration panel
  * @typedef {Object} PostProductsBundlesProductsRequest
+ * @property {(params: Array<Object>) => PostProductsBundlesProductsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * setProductsQuantityInBundle method allows to indicate quantity of a set component
  * @typedef {Object} PutProductsBundlesProductsQuantityRequest
+ * @property {(params: Array<Object>) => PutProductsBundlesProductsQuantityRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * the renewProductsInBundle method allows you to rebuild components of Sets existing in the administration panel 
  * @typedef {Object} PutProductsBundlesRenewRequest
+ * @property {(params: Array<Object>) => PutProductsBundlesRenewRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns information about categories configured in the administration panel.
  * @typedef {Object} GetProductsCategoriesRequest
  * @property {(ids: Array<Integer>) => GetProductsCategoriesRequest} ids List of product category identifiers in the panel
  * @property {(languages: Array<String>) => GetProductsCategoriesRequest} languages Array of languages categories names should be returned in. "Defaults" value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages.
@@ -1675,14 +1551,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding new categories to the administration panel as well editing and deleting of existing categories.
  * @typedef {Object} PutProductsCategoriesRequest
  * @property {(categories: Array<Object>) => PutProductsCategoriesRequest} categories List of categories in which sought products are present.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method returns information about IdoSell Categories available in store. .
  * @typedef {Object} GetProductsCategoriesIdosellRequest
  * @property {(languagesIds: Array<Object>) => GetProductsCategoriesIdosellRequest} languagesIds List of languages
  * @property {(categoriesIdoSellIds: Array<String>) => GetProductsCategoriesIdosellRequest} categoriesIdoSellIds Number of IdoSell Categories identifiers
@@ -1697,7 +1571,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to check if a product with the given identification code (panel ID, IAI code, manufacturer code, external system code) exists in the panel.
  * @typedef {Object} GetProductsCodeExistenceRequest
  * @property {(products: Array<Object>) => GetProductsCodeExistenceRequest} products Products list.
  * @property {(ids: Array<Integer>) => GetProductsCodeExistenceRequest} ids Define products by passing array of values
@@ -1708,37 +1581,36 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * createCollection method allows to create a new product with a type: collection and to assign existing products as a collection components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
  * @typedef {Object} PostProductsCollectionsRequest
+ * @property {(params: Array<Object>) => PostProductsCollectionsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * removeProductsFromCollection method allows to remove indicated collection components
  * @typedef {Object} DeleteProductsCollectionsProductsRequest
+ * @property {(params: Array<Object>) => DeleteProductsCollectionsProductsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * addProductsToCollection method allows to add components to existing collections in the administration panel
  * @typedef {Object} PostProductsCollectionsProductsRequest
+ * @property {(params: Array<Object>) => PostProductsCollectionsProductsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * setProductsQuantityInCollection method allows to indicate quantity of a collection component
  * @typedef {Object} PutProductsCollectionsProductsRequest
+ * @property {(params: Array<Object>) => PutProductsCollectionsProductsRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * the renewProductsInCollection method allows you to rebuild existing components of Collections in the administration panel 
  * @typedef {Object} PutProductsCollectionsRenewRequest
+ * @property {(params: Array<Object>) => PutProductsCollectionsRenewRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * The method returns the time needed to prepare the product for shipment
  * @typedef {Object} GetProductsDeliveryTimeRequest
  * @property {(stockId: Integer) => GetProductsDeliveryTimeRequest} stockId Stock ID
  * @property {(isCollectionInPerson: Boolean) => GetProductsDeliveryTimeRequest} isCollectionInPerson Should products be prepared for personal collection?
@@ -1746,42 +1618,36 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that returns text elements for a given product, e.g. product name, long and short description, metadata.
  * @typedef {Object} GetProductsDescriptionsRequest
  * @property {(productsIdents: Array<Object>) => GetProductsDescriptionsRequest} productsIdents Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows for setting text elements for a given product, e.g. product name, long and short description, metadata.
  * @typedef {Object} PutProductsDescriptionsRequest
  * @property {(products: Array<Object>) => PutProductsDescriptionsRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows you to change the main product in a group of products.
  * @typedef {Object} PutProductsGroupsMainProductRequest
  * @property {(groups: Array<Object>) => PutProductsGroupsMainProductRequest} groups 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows you to change the order of products in a group of products.
  * @typedef {Object} PutProductsGroupsOrderRequest
  * @property {(groups: Array<Object>) => PutProductsGroupsOrderRequest} groups 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows you to change the settings for displaying products to a group of products .
  * @typedef {Object} PutProductsGroupsSettingsRequest
  * @property {(groups: Array<Object>) => PutProductsGroupsSettingsRequest} groups 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns information about product IDs, as well as size IDs and names, based on the provided product external system codes.
  * @typedef {Object} GetProductsIdBySizecodeRequest
  * @property {(codes: Array<String>) => GetProductsIdBySizecodeRequest} codes Search codes.
  * @property {(type: String) => GetProductsIdBySizecodeRequest} type Type of codes. Acceptable values: "external" (default value) - external system code, "producer" - producer code, and "all" - any of the above codes
@@ -1789,13 +1655,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * This method is used to delete images of products
  * @typedef {Object} DeleteProductsImagesRequest
+ * @property {(params: Array<Object>) => DeleteProductsImagesRequest} params Parameters transmitted to method
  * @property {function} exec Excecute request
  */
 
 /**
- * Method used for adding and editing product pictures.
  * @typedef {Object} PutProductsImagesRequest
  * @property {(productsImagesSettings: Object) => PutProductsImagesRequest} productsImagesSettings 
  * @property {(productsImages: Array<Object>) => PutProductsImagesRequest} productsImages Information on product images
@@ -1803,14 +1668,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to download available Facebook catalogs in a given store.
  * @typedef {Object} GetProductsMarketingAllFacebookCatalogIdsRequest
  * @property {(shopId: Integer) => GetProductsMarketingAllFacebookCatalogIdsRequest} shopId Shop Id
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to download a list of active special offers for the given store.
  * @typedef {Object} GetProductsMarketingPromotionRequest
  * @property {(shopId: Integer) => GetProductsMarketingPromotionRequest} shopId Shop Id
  * @property {(products: Array<Integer>) => GetProductsMarketingPromotionRequest} products Products list.
@@ -1818,7 +1681,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to add promotions from a new module with elements.
  * @typedef {Object} PostProductsMarketingPromotionRequest
  * @property {(promotionName: String) => PostProductsMarketingPromotionRequest} promotionName Promotion name
  * @property {(shopsIds: Array<Integer>) => PostProductsMarketingPromotionRequest} shopsIds List of stores IDs When mask is determined, this parameter is omitted.
@@ -1835,7 +1697,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to edit the promotion from the new module with the elements.
  * @typedef {Object} PutProductsMarketingPromotionRequest
  * @property {(promotionId: String) => PutProductsMarketingPromotionRequest} promotionId Special offer ID
  * @property {(promotionName: String) => PutProductsMarketingPromotionRequest} promotionName Promotion name
@@ -1854,7 +1715,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows for getting information about products assigned to marketing hot spots
  * @typedef {Object} GetProductsMarketingZonesRequest
  * @property {(products: Array<Object>) => GetProductsMarketingZonesRequest} products Products list.
  * @property {(ids: Array<Integer>) => GetProductsMarketingZonesRequest} ids Define products by passing array of values
@@ -1864,7 +1724,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows for assigning products to marketing hot spots
  * @typedef {Object} PutProductsMarketingZonesRequest
  * @property {(products: Array<Object>) => PutProductsMarketingZonesRequest} products Products list.
  * @property {(assignment_mode: 'auto'|'manual') => PutProductsMarketingZonesRequest} assignment_mode 
@@ -1874,7 +1733,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows you to download information about the lowest prices before promotions
  * @typedef {Object} GetProductsOmnibusPricesRequest
  * @property {(products: Array<Object>) => GetProductsOmnibusPricesRequest} products Products list.
  * @property {(ids: Array<[object Object]>) => GetProductsOmnibusPricesRequest} ids Define products by passing array of values
@@ -1884,21 +1742,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows for editing product strikethrough price settings
  * @typedef {Object} PutProductsOmnibusPricesRequest
  * @property {(products: Array<Object>) => PutProductsOmnibusPricesRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to delete the feedback about the commodity from the panel.
  * @typedef {Object} DeleteProductsOpinionsRequest
  * @property {(id: Integer) => DeleteProductsOpinionsRequest} id 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows for downloading information about reviews issued for products available in the IdoSell Shop administration panel.
  * @typedef {Object} GetProductsOpinionsRequest
  * @property {(opinion: Object) => GetProductsOpinionsRequest} opinion Review identification
  * @property {(products: Object) => GetProductsOpinionsRequest} products Products list.
@@ -1915,14 +1770,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows for adding reviews of products available in the IdoSell Shop administration panel.
  * @typedef {Object} PostProductsOpinionsRequest
  * @property {(opinions: Array<Object>) => PostProductsOpinionsRequest} opinions List of reviews
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to edit opinions about goods available in the IdoSell Shop administration panel.
  * @typedef {Object} PutProductsOpinionsRequest
  * @property {(id: Integer) => PutProductsOpinionsRequest} id 
  * @property {(confirmed: 'y'|'n') => PutProductsOpinionsRequest} confirmed 
@@ -1936,7 +1789,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Evaluation of the usefulness of opinions issued for products.
  * @typedef {Object} GetProductsOpinionsRateRequest
  * @property {(id: Integer) => GetProductsOpinionsRateRequest} id 
  * @property {(operation: 'positive'|'negative') => GetProductsOpinionsRateRequest} operation 
@@ -1944,14 +1796,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to delete parameters and their values (for parameters that are not pinned to any product)..
  * @typedef {Object} DeleteProductsParametersRequest
  * @property {(ids: Array<Integer>) => DeleteProductsParametersRequest} ids Parameter identifiers
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
  * @typedef {Object} GetProductsParametersRequest
  * @property {(ids: Array<Integer>) => GetProductsParametersRequest} ids List of identifiers
  * @property {(textIds: Array<Object>) => GetProductsParametersRequest} textIds Element text ID - can be entered instead of "id".
@@ -1964,20 +1814,19 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
  * @typedef {Object} PutProductsParametersRequest
+ * @property {(items: Array<Object>) => PutProductsParametersRequest} items Sections, parameters or valued to add or edit.
+ * @property {(settings: Object) => PutProductsParametersRequest} settings Settings
  * @property {function} exec Excecute request
  */
 
 /**
- * Method used for deleting products from the IdoSell Shop administration panel.
  * @typedef {Object} DeleteProductsRequest
  * @property {(products: Array<Object>) => DeleteProductsRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables extracting information about non-deleted products available in the administration panel
  * @typedef {Object} ListProductsRequest
  * @property {(dispatchSettings: Object) => ListProductsRequest} dispatchSettings 
  * @property {(returnProducts: String) => ListProductsRequest} returnProducts Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash.
@@ -2047,14 +1896,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables extracting information about non-deleted products available in the administration panel
  * @typedef {Object} GetProductsRequest
  * @property {(productIds: Array<String>) => GetProductsRequest} productIds List of the unique, indexed product codes (IAI code / External system code / Producer code)
  * @property {function} exec Excecute request
  */
 
 /**
- * The method is used to add products
  * @typedef {Object} PostProductsRequest
  * @property {(settings: Object) => PostProductsRequest} settings Settings
  * @property {(picturesSettings: Object) => PostProductsRequest} picturesSettings Icon and photos settings
@@ -2063,7 +1910,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables editing and adding new products to the administration panel.
  * @typedef {Object} PutProductsRequest
  * @property {(settings: Object) => PutProductsRequest} settings Settings
  * @property {(picturesSettings: Object) => PutProductsRequest} picturesSettings Icon and photos settings
@@ -2072,7 +1918,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to add products to the Facebook catalog.
  * @typedef {Object} DeleteProductsProductsToFacebookCatalogRequest
  * @property {(facebookCatalogId: Integer) => DeleteProductsProductsToFacebookCatalogRequest} facebookCatalogId You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel
  * @property {(shopId: Integer) => DeleteProductsProductsToFacebookCatalogRequest} shopId Shop Id
@@ -2081,7 +1926,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to retrieve products assigned to the Facebook catalog.
  * @typedef {Object} GetProductsProductsToFacebookCatalogRequest
  * @property {(facebookCatalogId: Integer) => GetProductsProductsToFacebookCatalogRequest} facebookCatalogId You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel
  * @property {(shopId: Integer) => GetProductsProductsToFacebookCatalogRequest} shopId Shop Id
@@ -2089,7 +1933,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to add products to the Facebook catalog.
  * @typedef {Object} PostProductsProductsToFacebookCatalogRequest
  * @property {(facebookCatalogId: Integer) => PostProductsProductsToFacebookCatalogRequest} facebookCatalogId You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel
  * @property {(shopId: Integer) => PostProductsProductsToFacebookCatalogRequest} shopId Shop Id
@@ -2098,7 +1941,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to remove the products from the promotion.
  * @typedef {Object} DeleteProductsProductsToPromotionRequest
  * @property {(promotionId: Integer) => DeleteProductsProductsToPromotionRequest} promotionId Special offer ID
  * @property {(products: Array<Integer>) => DeleteProductsProductsToPromotionRequest} products Products list.
@@ -2106,7 +1948,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to add products to an existing special offer.
  * @typedef {Object} PostProductsProductsToPromotionRequest
  * @property {(promotionId: Integer) => PostProductsProductsToPromotionRequest} promotionId Special offer ID
  * @property {(products: Array<Integer>) => PostProductsProductsToPromotionRequest} products Products list.
@@ -2114,7 +1955,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to download a list of questions to products available in the IdoSell Shop administration panel.
  * @typedef {Object} GetProductsQuestionsRequest
  * @property {(id: Integer) => GetProductsQuestionsRequest} id Question ID.
  * @property {(productId: Integer) => GetProductsQuestionsRequest} productId Product IAI code
@@ -2122,14 +1962,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to add and edit questions to products available in the IdoSell Shop administration panel.
  * @typedef {Object} PutProductsQuestionsRequest
  * @property {(questions: Array<Object>) => PutProductsQuestionsRequest} questions Question Board.
  * @property {function} exec Excecute request
  */
 
 /**
- * It allows to download information about product reservations in orders (for up to 100 products in one request).
  * @typedef {Object} GetProductsReservationsRequest
  * @property {(productsIdents: Array<Object>) => GetProductsReservationsRequest} productsIdents Products list.
  * @property {(ids: Array<[object Object]>) => GetProductsReservationsRequest} ids Define productsIdents by passing array of values
@@ -2139,20 +1977,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method is used to restore deleted products
  * @typedef {Object} PostProductsRestoreRequest
+ * @property {(productId: Integer) => PostProductsRestoreRequest} productId Product IAI code
  * @property {function} exec Excecute request
  */
 
 /**
- * Method allows you to delete a series of products available in the IdoSell administration panel..
  * @typedef {Object} DeleteProductsSeriesRequest
  * @property {(ids: Array<Integer>) => DeleteProductsSeriesRequest} ids IDs
  * @property {function} exec Excecute request
  */
 
 /**
- * Method returns information about the product series available in the IdoSell administration panel..
  * @typedef {Object} GetProductsSeriesRequest
  * @property {(return_last_changed_time: String) => GetProductsSeriesRequest} return_last_changed_time With "y" value it returns the last series modification date in YYYY-MM-DD HH:MM:SS format.
  * @property {(ids: Array<Integer>) => GetProductsSeriesRequest} ids IDs
@@ -2166,14 +2002,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method allows you to update information about product series available in the IdoSell administration panel..
  * @typedef {Object} PutProductsSeriesRequest
  * @property {(series: Array<Object>) => PutProductsSeriesRequest} series Series list.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method allows you to retrieve a list of filters for a series of products available in the IdoSell administration panel..
  * @typedef {Object} GetProductsSeriesFilterRequest
  * @property {(shopId: Integer) => GetProductsSeriesFilterRequest} shopId Shop Id
  * @property {(languageId: String) => GetProductsSeriesFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -2182,7 +2016,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows you to manage the filter settings for the series..
  * @typedef {Object} PutProductsSeriesFilterRequest
  * @property {(shopId: Integer) => PutProductsSeriesFilterRequest} shopId Shop Id
  * @property {(languageId: String) => PutProductsSeriesFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -2193,13 +2026,14 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method is used to remove sizes
  * @typedef {Object} DeleteProductsSizesRequest
+ * @property {(mode: 'delete_by_size'|'delete_all') => DeleteProductsSizesRequest} mode Edition mode
+ * @property {(params: Array<Object>) => DeleteProductsSizesRequest} params Parameters transmitted to method
+ * @property {(deleteSizesIndexesData: Array<String>) => DeleteProductsSizesRequest} deleteSizesIndexesData Product parameters recognized by index.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns information about product sizes configured in the administration panel
  * @typedef {Object} GetProductsSizesRequest
  * @property {(result::page: Integer) => GetProductsSizesRequest} result::page Page with results number. Numeration starts from 0
  * @property {(result::pageNumber: Integer) => GetProductsSizesRequest} result::pageNumber Number of results on page. Value from 1 to 100
@@ -2207,20 +2041,20 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * This method allows you to edit the size-dependent data
  * @typedef {Object} PutProductsSizesRequest
+ * @property {(mode: 'edit'|'add'|'replace') => PutProductsSizesRequest} mode Edition mode
+ * @property {(sizesProductsData: Array<Object>) => PutProductsSizesRequest} sizesProductsData Product parameters recognized by product ID or its sizes
+ * @property {(indexesData: Array<Object>) => PutProductsSizesRequest} indexesData Product parameters recognized by index
  * @property {function} exec Excecute request
  */
 
 /**
- * MetodaPozwalaNaEdycjeDanychDotyczacychIlosci
  * @typedef {Object} PutProductsStockQuantityRequest
  * @property {(products: Array<Object>) => PutProductsStockQuantityRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables getting information about product stock levels and warehouse locations.
  * @typedef {Object} GetProductsStocksRequest
  * @property {(products: Array<Object>) => GetProductsStocksRequest} products Products list.
  * @property {(ids: Array<[object Object]>) => GetProductsStocksRequest} ids Define products by passing array of values
@@ -2230,14 +2064,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables setting product stock levels and warehouse locations.
  * @typedef {Object} PutProductsStocksRequest
  * @property {(products: Array<Object>) => PutProductsStocksRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * Allows for getting information about product strikethrough price settings
  * @typedef {Object} GetProductsStrikethroughPricesRequest
  * @property {(products: Array<Object>) => GetProductsStrikethroughPricesRequest} products Products list.
  * @property {(ids: Array<[object Object]>) => GetProductsStrikethroughPricesRequest} ids Define products by passing array of values
@@ -2247,28 +2079,24 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows for editing product strikethrough price settings
  * @typedef {Object} PutProductsStrikethroughPricesRequest
  * @property {(products: Array<Object>) => PutProductsStrikethroughPricesRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to edit supplier data in the IdoSell Shop administration panel.
  * @typedef {Object} PutProductsSupplierCodeRequest
  * @property {(products: Array<Object>) => PutProductsSupplierCodeRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows you to edit the commodity data related to its suppliers.
  * @typedef {Object} PutProductsSupplierProductDataRequest
  * @property {(products: Array<Object>) => PutProductsSupplierProductDataRequest} products Products list.
  * @property {function} exec Excecute request
  */
 
 /**
- * #!MetodaPozwalaNaWgranieDoModuluSynchronizacjiTowarowOfertyWPlikuWFormacieIOF30!#.
  * @typedef {Object} PostProductsSynchronizationFileRequest
  * @property {(synchronizationId: Integer) => PostProductsSynchronizationFileRequest} synchronizationId #!IdentyfikatorSynchronizacji!#.
  * @property {(packageId: Integer) => PostProductsSynchronizationFileRequest} packageId #!NumerPaczkiZPlikami!#. #!PrzyPierwszymPlikuWPaczceNalezyZostawicPusteAAPIZwrociWygenerowanyNumerKtoryNastepnieNalezyPrzesylacIPoKtorymAPIBedzieRozpoznawacKolejnePlikiDoTejPaczki!#.
@@ -2280,7 +2108,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * #!MetodaInformujeModulSynchronizacjiOZakonczeniuWgrywaniaPlikow!#.
  * @typedef {Object} PutProductsSynchronizationFinishUploadRequest
  * @property {(synchronizationId: Integer) => PutProductsSynchronizationFinishUploadRequest} synchronizationId #!IdentyfikatorSynchronizacji!#.
  * @property {(packageId: Integer) => PutProductsSynchronizationFinishUploadRequest} packageId #!NumerPaczkiZPlikami!#.
@@ -2290,7 +2117,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting information about returns issued for orders in the administration panel.
  * @typedef {Object} GetReturnsRequest
  * @property {(order_sn: Integer) => GetReturnsRequest} order_sn Search by the order serial number to which a return was added.
  * @property {(return_id: Integer) => GetReturnsRequest} return_id Search by return ID.
@@ -2309,14 +2135,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables editing returns issued for orders in the administration panel.
  * @typedef {Object} PutReturnsRequest
  * @property {(returns: Array<Object>) => PutReturnsRequest} returns 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables setting serial numbers for products included in returns issued for orders in the administration panel.
  * @typedef {Object} PutReturnsSerialNumberRequest
  * @property {(return_id: Integer) => PutReturnsSerialNumberRequest} return_id Return number.
  * @property {(products: Array<Object>) => PutReturnsSerialNumberRequest} products Products list.
@@ -2324,13 +2148,11 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Allows to download all configurable return statuses
  * @typedef {Object} GetReturnsStatusesRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * This get method allows you to retrieve data about existing claims
  * @typedef {Object} GetRmaRequest
  * @property {(rmaIds: Array<Integer>) => GetRmaRequest} rmaIds 
  * @property {(stockId: Integer) => GetRmaRequest} stockId Stock ID
@@ -2350,27 +2172,23 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * This update method allows to update the data in existing complaints
  * @typedef {Object} PutRmaRequest
  * @property {(rmas: Array<Object>) => PutRmaRequest} rmas Complaints.
  * @property {function} exec Excecute request
  */
 
 /**
- * Allows to download all possible complaint statuses
  * @typedef {Object} GetRmaStatusesRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows the removal of size charts.
  * @typedef {Object} DeleteSizechartsRequest
  * @property {(ids: Array<Integer>) => DeleteSizechartsRequest} ids #!identyfikatory!#
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows size charts to be downloaded.
  * @typedef {Object} GetSizechartsRequest
  * @property {(ids: Array<Integer>) => GetSizechartsRequest} ids IDs
  * @property {(names: Array<String>) => GetSizechartsRequest} names Names of size charts
@@ -2383,62 +2201,55 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows the size charts settings to be updated.
  * @typedef {Object} PutSizechartsRequest
  * @property {(sizeCharts: Array<Object>) => PutSizechartsRequest} sizeCharts 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns information about product sizes configured in the administration panel. List of size groups (with sizes that belong to particular group) is returned as a result.
  * @typedef {Object} GetSizesRequest
  * @property {(return_last_changed_time: String) => GetSizesRequest} return_last_changed_time When the value is 'y', the last size modification date is returned, formatted as YYYY-MM-DD HH-MM-SS.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables creating, deleting and editing product sizes in the administration panel.
  * @typedef {Object} PutSizesRequest
  * @property {(sizes: Array<Object>) => PutSizesRequest} sizes Size table.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method is used for extracting information about a shop and its most important configuration settings.
  * @typedef {Object} GetSystemConfigRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * The method is used to manage the most important settings in the store and in the panel. It enables, among others, configuration of tax and billing settings and configuration of warehouse management.
  * @typedef {Object} PutSystemConfigRequest
  * @property {(panelSettings: Object) => PutSystemConfigRequest} panelSettings Panel settings
  * @property {function} exec Excecute request
  */
 
 /**
- * This method returns the current exchange rate in relation to the currency set in the administration panel.
  * @typedef {Object} GetSystemCurrenciesRequest
  * @property {(symbol: String) => GetSystemCurrenciesRequest} symbol Currency symbol in ISO 4217 format.
  * @property {(date: String) => GetSystemCurrenciesRequest} date Date in format YYYY-MM-DD-HH MM:SS.
+
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that allows for setting currency exchange rates in relation to the currency set in the administration panel.
  * @typedef {Object} PutSystemCurrenciesRequest
+ * @property {(currencies: Array<Object>) => PutSystemCurrenciesRequest} currencies 
  * @property {function} exec Excecute request
  */
 
 /**
- * It allows you to download the current automation processes configuration .
  * @typedef {Object} GetSystemProcessesAutomationRequest
  * @property {(shopId: Integer) => GetSystemProcessesAutomationRequest} shopId Shop Id
  * @property {function} exec Excecute request
  */
 
 /**
- * The method is used for edit of processes automation settings .
  * @typedef {Object} PutSystemProcessesAutomationRequest
  * @property {(shopId: Integer) => PutSystemProcessesAutomationRequest} shopId Shop Id
  * @property {(orders: Object) => PutSystemProcessesAutomationRequest} orders Orders.
@@ -2446,53 +2257,45 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * This method returns server status information which is useful in determining whether the server is currently overloaded.
  * @typedef {Object} GetSystemServerLoadRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns the current server time, which is essential for authentication.
  * @typedef {Object} GetSystemServerTimeRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * Method is used for extracting information about a shop and its most important configuration settings.
  * @typedef {Object} GetSystemShopsDataRequest
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows units of measurement to be downloaded from the IdoSell administration panel.
  * @typedef {Object} GetSystemUnitsRequest
  * @property {(languagesIds: Array<String>) => GetSystemUnitsRequest} languagesIds List of languages
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows existing units of measurement to be updated to the IdoSell administration panel.
  * @typedef {Object} PutSystemUnitsRequest
  * @property {(units: Array<Object>) => PutSystemUnitsRequest} units 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that returns information about IdoSell Shop administration panel users.
  * @typedef {Object} GetSystemUsersRequest
  * @property {(userType: 'all'|'active') => GetSystemUsersRequest} userType User type. List of options "all" - All users, "active" - Only active users
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables gift voucer blocking
  * @typedef {Object} PutVouchersBlockRequest
  * @property {(vouchers: Array<Object>) => PutVouchersBlockRequest} vouchers 
  * @property {function} exec Excecute request
  */
 
 /**
- * Allows for downloading all discount code campaigns defined in the administration panel
  * @typedef {Object} GetVouchersTypesRequest
  * @property {(resultsPage: Integer) => GetVouchersTypesRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetVouchersTypesRequest} resultsLimit Number of results on page. Value from 1 to 100
@@ -2502,21 +2305,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Enables gift vouchers unblocking
  * @typedef {Object} PutVouchersUnblockRequest
  * @property {(vouchers: Array<Object>) => PutVouchersUnblockRequest} vouchers 
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables deleting a single or a list of gift vouchers
  * @typedef {Object} DeleteVouchersRequest
  * @property {(vouchers: Array<Object>) => DeleteVouchersRequest} vouchers 
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables searching for vouchers and retrieving information about indicated vouchers
  * @typedef {Object} GetVouchersRequest
  * @property {(vouchers: Array<Object>) => GetVouchersRequest} vouchers 
  * @property {(voucherTypeId: Integer) => GetVouchersRequest} voucherTypeId Discount code campaign ID
@@ -2542,42 +2342,36 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Enables adding new gift vouchers with the selected voucher type
  * @typedef {Object} PostVouchersRequest
  * @property {(vouchers: Array<Object>) => PostVouchersRequest} vouchers List of vouchers to add
  * @property {function} exec Excecute request
  */
 
 /**
- * Enables editing gift voucher, e.g. changing its balance, validity date or number (only for unused vouchers)
  * @typedef {Object} PutVouchersRequest
  * @property {(vouchers: Array<Object>) => PutVouchersRequest} vouchers List of vouchers to edit
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables getting the number of product guarantees available in the administration panel.
  * @typedef {Object} GetWarrantiesCountTotalRequest
  * @property {(warranty_ids: Array<String>) => GetWarrantiesCountTotalRequest} warranty_ids 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing product warranty language settings.
  * @typedef {Object} PutWarrantiesLanguageDataRequest
  * @property {(lang_data: Array<Object>) => PutWarrantiesLanguageDataRequest} lang_data 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables deleting product warranties from the administration panel.
  * @typedef {Object} DeleteWarrantiesRequest
  * @property {(warranty_ids: Array<String>) => DeleteWarrantiesRequest} warranty_ids 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables getting a list of product warranties available in the administration panel.
  * @typedef {Object} GetWarrantiesRequest
  * @property {(warranty_ids: Array<String>) => GetWarrantiesRequest} warranty_ids 
  * @property {(results_limit: Integer) => GetWarrantiesRequest} results_limit Number of results on page.
@@ -2589,21 +2383,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding product warranties to the administration panel.
  * @typedef {Object} PostWarrantiesRequest
  * @property {(warranties: Array<Object>) => PostWarrantiesRequest} warranties 
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables editing product warranties available in the administration panel.
  * @typedef {Object} PutWarrantiesRequest
  * @property {(warranties: Array<Object>) => PutWarrantiesRequest} warranties 
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to download information about a selected location or all locations in a given warehouse together with a list of product IDs located in these locations.
  * @typedef {Object} GetWmsLocationsRequest
  * @property {(locationId: Integer) => GetWmsLocationsRequest} locationId Warehouse location ID
  * @property {(locationCode: String) => GetWmsLocationsRequest} locationCode Storage location code
@@ -2617,14 +2408,12 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method enables the MM document to be received at the target warehouse.
  * @typedef {Object} PutWmsStocksdocumentsAcceptMMRequest
  * @property {(id: Integer) => PutWmsStocksdocumentsAcceptMMRequest} id Document identifier.
  * @property {function} exec Excecute request
  */
 
 /**
- * Method that enables closing warehouse documents.
  * @typedef {Object} PutWmsStocksdocumentsCloseRequest
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => PutWmsStocksdocumentsCloseRequest} type 
  * @property {(id: Integer) => PutWmsStocksdocumentsCloseRequest} id Document identifier.
@@ -2632,7 +2421,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables deleting open warehouse documents.
  * @typedef {Object} DeleteWmsStocksdocumentsDocumentsRequest
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => DeleteWmsStocksdocumentsDocumentsRequest} type 
  * @property {(id: Integer) => DeleteWmsStocksdocumentsDocumentsRequest} id Document identifier.
@@ -2640,7 +2428,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows for downloading a list of warehouse documents.
  * @typedef {Object} GetWmsStocksdocumentsDocumentsRequest
  * @property {(stockDocumentType: 'pz'|'pw'|'px'|'rx'|'rw'|'wz'|'mm'|'wz'|'zw') => GetWmsStocksdocumentsDocumentsRequest} stockDocumentType Document type.
  * @property {(stockDocumentStatus: 'open'|'on_the_way'|'close') => GetWmsStocksdocumentsDocumentsRequest} stockDocumentStatus Document status.
@@ -2656,7 +2443,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables warehouse document creation.
  * @typedef {Object} PostWmsStocksdocumentsDocumentsRequest
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => PostWmsStocksdocumentsDocumentsRequest} type 
  * @property {(stockId: Integer) => PostWmsStocksdocumentsDocumentsRequest} stockId Target warehouse ID. The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>.
@@ -2676,7 +2462,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows for warehouse documents edit .
  * @typedef {Object} PutWmsStocksdocumentsDocumentsRequest
  * @property {(stockDocumentId: Integer) => PutWmsStocksdocumentsDocumentsRequest} stockDocumentId Document identifier.
  * @property {(stockDocumentType: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => PutWmsStocksdocumentsDocumentsRequest} stockDocumentType Document type. Available values: "pz" - goods received note (GRN), "pw" - internal delivery note (IDN), "px" - goods received correction note (GRX), "rx" - goods despatch note (GRN) , "rw" - goods issued note (GIN), "mm" - inter-warehouse transfer.
@@ -2702,7 +2487,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting a list of open warehouse documents.
  * @typedef {Object} GetWmsStocksdocumentsOpenedDocumentsRequest
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => GetWmsStocksdocumentsOpenedDocumentsRequest} type 
  * @property {(status: 'open'|'on_the_way'|'all') => GetWmsStocksdocumentsOpenedDocumentsRequest} status 
@@ -2717,7 +2501,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables deleting products from warehouse documents.
  * @typedef {Object} DeleteWmsStocksdocumentsProductsRequest
  * @property {(products: Array<Object>) => DeleteWmsStocksdocumentsProductsRequest} products Products list.
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => DeleteWmsStocksdocumentsProductsRequest} type 
@@ -2726,7 +2509,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables getting a list of products present on a warehouse document.
  * @typedef {Object} GetWmsStocksdocumentsProductsRequest
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm'|'wz'|'zw') => GetWmsStocksdocumentsProductsRequest} type 
  * @property {(id: Integer) => GetWmsStocksdocumentsProductsRequest} id Document identifier.
@@ -2738,7 +2520,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables adding products to warehouse documents.
  * @typedef {Object} PostWmsStocksdocumentsProductsRequest
  * @property {(products: Array<Object>) => PostWmsStocksdocumentsProductsRequest} products Products list.
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => PostWmsStocksdocumentsProductsRequest} type 
@@ -2747,7 +2528,6 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * Method that enables, amongst others, editing the quantity of a given product on a warehouse document.
  * @typedef {Object} PutWmsStocksdocumentsProductsRequest
  * @property {(products: Array<Object>) => PutWmsStocksdocumentsProductsRequest} products Products list.
  * @property {(type: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => PutWmsStocksdocumentsProductsRequest} type 
@@ -2756,21 +2536,18 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows to withdraw the MM document to the source warehouse.
  * @typedef {Object} PutWmsStocksdocumentsRejectMMRequest
  * @property {(id: Integer) => PutWmsStocksdocumentsRejectMMRequest} id Document identifier.
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows for the removal of suppliers..
  * @typedef {Object} DeleteWmsSuppliersRequest
  * @property {(ids: Array<Integer>) => DeleteWmsSuppliersRequest} ids Id
  * @property {function} exec Excecute request
  */
 
 /**
- * The method allows to download a list of suppliers along with information about the number of products assigned to them.
  * @typedef {Object} GetWmsSuppliersRequest
  * @property {(resultsPage: Integer) => GetWmsSuppliersRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetWmsSuppliersRequest} resultsLimit Number of results on page. Value from 1 to 100
@@ -2783,277 +2560,276 @@ import { putWmsSuppliersProxy } from "./methods/putWmsSuppliers.js";
  */
 
 /**
- * The method allows information about suppliers to be updated, including address details, description, order preparation time or supplier working hours..
  * @typedef {Object} PutWmsSuppliersRequest
  * @property {(suppliers: Array<Object>) => PutWmsSuppliersRequest} suppliers 
  * @property {function} exec Excecute request
  *//**
  * Idosell Gateways.
  * @typedef {Object} Gateways
- * @property {GetClientsBalanceRequest} getClientsBalance
- * @property {PostClientsBalanceRequest} postClientsBalance
- * @property {GetClientsRequest} getClients
- * @property {PostClientsRequest} postClients
- * @property {PutClientsRequest} putClients
- * @property {GetClientsCrmRequest} getClientsCrm
- * @property {DeleteClientsDeliveryAddressRequest} deleteClientsDeliveryAddress
- * @property {GetClientsDeliveryAddressRequest} getClientsDeliveryAddress
- * @property {PostClientsDeliveryAddressRequest} postClientsDeliveryAddress
- * @property {PutClientsDeliveryAddressRequest} putClientsDeliveryAddress
- * @property {PutClientsExternalCodeRequest} putClientsExternalCode
- * @property {PutClientsGiftcardsBlockRequest} putClientsGiftcardsBlock
- * @property {DeleteClientsGiftcardsRequest} deleteClientsGiftcards
- * @property {GetClientsGiftcardsRequest} getClientsGiftcards
- * @property {PostClientsGiftcardsRequest} postClientsGiftcards
- * @property {PutClientsGiftcardsRequest} putClientsGiftcards
- * @property {GetClientsGiftcardsTypesRequest} getClientsGiftcardsTypes
- * @property {PutClientsGiftcardsUnblockRequest} putClientsGiftcardsUnblock
- * @property {GetClientsMembershipCardsRequest} getClientsMembershipCards
- * @property {PutClientsMembershipCardsRequest} putClientsMembershipCards
- * @property {GetClientsNewsletterEmailSMSRequest} getClientsNewsletterEmailSMS
- * @property {GetClientsNewsletterEmailShopsRequest} getClientsNewsletterEmailShops
- * @property {DeleteClientsPayerAddressRequest} deleteClientsPayerAddress
- * @property {GetClientsPayerAddressRequest} getClientsPayerAddress
- * @property {PostClientsPayerAddressRequest} postClientsPayerAddress
- * @property {PutClientsPayerAddressRequest} putClientsPayerAddress
- * @property {GetClientsPricelistsClientsRequest} getClientsPricelistsClients
- * @property {PutClientsPricelistsClientsRequest} putClientsPricelistsClients
- * @property {DeleteClientsPricelistsRequest} deleteClientsPricelists
- * @property {GetClientsPricelistsRequest} getClientsPricelists
- * @property {PostClientsPricelistsRequest} postClientsPricelists
- * @property {PutClientsPricelistsRequest} putClientsPricelists
- * @property {GetClientsPricelistsProductsRequest} getClientsPricelistsProducts
- * @property {PutClientsPricelistsProductsRequest} putClientsPricelistsProducts
- * @property {PutClientsPricelistsRenameRequest} putClientsPricelistsRename
- * @property {GetClientsPricesActiveCardRequest} getClientsPricesActiveCard
- * @property {GetClientsPricesDiscountGroupsRequest} getClientsPricesDiscountGroups
- * @property {GetClientsPricesDiscountsRequest} getClientsPricesDiscounts
- * @property {PutClientsPricesDiscountsRequest} putClientsPricesDiscounts
- * @property {GetClientsProfitPointsRequest} getClientsProfitPoints
- * @property {PostClientsProfitPointsRequest} postClientsProfitPoints
- * @property {GetClientsProvinceListRequest} getClientsProvinceList
- * @property {DeleteClientsTagsClearRequest} deleteClientsTagsClear
- * @property {DeleteClientsTagsRequest} deleteClientsTags
- * @property {GetClientsTagsRequest} getClientsTags
- * @property {PostClientsTagsRequest} postClientsTags
- * @property {PutClientsTagsRequest} putClientsTags
- * @property {GetCouriersAssignedToShippingProfilesRequest} getCouriersAssignedToShippingProfiles
- * @property {GetCouriersRequest} getCouriers
- * @property {DeleteCouriersPickupPointsRequest} deleteCouriersPickupPoints
- * @property {GetCouriersPickupPointsRequest} getCouriersPickupPoints
- * @property {PostCouriersPickupPointsRequest} postCouriersPickupPoints
- * @property {PutCouriersPickupPointsRequest} putCouriersPickupPoints
- * @property {PutDeliveriesDefaultProfilesRequest} putDeliveriesDefaultProfiles
- * @property {GetDeliveriesProfilesRequest} getDeliveriesProfiles
- * @property {GetDeliveriesRegionsRequest} getDeliveriesRegions
- * @property {PostDeliveriesRegionsRequest} postDeliveriesRegions
- * @property {GetDiscountsGroupsClientsRequest} getDiscountsGroupsClients
- * @property {DeleteDiscountsGroupsRequest} deleteDiscountsGroups
- * @property {GetDiscountsGroupsRequest} getDiscountsGroups
- * @property {PostDiscountsGroupsRequest} postDiscountsGroups
- * @property {PutDiscountsGroupsRequest} putDiscountsGroups
- * @property {DeleteDiscountsGroupsProductsRequest} deleteDiscountsGroupsProducts
- * @property {PutDiscountsGroupsProductsRequest} putDiscountsGroupsProducts
- * @property {PutDiscountsRebatesBlockCardRequest} putDiscountsRebatesBlockCard
- * @property {DeleteDiscountsRebatesCardRequest} deleteDiscountsRebatesCard
- * @property {PostDiscountsRebatesCardRequest} postDiscountsRebatesCard
- * @property {DeleteDiscountsRebatesCodeRequest} deleteDiscountsRebatesCode
- * @property {PostDiscountsRebatesCodeRequest} postDiscountsRebatesCode
- * @property {PutDiscountsRebatesUnblockCardRequest} putDiscountsRebatesUnblockCard
- * @property {DeleteEntriesRequest} deleteEntries
- * @property {GetEntriesRequest} getEntries
- * @property {PostEntriesRequest} postEntries
- * @property {PutEntriesRequest} putEntries
- * @property {GetEntriesPagesToDisplayRequest} getEntriesPagesToDisplay
- * @property {GetMenuFilterRequest} getMenuFilter
- * @property {PutMenuFilterRequest} putMenuFilter
- * @property {DeleteMenuRequest} deleteMenu
- * @property {GetMenuRequest} getMenu
- * @property {PostMenuRequest} postMenu
- * @property {PutMenuRequest} putMenu
- * @property {PutMenuSortRequest} putMenuSort
- * @property {GetOrdersAnalyticsRequest} getOrdersAnalytics
- * @property {GetOrdersAuctionDetailsRequest} getOrdersAuctionDetails
- * @property {PutOrdersClientRequest} putOrdersClient
- * @property {PutOrdersCourierRequest} putOrdersCourier
- * @property {PutOrdersDeliveryAddressRequest} putOrdersDeliveryAddress
- * @property {PutOrdersDevideRequest} putOrdersDevide
- * @property {DeleteOrdersDocumentsRequest} deleteOrdersDocuments
- * @property {GetOrdersDocumentsRequest} getOrdersDocuments
- * @property {PostOrdersDocumentsRequest} postOrdersDocuments
- * @property {GetOrdersExportdocumentsEPPRequest} getOrdersExportdocumentsEPP
- * @property {GetOrdersExportdocumentsJPKRequest} getOrdersExportdocumentsJPK
- * @property {GetOrdersHandlerRequest} getOrdersHandler
- * @property {PutOrdersHandlerRequest} putOrdersHandler
- * @property {GetOrdersHistoryRequest} getOrdersHistory
- * @property {DeleteOrdersImagesRequest} deleteOrdersImages
- * @property {GetOrdersImagesRequest} getOrdersImages
- * @property {PostOrdersImagesRequest} postOrdersImages
- * @property {GetOrdersLabelsRequest} getOrdersLabels
- * @property {GetOrdersOpinionsRequest} getOrdersOpinions
- * @property {GetOrdersOpinionsRateRequest} getOrdersOpinionsRate
- * @property {ListOrdersRequest} listOrders
- * @property {GetOrdersRequest} getOrders
- * @property {PostOrdersRequest} postOrders
- * @property {PutOrdersRequest} putOrders
- * @property {GetOrdersPackagesRequest} getOrdersPackages
- * @property {PostOrdersPackagesRequest} postOrdersPackages
- * @property {PutOrdersPackagesRequest} putOrdersPackages
- * @property {PutOrdersPickupPointRequest} putOrdersPickupPoint
- * @property {GetOrdersPrinterDocumentsRequest} getOrdersPrinterDocuments
- * @property {PutOrdersProductsSerialNumbersRequest} putOrdersProductsSerialNumbers
- * @property {PutOrdersProfitMarginRequest} putOrdersProfitMargin
- * @property {GetOrdersProfitabilityRequest} getOrdersProfitability
- * @property {PutOrdersShippingCostsRequest} putOrdersShippingCosts
- * @property {ListOrdersUnfinishedRequest} listOrdersUnfinished
- * @property {GetOrdersWarehouseRequest} getOrdersWarehouse
- * @property {PutOrdersWarehouseRequest} putOrdersWarehouse
- * @property {GetPackagesLabelsRequest} getPackagesLabels
- * @property {PostPackagesLabelsRequest} postPackagesLabels
- * @property {GetPackagesRequest} getPackages
- * @property {PostPackagesRequest} postPackages
- * @property {PutPackagesRequest} putPackages
- * @property {PostPaymentsCancelRequest} postPaymentsCancel
- * @property {PostPaymentsCashbackRequest} postPaymentsCashback
- * @property {PutPaymentsConfirmRequest} putPaymentsConfirm
- * @property {GetPaymentsFormsRequest} getPaymentsForms
- * @property {GetPaymentsRequest} getPayments
- * @property {PostPaymentsRequest} postPayments
- * @property {PutPaymentsRequest} putPayments
- * @property {GetPaymentsProfilesRequest} getPaymentsProfiles
- * @property {PostPaymentsRepaymentRequest} postPaymentsRepayment
- * @property {GetProductsSKUbyBarcodeRequest} getProductsSKUbyBarcode
- * @property {PutProductsAttachmentsRequest} putProductsAttachments
- * @property {GetProductsAuctionsRequest} getProductsAuctions
- * @property {DeleteProductsBrandsRequest} deleteProductsBrands
- * @property {GetProductsBrandsRequest} getProductsBrands
- * @property {PostProductsBrandsRequest} postProductsBrands
- * @property {PutProductsBrandsRequest} putProductsBrands
- * @property {GetProductsBrandsFilterRequest} getProductsBrandsFilter
- * @property {PutProductsBrandsFilterRequest} putProductsBrandsFilter
- * @property {PostProductsBundlesRequest} postProductsBundles
- * @property {DeleteProductsBundlesProductsRequest} deleteProductsBundlesProducts
- * @property {PostProductsBundlesProductsRequest} postProductsBundlesProducts
- * @property {PutProductsBundlesProductsQuantityRequest} putProductsBundlesProductsQuantity
- * @property {PutProductsBundlesRenewRequest} putProductsBundlesRenew
- * @property {GetProductsCategoriesRequest} getProductsCategories
- * @property {PutProductsCategoriesRequest} putProductsCategories
- * @property {GetProductsCategoriesIdosellRequest} getProductsCategoriesIdosell
- * @property {GetProductsCodeExistenceRequest} getProductsCodeExistence
- * @property {PostProductsCollectionsRequest} postProductsCollections
- * @property {DeleteProductsCollectionsProductsRequest} deleteProductsCollectionsProducts
- * @property {PostProductsCollectionsProductsRequest} postProductsCollectionsProducts
- * @property {PutProductsCollectionsProductsRequest} putProductsCollectionsProducts
- * @property {PutProductsCollectionsRenewRequest} putProductsCollectionsRenew
- * @property {GetProductsDeliveryTimeRequest} getProductsDeliveryTime
- * @property {GetProductsDescriptionsRequest} getProductsDescriptions
- * @property {PutProductsDescriptionsRequest} putProductsDescriptions
- * @property {PutProductsGroupsMainProductRequest} putProductsGroupsMainProduct
- * @property {PutProductsGroupsOrderRequest} putProductsGroupsOrder
- * @property {PutProductsGroupsSettingsRequest} putProductsGroupsSettings
- * @property {GetProductsIdBySizecodeRequest} getProductsIdBySizecode
- * @property {DeleteProductsImagesRequest} deleteProductsImages
- * @property {PutProductsImagesRequest} putProductsImages
- * @property {GetProductsMarketingAllFacebookCatalogIdsRequest} getProductsMarketingAllFacebookCatalogIds
- * @property {GetProductsMarketingPromotionRequest} getProductsMarketingPromotion
- * @property {PostProductsMarketingPromotionRequest} postProductsMarketingPromotion
- * @property {PutProductsMarketingPromotionRequest} putProductsMarketingPromotion
- * @property {GetProductsMarketingZonesRequest} getProductsMarketingZones
- * @property {PutProductsMarketingZonesRequest} putProductsMarketingZones
- * @property {GetProductsOmnibusPricesRequest} getProductsOmnibusPrices
- * @property {PutProductsOmnibusPricesRequest} putProductsOmnibusPrices
- * @property {DeleteProductsOpinionsRequest} deleteProductsOpinions
- * @property {GetProductsOpinionsRequest} getProductsOpinions
- * @property {PostProductsOpinionsRequest} postProductsOpinions
- * @property {PutProductsOpinionsRequest} putProductsOpinions
- * @property {GetProductsOpinionsRateRequest} getProductsOpinionsRate
- * @property {DeleteProductsParametersRequest} deleteProductsParameters
- * @property {GetProductsParametersRequest} getProductsParameters
- * @property {PutProductsParametersRequest} putProductsParameters
- * @property {DeleteProductsRequest} deleteProducts
- * @property {ListProductsRequest} listProducts
- * @property {GetProductsRequest} getProducts
- * @property {PostProductsRequest} postProducts
- * @property {PutProductsRequest} putProducts
- * @property {DeleteProductsProductsToFacebookCatalogRequest} deleteProductsProductsToFacebookCatalog
- * @property {GetProductsProductsToFacebookCatalogRequest} getProductsProductsToFacebookCatalog
- * @property {PostProductsProductsToFacebookCatalogRequest} postProductsProductsToFacebookCatalog
- * @property {DeleteProductsProductsToPromotionRequest} deleteProductsProductsToPromotion
- * @property {PostProductsProductsToPromotionRequest} postProductsProductsToPromotion
- * @property {GetProductsQuestionsRequest} getProductsQuestions
- * @property {PutProductsQuestionsRequest} putProductsQuestions
- * @property {GetProductsReservationsRequest} getProductsReservations
- * @property {PostProductsRestoreRequest} postProductsRestore
- * @property {DeleteProductsSeriesRequest} deleteProductsSeries
- * @property {GetProductsSeriesRequest} getProductsSeries
- * @property {PutProductsSeriesRequest} putProductsSeries
- * @property {GetProductsSeriesFilterRequest} getProductsSeriesFilter
- * @property {PutProductsSeriesFilterRequest} putProductsSeriesFilter
- * @property {DeleteProductsSizesRequest} deleteProductsSizes
- * @property {GetProductsSizesRequest} getProductsSizes
- * @property {PutProductsSizesRequest} putProductsSizes
- * @property {PutProductsStockQuantityRequest} putProductsStockQuantity
- * @property {GetProductsStocksRequest} getProductsStocks
- * @property {PutProductsStocksRequest} putProductsStocks
- * @property {GetProductsStrikethroughPricesRequest} getProductsStrikethroughPrices
- * @property {PutProductsStrikethroughPricesRequest} putProductsStrikethroughPrices
- * @property {PutProductsSupplierCodeRequest} putProductsSupplierCode
- * @property {PutProductsSupplierProductDataRequest} putProductsSupplierProductData
- * @property {PostProductsSynchronizationFileRequest} postProductsSynchronizationFile
- * @property {PutProductsSynchronizationFinishUploadRequest} putProductsSynchronizationFinishUpload
- * @property {GetReturnsRequest} getReturns
- * @property {PutReturnsRequest} putReturns
- * @property {PutReturnsSerialNumberRequest} putReturnsSerialNumber
- * @property {GetReturnsStatusesRequest} getReturnsStatuses
- * @property {GetRmaRequest} getRma
- * @property {PutRmaRequest} putRma
- * @property {GetRmaStatusesRequest} getRmaStatuses
- * @property {DeleteSizechartsRequest} deleteSizecharts
- * @property {GetSizechartsRequest} getSizecharts
- * @property {PutSizechartsRequest} putSizecharts
- * @property {GetSizesRequest} getSizes
- * @property {PutSizesRequest} putSizes
- * @property {GetSystemConfigRequest} getSystemConfig
- * @property {PutSystemConfigRequest} putSystemConfig
- * @property {GetSystemCurrenciesRequest} getSystemCurrencies
- * @property {PutSystemCurrenciesRequest} putSystemCurrencies
- * @property {GetSystemProcessesAutomationRequest} getSystemProcessesAutomation
- * @property {PutSystemProcessesAutomationRequest} putSystemProcessesAutomation
- * @property {GetSystemServerLoadRequest} getSystemServerLoad
- * @property {GetSystemServerTimeRequest} getSystemServerTime
- * @property {GetSystemShopsDataRequest} getSystemShopsData
- * @property {GetSystemUnitsRequest} getSystemUnits
- * @property {PutSystemUnitsRequest} putSystemUnits
- * @property {GetSystemUsersRequest} getSystemUsers
- * @property {PutVouchersBlockRequest} putVouchersBlock
- * @property {GetVouchersTypesRequest} getVouchersTypes
- * @property {PutVouchersUnblockRequest} putVouchersUnblock
- * @property {DeleteVouchersRequest} deleteVouchers
- * @property {GetVouchersRequest} getVouchers
- * @property {PostVouchersRequest} postVouchers
- * @property {PutVouchersRequest} putVouchers
- * @property {GetWarrantiesCountTotalRequest} getWarrantiesCountTotal
- * @property {PutWarrantiesLanguageDataRequest} putWarrantiesLanguageData
- * @property {DeleteWarrantiesRequest} deleteWarranties
- * @property {GetWarrantiesRequest} getWarranties
- * @property {PostWarrantiesRequest} postWarranties
- * @property {PutWarrantiesRequest} putWarranties
- * @property {GetWmsLocationsRequest} getWmsLocations
- * @property {PutWmsStocksdocumentsAcceptMMRequest} putWmsStocksdocumentsAcceptMM
- * @property {PutWmsStocksdocumentsCloseRequest} putWmsStocksdocumentsClose
- * @property {DeleteWmsStocksdocumentsDocumentsRequest} deleteWmsStocksdocumentsDocuments
- * @property {GetWmsStocksdocumentsDocumentsRequest} getWmsStocksdocumentsDocuments
- * @property {PostWmsStocksdocumentsDocumentsRequest} postWmsStocksdocumentsDocuments
- * @property {PutWmsStocksdocumentsDocumentsRequest} putWmsStocksdocumentsDocuments
- * @property {GetWmsStocksdocumentsOpenedDocumentsRequest} getWmsStocksdocumentsOpenedDocuments
- * @property {DeleteWmsStocksdocumentsProductsRequest} deleteWmsStocksdocumentsProducts
- * @property {GetWmsStocksdocumentsProductsRequest} getWmsStocksdocumentsProducts
- * @property {PostWmsStocksdocumentsProductsRequest} postWmsStocksdocumentsProducts
- * @property {PutWmsStocksdocumentsProductsRequest} putWmsStocksdocumentsProducts
- * @property {PutWmsStocksdocumentsRejectMMRequest} putWmsStocksdocumentsRejectMM
- * @property {DeleteWmsSuppliersRequest} deleteWmsSuppliers
- * @property {GetWmsSuppliersRequest} getWmsSuppliers
- * @property {PutWmsSuppliersRequest} putWmsSuppliers
+ * @property {GetClientsBalanceRequest} getClientsBalance Method that enables extracting customer balance information from existing customer accounts.
+ * @property {PostClientsBalanceRequest} postClientsBalance Method that allows for customer account balance operations.
+ * @property {GetClientsRequest} getClients Method that enables extracting customer account details.
+ * @property {PostClientsRequest} postClients Method that enables adding new customer accounts to the IdoSell Shop administration panel.
+ * @property {PutClientsRequest} putClients Method enables modifying existing customer account data.
+ * @property {GetClientsCrmRequest} getClientsCrm The method allows to download information about customers from the CRM module assigned to stores to which the user has rights.
+ * @property {DeleteClientsDeliveryAddressRequest} deleteClientsDeliveryAddress #!MetodaPozwalaNaUsuwanieNiewykorzystanychAdresowDostawDlaKontKlientow!#
+ * @property {GetClientsDeliveryAddressRequest} getClientsDeliveryAddress Method that enables extracting information about delivery addresses assigned to existing customer accounts.
+ * @property {PostClientsDeliveryAddressRequest} postClientsDeliveryAddress Method that enables adding delivery address details to existing customer accounts.
+ * @property {PutClientsDeliveryAddressRequest} putClientsDeliveryAddress Method that enables editing the delivery address details for existing customer accounts.
+ * @property {PutClientsExternalCodeRequest} putClientsExternalCode Method that enables setting external system codes for existing customer accounts.
+ * @property {PutClientsGiftcardsBlockRequest} putClientsGiftcardsBlock Enables gift card blocking
+ * @property {DeleteClientsGiftcardsRequest} deleteClientsGiftcards Enables deleting a single or a list of gift cards
+ * @property {GetClientsGiftcardsRequest} getClientsGiftcards Enables searching for gift cards and retrieving information about indicated gift cards
+ * @property {PostClientsGiftcardsRequest} postClientsGiftcards Enables adding new gift cards with the selected card type
+ * @property {PutClientsGiftcardsRequest} putClientsGiftcards Enables editing gift parameters, e.g. changing its balance, validity date, number or PIN
+ * @property {GetClientsGiftcardsTypesRequest} getClientsGiftcardsTypes Allows for downloading all types of gift cards defined in the administration panel
+ * @property {PutClientsGiftcardsUnblockRequest} putClientsGiftcardsUnblock Enables gift card unblocking
+ * @property {GetClientsMembershipCardsRequest} getClientsMembershipCards Method that enables extracting information about loyalty cards available in the administration panel.
+ * @property {PutClientsMembershipCardsRequest} putClientsMembershipCards Method that enables assigning loyalty cards to customer accounts.
+ * @property {GetClientsNewsletterEmailSMSRequest} getClientsNewsletterEmailSMS Method that enables extracting a list of customer accounts that agreed / did not agree to receiving text message newsletters.
+ * @property {GetClientsNewsletterEmailShopsRequest} getClientsNewsletterEmailShops Method that enables extracting a list of customer accounts that agreed / did not agree to receiving email newsletters.
+ * @property {DeleteClientsPayerAddressRequest} deleteClientsPayerAddress #!MetodaPozwalaNaUsuwanieNiewykorzystanychAdresowNabywcy!#
+ * @property {GetClientsPayerAddressRequest} getClientsPayerAddress The method allows to retrieve buyer's addresses from sales documents, for existing customer accounts in the IdoSell administration panel.
+ * @property {PostClientsPayerAddressRequest} postClientsPayerAddress The method allows to add buyer's addresses to sales documents, for existing customer accounts in the IdoSell administration panel.
+ * @property {PutClientsPayerAddressRequest} putClientsPayerAddress The method allows to modify buyer's addresses in sales documents, for existing customer accounts in the IdoSell administration panel.
+ * @property {GetClientsPricelistsClientsRequest} getClientsPricelistsClients The getClients method returns a list of customer IDs assigned to an individual price list
+ * @property {PutClientsPricelistsClientsRequest} putClientsPricelistsClients The setClients method allows you to assign customers to an individual price list
+ * @property {DeleteClientsPricelistsRequest} deleteClientsPricelists The delete method enables to delete an individual pricelist. The pricelist must not be associated with any customer. In order to check the clients related to the given group, the getClients method shall be used.
+ * @property {GetClientsPricelistsRequest} getClientsPricelists The get method allows you to download individual price lists available in the administration panel
+ * @property {PostClientsPricelistsRequest} postClientsPricelists The insert method enables you to add a new individual price list to the administration panel
+ * @property {PutClientsPricelistsRequest} putClientsPricelists The update method allows you to change the individual price list.
+ * @property {GetClientsPricelistsProductsRequest} getClientsPricelistsProducts The getProducts method enables the retrieval of products from an individual price list together with the price
+ * @property {PutClientsPricelistsProductsRequest} putClientsPricelistsProducts The setProducts method allows you to add goods to an individual price list and specify their price
+ * @property {PutClientsPricelistsRenameRequest} putClientsPricelistsRename The rename method enables changing the name of an individual price list
+ * @property {GetClientsPricesActiveCardRequest} getClientsPricesActiveCard Method that enables getting information about active customer loyalty cards assigned to customer accounts in the administration panel.
+ * @property {GetClientsPricesDiscountGroupsRequest} getClientsPricesDiscountGroups Method that enables extracting information about discount groups configured in the administration panel.
+ * @property {GetClientsPricesDiscountsRequest} getClientsPricesDiscounts Method that allows for extracting information about individual discounts assigned to customer accounts.
+ * @property {PutClientsPricesDiscountsRequest} putClientsPricesDiscounts Method that enables assigning individual discount to existing customer accounts.
+ * @property {GetClientsProfitPointsRequest} getClientsProfitPoints Method that enables extracting information about the amount of loyalty points collected by customers in a loyalty program.
+ * @property {PostClientsProfitPointsRequest} postClientsProfitPoints Method that allows for adding loyalty points to the balances of existing customer accounts.
+ * @property {GetClientsProvinceListRequest} getClientsProvinceList The method allows to retrieve the list of administrative regions available in the IdoSell administration panel.
+ * @property {DeleteClientsTagsClearRequest} deleteClientsTagsClear Use this method to delete all tags assigned to a customer
+ * @property {DeleteClientsTagsRequest} deleteClientsTags Use this method to delete selected tags assigned to a customer
+ * @property {GetClientsTagsRequest} getClientsTags Use this method to retrieve all tags assigned to a client
+ * @property {PostClientsTagsRequest} postClientsTags Use this method to add new tags and their associated values to the client
+ * @property {PutClientsTagsRequest} putClientsTags The method is used to update the value of the tags assigned to the client. A tag with value 0 is detached from the client
+ * @property {GetCouriersAssignedToShippingProfilesRequest} getCouriersAssignedToShippingProfiles Retrieves information about assigned couriers to delivery profiles
+ * @property {GetCouriersRequest} getCouriers Method that returns all couriers available for a given country. It also returns information whether the courier service handles personal collections.
+ * @property {DeleteCouriersPickupPointsRequest} deleteCouriersPickupPoints The method enables cancelling personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
+ * @property {GetCouriersPickupPointsRequest} getCouriersPickupPoints The method returns personal collection points within its own network of collection points and for integrated couriers.
+ * @property {PostCouriersPickupPointsRequest} postCouriersPickupPoints The method enables adding personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
+ * @property {PutCouriersPickupPointsRequest} putCouriersPickupPoints The method enables updating personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
+ * @property {PutDeliveriesDefaultProfilesRequest} putDeliveriesDefaultProfiles The method allows to set the default delivery profile for the given region.
+ * @property {GetDeliveriesProfilesRequest} getDeliveriesProfiles Allows to download all of the delivery profiles defined in the administration panel
+ * @property {GetDeliveriesRegionsRequest} getDeliveriesRegions The method allows to download a list of regions supporting deliveries.
+ * @property {PostDeliveriesRegionsRequest} postDeliveriesRegions #!UmozliwiaDodanieRegionuDoWskazanegoKraju!#
+ * @property {GetDiscountsGroupsClientsRequest} getDiscountsGroupsClients getClientsAssignedToDiscountGroup - returns the list of customer IDs assigned to an indicated discount group. In order to assign a discount group, use setClients method in API Clients.
+ * @property {DeleteDiscountsGroupsRequest} deleteDiscountsGroups deleteDiscountGroup - allows to remove a discount group. The condition for conducting this process is no customers assigned to the indicated group. In order to check the assigned customers use getClientsAssignedToDiscountGroup method. 
+ * @property {GetDiscountsGroupsRequest} getDiscountsGroups Method that enables extracting information about discount groups configured in the administration panel.
+ * @property {PostDiscountsGroupsRequest} postDiscountsGroups addDiscountGroup - allows to add a new discount group in the administration panel. The discount group is added by default with the setting "Discount for products - yes, but different for indicated groups".
+ * @property {PutDiscountsGroupsRequest} putDiscountsGroups editDiscountGroup - allows to change a discount group name
+ * @property {DeleteDiscountsGroupsProductsRequest} deleteDiscountsGroupsProducts The method allows the removal of products from a discount group
+ * @property {PutDiscountsGroupsProductsRequest} putDiscountsGroupsProducts The method allows products to be added to a discount group and their price to be specified in the discount group
+ * @property {PutDiscountsRebatesBlockCardRequest} putDiscountsRebatesBlockCard blockRebateCard method - allows to block an indicated discount card, eg. when it is assumed that its number has been made available publicly. The blocked card can be unblocked with the method unblockRebateCard.
+ * @property {DeleteDiscountsRebatesCardRequest} deleteDiscountsRebatesCard deleteUnusedRebateCards method allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
+ * @property {PostDiscountsRebatesCardRequest} postDiscountsRebatesCard addRebateCard method - allows to upload new card numbers to already existing discount card types in the administration panel. Cards uploaded such way retrieve settings, regarding the discount amount, from the type of cards to which they are uploaded. Every card can also have individual, independent discount settings which can be set in the administration panel..
+ * @property {DeleteDiscountsRebatesCodeRequest} deleteDiscountsRebatesCode deleteUnusedRebateCodes method - allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
+ * @property {PostDiscountsRebatesCodeRequest} postDiscountsRebatesCode addRebateCode method - allows to upload new code numbers to already existing rebate campaigns in the administration panel. The codes uploaded in such way retrieve settings, regarding the discount amount, from a campaign to which they are uploaded. Each discount code can also have individual, independent discount settings which can be set in the administration panel.
+ * @property {PutDiscountsRebatesUnblockCardRequest} putDiscountsRebatesUnblockCard unblockRebateCard method - allows to unblock discount cards. Block cards with the blockRebateCard method.
+ * @property {DeleteEntriesRequest} deleteEntries Enables deleting blog or news entry
+ * @property {GetEntriesRequest} getEntries Enables downloading blog or news entry data
+ * @property {PostEntriesRequest} postEntries Enables adding blog or news entry 
+ * @property {PutEntriesRequest} putEntries Enables changing blog or news entry in the shop
+ * @property {GetEntriesPagesToDisplayRequest} getEntriesPagesToDisplay Allows you to download a list of sites on which a blog entry or a news item can be published.
+ * @property {GetMenuFilterRequest} getMenuFilter The method returns information about filter settings in menu nodes.
+ * @property {PutMenuFilterRequest} putMenuFilter The method allows you to manage filter settings in menu nodes.
+ * @property {DeleteMenuRequest} deleteMenu Method that enables deleting existing menu elements.
+ * @property {GetMenuRequest} getMenu Method that returns information about menus and menu elements.
+ * @property {PostMenuRequest} postMenu Method that enables adding new menu elements.
+ * @property {PutMenuRequest} putMenu Method that enables editing existing menu elements.
+ * @property {PutMenuSortRequest} putMenuSort Method that enables sorting of menu elements.
+ * @property {GetOrdersAnalyticsRequest} getOrdersAnalytics The method is used to retrieve information about the margins of the goods of the order.
+ * @property {GetOrdersAuctionDetailsRequest} getOrdersAuctionDetails Method that enables getting information about external listings assigned to orders in the administration panel.
+ * @property {PutOrdersClientRequest} putOrdersClient Array
+ * @property {PutOrdersCourierRequest} putOrdersCourier Method that enables changing the courier handling the shipment for an order.
+ * @property {PutOrdersDeliveryAddressRequest} putOrdersDeliveryAddress Method that enables editing the delivery address details for an order in the administration panel.
+ * @property {PutOrdersDevideRequest} putOrdersDevide #!MetodaSluzyDoPodzialuZamowienia!#
+ * @property {DeleteOrdersDocumentsRequest} deleteOrdersDocuments The method allows to delete documents added to the order in the IdoSell administration panel.
+ * @property {GetOrdersDocumentsRequest} getOrdersDocuments Method that enables extracting information about documents issued for orders in the administration panel.
+ * @property {PostOrdersDocumentsRequest} postOrdersDocuments The method allows to add TIFF, BMP, PNG, JPG, JPEG, GIF or PDF documents to the order in the IdoSell Shop administration panel.
+ * @property {GetOrdersExportdocumentsEPPRequest} getOrdersExportdocumentsEPP This method returns sales and warehouse documents in the universal EDI (Electronic Data Interchange) format.
+ * @property {GetOrdersExportdocumentsJPKRequest} getOrdersExportdocumentsJPK #!MetodaZwracaDokumentySprzedazoweIMagazynoweWUniwersalnymFormacieJPK!#.
+ * @property {GetOrdersHandlerRequest} getOrdersHandler Method that enables getting information about the handler currently assigned to an order.
+ * @property {PutOrdersHandlerRequest} putOrdersHandler Method that enabled assigning a handler to an order.
+ * @property {GetOrdersHistoryRequest} getOrdersHistory Method allows to retrieve orders history from the IdoSell Shop panel
+ * @property {DeleteOrdersImagesRequest} deleteOrdersImages Method allows to remove image attachments from the details of the specified order.
+ * @property {GetOrdersImagesRequest} getOrdersImages Method allows downloading image attachment data from the details of the specified order.
+ * @property {PostOrdersImagesRequest} postOrdersImages Method allows to add image attachments to the details of the specified order.
+ * @property {GetOrdersLabelsRequest} getOrdersLabels The method is used to generate parcels and printouts for a courier.
+ * @property {GetOrdersOpinionsRequest} getOrdersOpinions The method allows for downloading information about reviews issued for orders available in the IdoSell Shop administration panel.
+ * @property {GetOrdersOpinionsRateRequest} getOrdersOpinionsRate Evaluation of the usefulness of opinions issued for orders.
+ * @property {ListOrdersRequest} listOrders Method that enables extracting information about orders present in the IdoSell Shop administration panel.
+ * @property {GetOrdersRequest} getOrders Method that enables extracting information about orders present in the IdoSell Shop administration panel.
+ * @property {PostOrdersRequest} postOrders Method that is used for adding new retail or wholesale orders to a shop in the administration panel.
+ * @property {PutOrdersRequest} putOrders Method that enables editing an order in the administration panel. It allows, for example, to change the products included in the order or change its status.
+ * @property {GetOrdersPackagesRequest} getOrdersPackages Method that enables getting a list of parcels assigned to an order.
+ * @property {PostOrdersPackagesRequest} postOrdersPackages Method that enables editing parcels already assigned to an order.
+ * @property {PutOrdersPackagesRequest} putOrdersPackages Method that enables editing parcels already assigned to an order.
+ * @property {PutOrdersPickupPointRequest} putOrdersPickupPoint The method allows to change the collection point in the order.
+ * @property {GetOrdersPrinterDocumentsRequest} getOrdersPrinterDocuments Method that enables getting a VAT invoice issued for an order added to the administration panel by the IAI POS application.
+ * @property {PutOrdersProductsSerialNumbersRequest} putOrdersProductsSerialNumbers Method that enables adding serial numbers to products in an order.
+ * @property {PutOrdersProfitMarginRequest} putOrdersProfitMargin Method that enables setting price margins for products in an order.
+ * @property {GetOrdersProfitabilityRequest} getOrdersProfitability #!MetodaSluzyDoPobieraniaInformacjiOOplacalnosciZamowienia!#
+ * @property {PutOrdersShippingCostsRequest} putOrdersShippingCosts Method that enables editing the delivery costs for an order in the administration panel.
+ * @property {ListOrdersUnfinishedRequest} listOrdersUnfinished It allows you to download information about unclosed orders located in the store's administration panel. Orders with a status of false and lost are considered closed. Orders with a status of false and lost are considered closed.
+ * @property {GetOrdersWarehouseRequest} getOrdersWarehouse Method that enables getting information about which warehouse an order is being handled from.
+ * @property {PutOrdersWarehouseRequest} putOrdersWarehouse Method that enables setting which warehouse an order is handled from.
+ * @property {GetPackagesLabelsRequest} getPackagesLabels The method allows you to download labels for the courier from orders, complaints and returns.
+ * @property {PostPackagesLabelsRequest} postPackagesLabels The method is used to generate shipments and printouts for the courier in orders, complaints and returns. When generating a label with a default courier configuration, it is not necessary to complete the shipment configuration options. To generate a custom label, you must additionally forward the shipment configuration options available to the courier in a given event (parcelParameters node). Completable configuration options can be checked using the getPackages method.
+ * @property {GetPackagesRequest} getPackages Method that enables getting a list of parcels assigned to an order.
+ * @property {PostPackagesRequest} postPackages Method that enables adding parcels to an order.
+ * @property {PutPackagesRequest} putPackages Method that enables editing parcels already assigned to an order.
+ * @property {PostPaymentsCancelRequest} postPaymentsCancel Method that enables cancelling payments for orders in the administration panel.
+ * @property {PostPaymentsCashbackRequest} postPaymentsCashback The method allows to send refund requests (so called cashback) for payments managed by external payment systems which have such option available..
+ * @property {PutPaymentsConfirmRequest} putPaymentsConfirm Method that enables accepting payments for orders in the administration panel.
+ * @property {GetPaymentsFormsRequest} getPaymentsForms Method that enables getting information about payment methods available in the administration panel.
+ * @property {GetPaymentsRequest} getPayments Method that enables getting information about payments for orders in the administration panel.
+ * @property {PostPaymentsRequest} postPayments Method that enables adding payments to orders in the administration panel.
+ * @property {PutPaymentsRequest} putPayments Method that enables editing payments for orders in the administration panel.
+ * @property {GetPaymentsProfilesRequest} getPaymentsProfiles Allows to download all of the payment profiles defined in the administration panel
+ * @property {PostPaymentsRepaymentRequest} postPaymentsRepayment Method that enables adding withdrawals for orders in the administration panel.
+ * @property {GetProductsSKUbyBarcodeRequest} getProductsSKUbyBarcode The method allows to download, among others, information on identifiers, names and size codes, their available stock quantity and locations in the warehouse based on scanned bar codes.
+ * @property {PutProductsAttachmentsRequest} putProductsAttachments Method that enables adding and editing product attachments.
+ * @property {GetProductsAuctionsRequest} getProductsAuctions Allows for downloading information about auctions and auction categories to which the product has been assigned (for a maximum of 100 products in one request)
+ * @property {DeleteProductsBrandsRequest} deleteProductsBrands The method allows you to remove brands from the administration panel..
+ * @property {GetProductsBrandsRequest} getProductsBrands Method that returns information about brands available in the IdoSell Shop administration panel.
+ * @property {PostProductsBrandsRequest} postProductsBrands The method allows you to update brands information available in the administration panel..
+ * @property {PutProductsBrandsRequest} putProductsBrands The method allows you to update brands information available in the administration panel..
+ * @property {GetProductsBrandsFilterRequest} getProductsBrandsFilter The method allows you to download a list of filters for brands (manufacturers) available in the IdoSell administration panel.
+ * @property {PutProductsBrandsFilterRequest} putProductsBrandsFilter The method allows you to manage filter settings for brands (manufacturers).
+ * @property {PostProductsBundlesRequest} postProductsBundles createBundle method allows to create a new product with a type: set and to assign existing products as a set components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
+ * @property {DeleteProductsBundlesProductsRequest} deleteProductsBundlesProducts removeProductsFromBundle method allows to remove indicated set components
+ * @property {PostProductsBundlesProductsRequest} postProductsBundlesProducts addProductsToBundle method allows to add components to existing sets in the administration panel
+ * @property {PutProductsBundlesProductsQuantityRequest} putProductsBundlesProductsQuantity setProductsQuantityInBundle method allows to indicate quantity of a set component
+ * @property {PutProductsBundlesRenewRequest} putProductsBundlesRenew the renewProductsInBundle method allows you to rebuild components of Sets existing in the administration panel 
+ * @property {GetProductsCategoriesRequest} getProductsCategories Method that returns information about categories configured in the administration panel.
+ * @property {PutProductsCategoriesRequest} putProductsCategories Method that enables adding new categories to the administration panel as well editing and deleting of existing categories.
+ * @property {GetProductsCategoriesIdosellRequest} getProductsCategoriesIdosell Method returns information about IdoSell Categories available in store. .
+ * @property {GetProductsCodeExistenceRequest} getProductsCodeExistence The method allows to check if a product with the given identification code (panel ID, IAI code, manufacturer code, external system code) exists in the panel.
+ * @property {PostProductsCollectionsRequest} postProductsCollections createCollection method allows to create a new product with a type: collection and to assign existing products as a collection components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
+ * @property {DeleteProductsCollectionsProductsRequest} deleteProductsCollectionsProducts removeProductsFromCollection method allows to remove indicated collection components
+ * @property {PostProductsCollectionsProductsRequest} postProductsCollectionsProducts addProductsToCollection method allows to add components to existing collections in the administration panel
+ * @property {PutProductsCollectionsProductsRequest} putProductsCollectionsProducts setProductsQuantityInCollection method allows to indicate quantity of a collection component
+ * @property {PutProductsCollectionsRenewRequest} putProductsCollectionsRenew the renewProductsInCollection method allows you to rebuild existing components of Collections in the administration panel 
+ * @property {GetProductsDeliveryTimeRequest} getProductsDeliveryTime The method returns the time needed to prepare the product for shipment
+ * @property {GetProductsDescriptionsRequest} getProductsDescriptions Method that returns text elements for a given product, e.g. product name, long and short description, metadata.
+ * @property {PutProductsDescriptionsRequest} putProductsDescriptions The method allows for setting text elements for a given product, e.g. product name, long and short description, metadata.
+ * @property {PutProductsGroupsMainProductRequest} putProductsGroupsMainProduct The method allows you to change the main product in a group of products.
+ * @property {PutProductsGroupsOrderRequest} putProductsGroupsOrder The method allows you to change the order of products in a group of products.
+ * @property {PutProductsGroupsSettingsRequest} putProductsGroupsSettings The method allows you to change the settings for displaying products to a group of products .
+ * @property {GetProductsIdBySizecodeRequest} getProductsIdBySizecode Method that returns information about product IDs, as well as size IDs and names, based on the provided product external system codes.
+ * @property {DeleteProductsImagesRequest} deleteProductsImages This method is used to delete images of products
+ * @property {PutProductsImagesRequest} putProductsImages Method used for adding and editing product pictures.
+ * @property {GetProductsMarketingAllFacebookCatalogIdsRequest} getProductsMarketingAllFacebookCatalogIds The method allows you to download available Facebook catalogs in a given store.
+ * @property {GetProductsMarketingPromotionRequest} getProductsMarketingPromotion The method allows to download a list of active special offers for the given store.
+ * @property {PostProductsMarketingPromotionRequest} postProductsMarketingPromotion The method allows you to add promotions from a new module with elements.
+ * @property {PutProductsMarketingPromotionRequest} putProductsMarketingPromotion The method allows you to edit the promotion from the new module with the elements.
+ * @property {GetProductsMarketingZonesRequest} getProductsMarketingZones Allows for getting information about products assigned to marketing hot spots
+ * @property {PutProductsMarketingZonesRequest} putProductsMarketingZones Allows for assigning products to marketing hot spots
+ * @property {GetProductsOmnibusPricesRequest} getProductsOmnibusPrices Allows you to download information about the lowest prices before promotions
+ * @property {PutProductsOmnibusPricesRequest} putProductsOmnibusPrices Allows for editing product strikethrough price settings
+ * @property {DeleteProductsOpinionsRequest} deleteProductsOpinions The method allows to delete the feedback about the commodity from the panel.
+ * @property {GetProductsOpinionsRequest} getProductsOpinions The method allows for downloading information about reviews issued for products available in the IdoSell Shop administration panel.
+ * @property {PostProductsOpinionsRequest} postProductsOpinions The method allows for adding reviews of products available in the IdoSell Shop administration panel.
+ * @property {PutProductsOpinionsRequest} putProductsOpinions The method allows to edit opinions about goods available in the IdoSell Shop administration panel.
+ * @property {GetProductsOpinionsRateRequest} getProductsOpinionsRate Evaluation of the usefulness of opinions issued for products.
+ * @property {DeleteProductsParametersRequest} deleteProductsParameters The method allows you to delete parameters and their values (for parameters that are not pinned to any product)..
+ * @property {GetProductsParametersRequest} getProductsParameters Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
+ * @property {PutProductsParametersRequest} putProductsParameters Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
+ * @property {DeleteProductsRequest} deleteProducts Method used for deleting products from the IdoSell Shop administration panel.
+ * @property {ListProductsRequest} listProducts Method that enables extracting information about non-deleted products available in the administration panel
+ * @property {GetProductsRequest} getProducts Method that enables extracting information about non-deleted products available in the administration panel
+ * @property {PostProductsRequest} postProducts The method is used to add products
+ * @property {PutProductsRequest} putProducts Method that enables editing and adding new products to the administration panel.
+ * @property {DeleteProductsProductsToFacebookCatalogRequest} deleteProductsProductsToFacebookCatalog The method allows you to add products to the Facebook catalog.
+ * @property {GetProductsProductsToFacebookCatalogRequest} getProductsProductsToFacebookCatalog The method allows you to retrieve products assigned to the Facebook catalog.
+ * @property {PostProductsProductsToFacebookCatalogRequest} postProductsProductsToFacebookCatalog The method allows you to add products to the Facebook catalog.
+ * @property {DeleteProductsProductsToPromotionRequest} deleteProductsProductsToPromotion The method allows to remove the products from the promotion.
+ * @property {PostProductsProductsToPromotionRequest} postProductsProductsToPromotion The method allows to add products to an existing special offer.
+ * @property {GetProductsQuestionsRequest} getProductsQuestions The method allows you to download a list of questions to products available in the IdoSell Shop administration panel.
+ * @property {PutProductsQuestionsRequest} putProductsQuestions The method allows you to add and edit questions to products available in the IdoSell Shop administration panel.
+ * @property {GetProductsReservationsRequest} getProductsReservations It allows to download information about product reservations in orders (for up to 100 products in one request).
+ * @property {PostProductsRestoreRequest} postProductsRestore The method is used to restore deleted products
+ * @property {DeleteProductsSeriesRequest} deleteProductsSeries Method allows you to delete a series of products available in the IdoSell administration panel..
+ * @property {GetProductsSeriesRequest} getProductsSeries Method returns information about the product series available in the IdoSell administration panel..
+ * @property {PutProductsSeriesRequest} putProductsSeries Method allows you to update information about product series available in the IdoSell administration panel..
+ * @property {GetProductsSeriesFilterRequest} getProductsSeriesFilter Method allows you to retrieve a list of filters for a series of products available in the IdoSell administration panel..
+ * @property {PutProductsSeriesFilterRequest} putProductsSeriesFilter The method allows you to manage the filter settings for the series..
+ * @property {DeleteProductsSizesRequest} deleteProductsSizes The method is used to remove sizes
+ * @property {GetProductsSizesRequest} getProductsSizes Method that returns information about product sizes configured in the administration panel
+ * @property {PutProductsSizesRequest} putProductsSizes This method allows you to edit the size-dependent data
+ * @property {PutProductsStockQuantityRequest} putProductsStockQuantity MetodaPozwalaNaEdycjeDanychDotyczacychIlosci
+ * @property {GetProductsStocksRequest} getProductsStocks Method that enables getting information about product stock levels and warehouse locations.
+ * @property {PutProductsStocksRequest} putProductsStocks Method that enables setting product stock levels and warehouse locations.
+ * @property {GetProductsStrikethroughPricesRequest} getProductsStrikethroughPrices Allows for getting information about product strikethrough price settings
+ * @property {PutProductsStrikethroughPricesRequest} putProductsStrikethroughPrices Allows for editing product strikethrough price settings
+ * @property {PutProductsSupplierCodeRequest} putProductsSupplierCode The method allows to edit supplier data in the IdoSell Shop administration panel.
+ * @property {PutProductsSupplierProductDataRequest} putProductsSupplierProductData The method allows you to edit the commodity data related to its suppliers.
+ * @property {PostProductsSynchronizationFileRequest} postProductsSynchronizationFile #!MetodaPozwalaNaWgranieDoModuluSynchronizacjiTowarowOfertyWPlikuWFormacieIOF30!#.
+ * @property {PutProductsSynchronizationFinishUploadRequest} putProductsSynchronizationFinishUpload #!MetodaInformujeModulSynchronizacjiOZakonczeniuWgrywaniaPlikow!#.
+ * @property {GetReturnsRequest} getReturns Method that enables getting information about returns issued for orders in the administration panel.
+ * @property {PutReturnsRequest} putReturns Method that enables editing returns issued for orders in the administration panel.
+ * @property {PutReturnsSerialNumberRequest} putReturnsSerialNumber Method that enables setting serial numbers for products included in returns issued for orders in the administration panel.
+ * @property {GetReturnsStatusesRequest} getReturnsStatuses Allows to download all configurable return statuses
+ * @property {GetRmaRequest} getRma This get method allows you to retrieve data about existing claims
+ * @property {PutRmaRequest} putRma This update method allows to update the data in existing complaints
+ * @property {GetRmaStatusesRequest} getRmaStatuses Allows to download all possible complaint statuses
+ * @property {DeleteSizechartsRequest} deleteSizecharts The method allows the removal of size charts.
+ * @property {GetSizechartsRequest} getSizecharts The method allows size charts to be downloaded.
+ * @property {PutSizechartsRequest} putSizecharts The method allows the size charts settings to be updated.
+ * @property {GetSizesRequest} getSizes Method that returns information about product sizes configured in the administration panel. List of size groups (with sizes that belong to particular group) is returned as a result.
+ * @property {PutSizesRequest} putSizes Method that enables creating, deleting and editing product sizes in the administration panel.
+ * @property {GetSystemConfigRequest} getSystemConfig Method is used for extracting information about a shop and its most important configuration settings.
+ * @property {PutSystemConfigRequest} putSystemConfig The method is used to manage the most important settings in the store and in the panel. It enables, among others, configuration of tax and billing settings and configuration of warehouse management.
+ * @property {GetSystemCurrenciesRequest} getSystemCurrencies This method returns the current exchange rate in relation to the currency set in the administration panel.
+ * @property {PutSystemCurrenciesRequest} putSystemCurrencies Method that allows for setting currency exchange rates in relation to the currency set in the administration panel.
+ * @property {GetSystemProcessesAutomationRequest} getSystemProcessesAutomation It allows you to download the current automation processes configuration .
+ * @property {PutSystemProcessesAutomationRequest} putSystemProcessesAutomation The method is used for edit of processes automation settings .
+ * @property {GetSystemServerLoadRequest} getSystemServerLoad This method returns server status information which is useful in determining whether the server is currently overloaded.
+ * @property {GetSystemServerTimeRequest} getSystemServerTime Method that returns the current server time, which is essential for authentication.
+ * @property {GetSystemShopsDataRequest} getSystemShopsData Method is used for extracting information about a shop and its most important configuration settings.
+ * @property {GetSystemUnitsRequest} getSystemUnits The method allows units of measurement to be downloaded from the IdoSell administration panel.
+ * @property {PutSystemUnitsRequest} putSystemUnits The method allows existing units of measurement to be updated to the IdoSell administration panel.
+ * @property {GetSystemUsersRequest} getSystemUsers Method that returns information about IdoSell Shop administration panel users.
+ * @property {PutVouchersBlockRequest} putVouchersBlock Enables gift voucer blocking
+ * @property {GetVouchersTypesRequest} getVouchersTypes Allows for downloading all discount code campaigns defined in the administration panel
+ * @property {PutVouchersUnblockRequest} putVouchersUnblock Enables gift vouchers unblocking
+ * @property {DeleteVouchersRequest} deleteVouchers Enables deleting a single or a list of gift vouchers
+ * @property {GetVouchersRequest} getVouchers Enables searching for vouchers and retrieving information about indicated vouchers
+ * @property {PostVouchersRequest} postVouchers Enables adding new gift vouchers with the selected voucher type
+ * @property {PutVouchersRequest} putVouchers Enables editing gift voucher, e.g. changing its balance, validity date or number (only for unused vouchers)
+ * @property {GetWarrantiesCountTotalRequest} getWarrantiesCountTotal Method that enables getting the number of product guarantees available in the administration panel.
+ * @property {PutWarrantiesLanguageDataRequest} putWarrantiesLanguageData Method that enables editing product warranty language settings.
+ * @property {DeleteWarrantiesRequest} deleteWarranties Method that enables deleting product warranties from the administration panel.
+ * @property {GetWarrantiesRequest} getWarranties Method that enables getting a list of product warranties available in the administration panel.
+ * @property {PostWarrantiesRequest} postWarranties Method that enables adding product warranties to the administration panel.
+ * @property {PutWarrantiesRequest} putWarranties Method that enables editing product warranties available in the administration panel.
+ * @property {GetWmsLocationsRequest} getWmsLocations The method allows to download information about a selected location or all locations in a given warehouse together with a list of product IDs located in these locations.
+ * @property {PutWmsStocksdocumentsAcceptMMRequest} putWmsStocksdocumentsAcceptMM The method enables the MM document to be received at the target warehouse.
+ * @property {PutWmsStocksdocumentsCloseRequest} putWmsStocksdocumentsClose Method that enables closing warehouse documents.
+ * @property {DeleteWmsStocksdocumentsDocumentsRequest} deleteWmsStocksdocumentsDocuments Method that enables deleting open warehouse documents.
+ * @property {GetWmsStocksdocumentsDocumentsRequest} getWmsStocksdocumentsDocuments The method allows for downloading a list of warehouse documents.
+ * @property {PostWmsStocksdocumentsDocumentsRequest} postWmsStocksdocumentsDocuments Method that enables warehouse document creation.
+ * @property {PutWmsStocksdocumentsDocumentsRequest} putWmsStocksdocumentsDocuments The method allows for warehouse documents edit .
+ * @property {GetWmsStocksdocumentsOpenedDocumentsRequest} getWmsStocksdocumentsOpenedDocuments Method that enables getting a list of open warehouse documents.
+ * @property {DeleteWmsStocksdocumentsProductsRequest} deleteWmsStocksdocumentsProducts Method that enables deleting products from warehouse documents.
+ * @property {GetWmsStocksdocumentsProductsRequest} getWmsStocksdocumentsProducts Method that enables getting a list of products present on a warehouse document.
+ * @property {PostWmsStocksdocumentsProductsRequest} postWmsStocksdocumentsProducts Method that enables adding products to warehouse documents.
+ * @property {PutWmsStocksdocumentsProductsRequest} putWmsStocksdocumentsProducts Method that enables, amongst others, editing the quantity of a given product on a warehouse document.
+ * @property {PutWmsStocksdocumentsRejectMMRequest} putWmsStocksdocumentsRejectMM The method allows to withdraw the MM document to the source warehouse.
+ * @property {DeleteWmsSuppliersRequest} deleteWmsSuppliers The method allows for the removal of suppliers..
+ * @property {GetWmsSuppliersRequest} getWmsSuppliers The method allows to download a list of suppliers along with information about the number of products assigned to them.
+ * @property {PutWmsSuppliersRequest} putWmsSuppliers The method allows information about suppliers to be updated, including address details, description, order preparation time or supplier working hours..
  */
 
 const gates = {

@@ -1,9 +1,9 @@
-import { sendRequest, countResults, params } from "./request.js";
+import { sendRequest, countResults, toJson } from "./request.js";
 
 const requests = {
     exec: sendRequest,
     count: countResults,
-    params
+    toJson
 }
 
 export const paramsProxy = {

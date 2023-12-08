@@ -30,11 +30,13 @@ export const sendRequest = async (request, options = {}) => {
     if (options.dump) return;
     
     if (method === 'get') {
-        url += '?' + qs.stringify(request.params);
+        url += '?' + qs.stringify(request.params, { arrayFormat: 'comma' });
         console.log({ url })
         return axios.get(url, { headers }).then(response => response.data).catch(catchIdosellError);
     } else {
-        return axios[method](url, { params: request.params }, { headers }).then(response => response.data).catch(catchIdosellError);
+        const params = request.rootparams ? request.params : { params: request.params };
+
+        return axios[method](url, params, { headers }).then(response => response.data).catch(catchIdosellError);
     }    
 }
 
@@ -46,4 +48,4 @@ export const countResults = async (request, options) => {
     else return response.resultsNumberAll;
 }
 
-export const params = async (request) => request.params;
+export const toJson = async (request) => request.params;
