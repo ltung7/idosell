@@ -108,3 +108,87 @@ export const dateRangeType = ({ nodeName, fromName, toName, typeName, defaultTyp
     } else param[nodeName] = node;
     return param;
 }
+
+const TEXT_NODES = {
+    name: {
+        main: 'productNames',
+        sub: 'productNamesLangData',
+        node: 'productName'
+    },
+    short: {
+        main: 'productParamDescriptions',
+        sub: 'productParamDescriptionsLangData',
+        node: 'productParamDescriptions'
+    },
+    long: {
+        main: 'productLongDescriptions',
+        sub: 'productLongDescriptionsLangData',
+        node: 'productLongDescription'
+    },
+    metatitle: {
+        main: 'productMetaTitles',
+        sub: 'productMetaTitlesLangData',
+        node: 'productMetaTitle'
+    },
+    metadescription: {
+        main: 'productMetaDescriptions',
+        sub: 'productMetaDescriptionsLangData',
+        node: 'productMetaDescription'
+    },
+    metakeywords: {
+        main: 'productMetaKeywords',
+        sub: 'productMetaKeywordsLangData',
+        node: 'productMetaKeyword'
+    },
+    acutionname: {
+        main: 'productAuctionDescriptionsData',
+        node: 'productAuctionName'
+    },
+    auctiondescription: {
+        main: 'productAuctionDescriptionsData',
+        node: 'productAuctionDescription'
+    },
+}
+
+const getAppendedNode = (object) => {
+    if (!object.params[object.appendable.arrayNode]) object.params[object.appendable.arrayNode] = [{}];
+    return object.params[object.appendable.arrayNode][object.appendable.index];
+}
+
+export const setProductText = (object) => (text, node = 'short', langId = 'pol', shopId = null) => {
+    if (!TEXT_NODES[node]) {
+        throw new Error('Invalid node');
+    }
+
+    const product = getAppendedNode(object);
+    const nodeData = TEXT_NODES[node];
+
+    if (node === 'long' && text[0] !== '<') {
+        text = `<p>${text.replaceAll("\n", '</p><p>')}</p>`;
+    }
+    
+    if (nodeData.sub) {
+        if (!product[nodeData.main]) product[nodeData.main] = {};
+        if (!product[nodeData.main][nodeData.sub]) product[nodeData.main][nodeData.sub] = [];
+        else {
+            for(const leaf of product[nodeData.main][nodeData.sub]) {
+                if (leaf.langId === langId && (leaf.shopId === shopId || (shopId === null && !leaf.shopId))) {
+                    leaf[nodeData.node] = text;
+                    return product;
+                }
+            }
+        }
+
+        const item = { langId }
+        if (shopId) item.shopId = shopId;
+        item[nodeData.node] = text;
+        product[nodeData.main][nodeData.sub].push(item);
+    } else {
+        if (!product[nodeData.main]) product[nodeData.main] = [];
+        const node = { productAuctionId: 2, productAuctionSiteId: 1 };
+        node[nodeData.node] = text;
+        product[nodeData.main].push(node);
+    }
+    
+    return product;
+}

@@ -1,6 +1,6 @@
 # Idosell REST API
 
-This package wraps around the Idosell Api to make it easier to use using chainable options, more intuitive methods and helpers to easily format requests. [Official Idosell documentation](https://idosell.readme.io/docs) is still applicable for the most part.
+This package wraps around the Idosell REST Api to make it easier to use by implementing chainable options, more intuitive methods and helpers to format requests more easily. [Official Idosell documentation](https://idosell.readme.io/docs) is still applicable for the most part.
 
 ## Basic use
 
@@ -11,7 +11,7 @@ import idosell from 'idosell';
 const idosellRequest = idosell('SHOP_URL', 'API_KEY')
 ```
 
-**API_KEY** can be obtainer in your Idosell panel.
+**API_KEY** can be obtained in your Idosell panel.
 **SHOP_URL** is the base URI of your shop. Here are some examples:
 ```
 https://yourdomain.com
@@ -24,24 +24,22 @@ https://yourshop.iai-shop.com
 After initiating idosell object, call one of it's properties to retrieve methods concerning the enpoint you are going to use. For example:
 
 ```javascript
-const idosellRequest = idosell('SHOP_URL', 'API_KEY');
 const categories = idosellRequest.getProductsCategories.params(parameters).exec();
 ```
 
 In this example, getProductCategories translates to a GET request to *products/categories* endpoint. You can use *params()* method to set parameters for the request as JSON object as per Idosell guidelines. Analogically, you can send PUT request to the same endpoint by using following code:
 
 ```javascript
-const createCategoryRequest = idosell('SHOP_URL', 'API_KEY').putProductsCategories.params(parameters).exec();
+const createCategoryRequest = idosellRequest.putProductsCategories.params(parameters).exec();
 ```
 
 Note that method *categories()* is used to set request body, while *exec()* method is used to send request and retrieve data from endpoint.
 
 Some less obvious gate properties include:
 ```javascript
-const idosellRequest = idosell('SHOP_URL', 'API_KEY');
 idosellRequest.getProducts.exec(); // Translates to GET on /products/products endpoint
 idosellRequest.listProducts.exec(); // Translates to POST on /products/products/get endpoint
-idosellRequest.deleteProducts.exec(); // Translates to POST on /products/products/post endpoint
+idosellRequest.deleteProducts.exec(); // Translates to POST on /products/products/delete endpoint
 idosellRequest.deleteProductsOpinions.exec() // Translates to POST on products/opinions/opinions/delete endpoint
 ```
 
@@ -92,6 +90,19 @@ const categories = idosellRequest.getProductsCategories.page(1,10).exec();
 //const categories = idosellRequest.getProductsCategories.results_page(1).result_limit(10).exec();
 ```
 
+### Looping through pages
+
+Executing Idosell request checks for next page and applies is availible to use with native loop functions using *hasNext()* function
+
+```javascript
+const getReturnsRequest = idosellRequest.getReturns.dates('2023-12-01').page(0, 10)
+
+while (getReturnsRequest.hasNext()) {
+    const results = await idosellRequest.exec();
+    // do something with results
+}
+```
+
 ### Date, date ranges and formatting
 
 Some enpoints require dates in either 'YYYY-MM-DD' format of 'YYYY-MM-DD HH:mm:ss' format. Many of them use set of dates to define range of the results, for example listing orders dispatched between start of the month and end of the same month. Instead, you can use dates helper:
@@ -121,13 +132,13 @@ const orders = idosellRequest.listOrders.dates(Date.now() - 86400000).exec();
 // This function will return orders added (default value of date type is 'add') between 24 hours ago and now
 ```
 
-## Other formatters
+## Array of objects
 
-Some other helpers include following methods
+Some endpoints require an array of objects. As complex as they may be, there are some helpers to make it easier.
 
-### Array of Objects
+### Simple objects
 
-Some enpoints require an array of objects of single key. This method allows you to use array of primitive types and translates it into specific array of Objects.
+For GET requests, they are mostly simple objects with single keys and can be set with a single method with simple array.
 
 ```javascript
 const orderAnalytics = await idosellRequest.getOrdersAnalytics.serialNumbers([123,456,789]).exec()
@@ -144,6 +155,65 @@ This will translate to following request parameters:
   ]
 }
 ```
+
+### Complex objects
+
+For POST and PUT requests, there is usually a main parameter with array of very complex Objects like list of products to add / edit. *append()* method allows you to use them in a more simplistic way without worrying about the array itself;
+
+```javascript
+const updatedProducts = idosellRequest.putProducts
+    .settings({ settingModificationType: 'edit' })
+    .productId(101).productDisplayedCode('CODE1').countryOfOrigin('PL').append()
+    .productId(102).productDisplayedCode('CODE2').productRetailPrice(99.99).append()
+    .productId(103).productDisplayedCode('CODE3').productNote('Latest product').exec()
+```
+
+This request translates into the following request body:
+
+```json
+{
+  "settings":{
+    "settingModificationType":"edit"
+  },
+  "products":[
+    {
+      "productId":101,
+      "productDisplayedCode":"CODE1",
+      "countryOfOrigin":"PL"
+    },
+    {
+      "productId":102,
+      "productDisplayedCode":"CODE2",
+      "productRetailPrice":99.99
+    },
+    {
+      "productId":103,
+      "productDisplayedCode":"CODE3",
+      "productNote":"Latest product"
+    }
+  ]
+}
+```
+
+This request modifies 3 products, each with their own parameters. Products are separated using *append()* method. This method can also be used in a loop.
+
+```javascript
+const productCodes = [
+    { id: 202, code: 'CODE202' },
+    { id: 203, code: 'CODE203' },
+    { id: 204, code: 'CODE204' },
+]
+
+const updatedProducts = idosellRequest.putProducts.settings({ settingModificationType: 'edit' })
+for (const { id, code } of productCodes) {
+    updatedProducts.productId(id).productDisplayedCode(code).append();
+}
+updatedProducts.exec()
+```
+
+## Other formatters
+
+Some other helpers include following methods
 
 ### OrderBy
 
@@ -164,4 +234,80 @@ This will translate to following request parameters:
     }
   ]
 }
+```
+
+### Set text
+
+This method is used specifically for updating and creating product and allows to easily set multiple types of description in different languages and different shops.
+
+```javascript
+setText(text, type, languageId, shopId)
+```
+
+| Field | Description | Default | Possible values |
+|----------|----------|----------|----------|
+| text | Content to be added to product | (none) | any |
+| type | Type of text | short | See below |
+| languageId | Language of the text | pol | Any ISO 639-2 language installed in panel |
+| shopId | Shop of the text (leave blank for general description) | null | Any ID of a shop installed in panel |
+
+Possible text types:
+
+| Type | Description | Limitations |
+|----------|----------|----------|
+| name | Name of the product | Up to 420 chars, no HTML |
+| short | Short description of the product | Up to 255 chars, no HTML |
+| long | Long description of the product | Preferred HTML |
+| metatitle | Contents of title tag, name of the product page | Up to 255 chars, no HTML |
+| metadescription | Meta description, often used by search engines | Up to 255 chars, no HTML |
+| metakeywords | Meta keywords, sometimes used by search engines | LimitatUp to 255 chars, no HTMLions |
+| acutionname | Auction name exported to marketplaces | Depends on marketplace |
+| auctiondescription | Auction description exported to marketplaces | Preferred HTML |
+
+Example of usage:
+
+```javascript
+const updateProduct = await idosellRequest.putProducts.productId(202).setText('Świetny produkt').setText('Awesome product', 'short', 'eng').setText('This product is really amazing', 'long', 'eng', 1).exec();
+```
+
+This will result in following request body
+
+```json
+{
+    "products": [
+        {
+            "productId": 202,
+            "productParamDescriptions": {
+                "productParamDescriptionsLangData": [
+                    {
+                        "langId": "pol",
+                        "productParamDescriptions": "Świetny produkt"
+                    },
+                    {
+                        "langId": "eng",
+                        "productParamDescriptions": "Awesome product"
+                    }
+                ]
+            },
+            "productLongDescriptions": {
+                "productLongDescriptionsLangData": [
+                    {
+                        "langId": "eng",
+                        "shopId": 1,
+                        "productLongDescription": "<p>This product is really amazing</p>"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+## Debugging
+
+Use function getParams() to retrieve request parameters as Javascript Object.
+
+```javascript 
+const orderRequest = idosellRequest.getOrders.ordersSerialNumbers([123, 456, 789]).getParams();
+// Will return Object: { ordersSerialNumbers: [ 123, 456, 789 ] }
 ```

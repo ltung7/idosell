@@ -16,11 +16,23 @@ const catchIdosellError = (err) => {
     throw new Error(`${err.response.status}: ${message}`) 
 }
 
+const checkNext = (request, response) => {
+    if (response.resultsNumberPage) {
+        request.next = response.resultsPage + 1 < response.resultsNumberPage;
+        request.params.resultsPage = request.params.resultsPage ? request.params.resultsPage + 1 : 1;
+    } else if (response.results_number_page) {
+        request.next = response.results_page + 1 < response.results_number_page;
+        request.params.results_page = request.params.results_page ? request.params.results_page + 1 : 1;
+    }
+    return response;
+}
+
 export const sendRequest = async (request, options = {}) => {
     const headers = {
         'X-API-KEY': request.auth.apiKey,
         Accept: 'application/json'
     }
+    request.next = false;
     const { method, node } = request.gate;
     let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
     if (options.log || options.dump) {
@@ -31,12 +43,12 @@ export const sendRequest = async (request, options = {}) => {
     
     if (method === 'get') {
         url += '?' + qs.stringify(request.params, { arrayFormat: 'comma' });
-        console.log({ url })
-        return axios.get(url, { headers }).then(response => response.data).catch(catchIdosellError);
+        const response = await axios.get(url, { headers }).then(response => response.data).catch(catchIdosellError);
+        return checkNext(request, response);
     } else {
         const params = request.rootparams ? request.params : { params: request.params };
-
-        return axios[method](url, params, { headers }).then(response => response.data).catch(catchIdosellError);
+        const response = await axios[method](url, params, { headers }).then(response => response.data).catch(catchIdosellError);
+        return checkNext(request, response);
     }    
 }
 
@@ -48,4 +60,8 @@ export const countResults = async (request, options) => {
     else return response.resultsNumberAll;
 }
 
-export const toJson = async (request) => request.params;
+export const getParams = (request) => request.params;
+
+export const toString = (request) => JSON.stringify(request.params);
+
+export const hasNext = (request) => request.next;
