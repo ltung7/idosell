@@ -7,7 +7,7 @@ export const listProductsProxy = (object) => {
         dates: dateRangeType({"nodeName":"productDate","fromName":"productDateBegin","toName":"productDateEnd","typeName":"productDateMode","defaultType":"added"}),
         orderBy,
         shops: arrayOfObjects("productShops", "shopId"),
-        ids: arrayOfObjects("productParans", "productId"),
+        ids: arrayOfObjects("productParams", "productId"),
         producersIds: arrayOfObjects("producers", "producerId"),
         page
     };

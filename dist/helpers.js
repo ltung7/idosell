@@ -92,7 +92,7 @@ const getDateRangeNode = (fromName, toName, dateFrom, dateTo, format = null) => 
 export const dateRange = ({ nodeName, fromName, toName, format }) => (dateFrom, dateTo = Date.now()) => {
     const param = {};
     const node = getDateRangeNode(fromName, toName, dateFrom, dateTo, format);
-    params[nodeName] = node;
+    param[nodeName] = node;
     return param;
 }
 

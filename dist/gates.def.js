@@ -201,6 +201,7 @@
  * @property {(return_elements: Array<String>) => GetClientsNewsletterEmailSMSRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
  * @property {(results_page: Integer) => GetClientsNewsletterEmailSMSRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
  * @property {(results_limit: Integer) => GetClientsNewsletterEmailSMSRequest} results_limit Maximum number of results on a single page. Default is 100.
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsNewsletterEmailSMSRequest} dates Type of date according to the index results
  * @property {(page: Integer, limit: Integer) => GetClientsNewsletterEmailSMSRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1623,7 +1624,7 @@
  * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "added"|"finished"|"resumed"|"modified"|"quantity_changed"|"price_changed"|"modified_and_quantity_changed") => ListProductsRequest} dates Type of date according to the index results. Possible type values: added, finished, resumed, modified, quantity_changed, price_changed, modified_and_quantity_changed
  * @property {(elementName: "id"|"name"|"code"|"product_sizecode"|"code_producer"|"retail_price"|"pos_price"|"vat"|"wholesale_price"|"minimal_price"|"pictures_count"|"auction_name"|"pricecomparer_name"|"version_name"|"series_name"|"category_name"|"deliverer_name"|"adding_time"|"modification_time"|"price_changed_time"|"quantity_changed_time"|"currency"|"currency_shop"|"taxcode"|"meta_title"|"meta_description"|"meta_keywords"|"suggested_price"|"observed_clients"|"observed_time"|"wishes_clients"|"wishes_time", descending: Boolean) => ListProductsRequest} orderBy Define sorting by element and direction
  * @property {(shops: Array<Integer>) => ListProductsRequest} shops Define productShops by passing array of values
- * @property {(ids: Array<Integer>) => ListProductsRequest} ids Define productParans by passing array of values
+ * @property {(ids: Array<Integer>) => ListProductsRequest} ids Define productParams by passing array of values
  * @property {(producersIds: Array<Integer>) => ListProductsRequest} producersIds Define producers by passing array of values
  * @property {(page: Integer, limit: Integer) => ListProductsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results

@@ -21,19 +21,19 @@ https://yourshop.iai-shop.com
 
 ### Properties vs endpoints
 
-After initiating idosell object, call one of it's properties to retrieve methods concerning the enpoint you are going to use. For example:
+After initializing the Idosell object, call one of its properties to retrieve methods concerning the endpoint you are going to use. For example:
 
 ```javascript
 const categories = idosellRequest.getProductsCategories.params(parameters).exec();
 ```
 
-In this example, getProductCategories translates to a GET request to *products/categories* endpoint. You can use *params()* method to set parameters for the request as JSON object as per Idosell guidelines. Analogically, you can send PUT request to the same endpoint by using following code:
+In this example, getProductCategories translates to a GET request to the *products/categories* endpoint. You can use the *params()* method to set parameters for the request as JSON object as per Idosell guidelines. Analogously, you can send a PUT request to the same endpoint by using the following code:
 
 ```javascript
 const createCategoryRequest = idosellRequest.putProductsCategories.params(parameters).exec();
 ```
 
-Note that method *categories()* is used to set request body, while *exec()* method is used to send request and retrieve data from endpoint.
+Note that the method *categories()* is used to set the request body, while the *exec()* method is used to send the request and retrieve data from the endpoint.
 
 Some less obvious gate properties include:
 ```javascript
@@ -45,26 +45,26 @@ idosellRequest.deleteProductsOpinions.exec() // Translates to POST on products/o
 
 ### Chaining methods to set request parameters
 
-Alternatively to setting parameters object, you can chain several methods named after top level parameters to set their value to your request. To execute the request after setting all the parameters, run *exec()* method.
+Alternatively to setting parameters in an object, you can chain several methods named after top-level parameters to set their value to your request. To execute the request after setting all the parameters, run the *exec()* method.
 
 ```javascript
 const idosellRequest = idosell('SHOP_URL', 'API_KEY');
 const categories = idosellRequest.ids([123, 456, 789]).languages(['pol', 'eng']).result_page(1).result_limit(10).getProductsCategories.exec();
 ```
 
-This example, will generate following GET request:
+This example will generate the following GET request:
 
 ```
 https://yourdomain.com/api/admin/v1/products/categories?ids=123,456,789&languages=pol,eng&result_page=1&result_limit=10
 ```
 
-For POST request will generate a JSON body request.
+A POST request will generate a JSON body request.
 
 ```javascript
 await idosellRequest.postDiscountsRebatesCode.campaign_id(123).code_number('REBATECODE').exec();
 ```
 
-This example will generate a POST request with following body:
+This example will generate a POST request with the following body:
 
 ```json
 { 
@@ -92,7 +92,7 @@ const categories = idosellRequest.getProductsCategories.page(1,10).exec();
 
 ### Looping through pages
 
-Executing Idosell request checks for next page and applies is availible to use with native loop functions using *hasNext()* function
+The execution of the Idosell request checks for the next page and applies it. This is available for use with native loop functions using the *hasNext()* function
 
 ```javascript
 const getReturnsRequest = idosellRequest.getReturns.dates('2023-12-01').page(0, 10)
@@ -105,7 +105,7 @@ while (getReturnsRequest.hasNext()) {
 
 ### Date, date ranges and formatting
 
-Some enpoints require dates in either 'YYYY-MM-DD' format of 'YYYY-MM-DD HH:mm:ss' format. Many of them use set of dates to define range of the results, for example listing orders dispatched between start of the month and end of the same month. Instead, you can use dates helper:
+Some endpoints require dates in either the "YYYY-MM-DD" format or the "YYYY-MM-DD HH:mm:ss" format. Many of them use a set of dates to define the range of the results, for example, listing orders dispatched between the start of the month and the end of the same month. Instead, you can use the *dates()* helper:
 
 ```javascript
 const dispatchedOrders = idosellRequest.listOrders.dates('2023-12-01', '2023-12-31', 'dispatch').exec();
@@ -125,7 +125,7 @@ This example will translate to following request body:
 }
 ```
 
-As as argument, you can pass anything that is accepted as native Date constructor or leave it empty for current timestamp. For example:
+As an argument, you can pass anything that is accepted as a native Date constructor or leave it empty for the current timestamp. For example:
 
 ```javascript
 const orders = idosellRequest.listOrders.dates(Date.now() - 86400000).exec();
@@ -138,7 +138,7 @@ Some endpoints require an array of objects. As complex as they may be, there are
 
 ### Simple objects
 
-For GET requests, they are mostly simple objects with single keys and can be set with a single method with simple array.
+For GET requests, they are mostly simple objects with single keys that can be set with a single method with a simple array.
 
 ```javascript
 const orderAnalytics = await idosellRequest.getOrdersAnalytics.serialNumbers([123,456,789]).exec()
@@ -158,7 +158,7 @@ This will translate to following request parameters:
 
 ### Complex objects
 
-For POST and PUT requests, there is usually a main parameter with array of very complex Objects like list of products to add / edit. *append()* method allows you to use them in a more simplistic way without worrying about the array itself;
+For POST and PUT requests, there is usually a main parameter with an array of very complex objects, like a list of products to add / edit. *The append()* method allows you to use them in a more simplistic way without worrying about the array itself.
 
 ```javascript
 const updatedProducts = idosellRequest.putProducts
@@ -195,7 +195,7 @@ This request translates into the following request body:
 }
 ```
 
-This request modifies 3 products, each with their own parameters. Products are separated using *append()* method. This method can also be used in a loop.
+This request modifies 3 products, each with their own parameters. Products are separated using the *append()* method. This method can also be used in a loop.
 
 ```javascript
 const productCodes = [
@@ -204,11 +204,11 @@ const productCodes = [
     { id: 204, code: 'CODE204' },
 ]
 
-const updatedProducts = idosellRequest.putProducts.settings({ settingModificationType: 'edit' })
+const updateProducts = idosellRequest.putProducts.settings({ settingModificationType: 'edit' })
 for (const { id, code } of productCodes) {
-    updatedProducts.productId(id).productDisplayedCode(code).append();
+    updateProducts.productId(id).productDisplayedCode(code).append();
 }
-updatedProducts.exec()
+updateProducts.exec()
 ```
 
 ## Other formatters
@@ -217,7 +217,7 @@ Some other helpers include following methods
 
 ### OrderBy
 
-Some endpoints have option to customize ordering of results. This helper simplifies the parameters by passing two parameters: elementName and if order should be descending (true by default), but does not allow ordering on multiple fields.
+Some endpoints have the option to customize the ordering of results. This helper simplifies the parameters by passing two parameters: elementName and if order should be descending (true by default), but does not allow ordering on multiple fields.
 
 ```javascript
 const lowestRatings = await idosellRequest.getProductsOpinions.orderBy('rating', false).exec();
@@ -238,7 +238,7 @@ This will translate to following request parameters:
 
 ### Set text
 
-This method is used specifically for updating and creating product and allows to easily set multiple types of description in different languages and different shops.
+This method is used specifically for updating and creating products and allows you to easily set multiple types of descriptions in different languages and different shops.
 
 ```javascript
 setText(text, type, languageId, shopId)
@@ -246,23 +246,24 @@ setText(text, type, languageId, shopId)
 
 | Field | Description | Default | Possible values |
 |----------|----------|----------|----------|
-| text | Content to be added to product | (none) | any |
+| text | Content to be added to the product | (none) | any |
 | type | Type of text | short | See below |
-| languageId | Language of the text | pol | Any ISO 639-2 language installed in panel |
-| shopId | Shop of the text (leave blank for general description) | null | Any ID of a shop installed in panel |
+| languageId | Language of the text | pol | Any ISO 639-2 language installed in the panel |
+| shopId | Shop of the text (leave blank for general description) | null | Any ID of a shop installed in the panel |
 
 Possible text types:
 
 | Type | Description | Limitations |
 |----------|----------|----------|
-| name | Name of the product | Up to 420 chars, no HTML |
-| short | Short description of the product | Up to 255 chars, no HTML |
+| name | Name of the product | Up to 420 characters, no HTML |
+| short | Short description of the product | Up to 255 characters, no HTML |
 | long | Long description of the product | Preferred HTML |
-| metatitle | Contents of title tag, name of the product page | Up to 255 chars, no HTML |
-| metadescription | Meta description, often used by search engines | Up to 255 chars, no HTML |
-| metakeywords | Meta keywords, sometimes used by search engines | LimitatUp to 255 chars, no HTMLions |
+| metatitle | Contents of the title tag, name of the product page | Up to 255 characters, no HTML |
+| metadescription | Meta description, often used by search engines | Up to 255 characters, no HTML |
+| metakeywords | Meta keywords, sometimes used by search engines | Up to 255 characters, no HTML |
 | acutionname | Auction name exported to marketplaces | Depends on marketplace |
-| auctiondescription | Auction description exported to marketplaces | Preferred HTML |
+| auctiondescription | Auction description exported to marketplaces | Possibly HTML |
+
 
 Example of usage:
 
@@ -305,7 +306,7 @@ This will result in following request body
 
 ## Debugging
 
-Use function getParams() to retrieve request parameters as Javascript Object.
+You can use the *getParams()* function to retrieve request parameters as Javascript Object.
 
 ```javascript 
 const orderRequest = idosellRequest.getOrders.ordersSerialNumbers([123, 456, 789]).getParams();
