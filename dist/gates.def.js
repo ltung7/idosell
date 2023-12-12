@@ -215,6 +215,7 @@
  * @property {(return_elements: Array<String>) => GetClientsNewsletterEmailShopsRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
  * @property {(results_page: Integer) => GetClientsNewsletterEmailShopsRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
  * @property {(results_limit: Integer) => GetClientsNewsletterEmailShopsRequest} results_limit Maximum number of results on a single page. Default is 100.
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsNewsletterEmailShopsRequest} dates Type of date according to the index results
  * @property {(page: Integer, limit: Integer) => GetClientsNewsletterEmailShopsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -374,6 +375,7 @@
  * @property {(returnElements: Array<String>) => GetClientsProfitPointsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
  * @property {(resultsPage: Integer) => GetClientsProfitPointsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsProfitPointsRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsProfitPointsRequest} lastPurchased Type of date according to the index results
  * @property {(page: Integer, limit: Integer) => GetClientsProfitPointsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
