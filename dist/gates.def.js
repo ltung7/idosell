@@ -53,6 +53,42 @@
 /**
  * @typedef {Object} PutClientsRequest
  * @property {(clients: Array<Object>) => PutClientsRequest} clients Customer data.
+ * @property {(clientLogin: String) => PutClientsRequest} clientLogin Customer's login.
+ * @property {(clientEmail: String) => PutClientsRequest} clientEmail E-mail address.
+ * @property {(clientFirstName: String) => PutClientsRequest} clientFirstName Customer's first name.
+ * @property {(clientLastName: String) => PutClientsRequest} clientLastName Customer's last name.
+ * @property {(clientStreet: String) => PutClientsRequest} clientStreet Street and number.
+ * @property {(clientZipCode: String) => PutClientsRequest} clientZipCode Customer's postal code.
+ * @property {(clientCity: String) => PutClientsRequest} clientCity Customer's city.
+ * @property {(clientCountryId: String) => PutClientsRequest} clientCountryId Country ID in accordance with ISO-3166.
+ * @property {(clientProvinceId: String) => PutClientsRequest} clientProvinceId Administrative region code.
+ * @property {(clientPassword: String) => PutClientsRequest} clientPassword Customer password (min. 8 characters).
+ * @property {(clientBirthDate: String) => PutClientsRequest} clientBirthDate Date of birth.
+ * @property {(clientPhone1: String) => PutClientsRequest} clientPhone1 Cell phone.
+ * @property {(clientFirm: String) => PutClientsRequest} clientFirm Customer's company name.
+ * @property {(clientNip: String) => PutClientsRequest} clientNip Customer Tax no.
+ * @property {(clientIsWholesaler: Boolean) => PutClientsRequest} clientIsWholesaler Determines, whether client is a wholesaler.
+ * @property {(clientType: 'person'|'person_male'|'person_female'|'firm') => PutClientsRequest} clientType Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company.
+ * @property {(langId: String) => PutClientsRequest} langId Language ID
+ * @property {(blockLoginToOtherShops: Boolean) => PutClientsRequest} blockLoginToOtherShops Defines availability of log in to other pages than the ones given in the element: shops .
+ * @property {(shopsIds: Array<Integer>) => PutClientsRequest} shopsIds List of stores IDs When mask is determined, this parameter is omitted.
+ * @property {(currencyId: String) => PutClientsRequest} currencyId Currency ID
+ * @property {(clientCodeExternal: String) => PutClientsRequest} clientCodeExternal External system code.
+ * @property {(deliveryDates: Array<Object>) => PutClientsRequest} deliveryDates List with delivery dates and times
+ * @property {(clientBalanceAmountExternal: Number) => PutClientsRequest} clientBalanceAmountExternal Customer account balance in external system.
+ * @property {(clientTradeCreditLimitExternal: Number) => PutClientsRequest} clientTradeCreditLimitExternal Debt limit.
+ * @property {(newsletterEmailApproval: Boolean) => PutClientsRequest} newsletterEmailApproval Permission to E-mail Newsletter.
+ * @property {(newsletterSmsApproval: Boolean) => PutClientsRequest} newsletterSmsApproval Permission to SMS Newsletter.
+ * @property {(clientGroupDiscountNumber: Integer) => PutClientsRequest} clientGroupDiscountNumber Discount group ID.
+ * @property {(requestReference: String) => PutClientsRequest} requestReference Field used for identifying request-response pairs for the endpoint.
+ * @property {(newsletterEmailApprovalsData: Array<Object>) => PutClientsRequest} newsletterEmailApprovalsData List of shops where a customer agreed or didn't agree to receive email newsletter.
+ * @property {(newsletterSmsApprovalsData: Array<Object>) => PutClientsRequest} newsletterSmsApprovalsData List of shops where a customer agreed or didn't agree to receive sms newsletter.
+ * @property {(clientActive: Boolean) => PutClientsRequest} clientActive Is the customer active
+ * @property {(numberOfDaysToPay: Integer) => PutClientsRequest} numberOfDaysToPay Number of days to pay for invoice
+ * @property {(affiliateLogin: String) => PutClientsRequest} affiliateLogin The parameter stores information about who acquired the customer
+ * @property {(affiliateId: Integer) => PutClientsRequest} affiliateId ID of a partner who acquired a given customer.
+ * @property {(clientNote: String) => PutClientsRequest} clientNote Notes from customer.
+ * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
