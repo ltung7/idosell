@@ -2,5 +2,10 @@ import { paramsProxy } from "../params.js";
 
 export const putOrdersProductsSerialNumbersProxy = (object) => {
     object.gate = { method: 'put', node: '/orders/productsSerialNumbers' }
+    object.appendable = {
+        except: [],
+        arrayNode: "orders",
+        index: 0
+    }
     return new Proxy(object, paramsProxy);
 }

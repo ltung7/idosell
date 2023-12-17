@@ -7,7 +7,7 @@ export const putProductsProxy = (object) => {
         setText: setProductText(object)
     };
     object.appendable = {
-        except: ["picturesSettings","settings"],
+        except: ["settings","picturesSettings"],
         arrayNode: "products",
         index: 0
     }

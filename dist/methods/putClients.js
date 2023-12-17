@@ -3,7 +3,7 @@ import { paramsProxy } from "../params.js";
 export const putClientsProxy = (object) => {
     object.gate = { method: 'put', node: '/clients/clients' }
     object.appendable = {
-        except: ["clientsSettings"],
+        except: [],
         arrayNode: "clients",
         index: 0
     }
