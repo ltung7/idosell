@@ -209,6 +209,15 @@ import { putProductsSupplierCodeProxy } from "./methods/putProductsSupplierCode.
 import { putProductsSupplierProductDataProxy } from "./methods/putProductsSupplierProductData.js";
 import { postProductsSynchronizationFileProxy } from "./methods/postProductsSynchronizationFile.js";
 import { putProductsSynchronizationFinishUploadProxy } from "./methods/putProductsSynchronizationFinishUpload.js";
+import { postRefundsAddAutomaticRefundProxy } from "./methods/postRefundsAddAutomaticRefund.js";
+import { postRefundsAddAutomaticRefundForOrderProxy } from "./methods/postRefundsAddAutomaticRefundForOrder.js";
+import { postRefundsAddManualRefundProxy } from "./methods/postRefundsAddManualRefund.js";
+import { putRefundsCancelRefundProxy } from "./methods/putRefundsCancelRefund.js";
+import { putRefundsConfirmRefundProxy } from "./methods/putRefundsConfirmRefund.js";
+import { getRefundsGetPossibleAutoRefundsProxy } from "./methods/getRefundsGetPossibleAutoRefunds.js";
+import { getRefundsGetRefundStatusProxy } from "./methods/getRefundsGetRefundStatus.js";
+import { getRefundsRetrieveRefundsListProxy } from "./methods/getRefundsRetrieveRefundsList.js";
+import { putRefundsUpdateRefundProxy } from "./methods/putRefundsUpdateRefund.js";
 import { getReturnsProxy } from "./methods/getReturns.js";
 import { putReturnsProxy } from "./methods/putReturns.js";
 import { putReturnsSerialNumberProxy } from "./methods/putReturnsSerialNumber.js";
@@ -475,6 +484,15 @@ const gates = {
     putProductsSupplierProductData: putProductsSupplierProductDataProxy,
     postProductsSynchronizationFile: postProductsSynchronizationFileProxy,
     putProductsSynchronizationFinishUpload: putProductsSynchronizationFinishUploadProxy,
+    postRefundsAddAutomaticRefund: postRefundsAddAutomaticRefundProxy,
+    postRefundsAddAutomaticRefundForOrder: postRefundsAddAutomaticRefundForOrderProxy,
+    postRefundsAddManualRefund: postRefundsAddManualRefundProxy,
+    putRefundsCancelRefund: putRefundsCancelRefundProxy,
+    putRefundsConfirmRefund: putRefundsConfirmRefundProxy,
+    getRefundsGetPossibleAutoRefunds: getRefundsGetPossibleAutoRefundsProxy,
+    getRefundsGetRefundStatus: getRefundsGetRefundStatusProxy,
+    getRefundsRetrieveRefundsList: getRefundsRetrieveRefundsListProxy,
+    putRefundsUpdateRefund: putRefundsUpdateRefundProxy,
     getReturns: getReturnsProxy,
     putReturns: putReturnsProxy,
     putReturnsSerialNumber: putReturnsSerialNumberProxy,

@@ -831,6 +831,13 @@
  * @property {(langs: Array<Object>) => PostEntriesRequest} langs Element including entry content in selected languages
  * @property {(titleLinkType: 'fullContentLink'|'givenUrlLink'|'noLink') => PostEntriesRequest} titleLinkType Type of title and shortcut linking: fullContentLink - link to the subpage with full content, givenUrlLink - link to the given URL, noLink - static element
  * @property {(link: String) => PostEntriesRequest} link Provided URL (for link to specified URL option)
+ * @property {(langId: String) => PostEntriesRequest} langId Language ID
+ * @property {(title: String) => PostEntriesRequest} title Name on the page
+ * @property {(shortDescription: String) => PostEntriesRequest} shortDescription short description
+ * @property {(longDescription: String) => PostEntriesRequest} longDescription Long description
+ * @property {(blogUrl: String) => PostEntriesRequest} blogUrl Blog post URL
+ * @property {(newsUrl: String) => PostEntriesRequest} newsUrl News item URL
+ * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -999,6 +1006,8 @@
 
 /**
  * @typedef {Object} GetOrdersDocumentsRequest
+ * @property {(orderSerialNumber: Array<String>) => GetOrdersDocumentsRequest} orderSerialNumber Order serial number.
+ * @property {(documentType: 'sales_confirmation'|'vat_invoice'|'corrective_vat_invoice'|'advance_vat_invoice'|'final_advance_vat_invoice'|'pro_forma_invoice'|'advance_pro_forma_invoice'|'final_advance_pro_forma_invoice'|'delivery_note'|'fiscal_receipt'|'fiscal_invoice'|'other') => GetOrdersDocumentsRequest} documentType Document type
  * @property {function} exec Excecute request
  */
 
@@ -1167,8 +1176,8 @@
 /**
  * @typedef {Object} GetOrdersRequest
  * @property {(ordersIds: Array<String>) => GetOrdersRequest} ordersIds Orders IDs.
- * @property {(ordersSerialNumbers: Array<Integer>) => GetOrdersRequest} ordersSerialNumbers Order serial numbers.
- * @property {(orderExternalId: String) => GetOrdersRequest} orderExternalId The order ID of the external service
+ * @property {(ordersSerialNumbers: Array<Integer>) => GetOrdersRequest} ordersSerialNumbers Order serial numbers. You can transfer a maximum of 100 items.
+ * @property {(orderExternalId: String) => GetOrdersRequest} orderExternalId The order ID of the external service. You can transfer a maximum of 100 items in one request.
  * @property {function} exec Excecute request
  */
 
@@ -1234,7 +1243,9 @@
 /**
  * @typedef {Object} GetOrdersPackagesRequest
  * @property {(deliveryPackageNumbers: Array<String>) => GetOrdersPackagesRequest} deliveryPackageNumbers Consignments numbers.
- * @property {(events: Array<Object>) => GetOrdersPackagesRequest} events Element, package is assigned to
+ * @property {(orderNumbers: Array<Integer>) => GetOrdersPackagesRequest} orderNumbers Order serial numbers.
+ * @property {(returnNumbers: Array<Integer>) => GetOrdersPackagesRequest} returnNumbers Returns numbers.
+ * @property {(rmaNumbers: Array<Integer>) => GetOrdersPackagesRequest} rmaNumbers RMA numbers.
  * @property {(returnLabels: Boolean) => GetOrdersPackagesRequest} returnLabels Return parcel labels.
  * @property {function} exec Excecute request
  */
@@ -1732,7 +1743,9 @@
 
 /**
  * @typedef {Object} GetProductsDescriptionsRequest
- * @property {(productsIdents: Array<Object>) => GetProductsDescriptionsRequest} productsIdents Products list.
+ * @property {(type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsDescriptionsRequest} type Identifier type.
+ * @property {(ids: Array<Integer>) => GetProductsDescriptionsRequest} ids ID value.
+ * @property {(shopId: Integer) => GetProductsDescriptionsRequest} shopId Shop Id
  * @property {function} exec Excecute request
  */
 
@@ -2077,7 +2090,7 @@
 
 /**
  * @typedef {Object} GetProductsRequest
- * @property {(productIds: Array<String>) => GetProductsRequest} productIds List of the unique, indexed product codes (IAI code / External system code / Producer code)
+ * @property {(productIds: Array<String>) => GetProductsRequest} productIds List of the unique, indexed product codes (IAI code / External system code / Producer code). You can transfer a maximum of 100 products IDs in one request.
  * @property {function} exec Excecute request
  */
 
@@ -2539,21 +2552,96 @@
 
 /**
  * @typedef {Object} PostProductsSynchronizationFileRequest
- * @property {(synchronizationId: Integer) => PostProductsSynchronizationFileRequest} synchronizationId #!IdentyfikatorSynchronizacji!#.
- * @property {(packageId: Integer) => PostProductsSynchronizationFileRequest} packageId #!NumerPaczkiZPlikami!#. #!PrzyPierwszymPlikuWPaczceNalezyZostawicPusteAAPIZwrociWygenerowanyNumerKtoryNastepnieNalezyPrzesylacIPoKtorymAPIBedzieRozpoznawacKolejnePlikiDoTejPaczki!#.
- * @property {(fileType: String) => PostProductsSynchronizationFileRequest} fileType #!TypPlikuIOF30FullLightCategoriesSizesSeriesWarrantiesParameters!#.
- * @property {(md5Content: String) => PostProductsSynchronizationFileRequest} md5Content #!MD5ZZawartosciPlikuPrzedZakodowaniemBase64!#.
- * @property {(fileContent: String) => PostProductsSynchronizationFileRequest} fileContent #!PlikOfertyZakodowanyZaPomocaAlgorytmuBase64!#.
- * @property {(offerName: String) => PostProductsSynchronizationFileRequest} offerName #!UnikalnaNazwaOferty!#.
+ * @property {(synchronizationId: Integer) => PostProductsSynchronizationFileRequest} synchronizationId Synchronization ID.
+ * @property {(packageId: Integer) => PostProductsSynchronizationFileRequest} packageId File package number. Leave blank for the first file in the package, and the API will return a generated number, which should then be transmitted and by which the API will recognize subsequent files for this package.
+ * @property {(fileType: String) => PostProductsSynchronizationFileRequest} fileType File Type IOF30 (full/light/categories/sizes/series/guarantees/parameters).
+ * @property {(md5Content: String) => PostProductsSynchronizationFileRequest} md5Content MD5 from the file avarage before base64 encoding.
+ * @property {(fileContent: String) => PostProductsSynchronizationFileRequest} fileContent Offer file encoded with base64 algorithm.
+ * @property {(offerName: String) => PostProductsSynchronizationFileRequest} offerName Unique offer name.
  * @property {function} exec Excecute request
  */
 
 /**
  * @typedef {Object} PutProductsSynchronizationFinishUploadRequest
- * @property {(synchronizationId: Integer) => PutProductsSynchronizationFinishUploadRequest} synchronizationId #!IdentyfikatorSynchronizacji!#.
- * @property {(packageId: Integer) => PutProductsSynchronizationFinishUploadRequest} packageId #!NumerPaczkiZPlikami!#.
- * @property {(filesInPackage: Integer) => PutProductsSynchronizationFinishUploadRequest} filesInPackage #!LacznaLiczbaPlikowWPaczce!#.
- * @property {(verifyFiles: Boolean) => PutProductsSynchronizationFinishUploadRequest} verifyFiles #!CzyZweryfikowacPaczkePoprzezSparsowaniePlikowIPrzygotowanieRequestow!#. #!OdpowiedzMozeZajacKilkaMinut!#.
+ * @property {(synchronizationId: Integer) => PutProductsSynchronizationFinishUploadRequest} synchronizationId Synchronization ID.
+ * @property {(packageId: Integer) => PutProductsSynchronizationFinishUploadRequest} packageId File package number.
+ * @property {(filesInPackage: Integer) => PutProductsSynchronizationFinishUploadRequest} filesInPackage Total number of files in the parcel.
+ * @property {(verifyFiles: Boolean) => PutProductsSynchronizationFinishUploadRequest} verifyFiles Whether to verify the package by sparsifying files and preparing requests. It may take a few minutes to answer.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostRefundsAddAutomaticRefundRequest
+ * @property {(sourceType: 'return'|'rma') => PostRefundsAddAutomaticRefundRequest} sourceType Source type.: "return" "rma".
+ * @property {(sourceId: Integer) => PostRefundsAddAutomaticRefundRequest} sourceId Source ID.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostRefundsAddAutomaticRefundForOrderRequest
+ * @property {(sourceId: Integer) => PostRefundsAddAutomaticRefundForOrderRequest} sourceId Source ID.
+ * @property {(refundValue: Number) => PostRefundsAddAutomaticRefundForOrderRequest} refundValue Amount.
+ * @property {(paymentId: Integer) => PostRefundsAddAutomaticRefundForOrderRequest} paymentId Payment ID.
+ * @property {(refundCurrency: String) => PostRefundsAddAutomaticRefundForOrderRequest} refundCurrency Payment currency.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostRefundsAddManualRefundRequest
+ * @property {(sourceType: 'order'|'return'|'rma') => PostRefundsAddManualRefundRequest} sourceType Source type.: "order" "return" "rma".
+ * @property {(sourceId: Integer) => PostRefundsAddManualRefundRequest} sourceId Source ID.
+ * @property {(refundValue: Number) => PostRefundsAddManualRefundRequest} refundValue Amount.
+ * @property {(refundCurrency: String) => PostRefundsAddManualRefundRequest} refundCurrency Payment currency.
+ * @property {(refundDetails: Object) => PostRefundsAddManualRefundRequest} refundDetails 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutRefundsCancelRefundRequest
+ * @property {(sourceType: 'order'|'return'|'rma') => PutRefundsCancelRefundRequest} sourceType Source type.: "order" "return" "rma".
+ * @property {(sourceId: Integer) => PutRefundsCancelRefundRequest} sourceId Source ID.
+ * @property {(paymentId: String) => PutRefundsCancelRefundRequest} paymentId Payment ID.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutRefundsConfirmRefundRequest
+ * @property {(sourceType: 'order'|'return'|'rma') => PutRefundsConfirmRefundRequest} sourceType Source type.: "order" , "return" "rma".
+ * @property {(sourceId: Integer) => PutRefundsConfirmRefundRequest} sourceId Source ID.
+ * @property {(paymentId: Integer) => PutRefundsConfirmRefundRequest} paymentId Payment ID.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetRefundsGetPossibleAutoRefundsRequest
+ * @property {(sourceId: Integer) => GetRefundsGetPossibleAutoRefundsRequest} sourceId Source ID
+ * @property {(sourceType: 'order'|'return'|'rma') => GetRefundsGetPossibleAutoRefundsRequest} sourceType Source type.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetRefundsGetRefundStatusRequest
+ * @property {(sourceId: Integer) => GetRefundsGetRefundStatusRequest} sourceId Source ID
+ * @property {(paymentId: Integer) => GetRefundsGetRefundStatusRequest} paymentId Payment ID.
+ * @property {(sourceType: 'order'|'return'|'rma') => GetRefundsGetRefundStatusRequest} sourceType Source type.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetRefundsRetrieveRefundsListRequest
+ * @property {(sourceType: 'order'|'return'|'rma'|'all') => GetRefundsRetrieveRefundsListRequest} sourceType Source type.
+ * @property {(resultsPage: Integer) => GetRefundsRetrieveRefundsListRequest} resultsPage Page number, first 1
+ * @property {(resultsLimit: Integer) => GetRefundsRetrieveRefundsListRequest} resultsLimit Limit results, between 1 - 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutRefundsUpdateRefundRequest
+ * @property {(sourceType: 'order'|'return'|'rma') => PutRefundsUpdateRefundRequest} sourceType Source type.: "order" , "return" "rma".
+ * @property {(sourceId: Integer) => PutRefundsUpdateRefundRequest} sourceId Source ID.
+ * @property {(paymentId: String) => PutRefundsUpdateRefundRequest} paymentId Payment ID.
+ * @property {(refundValue: Number) => PutRefundsUpdateRefundRequest} refundValue Amount.
+ * @property {(refundCurrency: String) => PutRefundsUpdateRefundRequest} refundCurrency Payment currency.
  * @property {function} exec Excecute request
  */
 
@@ -3122,7 +3210,7 @@
  * @property {PostClientsRequest} postClients Method that enables adding new customer accounts to the IdoSell Shop administration panel.
  * @property {PutClientsRequest} putClients Method enables modifying existing customer account data.
  * @property {GetClientsCrmRequest} getClientsCrm The method allows to download information about customers from the CRM module assigned to stores to which the user has rights.
- * @property {DeleteClientsDeliveryAddressRequest} deleteClientsDeliveryAddress #!MetodaPozwalaNaUsuwanieNiewykorzystanychAdresowDostawDlaKontKlientow!#
+ * @property {DeleteClientsDeliveryAddressRequest} deleteClientsDeliveryAddress The method allows you to delete unused delivery addresses for customer accounts in the IdoSell Shop administration panel
  * @property {GetClientsDeliveryAddressRequest} getClientsDeliveryAddress Method that enables extracting information about delivery addresses assigned to existing customer accounts.
  * @property {PostClientsDeliveryAddressRequest} postClientsDeliveryAddress Method that enables adding delivery address details to existing customer accounts.
  * @property {PutClientsDeliveryAddressRequest} putClientsDeliveryAddress Method that enables editing the delivery address details for existing customer accounts.
@@ -3138,7 +3226,7 @@
  * @property {PutClientsMembershipCardsRequest} putClientsMembershipCards Method that enables assigning loyalty cards to customer accounts.
  * @property {GetClientsNewsletterEmailSMSRequest} getClientsNewsletterEmailSMS Method that enables extracting a list of customer accounts that agreed / did not agree to receiving text message newsletters.
  * @property {GetClientsNewsletterEmailShopsRequest} getClientsNewsletterEmailShops Method that enables extracting a list of customer accounts that agreed / did not agree to receiving email newsletters.
- * @property {DeleteClientsPayerAddressRequest} deleteClientsPayerAddress #!MetodaPozwalaNaUsuwanieNiewykorzystanychAdresowNabywcy!#
+ * @property {DeleteClientsPayerAddressRequest} deleteClientsPayerAddress The method allows you to delete unused buyer addresses for customer accounts in the IdoSell Shop administration panel
  * @property {GetClientsPayerAddressRequest} getClientsPayerAddress The method allows to retrieve buyer's addresses from sales documents, for existing customer accounts in the IdoSell administration panel.
  * @property {PostClientsPayerAddressRequest} postClientsPayerAddress The method allows to add buyer's addresses to sales documents, for existing customer accounts in the IdoSell administration panel.
  * @property {PutClientsPayerAddressRequest} putClientsPayerAddress The method allows to modify buyer's addresses in sales documents, for existing customer accounts in the IdoSell administration panel.
@@ -3172,19 +3260,19 @@
  * @property {PutDeliveriesDefaultProfilesRequest} putDeliveriesDefaultProfiles The method allows to set the default delivery profile for the given region.
  * @property {GetDeliveriesProfilesRequest} getDeliveriesProfiles Allows to download all of the delivery profiles defined in the administration panel
  * @property {GetDeliveriesRegionsRequest} getDeliveriesRegions The method allows to download a list of regions supporting deliveries.
- * @property {PostDeliveriesRegionsRequest} postDeliveriesRegions #!UmozliwiaDodanieRegionuDoWskazanegoKraju!#
- * @property {GetDiscountsGroupsClientsRequest} getDiscountsGroupsClients getClientsAssignedToDiscountGroup - returns the list of customer IDs assigned to an indicated discount group. In order to assign a discount group, use setClients method in API Clients.
- * @property {DeleteDiscountsGroupsRequest} deleteDiscountsGroups deleteDiscountGroup - allows to remove a discount group. The condition for conducting this process is no customers assigned to the indicated group. In order to check the assigned customers use getClientsAssignedToDiscountGroup method. 
+ * @property {PostDeliveriesRegionsRequest} postDeliveriesRegions Allows you to add a region to the indicated country
+ * @property {GetDiscountsGroupsClientsRequest} getDiscountsGroupsClients Returns the list of customer IDs assigned to an indicated discount group. In order to assign a discount group, use setClients method in API Clients.
+ * @property {DeleteDiscountsGroupsRequest} deleteDiscountsGroups Allows to remove a discount group. The condition for conducting this process is no customers assigned to the indicated group. In order to check the assigned customers use getClientsAssignedToDiscountGroup method. 
  * @property {GetDiscountsGroupsRequest} getDiscountsGroups Method that enables extracting information about discount groups configured in the administration panel.
- * @property {PostDiscountsGroupsRequest} postDiscountsGroups addDiscountGroup - allows to add a new discount group in the administration panel. The discount group is added by default with the setting "Discount for products - yes, but different for indicated groups".
- * @property {PutDiscountsGroupsRequest} putDiscountsGroups editDiscountGroup - allows to change a discount group name
+ * @property {PostDiscountsGroupsRequest} postDiscountsGroups Allows to add a new discount group in the administration panel. The discount group is added by default with the setting "Discount for products - yes, but different for indicated groups".
+ * @property {PutDiscountsGroupsRequest} putDiscountsGroups Allows to change a discount group name
  * @property {DeleteDiscountsGroupsProductsRequest} deleteDiscountsGroupsProducts The method allows the removal of products from a discount group
  * @property {PutDiscountsGroupsProductsRequest} putDiscountsGroupsProducts The method allows products to be added to a discount group and their price to be specified in the discount group
- * @property {PutDiscountsRebatesBlockCardRequest} putDiscountsRebatesBlockCard blockRebateCard method - allows to block an indicated discount card, eg. when it is assumed that its number has been made available publicly. The blocked card can be unblocked with the method unblockRebateCard.
- * @property {DeleteDiscountsRebatesCardRequest} deleteDiscountsRebatesCard deleteUnusedRebateCards method allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
- * @property {PostDiscountsRebatesCardRequest} postDiscountsRebatesCard addRebateCard method - allows to upload new card numbers to already existing discount card types in the administration panel. Cards uploaded such way retrieve settings, regarding the discount amount, from the type of cards to which they are uploaded. Every card can also have individual, independent discount settings which can be set in the administration panel..
- * @property {DeleteDiscountsRebatesCodeRequest} deleteDiscountsRebatesCode deleteUnusedRebateCodes method - allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
- * @property {PostDiscountsRebatesCodeRequest} postDiscountsRebatesCode addRebateCode method - allows to upload new code numbers to already existing rebate campaigns in the administration panel. The codes uploaded in such way retrieve settings, regarding the discount amount, from a campaign to which they are uploaded. Each discount code can also have individual, independent discount settings which can be set in the administration panel.
+ * @property {PutDiscountsRebatesBlockCardRequest} putDiscountsRebatesBlockCard Allows to block an indicated discount card, eg. when it is assumed that its number has been made available publicly. The blocked card can be unblocked with the method unblockRebateCard.
+ * @property {DeleteDiscountsRebatesCardRequest} deleteDiscountsRebatesCard Method allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
+ * @property {PostDiscountsRebatesCardRequest} postDiscountsRebatesCard Allows to upload new card numbers to already existing discount card types in the administration panel. Cards uploaded such way retrieve settings, regarding the discount amount, from the type of cards to which they are uploaded. Every card can also have individual, independent discount settings which can be set in the administration panel..
+ * @property {DeleteDiscountsRebatesCodeRequest} deleteDiscountsRebatesCode Allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted.
+ * @property {PostDiscountsRebatesCodeRequest} postDiscountsRebatesCode Allows to upload new code numbers to already existing rebate campaigns in the administration panel. The codes uploaded in such way retrieve settings, regarding the discount amount, from a campaign to which they are uploaded. Each discount code can also have individual, independent discount settings which can be set in the administration panel.
  * @property {PutDiscountsRebatesUnblockCardRequest} putDiscountsRebatesUnblockCard unblockRebateCard method - allows to unblock discount cards. Block cards with the blockRebateCard method.
  * @property {DeleteEntriesRequest} deleteEntries Enables deleting blog or news entry
  * @property {GetEntriesRequest} getEntries Enables downloading blog or news entry data
@@ -3200,15 +3288,15 @@
  * @property {PutMenuSortRequest} putMenuSort Method that enables sorting of menu elements.
  * @property {GetOrdersAnalyticsRequest} getOrdersAnalytics The method is used to retrieve information about the margins of the goods of the order.
  * @property {GetOrdersAuctionDetailsRequest} getOrdersAuctionDetails Method that enables getting information about external listings assigned to orders in the administration panel.
- * @property {PutOrdersClientRequest} putOrdersClient Array
+ * @property {PutOrdersClientRequest} putOrdersClient 
  * @property {PutOrdersCourierRequest} putOrdersCourier Method that enables changing the courier handling the shipment for an order.
  * @property {PutOrdersDeliveryAddressRequest} putOrdersDeliveryAddress Method that enables editing the delivery address details for an order in the administration panel.
- * @property {PutOrdersDevideRequest} putOrdersDevide #!MetodaSluzyDoPodzialuZamowienia!#
+ * @property {PutOrdersDevideRequest} putOrdersDevide Method for division order
  * @property {DeleteOrdersDocumentsRequest} deleteOrdersDocuments The method allows to delete documents added to the order in the IdoSell administration panel.
  * @property {GetOrdersDocumentsRequest} getOrdersDocuments Method that enables extracting information about documents issued for orders in the administration panel.
  * @property {PostOrdersDocumentsRequest} postOrdersDocuments The method allows to add TIFF, BMP, PNG, JPG, JPEG, GIF or PDF documents to the order in the IdoSell Shop administration panel.
  * @property {GetOrdersExportdocumentsEPPRequest} getOrdersExportdocumentsEPP This method returns sales and warehouse documents in the universal EDI (Electronic Data Interchange) format.
- * @property {GetOrdersExportdocumentsJPKRequest} getOrdersExportdocumentsJPK #!MetodaZwracaDokumentySprzedazoweIMagazynoweWUniwersalnymFormacieJPK!#.
+ * @property {GetOrdersExportdocumentsJPKRequest} getOrdersExportdocumentsJPK Method returns sales and warehouse documents in universal JPK format.
  * @property {GetOrdersHandlerRequest} getOrdersHandler Method that enables getting information about the handler currently assigned to an order.
  * @property {PutOrdersHandlerRequest} putOrdersHandler Method that enabled assigning a handler to an order.
  * @property {GetOrdersHistoryRequest} getOrdersHistory Method allows to retrieve orders history from the IdoSell Shop panel
@@ -3229,7 +3317,7 @@
  * @property {GetOrdersPrinterDocumentsRequest} getOrdersPrinterDocuments Method that enables getting a VAT invoice issued for an order added to the administration panel by the IAI POS application.
  * @property {PutOrdersProductsSerialNumbersRequest} putOrdersProductsSerialNumbers Method that enables adding serial numbers to products in an order.
  * @property {PutOrdersProfitMarginRequest} putOrdersProfitMargin Method that enables setting price margins for products in an order.
- * @property {GetOrdersProfitabilityRequest} getOrdersProfitability #!MetodaSluzyDoPobieraniaInformacjiOOplacalnosciZamowienia!#
+ * @property {GetOrdersProfitabilityRequest} getOrdersProfitability The method is used to retrieve information about the profitability of an order
  * @property {PutOrdersShippingCostsRequest} putOrdersShippingCosts Method that enables editing the delivery costs for an order in the administration panel.
  * @property {ListOrdersUnfinishedRequest} listOrdersUnfinished It allows you to download information about unclosed orders located in the store's administration panel. Orders with a status of false and lost are considered closed. Orders with a status of false and lost are considered closed.
  * @property {GetOrdersWarehouseRequest} getOrdersWarehouse Method that enables getting information about which warehouse an order is being handled from.
@@ -3251,10 +3339,10 @@
  * @property {GetProductsSKUbyBarcodeRequest} getProductsSKUbyBarcode The method allows to download, among others, information on identifiers, names and size codes, their available stock quantity and locations in the warehouse based on scanned bar codes.
  * @property {PutProductsAttachmentsRequest} putProductsAttachments Method that enables adding and editing product attachments.
  * @property {GetProductsAuctionsRequest} getProductsAuctions Allows for downloading information about auctions and auction categories to which the product has been assigned (for a maximum of 100 products in one request)
- * @property {DeleteProductsBrandsRequest} deleteProductsBrands The method allows you to remove brands from the administration panel..
+ * @property {DeleteProductsBrandsRequest} deleteProductsBrands The method allows you to remove brands from the administration panel.
  * @property {GetProductsBrandsRequest} getProductsBrands Method that returns information about brands available in the IdoSell Shop administration panel.
- * @property {PostProductsBrandsRequest} postProductsBrands The method allows you to update brands information available in the administration panel..
- * @property {PutProductsBrandsRequest} putProductsBrands The method allows you to update brands information available in the administration panel..
+ * @property {PostProductsBrandsRequest} postProductsBrands The method allows you to update brands information available in the administration panel.
+ * @property {PutProductsBrandsRequest} putProductsBrands The method allows you to update brands information available in the administration panel.
  * @property {GetProductsBrandsFilterRequest} getProductsBrandsFilter The method allows you to download a list of filters for brands (manufacturers) available in the IdoSell administration panel.
  * @property {PutProductsBrandsFilterRequest} putProductsBrandsFilter The method allows you to manage filter settings for brands (manufacturers).
  * @property {PostProductsBundlesRequest} postProductsBundles createBundle method allows to create a new product with a type: set and to assign existing products as a set components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
@@ -3264,7 +3352,7 @@
  * @property {PutProductsBundlesRenewRequest} putProductsBundlesRenew the renewProductsInBundle method allows you to rebuild components of Sets existing in the administration panel 
  * @property {GetProductsCategoriesRequest} getProductsCategories Method that returns information about categories configured in the administration panel.
  * @property {PutProductsCategoriesRequest} putProductsCategories Method that enables adding new categories to the administration panel as well editing and deleting of existing categories.
- * @property {GetProductsCategoriesIdosellRequest} getProductsCategoriesIdosell Method returns information about IdoSell Categories available in store. .
+ * @property {GetProductsCategoriesIdosellRequest} getProductsCategoriesIdosell Method returns information about IdoSell Categories available in store.
  * @property {GetProductsCodeExistenceRequest} getProductsCodeExistence The method allows to check if a product with the given identification code (panel ID, IAI code, manufacturer code, external system code) exists in the panel.
  * @property {PostProductsCollectionsRequest} postProductsCollections createCollection method allows to create a new product with a type: collection and to assign existing products as a collection components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
  * @property {DeleteProductsCollectionsProductsRequest} deleteProductsCollectionsProducts removeProductsFromCollection method allows to remove indicated collection components
@@ -3298,7 +3386,7 @@
  * @property {PutProductsParametersRequest} putProductsParameters Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
  * @property {DeleteProductsRequest} deleteProducts Method used for deleting products from the IdoSell Shop administration panel.
  * @property {ListProductsRequest} listProducts Method that enables extracting information about non-deleted products available in the administration panel
- * @property {GetProductsRequest} getProducts Method that enables extracting information about non-deleted products available in the administration panel
+ * @property {GetProductsRequest} getProducts Method that enables extracting information about non-deleted products available in the administration panel. 
  * @property {PostProductsRequest} postProducts The method is used to add products
  * @property {PutProductsRequest} putProducts Method that enables editing and adding new products to the administration panel.
  * @property {DeleteProductsProductsToFacebookCatalogRequest} deleteProductsProductsToFacebookCatalog The method allows you to add products to the Facebook catalog.
@@ -3310,9 +3398,9 @@
  * @property {PutProductsQuestionsRequest} putProductsQuestions The method allows you to add and edit questions to products available in the IdoSell Shop administration panel.
  * @property {GetProductsReservationsRequest} getProductsReservations It allows to download information about product reservations in orders (for up to 100 products in one request).
  * @property {PostProductsRestoreRequest} postProductsRestore The method is used to restore deleted products
- * @property {DeleteProductsSeriesRequest} deleteProductsSeries Method allows you to delete a series of products available in the IdoSell administration panel..
- * @property {GetProductsSeriesRequest} getProductsSeries Method returns information about the product series available in the IdoSell administration panel..
- * @property {PutProductsSeriesRequest} putProductsSeries Method allows you to update information about product series available in the IdoSell administration panel..
+ * @property {DeleteProductsSeriesRequest} deleteProductsSeries Method allows you to delete a series of products available in the IdoSell administration panel.
+ * @property {GetProductsSeriesRequest} getProductsSeries Method returns information about the product series available in the IdoSell administration panel.
+ * @property {PutProductsSeriesRequest} putProductsSeries Method allows you to update information about product series available in the IdoSell administration panel.
  * @property {GetProductsSeriesFilterRequest} getProductsSeriesFilter Method allows you to retrieve a list of filters for a series of products available in the IdoSell administration panel..
  * @property {PutProductsSeriesFilterRequest} putProductsSeriesFilter The method allows you to manage the filter settings for the series..
  * @property {DeleteProductsSizesRequest} deleteProductsSizes The method is used to remove sizes
@@ -3325,8 +3413,17 @@
  * @property {PutProductsStrikethroughPricesRequest} putProductsStrikethroughPrices Allows for editing product strikethrough price settings
  * @property {PutProductsSupplierCodeRequest} putProductsSupplierCode The method allows to edit supplier data in the IdoSell Shop administration panel.
  * @property {PutProductsSupplierProductDataRequest} putProductsSupplierProductData The method allows you to edit the commodity data related to its suppliers.
- * @property {PostProductsSynchronizationFileRequest} postProductsSynchronizationFile #!MetodaPozwalaNaWgranieDoModuluSynchronizacjiTowarowOfertyWPlikuWFormacieIOF30!#.
- * @property {PutProductsSynchronizationFinishUploadRequest} putProductsSynchronizationFinishUpload #!MetodaInformujeModulSynchronizacjiOZakonczeniuWgrywaniaPlikow!#.
+ * @property {PostProductsSynchronizationFileRequest} postProductsSynchronizationFile The method allows you to upload to the goods synchronization module, the offer in a file in IOF 3.0 format.
+ * @property {PutProductsSynchronizationFinishUploadRequest} putProductsSynchronizationFinishUpload Method informs commodity synchronization module that uploading of files is complete.
+ * @property {PostRefundsAddAutomaticRefundRequest} postRefundsAddAutomaticRefund Method allows you to add automatic refund of payments for returns and rma.
+ * @property {PostRefundsAddAutomaticRefundForOrderRequest} postRefundsAddAutomaticRefundForOrder Method allows you to add automatic refund for order.
+ * @property {PostRefundsAddManualRefundRequest} postRefundsAddManualRefund Method allows you to add manual refund for return and rma.
+ * @property {PutRefundsCancelRefundRequest} putRefundsCancelRefund Method allows you to cancel refund.
+ * @property {PutRefundsConfirmRefundRequest} putRefundsConfirmRefund Method allows you to confirm refund.
+ * @property {GetRefundsGetPossibleAutoRefundsRequest} getRefundsGetPossibleAutoRefunds Method returns Automatic refunds possible.
+ * @property {GetRefundsGetRefundStatusRequest} getRefundsGetRefundStatus Method returns refund status.
+ * @property {GetRefundsRetrieveRefundsListRequest} getRefundsRetrieveRefundsList Method returns a list of incomplete refunds.
+ * @property {PutRefundsUpdateRefundRequest} putRefundsUpdateRefund Method allows you to update refund.
  * @property {GetReturnsRequest} getReturns Method that enables getting information about returns issued for orders in the administration panel.
  * @property {PutReturnsRequest} putReturns Method that enables editing returns issued for orders in the administration panel.
  * @property {PutReturnsSerialNumberRequest} putReturnsSerialNumber Method that enables setting serial numbers for products included in returns issued for orders in the administration panel.
