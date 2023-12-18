@@ -1,5 +1,5 @@
 import { gateProxy } from "./gates.js";
-const DEFAULT_VERSION = 1;
+const DEFAULT_VERSION = 2;
 
 /**
  * Initializes the idosell API client.

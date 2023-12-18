@@ -2632,6 +2632,8 @@
  * @property {(sourceType: 'order'|'return'|'rma'|'all') => GetRefundsRetrieveRefundsListRequest} sourceType Source type.
  * @property {(resultsPage: Integer) => GetRefundsRetrieveRefundsListRequest} resultsPage Page number, first 1
  * @property {(resultsLimit: Integer) => GetRefundsRetrieveRefundsListRequest} resultsLimit Limit results, between 1 - 100
+ * @property {(page: Integer, limit: Integer) => GetRefundsRetrieveRefundsListRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 

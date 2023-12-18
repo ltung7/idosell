@@ -46,7 +46,8 @@ export const arrayOfObjects = (propertyName, valueName) => (list) => {
     return param;
 }
 
-export const page = (page = 0, limit = 100, snakeCase = false) => {
+export const page = (page = 0, limit = null, snakeCase = false) => {
+    if (!limit) limit = 100;
     if (snakeCase) return {
         results_page: page,
         results_limit: limit
