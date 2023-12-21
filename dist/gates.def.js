@@ -1885,9 +1885,10 @@
  * @property {(assignment_mode: 'auto'|'manual') => PutProductsMarketingZonesRequest} assignment_mode 
  * @property {(marketing_zones: Object) => PutProductsMarketingZonesRequest} marketing_zones 
  * @property {(shops: Array<Object>) => PutProductsMarketingZonesRequest} shops Marketing hotspots in shops
- * @property {(shop_id: Integer) => PutProductsMarketingZonesRequest} shop_id Shop Id
+ * @property {(ident: Object) => PutProductsMarketingZonesRequest} ident Identifier type.
  * @property {(assignment_mode: 'auto'|'manual') => PutProductsMarketingZonesRequest} assignment_mode 
  * @property {(marketing_zones: Object) => PutProductsMarketingZonesRequest} marketing_zones 
+ * @property {(shops: Array<Object>) => PutProductsMarketingZonesRequest} shops Marketing hotspots in shops
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
@@ -2474,8 +2475,8 @@
  * @property {(mode: 'edit'|'add'|'replace') => PutProductsSizesRequest} mode Edition mode
  * @property {(sizesProductsData: Array<Object>) => PutProductsSizesRequest} sizesProductsData Product parameters recognized by product ID or its sizes
  * @property {(indexesData: Array<Object>) => PutProductsSizesRequest} indexesData Product parameters recognized by index
- * @property {(sizeIndex: String) => PutProductsSizesRequest} sizeIndex Product index.
- * @property {(sizeData: Object) => PutProductsSizesRequest} sizeData Parameters set for sizes.
+ * @property {(productId: Integer) => PutProductsSizesRequest} productId Product IAI code
+ * @property {(sizes: Array<Object>) => PutProductsSizesRequest} sizes List of sizes
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
