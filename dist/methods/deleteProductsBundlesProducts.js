@@ -2,6 +2,7 @@ import { paramsProxy } from "../params.js";
 
 export const deleteProductsBundlesProductsProxy = (object) => {
     object.gate = { method: 'post', node: '/products/bundles/products/delete' }
+    object.rootparams = true
     object.appendable = {
         except: [],
         arrayNode: "params",

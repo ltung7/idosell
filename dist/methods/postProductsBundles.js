@@ -2,6 +2,7 @@ import { paramsProxy } from "../params.js";
 
 export const postProductsBundlesProxy = (object) => {
     object.gate = { method: 'post', node: '/products/bundles/bundles' }
+    object.rootparams = true
     object.appendable = {
         except: [],
         arrayNode: "params",
