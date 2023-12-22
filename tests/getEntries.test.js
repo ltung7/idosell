@@ -7,6 +7,6 @@ test("getEntriesLangId", () => {
 })
 
 test("getEntriesEntryId", () => {
-    const params = idosell().getEntries.entryId(1).getParams();
-    expect(params).toEqual({"entryId":1});
+    const params = idosell().getEntries.entryId(1308134131).getParams();
+    expect(params).toEqual({"entryId":1308134131});
 })

@@ -17,8 +17,8 @@ test("listOrdersOrderBy", () => {
 })
 
 test("listOrdersLogins", () => {
-    const params = idosell().listOrders.logins(["test"]).getParams();
-    expect(params).toEqual({"clients":[{"clientLogin":"test"}]});
+    const params = idosell().listOrders.logins(["iai_demo"]).getParams();
+    expect(params).toEqual({"clients":[{"type":"login","clientLogin":"iai_demo"}]});
 })
 
 test("listOrdersPage", () => {

@@ -35,11 +35,11 @@ export const paramYesOrNo = (property) => (...value) => {
     return param;
 }
 
-export const arrayOfObjects = (propertyName, valueName) => (list) => {
+export const arrayOfObjects = (propertyName, valueName, append = {}) => (list) => {
     const param = {}
     if (!Array.isArray(list)) list = [ list ];
     param[propertyName] = list.map(value => {
-        const obj = {};
+        const obj = {...append};
         obj[valueName] = value
         return obj;
     }) 

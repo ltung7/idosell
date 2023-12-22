@@ -1,11 +1,14 @@
 import { sendRequest, countResults, getParams, hasNext, toString } from "./request.js";
 
+const getAttributes = (obj) => Object.keys(obj).slice(3);
+
 const requests = {
     exec: sendRequest,
     count: countResults,
     getParams,
     hasNext,
     toString,
+    getAttributes
 }
 
 export const paramsProxy = {
