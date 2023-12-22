@@ -93,6 +93,7 @@ const getDateRangeNode = (fromName, toName, dateFrom, dateTo, format = null) => 
 export const dateRange = ({ nodeName, fromName, toName, format }) => (dateFrom, dateTo = Date.now()) => {
     const param = {};
     const node = getDateRangeNode(fromName, toName, dateFrom, dateTo, format);
+    if (!nodeName) return node;
     param[nodeName] = node;
     return param;
 }
@@ -108,6 +109,13 @@ export const dateRangeType = ({ nodeName, fromName, toName, typeName, defaultTyp
         param[nested][nodeName] = node;
     } else param[nodeName] = node;
     return param;
+}
+
+export const nest = (valueName, nodeName, obj = {}) => (value) => {
+    const node = { ...obj }, params = {};
+    node[valueName] = value;
+    params[nodeName] = node;
+    return params;
 }
 
 const TEXT_NODES = {

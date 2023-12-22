@@ -1,9 +1,10 @@
 import { paramsProxy } from "../params.js";
-import { page } from "../helpers.js";
+import { dateRangeType, page } from "../helpers.js";
 
 export const getWmsStocksdocumentsDocumentsProxy = (object) => {
     object.gate = { method: 'get', node: '/wms/stocksdocuments/documents' }
     object.custom = {
+        dates: dateRangeType({"nodeName":"dateObject","fromName":"dateBegin","toName":"dateEnd","typeName":"dateType","format":"YYYY-MM-DD HH:mm:ss","defaultType":"open"}),
         page
     };
     return new Proxy(object, paramsProxy);

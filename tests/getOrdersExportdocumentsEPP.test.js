@@ -15,3 +15,8 @@ test("getOrdersExportdocumentsEPPDocumentType", () => {
     const params = idosell().getOrdersExportdocumentsEPP.documentType("all").getParams();
     expect(params).toEqual({"documentType":"all"});
 })
+
+test("getOrdersExportdocumentsEPPDates", () => {
+    const params = idosell().getOrdersExportdocumentsEPP.dates("2023-01-01", 1672704000000).getParams();
+    expect(params).toEqual({"dateBegin":"2023-01-01","dateEnd":"2023-01-03"});
+})

@@ -17,7 +17,7 @@ export const paramsProxy = {
             if (requests[property]) {
                 return requests[property](object, values[0]);
             }
-            else if (object.appendable && !object.appendable.except.includes(property)) {
+            else if (object.appendable && object.appendable.arrayNode !== property && !object.appendable.except.includes(property)) {
                 if (!object.params[object.appendable.arrayNode]) object.params[object.appendable.arrayNode] = [{}];
                 const item = object.params[object.appendable.arrayNode][object.appendable.index];
                 if (property === 'append') {

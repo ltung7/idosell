@@ -1,24 +1,25 @@
 import idosell from "./dist/index.js"
 import { expect, test } from "vitest"
 
+// Only partial test
+
 const ROOTPARAMS_NODE = 'rootparams';
+const routes = [
+    'postProductsCollectionsProducts',
+    'putProductsCollectionsProducts',
+    'putProductsCollectionsRenew',
+    'deleteProductsSizes',
+    'deleteClientsTags',
+    'deleteDiscountsRebatesCode',
+    'postDiscountsRebatesCard',
+    'putSystemCurrencies',
+    'putProductsParameters',
+    'postProductsRestore'
+]
 
-test("postProductsCollectionsProducts", () => {
-    const attributes = idosell().postProductsCollectionsProducts.getAttributes();
-    expect(attributes.includes(ROOTPARAMS_NODE)).toEqual(true);
-})
-
-test("putProductsCollectionsProducts", () => {
-    const attributes = idosell().putProductsCollectionsProducts.getAttributes();
-    expect(attributes.includes(ROOTPARAMS_NODE)).toEqual(true);
-})
-
-test("putProductsCollectionsRenew", () => {
-    const attributes = idosell().putProductsCollectionsRenew.getAttributes();
-    expect(attributes.includes(ROOTPARAMS_NODE)).toEqual(true);
-})
-
-test("deleteProductsSizes", () => {
-    const attributes = idosell().deleteProductsSizes.getAttributes();
-    expect(attributes.includes(ROOTPARAMS_NODE)).toEqual(true);
-})
+for (const route of routes) {
+    test("root of " + route, () => {
+        const attributes = idosell()[route].getAttributes();
+        expect(attributes.includes(ROOTPARAMS_NODE)).toEqual(true);
+    })  
+}
