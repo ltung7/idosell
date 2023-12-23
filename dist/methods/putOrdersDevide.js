@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putOrdersDevideProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/orders/devide' }
     object.appendable = {
         except: ["orderSerialNumber","splitPayments"],

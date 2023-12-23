@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const getSizesProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/sizes/sizes' }
     return new Proxy(object, paramsProxy);
 }

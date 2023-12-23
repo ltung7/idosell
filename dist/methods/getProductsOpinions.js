@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { dateRange, orderBy, page } from "../helpers.js";
 
-export const getProductsOpinionsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/products/opinions/opinions' }
     object.custom = {
         dates: dateRange({"nodeName":"dateRange","fromName":"begin","toName":"end"}),

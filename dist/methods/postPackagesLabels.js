@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const postPackagesLabelsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/packages/labels' }
     object.appendable = {
         except: ["eventId","eventType","parcelParameters"],

@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putSystemProcessesAutomationProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/system/processesAutomation' }
     return new Proxy(object, paramsProxy);
 }

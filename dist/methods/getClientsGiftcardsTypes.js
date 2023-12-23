@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { page } from "../helpers.js";
 
-export const getClientsGiftcardsTypesProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/clients/giftcards/types' }
     object.custom = {
         page

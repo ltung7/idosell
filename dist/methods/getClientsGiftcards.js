@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { arrayOfObjects } from "../helpers.js";
 
-export const getClientsGiftcardsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/clients/giftcards' }
     object.custom = {
         ids: arrayOfObjects("giftCards", "id"),

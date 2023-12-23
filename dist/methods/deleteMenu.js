@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const deleteMenuProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/menu/menu/delete' }
     object.rootparams = true
     object.appendable = {

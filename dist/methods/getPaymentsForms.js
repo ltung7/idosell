@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const getPaymentsFormsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/payments/forms' }
     return new Proxy(object, paramsProxy);
 }

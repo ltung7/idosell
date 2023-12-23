@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { orderBy, arrayOfObjects, page } from "../helpers.js";
 
-export const listOrdersUnfinishedProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/orders/unfinished/get' }
     object.custom = {
         orderBy,

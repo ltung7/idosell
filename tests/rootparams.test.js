@@ -20,6 +20,6 @@ const routes = [
 for (const route of routes) {
     test("root of " + route, () => {
         const attributes = idosell()[route].getAttributes();
-        expect(attributes.includes(ROOTPARAMS_NODE)).toEqual(true);
+        expect(attributes).toContain(ROOTPARAMS_NODE);
     })  
 }

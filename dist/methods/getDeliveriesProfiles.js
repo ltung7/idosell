@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { page } from "../helpers.js";
 
-export const getDeliveriesProfilesProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/deliveries/profiles' }
     object.custom = {
         page

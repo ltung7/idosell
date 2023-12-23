@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putMenuSortProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/menu/sort' }
     object.rootparams = true
     object.appendable = {

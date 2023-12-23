@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putSystemCurrenciesProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/system/currencies' }
     object.rootparams = true
     object.appendable = {

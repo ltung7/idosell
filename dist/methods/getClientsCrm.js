@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { dateRange, page } from "../helpers.js";
 
-export const getClientsCrmProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/clients/crm' }
     object.custom = {
         registered: dateRange({"nodeName":"clientRegistrationDate","fromName":"clientRegistrationDateBegin","toName":"clientRegistrationDateEnd"}),

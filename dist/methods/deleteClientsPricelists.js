@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const deleteClientsPricelistsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/clients/pricelists/delete' }
     return new Proxy(object, paramsProxy);
 }

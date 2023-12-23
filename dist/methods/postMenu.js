@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const postMenuProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/menu/menu' }
     object.rootparams = true
     object.appendable = {

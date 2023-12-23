@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const postClientsTagsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/clients/tags' }
     object.rootparams = true
     object.appendable = {

@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const postClientsDeliveryAddressProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/clients/deliveryAddress' }
     object.appendable = {
         except: [],

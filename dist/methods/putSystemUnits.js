@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putSystemUnitsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/system/units' }
     object.appendable = {
         except: [],

@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { page } from "../helpers.js";
 
-export const getWmsStocksdocumentsProductsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/wms/stocksdocuments/products' }
     object.custom = {
         page

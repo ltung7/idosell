@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putWmsStocksdocumentsProductsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/wms/stocksdocuments/products' }
     object.appendable = {
         except: ["type","id"],

@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putWmsStocksdocumentsAcceptMMProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/wms/stocksdocuments/acceptMM' }
     return new Proxy(object, paramsProxy);
 }

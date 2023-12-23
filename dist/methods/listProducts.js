@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { nest, dateRangeType, orderBy, arrayOfObjects, page } from "../helpers.js";
 
-export const listProductsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/products/products/get' }
     object.custom = {
         byMenus: nest("menuItemsIds", "productMenuItems", {}, true),

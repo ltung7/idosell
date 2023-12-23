@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { nest, dateRangeType, orderBy, arrayOfObjects, page } from "../helpers.js";
 
-export const listOrdersProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/orders/orders/get' }
     object.custom = {
         shopIds: nest("shopsIds", "orderSource", {}, true),

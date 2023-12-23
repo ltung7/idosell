@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const getClientsProvinceListProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/clients/provinceList' }
     return new Proxy(object, paramsProxy);
 }

@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const getSystemUsersProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/system/users' }
     return new Proxy(object, paramsProxy);
 }

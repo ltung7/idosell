@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const postEntriesProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/entries/entries' }
     object.appendable = {
         except: ["shopId","date","visible","visibleOnSitesList","products","pictureData","titleLinkType","link"],

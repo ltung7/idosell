@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 import { dateRange, page } from "../helpers.js";
 
-export const getRmaProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'get', node: '/rma/rma' }
     object.custom = {
         created: dateRange({"nodeName":"creationDate","fromName":"dateFrom","toName":"dateTo"}),

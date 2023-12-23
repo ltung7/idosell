@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const putOrdersShippingCostsProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'put', node: '/orders/shippingCosts' }
     return new Proxy(object, paramsProxy);
 }

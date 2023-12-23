@@ -1,6 +1,5 @@
 import axios from "axios";
 import util from 'util';
-import qs from "qs";
 import { page } from "./helpers.js";
 
 const DECODE_TABLE = [
@@ -28,6 +27,22 @@ const checkNext = (request, response) => {
     return response;
 }
 
+export const queryfy = (params) => {
+    let output = '';
+    for (const [ key, value ] of Object.entries(params)) {
+        if (Array.isArray(value)) {
+            output += `${key}=${value.join('%2C')}&`;
+        } else if (typeof value === 'object') {
+            for (const [ subkey, subvalue ] of Object.entries(value)) {
+                output += `${key}%5B${subkey}%5D=${subvalue}&`;
+            }
+        } else {
+            output += `${key}=${value}&`;
+        }
+    }
+    return output.slice(0,-1);
+}
+
 export const sendRequest = async (request, options = {}) => {
     const headers = {
         'X-API-KEY': request.auth.apiKey,
@@ -43,7 +58,9 @@ export const sendRequest = async (request, options = {}) => {
     if (options.dump) return;
     
     if (method === 'get') {
-        url += '?' + qs.stringify(request.params, { arrayFormat: 'comma' });
+        // url += '?' + qs.stringify(request.params, { arrayFormat: 'comma' });
+        url += '?' + queryfy(request.params);
+        console.log({ url })
         const response = await axios.get(url, { headers }).then(response => response.data).catch(catchIdosellError);
         return checkNext(request, response);
     } else {

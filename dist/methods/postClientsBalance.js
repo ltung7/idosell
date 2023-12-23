@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
-export const postClientsBalanceProxy = (object) => {
+export default (object) => {
     object.gate = { method: 'post', node: '/clients/balance' }
     object.custom = {
         add: (balance, currency = "PLN") => ({ operation: "add", balance, currency }),
