@@ -1175,6 +1175,8 @@
  * @property {(ordersDelayed: 'y'|'n') => ListOrdersRequest} ordersDelayed Orders with the exceeded date of shipment.
  * @property {(showBundles: Boolean) => ListOrdersRequest} showBundles Combine the components of the set into one item
  * @property {(orderExternalId: String) => ListOrdersRequest} orderExternalId The order ID of the external service
+ * @property {(shopIds: Array<Integer>) => ListOrdersRequest} shopIds Define shopsIds value nested inside orderSource
+ * @property {(byPackageNumbers: Array<String>) => ListOrdersRequest} byPackageNumbers Define packagesNumbers value nested inside packages
  * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => ListOrdersRequest} dates Type of date according to the index results. Possible type values: add, modified, dispatch, payment, last_payments_operation, declared_payments
  * @property {(elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: Boolean) => ListOrdersRequest} orderBy Define sorting by element and direction
  * @property {(logins: Array<String>) => ListOrdersRequest} logins Define clients by passing array of values
@@ -1183,6 +1185,8 @@
  * @property {(stockIds: Array<Integer>) => ListOrdersRequest} stockIds Define stocks by passing array of values
  * @property {(campaignIds: Array<Integer>) => ListOrdersRequest} campaignIds Define campaign by passing array of values
  * @property {(discountCodes: Array<String>) => ListOrdersRequest} discountCodes Define campaign by passing array of values
+ * @property {(productId: Integer, sizeId: String|null) => ListProductsRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => ListProductsRequest} hasPackage Filter by orders that have any package number
  * @property {(page: Integer, limit: Integer) => ListOrdersRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -2094,11 +2098,21 @@
  * @property {(alwaysReturnProductShopSizesAttributes: Boolean) => ListProductsRequest} alwaysReturnProductShopSizesAttributes Return all size attributes regardless of whether product prices are the same as the base price or if they differ from it. Available values: 1 - all size attributes will be returned; 0 - only attributes of those sizes, where the prices will be different from the base price (default value) will be returned.
  * @property {(returnEmptyStocksWithReservation: Boolean) => ListProductsRequest} returnEmptyStocksWithReservation Returns reservation information regardless of inventory levels
  * @property {(picturesData: Object) => ListProductsRequest} picturesData Data for operations on individual photos
+ * @property {(byMenus: Array<Integer>) => ListProductsRequest} byMenus Define menuItemsIds value nested inside productMenuItems
+ * @property {(byShops: Array<Integer>) => ListProductsRequest} byShops Define shopsIds value nested inside searchByShops
  * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "added"|"finished"|"resumed"|"modified"|"quantity_changed"|"price_changed"|"modified_and_quantity_changed") => ListProductsRequest} dates Type of date according to the index results. Possible type values: added, finished, resumed, modified, quantity_changed, price_changed, modified_and_quantity_changed
  * @property {(elementName: "id"|"name"|"code"|"product_sizecode"|"code_producer"|"retail_price"|"pos_price"|"vat"|"wholesale_price"|"minimal_price"|"pictures_count"|"auction_name"|"pricecomparer_name"|"version_name"|"series_name"|"category_name"|"deliverer_name"|"adding_time"|"modification_time"|"price_changed_time"|"quantity_changed_time"|"currency"|"currency_shop"|"taxcode"|"meta_title"|"meta_description"|"meta_keywords"|"suggested_price"|"observed_clients"|"observed_time"|"wishes_clients"|"wishes_time", descending: Boolean) => ListProductsRequest} orderBy Define sorting by element and direction
  * @property {(shops: Array<Integer>) => ListProductsRequest} shops Define productShops by passing array of values
  * @property {(ids: Array<Integer>) => ListProductsRequest} ids Define productParams by passing array of values
- * @property {(producersIds: Array<Integer>) => ListProductsRequest} producersIds Define producers by passing array of values
+ * @property {(byProducers: Array<Integer>) => ListProductsRequest} byProducers Define producers by passing array of values
+ * @property {(byCategories: Array<Integer>) => ListProductsRequest} byCategories Define categories by passing array of values
+ * @property {(byUnits: Array<Integer>) => ListProductsRequest} byUnits Define productUnits by passing array of values
+ * @property {(bySeries: Array<Integer>) => ListProductsRequest} bySeries Define productSeriesParams by passing array of values
+ * @property {(byWarranties: Array<Integer>) => ListProductsRequest} byWarranties Define productWarranties by passing array of values
+ * @property {(byIndexes: Array<Integer>) => ListProductsRequest} byIndexes Define productIndexes by passing array of values
+ * @property {(onlyMain: Boolean) => ListProductsRequest} onlyMainVersion Toogle to return only main versions
+ * @property {(minPrice: Number, maxPrice: Number, priceType: "retail_price"|"wholesale_price"|"minimal_price"|"pos_price"|"last_purchase_price") => ListProductsRequest} byPrice Filter by minimum and maximym price
+ * @property {(stockIds: Boolean|Array<Integer>) => ListProductsRequest} inStock Filter by availibility on any stock or selected stocks
  * @property {(page: Integer, limit: Integer) => ListProductsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request

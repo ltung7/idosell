@@ -30,3 +30,28 @@ test("listOrdersStockIds", () => {
     const params = idosell().listOrders.stockIds(2).getParams();
     expect(params).toEqual({"stocks":[{"stockId":2}]});
 })
+
+test("listOrdersHasProductAnySize", () => {
+    const params = idosell().listOrders.hasProduct(13).getParams();
+    expect(params).toEqual({"products":[{"productId":13}]});
+})
+
+test("listOrdersHasProductWithSize", () => {
+    const params = idosell().listOrders.hasProduct(13,4).getParams();
+    expect(params).toEqual({"products":[{"productId":13,"sizeId":4}]});
+})
+
+test("listOrdersByPackageNumbers", () => {
+    const params = idosell().listOrders.byPackageNumbers([5003724016]).getParams();
+    expect(params).toEqual({"packages":{"orderHasPackageNumbers":"y","packagesNumbers":[5003724016]}});
+})
+
+test("listOrdersHasPackage", () => {
+    const params = idosell().listOrders.hasPackage().getParams();
+    expect(params).toEqual({"packages":{"orderHasPackageNumbers":"y"}});
+})
+
+test("listOrdersShopIds", () => {
+    const params = idosell().listOrders.shopIds([3]).getParams();
+    expect(params).toEqual({"orderSource":{"shopsIds":[3]}});
+})

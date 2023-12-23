@@ -111,7 +111,8 @@ export const dateRangeType = ({ nodeName, fromName, toName, typeName, defaultTyp
     return param;
 }
 
-export const nest = (valueName, nodeName, obj = {}) => (value) => {
+export const nest = (valueName, nodeName, obj = {}, forceArray = false) => (value) => {
+    if (forceArray && !Array.isArray(value)) value = [ value ];
     const node = { ...obj }, params = {};
     node[valueName] = value;
     params[nodeName] = node;
