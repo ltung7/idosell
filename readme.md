@@ -8,11 +8,13 @@ Package translates awkward gate names into more readable method names using REST
 
 ```javascript
 import idosell from 'idosell';
-const idosellRequest = idosell('SHOP_URL', 'API_KEY')
+const idosellRequest = idosell('SHOP_URL', 'API_KEY', API_VERSION)
 ```
 
 **API_KEY** can be obtained in your Idosell panel.
-**SHOP_URL** is the base URI of your shop. Here are some examples:
+**SHOP_URL** is the base URI of your shop. 
+**API_VERSION** version of the API to call, current default version is **v3**
+Here are some examples:
 ```
 https://yourdomain.com
 https://clientXXXX.idosell.com
@@ -48,14 +50,14 @@ idosellRequest.deleteProductsOpinions.exec() // Translates to POST on products/o
 Alternatively to setting parameters in an object, you can chain several methods named after top-level parameters to set their value to your request. To execute the request after setting all the parameters, run the *exec()* method.
 
 ```javascript
-const idosellRequest = idosell('SHOP_URL', 'API_KEY');
-const categories = idosellRequest.ids([123, 456, 789]).languages(['pol', 'eng']).result_page(1).result_limit(10).getProductsCategories.exec();
+const idosellRequest = idosell('https://yourdomain.com', 'API_KEY');
+const categories = idosellRequest.getProductsCategories.ids([123, 456, 789]).languages(['pol', 'eng']).result_page(1).result_limit(10).exec();
 ```
 
 This example will generate the following GET request:
 
 ```
-https://yourdomain.com/api/admin/v1/products/categories?ids=123,456,789&languages=pol,eng&result_page=1&result_limit=10
+https://yourdomain.com/api/admin/v3/products/categories?ids=123,456,789&languages=pol,eng&result_page=1&result_limit=10
 ```
 
 A POST request will generate a JSON body request.
@@ -241,7 +243,7 @@ This will translate to following request parameters:
 This method is used specifically for updating and creating products and allows you to easily set multiple types of descriptions in different languages and different shops.
 
 ```javascript
-setText(text, type, languageId, shopId)
+idosellRequest.putProducts.setText(text, type, languageId, shopId)
 ```
 
 | Field | Description | Default | Possible values |
@@ -312,3 +314,7 @@ You can use the *getParams()* function to retrieve request parameters as Javascr
 const orderRequest = idosellRequest.getOrders.ordersSerialNumbers([123, 456, 789]).getParams();
 // Will return Object: { ordersSerialNumbers: [ 123, 456, 789 ] }
 ```
+
+## examples
+
+Read documentation and examples on [This page](https://idosell-converter.vercel.app/examples)

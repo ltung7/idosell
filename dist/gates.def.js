@@ -8,7 +8,7 @@
  * @property {(return_elements: Array<String>) => GetClientsBalanceRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
  * @property {(results_page: Integer) => GetClientsBalanceRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
  * @property {(results_limit: Integer) => GetClientsBalanceRequest} results_limit Maximum number of results on a single page. Default is 100.
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsBalanceRequest} lastPurchase Type of date according to the index results
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsBalanceRequest} lastPurchased Type of date according to the index results
  * @property {(page: Integer, limit: Integer) => GetClientsBalanceRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -39,7 +39,7 @@
  * @property {(returnElements: Array<String>) => GetClientsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
  * @property {(resultsPage: Integer) => GetClientsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsRequest} lastPurchase Type of date according to the index results
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsRequest} lastPurchased Type of date according to the index results
  * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsRequest} lastModified Type of date according to the index results
  * @property {(page: Integer, limit: Integer) => GetClientsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
@@ -1367,6 +1367,9 @@
  * @property {(ordersBy: Array<Object>) => ListOrdersUnfinishedRequest} ordersBy Possibility of sorting returned list
  * @property {(searchingOperatorTypeMatch: 'no_assignment'|'no_empty'|'empty') => ListOrdersUnfinishedRequest} searchingOperatorTypeMatch Method of searching orders by handler.
  * @property {(ordersDelayed: 'y'|'n') => ListOrdersUnfinishedRequest} ordersDelayed Orders with the exceeded date of shipment.
+ * @property {(shopIds: Array<Integer>) => ListOrdersUnfinishedRequest} shopIds Define shopsIds value nested inside orderSource
+ * @property {(byPackageNumbers: Array<String>) => ListOrdersUnfinishedRequest} byPackageNumbers Define packagesNumbers value nested inside packages
+ * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => ListOrdersUnfinishedRequest} dates Type of date according to the index results. Possible type values: add, modified, dispatch, payment, last_payments_operation, declared_payments
  * @property {(elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: Boolean) => ListOrdersUnfinishedRequest} orderBy Define sorting by element and direction
  * @property {(logins: Array<String>) => ListOrdersUnfinishedRequest} logins Define clients by passing array of values
  * @property {(clientIds: Array<String>) => ListOrdersUnfinishedRequest} clientIds Define clients by passing array of values

@@ -4,7 +4,7 @@ import { dateRange, page } from "../helpers.js";
 export default (object) => {
     object.gate = { method: 'get', node: '/clients/clients' }
     object.custom = {
-        lastPurchase: dateRange({"nodeName":"clientLastPurchaseDate","fromName":"clientLastPurchaseDateBegin","toName":"clientLastPurchaseDateEnd"}),
+        lastPurchased: dateRange({"nodeName":"clientLastPurchaseDate","fromName":"clientLastPurchaseDateBegin","toName":"clientLastPurchaseDateEnd"}),
         lastModified: dateRange({"nodeName":"clientsLastModificationDate","fromName":"clientsLastModificationDateBegin","toName":"clientsLastModificationDateEnd"}),
         page
     };

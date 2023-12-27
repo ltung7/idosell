@@ -58,9 +58,7 @@ export const sendRequest = async (request, options = {}) => {
     if (options.dump) return;
     
     if (method === 'get') {
-        // url += '?' + qs.stringify(request.params, { arrayFormat: 'comma' });
         url += '?' + queryfy(request.params);
-        console.log({ url })
         const response = await axios.get(url, { headers }).then(response => response.data).catch(catchIdosellError);
         return checkNext(request, response);
     } else {

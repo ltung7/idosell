@@ -546,7 +546,7 @@ const gates = {
     deleteWmsSuppliers,
     getWmsSuppliers,
     putWmsSuppliers,
-};
+}
 
 export const gateProxy = {
     get: (object, property) => gates[property](object)
