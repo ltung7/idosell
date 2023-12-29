@@ -31,7 +31,11 @@ export const queryfy = (params) => {
     let output = '';
     for (const [ key, value ] of Object.entries(params)) {
         if (Array.isArray(value)) {
-            output += `${key}=${value.join('%2C')}&`;
+            if (typeof value[0] === 'object') {
+                const newValue = value.map(obj => encodeURIComponent(JSON.stringify(obj)));
+                output += `${key}=${newValue.join('%2C')}&`;
+            }
+            else output += `${key}=${value.join('%2C')}&`;
         } else if (typeof value === 'object') {
             for (const [ subkey, subvalue ] of Object.entries(value)) {
                 output += `${key}%5B${subkey}%5D=${subvalue}&`;

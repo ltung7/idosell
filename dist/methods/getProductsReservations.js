@@ -4,9 +4,9 @@ import { arrayOfObjects } from "../helpers.js";
 export default (object) => {
     object.gate = { method: 'get', node: '/products/reservations' }
     object.custom = {
-        ids: arrayOfObjects("productsIdents", "value"),
-        externalCodes: arrayOfObjects("productsIdents", "value", {"type":"codeExtern"}),
-        producerCodes: arrayOfObjects("productsIdents", "value", {"type":"codeProducer"})
+        ids: arrayOfObjects("productsIdents", "identValue", {"identType":"id"}),
+        externalCodes: arrayOfObjects("productsIdents", "identValue", {"identType":"codeExtern"}),
+        producerCodes: arrayOfObjects("productsIdents", "identValue", {"identType":"codeProducer"})
     };
     return new Proxy(object, paramsProxy);
 }

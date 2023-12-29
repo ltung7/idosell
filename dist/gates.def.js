@@ -1895,9 +1895,6 @@
 /**
  * @typedef {Object} GetProductsMarketingZonesRequest
  * @property {(products: Array<Object>) => GetProductsMarketingZonesRequest} products Products list.
- * @property {(ids: Array<Integer>) => GetProductsMarketingZonesRequest} ids Define products by passing array of values
- * @property {(externalCodes: Array<String>) => GetProductsMarketingZonesRequest} externalCodes Define products by passing array of values
- * @property {(producerCodes: Array<String>) => GetProductsMarketingZonesRequest} producerCodes Define products by passing array of values
  * @property {function} exec Excecute request
  */
 
@@ -1918,9 +1915,6 @@
 /**
  * @typedef {Object} GetProductsOmnibusPricesRequest
  * @property {(products: Array<Object>) => GetProductsOmnibusPricesRequest} products Products list.
- * @property {(ids: Array<[object Object]>) => GetProductsOmnibusPricesRequest} ids Define products by passing array of values
- * @property {(externalCodes: Array<String>) => GetProductsOmnibusPricesRequest} externalCodes Define products by passing array of values
- * @property {(producerCodes: Array<String>) => GetProductsOmnibusPricesRequest} producerCodes Define products by passing array of values
  * @property {function} exec Excecute request
  */
 
@@ -2419,7 +2413,7 @@
 /**
  * @typedef {Object} GetProductsReservationsRequest
  * @property {(productsIdents: Array<Object>) => GetProductsReservationsRequest} productsIdents Products list.
- * @property {(ids: Array<[object Object]>) => GetProductsReservationsRequest} ids Define productsIdents by passing array of values
+ * @property {(ids: Array<Integer>) => GetProductsReservationsRequest} ids Define productsIdents by passing array of values
  * @property {(externalCodes: Array<String>) => GetProductsReservationsRequest} externalCodes Define productsIdents by passing array of values
  * @property {(producerCodes: Array<String>) => GetProductsReservationsRequest} producerCodes Define productsIdents by passing array of values
  * @property {function} exec Excecute request
@@ -2529,7 +2523,7 @@
 /**
  * @typedef {Object} GetProductsStocksRequest
  * @property {(products: Array<Object>) => GetProductsStocksRequest} products Products list.
- * @property {(ids: Array<[object Object]>) => GetProductsStocksRequest} ids Define products by passing array of values
+ * @property {(ids: Array<Integer>) => GetProductsStocksRequest} ids Define products by passing array of values
  * @property {(externalCodes: Array<String>) => GetProductsStocksRequest} externalCodes Define products by passing array of values
  * @property {(producerCodes: Array<String>) => GetProductsStocksRequest} producerCodes Define products by passing array of values
  * @property {function} exec Excecute request
@@ -2549,9 +2543,6 @@
 /**
  * @typedef {Object} GetProductsStrikethroughPricesRequest
  * @property {(products: Array<Object>) => GetProductsStrikethroughPricesRequest} products Products list.
- * @property {(ids: Array<[object Object]>) => GetProductsStrikethroughPricesRequest} ids Define products by passing array of values
- * @property {(externalCodes: Array<String>) => GetProductsStrikethroughPricesRequest} externalCodes Define products by passing array of values
- * @property {(producerCodes: Array<String>) => GetProductsStrikethroughPricesRequest} producerCodes Define products by passing array of values
  * @property {function} exec Excecute request
  */
 
