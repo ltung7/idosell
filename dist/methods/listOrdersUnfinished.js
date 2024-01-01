@@ -1,5 +1,5 @@
 import { paramsProxy } from "../params.js";
-import { nest, dateRangeType, orderBy, arrayOfObjects, page } from "../helpers.js";
+import { nest, dateRangeType, orderBy, arrayOfObjects, orderSource, page } from "../helpers.js";
 
 export default (object) => {
     object.gate = { method: 'post', node: '/orders/unfinished/get' }
@@ -14,6 +14,11 @@ export default (object) => {
         stockIds: arrayOfObjects("stocks", "stockId"),
         campaignIds: arrayOfObjects("campaign", "campaignId"),
         discountCodes: arrayOfObjects("campaign", "discountCodes"),
+        hasProduct: (productId, sizeId = null) => { const product = { productId }; if (sizeId) product.sizeId = sizeId; return { products: [ product ]}},
+        hasPackage: (orderHasPackage = true) => ({ packages: { orderHasPackageNumbers: orderHasPackage ? "y" : "n" }}),
+        fromAllegro: orderSource("allegro"),
+        fromEbay: orderSource("ebay"),
+        fromAmazon: orderSource("amazon"),
         page
     };
     return new Proxy(object, paramsProxy);

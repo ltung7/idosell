@@ -315,6 +315,6 @@ const orderRequest = idosellRequest.getOrders.ordersSerialNumbers([123, 456, 789
 // Will return Object: { ordersSerialNumbers: [ 123, 456, 789 ] }
 ```
 
-## examples
+## Examples
 
-Read documentation and examples on [This page](https://idosell-converter.vercel.app/examples)
+Read documentation from this package and more examples on [This page](https://idosell-converter.vercel.app/examples)

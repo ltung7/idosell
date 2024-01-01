@@ -119,6 +119,12 @@ export const nest = (valueName, nodeName, obj = {}, forceArray = false) => (valu
     return params;
 }
 
+export const orderSource = (sourceName) => (accountName = null) => {
+    const params = { orderSource: { auctionsParams: { auctionsServicesNames: [ sourceName ]}}};
+    if (accountName) params.orderSource.auctionsParams.auctionsAccounts = [{auctionsAccountLogin: 'monk'}];
+    return params;
+}
+
 const TEXT_NODES = {
     name: {
         main: 'productNames',

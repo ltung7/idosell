@@ -1187,6 +1187,9 @@
  * @property {(discountCodes: Array<String>) => ListOrdersRequest} discountCodes Define campaign by passing array of values
  * @property {(productId: Integer, sizeId: String|null) => ListProductsRequest} hasProduct Filter by product ID and optionally product size
  * @property {(orderHasPackage: Boolean) => ListProductsRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => ListProductsRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => ListProductsRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => ListProductsRequest} fromAmazon Filter by orders from action service Amazon
  * @property {(page: Integer, limit: Integer) => ListOrdersRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1377,6 +1380,11 @@
  * @property {(stockIds: Array<Integer>) => ListOrdersUnfinishedRequest} stockIds Define stocks by passing array of values
  * @property {(campaignIds: Array<Integer>) => ListOrdersUnfinishedRequest} campaignIds Define campaign by passing array of values
  * @property {(discountCodes: Array<String>) => ListOrdersUnfinishedRequest} discountCodes Define campaign by passing array of values
+ * @property {(productId: Integer, sizeId: String|null) => ListProductsRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => ListProductsRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => ListProductsRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => ListProductsRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => ListProductsRequest} fromAmazon Filter by orders from action service Amazon
  * @property {(page: Integer, limit: Integer) => ListOrdersUnfinishedRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request

@@ -55,3 +55,8 @@ test("listOrdersShopIds", () => {
     const params = idosell().listOrders.shopIds([3]).getParams();
     expect(params).toEqual({"orderSource":{"shopsIds":[3]}});
 })
+
+test("listOrdersFromAllegro", () => {
+    const params = idosell().listOrders.fromAllegro().getParams();
+    expect(params).toEqual({"orderSource":{"auctionsParams":{"auctionsServicesNames":["allegro"]}}});
+})
