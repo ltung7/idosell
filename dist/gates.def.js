@@ -1110,6 +1110,8 @@
  * @property {(source: String) => PostOrdersImagesRequest} source Attachment source data, depending on the source type selected in the settings. BMP, PNG, JPG, JPEG, GIF or PDF files in Base64 encoding algorithm.
  * @property {(name: String) => PostOrdersImagesRequest} name Name
  * @property {function} append Append current data to array and start modifying next row
+ * @property {(orderId: String) => PostOrdersImagesRequest} orderId Define orderId value nested inside order
+ * @property {(orderSerialNumber: Integer) => PostOrdersImagesRequest} orderSerialNumber Define orderSerialNumber value nested inside order
  * @property {function} exec Excecute request
  */
 
@@ -1806,6 +1808,7 @@
  * @property {(groups: Array<Object>) => PutProductsGroupsOrderRequest} groups 
  * @property {(productsInOrder: Array<Object>) => PutProductsGroupsOrderRequest} productsInOrder 
  * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsGroupsOrderRequest} productIdsInOrder Defines order of products within group by automatically setting proprities in order of appearance
  * @property {function} exec Excecute request
  */
 
@@ -1848,6 +1851,12 @@
  * @property {(productIcons: Array<Object>) => PutProductsImagesRequest} productIcons Product icons list.
  * @property {(productImagesSettings: Object) => PutProductsImagesRequest} productImagesSettings Product settings.
  * @property {function} append Append current data to array and start modifying next row
+ * @property {(productId: Integer) => PutProductsImagesRequest} productId Define identValue value nested inside productIdent
+ * @property {(shopIcon: String) => PutProductsImagesRequest} shopIcon Append productIconSource value into nested array inside productIcons
+ * @property {(auctionIcon: String) => PutProductsImagesRequest} auctionIcon Append productIconSource value into nested array inside productIcons
+ * @property {(groupIcon: String) => PutProductsImagesRequest} groupIcon Append productIconSource value into nested array inside productIcons
+ * @property {(source: String, priority: Integer) => PutProductsImagesRequest} addImage Adds image source with selected priority
+ * @property {() => PutProductsImagesRequest} base64 Set global image source to base64
  * @property {function} exec Excecute request
  */
 

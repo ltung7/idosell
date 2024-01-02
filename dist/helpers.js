@@ -119,6 +119,19 @@ export const nest = (valueName, nodeName, obj = {}, forceArray = false) => (valu
     return params;
 }
 
+export const nestArray = (object, valueName, nodeName, obj = {}) => (value) => {
+    const node = { ...obj }, params = {};
+    if (object.appendable) {
+        const arr = object.params[object.appendable.arrayNode];
+        params[nodeName] = arr[arr.length - 1][nodeName] ?? [];
+    } else {
+        params[nodeName] = object.params[nodeName] ?? [];
+    }
+    node[valueName] = value;
+    params[nodeName].push(node);
+    return params;
+}
+
 export const orderSource = (sourceName) => (accountName = null) => {
     const params = { orderSource: { auctionsParams: { auctionsServicesNames: [ sourceName ]}}};
     if (accountName) params.orderSource.auctionsParams.auctionsAccounts = [{auctionsAccountLogin: 'monk'}];
