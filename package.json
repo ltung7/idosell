@@ -1,6 +1,6 @@
 {
   "name": "idosell",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Idosell 3 REST connector",
   "main": "dist/index.js",
   "scripts": {

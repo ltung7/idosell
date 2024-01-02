@@ -290,6 +290,9 @@
  * @property {(shops: Array<Integer>) => PutClientsGiftcardsRequest} shops List of shops the card is active in
  * @property {(note: String) => PutClientsGiftcardsRequest} note 
  * @property {function} append Append current data to array and start modifying next row
+ * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} add Adds balance to current gift card
+ * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} subtract Subtract from balance to current gift card
+ * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} set Set balance to current gift card
  * @property {function} exec Excecute request
  */
 
@@ -1786,6 +1789,7 @@
  * @property {(productDescriptionsLangData: Array<Object>) => PutProductsDescriptionsRequest} productDescriptionsLangData Array of language-dependent elements.
  * @property {(productAuctionDescriptionsData: Array<Object>) => PutProductsDescriptionsRequest} productAuctionDescriptionsData Product data for auction services
  * @property {function} append Append current data to array and start modifying next row
+ * @property {(productId: Integer) => PutProductsDescriptionsRequest} productId Define identValue value nested inside productIdent
  * @property {function} exec Excecute request
  */
 
