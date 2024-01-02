@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 
 export default (object) => {
-    object.gate = { method: 'put', node: '/returns/serialNumber' }
+    object.gate = { method: 'put', node: '/returns/serialNumber' };
     object.appendable = {
         except: ["return_id"],
         arrayNode: "products",

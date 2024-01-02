@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
 export default (object) => {
-    object.gate = { method: 'put', node: '/wms/stocksdocuments/acceptMM' }
+    object.gate = { method: 'put', node: '/wms/stocksdocuments/acceptMM' };
     return new Proxy(object, paramsProxy);
 }

@@ -2,7 +2,7 @@ import { paramsProxy } from "../params.js";
 import { setProductText } from "../helpers.js";
 
 export default (object) => {
-    object.gate = { method: 'put', node: '/products/products' }
+    object.gate = { method: 'put', node: '/products/products' };
     object.custom = {
         setText: setProductText(object)
     };

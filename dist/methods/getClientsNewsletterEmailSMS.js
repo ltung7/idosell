@@ -2,7 +2,7 @@ import { paramsProxy } from "../params.js";
 import { dateRange, page } from "../helpers.js";
 
 export default (object) => {
-    object.gate = { method: 'get', node: '/clients/newsletterEmailSMS' }
+    object.gate = { method: 'get', node: '/clients/newsletterEmailSMS' };
     object.custom = {
         dates: dateRange({"nodeName":"date","fromName":"from","toName":"to"}),
         page

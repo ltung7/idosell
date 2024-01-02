@@ -2,7 +2,7 @@ import { paramsProxy } from "../params.js";
 import { dateRange, page } from "../helpers.js";
 
 export default (object) => {
-    object.gate = { method: 'get', node: '/clients/balance' }
+    object.gate = { method: 'get', node: '/clients/balance' };
     object.custom = {
         lastPurchased: dateRange({"nodeName":"last_purchase_date","fromName":"from","toName":"to"}),
         page

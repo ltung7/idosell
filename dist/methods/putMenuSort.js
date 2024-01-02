@@ -1,7 +1,7 @@
 import { paramsProxy } from "../params.js";
 
 export default (object) => {
-    object.gate = { method: 'put', node: '/menu/sort' }
+    object.gate = { method: 'put', node: '/menu/sort' };
     object.rootparams = true
     object.appendable = {
         except: ["settings"],

@@ -2,7 +2,7 @@ import { paramsProxy } from "../params.js";
 import { dateRangeType, page } from "../helpers.js";
 
 export default (object) => {
-    object.gate = { method: 'get', node: '/returns/returns' }
+    object.gate = { method: 'get', node: '/returns/returns' };
     object.custom = {
         dates: dateRangeType({"nodeName":"date","fromName":"date_begin","toName":"date_end","typeName":"dates_type","nested":"range","defaultType":"date_add"}),
         page

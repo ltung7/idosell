@@ -1,6 +1,6 @@
 import { paramsProxy } from "../params.js";
 
 export default (object) => {
-    object.gate = { method: 'get', node: '/products/opinions/rate' }
+    object.gate = { method: 'get', node: '/products/opinions/rate' };
     return new Proxy(object, paramsProxy);
 }

@@ -2,7 +2,7 @@ import { paramsProxy } from "../params.js";
 import { page } from "../helpers.js";
 
 export default (object) => {
-    object.gate = { method: 'get', node: '/payments/profiles' }
+    object.gate = { method: 'get', node: '/payments/profiles' };
     object.custom = {
         page
     };
