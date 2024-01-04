@@ -1569,6 +1569,7 @@
  * @property {(resultsPage: Integer) => GetProductsAuctionsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetProductsAuctionsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(ids: Array<Integer>) => GetProductsAuctionsRequest} ids Define products by passing array of values
+ * @property {() => GetProductsAuctionsRequest} fromAllegro Get auction data on products
  * @property {(page: Integer, limit: Integer) => GetProductsAuctionsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1808,7 +1809,7 @@
  * @property {(groups: Array<Object>) => PutProductsGroupsOrderRequest} groups 
  * @property {(productsInOrder: Array<Object>) => PutProductsGroupsOrderRequest} productsInOrder 
  * @property {function} append Append current data to array and start modifying next row
- * @property {() => PutProductsGroupsOrderRequest} productIdsInOrder Defines order of products within group by automatically setting proprities in order of appearance
+ * @property {(Array<Integer>) => PutProductsGroupsOrderRequest} productIdsInOrder Defines order of products within group by automatically setting proprities in order of appearance
  * @property {function} exec Excecute request
  */
 
@@ -2363,6 +2364,11 @@
  * @property {(productDimensions: Object) => PutProductsRequest} productDimensions Dimensions and overall weight
  * @property {function} append Append current data to array and start modifying next row
  * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PutProductsRequest} setText Set various types of names or descriptions to the product
+ * @property {() => PutProductsRequest} editMode Set edit mode - disables adding new product
+ * @property {() => PutProductsRequest} addMode Set add mode - Api is allowed to create new products
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'StrikethroughRetail'|'strikethroughWholesale'|'suggested') => PutProductsRequest} addPrice Increases product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'StrikethroughRetail'|'strikethroughWholesale'|'suggested') => PutProductsRequest} setPrice Sets product price by amount
+ * @property {(shopId: Integer, menuIds: Integer) => PutProductsRequest} setMenu Sets product selected IDs
  * @property {function} exec Excecute request
  */
 

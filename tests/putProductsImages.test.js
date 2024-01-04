@@ -8,7 +8,7 @@ test("putProductsImagesProductImages", () => {
 
 test("putProductsImagesAddSingleImage", () => {
     const params = idosell().putProductsImages.productId(31).addImage("https://www.idosell.com/panel/file-gate.php?id=279794&ext=.webp").getParams();
-    expect(params).toEqual({"productsImagesSettings":{"productsImagesSourceType":"url","productsImagesApplyMacro":true},"productsImages":[{"productIdent":{"productIdentType":"id","identValue":31},"productImages":[{"productImageNumber":1,"productImageSource":"https://www.idosell.com/panel/file-gate.php?id=279794&ext=.webp"},{"productImageNumber":2,"productImageSource":"https://bit.ly/fcc-relaxing-cat"}]}]});
+    expect(params).toEqual({"productsImagesSettings":{"productsImagesSourceType":"url","productsImagesApplyMacro":true},"productsImages":[{"productIdent":{"productIdentType":"id","identValue":31},"productImages":[{"productImageNumber":1,"productImageSource":"https://www.idosell.com/panel/file-gate.php?id=279794&ext=.webp"}]}]});
 })
 
 test("putProductsImagesAddMultipleImage", () => {

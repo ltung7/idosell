@@ -119,11 +119,15 @@ export const nest = (valueName, nodeName, obj = {}, forceArray = false) => (valu
     return params;
 }
 
+export const getCurrentAppendableArray = (object, nodeName) => {
+    const arr = object.params[object.appendable.arrayNode];
+    return arr[object.appendable.index][nodeName] ?? [];
+}
+
 export const nestArray = (object, valueName, nodeName, obj = {}) => (value) => {
     const node = { ...obj }, params = {};
     if (object.appendable) {
-        const arr = object.params[object.appendable.arrayNode];
-        params[nodeName] = arr[arr.length - 1][nodeName] ?? [];
+        params[nodeName] = getCurrentAppendableArray(object, nodeName)
     } else {
         params[nodeName] = object.params[nodeName] ?? [];
     }
