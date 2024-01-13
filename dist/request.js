@@ -57,9 +57,9 @@ export const sendRequest = async (request, options = {}) => {
     let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
     if (options.log || options.dump) {
         console.log(util.inspect({ params: request.params, method, url }, {showHidden: false, depth: null, colors: true}))
+        if (options.dump) return;
     }
 
-    if (options.dump) return;
     
     if (method === 'get') {
         url += '?' + queryfy(request.params);

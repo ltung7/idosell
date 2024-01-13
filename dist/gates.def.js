@@ -2225,6 +2225,9 @@
  * @property {(minQuantityPerOrder: Object) => PostProductsRequest} minQuantityPerOrder Minimal number of products in an order
  * @property {(productDimensions: Object) => PostProductsRequest} productDimensions Dimensions and overall weight
  * @property {function} append Append current data to array and start modifying next row
+ * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PostProductsRequest} setText Set various types of names or descriptions to the product
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PostProductsRequest} addPrice Increases product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PostProductsRequest} setPrice Sets product price by amount
  * @property {function} exec Excecute request
  */
 
@@ -2366,9 +2369,10 @@
  * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PutProductsRequest} setText Set various types of names or descriptions to the product
  * @property {() => PutProductsRequest} editMode Set edit mode - disables adding new product
  * @property {() => PutProductsRequest} addMode Set add mode - Api is allowed to create new products
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'StrikethroughRetail'|'strikethroughWholesale'|'suggested') => PutProductsRequest} addPrice Increases product price by amount
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'StrikethroughRetail'|'strikethroughWholesale'|'suggested') => PutProductsRequest} setPrice Sets product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PutProductsRequest} addPrice Increases product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PutProductsRequest} setPrice Sets product price by amount
  * @property {(shopId: Integer, menuIds: Integer) => PutProductsRequest} setMenu Sets product selected IDs
+ * @property {(picturesArray: Array<String>) => PutProductsRequest} pictures Sets list of pictures attached to product
  * @property {function} exec Excecute request
  */
 

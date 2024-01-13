@@ -11,8 +11,8 @@ test("getClientsClientHasTradeCredit", () => {
     expect(params).toEqual({"clientHasTradeCredit":"nonzero"});
 })
 
-test("getClientsLastPurchase", () => {
-    const params = idosell().getClients.lastPurchase("2023-01-01", 1672704000000).getParams();
+test("getClientsLastPurchased", () => {
+    const params = idosell().getClients.lastPurchased("2023-01-01", 1672704000000).getParams();
     expect(params).toEqual({"clientLastPurchaseDate":{"clientLastPurchaseDateBegin":"2023-01-01","clientLastPurchaseDateEnd":"2023-01-03"}});
 })
 

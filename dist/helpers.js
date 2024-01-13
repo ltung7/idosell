@@ -142,6 +142,28 @@ export const orderSource = (sourceName) => (accountName = null) => {
     return params;
 }
 
+const PRICE_TYPES = {
+    'advance': 'Advance',
+    'retail': 'Retail',
+    'wholesale': 'Wholesale',
+    'minimal': 'Minimal',
+    'automaticalculation': 'AutomaticCalculation',
+    'pos': "Pos",
+    'suggested': 'Suggested',
+    'strikethroughretail': 'StrikethroughRetail',
+    'strikethroughwholesale': 'StrikethroughWholesale'
+}
+
+export const modifyPrice = (value, type, net, priceChangeMode = 'amount_set') => {
+    const typeName = PRICE_TYPES[type.toLowerCase()];
+    if (!typeName) throw new Error(`Invalid price type: ${type}. Availible types: ${Object.values(PRICE_TYPES)}`);
+    const node = ["product", typeName, "Price"];
+    if (net) node.push("Net");
+    const params = { priceChangeMode }
+    params[node.join('')] = value;
+    return params;
+}
+
 const TEXT_NODES = {
     name: {
         main: 'productNames',
