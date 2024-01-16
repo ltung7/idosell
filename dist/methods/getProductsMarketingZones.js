@@ -1,6 +1,16 @@
 import { paramsProxy } from "../params.js";
+import { getProductIdent } from "../helpers.js";
 
 export default (object) => {
     object.gate = { method: 'get', node: '/products/marketingZones' };
+    object.auth.version = 1;
+    object.custom = {
+        productId: getProductIdent
+    };
+    object.appendable = {
+        except: [],
+        arrayNode: "products",
+        index: 0
+    }
     return new Proxy(object, paramsProxy);
 }

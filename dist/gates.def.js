@@ -1434,6 +1434,9 @@
  * @property {(deliveryPackageNumbers: Array<String>) => GetPackagesRequest} deliveryPackageNumbers Consignments numbers.
  * @property {(events: Array<Object>) => GetPackagesRequest} events Element, package is assigned to
  * @property {(returnLabels: Boolean) => GetPackagesRequest} returnLabels Return parcel labels.
+ * @property {(orderSerialNumbers: Array<Integer>) => GetPackagesRequest} orders Set type to orders with given order serial numbers
+ * @property {(rmaIds: Array<Integer>) => GetPackagesRequest} rma Set type to rma with given rma Ids
+ * @property {(returnIds: Array<Integer>) => GetPackagesRequest} returns Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1917,6 +1920,7 @@
 /**
  * @typedef {Object} GetProductsMarketingZonesRequest
  * @property {(products: Array<Object>) => GetProductsMarketingZonesRequest} products Products list.
+ * @property {(productId: Integer, sizeId: Integer|String, type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product and size identifiers
  * @property {function} exec Excecute request
  */
 
@@ -1937,6 +1941,7 @@
 /**
  * @typedef {Object} GetProductsOmnibusPricesRequest
  * @property {(products: Array<Object>) => GetProductsOmnibusPricesRequest} products Products list.
+ * @property {(productId: Integer, sizeId: Integer|String, type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product and size identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2574,6 +2579,7 @@
 /**
  * @typedef {Object} GetProductsStrikethroughPricesRequest
  * @property {(products: Array<Object>) => GetProductsStrikethroughPricesRequest} products Products list.
+ * @property {(productId: Integer, sizeId: Integer|String, type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product and size identifiers
  * @property {function} exec Excecute request
  */
 

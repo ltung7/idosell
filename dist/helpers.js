@@ -164,6 +164,14 @@ export const modifyPrice = (value, type, net, priceChangeMode = 'amount_set') =>
     return params;
 }
 
+export const getProductIdent = (productId, sizeId, type = 'id') => {
+    const params = { ident: { type, value: productId }};
+    if (sizeId) {
+        params.sizes = [{ ident: { type, value: sizeId }}]
+    }
+    return params;
+}
+
 const TEXT_NODES = {
     name: {
         main: 'productNames',
