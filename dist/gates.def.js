@@ -1585,6 +1585,30 @@
  */
 
 /**
+ * @typedef {Object} GetProductsBrandsFilterRequest
+ * @property {(shopId: Integer) => GetProductsBrandsFilterRequest} shopId Shop Id
+ * @property {(languageId: String) => GetProductsBrandsFilterRequest} languageId Language ID (code in ISO 639-2).
+ * @property {(producerId: Integer) => GetProductsBrandsFilterRequest} producerId Brand ID
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutProductsBrandsFilterRequest
+ * @property {(shopId: Integer) => PutProductsBrandsFilterRequest} shopId Shop Id
+ * @property {(languageId: String) => PutProductsBrandsFilterRequest} languageId Language ID (code in ISO 639-2).
+ * @property {(producerId: Integer) => PutProductsBrandsFilterRequest} producerId Brand ID
+ * @property {(filterForNodeIsDefault: 'y'|'n') => PutProductsBrandsFilterRequest} filterForNodeIsDefault 
+ * @property {(filtersActive: Array<Object>) => PutProductsBrandsFilterRequest} filtersActive Active filters.
+ * @property {(filterId: String) => PutProductsBrandsFilterRequest} filterId Menu filter ID.
+ * @property {(filterName: String) => PutProductsBrandsFilterRequest} filterName Filter name on page.
+ * @property {(filterDisplay: 'name'|'gfx'|'namegfx') => PutProductsBrandsFilterRequest} filterDisplay Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics.
+ * @property {(filterValueSort: 'y'|'n'|'priority') => PutProductsBrandsFilterRequest} filterValueSort Sort by: "y" - alfabetically, "n" - by frequency and order of occurrence of indicated parameter value in found products, "priority" - according to value sequence in parameter.
+ * @property {(filterDefaultEnabled: 'y'|'n') => PutProductsBrandsFilterRequest} filterDefaultEnabled Enabled by default .
+ * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
  * @typedef {Object} GetProductsBrandsRequest
  * @property {(results_page: Integer) => GetProductsBrandsRequest} results_page Result page number.
  * @property {(results_limit: Integer) => GetProductsBrandsRequest} results_limit Number of results on page.
@@ -1609,30 +1633,6 @@
  * @property {(id: Integer) => PutProductsBrandsRequest} id Id
  * @property {(nameInPanel: String) => PutProductsBrandsRequest} nameInPanel Name in panel
  * @property {(languagesConfigurations: Array<Object>) => PutProductsBrandsRequest} languagesConfigurations 
- * @property {function} append Append current data to array and start modifying next row
- * @property {function} exec Excecute request
- */
-
-/**
- * @typedef {Object} GetProductsBrandsFilterRequest
- * @property {(shopId: Integer) => GetProductsBrandsFilterRequest} shopId Shop Id
- * @property {(languageId: String) => GetProductsBrandsFilterRequest} languageId Language ID (code in ISO 639-2).
- * @property {(producerId: Integer) => GetProductsBrandsFilterRequest} producerId Brand ID
- * @property {function} exec Excecute request
- */
-
-/**
- * @typedef {Object} PutProductsBrandsFilterRequest
- * @property {(shopId: Integer) => PutProductsBrandsFilterRequest} shopId Shop Id
- * @property {(languageId: String) => PutProductsBrandsFilterRequest} languageId Language ID (code in ISO 639-2).
- * @property {(producerId: Integer) => PutProductsBrandsFilterRequest} producerId Brand ID
- * @property {(filterForNodeIsDefault: 'y'|'n') => PutProductsBrandsFilterRequest} filterForNodeIsDefault 
- * @property {(filtersActive: Array<Object>) => PutProductsBrandsFilterRequest} filtersActive Active filters.
- * @property {(filterId: String) => PutProductsBrandsFilterRequest} filterId Menu filter ID.
- * @property {(filterName: String) => PutProductsBrandsFilterRequest} filterName Filter name on page.
- * @property {(filterDisplay: 'name'|'gfx'|'namegfx') => PutProductsBrandsFilterRequest} filterDisplay Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics.
- * @property {(filterValueSort: 'y'|'n'|'priority') => PutProductsBrandsFilterRequest} filterValueSort Sort by: "y" - alfabetically, "n" - by frequency and order of occurrence of indicated parameter value in found products, "priority" - according to value sequence in parameter.
- * @property {(filterDefaultEnabled: 'y'|'n') => PutProductsBrandsFilterRequest} filterDefaultEnabled Enabled by default .
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
@@ -1777,6 +1777,12 @@
  * @typedef {Object} GetProductsDeliveryTimeRequest
  * @property {(stockId: Integer) => GetProductsDeliveryTimeRequest} stockId Stock ID
  * @property {(isCollectionInPerson: Boolean) => GetProductsDeliveryTimeRequest} isCollectionInPerson Should products be prepared for personal collection?
+ * @property {(products: Array<Object>) => GetProductsDeliveryTimeRequest} products 
+ * @property {(productId: Integer) => GetProductsDeliveryTimeRequest} productId Product Id
+ * @property {(sizeId: Integer) => GetProductsDeliveryTimeRequest} sizeId Size identifier
+ * @property {(sizePanelName: String) => GetProductsDeliveryTimeRequest} sizePanelName Size name
+ * @property {(productIndex: String) => GetProductsDeliveryTimeRequest} productIndex Product IAI code
+ * @property {(productSizeQuantity: Integer) => GetProductsDeliveryTimeRequest} productSizeQuantity Product quantity.
  * @property {function} exec Excecute request
  */
 
@@ -2046,6 +2052,7 @@
  * @property {(item_text_ids: Array<Object>) => PutProductsParametersRequest} item_text_ids Element text ID - can be entered instead of "id". Recognized save format: "section" (without backslash), "parameter\" (parameter without assigned value).
  * @property {(names: Array<Object>) => PutProductsParametersRequest} names Names of section, parameter or value.
  * @property {(descriptions: Array<Object>) => PutProductsParametersRequest} descriptions Descriptions of section, parameter or value.
+ * @property {(search_description: Array<Object>) => PutProductsParametersRequest} search_description Search descriptions of parameter value.
  * @property {(card_icons: Array<Object>) => PutProductsParametersRequest} card_icons Icons of section, parameter or value to display on the product card.
  * @property {(link_icons: Array<Object>) => PutProductsParametersRequest} link_icons Icons of section, parameter or value to display on the list of products.
  * @property {(context_id: String) => PutProductsParametersRequest} context_id Parameter's additional feature. 1. Status: context_id = "CONTEXT_STATE" Takes values context_value_id: - CONTEXT_STATE_NEW - New, - CONTEXT_STATE_USED - Used, - CONTEXT_STATE_REFURBISHED_BY_PRODUCER - Renewed by a manufacturer, - CONTEXT_STATE_REFURBISHED_BY_SELLER - Renewed by a seller, - CONTEXT_STATE_FOR_PARTS_OR_BROKEN - In parts or damaged. 2. Product weight in grams: context_id = "CONTEXT_STD_UNIT_WEIGHT" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 3. A product's value in milliliters: context_id = "CONTEXT_STD_UNIT_VOLUME" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 4. Sex: context_id = "CONTEXT_SEX" Takes values context_value_id: - CONTEXT_SEX_MAN - Man, - CONTEXT_SEX_WOMAN - Woman, - CONTEXT_SEX_UNISEX - Unisex. 5. Age group: context_id = "CONTEXT_AGE_GROUP" Takes values context_value_id: - CONTEXT_AGE_GROUP_ADULT - Adults, - CONTEXT_AGE_GROUP_MINOR - Children. 6. Maximum number of products in an order: context_id = "CONTEXT_MAX_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 7. Maximum number of products in a wholesale order: context_id = "CONTEXT_MAX_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 8. Minimal number of products in an order: context_id = "CONTEXT_MIN_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 9. Minimum number of products in a wholesale order: context_id = "CONTEXT_MIN_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 10. Maximal number of a single size in an order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 11. Maximal number of a single size in a wholesale order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 12. Minimal number of a single size in an order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 13. Minimal number of a single size in a wholesale order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 14. Net weight: context_id = "CONTEXT_WEIGHT_NET" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 15. Color: context_id = "CONTEXT_COLOR" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 16. #!TylkoDlaDoroslych!#: context_id = "CONTEXT_ONLY_ADULTS" Takes values context_value_id: - CONTEXT_ONLY_ADULTS_YES - yes, - CONTEXT_ONLY_ADULTS_NO - no. 17. Prescription drug: context_id = "CONTEXT_PRESCRIPTION_MEDICINE" Takes values context_value_id: - CONTEXT_PRESCRIPTION_MEDICINE_YES - yes, - CONTEXT_PRESCRIPTION_MEDICINE_NO - no. 18. Season Rate: context_id = "CONTEXT_SEASON" Takes values context_value_id: - CONTEXT_SEASON_SPRING - Spring, - CONTEXT_SEASON_SUMMER - Summer, - CONTEXT_SEASON_FALL - Autumn, - CONTEXT_SEASON_WINTER - Winter, - CONTEXT_SEASON_SPRING_SUMMER - Spring/Summer, - CONTEXT_SEASON_FALL_WINTER - Autumn/Winter.
@@ -2468,29 +2475,6 @@
  */
 
 /**
- * @typedef {Object} GetProductsSeriesRequest
- * @property {(return_last_changed_time: String) => GetProductsSeriesRequest} return_last_changed_time With "y" value it returns the last series modification date in YYYY-MM-DD HH:MM:SS format.
- * @property {(ids: Array<Integer>) => GetProductsSeriesRequest} ids IDs
- * @property {(names: Array<String>) => GetProductsSeriesRequest} names Names
- * @property {(languagesIds: Array<String>) => GetProductsSeriesRequest} languagesIds List of languages
- * @property {(resultsPage: Integer) => GetProductsSeriesRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => GetProductsSeriesRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(page: Integer, limit: Integer) => GetProductsSeriesRequest} page Define page number and maximum results per page
- * @property {() => Integer} count Returns total numer of results
- * @property {function} exec Excecute request
- */
-
-/**
- * @typedef {Object} PutProductsSeriesRequest
- * @property {(series: Array<Object>) => PutProductsSeriesRequest} series Series list.
- * @property {(id: Integer) => PutProductsSeriesRequest} id Id
- * @property {(nameInPanel: String) => PutProductsSeriesRequest} nameInPanel Name in panel
- * @property {(shopsConfigurations: Array<Object>) => PutProductsSeriesRequest} shopsConfigurations 
- * @property {function} append Append current data to array and start modifying next row
- * @property {function} exec Excecute request
- */
-
-/**
  * @typedef {Object} GetProductsSeriesFilterRequest
  * @property {(shopId: Integer) => GetProductsSeriesFilterRequest} shopId Shop Id
  * @property {(languageId: String) => GetProductsSeriesFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -2510,6 +2494,29 @@
  * @property {(filterDisplay: 'name'|'gfx'|'namegfx') => PutProductsSeriesFilterRequest} filterDisplay Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics.
  * @property {(filterValueSort: 'y'|'n'|'priority') => PutProductsSeriesFilterRequest} filterValueSort Sort by: "y" - alfabetically, "n" - by frequency and order of occurrence of indicated parameter value in found products, "priority" - according to value sequence in parameter.
  * @property {(filterDefaultEnabled: 'y'|'n') => PutProductsSeriesFilterRequest} filterDefaultEnabled Enabled by default .
+ * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetProductsSeriesRequest
+ * @property {(return_last_changed_time: String) => GetProductsSeriesRequest} return_last_changed_time With "y" value it returns the last series modification date in YYYY-MM-DD HH:MM:SS format.
+ * @property {(ids: Array<Integer>) => GetProductsSeriesRequest} ids IDs
+ * @property {(names: Array<String>) => GetProductsSeriesRequest} names Names
+ * @property {(languagesIds: Array<String>) => GetProductsSeriesRequest} languagesIds List of languages
+ * @property {(resultsPage: Integer) => GetProductsSeriesRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetProductsSeriesRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => GetProductsSeriesRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutProductsSeriesRequest
+ * @property {(series: Array<Object>) => PutProductsSeriesRequest} series Series list.
+ * @property {(id: Integer) => PutProductsSeriesRequest} id Id
+ * @property {(nameInPanel: String) => PutProductsSeriesRequest} nameInPanel Name in panel
+ * @property {(shopsConfigurations: Array<Object>) => PutProductsSeriesRequest} shopsConfigurations 
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
@@ -2724,6 +2731,30 @@
  * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "date_add"|"date_end") => GetReturnsRequest} dates Type of date according to the index results. Possible type values: date_add, date_end
  * @property {(page: Integer, limit: Integer) => GetReturnsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostReturnsRequest
+ * @property {(order_sn: Integer) => PostReturnsRequest} order_sn Order serial number
+ * @property {(stock_id: Integer) => PostReturnsRequest} stock_id 
+ * @property {(products: Array<Object>) => PostReturnsRequest} products Products list.
+ * @property {(status: Integer) => PostReturnsRequest} status 
+ * @property {(client_received: Boolean) => PostReturnsRequest} client_received 
+ * @property {(change_status: Boolean) => PostReturnsRequest} change_status 
+ * @property {(courier_id: Integer) => PostReturnsRequest} courier_id 
+ * @property {(return_operator: String) => PostReturnsRequest} return_operator 
+ * @property {(tryCorrectInvoice: Boolean) => PostReturnsRequest} tryCorrectInvoice 
+ * @property {(include_shipping_cost: String) => PostReturnsRequest} include_shipping_cost 
+ * @property {(additional_payment_cost: String) => PostReturnsRequest} additional_payment_cost 
+ * @property {(emptyReturn: 'n'|'y') => PostReturnsRequest} emptyReturn 
+ * @property {(id: Integer) => PostReturnsRequest} id 
+ * @property {(size: String) => PostReturnsRequest} size 
+ * @property {(quantity: Number) => PostReturnsRequest} quantity 
+ * @property {(price: Number) => PostReturnsRequest} price Price.
+ * @property {(serialNumbers: Array<String>) => PostReturnsRequest} serialNumbers 
+ * @property {(productOrderAdditional: String) => PostReturnsRequest} productOrderAdditional Additional information.
+ * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3409,11 +3440,11 @@
  * @property {PutProductsAttachmentsRequest} putProductsAttachments Method that enables adding and editing product attachments.
  * @property {GetProductsAuctionsRequest} getProductsAuctions Allows for downloading information about auctions and auction categories to which the product has been assigned (for a maximum of 100 products in one request)
  * @property {DeleteProductsBrandsRequest} deleteProductsBrands The method allows you to remove brands from the administration panel.
+ * @property {GetProductsBrandsFilterRequest} getProductsBrandsFilter The method allows you to download a list of filters for brands (manufacturers) available in the IdoSell administration panel.
+ * @property {PutProductsBrandsFilterRequest} putProductsBrandsFilter The method allows you to manage filter settings for brands (manufacturers).
  * @property {GetProductsBrandsRequest} getProductsBrands Method that returns information about brands available in the IdoSell Shop administration panel.
  * @property {PostProductsBrandsRequest} postProductsBrands The method allows you to update brands information available in the administration panel.
  * @property {PutProductsBrandsRequest} putProductsBrands The method allows you to update brands information available in the administration panel.
- * @property {GetProductsBrandsFilterRequest} getProductsBrandsFilter The method allows you to download a list of filters for brands (manufacturers) available in the IdoSell administration panel.
- * @property {PutProductsBrandsFilterRequest} putProductsBrandsFilter The method allows you to manage filter settings for brands (manufacturers).
  * @property {PostProductsBundlesRequest} postProductsBundles createBundle method allows to create a new product with a type: set and to assign existing products as a set components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
  * @property {DeleteProductsBundlesProductsRequest} deleteProductsBundlesProducts removeProductsFromBundle method allows to remove indicated set components
  * @property {PostProductsBundlesProductsRequest} postProductsBundlesProducts addProductsToBundle method allows to add components to existing sets in the administration panel
@@ -3468,10 +3499,10 @@
  * @property {GetProductsReservationsRequest} getProductsReservations It allows to download information about product reservations in orders (for up to 100 products in one request).
  * @property {PostProductsRestoreRequest} postProductsRestore The method is used to restore deleted products
  * @property {DeleteProductsSeriesRequest} deleteProductsSeries Method allows you to delete a series of products available in the IdoSell administration panel.
- * @property {GetProductsSeriesRequest} getProductsSeries Method returns information about the product series available in the IdoSell administration panel.
- * @property {PutProductsSeriesRequest} putProductsSeries Method allows you to update information about product series available in the IdoSell administration panel.
  * @property {GetProductsSeriesFilterRequest} getProductsSeriesFilter Method allows you to retrieve a list of filters for a series of products available in the IdoSell administration panel..
  * @property {PutProductsSeriesFilterRequest} putProductsSeriesFilter The method allows you to manage the filter settings for the series..
+ * @property {GetProductsSeriesRequest} getProductsSeries Method returns information about the product series available in the IdoSell administration panel.
+ * @property {PutProductsSeriesRequest} putProductsSeries Method allows you to update information about product series available in the IdoSell administration panel.
  * @property {DeleteProductsSizesRequest} deleteProductsSizes The method is used to remove sizes
  * @property {GetProductsSizesRequest} getProductsSizes Method that returns information about product sizes configured in the administration panel
  * @property {PutProductsSizesRequest} putProductsSizes This method allows you to edit the size-dependent data
@@ -3494,6 +3525,7 @@
  * @property {GetRefundsRetrieveRefundsListRequest} getRefundsRetrieveRefundsList Method returns a list of incomplete refunds.
  * @property {PutRefundsUpdateRefundRequest} putRefundsUpdateRefund Method allows you to update refund.
  * @property {GetReturnsRequest} getReturns Method that enables getting information about returns issued for orders in the administration panel.
+ * @property {PostReturnsRequest} postReturns 
  * @property {PutReturnsRequest} putReturns Method that enables editing returns issued for orders in the administration panel.
  * @property {PutReturnsSerialNumberRequest} putReturnsSerialNumber Method that enables setting serial numbers for products included in returns issued for orders in the administration panel.
  * @property {GetReturnsStatusesRequest} getReturnsStatuses Allows to download all configurable return statuses

@@ -134,11 +134,11 @@ import getProductsSKUbyBarcode from "./methods/getProductsSKUbyBarcode.js";
 import putProductsAttachments from "./methods/putProductsAttachments.js";
 import getProductsAuctions from "./methods/getProductsAuctions.js";
 import deleteProductsBrands from "./methods/deleteProductsBrands.js";
+import getProductsBrandsFilter from "./methods/getProductsBrandsFilter.js";
+import putProductsBrandsFilter from "./methods/putProductsBrandsFilter.js";
 import getProductsBrands from "./methods/getProductsBrands.js";
 import postProductsBrands from "./methods/postProductsBrands.js";
 import putProductsBrands from "./methods/putProductsBrands.js";
-import getProductsBrandsFilter from "./methods/getProductsBrandsFilter.js";
-import putProductsBrandsFilter from "./methods/putProductsBrandsFilter.js";
 import postProductsBundles from "./methods/postProductsBundles.js";
 import deleteProductsBundlesProducts from "./methods/deleteProductsBundlesProducts.js";
 import postProductsBundlesProducts from "./methods/postProductsBundlesProducts.js";
@@ -193,10 +193,10 @@ import putProductsQuestions from "./methods/putProductsQuestions.js";
 import getProductsReservations from "./methods/getProductsReservations.js";
 import postProductsRestore from "./methods/postProductsRestore.js";
 import deleteProductsSeries from "./methods/deleteProductsSeries.js";
-import getProductsSeries from "./methods/getProductsSeries.js";
-import putProductsSeries from "./methods/putProductsSeries.js";
 import getProductsSeriesFilter from "./methods/getProductsSeriesFilter.js";
 import putProductsSeriesFilter from "./methods/putProductsSeriesFilter.js";
+import getProductsSeries from "./methods/getProductsSeries.js";
+import putProductsSeries from "./methods/putProductsSeries.js";
 import deleteProductsSizes from "./methods/deleteProductsSizes.js";
 import getProductsSizes from "./methods/getProductsSizes.js";
 import putProductsSizes from "./methods/putProductsSizes.js";
@@ -219,6 +219,7 @@ import getRefundsGetRefundStatus from "./methods/getRefundsGetRefundStatus.js";
 import getRefundsRetrieveRefundsList from "./methods/getRefundsRetrieveRefundsList.js";
 import putRefundsUpdateRefund from "./methods/putRefundsUpdateRefund.js";
 import getReturns from "./methods/getReturns.js";
+import postReturns from "./methods/postReturns.js";
 import putReturns from "./methods/putReturns.js";
 import putReturnsSerialNumber from "./methods/putReturnsSerialNumber.js";
 import getReturnsStatuses from "./methods/getReturnsStatuses.js";
@@ -409,11 +410,11 @@ const gates = {
     putProductsAttachments,
     getProductsAuctions,
     deleteProductsBrands,
+    getProductsBrandsFilter,
+    putProductsBrandsFilter,
     getProductsBrands,
     postProductsBrands,
     putProductsBrands,
-    getProductsBrandsFilter,
-    putProductsBrandsFilter,
     postProductsBundles,
     deleteProductsBundlesProducts,
     postProductsBundlesProducts,
@@ -468,10 +469,10 @@ const gates = {
     getProductsReservations,
     postProductsRestore,
     deleteProductsSeries,
-    getProductsSeries,
-    putProductsSeries,
     getProductsSeriesFilter,
     putProductsSeriesFilter,
+    getProductsSeries,
+    putProductsSeries,
     deleteProductsSizes,
     getProductsSizes,
     putProductsSizes,
@@ -494,6 +495,7 @@ const gates = {
     getRefundsRetrieveRefundsList,
     putRefundsUpdateRefund,
     getReturns,
+    postReturns,
     putReturns,
     putReturnsSerialNumber,
     getReturnsStatuses,

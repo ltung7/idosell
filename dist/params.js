@@ -35,7 +35,9 @@ export const paramsProxy = {
                 const param = object.custom[property](...values);
                 Object.assign(object.params, param);
             }
-            else object.params[property] = values[0];
+            else if (property === 'params') {
+                object.params = params;
+            } else object.params[property] = values[0];
             return new Proxy(object, paramsProxy);
         }
     }
