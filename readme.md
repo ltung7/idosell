@@ -306,6 +306,24 @@ This will result in following request body
 }
 ```
 
+### Params
+
+Instead of using helpers, you can generate complex data by yourself and pass it using *params()* method.
+
+```javascript
+const query = {
+    orderSource:{
+        auctionsParams: {
+            auctionsServicesNames: [
+                "allegro"
+            ]
+        }
+    }
+}
+
+const ordersFromAllegro = await idosellRequest.params(query).exec();
+```
+
 ## Debugging
 
 You can use the *getParams()* function to retrieve request parameters as Javascript Object.
