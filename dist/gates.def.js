@@ -615,6 +615,30 @@
  */
 
 /**
+ * @typedef {Object} GetConfigVariablesRequest
+ * @property {(type: 'snippets_campaign') => GetConfigVariablesRequest} type Which component is affected by the configuration.
+ * @property {(item: Array<Integer>) => GetConfigVariablesRequest} item List of item identifiers for given configuration type. Eg. snippet campaign identifiers.
+ * @property {(key: Array<String>) => GetConfigVariablesRequest} key List of configuration keys
+ * @property {(resultsPage: Integer) => GetConfigVariablesRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetConfigVariablesRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutConfigVariablesRequest
+ * @property {(variables: Array<Object>) => PutConfigVariablesRequest} variables 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteConfigVariablesRequest
+ * @property {(type: 'snippets_campaign') => DeleteConfigVariablesRequest} type Which component is affected by the configuration.
+ * @property {(item: Array<Integer>) => DeleteConfigVariablesRequest} item List of item identifiers for given configuration type. Eg. snippet campaign identifiers.
+ * @property {(key: Array<String>) => DeleteConfigVariablesRequest} key List of configuration keys
+ * @property {function} exec Excecute request
+ */
+
+/**
  * @typedef {Object} GetCouriersAssignedToShippingProfilesRequest
  * @property {function} exec Excecute request
  */
@@ -657,7 +681,7 @@
  * @property {(pickupPointExternalId: String) => PostCouriersPickupPointsRequest} pickupPointExternalId external system code.
  * @property {(courierId: Integer) => PostCouriersPickupPointsRequest} courierId Courier ID.
  * @property {(descriptions: Array<Object>) => PostCouriersPickupPointsRequest} descriptions collection point details.
- * @property {(paymentForms: Array<Object>) => PostCouriersPickupPointsRequest} paymentForms Accepted payment types.
+ * @property {(paymentForms: Array<String>) => PostCouriersPickupPointsRequest} paymentForms Accepted payment types.
  * @property {(serviceStatus: 'out_of_service'|'available') => PostCouriersPickupPointsRequest} serviceStatus Collection point activity. Available values: available, outOfService .
  * @property {(address: Object) => PostCouriersPickupPointsRequest} address Pickup point address.
  * @property {(coordinates: Object) => PostCouriersPickupPointsRequest} coordinates Geographic coordinates.
@@ -673,12 +697,66 @@
  * @property {(pickupPointExternalId: String) => PutCouriersPickupPointsRequest} pickupPointExternalId external system code.
  * @property {(courierId: Integer) => PutCouriersPickupPointsRequest} courierId Courier ID.
  * @property {(descriptions: Array<Object>) => PutCouriersPickupPointsRequest} descriptions collection point details.
- * @property {(paymentForms: Array<Object>) => PutCouriersPickupPointsRequest} paymentForms Accepted payment types.
+ * @property {(paymentForms: Array<String>) => PutCouriersPickupPointsRequest} paymentForms Accepted payment types.
  * @property {(serviceStatus: 'out_of_service'|'available') => PutCouriersPickupPointsRequest} serviceStatus Collection point activity. Available values: available, outOfService .
  * @property {(address: Object) => PutCouriersPickupPointsRequest} address Pickup point address.
  * @property {(coordinates: Object) => PutCouriersPickupPointsRequest} coordinates Geographic coordinates.
  * @property {(operatingDays: Array<Object>) => PutCouriersPickupPointsRequest} operatingDays Personal collection point work hours.
  * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetCpaCampaignRequest
+ * @property {(shopId: Array<Integer>) => GetCpaCampaignRequest} shopId List of shop identifiers
+ * @property {(id: Array<Integer>) => GetCpaCampaignRequest} id List of identifiers
+ * @property {(resultsPage: Integer) => GetCpaCampaignRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetCpaCampaignRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostCpaCampaignRequest
+ * @property {(campaigns: Array<Object>) => PostCpaCampaignRequest} campaigns 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutCpaCampaignRequest
+ * @property {(campaigns: Array<Object>) => PutCpaCampaignRequest} campaigns 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteCpaCampaignRequest
+ * @property {(id: Array<Integer>) => DeleteCpaCampaignRequest} id List of identifiers
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetCpaRequest
+ * @property {(campaign: Array<Integer>) => GetCpaRequest} campaign List of campaign identifiers
+ * @property {(id: Array<Integer>) => GetCpaRequest} id List of identifiers
+ * @property {(resultsPage: Integer) => GetCpaRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetCpaRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostCpaRequest
+ * @property {(cpa: Array<Object>) => PostCpaRequest} cpa 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutCpaRequest
+ * @property {(cpa: Array<Object>) => PutCpaRequest} cpa 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteCpaRequest
+ * @property {(id: Array<Integer>) => DeleteCpaRequest} id List of identifiers
  * @property {function} exec Excecute request
  */
 
@@ -869,6 +947,12 @@
  */
 
 /**
+ * @typedef {Object} GetEntriesSourcesRequest
+ * @property {(type: Array<String>) => GetEntriesSourcesRequest} type The type of source for which we want to get service identifiers
+ * @property {function} exec Excecute request
+ */
+
+/**
  * @typedef {Object} GetMenuFilterRequest
  * @property {(shopId: Integer) => GetMenuFilterRequest} shopId Shop Id
  * @property {(languageId: String) => GetMenuFilterRequest} languageId Language ID (code in ISO 639-2).
@@ -913,7 +997,7 @@
  * @property {(lang_id: String) => GetMenuRequest} lang_id Language ID.
  * @property {(node_id: Integer) => GetMenuRequest} node_id Menu node ID.
  * @property {(level: Integer) => GetMenuRequest} level Number of levels.
- * @property {(settings::textid_separator: String) => GetMenuRequest} settings::textid_separator Default: "\".
+ * @property {(textid_separator: String) => GetMenuRequest} textid_separator Default: "\".
  * @property {function} exec Excecute request
  */
 
@@ -1003,6 +1087,17 @@
  * @property {(basketPosition: Integer) => PutOrdersDevideRequest} basketPosition Item in basket.
  * @property {(quantity: Number) => PutOrdersDevideRequest} quantity Quantity
  * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostOrdersDocumentsCreateRequest
+ * @property {(orderSerialNumbers: Array<Integer>) => PostOrdersDocumentsCreateRequest} orderSerialNumbers 
+ * @property {(actualize: Boolean) => PostOrdersDocumentsCreateRequest} actualize 
+ * @property {(documentType: 'vat_invoice'|'fiscal_invoice'|'corrective_vat_invoice'|'fiscal_receipt'|'sales_confirmation') => PostOrdersDocumentsCreateRequest} documentType Document type
+ * @property {(documentIssuedDate: String) => PostOrdersDocumentsCreateRequest} documentIssuedDate Document issued date
+ * @property {(documentPurchaseDate: String) => PostOrdersDocumentsCreateRequest} documentPurchaseDate Document purchase date
+ * @property {(printerId: Integer) => PostOrdersDocumentsCreateRequest} printerId Printer id
  * @property {function} exec Excecute request
  */
 
@@ -2868,6 +2963,88 @@
  */
 
 /**
+ * @typedef {Object} GetSnippetsCampaignRequest
+ * @property {(shopId: Array<Integer>) => GetSnippetsCampaignRequest} shopId List of shop identifiers
+ * @property {(id: Array<Integer>) => GetSnippetsCampaignRequest} id List of identifiers
+ * @property {(omitDeleted: 'y'|'n') => GetSnippetsCampaignRequest} omitDeleted Whether to skip the return of deleted campaigns.
+ * @property {(resultsPage: Integer) => GetSnippetsCampaignRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetSnippetsCampaignRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSnippetsCampaignRequest
+ * @property {(campaigns: Array<Object>) => PostSnippetsCampaignRequest} campaigns 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutSnippetsCampaignRequest
+ * @property {(campaigns: Array<Object>) => PutSnippetsCampaignRequest} campaigns 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteSnippetsCampaignRequest
+ * @property {(id: Array<Integer>) => DeleteSnippetsCampaignRequest} id List of identifiers
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetSnippetsCookiesRequest
+ * @property {(id: Array<Integer>) => GetSnippetsCookiesRequest} id List of identifiers for specific cookies
+ * @property {(resultsPage: Integer) => GetSnippetsCookiesRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetSnippetsCookiesRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSnippetsCookiesRequest
+ * @property {(cookies: Array<Object>) => PostSnippetsCookiesRequest} cookies 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutSnippetsCookiesRequest
+ * @property {(cookies: Array<Object>) => PutSnippetsCookiesRequest} cookies 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteSnippetsCookiesRequest
+ * @property {(id: Array<Integer>) => DeleteSnippetsCookiesRequest} id List of cookie identifiers
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetSnippetsRequest
+ * @property {(campaign: Array<Integer>) => GetSnippetsRequest} campaign List of campaign identifiers
+ * @property {(id: Array<Integer>) => GetSnippetsRequest} id List of identifiers
+ * @property {(omitDeleted: 'y'|'n') => GetSnippetsRequest} omitDeleted Whether to skip the return of deleted campaigns.
+ * @property {(resultsPage: Integer) => GetSnippetsRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetSnippetsRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSnippetsRequest
+ * @property {(snippets: Array<Object>) => PostSnippetsRequest} snippets 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutSnippetsRequest
+ * @property {(snippets: Array<Object>) => PutSnippetsRequest} snippets 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteSnippetsRequest
+ * @property {(id: Array<Integer>) => DeleteSnippetsRequest} id List of identifiers
+ * @property {function} exec Excecute request
+ */
+
+/**
  * @typedef {Object} GetSystemConfigRequest
  * @property {function} exec Excecute request
  */
@@ -3131,7 +3308,7 @@
 
 /**
  * @typedef {Object} GetWmsStocksdocumentsDocumentsRequest
- * @property {(stockDocumentType: 'pz'|'pw'|'px'|'rx'|'rw'|'wz'|'mm'|'wz'|'zw') => GetWmsStocksdocumentsDocumentsRequest} stockDocumentType Document type.
+ * @property {(stockDocumentType: 'pz'|'pw'|'px'|'rx'|'rw'|'wz'|'mm'|'zw') => GetWmsStocksdocumentsDocumentsRequest} stockDocumentType Document type.
  * @property {(stockDocumentStatus: 'open'|'on_the_way'|'close') => GetWmsStocksdocumentsDocumentsRequest} stockDocumentStatus Document status.
  * @property {(stockDocumentsIds: Array<Integer>) => GetWmsStocksdocumentsDocumentsRequest} stockDocumentsIds Document identifier.
  * @property {(stockDocumentsNumbers: Array<String>) => GetWmsStocksdocumentsDocumentsRequest} stockDocumentsNumbers Document number.
@@ -3351,12 +3528,23 @@
  * @property {GetClientsTagsRequest} getClientsTags Use this method to retrieve all tags assigned to a client
  * @property {PostClientsTagsRequest} postClientsTags Use this method to add new tags and their associated values to the client
  * @property {PutClientsTagsRequest} putClientsTags The method is used to update the value of the tags assigned to the client. A tag with value 0 is detached from the client
+ * @property {GetConfigVariablesRequest} getConfigVariables This call returns config variables for given module (type)
+ * @property {PutConfigVariablesRequest} putConfigVariables Use this operation to update snippet campaigns.
+ * @property {DeleteConfigVariablesRequest} deleteConfigVariables This call is used to remove defined configuration variables.
  * @property {GetCouriersAssignedToShippingProfilesRequest} getCouriersAssignedToShippingProfiles Retrieves information about assigned couriers to delivery profiles
  * @property {GetCouriersRequest} getCouriers Method that returns all couriers available for a given country. It also returns information whether the courier service handles personal collections.
  * @property {DeleteCouriersPickupPointsRequest} deleteCouriersPickupPoints The method enables cancelling personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
  * @property {GetCouriersPickupPointsRequest} getCouriersPickupPoints The method returns personal collection points within its own network of collection points and for integrated couriers.
  * @property {PostCouriersPickupPointsRequest} postCouriersPickupPoints The method enables adding personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
  * @property {PutCouriersPickupPointsRequest} putCouriersPickupPoints The method enables updating personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points. 
+ * @property {GetCpaCampaignRequest} getCpaCampaign This call returns all CPA campaigns.
+ * @property {PostCpaCampaignRequest} postCpaCampaign Use this operation to create cpa campaigns.
+ * @property {PutCpaCampaignRequest} putCpaCampaign Use this operation to update CPA campaigns.
+ * @property {DeleteCpaCampaignRequest} deleteCpaCampaign This call is used to remove CPA program campaign.
+ * @property {GetCpaRequest} getCpa This call returns all cpa programs.
+ * @property {PostCpaRequest} postCpa Use this operation to create code snippet.
+ * @property {PutCpaRequest} putCpa Use this operation to update code snippet.
+ * @property {DeleteCpaRequest} deleteCpa This call is used to remove CPA programs.
  * @property {PutDeliveriesDefaultProfilesRequest} putDeliveriesDefaultProfiles The method allows to set the default delivery profile for the given region.
  * @property {GetDeliveriesProfilesRequest} getDeliveriesProfiles Allows to download all of the delivery profiles defined in the administration panel
  * @property {GetDeliveriesRegionsRequest} getDeliveriesRegions The method allows to download a list of regions supporting deliveries.
@@ -3379,6 +3567,7 @@
  * @property {PostEntriesRequest} postEntries Enables adding blog or news entry 
  * @property {PutEntriesRequest} putEntries Enables changing blog or news entry in the shop
  * @property {GetEntriesPagesToDisplayRequest} getEntriesPagesToDisplay Allows you to download a list of sites on which a blog entry or a news item can be published.
+ * @property {GetEntriesSourcesRequest} getEntriesSources This call returns all entry sources with options.
  * @property {GetMenuFilterRequest} getMenuFilter The method returns information about filter settings in menu nodes.
  * @property {PutMenuFilterRequest} putMenuFilter The method allows you to manage filter settings in menu nodes.
  * @property {DeleteMenuRequest} deleteMenu Method that enables deleting existing menu elements.
@@ -3392,6 +3581,7 @@
  * @property {PutOrdersCourierRequest} putOrdersCourier Method that enables changing the courier handling the shipment for an order.
  * @property {PutOrdersDeliveryAddressRequest} putOrdersDeliveryAddress Method that enables editing the delivery address details for an order in the administration panel.
  * @property {PutOrdersDevideRequest} putOrdersDevide Method for division order
+ * @property {PostOrdersDocumentsCreateRequest} postOrdersDocumentsCreate The method allows to generate documents to the order in the IdoSell administration panel.
  * @property {DeleteOrdersDocumentsRequest} deleteOrdersDocuments The method allows to delete documents added to the order in the IdoSell administration panel.
  * @property {GetOrdersDocumentsRequest} getOrdersDocuments Method that enables extracting information about documents issued for orders in the administration panel.
  * @property {PostOrdersDocumentsRequest} postOrdersDocuments The method allows to add TIFF, BMP, PNG, JPG, JPEG, GIF or PDF documents to the order in the IdoSell Shop administration panel.
@@ -3537,6 +3727,18 @@
  * @property {PutSizechartsRequest} putSizecharts The method allows the size charts settings to be updated.
  * @property {GetSizesRequest} getSizes Method that returns information about product sizes configured in the administration panel. List of size groups (with sizes that belong to particular group) is returned as a result.
  * @property {PutSizesRequest} putSizes Method that enables creating, deleting and editing product sizes in the administration panel.
+ * @property {GetSnippetsCampaignRequest} getSnippetsCampaign This call returns all snippet campaigns (including deleted ones but to readonly).
+ * @property {PostSnippetsCampaignRequest} postSnippetsCampaign Use this operation to create snippet campaigns.
+ * @property {PutSnippetsCampaignRequest} putSnippetsCampaign Use this operation to update snippet campaigns.
+ * @property {DeleteSnippetsCampaignRequest} deleteSnippetsCampaign This call is used to remove campaign snippets.
+ * @property {GetSnippetsCookiesRequest} getSnippetsCookies This call returns all cookie definitions related to code snippets.
+ * @property {PostSnippetsCookiesRequest} postSnippetsCookies Use this operation to create a cookie definition for a code snippet.
+ * @property {PutSnippetsCookiesRequest} putSnippetsCookies Use this operation to update a cookie definition for a code snippet.
+ * @property {DeleteSnippetsCookiesRequest} deleteSnippetsCookies This call is used to remove campaign cookies.
+ * @property {GetSnippetsRequest} getSnippets This call returns all snippets.
+ * @property {PostSnippetsRequest} postSnippets Use this operation to create code snippet.
+ * @property {PutSnippetsRequest} putSnippets Use this operation to update code snippet.
+ * @property {DeleteSnippetsRequest} deleteSnippets This call is used to remove snippets.
  * @property {GetSystemConfigRequest} getSystemConfig Method is used for extracting information about a shop and its most important configuration settings.
  * @property {PutSystemConfigRequest} putSystemConfig The method is used to manage the most important settings in the store and in the panel. It enables, among others, configuration of tax and billing settings and configuration of warehouse management.
  * @property {GetSystemCurrenciesRequest} getSystemCurrencies This method returns the current exchange rate in relation to the currency set in the administration panel.

@@ -45,12 +45,23 @@ import deleteClientsTags from "./methods/deleteClientsTags.js";
 import getClientsTags from "./methods/getClientsTags.js";
 import postClientsTags from "./methods/postClientsTags.js";
 import putClientsTags from "./methods/putClientsTags.js";
+import getConfigVariables from "./methods/getConfigVariables.js";
+import putConfigVariables from "./methods/putConfigVariables.js";
+import deleteConfigVariables from "./methods/deleteConfigVariables.js";
 import getCouriersAssignedToShippingProfiles from "./methods/getCouriersAssignedToShippingProfiles.js";
 import getCouriers from "./methods/getCouriers.js";
 import deleteCouriersPickupPoints from "./methods/deleteCouriersPickupPoints.js";
 import getCouriersPickupPoints from "./methods/getCouriersPickupPoints.js";
 import postCouriersPickupPoints from "./methods/postCouriersPickupPoints.js";
 import putCouriersPickupPoints from "./methods/putCouriersPickupPoints.js";
+import getCpaCampaign from "./methods/getCpaCampaign.js";
+import postCpaCampaign from "./methods/postCpaCampaign.js";
+import putCpaCampaign from "./methods/putCpaCampaign.js";
+import deleteCpaCampaign from "./methods/deleteCpaCampaign.js";
+import getCpa from "./methods/getCpa.js";
+import postCpa from "./methods/postCpa.js";
+import putCpa from "./methods/putCpa.js";
+import deleteCpa from "./methods/deleteCpa.js";
 import putDeliveriesDefaultProfiles from "./methods/putDeliveriesDefaultProfiles.js";
 import getDeliveriesProfiles from "./methods/getDeliveriesProfiles.js";
 import getDeliveriesRegions from "./methods/getDeliveriesRegions.js";
@@ -73,6 +84,7 @@ import getEntries from "./methods/getEntries.js";
 import postEntries from "./methods/postEntries.js";
 import putEntries from "./methods/putEntries.js";
 import getEntriesPagesToDisplay from "./methods/getEntriesPagesToDisplay.js";
+import getEntriesSources from "./methods/getEntriesSources.js";
 import getMenuFilter from "./methods/getMenuFilter.js";
 import putMenuFilter from "./methods/putMenuFilter.js";
 import deleteMenu from "./methods/deleteMenu.js";
@@ -86,6 +98,7 @@ import putOrdersClient from "./methods/putOrdersClient.js";
 import putOrdersCourier from "./methods/putOrdersCourier.js";
 import putOrdersDeliveryAddress from "./methods/putOrdersDeliveryAddress.js";
 import putOrdersDevide from "./methods/putOrdersDevide.js";
+import postOrdersDocumentsCreate from "./methods/postOrdersDocumentsCreate.js";
 import deleteOrdersDocuments from "./methods/deleteOrdersDocuments.js";
 import getOrdersDocuments from "./methods/getOrdersDocuments.js";
 import postOrdersDocuments from "./methods/postOrdersDocuments.js";
@@ -231,6 +244,18 @@ import getSizecharts from "./methods/getSizecharts.js";
 import putSizecharts from "./methods/putSizecharts.js";
 import getSizes from "./methods/getSizes.js";
 import putSizes from "./methods/putSizes.js";
+import getSnippetsCampaign from "./methods/getSnippetsCampaign.js";
+import postSnippetsCampaign from "./methods/postSnippetsCampaign.js";
+import putSnippetsCampaign from "./methods/putSnippetsCampaign.js";
+import deleteSnippetsCampaign from "./methods/deleteSnippetsCampaign.js";
+import getSnippetsCookies from "./methods/getSnippetsCookies.js";
+import postSnippetsCookies from "./methods/postSnippetsCookies.js";
+import putSnippetsCookies from "./methods/putSnippetsCookies.js";
+import deleteSnippetsCookies from "./methods/deleteSnippetsCookies.js";
+import getSnippets from "./methods/getSnippets.js";
+import postSnippets from "./methods/postSnippets.js";
+import putSnippets from "./methods/putSnippets.js";
+import deleteSnippets from "./methods/deleteSnippets.js";
 import getSystemConfig from "./methods/getSystemConfig.js";
 import putSystemConfig from "./methods/putSystemConfig.js";
 import getSystemCurrencies from "./methods/getSystemCurrencies.js";
@@ -321,12 +346,23 @@ const gates = {
     getClientsTags,
     postClientsTags,
     putClientsTags,
+    getConfigVariables,
+    putConfigVariables,
+    deleteConfigVariables,
     getCouriersAssignedToShippingProfiles,
     getCouriers,
     deleteCouriersPickupPoints,
     getCouriersPickupPoints,
     postCouriersPickupPoints,
     putCouriersPickupPoints,
+    getCpaCampaign,
+    postCpaCampaign,
+    putCpaCampaign,
+    deleteCpaCampaign,
+    getCpa,
+    postCpa,
+    putCpa,
+    deleteCpa,
     putDeliveriesDefaultProfiles,
     getDeliveriesProfiles,
     getDeliveriesRegions,
@@ -349,6 +385,7 @@ const gates = {
     postEntries,
     putEntries,
     getEntriesPagesToDisplay,
+    getEntriesSources,
     getMenuFilter,
     putMenuFilter,
     deleteMenu,
@@ -362,6 +399,7 @@ const gates = {
     putOrdersCourier,
     putOrdersDeliveryAddress,
     putOrdersDevide,
+    postOrdersDocumentsCreate,
     deleteOrdersDocuments,
     getOrdersDocuments,
     postOrdersDocuments,
@@ -507,6 +545,18 @@ const gates = {
     putSizecharts,
     getSizes,
     putSizes,
+    getSnippetsCampaign,
+    postSnippetsCampaign,
+    putSnippetsCampaign,
+    deleteSnippetsCampaign,
+    getSnippetsCookies,
+    postSnippetsCookies,
+    putSnippetsCookies,
+    deleteSnippetsCookies,
+    getSnippets,
+    postSnippets,
+    putSnippets,
+    deleteSnippets,
     getSystemConfig,
     putSystemConfig,
     getSystemCurrencies,

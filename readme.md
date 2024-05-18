@@ -329,7 +329,7 @@ const ordersFromAllegro = await idosellRequest.params(query).exec();
 You can use the *getParams()* function to retrieve request parameters as Javascript Object.
 
 ```javascript 
-const orderRequest = idosellRequest.getOrders.ordersSerialNumbers([123, 456, 789]).getParams();
+const orderRequest = idosellRequest.listOrders.ordersSerialNumbers([123, 456, 789]).getParams();
 // Will return Object: { ordersSerialNumbers: [ 123, 456, 789 ] }
 ```
 

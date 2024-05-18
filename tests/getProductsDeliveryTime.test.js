@@ -1,7 +1,7 @@
 import idosell from "./dist/index.js"
 import { expect, test } from "vitest"
 
-test("getProductsDeliveryTimeSizeId", () => {
+test("getProductsDeliveryTimeId", () => {
     const params = idosell().getProductsDeliveryTime.productId(15).sizeId(4).getParams();
     expect(params).toEqual({"products":[{"productId":15,"sizeId":4}]});
 })
