@@ -8,7 +8,7 @@ const DECODE_TABLE = [
 ]
 
 const catchIdosellError = (err) => {
-    if (err.response.headers['content-type'].indexOf('json') < 0) throw new Error('500: Invalid response from Api gateway');
+    if (!err.response.headers['x-error'] &&err.response.headers['content-type'].indexOf('json') < 0) throw new Error('500: Invalid response from Api gateway');
     let message = err.response.headers['x-error'];
     for (const [ search, replace ] of DECODE_TABLE) {
         message = message.replaceAll(search, replace);
