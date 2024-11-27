@@ -48,7 +48,8 @@ export const queryfy = (params) => {
 }
 
 export const sendRequest = async (request, options = {}) => {
-    if (request.appendable?.arrayNode) {
+    console.log(request);
+    if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {
         const array = request.params[request.appendable.arrayNode];
         const last = array[array.length - 1];
         if (typeof last === 'object' && Object.keys(last).length === 0) {
