@@ -1,13 +1,13 @@
 /**
  * @typedef {Object} GetClientsBalanceRequest
- * @property {(client_numbers: Array<Integer>) => GetClientsBalanceRequest} client_numbers Customer Id
- * @property {(text_search: String) => GetClientsBalanceRequest} text_search Text search through customer data.
+ * @property {(clientNumbers: Array<Integer>) => GetClientsBalanceRequest} clientNumbers Customer Id
+ * @property {(textSearch: String) => GetClientsBalanceRequest} textSearch Text search through customer data.
  * @property {(active: 'yes'|'no') => GetClientsBalanceRequest} active 
- * @property {(has_trade_credit: 'nonzero'|'positive'|'negative'|'zero') => GetClientsBalanceRequest} has_trade_credit 
- * @property {(last_purchase_date: Object) => GetClientsBalanceRequest} last_purchase_date Start and end date (YYYY-MM-DD).
- * @property {(return_elements: Array<String>) => GetClientsBalanceRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
- * @property {(results_page: Integer) => GetClientsBalanceRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
- * @property {(results_limit: Integer) => GetClientsBalanceRequest} results_limit Maximum number of results on a single page. Default is 100.
+ * @property {(hasTradeCredit: 'nonzero'|'positive'|'negative'|'zero') => GetClientsBalanceRequest} hasTradeCredit 
+ * @property {(lastPurchaseDate: Object) => GetClientsBalanceRequest} lastPurchaseDate Start and end date (YYYY-MM-DD).
+ * @property {(returnElements: Array<String>) => GetClientsBalanceRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientId - clientBalance - clientBalanceHistory
+ * @property {(resultsPage: Integer) => GetClientsBalanceRequest} resultsPage Results page number. Numbering begins at 0. Default value: 0.
+ * @property {(resultsLimit: Integer) => GetClientsBalanceRequest} resultsLimit Maximum number of results on a single page. Default is 100.
  * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsBalanceRequest} lastPurchased Type of date according to the index results
  * @property {(page: Integer, limit: Integer) => GetClientsBalanceRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
@@ -36,7 +36,7 @@
  * @property {(clientHasTradeCredit: 'nonzero'|'positive'|'negative'|'zero') => GetClientsRequest} clientHasTradeCredit Trade credit: - positive or negative, - only positive, - only negative, - only zero.
  * @property {(clientLastPurchaseDate: Object) => GetClientsRequest} clientLastPurchaseDate Date of last purchase.
  * @property {(clientsLastModificationDate: Object) => GetClientsRequest} clientsLastModificationDate Last modification date.
- * @property {(returnElements: Array<String>) => GetClientsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(returnElements: Array<String>) => GetClientsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available fields: - clientId - clientsLastModificationDate - clientLogin - clientEmail - clientType - showClientAsPartner - blockAutomaticallyAssigningGroupDiscount - clientFirstName - clientLastName - clientBirthDate - clientFirm - clientNip - clientStreet - clientZipCode - clientCity - clientCountryId - langId - currencyId - clientRegionId - clientIsWholesaler - clientVatPreferences - clientGroupDiscountNumber - clientGroupDiscountName - clientCodeExternal - clientPhone1 - clientPhone2 - clientProvinceId - newsletterEmailApprovalsData - shops - clientBalances - clientTradeCredit - clientLoyaltyPoints - operator - isUnregistered - affiliateLogin - affiliateId
  * @property {(resultsPage: Integer) => GetClientsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsRequest} lastPurchased Type of date according to the index results
@@ -127,40 +127,40 @@
  */
 
 /**
- * @typedef {Object} GetClientsCrmRequest
- * @property {(clientLogin: String) => GetClientsCrmRequest} clientLogin Customer's login.
- * @property {(clientIsWholesaler: 'yes'|'no') => GetClientsCrmRequest} clientIsWholesaler Determines, whether client is a wholesaler.
- * @property {(clientCountryId: String) => GetClientsCrmRequest} clientCountryId Country ID in accordance with ISO-3166.
- * @property {(langId: String) => GetClientsCrmRequest} langId Language ID
- * @property {(clientCustomerServiceRepresentativeLogin: String) => GetClientsCrmRequest} clientCustomerServiceRepresentativeLogin Customer service representative.
- * @property {(clientDiscountGroupNumber: Integer) => GetClientsCrmRequest} clientDiscountGroupNumber Customer group number
- * @property {(clientRegistrationDate: Object) => GetClientsCrmRequest} clientRegistrationDate Date range of customer registrations
- * @property {(clientLastLoginDate: Object) => GetClientsCrmRequest} clientLastLoginDate Date of last customer login (YYYY-MM-DD)
- * @property {(clientType: 'person'|'person_male'|'person_female'|'firm') => GetClientsCrmRequest} clientType Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company.
- * @property {(clientAffiliateProgram: Array<Object>) => GetClientsCrmRequest} clientAffiliateProgram Information about the loyalty program possible values: - yes_voucher - when customers are in a loyalty program and have only used vouchers, - yes_voucher_cash - when customers are in a loyalty program and have only used vouchers or cash deposits, - yes_clients, - yes_orders - when customers are in the loyalty program and have made at least one order, - no - when customers are in the loyalty program, - banned - when customers are blocked.
- * @property {(newsletterEmailApproval: String) => GetClientsCrmRequest} newsletterEmailApproval Permission to E-mail Newsletter.
- * @property {(newsletterSmsApproval: String) => GetClientsCrmRequest} newsletterSmsApproval Permission to SMS Newsletter.
- * @property {(searchByShops: Object) => GetClientsCrmRequest} searchByShops Shops
- * @property {(clientLoyaltyCard: Object) => GetClientsCrmRequest} clientLoyaltyCard Loyalty cards:
- * @property {(clientCodeExternal: String) => GetClientsCrmRequest} clientCodeExternal External system code.
- * @property {(clientCodesExternal: Array<String>) => GetClientsCrmRequest} clientCodesExternal External system codes list.
- * @property {(clientFirstName: String) => GetClientsCrmRequest} clientFirstName Customer's first name.
- * @property {(clientLastName: String) => GetClientsCrmRequest} clientLastName Customer's last name.
- * @property {(clientNip: String) => GetClientsCrmRequest} clientNip Customer Tax no.
- * @property {(clientFirm: String) => GetClientsCrmRequest} clientFirm Customer's company name.
- * @property {(clientEmail: String) => GetClientsCrmRequest} clientEmail E-mail address.
- * @property {(newsletterEmailApprovalsData: Array<Object>) => GetClientsCrmRequest} newsletterEmailApprovalsData List of shops where a customer agreed or didn't agree to receive email newsletter.
- * @property {(newsletterSmsApprovalsData: Array<Object>) => GetClientsCrmRequest} newsletterSmsApprovalsData List of shops where a customer agreed or didn't agree to receive sms newsletter.
- * @property {(clientLoyaltyCardNumber: String) => GetClientsCrmRequest} clientLoyaltyCardNumber Customer loyalty card number, omitted when has_loyalty_card = no.
- * @property {(orders: Object) => GetClientsCrmRequest} orders Orders.
- * @property {(returnElements: Array<String>) => GetClientsCrmRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
- * @property {(resultsPage: Integer) => GetClientsCrmRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => GetClientsCrmRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(settingsExactSearch: Boolean) => GetClientsCrmRequest} settingsExactSearch Determines, if data - that will be returned - will be exactly as entered values, or values should be fragment of customer data.
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsCrmRequest} registered Type of date according to the index results
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsCrmRequest} lastLoggedIn Type of date according to the index results
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsCrmRequest} ordered Type of date according to the index results
- * @property {(page: Integer, limit: Integer) => GetClientsCrmRequest} page Define page number and maximum results per page
+ * @typedef {Object} SearchClientsCrmRequest
+ * @property {(clientLogin: String) => SearchClientsCrmRequest} clientLogin Customer's login.
+ * @property {(clientIsWholesaler: 'yes'|'no') => SearchClientsCrmRequest} clientIsWholesaler Determines, whether client is a wholesaler.
+ * @property {(clientCountryId: String) => SearchClientsCrmRequest} clientCountryId Country ID in accordance with ISO-3166.
+ * @property {(langId: String) => SearchClientsCrmRequest} langId Language ID
+ * @property {(clientCustomerServiceRepresentativeLogin: String) => SearchClientsCrmRequest} clientCustomerServiceRepresentativeLogin Customer service representative.
+ * @property {(clientDiscountGroupNumber: Integer) => SearchClientsCrmRequest} clientDiscountGroupNumber Customer group number
+ * @property {(clientRegistrationDate: Object) => SearchClientsCrmRequest} clientRegistrationDate Date range of customer registrations
+ * @property {(clientLastLoginDate: Object) => SearchClientsCrmRequest} clientLastLoginDate Date of last customer login (YYYY-MM-DD)
+ * @property {(clientType: 'person'|'person_male'|'person_female'|'firm') => SearchClientsCrmRequest} clientType Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company.
+ * @property {(clientAffiliateProgram: Array<Object>) => SearchClientsCrmRequest} clientAffiliateProgram Information about the loyalty program possible values: - yes_voucher - when customers are in a loyalty program and have only used vouchers, - yes_voucher_cash - when customers are in a loyalty program and have only used vouchers or cash deposits, - yes_clients, - yes_orders - when customers are in the loyalty program and have made at least one order, - no - when customers are in the loyalty program, - banned - when customers are blocked.
+ * @property {(newsletterEmailApproval: String) => SearchClientsCrmRequest} newsletterEmailApproval Permission to E-mail Newsletter.
+ * @property {(newsletterSmsApproval: String) => SearchClientsCrmRequest} newsletterSmsApproval Permission to SMS Newsletter.
+ * @property {(searchByShops: Object) => SearchClientsCrmRequest} searchByShops Shops
+ * @property {(clientLoyaltyCard: Object) => SearchClientsCrmRequest} clientLoyaltyCard Loyalty cards:
+ * @property {(clientCodeExternal: String) => SearchClientsCrmRequest} clientCodeExternal External system code.
+ * @property {(clientCodesExternal: Array<String>) => SearchClientsCrmRequest} clientCodesExternal External system codes list.
+ * @property {(clientFirstName: String) => SearchClientsCrmRequest} clientFirstName Customer's first name.
+ * @property {(clientLastName: String) => SearchClientsCrmRequest} clientLastName Customer's last name.
+ * @property {(clientNip: String) => SearchClientsCrmRequest} clientNip Customer Tax no.
+ * @property {(clientFirm: String) => SearchClientsCrmRequest} clientFirm Customer's company name.
+ * @property {(clientEmail: String) => SearchClientsCrmRequest} clientEmail E-mail address.
+ * @property {(newsletterEmailApprovalsData: Array<Object>) => SearchClientsCrmRequest} newsletterEmailApprovalsData List of shops where a customer agreed or didn't agree to receive email newsletter.
+ * @property {(newsletterSmsApprovalsData: Array<Object>) => SearchClientsCrmRequest} newsletterSmsApprovalsData List of shops where a customer agreed or didn't agree to receive sms newsletter.
+ * @property {(clientLoyaltyCardNumber: String) => SearchClientsCrmRequest} clientLoyaltyCardNumber Customer loyalty card number, omitted when has_loyalty_card = no.
+ * @property {(orders: Object) => SearchClientsCrmRequest} orders Orders.
+ * @property {(returnElements: Array<String>) => SearchClientsCrmRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(resultsPage: Integer) => SearchClientsCrmRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => SearchClientsCrmRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(settingsExactSearch: Boolean) => SearchClientsCrmRequest} settingsExactSearch Determines, if data - that will be returned - will be exactly as entered values, or values should be fragment of customer data.
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => SearchClientsCrmRequest} registered Type of date according to the index results
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => SearchClientsCrmRequest} lastLoggedIn Type of date according to the index results
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => SearchClientsCrmRequest} ordered Type of date according to the index results
+ * @property {(page: Integer, limit: Integer) => SearchClientsCrmRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
@@ -253,16 +253,6 @@
  */
 
 /**
- * @typedef {Object} GetClientsGiftcardsRequest
- * @property {(giftCards: Array<Object>) => GetClientsGiftcardsRequest} giftCards List of gift cards
- * @property {(searchGiftCards: Object) => GetClientsGiftcardsRequest} searchGiftCards element is an element array of type searchGiftCards
- * @property {(ids: Array<Integer>) => GetClientsGiftcardsRequest} ids Define giftCards by passing array of values
- * @property {(number: Array<Integer>) => GetClientsGiftcardsRequest} number Define giftCards by passing array of values
- * @property {(pins: Array<Integer>) => GetClientsGiftcardsRequest} pins Define giftCards by passing array of values
- * @property {function} exec Excecute request
- */
-
-/**
  * @typedef {Object} PostClientsGiftcardsRequest
  * @property {(giftCards: Array<Object>) => PostClientsGiftcardsRequest} giftCards List of cards to add
  * @property {(typeId: Integer) => PostClientsGiftcardsRequest} typeId Gift card type id
@@ -293,6 +283,16 @@
  * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} add Adds balance to current gift card
  * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} subtract Subtract from balance to current gift card
  * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} set Set balance to current gift card
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} SearchClientsGiftcardsRequest
+ * @property {(giftCards: Array<Object>) => SearchClientsGiftcardsRequest} giftCards List of gift cards
+ * @property {(searchGiftCards: Object) => SearchClientsGiftcardsRequest} searchGiftCards element is an element array of type searchGiftCards
+ * @property {(ids: Array<Integer>) => SearchClientsGiftcardsRequest} ids Define giftCards by passing array of values
+ * @property {(number: Array<Integer>) => SearchClientsGiftcardsRequest} number Define giftCards by passing array of values
+ * @property {(pins: Array<Integer>) => SearchClientsGiftcardsRequest} pins Define giftCards by passing array of values
  * @property {function} exec Excecute request
  */
 
@@ -339,29 +339,29 @@
  */
 
 /**
- * @typedef {Object} GetClientsNewsletterEmailSMSRequest
- * @property {(shops: Array<Object>) => GetClientsNewsletterEmailSMSRequest} shops 
- * @property {(language: String) => GetClientsNewsletterEmailSMSRequest} language Customer language ID.
- * @property {(date: Object) => GetClientsNewsletterEmailSMSRequest} date 
- * @property {(return_elements: Array<String>) => GetClientsNewsletterEmailSMSRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
- * @property {(results_page: Integer) => GetClientsNewsletterEmailSMSRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
- * @property {(results_limit: Integer) => GetClientsNewsletterEmailSMSRequest} results_limit Maximum number of results on a single page. Default is 100.
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsNewsletterEmailSMSRequest} dates Type of date according to the index results
- * @property {(page: Integer, limit: Integer) => GetClientsNewsletterEmailSMSRequest} page Define page number and maximum results per page
+ * @typedef {Object} SearchClientsNewsletterEmailRequest
+ * @property {(shops: Array<Object>) => SearchClientsNewsletterEmailRequest} shops 
+ * @property {(language: String) => SearchClientsNewsletterEmailRequest} language Customer language ID.
+ * @property {(date: Object) => SearchClientsNewsletterEmailRequest} date 
+ * @property {(return_elements: Array<String>) => SearchClientsNewsletterEmailRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(results_page: Integer) => SearchClientsNewsletterEmailRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
+ * @property {(results_limit: Integer) => SearchClientsNewsletterEmailRequest} results_limit Maximum number of results on a single page. Default is 100.
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => SearchClientsNewsletterEmailRequest} dates Type of date according to the index results
+ * @property {(page: Integer, limit: Integer) => SearchClientsNewsletterEmailRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
 /**
- * @typedef {Object} GetClientsNewsletterEmailShopsRequest
- * @property {(shops: Array<Object>) => GetClientsNewsletterEmailShopsRequest} shops 
- * @property {(language: String) => GetClientsNewsletterEmailShopsRequest} language Customer language ID.
- * @property {(date: Object) => GetClientsNewsletterEmailShopsRequest} date 
- * @property {(return_elements: Array<String>) => GetClientsNewsletterEmailShopsRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
- * @property {(results_page: Integer) => GetClientsNewsletterEmailShopsRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
- * @property {(results_limit: Integer) => GetClientsNewsletterEmailShopsRequest} results_limit Maximum number of results on a single page. Default is 100.
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsNewsletterEmailShopsRequest} dates Type of date according to the index results
- * @property {(page: Integer, limit: Integer) => GetClientsNewsletterEmailShopsRequest} page Define page number and maximum results per page
+ * @typedef {Object} SearchClientsNewsletterSmsRequest
+ * @property {(shops: Array<Object>) => SearchClientsNewsletterSmsRequest} shops 
+ * @property {(language: String) => SearchClientsNewsletterSmsRequest} language Customer language ID.
+ * @property {(date: Object) => SearchClientsNewsletterSmsRequest} date 
+ * @property {(return_elements: Array<String>) => SearchClientsNewsletterSmsRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(results_page: Integer) => SearchClientsNewsletterSmsRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
+ * @property {(results_limit: Integer) => SearchClientsNewsletterSmsRequest} results_limit Maximum number of results on a single page. Default is 100.
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => SearchClientsNewsletterSmsRequest} dates Type of date according to the index results
+ * @property {(page: Integer, limit: Integer) => SearchClientsNewsletterSmsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
@@ -442,7 +442,7 @@
 /**
  * @typedef {Object} GetClientsPricelistsRequest
  * @property {(priceListIds: Array<Integer>) => GetClientsPricelistsRequest} priceListIds List of individual price lists.
- * @property {(returnElements: Array<String>) => GetClientsPricelistsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(returnElements: Array<String>) => GetClientsPricelistsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available elements: - priceListId - priceListName - onlyOrderProductsWithManuallySetPrices - onlySeeProductsWithManuallySetPrices
  * @property {(resultsPage: Integer) => GetClientsPricelistsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsPricelistsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(page: Integer, limit: Integer) => GetClientsPricelistsRequest} page Define page number and maximum results per page
@@ -503,7 +503,7 @@
 /**
  * @typedef {Object} GetClientsPricesDiscountGroupsRequest
  * @property {(clientDiscountGroupsNumbers: Array<Integer>) => GetClientsPricesDiscountGroupsRequest} clientDiscountGroupsNumbers Customer groups.
- * @property {(returnElements: Array<String>) => GetClientsPricesDiscountGroupsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(returnElements: Array<String>) => GetClientsPricesDiscountGroupsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientDiscountGroupNumber - clientDiscountGroupIsCombined - clientDiscountGroupType - clientDiscountGroupValue - clientDiscountGroupName
  * @property {(resultsPage: Integer) => GetClientsPricesDiscountGroupsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsPricesDiscountGroupsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(page: Integer, limit: Integer) => GetClientsPricesDiscountGroupsRequest} page Define page number and maximum results per page
@@ -518,7 +518,7 @@
  * @property {(clientIsActive: 'yes'|'no') => GetClientsPricesDiscountsRequest} clientIsActive Active
  * @property {(clientHasTradeCredit: 'nonzero'|'positive'|'negative'|'zero') => GetClientsPricesDiscountsRequest} clientHasTradeCredit Trade credit: - positive or negative, - only positive, - only negative, - only zero.
  * @property {(clientLastPurchaseDate: Object) => GetClientsPricesDiscountsRequest} clientLastPurchaseDate Date of last purchase.
- * @property {(returnElements: Array<String>) => GetClientsPricesDiscountsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(returnElements: Array<String>) => GetClientsPricesDiscountsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientId - clientDiscountIsCombined - clientDiscountType - clientDiscountValue
  * @property {(resultsPage: Integer) => GetClientsPricesDiscountsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsPricesDiscountsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsPricesDiscountsRequest} lastPurchased Type of date according to the index results
@@ -547,7 +547,7 @@
  * @property {(clientIsActive: 'yes'|'no') => GetClientsProfitPointsRequest} clientIsActive Active
  * @property {(clientHasTradeCredit: 'nonzero'|'positive'|'negative'|'zero') => GetClientsProfitPointsRequest} clientHasTradeCredit Trade credit: - positive or negative, - only positive, - only negative, - only zero.
  * @property {(clientLastPurchaseDate: Object) => GetClientsProfitPointsRequest} clientLastPurchaseDate Date of last purchase.
- * @property {(returnElements: Array<String>) => GetClientsProfitPointsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned
+ * @property {(returnElements: Array<String>) => GetClientsProfitPointsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientId - clientProfitPoints - clientProfitPointsHistories
  * @property {(resultsPage: Integer) => GetClientsProfitPointsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsProfitPointsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsProfitPointsRequest} lastPurchased Type of date according to the index results
@@ -569,6 +569,12 @@
 /**
  * @typedef {Object} GetClientsProvinceListRequest
  * @property {(country_code: String) => GetClientsProvinceListRequest} country_code Country code in ISO 3166-1 standard.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteClientsRequest
+ * @property {(clientId: Integer) => DeleteClientsRequest} clientId Client's ID
  * @property {function} exec Excecute request
  */
 
@@ -808,10 +814,10 @@
 
 /**
  * @typedef {Object} GetDiscountsGroupsRequest
- * @property {(group_numbers: Array<Integer>) => GetDiscountsGroupsRequest} group_numbers 
- * @property {(return_elements: Array<String>) => GetDiscountsGroupsRequest} return_elements Elements to be returned by the endpoint. By default all elements are returned
- * @property {(results_page: Integer) => GetDiscountsGroupsRequest} results_page Results page number. Numbering begins at 0. Default value: 0.
- * @property {(results_limit: Integer) => GetDiscountsGroupsRequest} results_limit Maximum number of results on a single page. Default is 100.
+ * @property {(groupNumbers: Array<Integer>) => GetDiscountsGroupsRequest} groupNumbers 
+ * @property {(returnElements: Array<String>) => GetDiscountsGroupsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available elements: - groupNumber - groupCombined - groupType - groupRebate - groupName
+ * @property {(resultsPage: Integer) => GetDiscountsGroupsRequest} resultsPage Results page number. Numbering begins at 0. Default value: 0.
+ * @property {(resultsLimit: Integer) => GetDiscountsGroupsRequest} resultsLimit Maximum number of results on a single page. Default is 100.
  * @property {(page: Integer, limit: Integer) => GetDiscountsGroupsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1043,14 +1049,14 @@
 
 /**
  * @typedef {Object} GetOrdersAnalyticsRequest
- * @property {(orders: Array<Object>) => GetOrdersAnalyticsRequest} orders Orders.
- * @property {(serialNumbers: Array<Integer>) => GetOrdersAnalyticsRequest} serialNumbers Define orders by passing array of values
+ * @property {(orderSerialNumber: Array<Integer>) => GetOrdersAnalyticsRequest} orderSerialNumber Array of order serial numbers.
  * @property {function} exec Excecute request
  */
 
 /**
  * @typedef {Object} GetOrdersAuctionDetailsRequest
- * @property {(orders: Array<Object>) => GetOrdersAuctionDetailsRequest} orders Orders.
+ * @property {(identType: 'orders_id'|'orders_sn') => GetOrdersAuctionDetailsRequest} identType Identifier type.
+ * @property {(orders: Array<String>) => GetOrdersAuctionDetailsRequest} orders Orders Id values.
  * @property {(ids: Array<String>) => GetOrdersAuctionDetailsRequest} ids Define orders by passing array of values
  * @property {(serialNumbers: Array<Integer>) => GetOrdersAuctionDetailsRequest} serialNumbers Define orders by passing array of values
  * @property {function} exec Excecute request
@@ -1217,22 +1223,22 @@
  */
 
 /**
- * @typedef {Object} GetOrdersOpinionsRequest
- * @property {(opinion: Object) => GetOrdersOpinionsRequest} opinion Review identification
- * @property {(orders: Object) => GetOrdersOpinionsRequest} orders Orders.
- * @property {(clients: Object) => GetOrdersOpinionsRequest} clients Customer data.
- * @property {(dateRange: Object) => GetOrdersOpinionsRequest} dateRange Date range
- * @property {(resultsPage: Integer) => GetOrdersOpinionsRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => GetOrdersOpinionsRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(ordersBy: Array<Object>) => GetOrdersOpinionsRequest} ordersBy Possibility of sorting returned list
- * @property {(orderId: String) => GetOrdersOpinionsRequest} orderId Define value value nested inside orders
- * @property {(orderSerialNumber: String) => GetOrdersOpinionsRequest} orderSerialNumber Define value value nested inside orders
- * @property {(clientId: String) => GetOrdersOpinionsRequest} clientId Define value value nested inside clients
- * @property {(clientLogin: String) => GetOrdersOpinionsRequest} clientLogin Define value value nested inside clients
- * @property {(clientCode: String) => GetOrdersOpinionsRequest} clientCode Define value value nested inside clients
- * @property {(dateFrom: DateLike, dateTo: DateLike) => GetOrdersOpinionsRequest} dates Type of date according to the index results
- * @property {(elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending: Boolean) => GetOrdersOpinionsRequest} orderBy Define sorting by element and direction
- * @property {(page: Integer, limit: Integer) => GetOrdersOpinionsRequest} page Define page number and maximum results per page
+ * @typedef {Object} SearchOrdersOpinionsRequest
+ * @property {(opinion: Object) => SearchOrdersOpinionsRequest} opinion Review identification
+ * @property {(orders: Object) => SearchOrdersOpinionsRequest} orders Orders.
+ * @property {(clients: Object) => SearchOrdersOpinionsRequest} clients Customer data.
+ * @property {(dateRange: Object) => SearchOrdersOpinionsRequest} dateRange Date range
+ * @property {(resultsPage: Integer) => SearchOrdersOpinionsRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => SearchOrdersOpinionsRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(ordersBy: Array<Object>) => SearchOrdersOpinionsRequest} ordersBy Possibility of sorting returned list
+ * @property {(orderId: String) => SearchOrdersOpinionsRequest} orderId Define value value nested inside orders
+ * @property {(orderSerialNumber: String) => SearchOrdersOpinionsRequest} orderSerialNumber Define value value nested inside orders
+ * @property {(clientId: String) => SearchOrdersOpinionsRequest} clientId Define value value nested inside clients
+ * @property {(clientLogin: String) => SearchOrdersOpinionsRequest} clientLogin Define value value nested inside clients
+ * @property {(clientCode: String) => SearchOrdersOpinionsRequest} clientCode Define value value nested inside clients
+ * @property {(dateFrom: DateLike, dateTo: DateLike) => SearchOrdersOpinionsRequest} dates Type of date according to the index results
+ * @property {(elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending: Boolean) => SearchOrdersOpinionsRequest} orderBy Define sorting by element and direction
+ * @property {(page: Integer, limit: Integer) => SearchOrdersOpinionsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
@@ -1241,57 +1247,6 @@
  * @typedef {Object} GetOrdersOpinionsRateRequest
  * @property {(id: Integer) => GetOrdersOpinionsRateRequest} id 
  * @property {(operation: 'positive'|'negative') => GetOrdersOpinionsRateRequest} operation 
- * @property {function} exec Excecute request
- */
-
-/**
- * @typedef {Object} ListOrdersRequest
- * @property {(orderPrepaidStatus: String) => ListOrdersRequest} orderPrepaidStatus Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered.
- * @property {(ordersStatuses: Array<String>) => ListOrdersRequest} ordersStatuses Order status. Status list: "new" - not handled, "finished" - completed, "false" - false, "lost" - lost, "on_order" - in progress, "packed" - being picked, "ready" - ready, "returned" - return, "canceled" - canceled by customer, "complainted" - complaint, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "suspended" - on hold, "joined" - merged, "finished_ext" - handled in FA application.
- * @property {(shippmentStatus: 'all'|'received'|'non-received') => ListOrdersRequest} shippmentStatus 
- * @property {(couriersName: Array<String>) => ListOrdersRequest} couriersName Shipping companies (packages deliverers).
- * @property {(couriersId: Array<Integer>) => ListOrdersRequest} couriersId Courier service identifiers
- * @property {(orderPaymentType: String) => ListOrdersRequest} orderPaymentType Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit.
- * @property {(withMissingSalesDocuments: Array<String>) => ListOrdersRequest} withMissingSalesDocuments 
- * @property {(orderType: 'wholesale'|'retail'|'dropshipping'|'deliverer') => ListOrdersRequest} orderType Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail"
- * @property {(dropshippingOrderStatus: 'all'|'finished'|'canceled'|'notCanceled') => ListOrdersRequest} dropshippingOrderStatus 
- * @property {(ordersIds: Array<String>) => ListOrdersRequest} ordersIds Orders IDs.
- * @property {(ordersSerialNumbers: Array<Integer>) => ListOrdersRequest} ordersSerialNumbers Order serial numbers.
- * @property {(clients: Array<Object>) => ListOrdersRequest} clients Customer data.
- * @property {(ordersRange: Object) => ListOrdersRequest} ordersRange Ranges of dates or serial numbers.
- * @property {(orderSource: Object) => ListOrdersRequest} orderSource Order source data.
- * @property {(products: Array<Object>) => ListOrdersRequest} products Products list.
- * @property {(resultsPage: Integer) => ListOrdersRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => ListOrdersRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(clientRequestInvoice: String) => ListOrdersRequest} clientRequestInvoice Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no.
- * @property {(packages: Object) => ListOrdersRequest} packages Information on consignments.
- * @property {(stocks: Array<Object>) => ListOrdersRequest} stocks Stock quantities data.
- * @property {(campaign: Object) => ListOrdersRequest} campaign Used discount codes data.
- * @property {(loyaltyPointsMode: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => ListOrdersRequest} loyaltyPointsMode Loyalty points.
- * @property {(orderOperatorLogin: String) => ListOrdersRequest} orderOperatorLogin Order handler.
- * @property {(orderPackingPersonLogin: String) => ListOrdersRequest} orderPackingPersonLogin Order picker.
- * @property {(ordersBy: Array<Object>) => ListOrdersRequest} ordersBy Possibility of sorting returned list
- * @property {(searchingOperatorTypeMatch: 'no_assignment'|'no_empty'|'empty') => ListOrdersRequest} searchingOperatorTypeMatch Method of searching orders by handler.
- * @property {(ordersDelayed: 'y'|'n') => ListOrdersRequest} ordersDelayed Orders with the exceeded date of shipment.
- * @property {(showBundles: Boolean) => ListOrdersRequest} showBundles Combine the components of the set into one item
- * @property {(orderExternalId: String) => ListOrdersRequest} orderExternalId The order ID of the external service
- * @property {(shopIds: Array<Integer>) => ListOrdersRequest} shopIds Define shopsIds value nested inside orderSource
- * @property {(byPackageNumbers: Array<String>) => ListOrdersRequest} byPackageNumbers Define packagesNumbers value nested inside packages
- * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => ListOrdersRequest} dates Type of date according to the index results. Possible type values: add, modified, dispatch, payment, last_payments_operation, declared_payments
- * @property {(elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: Boolean) => ListOrdersRequest} orderBy Define sorting by element and direction
- * @property {(logins: Array<String>) => ListOrdersRequest} logins Define clients by passing array of values
- * @property {(clientIds: Array<String>) => ListOrdersRequest} clientIds Define clients by passing array of values
- * @property {(productIds: Array<Integer>) => ListOrdersRequest} productIds Define products by passing array of values
- * @property {(stockIds: Array<Integer>) => ListOrdersRequest} stockIds Define stocks by passing array of values
- * @property {(campaignIds: Array<Integer>) => ListOrdersRequest} campaignIds Define campaign by passing array of values
- * @property {(discountCodes: Array<String>) => ListOrdersRequest} discountCodes Define campaign by passing array of values
- * @property {(productId: Integer, sizeId: String|null) => ListProductsRequest} hasProduct Filter by product ID and optionally product size
- * @property {(orderHasPackage: Boolean) => ListProductsRequest} hasPackage Filter by orders that have any package number
- * @property {(accountName: String) => ListProductsRequest} fromAllegro Filter by orders from auction service Allegro
- * @property {(accountName: String) => ListProductsRequest} fromEbay Filter by orders from action service EBay
- * @property {(accountName: String) => ListProductsRequest} fromAmazon Filter by orders from action service Amazon
- * @property {(page: Integer, limit: Integer) => ListOrdersRequest} page Define page number and maximum results per page
- * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -1341,7 +1296,7 @@
  * @property {(orders: Array<Object>) => PutOrdersRequest} orders Orders.
  * @property {(orderId: String) => PutOrdersRequest} orderId Order ID.
  * @property {(orderSerialNumber: Integer) => PutOrdersRequest} orderSerialNumber Order serial number.
- * @property {(orderStatus: String) => PutOrdersRequest} orderStatus Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "complainted" - complaint, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "returned" - return, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled.
+ * @property {(orderStatus: String) => PutOrdersRequest} orderStatus Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled.
  * @property {(apiFlag: 'none'|'registered'|'realized'|'registered_pos'|'realized_pos'|'registration_fault') => PutOrdersRequest} apiFlag Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program.
  * @property {(apiNoteToOrder: String) => PutOrdersRequest} apiNoteToOrder API note added to order.
  * @property {(clientNoteToOrder: String) => PutOrdersRequest} clientNoteToOrder Customer comments on order.
@@ -1357,8 +1312,60 @@
  * @property {(billingCurrency: String) => PutOrdersRequest} billingCurrency Order settlement currency.
  * @property {(billingCurrencyRate: Number) => PutOrdersRequest} billingCurrencyRate Panel billing currency exchange rate in relation to billing currency in the shop .
  * @property {(purchaseDate: String) => PutOrdersRequest} purchaseDate Sale date. ISO 8602 format.
- * @property {(estimatedDeliveryDate: String) => PutOrdersRequest} estimatedDeliveryDate Estimated date of shipment of the order.
+ * @property {(estimatedDeliveryDate: String) => PutOrdersRequest} estimatedDeliveryDate Estimated date of shipment of the order in format Y-m-d H:i
  * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} SearchOrdersRequest
+ * @property {(orderPrepaidStatus: String) => SearchOrdersRequest} orderPrepaidStatus Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered.
+ * @property {(ordersStatuses: Array<String>) => SearchOrdersRequest} ordersStatuses Order status. Status list: "new" - not handled, "finished" - completed, "false" - false, "lost" - lost, "on_order" - in progress, "packed" - being picked, "ready" - ready, "canceled" - canceled by customer, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "suspended" - on hold, "joined" - merged, "finished_ext" - handled in FA application.
+ * @property {(shippmentStatus: 'all'|'received'|'non-received') => SearchOrdersRequest} shippmentStatus 
+ * @property {(couriersName: Array<String>) => SearchOrdersRequest} couriersName Shipping companies (packages deliverers).
+ * @property {(couriersId: Array<Integer>) => SearchOrdersRequest} couriersId Courier service identifiers
+ * @property {(orderPaymentType: String) => SearchOrdersRequest} orderPaymentType Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit.
+ * @property {(withMissingSalesDocuments: Array<String>) => SearchOrdersRequest} withMissingSalesDocuments 
+ * @property {(orderType: 'wholesale'|'retail'|'dropshipping'|'deliverer') => SearchOrdersRequest} orderType Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail"
+ * @property {(dropshippingOrderStatus: 'all'|'finished'|'canceled'|'notCanceled') => SearchOrdersRequest} dropshippingOrderStatus 
+ * @property {(ordersIds: Array<String>) => SearchOrdersRequest} ordersIds Orders IDs.
+ * @property {(ordersSerialNumbers: Array<Integer>) => SearchOrdersRequest} ordersSerialNumbers Order serial numbers.
+ * @property {(clients: Array<Object>) => SearchOrdersRequest} clients Customer data.
+ * @property {(ordersRange: Object) => SearchOrdersRequest} ordersRange Ranges of dates or serial numbers.
+ * @property {(orderSource: Object) => SearchOrdersRequest} orderSource Order source data.
+ * @property {(products: Array<Object>) => SearchOrdersRequest} products Products list.
+ * @property {(resultsPage: Integer) => SearchOrdersRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => SearchOrdersRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(clientRequestInvoice: String) => SearchOrdersRequest} clientRequestInvoice Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no.
+ * @property {(packages: Object) => SearchOrdersRequest} packages Information on consignments.
+ * @property {(stocks: Array<Object>) => SearchOrdersRequest} stocks Stock quantities data.
+ * @property {(campaign: Object) => SearchOrdersRequest} campaign Used discount codes data.
+ * @property {(loyaltyPointsMode: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => SearchOrdersRequest} loyaltyPointsMode Loyalty points.
+ * @property {(orderOperatorLogin: String) => SearchOrdersRequest} orderOperatorLogin Order handler.
+ * @property {(orderPackingPersonLogin: String) => SearchOrdersRequest} orderPackingPersonLogin Order picker.
+ * @property {(ordersBy: Array<Object>) => SearchOrdersRequest} ordersBy Possibility of sorting returned list
+ * @property {(searchingOperatorTypeMatch: 'no_assignment'|'no_empty'|'empty') => SearchOrdersRequest} searchingOperatorTypeMatch Method of searching orders by handler.
+ * @property {(ordersDelayed: 'y'|'n') => SearchOrdersRequest} ordersDelayed Orders with the exceeded date of shipment.
+ * @property {(showBundles: Boolean) => SearchOrdersRequest} showBundles Combine the components of the set into one item
+ * @property {(orderExternalId: String) => SearchOrdersRequest} orderExternalId The order ID of the external service
+ * @property {(orderCurrency: String) => SearchOrdersRequest} orderCurrency Order currency
+ * @property {(shopIds: Array<Integer>) => SearchOrdersRequest} shopIds Define shopsIds value nested inside orderSource
+ * @property {(byPackageNumbers: Array<String>) => SearchOrdersRequest} byPackageNumbers Define packagesNumbers value nested inside packages
+ * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => SearchOrdersRequest} dates Type of date according to the index results. Possible type values: add, modified, dispatch, payment, last_payments_operation, declared_payments
+ * @property {(elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: Boolean) => SearchOrdersRequest} orderBy Define sorting by element and direction
+ * @property {(logins: Array<String>) => SearchOrdersRequest} logins Define clients by passing array of values
+ * @property {(clientIds: Array<String>) => SearchOrdersRequest} clientIds Define clients by passing array of values
+ * @property {(productIds: Array<Integer>) => SearchOrdersRequest} productIds Define products by passing array of values
+ * @property {(stockIds: Array<Integer>) => SearchOrdersRequest} stockIds Define stocks by passing array of values
+ * @property {(campaignIds: Array<Integer>) => SearchOrdersRequest} campaignIds Define campaign by passing array of values
+ * @property {(discountCodes: Array<String>) => SearchOrdersRequest} discountCodes Define campaign by passing array of values
+ * @property {(productId: Integer, sizeId: String|null) => searchProductsRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => searchProductsRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => searchProductsRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => searchProductsRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => searchProductsRequest} fromAmazon Filter by orders from action service Amazon
+ * @property {(page: Integer, limit: Integer) => SearchOrdersRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -1445,47 +1452,47 @@
  */
 
 /**
- * @typedef {Object} ListOrdersUnfinishedRequest
- * @property {(orderPrepaidStatus: String) => ListOrdersUnfinishedRequest} orderPrepaidStatus Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered.
- * @property {(ordersStatuses: Array<String>) => ListOrdersUnfinishedRequest} ordersStatuses Order status. Status list: "new" - not handled, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "finished_ext" - handled in FA application.
- * @property {(couriersName: Array<String>) => ListOrdersUnfinishedRequest} couriersName Shipping companies (packages deliverers).
- * @property {(orderPaymentType: String) => ListOrdersUnfinishedRequest} orderPaymentType Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit.
- * @property {(orderType: 'wholesale'|'retail'|'dropshipping'|'deliverer') => ListOrdersUnfinishedRequest} orderType Order type. Allowed values: "retail" - retail order, "wholesale" - whiolesale order , "dropshipping" - order to be handled, "deliverer" - order sent to the supplier.
- * @property {(dropshippingOrderStatus: 'all'|'finished'|'canceled'|'notCanceled') => ListOrdersUnfinishedRequest} dropshippingOrderStatus Dropshipping order status in the supplier's system. Allowed values: "all" - all, "finished" - sent, "canceled" - canceled, "notCanceled" - failed to cancel.
- * @property {(ordersIds: Array<String>) => ListOrdersUnfinishedRequest} ordersIds Orders IDs.
- * @property {(ordersSerialNumbers: Array<Integer>) => ListOrdersUnfinishedRequest} ordersSerialNumbers Order serial numbers.
- * @property {(clients: Array<Object>) => ListOrdersUnfinishedRequest} clients Customer data.
- * @property {(ordersRange: Object) => ListOrdersUnfinishedRequest} ordersRange Ranges of dates or serial numbers.
- * @property {(orderSource: Object) => ListOrdersUnfinishedRequest} orderSource Order source data.
- * @property {(products: Array<Object>) => ListOrdersUnfinishedRequest} products Products list.
- * @property {(resultsPage: Integer) => ListOrdersUnfinishedRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => ListOrdersUnfinishedRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(clientRequestInvoice: String) => ListOrdersUnfinishedRequest} clientRequestInvoice Customer asked for invoice. List of parameters: "invoice" - yes (paper invoicing ), "e_invoice" - yes (electronic invoicing ), "n" - no.
- * @property {(packages: Object) => ListOrdersUnfinishedRequest} packages Information on consignments.
- * @property {(stocks: Array<Object>) => ListOrdersUnfinishedRequest} stocks Stock quantities data.
- * @property {(campaign: Object) => ListOrdersUnfinishedRequest} campaign Used discount codes data.
- * @property {(loyaltyPointsMode: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => ListOrdersUnfinishedRequest} loyaltyPointsMode Loyalty points.
- * @property {(orderOperatorLogin: String) => ListOrdersUnfinishedRequest} orderOperatorLogin Order handler.
- * @property {(orderPackingPersonLogin: String) => ListOrdersUnfinishedRequest} orderPackingPersonLogin Order picker.
- * @property {(ordersBy: Array<Object>) => ListOrdersUnfinishedRequest} ordersBy Possibility of sorting returned list
- * @property {(searchingOperatorTypeMatch: 'no_assignment'|'no_empty'|'empty') => ListOrdersUnfinishedRequest} searchingOperatorTypeMatch Method of searching orders by handler.
- * @property {(ordersDelayed: 'y'|'n') => ListOrdersUnfinishedRequest} ordersDelayed Orders with the exceeded date of shipment.
- * @property {(shopIds: Array<Integer>) => ListOrdersUnfinishedRequest} shopIds Define shopsIds value nested inside orderSource
- * @property {(byPackageNumbers: Array<String>) => ListOrdersUnfinishedRequest} byPackageNumbers Define packagesNumbers value nested inside packages
- * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => ListOrdersUnfinishedRequest} dates Type of date according to the index results. Possible type values: add, modified, dispatch, payment, last_payments_operation, declared_payments
- * @property {(elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: Boolean) => ListOrdersUnfinishedRequest} orderBy Define sorting by element and direction
- * @property {(logins: Array<String>) => ListOrdersUnfinishedRequest} logins Define clients by passing array of values
- * @property {(clientIds: Array<String>) => ListOrdersUnfinishedRequest} clientIds Define clients by passing array of values
- * @property {(productIds: Array<Integer>) => ListOrdersUnfinishedRequest} productIds Define products by passing array of values
- * @property {(stockIds: Array<Integer>) => ListOrdersUnfinishedRequest} stockIds Define stocks by passing array of values
- * @property {(campaignIds: Array<Integer>) => ListOrdersUnfinishedRequest} campaignIds Define campaign by passing array of values
- * @property {(discountCodes: Array<String>) => ListOrdersUnfinishedRequest} discountCodes Define campaign by passing array of values
- * @property {(productId: Integer, sizeId: String|null) => ListProductsRequest} hasProduct Filter by product ID and optionally product size
- * @property {(orderHasPackage: Boolean) => ListProductsRequest} hasPackage Filter by orders that have any package number
- * @property {(accountName: String) => ListProductsRequest} fromAllegro Filter by orders from auction service Allegro
- * @property {(accountName: String) => ListProductsRequest} fromEbay Filter by orders from action service EBay
- * @property {(accountName: String) => ListProductsRequest} fromAmazon Filter by orders from action service Amazon
- * @property {(page: Integer, limit: Integer) => ListOrdersUnfinishedRequest} page Define page number and maximum results per page
+ * @typedef {Object} SearchOrdersUnfinishedRequest
+ * @property {(orderPrepaidStatus: String) => SearchOrdersUnfinishedRequest} orderPrepaidStatus Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered.
+ * @property {(ordersStatuses: Array<String>) => SearchOrdersUnfinishedRequest} ordersStatuses Order status. Status list: "new" - not handled, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "finished_ext" - handled in FA application.
+ * @property {(couriersName: Array<String>) => SearchOrdersUnfinishedRequest} couriersName Shipping companies (packages deliverers).
+ * @property {(orderPaymentType: String) => SearchOrdersUnfinishedRequest} orderPaymentType Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit.
+ * @property {(orderType: 'wholesale'|'retail'|'dropshipping'|'deliverer') => SearchOrdersUnfinishedRequest} orderType Order type. Allowed values: "retail" - retail order, "wholesale" - whiolesale order , "dropshipping" - order to be handled, "deliverer" - order sent to the supplier.
+ * @property {(dropshippingOrderStatus: 'all'|'finished'|'canceled'|'notCanceled') => SearchOrdersUnfinishedRequest} dropshippingOrderStatus Dropshipping order status in the supplier's system. Allowed values: "all" - all, "finished" - sent, "canceled" - canceled, "notCanceled" - failed to cancel.
+ * @property {(ordersIds: Array<String>) => SearchOrdersUnfinishedRequest} ordersIds Orders IDs.
+ * @property {(ordersSerialNumbers: Array<Integer>) => SearchOrdersUnfinishedRequest} ordersSerialNumbers Order serial numbers.
+ * @property {(clients: Array<Object>) => SearchOrdersUnfinishedRequest} clients Customer data.
+ * @property {(ordersRange: Object) => SearchOrdersUnfinishedRequest} ordersRange Ranges of dates or serial numbers.
+ * @property {(orderSource: Object) => SearchOrdersUnfinishedRequest} orderSource Order source data.
+ * @property {(products: Array<Object>) => SearchOrdersUnfinishedRequest} products Products list.
+ * @property {(resultsPage: Integer) => SearchOrdersUnfinishedRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => SearchOrdersUnfinishedRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(clientRequestInvoice: String) => SearchOrdersUnfinishedRequest} clientRequestInvoice Customer asked for invoice. List of parameters: "invoice" - yes (paper invoicing ), "e_invoice" - yes (electronic invoicing ), "n" - no.
+ * @property {(packages: Object) => SearchOrdersUnfinishedRequest} packages Information on consignments.
+ * @property {(stocks: Array<Object>) => SearchOrdersUnfinishedRequest} stocks Stock quantities data.
+ * @property {(campaign: Object) => SearchOrdersUnfinishedRequest} campaign Used discount codes data.
+ * @property {(loyaltyPointsMode: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => SearchOrdersUnfinishedRequest} loyaltyPointsMode Loyalty points.
+ * @property {(orderOperatorLogin: String) => SearchOrdersUnfinishedRequest} orderOperatorLogin Order handler.
+ * @property {(orderPackingPersonLogin: String) => SearchOrdersUnfinishedRequest} orderPackingPersonLogin Order picker.
+ * @property {(ordersBy: Array<Object>) => SearchOrdersUnfinishedRequest} ordersBy Possibility of sorting returned list
+ * @property {(searchingOperatorTypeMatch: 'no_assignment'|'no_empty'|'empty') => SearchOrdersUnfinishedRequest} searchingOperatorTypeMatch Method of searching orders by handler.
+ * @property {(ordersDelayed: 'y'|'n') => SearchOrdersUnfinishedRequest} ordersDelayed Orders with the exceeded date of shipment.
+ * @property {(shopIds: Array<Integer>) => SearchOrdersUnfinishedRequest} shopIds Define shopsIds value nested inside orderSource
+ * @property {(byPackageNumbers: Array<String>) => SearchOrdersUnfinishedRequest} byPackageNumbers Define packagesNumbers value nested inside packages
+ * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => SearchOrdersUnfinishedRequest} dates Type of date according to the index results. Possible type values: add, modified, dispatch, payment, last_payments_operation, declared_payments
+ * @property {(elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: Boolean) => SearchOrdersUnfinishedRequest} orderBy Define sorting by element and direction
+ * @property {(logins: Array<String>) => SearchOrdersUnfinishedRequest} logins Define clients by passing array of values
+ * @property {(clientIds: Array<String>) => SearchOrdersUnfinishedRequest} clientIds Define clients by passing array of values
+ * @property {(productIds: Array<Integer>) => SearchOrdersUnfinishedRequest} productIds Define products by passing array of values
+ * @property {(stockIds: Array<Integer>) => SearchOrdersUnfinishedRequest} stockIds Define stocks by passing array of values
+ * @property {(campaignIds: Array<Integer>) => SearchOrdersUnfinishedRequest} campaignIds Define campaign by passing array of values
+ * @property {(discountCodes: Array<String>) => SearchOrdersUnfinishedRequest} discountCodes Define campaign by passing array of values
+ * @property {(productId: Integer, sizeId: String|null) => searchProductsRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => searchProductsRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => searchProductsRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => searchProductsRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => searchProductsRequest} fromAmazon Filter by orders from action service Amazon
+ * @property {(page: Integer, limit: Integer) => SearchOrdersUnfinishedRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
@@ -1525,17 +1532,6 @@
  */
 
 /**
- * @typedef {Object} GetPackagesRequest
- * @property {(deliveryPackageNumbers: Array<String>) => GetPackagesRequest} deliveryPackageNumbers Consignments numbers.
- * @property {(events: Array<Object>) => GetPackagesRequest} events Element, package is assigned to
- * @property {(returnLabels: Boolean) => GetPackagesRequest} returnLabels Return parcel labels.
- * @property {(orderSerialNumbers: Array<Integer>) => GetPackagesRequest} orders Set type to orders with given order serial numbers
- * @property {(rmaIds: Array<Integer>) => GetPackagesRequest} rma Set type to rma with given rma Ids
- * @property {(returnIds: Array<Integer>) => GetPackagesRequest} returns Set type to returns with given return Ids
- * @property {function} exec Excecute request
- */
-
-/**
  * @typedef {Object} PostPackagesRequest
  * @property {(orderPackages: Array<Object>) => PostPackagesRequest} orderPackages List of parcels assigned to the order Maximum default number: 100 parcels.
  * @property {(orderId: String) => PostPackagesRequest} orderId Order ID.
@@ -1552,6 +1548,20 @@
  * @property {(orderType: 'order'|'rma'|'return') => PutPackagesRequest} orderType Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail"
  * @property {(packages: Array<Object>) => PutPackagesRequest} packages Information on consignments.
  * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} SearchPackagesRequest
+ * @property {(deliveryPackageNumbers: Array<String>) => SearchPackagesRequest} deliveryPackageNumbers Consignments numbers.
+ * @property {(events: Array<Object>) => SearchPackagesRequest} events Element, package is assigned to
+ * @property {(returnLabels: Boolean) => SearchPackagesRequest} returnLabels Return parcel labels.
+ * @property {(eventType: 'order'|'rma'|'return') => SearchPackagesRequest} eventType Type.
+ * @property {(eventsIds: Array<Integer>) => SearchPackagesRequest} eventsIds IDs.
+ * @property {function} append Append current data to array and start modifying next row
+ * @property {(orderSerialNumbers: Array<Integer>) => GetPackagesRequest} orders Set type to orders with given order serial numbers
+ * @property {(rmaIds: Array<Integer>) => GetPackagesRequest} rma Set type to rma with given rma Ids
+ * @property {(returnIds: Array<Integer>) => GetPackagesRequest} returns Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1662,7 +1672,8 @@
 
 /**
  * @typedef {Object} GetProductsAuctionsRequest
- * @property {(products: Array<Object>) => GetProductsAuctionsRequest} products Products list.
+ * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsAuctionsRequest} identType 
+ * @property {(products: Array<String>) => GetProductsAuctionsRequest} products Products list.
  * @property {(auctionSites: Array<String>) => GetProductsAuctionsRequest} auctionSites Array of auction site IDs
  * @property {(resultsPage: Integer) => GetProductsAuctionsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetProductsAuctionsRequest} resultsLimit Number of results on page. Value from 1 to 100
@@ -1717,6 +1728,7 @@
  * @typedef {Object} PostProductsBrandsRequest
  * @property {(producers: Array<Object>) => PostProductsBrandsRequest} producers List of manufacturers assigned to sought products.
  * @property {(nameInPanel: String) => PostProductsBrandsRequest} nameInPanel Name in panel
+ * @property {(imagesSettings: Object) => PostProductsBrandsRequest} imagesSettings 
  * @property {(languagesConfigurations: Array<Object>) => PostProductsBrandsRequest} languagesConfigurations 
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
@@ -1727,6 +1739,7 @@
  * @property {(producers: Array<Object>) => PutProductsBrandsRequest} producers List of manufacturers assigned to sought products.
  * @property {(id: Integer) => PutProductsBrandsRequest} id Id
  * @property {(nameInPanel: String) => PutProductsBrandsRequest} nameInPanel Name in panel
+ * @property {(imagesSettings: Object) => PutProductsBrandsRequest} imagesSettings 
  * @property {(languagesConfigurations: Array<Object>) => PutProductsBrandsRequest} languagesConfigurations 
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
@@ -1801,26 +1814,25 @@
  */
 
 /**
- * @typedef {Object} GetProductsCategoriesIdosellRequest
- * @property {(languagesIds: Array<Object>) => GetProductsCategoriesIdosellRequest} languagesIds List of languages
- * @property {(categoriesIdoSellIds: Array<String>) => GetProductsCategoriesIdosellRequest} categoriesIdoSellIds Number of IdoSell Categories identifiers
- * @property {(categoriesIdoSellNames: Array<String>) => GetProductsCategoriesIdosellRequest} categoriesIdoSellNames IdoSell Categories name list
- * @property {(categoriesIdoSellPaths: Array<String>) => GetProductsCategoriesIdosellRequest} categoriesIdoSellPaths IdoSell Categories path list
- * @property {(resultsPage: Integer) => GetProductsCategoriesIdosellRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => GetProductsCategoriesIdosellRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(languages: Array<Integer>) => GetProductsCategoriesIdosellRequest} languages Define languagesIds by passing array of values
- * @property {(page: Integer, limit: Integer) => GetProductsCategoriesIdosellRequest} page Define page number and maximum results per page
+ * @typedef {Object} SearchProductsCategoriesIdosellRequest
+ * @property {(languagesIds: Array<String>) => SearchProductsCategoriesIdosellRequest} languagesIds List of languages
+ * @property {(categoriesIdoSellIds: Array<String>) => SearchProductsCategoriesIdosellRequest} categoriesIdoSellIds Number of IdoSell Categories identifiers
+ * @property {(categoriesIdoSellNames: Array<String>) => SearchProductsCategoriesIdosellRequest} categoriesIdoSellNames IdoSell Categories name list
+ * @property {(categoriesIdoSellPaths: Array<String>) => SearchProductsCategoriesIdosellRequest} categoriesIdoSellPaths IdoSell Categories path list
+ * @property {(resultsPage: Integer) => SearchProductsCategoriesIdosellRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => SearchProductsCategoriesIdosellRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(languages: Array<Integer>) => SearchProductsCategoriesIdosellRequest} languages Define languagesIds by passing array of values
+ * @property {(page: Integer, limit: Integer) => SearchProductsCategoriesIdosellRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
 /**
  * @typedef {Object} GetProductsCodeExistenceRequest
- * @property {(products: Array<Object>) => GetProductsCodeExistenceRequest} products Products list.
- * @property {(ids: Array<Integer>) => GetProductsCodeExistenceRequest} ids Define products by passing array of values
- * @property {(externalCodes: Array<String>) => GetProductsCodeExistenceRequest} externalCodes Define products by passing array of values
- * @property {(producerCodes: Array<String>) => GetProductsCodeExistenceRequest} producerCodes Define products by passing array of values
- * @property {(deliverers: Array<Integer>) => GetProductsCodeExistenceRequest} deliverers Define products by passing array of values
+ * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer'|'codeDeliverer') => GetProductsCodeExistenceRequest} identType 
+ * @property {(products: Array<String>) => GetProductsCodeExistenceRequest} products Products list.
+ * @property {(delivererId: String) => GetProductsCodeExistenceRequest} delivererId 
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -1869,10 +1881,16 @@
  */
 
 /**
- * @typedef {Object} GetProductsDeliveryTimeRequest
- * @property {(stockId: Integer) => GetProductsDeliveryTimeRequest} stockId Stock ID
- * @property {(isCollectionInPerson: Boolean) => GetProductsDeliveryTimeRequest} isCollectionInPerson Should products be prepared for personal collection?
- * @property {(products: Array<Object>) => GetProductsDeliveryTimeRequest} products 
+ * @typedef {Object} SearchProductsDeliveryTimeRequest
+ * @property {(stockId: Integer) => SearchProductsDeliveryTimeRequest} stockId Stock ID
+ * @property {(isCollectionInPerson: Boolean) => SearchProductsDeliveryTimeRequest} isCollectionInPerson Should products be prepared for personal collection?
+ * @property {(products: Array<Object>) => SearchProductsDeliveryTimeRequest} products 
+ * @property {(productId: Integer) => SearchProductsDeliveryTimeRequest} productId Product Id
+ * @property {(sizeId: String) => SearchProductsDeliveryTimeRequest} sizeId Size identifier
+ * @property {(sizePanelName: String) => SearchProductsDeliveryTimeRequest} sizePanelName Size name
+ * @property {(productIndex: String) => SearchProductsDeliveryTimeRequest} productIndex Product IAI code
+ * @property {(productSizeQuantity: Number) => SearchProductsDeliveryTimeRequest} productSizeQuantity Product quantity.
+ * @property {function} append Append current data to array and start modifying next row
  * @property {(productId: Integer) => GetProductsDeliveryTimeRequest} productId Product Id
  * @property {(sizeId: Integer) => GetProductsDeliveryTimeRequest} sizeId Size identifier
  * @property {(sizePanelName: String) => GetProductsDeliveryTimeRequest} sizePanelName Size name
@@ -1952,6 +1970,7 @@
  * @property {(productsImages: Array<Object>) => PutProductsImagesRequest} productsImages Information on product images
  * @property {(productIdent: Object) => PutProductsImagesRequest} productIdent 
  * @property {(shopId: Integer) => PutProductsImagesRequest} shopId Shop Id
+ * @property {(otherShopsForPic: Array<Integer>) => PutProductsImagesRequest} otherShopsForPic List of shops for which photos will be added (including shop provided in shopId). If parameter is empty or not provided, photos will be added to all shops.
  * @property {(productImages: Array<Object>) => PutProductsImagesRequest} productImages Product photos details.
  * @property {(productIcons: Array<Object>) => PutProductsImagesRequest} productIcons Product icons list.
  * @property {(productImagesSettings: Object) => PutProductsImagesRequest} productImagesSettings Product settings.
@@ -1983,45 +2002,48 @@
  * @property {(promotionName: String) => PostProductsMarketingPromotionRequest} promotionName Promotion name
  * @property {(shopsIds: Array<Integer>) => PostProductsMarketingPromotionRequest} shopsIds List of stores IDs When mask is determined, this parameter is omitted.
  * @property {(marketingZones: Object) => PostProductsMarketingPromotionRequest} marketingZones Special zones
- * @property {(newPriceSettings: Object) => PostProductsMarketingPromotionRequest} newPriceSettings #!KonfiguracjaCenyPromocyjnej!#
- * @property {(startDate: String) => PostProductsMarketingPromotionRequest} startDate #!DataRozpoczeciaWFormacieYMDHIS!#
- * @property {(endDate: String) => PostProductsMarketingPromotionRequest} endDate #!DataZakonczeniaWFormacieYMDHIS!#
+ * @property {(newPriceSettings: Object) => PostProductsMarketingPromotionRequest} newPriceSettings Promotional price settings
+ * @property {(startDate: String) => PostProductsMarketingPromotionRequest} startDate Promotion start date in Y-m-d H:i:s format
+ * @property {(endDate: String) => PostProductsMarketingPromotionRequest} endDate Promotion end date in Y-m-d H:i:s format
  * @property {(changeProductsToVisibleWhileStarting: 'y'|'n') => PostProductsMarketingPromotionRequest} changeProductsToVisibleWhileStarting Change the status of hidden products to visible while starting the special offer
  * @property {(removeProductsAfterStockLevelRunsDown: 'y'|'n') => PostProductsMarketingPromotionRequest} removeProductsAfterStockLevelRunsDown After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) 
- * @property {(reduceBasingPrice: 'net'|'gross') => PostProductsMarketingPromotionRequest} reduceBasingPrice #!ObnizNaPodstawieCenyNettoBrutto!#
+ * @property {(removeProductsAfterOwnStockLevelRunsDown: 'y'|'n') => PostProductsMarketingPromotionRequest} removeProductsAfterOwnStockLevelRunsDown After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) 
+ * @property {(reduceBasingPrice: 'net'|'gross') => PostProductsMarketingPromotionRequest} reduceBasingPrice Reduce based on price (net/gross)
  * @property {(calculationMethod: 'sum'|'chooseAdvantageous') => PostProductsMarketingPromotionRequest} calculationMethod Price reduction calculation method
- * @property {(promotionElements: Array<Object>) => PostProductsMarketingPromotionRequest} promotionElements #!ElementyNaJakieMaDzialacPromocja!#
+ * @property {(promotionElements: Array<Object>) => PostProductsMarketingPromotionRequest} promotionElements Elements to be affected by the promotion
  * @property {(elementType: 'product'|'series'|'producer'|'category'|'menu') => PostProductsMarketingPromotionRequest} elementType 
- * @property {(elementId: String) => PostProductsMarketingPromotionRequest} elementId #!IdentyfikatorElementuNaJakiOddzialujePromocja!#
+ * @property {(elementId: String) => PostProductsMarketingPromotionRequest} elementId Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId)
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
 /**
  * @typedef {Object} PutProductsMarketingPromotionRequest
- * @property {(promotionId: String) => PutProductsMarketingPromotionRequest} promotionId Special offer ID
+ * @property {(promotionId: String) => PutProductsMarketingPromotionRequest} promotionId Promotion ID
  * @property {(promotionName: String) => PutProductsMarketingPromotionRequest} promotionName Promotion name
  * @property {(shopsIds: Array<Integer>) => PutProductsMarketingPromotionRequest} shopsIds List of stores IDs When mask is determined, this parameter is omitted.
  * @property {(marketingZones: Object) => PutProductsMarketingPromotionRequest} marketingZones Special zones
- * @property {(newPriceSettings: Object) => PutProductsMarketingPromotionRequest} newPriceSettings #!KonfiguracjaCenyPromocyjnej!#
- * @property {(startDate: String) => PutProductsMarketingPromotionRequest} startDate #!DataRozpoczeciaWFormacieYMDHIS!#
- * @property {(endDate: String) => PutProductsMarketingPromotionRequest} endDate #!DataZakonczeniaWFormacieYMDHIS!#
+ * @property {(newPriceSettings: Object) => PutProductsMarketingPromotionRequest} newPriceSettings Promotional price settings
+ * @property {(startDate: String) => PutProductsMarketingPromotionRequest} startDate Promotion start date in Y-m-d H:i:s format
+ * @property {(endDate: String) => PutProductsMarketingPromotionRequest} endDate Promotion end date in Y-m-d H:i:s format
  * @property {(changeProductsToVisibleWhileStarting: 'y'|'n') => PutProductsMarketingPromotionRequest} changeProductsToVisibleWhileStarting Change the status of hidden products to visible while starting the special offer
  * @property {(removeProductsAfterStockLevelRunsDown: 'y'|'n') => PutProductsMarketingPromotionRequest} removeProductsAfterStockLevelRunsDown After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) 
- * @property {(reduceBasingPrice: 'net'|'gross') => PutProductsMarketingPromotionRequest} reduceBasingPrice #!ObnizNaPodstawieCenyNettoBrutto!#
+ * @property {(removeProductsAfterOwnStockLevelRunsDown: 'y'|'n') => PutProductsMarketingPromotionRequest} removeProductsAfterOwnStockLevelRunsDown After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) 
+ * @property {(reduceBasingPrice: 'net'|'gross') => PutProductsMarketingPromotionRequest} reduceBasingPrice Reduce based on price (net/gross)
  * @property {(calculationMethod: 'sum'|'chooseAdvantageous') => PutProductsMarketingPromotionRequest} calculationMethod Price reduction calculation method
- * @property {(removeAllPromotionElements: 'y'|'n') => PutProductsMarketingPromotionRequest} removeAllPromotionElements #!OkreslaCzyUsunacWszystkieDotychczasoweElementyPromocji!#
- * @property {(promotionElements: Array<Object>) => PutProductsMarketingPromotionRequest} promotionElements #!ElementyNaJakieMaDzialacPromocja!#
+ * @property {(removeAllPromotionElements: 'y'|'n') => PutProductsMarketingPromotionRequest} removeAllPromotionElements Specifies whether to remove all existing promotion elements
+ * @property {(promotionElements: Array<Object>) => PutProductsMarketingPromotionRequest} promotionElements Elements to be affected by the promotion
  * @property {(elementType: 'product'|'series'|'producer'|'category'|'menu') => PutProductsMarketingPromotionRequest} elementType 
- * @property {(elementId: String) => PutProductsMarketingPromotionRequest} elementId #!IdentyfikatorElementuNaJakiOddzialujePromocja!#
+ * @property {(elementId: String) => PutProductsMarketingPromotionRequest} elementId Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId)
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
 /**
  * @typedef {Object} GetProductsMarketingZonesRequest
- * @property {(products: Array<Object>) => GetProductsMarketingZonesRequest} products Products list.
- * @property {(productId: Integer, sizeId: Integer|String, type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product and size identifiers
+ * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsMarketingZonesRequest} identType 
+ * @property {(products: Array<String>) => GetProductsMarketingZonesRequest} products Products list.
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2041,8 +2063,9 @@
 
 /**
  * @typedef {Object} GetProductsOmnibusPricesRequest
- * @property {(products: Array<Object>) => GetProductsOmnibusPricesRequest} products Products list.
- * @property {(productId: Integer, sizeId: Integer|String, type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product and size identifiers
+ * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsOmnibusPricesRequest} identType 
+ * @property {(products: Array<String>) => GetProductsOmnibusPricesRequest} products Products list.
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2128,18 +2151,6 @@
  */
 
 /**
- * @typedef {Object} GetProductsParametersRequest
- * @property {(ids: Array<Integer>) => GetProductsParametersRequest} ids List of identifiers
- * @property {(textIds: Array<Object>) => GetProductsParametersRequest} textIds Element text ID - can be entered instead of "id".
- * @property {(languagesIds: Array<String>) => GetProductsParametersRequest} languagesIds List of languages
- * @property {(resultsPage: Integer) => GetProductsParametersRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => GetProductsParametersRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(page: Integer, limit: Integer) => GetProductsParametersRequest} page Define page number and maximum results per page
- * @property {() => Integer} count Returns total numer of results
- * @property {function} exec Excecute request
- */
-
-/**
  * @typedef {Object} PutProductsParametersRequest
  * @property {(items: Array<Object>) => PutProductsParametersRequest} items Sections, parameters or valued to add or edit.
  * @property {(settings: Object) => PutProductsParametersRequest} settings Settings
@@ -2150,9 +2161,22 @@
  * @property {(search_description: Array<Object>) => PutProductsParametersRequest} search_description Search descriptions of parameter value.
  * @property {(card_icons: Array<Object>) => PutProductsParametersRequest} card_icons Icons of section, parameter or value to display on the product card.
  * @property {(link_icons: Array<Object>) => PutProductsParametersRequest} link_icons Icons of section, parameter or value to display on the list of products.
- * @property {(context_id: String) => PutProductsParametersRequest} context_id Parameter's additional feature. 1. Status: context_id = "CONTEXT_STATE" Takes values context_value_id: - CONTEXT_STATE_NEW - New, - CONTEXT_STATE_USED - Used, - CONTEXT_STATE_REFURBISHED_BY_PRODUCER - Renewed by a manufacturer, - CONTEXT_STATE_REFURBISHED_BY_SELLER - Renewed by a seller, - CONTEXT_STATE_FOR_PARTS_OR_BROKEN - In parts or damaged. 2. Product weight in grams: context_id = "CONTEXT_STD_UNIT_WEIGHT" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 3. A product's value in milliliters: context_id = "CONTEXT_STD_UNIT_VOLUME" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 4. Sex: context_id = "CONTEXT_SEX" Takes values context_value_id: - CONTEXT_SEX_MAN - Man, - CONTEXT_SEX_WOMAN - Woman, - CONTEXT_SEX_UNISEX - Unisex. 5. Age group: context_id = "CONTEXT_AGE_GROUP" Takes values context_value_id: - CONTEXT_AGE_GROUP_ADULT - Adults, - CONTEXT_AGE_GROUP_MINOR - Children. 6. Maximum number of products in an order: context_id = "CONTEXT_MAX_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 7. Maximum number of products in a wholesale order: context_id = "CONTEXT_MAX_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 8. Minimal number of products in an order: context_id = "CONTEXT_MIN_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 9. Minimum number of products in a wholesale order: context_id = "CONTEXT_MIN_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 10. Maximal number of a single size in an order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 11. Maximal number of a single size in a wholesale order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 12. Minimal number of a single size in an order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 13. Minimal number of a single size in a wholesale order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 14. Net weight: context_id = "CONTEXT_WEIGHT_NET" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 15. Color: context_id = "CONTEXT_COLOR" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 16. #!TylkoDlaDoroslych!#: context_id = "CONTEXT_ONLY_ADULTS" Takes values context_value_id: - CONTEXT_ONLY_ADULTS_YES - yes, - CONTEXT_ONLY_ADULTS_NO - no. 17. Prescription drug: context_id = "CONTEXT_PRESCRIPTION_MEDICINE" Takes values context_value_id: - CONTEXT_PRESCRIPTION_MEDICINE_YES - yes, - CONTEXT_PRESCRIPTION_MEDICINE_NO - no. 18. Season Rate: context_id = "CONTEXT_SEASON" Takes values context_value_id: - CONTEXT_SEASON_SPRING - Spring, - CONTEXT_SEASON_SUMMER - Summer, - CONTEXT_SEASON_FALL - Autumn, - CONTEXT_SEASON_WINTER - Winter, - CONTEXT_SEASON_SPRING_SUMMER - Spring/Summer, - CONTEXT_SEASON_FALL_WINTER - Autumn/Winter.
+ * @property {(context_id: String) => PutProductsParametersRequest} context_id Parameter's additional feature. 1. Status: context_id = "CONTEXT_STATE" Takes values context_value_id: - CONTEXT_STATE_NEW - New, - CONTEXT_STATE_USED - Used, - CONTEXT_STATE_REFURBISHED_BY_PRODUCER - Renewed by a manufacturer, - CONTEXT_STATE_REFURBISHED_BY_SELLER - Renewed by a seller, - CONTEXT_STATE_FOR_PARTS_OR_BROKEN - In parts or damaged. 2. Product weight in grams: context_id = "CONTEXT_STD_UNIT_WEIGHT" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 3. A product's value in milliliters: context_id = "CONTEXT_STD_UNIT_VOLUME" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 4. Sex: context_id = "CONTEXT_SEX" Takes values context_value_id: - CONTEXT_SEX_MAN - Man, - CONTEXT_SEX_WOMAN - Woman, - CONTEXT_SEX_UNISEX - Unisex. 5. Age group: context_id = "CONTEXT_AGE_GROUP" Takes values context_value_id: - CONTEXT_AGE_GROUP_ADULT - Adults, - CONTEXT_AGE_GROUP_MINOR - Children. 6. Maximum number of products in an order: context_id = "CONTEXT_MAX_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 7. Maximum number of products in a wholesale order: context_id = "CONTEXT_MAX_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 8. Minimal number of products in an order: context_id = "CONTEXT_MIN_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 9. Minimum number of products in a wholesale order: context_id = "CONTEXT_MIN_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 10. Maximal number of a single size in an order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 11. Maximal number of a single size in a wholesale order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 12. Minimal number of a single size in an order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 13. Minimal number of a single size in a wholesale order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 14. Net weight: context_id = "CONTEXT_WEIGHT_NET" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 15. Color: context_id = "CONTEXT_COLOR" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 16. #!TylkoDlaDoroslych!#: context_id = "CONTEXT_ONLY_ADULTS" Takes values context_value_id: - CONTEXT_ONLY_ADULTS_YES - yes, - CONTEXT_ONLY_ADULTS_NO - no. 17. Prescription drug: context_id = "CONTEXT_PRESCRIPTION_MEDICINE" Takes values context_value_id: - CONTEXT_PRESCRIPTION_MEDICINE_YES - yes, - CONTEXT_PRESCRIPTION_MEDICINE_NO - no. 18. Season Rate: context_id = "CONTEXT_SEASON" Takes values context_value_id: - CONTEXT_SEASON_SPRING - Spring, - CONTEXT_SEASON_SUMMER - Summer, - CONTEXT_SEASON_FALL - Autumn, - CONTEXT_SEASON_WINTER - Winter, - CONTEXT_SEASON_SPRING_SUMMER - Spring/Summer, - CONTEXT_SEASON_FALL_WINTER - Autumn/Winter 19. Risk - signal word: context_id = \"CONTEXT_HAZMAT_SIGNAL\" Takes values context_value_id: - CONTEXT_HAZMAT_SIGNAL_DANGER - danger, - CONTEXT_HAZMAT_SIGNAL_WARNING - warnging, - CONTEXT_HAZMAT_SIGNAL_CAUTION - caution, - CONTEXT_HAZMAT_SIGNAL_NOTICE - notice, 20. Risk - warning pictogram context_id = \"CONTEXT_HAZMAT_PICTOGRAM\" Takes values context_value_id: - GHS01, GHS02, GHS03, GHS04, GHS05, GHS06, GHS07, GHS08, GHS09 21. Risk - type of hazard: context_id = \"CONTEXT_HAZMAT_STATEMENT\" Takes values context_value_id: - H200, H201, H202, H203, H204, H205, H220, H221, H222, H223, H224, H225, H226, H228, H240, H241, H242, H250, H251, H252, H260, H261, H270, H271, H272, H280, H281, H290, H300, H301, H302, H304, H310, H311, H312, H314, H315, H317, H318, H319, H330, H331, H332, H334, H335, H336, H340, H341, H350, H351, H360, H361, H362, H370, H371, H372, H373, H400, H410, H411, H412, H413, EUH 001, EUH 014, EUH 018, EUH 019, EUH 044, EUH 029, EUH 031, EUH 032, EUH 066, EUH 070, EUH 071, EUH 201, EUH 201A, EUH 202, EUH 203, EUH 204, EUH 205, EUH 206, EUH 207, EUH 208, EUH 209, EUH 209A, EUH 210, EUH 401 22. Repair score: context_id = \"CONTEXT_REPAIR_SCORE\" Takes values context_value_id: - The value of the additional feature is set automatically based on the parameter's value 23. Safety - information pictogram: context_id = \"CONTEXT_SAFETY_PICTOGRAM\" Takes values context_value_id: - 1 (Not suitable for small children) - 2 (CE mark) 24. Safety - type of warning: context_id = \"CONTEXT_SAFETY_STATEMENT\" Takes values context_value_id: - 1 (Not suitable for children under 3 years) - 2 (Keep out of the reach of children) - 3 (Product contains a button cell or coin battery) - 4 (Use under the direct supervision of adults) - 5 (Required protective gear. Do not use in public traffic) - 6 (Contains toy. Adult supervision recommended) - 7 (To prevent possible injury from entanglement, remove this toy as soon as the child begins to crawl) - 8 (Use only in shallow water under adult supervision) - 9 (Only use under adult supervision) - 10 (This toy does not provide protection) - 11 (Contains fragrances that may cause allergies) - 12 (For household use only).
  * @property {(context_value_id: String) => PutProductsParametersRequest} context_value_id value of additional feature - Values described in context_id.
  * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} SearchProductsParametersRequest
+ * @property {(ids: Array<Integer>) => SearchProductsParametersRequest} ids List of identifiers
+ * @property {(textIds: Array<Object>) => SearchProductsParametersRequest} textIds Element text ID - can be entered instead of "id".
+ * @property {(languagesIds: Array<String>) => SearchProductsParametersRequest} languagesIds List of languages
+ * @property {(parameterValueIds: Boolean) => SearchProductsParametersRequest} parameterValueIds Whether to return a list of parameter value IDs
+ * @property {(resultsPage: Integer) => SearchProductsParametersRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => SearchProductsParametersRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => SearchProductsParametersRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -2162,85 +2186,6 @@
  * @property {(productId: Integer) => DeleteProductsRequest} productId Product IAI code
  * @property {(productSizeCodeExternal: String) => DeleteProductsRequest} productSizeCodeExternal External product system code for size.
  * @property {function} append Append current data to array and start modifying next row
- * @property {function} exec Excecute request
- */
-
-/**
- * @typedef {Object} ListProductsRequest
- * @property {(dispatchSettings: Object) => ListProductsRequest} dispatchSettings 
- * @property {(returnProducts: String) => ListProductsRequest} returnProducts Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash.
- * @property {(returnElements: Array<String>) => ListProductsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions
- * @property {(productIsAvailable: String) => ListProductsRequest} productIsAvailable Product availability. Available values: "y" - available, "n" - unavailable.
- * @property {(productIsVisible: String) => ListProductsRequest} productIsVisible Product visibility in store Available values: "y" - Visible, "n" - Invisible.
- * @property {(productVersionId: Integer) => ListProductsRequest} productVersionId Product group ID
- * @property {(productInPromotion: String) => ListProductsRequest} productInPromotion Promoted product. Available values: "y" - promoted, "n" - not promoted.
- * @property {(productInDiscount: String) => ListProductsRequest} productInDiscount Product on sale. Available values: "y" - on sale, "n" - not on sale.
- * @property {(productInDistinguished: String) => ListProductsRequest} productInDistinguished Distinguished product. Available values: "y" - distinguished, "n" - not distinguished.
- * @property {(productInSpecial: String) => ListProductsRequest} productInSpecial Special product. Available values: "y" - #!specjalny!#, "n" - not special.
- * @property {(productInForPointsSelling: String) => ListProductsRequest} productInForPointsSelling Product available for points. Available values: "y" - Available for points, "n" - Unavailable for points.
- * @property {(productIsObservedByClients: String) => ListProductsRequest} productIsObservedByClients Observed product. Available values: "Y" - observed, "n" - not observed.
- * @property {(skipDefaultProduct: String) => ListProductsRequest} skipDefaultProduct Element determines if default product (with 0 ID, contains settings of newly added products) should be omitted Available values: "y" - omits default product, "n" - allows to download default product.
- * @property {(showPromotionsPrices: String) => ListProductsRequest} showPromotionsPrices The item specifies whether promotional prices are to be shown in price nodes. Available values: "y" - show promotional prices, "n" - do not show promotional prices. (default value)
- * @property {(categories: Array<Object>) => ListProductsRequest} categories List of categories in which sought products are present.
- * @property {(producers: Array<Object>) => ListProductsRequest} producers List of manufacturers assigned to sought products.
- * @property {(productParams: Array<Object>) => ListProductsRequest} productParams List of sought products. This parameter can be used, when there have been no other parameter entered productIndexes.
- * @property {(productIndexes: Array<Object>) => ListProductsRequest} productIndexes List of sought products by indexes.
- * @property {(productShops: Array<Object>) => ListProductsRequest} productShops Data of stores product is assigned to.
- * @property {(productPromotionsIds: Array<Integer>) => ListProductsRequest} productPromotionsIds List of special offers, sought products are assigned to.
- * @property {(productDate: Object) => ListProductsRequest} productDate Settings concerning narrowing list of products found by date.
- * @property {(productParametersParams: Array<Object>) => ListProductsRequest} productParametersParams Parameters
- * @property {(productSeriesParams: Array<Object>) => ListProductsRequest} productSeriesParams Series, sought products are assigned to.
- * @property {(productUnits: Array<Object>) => ListProductsRequest} productUnits List of units of measure assigned to sought products.
- * @property {(productWarranties: Array<Object>) => ListProductsRequest} productWarranties Narrowing list of products by set warranties.
- * @property {(deliverersIds: Array<Integer>) => ListProductsRequest} deliverersIds Suppliers, sought products are assigned to.
- * @property {(containsText: String) => ListProductsRequest} containsText Product contains text (searches in short and long description). 
- * @property {(containsCodePart: String) => ListProductsRequest} containsCodePart Product code or it's part (based on producer's code, external product system code and code that is visible on a product card). Search is accesible only with available products.
- * @property {(productAvailableInStocks: Object) => ListProductsRequest} productAvailableInStocks Product availability in stocks
- * @property {(productAvailableInAuctions: Object) => ListProductsRequest} productAvailableInAuctions Product availability on auctions
- * @property {(resultsPage: Integer) => ListProductsRequest} resultsPage Page with results number. Numeration starts from 0
- * @property {(resultsLimit: Integer) => ListProductsRequest} resultsLimit Number of results on page. Value from 1 to 100
- * @property {(ordersBy: Array<Object>) => ListProductsRequest} ordersBy Possibility of sorting returned list
- * @property {(productSearchingLangId: String) => ListProductsRequest} productSearchingLangId Language ID that allows to search and return data in chosen language. This parameter is optional. If it's lacking, she search process unfolds in all available languages.
- * @property {(productSearchingCurrencyId: String) => ListProductsRequest} productSearchingCurrencyId Currency ID allowing to search and browse products in given currency. This parameter is optional, when it's lacking, the search process unfolds in all available currencies. 
- * @property {(returnPricesCurrency: String) => ListProductsRequest} returnPricesCurrency Currency ID allowing for returning all product prices in an indicated currency
- * @property {(productHasNote: String) => ListProductsRequest} productHasNote Annotation contains text.
- * @property {(productInExportToPriceComparisonSites: String) => ListProductsRequest} productInExportToPriceComparisonSites Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - Selected, "assign_selected" - Enable the visibility of the product in the export to price comparison sites passed in the priceComparisonSites node. Price comparison sites previously assigned to the commodity will be retained, "unassign_selected" - Disable product visibility in exports to price comparison sites passed in the priceComparisonSites node, "n" - invisible.
- * @property {(productInExportToAmazonMarketplace: String) => ListProductsRequest} productInExportToAmazonMarketplace Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible.
- * @property {(selectedAmazonMarketplacesList: Array<String>) => ListProductsRequest} selectedAmazonMarketplacesList List of Amazon regional sites to which the product is exported (only in case of "selected" option)
- * @property {(productInBestseller: String) => ListProductsRequest} productInBestseller Product is bestseller. Available values: "n" - no, "y" - yes.
- * @property {(productInNew: String) => ListProductsRequest} productInNew Product is new. Available values: "y" - is new, "n" - is not new.
- * @property {(searchByShops: Object) => ListProductsRequest} searchByShops Shops
- * @property {(productSearchPriceRange: Object) => ListProductsRequest} productSearchPriceRange Price range for sought products.
- * @property {(productVatRates: Array<Number>) => ListProductsRequest} productVatRates VAT value for sought products
- * @property {(productIsVatFree: String) => ListProductsRequest} productIsVatFree Is product VAT-free Allowed values "y" - yes, "n" - no.
- * @property {(productHasWholesalePrice: String) => ListProductsRequest} productHasWholesalePrice Product has defined wholesale price. Available values: "y" - has wholesale price, "n" - does not have wholesale price.
- * @property {(productInPersistent: String) => ListProductsRequest} productInPersistent Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock.
- * @property {(returnProductsVersions: String) => ListProductsRequest} returnProductsVersions Settings of products returned with variants All products with variants are returned by default Available values: version_all - returns all variants, version_main - returns only main variant.
- * @property {(productInSumInBasket: String) => ListProductsRequest} productInSumInBasket Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no.
- * @property {(productType: Object) => ListProductsRequest} productType Product type. Allowed values: "product_item" - Goods, "product_packaging" - packaging, "product_bundle" - set. "product_collection" - collection. "product_service" - service. "product_virtual" - virtual product. "product_configurable" - configurable product.
- * @property {(productMenuItems: Object) => ListProductsRequest} productMenuItems An array of menu elements
- * @property {(productLocationId: Integer) => ListProductsRequest} productLocationId Warehouse location ID
- * @property {(productLocationTextId: String) => ListProductsRequest} productLocationTextId Warehouse location full path Use a backslash (\) as a separator, for example: M1\Section name\Location name If location_id parameter is provided, the full warehouse location path will not be taken into account
- * @property {(alwaysReturnProductShopSizesAttributes: Boolean) => ListProductsRequest} alwaysReturnProductShopSizesAttributes Return all size attributes regardless of whether product prices are the same as the base price or if they differ from it. Available values: 1 - all size attributes will be returned; 0 - only attributes of those sizes, where the prices will be different from the base price (default value) will be returned.
- * @property {(returnEmptyStocksWithReservation: Boolean) => ListProductsRequest} returnEmptyStocksWithReservation Returns reservation information regardless of inventory levels
- * @property {(picturesData: Object) => ListProductsRequest} picturesData Data for operations on individual photos
- * @property {(byMenus: Array<Integer>) => ListProductsRequest} byMenus Define menuItemsIds value nested inside productMenuItems
- * @property {(byShops: Array<Integer>) => ListProductsRequest} byShops Define shopsIds value nested inside searchByShops
- * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "added"|"finished"|"resumed"|"modified"|"quantity_changed"|"price_changed"|"modified_and_quantity_changed") => ListProductsRequest} dates Type of date according to the index results. Possible type values: added, finished, resumed, modified, quantity_changed, price_changed, modified_and_quantity_changed
- * @property {(elementName: "id"|"name"|"code"|"product_sizecode"|"code_producer"|"retail_price"|"pos_price"|"vat"|"wholesale_price"|"minimal_price"|"pictures_count"|"auction_name"|"pricecomparer_name"|"version_name"|"series_name"|"category_name"|"deliverer_name"|"adding_time"|"modification_time"|"price_changed_time"|"quantity_changed_time"|"currency"|"currency_shop"|"taxcode"|"meta_title"|"meta_description"|"meta_keywords"|"suggested_price"|"observed_clients"|"observed_time"|"wishes_clients"|"wishes_time", descending: Boolean) => ListProductsRequest} orderBy Define sorting by element and direction
- * @property {(shops: Array<Integer>) => ListProductsRequest} shops Define productShops by passing array of values
- * @property {(ids: Array<Integer>) => ListProductsRequest} ids Define productParams by passing array of values
- * @property {(byProducers: Array<Integer>) => ListProductsRequest} byProducers Define producers by passing array of values
- * @property {(byCategories: Array<Integer>) => ListProductsRequest} byCategories Define categories by passing array of values
- * @property {(byUnits: Array<Integer>) => ListProductsRequest} byUnits Define productUnits by passing array of values
- * @property {(bySeries: Array<Integer>) => ListProductsRequest} bySeries Define productSeriesParams by passing array of values
- * @property {(byWarranties: Array<Integer>) => ListProductsRequest} byWarranties Define productWarranties by passing array of values
- * @property {(byIndexes: Array<Integer>) => ListProductsRequest} byIndexes Define productIndexes by passing array of values
- * @property {(onlyMain: Boolean) => ListProductsRequest} onlyMainVersion Toogle to return only main versions
- * @property {(minPrice: Number, maxPrice: Number, priceType: "retail_price"|"wholesale_price"|"minimal_price"|"pos_price"|"last_purchase_price") => ListProductsRequest} byPrice Filter by minimum and maximym price
- * @property {(stockIds: Boolean|Array<Integer>) => ListProductsRequest} inStock Filter by availibility on any stock or selected stocks
- * @property {(page: Integer, limit: Integer) => ListProductsRequest} page Define page number and maximum results per page
- * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -2331,6 +2276,8 @@
  * @property {(standardUnit: Object) => PostProductsRequest} standardUnit Standard unit settings
  * @property {(minQuantityPerOrder: Object) => PostProductsRequest} minQuantityPerOrder Minimal number of products in an order
  * @property {(productDimensions: Object) => PostProductsRequest} productDimensions Dimensions and overall weight
+ * @property {(responsibleProducerCode: String) => PostProductsRequest} responsibleProducerCode Responsible producer code
+ * @property {(responsiblePersonCode: String) => PostProductsRequest} responsiblePersonCode Responsible person code
  * @property {function} append Append current data to array and start modifying next row
  * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PostProductsRequest} setText Set various types of names or descriptions to the product
  * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PostProductsRequest} addPrice Increases product price by amount
@@ -2472,6 +2419,8 @@
  * @property {(dynamicPricingEnabled: String) => PutProductsRequest} dynamicPricingEnabled 
  * @property {(clearStockQuantities: Object) => PutProductsRequest} clearStockQuantities The setting allows you to reset the inventory to zero
  * @property {(productDimensions: Object) => PutProductsRequest} productDimensions Dimensions and overall weight
+ * @property {(responsibleProducerCode: String) => PutProductsRequest} responsibleProducerCode Responsible producer code
+ * @property {(responsiblePersonCode: String) => PutProductsRequest} responsiblePersonCode Responsible person code
  * @property {function} append Append current data to array and start modifying next row
  * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PutProductsRequest} setText Set various types of names or descriptions to the product
  * @property {() => PutProductsRequest} editMode Set edit mode - disables adding new product
@@ -2480,6 +2429,87 @@
  * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PutProductsRequest} setPrice Sets product price by amount
  * @property {(shopId: Integer, menuIds: Integer) => PutProductsRequest} setMenu Sets product selected IDs
  * @property {(picturesArray: Array<String>) => PutProductsRequest} pictures Sets list of pictures attached to product
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} SearchProductsRequest
+ * @property {(dispatchSettings: Object) => SearchProductsRequest} dispatchSettings 
+ * @property {(returnProducts: String) => SearchProductsRequest} returnProducts Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash.
+ * @property {(returnElements: Array<String>) => SearchProductsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode
+ * @property {(productIsAvailable: String) => SearchProductsRequest} productIsAvailable Product availability. Available values: "y" - available, "n" - unavailable.
+ * @property {(productIsVisible: String) => SearchProductsRequest} productIsVisible Product visibility in store Available values: "y" - Visible, "n" - Invisible.
+ * @property {(productVersionId: Integer) => SearchProductsRequest} productVersionId Product group ID
+ * @property {(productInPromotion: String) => SearchProductsRequest} productInPromotion Promoted product. Available values: "y" - promoted, "n" - not promoted.
+ * @property {(productInDiscount: String) => SearchProductsRequest} productInDiscount Product on sale. Available values: "y" - on sale, "n" - not on sale.
+ * @property {(productInDistinguished: String) => SearchProductsRequest} productInDistinguished Distinguished product. Available values: "y" - distinguished, "n" - not distinguished.
+ * @property {(productInSpecial: String) => SearchProductsRequest} productInSpecial Special product. Available values: "y" - #!specjalny!#, "n" - not special.
+ * @property {(productInForPointsSelling: String) => SearchProductsRequest} productInForPointsSelling Product available for points. Available values: "y" - Available for points, "n" - Unavailable for points.
+ * @property {(productIsObservedByClients: String) => SearchProductsRequest} productIsObservedByClients Observed product. Available values: "Y" - observed, "n" - not observed.
+ * @property {(skipDefaultProduct: String) => SearchProductsRequest} skipDefaultProduct Element determines if default product (with 0 ID, contains settings of newly added products) should be omitted Available values: "y" - omits default product, "n" - allows to download default product.
+ * @property {(showPromotionsPrices: String) => SearchProductsRequest} showPromotionsPrices The item specifies whether promotional prices are to be shown in price nodes. Available values: "y" - show promotional prices, "n" - do not show promotional prices. (default value)
+ * @property {(categories: Array<Object>) => SearchProductsRequest} categories List of categories in which sought products are present.
+ * @property {(producers: Array<Object>) => SearchProductsRequest} producers List of manufacturers assigned to sought products.
+ * @property {(productParams: Array<Object>) => SearchProductsRequest} productParams List of sought products. This parameter can be used, when there have been no other parameter entered productIndexes.
+ * @property {(productIndexes: Array<Object>) => SearchProductsRequest} productIndexes List of sought products by indexes.
+ * @property {(productShops: Array<Object>) => SearchProductsRequest} productShops Data of stores product is assigned to.
+ * @property {(productPromotionsIds: Array<Integer>) => SearchProductsRequest} productPromotionsIds List of special offers, sought products are assigned to.
+ * @property {(productDate: Object) => SearchProductsRequest} productDate Settings concerning narrowing list of products found by date.
+ * @property {(productParametersParams: Array<Object>) => SearchProductsRequest} productParametersParams Parameters
+ * @property {(productSeriesParams: Array<Object>) => SearchProductsRequest} productSeriesParams Series, sought products are assigned to.
+ * @property {(productUnits: Array<Object>) => SearchProductsRequest} productUnits List of units of measure assigned to sought products.
+ * @property {(productWarranties: Array<Object>) => SearchProductsRequest} productWarranties Narrowing list of products by set warranties.
+ * @property {(deliverersIds: Array<Integer>) => SearchProductsRequest} deliverersIds Suppliers, sought products are assigned to.
+ * @property {(containsText: String) => SearchProductsRequest} containsText Product contains text (searches in short and long description). 
+ * @property {(containsCodePart: String) => SearchProductsRequest} containsCodePart Product code or it's part (based on producer's code, external product system code and code that is visible on a product card). Search is accesible only with available products.
+ * @property {(productAvailableInStocks: Object) => SearchProductsRequest} productAvailableInStocks Product availability in stocks
+ * @property {(productAvailableInAuctions: Object) => SearchProductsRequest} productAvailableInAuctions Product availability on auctions
+ * @property {(resultsPage: Integer) => SearchProductsRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => SearchProductsRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(ordersBy: Array<Object>) => SearchProductsRequest} ordersBy Possibility of sorting returned list
+ * @property {(productSearchingLangId: String) => SearchProductsRequest} productSearchingLangId Language ID that allows to search and return data in chosen language. This parameter is optional. If it's lacking, she search process unfolds in all available languages.
+ * @property {(productSearchingCurrencyId: String) => SearchProductsRequest} productSearchingCurrencyId Currency ID allowing to search and browse products in given currency. This parameter is optional, when it's lacking, the search process unfolds in all available currencies. 
+ * @property {(returnPricesCurrency: String) => SearchProductsRequest} returnPricesCurrency Currency ID allowing for returning all product prices in an indicated currency
+ * @property {(productHasNote: String) => SearchProductsRequest} productHasNote Annotation contains text.
+ * @property {(productInExportToPriceComparisonSites: String) => SearchProductsRequest} productInExportToPriceComparisonSites Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - Selected, "assign_selected" - Enable the visibility of the product in the export to price comparison sites passed in the priceComparisonSites node. Price comparison sites previously assigned to the commodity will be retained, "unassign_selected" - Disable product visibility in exports to price comparison sites passed in the priceComparisonSites node, "n" - invisible.
+ * @property {(productInExportToAmazonMarketplace: String) => SearchProductsRequest} productInExportToAmazonMarketplace Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible.
+ * @property {(selectedAmazonMarketplacesList: Array<String>) => SearchProductsRequest} selectedAmazonMarketplacesList List of Amazon regional sites to which the product is exported (only in case of "selected" option)
+ * @property {(productInBestseller: String) => SearchProductsRequest} productInBestseller Product is bestseller. Available values: "n" - no, "y" - yes.
+ * @property {(productInNew: String) => SearchProductsRequest} productInNew Product is new. Available values: "y" - is new, "n" - is not new.
+ * @property {(searchByShops: Object) => SearchProductsRequest} searchByShops Shops
+ * @property {(productSearchPriceRange: Object) => SearchProductsRequest} productSearchPriceRange Price range for sought products.
+ * @property {(productVatRates: Array<Number>) => SearchProductsRequest} productVatRates VAT value for sought products
+ * @property {(productIsVatFree: String) => SearchProductsRequest} productIsVatFree Is product VAT-free Allowed values "y" - yes, "n" - no.
+ * @property {(productHasWholesalePrice: String) => SearchProductsRequest} productHasWholesalePrice Product has defined wholesale price. Available values: "y" - has wholesale price, "n" - does not have wholesale price.
+ * @property {(productInPersistent: String) => SearchProductsRequest} productInPersistent Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock.
+ * @property {(returnProductsVersions: String) => SearchProductsRequest} returnProductsVersions Settings of products returned with variants All products with variants are returned by default Available values: version_all - returns all variants, version_main - returns only main variant.
+ * @property {(productInSumInBasket: String) => SearchProductsRequest} productInSumInBasket Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no.
+ * @property {(productType: Object) => SearchProductsRequest} productType Product type. Allowed values: "product_item" - Goods, "product_packaging" - packaging, "product_bundle" - set. "product_collection" - collection. "product_service" - service. "product_virtual" - virtual product. "product_configurable" - configurable product.
+ * @property {(productMenuItems: Object) => SearchProductsRequest} productMenuItems An array of menu elements
+ * @property {(productLocationId: Integer) => SearchProductsRequest} productLocationId Warehouse location ID
+ * @property {(productLocationTextId: String) => SearchProductsRequest} productLocationTextId Warehouse location full path Use a backslash (\) as a separator, for example: M1\Section name\Location name If location_id parameter is provided, the full warehouse location path will not be taken into account
+ * @property {(alwaysReturnProductShopSizesAttributes: Boolean) => SearchProductsRequest} alwaysReturnProductShopSizesAttributes Return all size attributes regardless of whether product prices are the same as the base price or if they differ from it. Available values: 1 - all size attributes will be returned; 0 - only attributes of those sizes, where the prices will be different from the base price (default value) will be returned.
+ * @property {(returnEmptyStocksWithReservation: Boolean) => SearchProductsRequest} returnEmptyStocksWithReservation Returns reservation information regardless of inventory levels
+ * @property {(picturesData: Object) => SearchProductsRequest} picturesData Data for operations on individual photos
+ * @property {(responsibleProducerCode: String) => SearchProductsRequest} responsibleProducerCode Responsible producer code
+ * @property {(responsiblePersonCode: String) => SearchProductsRequest} responsiblePersonCode Responsible person code
+ * @property {(byMenus: Array<Integer>) => SearchProductsRequest} byMenus Define menuItemsIds value nested inside productMenuItems
+ * @property {(byShops: Array<Integer>) => SearchProductsRequest} byShops Define shopsIds value nested inside searchByShops
+ * @property {(dateFrom: DateLike, dateTo: DateLike, dateType: "added"|"finished"|"resumed"|"modified"|"quantity_changed"|"price_changed"|"modified_and_quantity_changed") => SearchProductsRequest} dates Type of date according to the index results. Possible type values: added, finished, resumed, modified, quantity_changed, price_changed, modified_and_quantity_changed
+ * @property {(elementName: "id"|"name"|"code"|"product_sizecode"|"code_producer"|"retail_price"|"pos_price"|"vat"|"wholesale_price"|"minimal_price"|"pictures_count"|"auction_name"|"pricecomparer_name"|"version_name"|"series_name"|"category_name"|"deliverer_name"|"adding_time"|"modification_time"|"price_changed_time"|"quantity_changed_time"|"currency"|"currency_shop"|"taxcode"|"meta_title"|"meta_description"|"meta_keywords"|"suggested_price"|"observed_clients"|"observed_time"|"wishes_clients"|"wishes_time", descending: Boolean) => SearchProductsRequest} orderBy Define sorting by element and direction
+ * @property {(shops: Array<Integer>) => SearchProductsRequest} shops Define productShops by passing array of values
+ * @property {(ids: Array<Integer>) => SearchProductsRequest} ids Define productParams by passing array of values
+ * @property {(byProducers: Array<Integer>) => SearchProductsRequest} byProducers Define producers by passing array of values
+ * @property {(byCategories: Array<Integer>) => SearchProductsRequest} byCategories Define categories by passing array of values
+ * @property {(byUnits: Array<Integer>) => SearchProductsRequest} byUnits Define productUnits by passing array of values
+ * @property {(bySeries: Array<Integer>) => SearchProductsRequest} bySeries Define productSeriesParams by passing array of values
+ * @property {(byWarranties: Array<Integer>) => SearchProductsRequest} byWarranties Define productWarranties by passing array of values
+ * @property {(byIndexes: Array<Integer>) => SearchProductsRequest} byIndexes Define productIndexes by passing array of values
+ * @property {(onlyMain: Boolean) => searchProductsRequest} onlyMainVersion Toogle to return only main versions
+ * @property {(minPrice: Number, maxPrice: Number, priceType: "retail_price"|"wholesale_price"|"minimal_price"|"pos_price"|"last_purchase_price") => searchProductsRequest} byPrice Filter by minimum and maximym price
+ * @property {(stockIds: Boolean|Array<Integer>) => searchProductsRequest} inStock Filter by availibility on any stock or selected stocks
+ * @property {(page: Integer, limit: Integer) => SearchProductsRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -2550,10 +2580,9 @@
 
 /**
  * @typedef {Object} GetProductsReservationsRequest
- * @property {(productsIdents: Array<Object>) => GetProductsReservationsRequest} productsIdents Products list.
- * @property {(ids: Array<Integer>) => GetProductsReservationsRequest} ids Define productsIdents by passing array of values
- * @property {(externalCodes: Array<String>) => GetProductsReservationsRequest} externalCodes Define productsIdents by passing array of values
- * @property {(producerCodes: Array<String>) => GetProductsReservationsRequest} producerCodes Define productsIdents by passing array of values
+ * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsReservationsRequest} identType 
+ * @property {(products: Array<String>) => GetProductsReservationsRequest} products Products list.
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2660,10 +2689,9 @@
 
 /**
  * @typedef {Object} GetProductsStocksRequest
- * @property {(products: Array<Object>) => GetProductsStocksRequest} products Products list.
- * @property {(ids: Array<Integer>) => GetProductsStocksRequest} ids Define products by passing array of values
- * @property {(externalCodes: Array<String>) => GetProductsStocksRequest} externalCodes Define products by passing array of values
- * @property {(producerCodes: Array<String>) => GetProductsStocksRequest} producerCodes Define products by passing array of values
+ * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStocksRequest} identType 
+ * @property {(products: Array<String>) => GetProductsStocksRequest} products Products list.
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2680,19 +2708,15 @@
 
 /**
  * @typedef {Object} GetProductsStrikethroughPricesRequest
- * @property {(products: Array<Object>) => GetProductsStrikethroughPricesRequest} products Products list.
- * @property {(productId: Integer, sizeId: Integer|String, type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product and size identifiers
+ * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} identType 
+ * @property {(products: Array<String>) => GetProductsStrikethroughPricesRequest} products Products list.
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
 /**
  * @typedef {Object} PutProductsStrikethroughPricesRequest
  * @property {(products: Array<Object>) => PutProductsStrikethroughPricesRequest} products Products list.
- * @property {(ident: Object) => PutProductsStrikethroughPricesRequest} ident Identifier type.
- * @property {(sizes: Array<Object>) => PutProductsStrikethroughPricesRequest} sizes List of sizes
- * @property {(stp_settings: Object) => PutProductsStrikethroughPricesRequest} stp_settings 
- * @property {(shops: Array<Object>) => PutProductsStrikethroughPricesRequest} shops Strikethrough price settings for the page.
- * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2812,6 +2836,62 @@
  */
 
 /**
+ * @typedef {Object} GetResponsibilityEntitiesRequest
+ * @property {(code: Array<String>) => GetResponsibilityEntitiesRequest} code List of codes
+ * @property {(type: String) => GetResponsibilityEntitiesRequest} type Type of entity
+ * @property {(resultsPage: Integer) => GetResponsibilityEntitiesRequest} resultsPage Page with results number. Numeration starts from 0
+ * @property {(resultsLimit: Integer) => GetResponsibilityEntitiesRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostResponsibilityEntitiesRequest
+ * @property {(entities: Array<Object>) => PostResponsibilityEntitiesRequest} entities 
+ * @property {(type: 'producer'|'person') => PostResponsibilityEntitiesRequest} type Type of entity
+ * @property {(id: Integer) => PostResponsibilityEntitiesRequest} id Identificator of the entity.
+ * @property {(code: String) => PostResponsibilityEntitiesRequest} code Short name/code.
+ * @property {(name: String) => PostResponsibilityEntitiesRequest} name Full name.
+ * @property {(mail: String) => PostResponsibilityEntitiesRequest} mail E-mail address.
+ * @property {(street: String) => PostResponsibilityEntitiesRequest} street Street.
+ * @property {(number: String) => PostResponsibilityEntitiesRequest} number Building number.
+ * @property {(subnumber: String) => PostResponsibilityEntitiesRequest} subnumber Apartment number.
+ * @property {(zipcode: String) => PostResponsibilityEntitiesRequest} zipcode Zipcode.
+ * @property {(city: String) => PostResponsibilityEntitiesRequest} city City.
+ * @property {(country: String) => PostResponsibilityEntitiesRequest} country 2-letter ISO country code.
+ * @property {(phone: String) => PostResponsibilityEntitiesRequest} phone Phone number.
+ * @property {(description: String) => PostResponsibilityEntitiesRequest} description Additional description.
+ * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PutResponsibilityEntitiesRequest
+ * @property {(entities: Array<Object>) => PutResponsibilityEntitiesRequest} entities 
+ * @property {(type: 'producer'|'person') => PutResponsibilityEntitiesRequest} type Type of entity
+ * @property {(id: Integer) => PutResponsibilityEntitiesRequest} id Identificator of the entity.
+ * @property {(code: String) => PutResponsibilityEntitiesRequest} code Short name/code.
+ * @property {(name: String) => PutResponsibilityEntitiesRequest} name Full name.
+ * @property {(mail: String) => PutResponsibilityEntitiesRequest} mail E-mail address.
+ * @property {(street: String) => PutResponsibilityEntitiesRequest} street Street.
+ * @property {(number: String) => PutResponsibilityEntitiesRequest} number Building number.
+ * @property {(subnumber: String) => PutResponsibilityEntitiesRequest} subnumber Apartment number.
+ * @property {(zipcode: String) => PutResponsibilityEntitiesRequest} zipcode Zipcode.
+ * @property {(city: String) => PutResponsibilityEntitiesRequest} city City.
+ * @property {(country: String) => PutResponsibilityEntitiesRequest} country 2-letter ISO country code.
+ * @property {(phone: String) => PutResponsibilityEntitiesRequest} phone Phone number.
+ * @property {(description: String) => PutResponsibilityEntitiesRequest} description Additional description.
+ * @property {function} append Append current data to array and start modifying next row
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} DeleteResponsibilityEntitiesRequest
+ * @property {(code: Array<String>) => DeleteResponsibilityEntitiesRequest} code List of codes
+ * @property {(type: String) => DeleteResponsibilityEntitiesRequest} type Type of entity
+ * @property {function} exec Excecute request
+ */
+
+/**
  * @typedef {Object} GetReturnsRequest
  * @property {(order_sn: Integer) => GetReturnsRequest} order_sn Search by the order serial number to which a return was added.
  * @property {(return_id: Integer) => GetReturnsRequest} return_id Search by return ID.
@@ -2856,8 +2936,13 @@
 /**
  * @typedef {Object} PutReturnsRequest
  * @property {(returns: Array<Object>) => PutReturnsRequest} returns 
- * @property {(id: Integer) => PutReturnsRequest} id Returns ID.
- * @property {(api_flag: Object) => PutReturnsRequest} api_flag 
+ * @property {(id: Integer) => PutReturnsRequest} id 
+ * @property {(status: Integer) => PutReturnsRequest} status 
+ * @property {(apiFlag: Object) => PutReturnsRequest} apiFlag Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program.
+ * @property {(products: Array<Object>) => PutReturnsRequest} products Products list.
+ * @property {(userNote: String) => PutReturnsRequest} userNote 
+ * @property {(clientNote: String) => PutReturnsRequest} clientNote Notes from customer.
+ * @property {(tryCorrectInvoice: Boolean) => PutReturnsRequest} tryCorrectInvoice 
  * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
@@ -2909,6 +2994,16 @@
 
 /**
  * @typedef {Object} GetRmaStatusesRequest
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetShopsCurrenciesRequest
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} GetShopsLanguagesRequest
  * @property {function} exec Excecute request
  */
 
@@ -3486,7 +3581,7 @@
  * @property {GetClientsRequest} getClients Method that enables extracting customer account details.
  * @property {PostClientsRequest} postClients Method that enables adding new customer accounts to the IdoSell Shop administration panel.
  * @property {PutClientsRequest} putClients Method enables modifying existing customer account data.
- * @property {GetClientsCrmRequest} getClientsCrm The method allows to download information about customers from the CRM module assigned to stores to which the user has rights.
+ * @property {SearchClientsCrmRequest} searchClientsCrm The method allows to download information about customers from the CRM module assigned to stores to which the user has rights.
  * @property {DeleteClientsDeliveryAddressRequest} deleteClientsDeliveryAddress The method allows you to delete unused delivery addresses for customer accounts in the IdoSell Shop administration panel
  * @property {GetClientsDeliveryAddressRequest} getClientsDeliveryAddress Method that enables extracting information about delivery addresses assigned to existing customer accounts.
  * @property {PostClientsDeliveryAddressRequest} postClientsDeliveryAddress Method that enables adding delivery address details to existing customer accounts.
@@ -3494,15 +3589,15 @@
  * @property {PutClientsExternalCodeRequest} putClientsExternalCode Method that enables setting external system codes for existing customer accounts.
  * @property {PutClientsGiftcardsBlockRequest} putClientsGiftcardsBlock Enables gift card blocking
  * @property {DeleteClientsGiftcardsRequest} deleteClientsGiftcards Enables deleting a single or a list of gift cards
- * @property {GetClientsGiftcardsRequest} getClientsGiftcards Enables searching for gift cards and retrieving information about indicated gift cards
  * @property {PostClientsGiftcardsRequest} postClientsGiftcards Enables adding new gift cards with the selected card type
  * @property {PutClientsGiftcardsRequest} putClientsGiftcards Enables editing gift parameters, e.g. changing its balance, validity date, number or PIN
+ * @property {SearchClientsGiftcardsRequest} searchClientsGiftcards Enables searching for gift cards and retrieving information about indicated gift cards
  * @property {GetClientsGiftcardsTypesRequest} getClientsGiftcardsTypes Allows for downloading all types of gift cards defined in the administration panel
  * @property {PutClientsGiftcardsUnblockRequest} putClientsGiftcardsUnblock Enables gift card unblocking
  * @property {GetClientsMembershipCardsRequest} getClientsMembershipCards Method that enables extracting information about loyalty cards available in the administration panel.
  * @property {PutClientsMembershipCardsRequest} putClientsMembershipCards Method that enables assigning loyalty cards to customer accounts.
- * @property {GetClientsNewsletterEmailSMSRequest} getClientsNewsletterEmailSMS Method that enables extracting a list of customer accounts that agreed / did not agree to receiving text message newsletters.
- * @property {GetClientsNewsletterEmailShopsRequest} getClientsNewsletterEmailShops Method that enables extracting a list of customer accounts that agreed / did not agree to receiving email newsletters.
+ * @property {SearchClientsNewsletterEmailRequest} searchClientsNewsletterEmail Method that enables extracting a list of customer accounts that agreed / did not agree to receiving email newsletters.
+ * @property {SearchClientsNewsletterSmsRequest} searchClientsNewsletterSms Method that enables extracting a list of customer accounts that agreed / did not agree to receiving text message newsletters.
  * @property {DeleteClientsPayerAddressRequest} deleteClientsPayerAddress The method allows you to delete unused buyer addresses for customer accounts in the IdoSell Shop administration panel
  * @property {GetClientsPayerAddressRequest} getClientsPayerAddress The method allows to retrieve buyer's addresses from sales documents, for existing customer accounts in the IdoSell administration panel.
  * @property {PostClientsPayerAddressRequest} postClientsPayerAddress The method allows to add buyer's addresses to sales documents, for existing customer accounts in the IdoSell administration panel.
@@ -3523,6 +3618,7 @@
  * @property {GetClientsProfitPointsRequest} getClientsProfitPoints Method that enables extracting information about the amount of loyalty points collected by customers in a loyalty program.
  * @property {PostClientsProfitPointsRequest} postClientsProfitPoints Method that allows for adding loyalty points to the balances of existing customer accounts.
  * @property {GetClientsProvinceListRequest} getClientsProvinceList The method allows to retrieve the list of administrative regions available in the IdoSell administration panel.
+ * @property {DeleteClientsRequest} deleteClients This call is used to remove client's personal data and blocks the account.
  * @property {DeleteClientsTagsClearRequest} deleteClientsTagsClear Use this method to delete all tags assigned to a customer
  * @property {DeleteClientsTagsRequest} deleteClientsTags Use this method to delete selected tags assigned to a customer
  * @property {GetClientsTagsRequest} getClientsTags Use this method to retrieve all tags assigned to a client
@@ -3594,12 +3690,12 @@
  * @property {GetOrdersImagesRequest} getOrdersImages Method allows downloading image attachment data from the details of the specified order.
  * @property {PostOrdersImagesRequest} postOrdersImages Method allows to add image attachments to the details of the specified order.
  * @property {GetOrdersLabelsRequest} getOrdersLabels The method is used to generate parcels and printouts for a courier.
- * @property {GetOrdersOpinionsRequest} getOrdersOpinions The method allows for downloading information about reviews issued for orders available in the IdoSell Shop administration panel.
+ * @property {SearchOrdersOpinionsRequest} searchOrdersOpinions The method allows for downloading information about reviews issued for orders available in the IdoSell Shop administration panel.
  * @property {GetOrdersOpinionsRateRequest} getOrdersOpinionsRate Evaluation of the usefulness of opinions issued for orders.
- * @property {ListOrdersRequest} listOrders Method that enables extracting information about orders present in the IdoSell Shop administration panel.
  * @property {GetOrdersRequest} getOrders Method that enables extracting information about orders present in the IdoSell Shop administration panel.
  * @property {PostOrdersRequest} postOrders Method that is used for adding new retail or wholesale orders to a shop in the administration panel.
  * @property {PutOrdersRequest} putOrders Method that enables editing an order in the administration panel. It allows, for example, to change the products included in the order or change its status.
+ * @property {SearchOrdersRequest} searchOrders Method that enables extracting information about orders present in the IdoSell Shop administration panel.
  * @property {GetOrdersPackagesRequest} getOrdersPackages Method that enables getting a list of parcels assigned to an order.
  * @property {PostOrdersPackagesRequest} postOrdersPackages Method that enables editing parcels already assigned to an order.
  * @property {PutOrdersPackagesRequest} putOrdersPackages Method that enables editing parcels already assigned to an order.
@@ -3609,14 +3705,14 @@
  * @property {PutOrdersProfitMarginRequest} putOrdersProfitMargin Method that enables setting price margins for products in an order.
  * @property {GetOrdersProfitabilityRequest} getOrdersProfitability The method is used to retrieve information about the profitability of an order
  * @property {PutOrdersShippingCostsRequest} putOrdersShippingCosts Method that enables editing the delivery costs for an order in the administration panel.
- * @property {ListOrdersUnfinishedRequest} listOrdersUnfinished It allows you to download information about unclosed orders located in the store's administration panel. Orders with a status of false and lost are considered closed. Orders with a status of false and lost are considered closed.
+ * @property {SearchOrdersUnfinishedRequest} searchOrdersUnfinished It allows you to download information about unclosed orders located in the store's administration panel. Orders with a status of false and lost are considered closed. Orders with a status of false and lost are considered closed.
  * @property {GetOrdersWarehouseRequest} getOrdersWarehouse Method that enables getting information about which warehouse an order is being handled from.
  * @property {PutOrdersWarehouseRequest} putOrdersWarehouse Method that enables setting which warehouse an order is handled from.
  * @property {GetPackagesLabelsRequest} getPackagesLabels The method allows you to download labels for the courier from orders, complaints and returns.
  * @property {PostPackagesLabelsRequest} postPackagesLabels The method is used to generate shipments and printouts for the courier in orders, complaints and returns. When generating a label with a default courier configuration, it is not necessary to complete the shipment configuration options. To generate a custom label, you must additionally forward the shipment configuration options available to the courier in a given event (parcelParameters node). Completable configuration options can be checked using the getPackages method.
- * @property {GetPackagesRequest} getPackages Method that enables getting a list of parcels assigned to an order.
  * @property {PostPackagesRequest} postPackages Method that enables adding parcels to an order.
  * @property {PutPackagesRequest} putPackages Method that enables editing parcels already assigned to an order.
+ * @property {SearchPackagesRequest} searchPackages Method that enables getting a list of parcels assigned to an order.
  * @property {PostPaymentsCancelRequest} postPaymentsCancel Method that enables cancelling payments for orders in the administration panel.
  * @property {PostPaymentsCashbackRequest} postPaymentsCashback The method allows to send refund requests (so called cashback) for payments managed by external payment systems which have such option available..
  * @property {PutPaymentsConfirmRequest} putPaymentsConfirm Method that enables accepting payments for orders in the administration panel.
@@ -3642,14 +3738,14 @@
  * @property {PutProductsBundlesRenewRequest} putProductsBundlesRenew the renewProductsInBundle method allows you to rebuild components of Sets existing in the administration panel 
  * @property {GetProductsCategoriesRequest} getProductsCategories Method that returns information about categories configured in the administration panel.
  * @property {PutProductsCategoriesRequest} putProductsCategories Method that enables adding new categories to the administration panel as well editing and deleting of existing categories.
- * @property {GetProductsCategoriesIdosellRequest} getProductsCategoriesIdosell Method returns information about IdoSell Categories available in store.
+ * @property {SearchProductsCategoriesIdosellRequest} searchProductsCategoriesIdosell Method returns information about IdoSell Categories available in store.
  * @property {GetProductsCodeExistenceRequest} getProductsCodeExistence The method allows to check if a product with the given identification code (panel ID, IAI code, manufacturer code, external system code) exists in the panel.
  * @property {PostProductsCollectionsRequest} postProductsCollections createCollection method allows to create a new product with a type: collection and to assign existing products as a collection components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
  * @property {DeleteProductsCollectionsProductsRequest} deleteProductsCollectionsProducts removeProductsFromCollection method allows to remove indicated collection components
  * @property {PostProductsCollectionsProductsRequest} postProductsCollectionsProducts addProductsToCollection method allows to add components to existing collections in the administration panel
  * @property {PutProductsCollectionsProductsRequest} putProductsCollectionsProducts setProductsQuantityInCollection method allows to indicate quantity of a collection component
  * @property {PutProductsCollectionsRenewRequest} putProductsCollectionsRenew the renewProductsInCollection method allows you to rebuild existing components of Collections in the administration panel 
- * @property {GetProductsDeliveryTimeRequest} getProductsDeliveryTime The method returns the time needed to prepare the product for shipment
+ * @property {SearchProductsDeliveryTimeRequest} searchProductsDeliveryTime The method returns the time needed to prepare the product for shipment
  * @property {GetProductsDescriptionsRequest} getProductsDescriptions Method that returns text elements for a given product, e.g. product name, long and short description, metadata.
  * @property {PutProductsDescriptionsRequest} putProductsDescriptions The method allows for setting text elements for a given product, e.g. product name, long and short description, metadata.
  * @property {PutProductsGroupsMainProductRequest} putProductsGroupsMainProduct The method allows you to change the main product in a group of products.
@@ -3659,7 +3755,7 @@
  * @property {DeleteProductsImagesRequest} deleteProductsImages This method is used to delete images of products
  * @property {PutProductsImagesRequest} putProductsImages Method used for adding and editing product pictures.
  * @property {GetProductsMarketingAllFacebookCatalogIdsRequest} getProductsMarketingAllFacebookCatalogIds The method allows you to download available Facebook catalogs in a given store.
- * @property {GetProductsMarketingPromotionRequest} getProductsMarketingPromotion The method allows to download a list of active special offers for the given store.
+ * @property {GetProductsMarketingPromotionRequest} getProductsMarketingPromotion The method allows to download a list of active promotions for the given store.
  * @property {PostProductsMarketingPromotionRequest} postProductsMarketingPromotion The method allows you to add promotions from a new module with elements.
  * @property {PutProductsMarketingPromotionRequest} putProductsMarketingPromotion The method allows you to edit the promotion from the new module with the elements.
  * @property {GetProductsMarketingZonesRequest} getProductsMarketingZones Allows for getting information about products assigned to marketing hot spots
@@ -3672,13 +3768,13 @@
  * @property {PutProductsOpinionsRequest} putProductsOpinions The method allows to edit opinions about goods available in the IdoSell Shop administration panel.
  * @property {GetProductsOpinionsRateRequest} getProductsOpinionsRate Evaluation of the usefulness of opinions issued for products.
  * @property {DeleteProductsParametersRequest} deleteProductsParameters The method allows you to delete parameters and their values (for parameters that are not pinned to any product)..
- * @property {GetProductsParametersRequest} getProductsParameters Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
  * @property {PutProductsParametersRequest} putProductsParameters Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
+ * @property {SearchProductsParametersRequest} searchProductsParameters Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
  * @property {DeleteProductsRequest} deleteProducts Method used for deleting products from the IdoSell Shop administration panel.
- * @property {ListProductsRequest} listProducts Method that enables extracting information about non-deleted products available in the administration panel
  * @property {GetProductsRequest} getProducts Method that enables extracting information about non-deleted products available in the administration panel. 
  * @property {PostProductsRequest} postProducts The method is used to add products
  * @property {PutProductsRequest} putProducts Method that enables editing and adding new products to the administration panel.
+ * @property {SearchProductsRequest} searchProducts Method that enables extracting information about non-deleted products available in the administration panel
  * @property {DeleteProductsProductsToFacebookCatalogRequest} deleteProductsProductsToFacebookCatalog The method allows you to add products to the Facebook catalog.
  * @property {GetProductsProductsToFacebookCatalogRequest} getProductsProductsToFacebookCatalog The method allows you to retrieve products assigned to the Facebook catalog.
  * @property {PostProductsProductsToFacebookCatalogRequest} postProductsProductsToFacebookCatalog The method allows you to add products to the Facebook catalog.
@@ -3714,14 +3810,20 @@
  * @property {GetRefundsGetRefundStatusRequest} getRefundsGetRefundStatus Method returns refund status.
  * @property {GetRefundsRetrieveRefundsListRequest} getRefundsRetrieveRefundsList Method returns a list of incomplete refunds.
  * @property {PutRefundsUpdateRefundRequest} putRefundsUpdateRefund Method allows you to update refund.
+ * @property {GetResponsibilityEntitiesRequest} getResponsibilityEntities This call returns a list of responsible entities.
+ * @property {PostResponsibilityEntitiesRequest} postResponsibilityEntities Use this operation to create responsible entities.
+ * @property {PutResponsibilityEntitiesRequest} putResponsibilityEntities Use this operation to update responsible entities.
+ * @property {DeleteResponsibilityEntitiesRequest} deleteResponsibilityEntities This call is used to remove responsible entities.
  * @property {GetReturnsRequest} getReturns Method that enables getting information about returns issued for orders in the administration panel.
  * @property {PostReturnsRequest} postReturns 
- * @property {PutReturnsRequest} putReturns Method that enables editing returns issued for orders in the administration panel.
+ * @property {PutReturnsRequest} putReturns 
  * @property {PutReturnsSerialNumberRequest} putReturnsSerialNumber Method that enables setting serial numbers for products included in returns issued for orders in the administration panel.
  * @property {GetReturnsStatusesRequest} getReturnsStatuses Allows to download all configurable return statuses
  * @property {GetRmaRequest} getRma This get method allows you to retrieve data about existing claims
  * @property {PutRmaRequest} putRma This update method allows to update the data in existing complaints
  * @property {GetRmaStatusesRequest} getRmaStatuses Allows to download all possible complaint statuses
+ * @property {GetShopsCurrenciesRequest} getShopsCurrencies Method is used for extracting information about a shop language templates.
+ * @property {GetShopsLanguagesRequest} getShopsLanguages Method is used for extracting information about a shop language templates.
  * @property {DeleteSizechartsRequest} deleteSizecharts The method allows the removal of size charts.
  * @property {GetSizechartsRequest} getSizecharts The method allows size charts to be downloaded.
  * @property {PutSizechartsRequest} putSizecharts The method allows the size charts settings to be updated.

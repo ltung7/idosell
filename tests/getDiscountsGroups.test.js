@@ -8,5 +8,5 @@ test("getDiscountsGroupsGroup_numbers", () => {
 
 test("getDiscountsGroupsPage", () => {
     const params = idosell().getDiscountsGroups.page(2,10).getParams();
-    expect(params).toEqual({"results_page":2,"results_limit":10});
+    expect(params).toEqual({"resultsPage":2,"resultsLimit":10});
 })

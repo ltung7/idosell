@@ -2,7 +2,7 @@ import { paramsProxy } from "../params.js";
 import { nest, dateRangeType, orderBy, arrayOfObjects, orderSource, page } from "../helpers.js";
 
 export default (object) => {
-    object.gate = { method: 'post', node: '/orders/orders/get' };
+    object.gate = { method: 'post', node: '/orders/unfinished/search' };
     object.custom = {
         shopIds: nest("shopsIds", "orderSource", {}, true),
         byPackageNumbers: nest("packagesNumbers", "packages", {"orderHasPackageNumbers":"y"}, true),

@@ -1,5 +1,4 @@
 import axios from "axios";
-import util from 'util';
 import { page } from "./helpers.js";
 
 const DECODE_TABLE = [
@@ -48,7 +47,6 @@ export const queryfy = (params) => {
 }
 
 export const sendRequest = async (request, options = {}) => {
-    console.log(request);
     if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {
         const array = request.params[request.appendable.arrayNode];
         const last = array[array.length - 1];
@@ -65,14 +63,12 @@ export const sendRequest = async (request, options = {}) => {
     const { method, node } = request.gate;
     let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
     if (options.log || options.dump) {
-        console.log(util.inspect({ params: request.params, method, url }, {showHidden: false, depth: null, colors: true}))
         if (options.dump) return;
     }
 
-    
-    if (method === 'get') {
+    if (method === 'get' || method === 'delete') {
         url += '?' + queryfy(request.params);
-        const response = await axios.get(url, { headers }).then(response => response.data).catch(catchIdosellError);
+        const response = await axios[method](url, { headers }).then(response => response.data).catch(catchIdosellError);
         return checkNext(request, response);
     } else {
         const params = request.rootparams ? request.params : { params: request.params };

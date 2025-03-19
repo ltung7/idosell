@@ -1,15 +1,10 @@
 import { paramsProxy } from "../params.js";
-import { getProductIdent } from "../helpers.js";
+import { getProductIdentList } from "../helpers.js";
 
 export default (object) => {
     object.gate = { method: 'get', node: '/products/omnibusPrices' };
     object.custom = {
-        productId: getProductIdent
+        productId: getProductIdentList
     };
-    object.appendable = {
-        except: [],
-        arrayNode: "products",
-        index: 0
-    }
     return new Proxy(object, paramsProxy);
 }

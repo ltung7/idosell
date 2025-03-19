@@ -18,5 +18,5 @@ test("getWmsStocksdocumentsOpenedDocumentsPage", () => {
 
 test("getWmsStocksdocumentsOpenedDocumentsDates", () => {
     const params = idosell().getWmsStocksdocumentsOpenedDocuments.stockDocumentType("pz").dates("2023-12-18", "2023-12-31", "open").getParams();
-    expect(params).toEqual({"stockDocumentType":"pz","dateObject":{"dateBegin":"2023-12-18 00:00:00","dateEnd":"2023-12-31 23:59:59","dateType":"open"}});
+    expect(params).toEqual({"stockDocumentType":"pz","dateRange":{"dateBegin":"2023-12-18 00:00:00","dateEnd":"2023-12-31 23:59:59","dateType":"open"}});
 })

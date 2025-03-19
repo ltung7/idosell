@@ -172,6 +172,14 @@ export const getProductIdent = (productId, sizeId, type = 'id') => {
     return params;
 }
 
+export const getProductIdentList = (productIds, identType = 'id') => {
+    if (!Array.isArray(productIds)) productIds = [ productIds ];
+    return { 
+        identType,
+        products: productIds
+    }
+}
+
 const TEXT_NODES = {
     name: {
         main: 'productNames',

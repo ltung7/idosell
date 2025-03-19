@@ -3,7 +3,7 @@ import postClientsBalance from "./methods/postClientsBalance.js";
 import getClients from "./methods/getClients.js";
 import postClients from "./methods/postClients.js";
 import putClients from "./methods/putClients.js";
-import getClientsCrm from "./methods/getClientsCrm.js";
+import searchClientsCrm from "./methods/searchClientsCrm.js";
 import deleteClientsDeliveryAddress from "./methods/deleteClientsDeliveryAddress.js";
 import getClientsDeliveryAddress from "./methods/getClientsDeliveryAddress.js";
 import postClientsDeliveryAddress from "./methods/postClientsDeliveryAddress.js";
@@ -11,15 +11,15 @@ import putClientsDeliveryAddress from "./methods/putClientsDeliveryAddress.js";
 import putClientsExternalCode from "./methods/putClientsExternalCode.js";
 import putClientsGiftcardsBlock from "./methods/putClientsGiftcardsBlock.js";
 import deleteClientsGiftcards from "./methods/deleteClientsGiftcards.js";
-import getClientsGiftcards from "./methods/getClientsGiftcards.js";
 import postClientsGiftcards from "./methods/postClientsGiftcards.js";
 import putClientsGiftcards from "./methods/putClientsGiftcards.js";
+import searchClientsGiftcards from "./methods/searchClientsGiftcards.js";
 import getClientsGiftcardsTypes from "./methods/getClientsGiftcardsTypes.js";
 import putClientsGiftcardsUnblock from "./methods/putClientsGiftcardsUnblock.js";
 import getClientsMembershipCards from "./methods/getClientsMembershipCards.js";
 import putClientsMembershipCards from "./methods/putClientsMembershipCards.js";
-import getClientsNewsletterEmailSMS from "./methods/getClientsNewsletterEmailSMS.js";
-import getClientsNewsletterEmailShops from "./methods/getClientsNewsletterEmailShops.js";
+import searchClientsNewsletterEmail from "./methods/searchClientsNewsletterEmail.js";
+import searchClientsNewsletterSms from "./methods/searchClientsNewsletterSms.js";
 import deleteClientsPayerAddress from "./methods/deleteClientsPayerAddress.js";
 import getClientsPayerAddress from "./methods/getClientsPayerAddress.js";
 import postClientsPayerAddress from "./methods/postClientsPayerAddress.js";
@@ -40,6 +40,7 @@ import putClientsPricesDiscounts from "./methods/putClientsPricesDiscounts.js";
 import getClientsProfitPoints from "./methods/getClientsProfitPoints.js";
 import postClientsProfitPoints from "./methods/postClientsProfitPoints.js";
 import getClientsProvinceList from "./methods/getClientsProvinceList.js";
+import deleteClients from "./methods/deleteClients.js";
 import deleteClientsTagsClear from "./methods/deleteClientsTagsClear.js";
 import deleteClientsTags from "./methods/deleteClientsTags.js";
 import getClientsTags from "./methods/getClientsTags.js";
@@ -111,12 +112,12 @@ import deleteOrdersImages from "./methods/deleteOrdersImages.js";
 import getOrdersImages from "./methods/getOrdersImages.js";
 import postOrdersImages from "./methods/postOrdersImages.js";
 import getOrdersLabels from "./methods/getOrdersLabels.js";
-import getOrdersOpinions from "./methods/getOrdersOpinions.js";
+import searchOrdersOpinions from "./methods/searchOrdersOpinions.js";
 import getOrdersOpinionsRate from "./methods/getOrdersOpinionsRate.js";
-import listOrders from "./methods/listOrders.js";
 import getOrders from "./methods/getOrders.js";
 import postOrders from "./methods/postOrders.js";
 import putOrders from "./methods/putOrders.js";
+import searchOrders from "./methods/searchOrders.js";
 import getOrdersPackages from "./methods/getOrdersPackages.js";
 import postOrdersPackages from "./methods/postOrdersPackages.js";
 import putOrdersPackages from "./methods/putOrdersPackages.js";
@@ -126,14 +127,14 @@ import putOrdersProductsSerialNumbers from "./methods/putOrdersProductsSerialNum
 import putOrdersProfitMargin from "./methods/putOrdersProfitMargin.js";
 import getOrdersProfitability from "./methods/getOrdersProfitability.js";
 import putOrdersShippingCosts from "./methods/putOrdersShippingCosts.js";
-import listOrdersUnfinished from "./methods/listOrdersUnfinished.js";
+import searchOrdersUnfinished from "./methods/searchOrdersUnfinished.js";
 import getOrdersWarehouse from "./methods/getOrdersWarehouse.js";
 import putOrdersWarehouse from "./methods/putOrdersWarehouse.js";
 import getPackagesLabels from "./methods/getPackagesLabels.js";
 import postPackagesLabels from "./methods/postPackagesLabels.js";
-import getPackages from "./methods/getPackages.js";
 import postPackages from "./methods/postPackages.js";
 import putPackages from "./methods/putPackages.js";
+import searchPackages from "./methods/searchPackages.js";
 import postPaymentsCancel from "./methods/postPaymentsCancel.js";
 import postPaymentsCashback from "./methods/postPaymentsCashback.js";
 import putPaymentsConfirm from "./methods/putPaymentsConfirm.js";
@@ -159,14 +160,14 @@ import putProductsBundlesProductsQuantity from "./methods/putProductsBundlesProd
 import putProductsBundlesRenew from "./methods/putProductsBundlesRenew.js";
 import getProductsCategories from "./methods/getProductsCategories.js";
 import putProductsCategories from "./methods/putProductsCategories.js";
-import getProductsCategoriesIdosell from "./methods/getProductsCategoriesIdosell.js";
+import searchProductsCategoriesIdosell from "./methods/searchProductsCategoriesIdosell.js";
 import getProductsCodeExistence from "./methods/getProductsCodeExistence.js";
 import postProductsCollections from "./methods/postProductsCollections.js";
 import deleteProductsCollectionsProducts from "./methods/deleteProductsCollectionsProducts.js";
 import postProductsCollectionsProducts from "./methods/postProductsCollectionsProducts.js";
 import putProductsCollectionsProducts from "./methods/putProductsCollectionsProducts.js";
 import putProductsCollectionsRenew from "./methods/putProductsCollectionsRenew.js";
-import getProductsDeliveryTime from "./methods/getProductsDeliveryTime.js";
+import searchProductsDeliveryTime from "./methods/searchProductsDeliveryTime.js";
 import getProductsDescriptions from "./methods/getProductsDescriptions.js";
 import putProductsDescriptions from "./methods/putProductsDescriptions.js";
 import putProductsGroupsMainProduct from "./methods/putProductsGroupsMainProduct.js";
@@ -189,13 +190,13 @@ import postProductsOpinions from "./methods/postProductsOpinions.js";
 import putProductsOpinions from "./methods/putProductsOpinions.js";
 import getProductsOpinionsRate from "./methods/getProductsOpinionsRate.js";
 import deleteProductsParameters from "./methods/deleteProductsParameters.js";
-import getProductsParameters from "./methods/getProductsParameters.js";
 import putProductsParameters from "./methods/putProductsParameters.js";
+import searchProductsParameters from "./methods/searchProductsParameters.js";
 import deleteProducts from "./methods/deleteProducts.js";
-import listProducts from "./methods/listProducts.js";
 import getProducts from "./methods/getProducts.js";
 import postProducts from "./methods/postProducts.js";
 import putProducts from "./methods/putProducts.js";
+import searchProducts from "./methods/searchProducts.js";
 import deleteProductsProductsToFacebookCatalog from "./methods/deleteProductsProductsToFacebookCatalog.js";
 import getProductsProductsToFacebookCatalog from "./methods/getProductsProductsToFacebookCatalog.js";
 import postProductsProductsToFacebookCatalog from "./methods/postProductsProductsToFacebookCatalog.js";
@@ -231,6 +232,10 @@ import getRefundsGetPossibleAutoRefunds from "./methods/getRefundsGetPossibleAut
 import getRefundsGetRefundStatus from "./methods/getRefundsGetRefundStatus.js";
 import getRefundsRetrieveRefundsList from "./methods/getRefundsRetrieveRefundsList.js";
 import putRefundsUpdateRefund from "./methods/putRefundsUpdateRefund.js";
+import getResponsibilityEntities from "./methods/getResponsibilityEntities.js";
+import postResponsibilityEntities from "./methods/postResponsibilityEntities.js";
+import putResponsibilityEntities from "./methods/putResponsibilityEntities.js";
+import deleteResponsibilityEntities from "./methods/deleteResponsibilityEntities.js";
 import getReturns from "./methods/getReturns.js";
 import postReturns from "./methods/postReturns.js";
 import putReturns from "./methods/putReturns.js";
@@ -239,6 +244,8 @@ import getReturnsStatuses from "./methods/getReturnsStatuses.js";
 import getRma from "./methods/getRma.js";
 import putRma from "./methods/putRma.js";
 import getRmaStatuses from "./methods/getRmaStatuses.js";
+import getShopsCurrencies from "./methods/getShopsCurrencies.js";
+import getShopsLanguages from "./methods/getShopsLanguages.js";
 import deleteSizecharts from "./methods/deleteSizecharts.js";
 import getSizecharts from "./methods/getSizecharts.js";
 import putSizecharts from "./methods/putSizecharts.js";
@@ -304,7 +311,7 @@ const gates = {
     getClients,
     postClients,
     putClients,
-    getClientsCrm,
+    searchClientsCrm,
     deleteClientsDeliveryAddress,
     getClientsDeliveryAddress,
     postClientsDeliveryAddress,
@@ -312,15 +319,15 @@ const gates = {
     putClientsExternalCode,
     putClientsGiftcardsBlock,
     deleteClientsGiftcards,
-    getClientsGiftcards,
     postClientsGiftcards,
     putClientsGiftcards,
+    searchClientsGiftcards,
     getClientsGiftcardsTypes,
     putClientsGiftcardsUnblock,
     getClientsMembershipCards,
     putClientsMembershipCards,
-    getClientsNewsletterEmailSMS,
-    getClientsNewsletterEmailShops,
+    searchClientsNewsletterEmail,
+    searchClientsNewsletterSms,
     deleteClientsPayerAddress,
     getClientsPayerAddress,
     postClientsPayerAddress,
@@ -341,6 +348,7 @@ const gates = {
     getClientsProfitPoints,
     postClientsProfitPoints,
     getClientsProvinceList,
+    deleteClients,
     deleteClientsTagsClear,
     deleteClientsTags,
     getClientsTags,
@@ -412,12 +420,12 @@ const gates = {
     getOrdersImages,
     postOrdersImages,
     getOrdersLabels,
-    getOrdersOpinions,
+    searchOrdersOpinions,
     getOrdersOpinionsRate,
-    listOrders,
     getOrders,
     postOrders,
     putOrders,
+    searchOrders,
     getOrdersPackages,
     postOrdersPackages,
     putOrdersPackages,
@@ -427,14 +435,14 @@ const gates = {
     putOrdersProfitMargin,
     getOrdersProfitability,
     putOrdersShippingCosts,
-    listOrdersUnfinished,
+    searchOrdersUnfinished,
     getOrdersWarehouse,
     putOrdersWarehouse,
     getPackagesLabels,
     postPackagesLabels,
-    getPackages,
     postPackages,
     putPackages,
+    searchPackages,
     postPaymentsCancel,
     postPaymentsCashback,
     putPaymentsConfirm,
@@ -460,14 +468,14 @@ const gates = {
     putProductsBundlesRenew,
     getProductsCategories,
     putProductsCategories,
-    getProductsCategoriesIdosell,
+    searchProductsCategoriesIdosell,
     getProductsCodeExistence,
     postProductsCollections,
     deleteProductsCollectionsProducts,
     postProductsCollectionsProducts,
     putProductsCollectionsProducts,
     putProductsCollectionsRenew,
-    getProductsDeliveryTime,
+    searchProductsDeliveryTime,
     getProductsDescriptions,
     putProductsDescriptions,
     putProductsGroupsMainProduct,
@@ -490,13 +498,13 @@ const gates = {
     putProductsOpinions,
     getProductsOpinionsRate,
     deleteProductsParameters,
-    getProductsParameters,
     putProductsParameters,
+    searchProductsParameters,
     deleteProducts,
-    listProducts,
     getProducts,
     postProducts,
     putProducts,
+    searchProducts,
     deleteProductsProductsToFacebookCatalog,
     getProductsProductsToFacebookCatalog,
     postProductsProductsToFacebookCatalog,
@@ -532,6 +540,10 @@ const gates = {
     getRefundsGetRefundStatus,
     getRefundsRetrieveRefundsList,
     putRefundsUpdateRefund,
+    getResponsibilityEntities,
+    postResponsibilityEntities,
+    putResponsibilityEntities,
+    deleteResponsibilityEntities,
     getReturns,
     postReturns,
     putReturns,
@@ -540,6 +552,8 @@ const gates = {
     getRma,
     putRma,
     getRmaStatuses,
+    getShopsCurrencies,
+    getShopsLanguages,
     deleteSizecharts,
     getSizecharts,
     putSizecharts,
@@ -598,8 +612,24 @@ const gates = {
     deleteWmsSuppliers,
     getWmsSuppliers,
     putWmsSuppliers,
+    listProducts: searchProducts,
+    listOrders: searchOrders,
+    listOrdersUnfinished: searchOrdersUnfinished,
+    getClientsGiftcards: searchClientsGiftcards,
+    getClientsCrm: searchClientsCrm,
+    getClientsNewsletterEmailShops: searchClientsNewsletterEmail,
+    getClientsNewsletterEmailSMS: searchClientsNewsletterSms,
+    getOrdersOpinions: searchOrdersOpinions,
+    getPackages: searchPackages,
+    getProductsCategoriesIdosell: searchProductsCategoriesIdosell,
+    getProductsDeliveryTime: searchProductsDeliveryTime,
+    getProductsParameters: searchProductsParameters,
 }
 
 export const gateProxy = {
-    get: (object, property) => gates[property](object)
-};
+    get: (object, property) => {
+        if (property === "then") return object;
+        if (!gates[property]) throw new Error("Invalid gate: " + property);
+        return gates[property](object);
+    }
+}

@@ -2,7 +2,7 @@ import { paramsProxy } from "../params.js";
 import { arrayOfObjects } from "../helpers.js";
 
 export default (object) => {
-    object.gate = { method: 'get', node: '/clients/giftcards' };
+    object.gate = { method: 'post', node: '/clients/giftcards/search' };
     object.custom = {
         ids: arrayOfObjects("giftCards", "id"),
         number: arrayOfObjects("giftCards", "number"),

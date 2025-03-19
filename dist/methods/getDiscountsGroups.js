@@ -6,6 +6,5 @@ export default (object) => {
     object.custom = {
         page
     };
-    object.snakeCase = true;
     return new Proxy(object, paramsProxy);
 }

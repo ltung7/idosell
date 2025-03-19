@@ -1,10 +1,10 @@
 import { paramsProxy } from "../params.js";
 
 export default (object) => {
-    object.gate = { method: 'get', node: '/products/deliveryTime' };
+    object.gate = { method: 'post', node: '/responsibility/entities' };
     object.appendable = {
-        except: [],
-        arrayNode: "products",
+        except: ["type"],
+        arrayNode: "entities",
         index: 0
     }
     return new Proxy(object, paramsProxy);

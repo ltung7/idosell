@@ -1,17 +1,12 @@
 import idosell from "./dist/index.js"
 import { expect, test } from "vitest"
 
-test("getProductsStrikethroughPricesProductOnlyId", () => {
-    const params = idosell().getProductsStrikethroughPrices.productId(33).getParams();
-    expect(params).toEqual({"products":[{"ident":{"type":"id","value":33}}]});
+test("getProductsStrikethroughPrices", () => {
+    const params = idosell().getProductsStrikethroughPrices.productId([30, 42]).getParams();
+    expect(params).toEqual({"identType":"id","products":[30,42]});
 })
 
-test("getProductsStrikethroughPricesProductSizeId", () => {
-    const params = idosell().getProductsStrikethroughPrices.productId(15,4).getParams();
-    expect(params).toEqual({"products":[{"ident":{"type":"id","value":15},"sizes":[{"ident":{"type":"id","value":4}}]}]});
-})
-
-test("getProductsStrikethroughPricesProducts", () => {
-    const params = idosell().getProductsStrikethroughPrices.products([{"ident":{"type":"id","value":15},"sizes":[{"ident":{"type":"id","value":4}}]}]).getParams();
-    expect(params).toEqual({"products":[{"ident":{"type":"id","value":15},"sizes":[{"ident":{"type":"id","value":4}}]}]});
+test("getProductsStrikethroughPricesIds", () => {
+    const params = idosell().getProductsStrikethroughPrices.identType('codeProducer').products(['1234567890123']).getParams();
+    expect(params).toEqual({"identType":"codeProducer","products":["1234567890123"]});
 })

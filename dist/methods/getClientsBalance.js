@@ -4,9 +4,8 @@ import { dateRange, page } from "../helpers.js";
 export default (object) => {
     object.gate = { method: 'get', node: '/clients/balance' };
     object.custom = {
-        lastPurchased: dateRange({"nodeName":"last_purchase_date","fromName":"from","toName":"to"}),
+        lastPurchased: dateRange({"nodeName":"lastPurchaseDate","fromName":"from","toName":"to"}),
         page
     };
-    object.snakeCase = true;
     return new Proxy(object, paramsProxy);
 }
