@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ltung7/idosell.git",
   "dependencies": {
-    "axios": "^1.7.7"
+    "axios": "^1.8.4"
   },
   "type": "module"
 }
