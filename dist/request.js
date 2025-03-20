@@ -37,7 +37,7 @@ export const queryfy = (params) => {
             else output += `${key}=${value.join('%2C')}&`;
         } else if (typeof value === 'object') {
             for (const [ subkey, subvalue ] of Object.entries(value)) {
-                output += `${key}%5B${subkey}%5D=${subvalue}&`;
+                output += `${key}%5B${encodeURIComponent(subkey)}%5D=${subvalue}&`;
             }
         } else {
             output += `${key}=${value}&`;
