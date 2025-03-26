@@ -718,6 +718,8 @@
  * @property {(id: Array<Integer>) => GetCpaCampaignRequest} id List of identifiers
  * @property {(resultsPage: Integer) => GetCpaCampaignRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetCpaCampaignRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => GetCpaCampaignRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -745,6 +747,8 @@
  * @property {(id: Array<Integer>) => GetCpaRequest} id List of identifiers
  * @property {(resultsPage: Integer) => GetCpaRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetCpaRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => GetCpaRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -1516,6 +1520,9 @@
  * @typedef {Object} GetPackagesLabelsRequest
  * @property {(eventId: Integer) => GetPackagesLabelsRequest} eventId Id.
  * @property {(eventType: 'order'|'rma'|'return') => GetPackagesLabelsRequest} eventType Event type
+ * @property {(orderSerialNumber: Integer) => GetPackagesLabelsRequest} order Set type to orders with given order serial numbers
+ * @property {(rmaId: Integer) => GetPackagesLabelsRequest} rma Set type to rma with given rma Ids
+ * @property {(returnId: Integer) => GetPackagesLabelsRequest} return Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1559,9 +1566,9 @@
  * @property {(eventType: 'order'|'rma'|'return') => SearchPackagesRequest} eventType Type.
  * @property {(eventsIds: Array<Integer>) => SearchPackagesRequest} eventsIds IDs.
  * @property {function} append Append current data to array and start modifying next row
- * @property {(orderSerialNumbers: Array<Integer>) => GetPackagesRequest} orders Set type to orders with given order serial numbers
- * @property {(rmaIds: Array<Integer>) => GetPackagesRequest} rma Set type to rma with given rma Ids
- * @property {(returnIds: Array<Integer>) => GetPackagesRequest} returns Set type to returns with given return Ids
+ * @property {(orderSerialNumbers: Array<Integer>) => SearchPackagesRequest} orders Set type to orders with given order serial numbers
+ * @property {(rmaIds: Array<Integer>) => SearchPackagesRequest} rma Set type to rma with given rma Ids
+ * @property {(returnIds: Array<Integer>) => SearchPackagesRequest} returns Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1891,11 +1898,6 @@
  * @property {(productIndex: String) => SearchProductsDeliveryTimeRequest} productIndex Product IAI code
  * @property {(productSizeQuantity: Number) => SearchProductsDeliveryTimeRequest} productSizeQuantity Product quantity.
  * @property {function} append Append current data to array and start modifying next row
- * @property {(productId: Integer) => GetProductsDeliveryTimeRequest} productId Product Id
- * @property {(sizeId: Integer) => GetProductsDeliveryTimeRequest} sizeId Size identifier
- * @property {(sizePanelName: String) => GetProductsDeliveryTimeRequest} sizePanelName Size name
- * @property {(productIndex: String) => GetProductsDeliveryTimeRequest} productIndex Product IAI code
- * @property {(productSizeQuantity: Integer) => GetProductsDeliveryTimeRequest} productSizeQuantity Product quantity.
  * @property {function} exec Excecute request
  */
 
@@ -2717,6 +2719,11 @@
 /**
  * @typedef {Object} PutProductsStrikethroughPricesRequest
  * @property {(products: Array<Object>) => PutProductsStrikethroughPricesRequest} products Products list.
+ * @property {(ident: Object) => PutProductsStrikethroughPricesRequest} ident Identifier type.
+ * @property {(sizes: Array<Object>) => PutProductsStrikethroughPricesRequest} sizes List of sizes
+ * @property {(stp_settings: Object) => PutProductsStrikethroughPricesRequest} stp_settings 
+ * @property {(shops: Array<Object>) => PutProductsStrikethroughPricesRequest} shops Strikethrough price settings for the page.
+ * @property {function} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 

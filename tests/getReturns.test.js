@@ -18,7 +18,7 @@ test("getReturnsStatus", () => {
 
 test("getReturnsDates", () => {
     const params = idosell().getReturns.dates("2023-12-01", "2023-12-10", "date_add").getParams();
-    expect(params).toEqual({"range":{"date":{"date_begin":"2023-12-01","date_end":"2023-12-10","dates_type":"date_add"}}});
+    expect(params).toEqual({"range":{"date][date_begin": "2023-12-01","date][date_end": "2023-12-10","date][dates_type": "date_add",}});
 })
 
 test("getReturnsPage", () => {

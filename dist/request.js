@@ -12,10 +12,19 @@ const catchIdosellError = (err) => {
     for (const [ search, replace ] of DECODE_TABLE) {
         message = message.replaceAll(search, replace);
     }
-    throw new Error(`${err.response.status}: ${message}`) 
+    if (err.response.status === 403) {
+        const match = message.match(/Scope: ([a-z]+), level: ([rw]{1,2})/)
+        if (match) {
+            const access = match[2] === 'rw' ? 'Odczyt i zapis' : 'Odczyt';
+            const mod = match[1].toUpperCase();
+            message = `Brak dostępu do modułu ${mod} (${access})`;
+        }
+    }
+    throw new Error(`${err.response.status}: ${message}`, { cause: err.response.status }) 
 }
 
 const checkNext = (request, response) => {
+    if (!response) return;
     if (response.resultsNumberPage) {
         request.next = response.resultsPage + 1 < response.resultsNumberPage;
         request.params.resultsPage = request.params.resultsPage ? request.params.resultsPage + 1 : 1;
