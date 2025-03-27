@@ -8,7 +8,11 @@ const requests = {
     getParams,
     hasNext,
     toString,
-    getAttributes
+    getAttributes,
+    params: (object, value) => {
+        object.params = value;
+        return new Proxy(object, paramsProxy);
+    }
 }
 
 export const paramsProxy = {
@@ -16,8 +20,7 @@ export const paramsProxy = {
         return (...values) => {
             if (requests[property]) {
                 return requests[property](object, values[0]);
-            }
-            else if (object.appendable && object.appendable.arrayNode !== property && !object.appendable.except.includes(property)) {
+            } else if (object.appendable && object.appendable.arrayNode !== property && !object.appendable.except.includes(property)) {
                 if (!object.params[object.appendable.arrayNode]) object.params[object.appendable.arrayNode] = [{}];
                 const item = object.params[object.appendable.arrayNode][object.appendable.index];
                 if (property === 'append') {
@@ -29,15 +32,12 @@ export const paramsProxy = {
                 } else {
                     item[property] = values[0];
                 }
-            }
-            else if (object.custom && typeof object.custom[property] === 'function') {
+            } else if (object.custom && typeof object.custom[property] === 'function') {
                 if (property === 'page') values.push(Boolean(object.snakeCase));
                 const param = object.custom[property](...values);
                 Object.assign(object.params, param);
             }
-            else if (property === 'params') {
-                object.params = values[0];
-            } else object.params[property] = values[0];
+            else object.params[property] = values[0];
             return new Proxy(object, paramsProxy);
         }
     }

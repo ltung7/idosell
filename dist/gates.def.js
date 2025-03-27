@@ -22,8 +22,8 @@
  * @property {(currency: String) => PostClientsBalanceRequest} currency Currency of operation.
  * @property {(note: String) => PostClientsBalanceRequest} note Note.
  * @property {(prepaidId: Integer) => PostClientsBalanceRequest} prepaidId Order payment identifier.
- * @property {(balance: Number, currency: String) => PostClientsBalanceRequest} add Adds value to client balance
- * @property {(balance: Number, currency: String) => PostClientsBalanceRequest} remove Subtracts value to client balance
+ * @property {(balance: Number, currency: String) => postClientsBalanceRequest} add Adds value to client balance
+ * @property {(balance: Number, currency: String) => postClientsBalanceRequest} remove Subtracts value to client balance
  * @property {function} exec Excecute request
  */
 
@@ -280,9 +280,9 @@
  * @property {(shops: Array<Integer>) => PutClientsGiftcardsRequest} shops List of shops the card is active in
  * @property {(note: String) => PutClientsGiftcardsRequest} note 
  * @property {function} append Append current data to array and start modifying next row
- * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} add Adds balance to current gift card
- * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} subtract Subtract from balance to current gift card
- * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} set Set balance to current gift card
+ * @property {(amount: Float, currency: String) => putClientsGiftcardsRequest} add Adds balance to current gift card
+ * @property {(amount: Float, currency: String) => putClientsGiftcardsRequest} subtract Subtract from balance to current gift card
+ * @property {(amount: Float, currency: String) => putClientsGiftcardsRequest} set Set balance to current gift card
  * @property {function} exec Excecute request
  */
 
@@ -1363,11 +1363,11 @@
  * @property {(stockIds: Array<Integer>) => SearchOrdersRequest} stockIds Define stocks by passing array of values
  * @property {(campaignIds: Array<Integer>) => SearchOrdersRequest} campaignIds Define campaign by passing array of values
  * @property {(discountCodes: Array<String>) => SearchOrdersRequest} discountCodes Define campaign by passing array of values
- * @property {(productId: Integer, sizeId: String|null) => searchProductsRequest} hasProduct Filter by product ID and optionally product size
- * @property {(orderHasPackage: Boolean) => searchProductsRequest} hasPackage Filter by orders that have any package number
- * @property {(accountName: String) => searchProductsRequest} fromAllegro Filter by orders from auction service Allegro
- * @property {(accountName: String) => searchProductsRequest} fromEbay Filter by orders from action service EBay
- * @property {(accountName: String) => searchProductsRequest} fromAmazon Filter by orders from action service Amazon
+ * @property {(productId: Integer, sizeId: String|null) => searchOrdersRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => searchOrdersRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => searchOrdersRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => searchOrdersRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => searchOrdersRequest} fromAmazon Filter by orders from action service Amazon
  * @property {(page: Integer, limit: Integer) => SearchOrdersRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1491,11 +1491,11 @@
  * @property {(stockIds: Array<Integer>) => SearchOrdersUnfinishedRequest} stockIds Define stocks by passing array of values
  * @property {(campaignIds: Array<Integer>) => SearchOrdersUnfinishedRequest} campaignIds Define campaign by passing array of values
  * @property {(discountCodes: Array<String>) => SearchOrdersUnfinishedRequest} discountCodes Define campaign by passing array of values
- * @property {(productId: Integer, sizeId: String|null) => searchProductsRequest} hasProduct Filter by product ID and optionally product size
- * @property {(orderHasPackage: Boolean) => searchProductsRequest} hasPackage Filter by orders that have any package number
- * @property {(accountName: String) => searchProductsRequest} fromAllegro Filter by orders from auction service Allegro
- * @property {(accountName: String) => searchProductsRequest} fromEbay Filter by orders from action service EBay
- * @property {(accountName: String) => searchProductsRequest} fromAmazon Filter by orders from action service Amazon
+ * @property {(productId: Integer, sizeId: String|null) => searchOrdersUnfinishedRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => searchOrdersUnfinishedRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => searchOrdersUnfinishedRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => searchOrdersUnfinishedRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => searchOrdersUnfinishedRequest} fromAmazon Filter by orders from action service Amazon
  * @property {(page: Integer, limit: Integer) => SearchOrdersUnfinishedRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1520,9 +1520,9 @@
  * @typedef {Object} GetPackagesLabelsRequest
  * @property {(eventId: Integer) => GetPackagesLabelsRequest} eventId Id.
  * @property {(eventType: 'order'|'rma'|'return') => GetPackagesLabelsRequest} eventType Event type
- * @property {(orderSerialNumber: Integer) => GetPackagesLabelsRequest} order Set type to orders with given order serial numbers
- * @property {(rmaId: Integer) => GetPackagesLabelsRequest} rma Set type to rma with given rma Ids
- * @property {(returnId: Integer) => GetPackagesLabelsRequest} return Set type to returns with given return Ids
+ * @property {(orderSerialNumber: Integer) => getPackagesLabelsRequest} order Set type to orders with given order serial numbers
+ * @property {(rmaId: Integer) => getPackagesLabelsRequest} rma Set type to rma with given rma Ids
+ * @property {(returnId: Integer) => getPackagesLabelsRequest} return Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1566,9 +1566,9 @@
  * @property {(eventType: 'order'|'rma'|'return') => SearchPackagesRequest} eventType Type.
  * @property {(eventsIds: Array<Integer>) => SearchPackagesRequest} eventsIds IDs.
  * @property {function} append Append current data to array and start modifying next row
- * @property {(orderSerialNumbers: Array<Integer>) => SearchPackagesRequest} orders Set type to orders with given order serial numbers
- * @property {(rmaIds: Array<Integer>) => SearchPackagesRequest} rma Set type to rma with given rma Ids
- * @property {(returnIds: Array<Integer>) => SearchPackagesRequest} returns Set type to returns with given return Ids
+ * @property {(orderSerialNumbers: Array<Integer>) => searchPackagesRequest} orders Set type to orders with given order serial numbers
+ * @property {(rmaIds: Array<Integer>) => searchPackagesRequest} rma Set type to rma with given rma Ids
+ * @property {(returnIds: Array<Integer>) => searchPackagesRequest} returns Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1685,7 +1685,7 @@
  * @property {(resultsPage: Integer) => GetProductsAuctionsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetProductsAuctionsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(ids: Array<Integer>) => GetProductsAuctionsRequest} ids Define products by passing array of values
- * @property {() => GetProductsAuctionsRequest} fromAllegro Get auction data on products
+ * @property {() => getProductsAuctionsRequest} fromAllegro Get auction data on products
  * @property {(page: Integer, limit: Integer) => GetProductsAuctionsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1839,7 +1839,7 @@
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer'|'codeDeliverer') => GetProductsCodeExistenceRequest} identType 
  * @property {(products: Array<String>) => GetProductsCodeExistenceRequest} products Products list.
  * @property {(delivererId: String) => GetProductsCodeExistenceRequest} delivererId 
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsCodeExistenceRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -1933,7 +1933,7 @@
  * @property {(groups: Array<Object>) => PutProductsGroupsOrderRequest} groups 
  * @property {(productsInOrder: Array<Object>) => PutProductsGroupsOrderRequest} productsInOrder 
  * @property {function} append Append current data to array and start modifying next row
- * @property {(Array<Integer>) => PutProductsGroupsOrderRequest} productIdsInOrder Defines order of products within group by automatically setting proprities in order of appearance
+ * @property {(Array<Integer>) => putProductsGroupsOrderRequest} productIdsInOrder Defines order of products within group by automatically setting proprities in order of appearance
  * @property {function} exec Excecute request
  */
 
@@ -1981,8 +1981,8 @@
  * @property {(shopIcon: String) => PutProductsImagesRequest} shopIcon Append productIconSource value into nested array inside productIcons
  * @property {(auctionIcon: String) => PutProductsImagesRequest} auctionIcon Append productIconSource value into nested array inside productIcons
  * @property {(groupIcon: String) => PutProductsImagesRequest} groupIcon Append productIconSource value into nested array inside productIcons
- * @property {(source: String, priority: Integer) => PutProductsImagesRequest} addImage Adds image source with selected priority
- * @property {() => PutProductsImagesRequest} base64 Set global image source to base64
+ * @property {(source: String, priority: Integer) => putProductsImagesRequest} addImage Adds image source with selected priority
+ * @property {() => putProductsImagesRequest} base64 Set global image source to base64
  * @property {function} exec Excecute request
  */
 
@@ -2045,7 +2045,7 @@
  * @typedef {Object} GetProductsMarketingZonesRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsMarketingZonesRequest} identType 
  * @property {(products: Array<String>) => GetProductsMarketingZonesRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsMarketingZonesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2067,7 +2067,7 @@
  * @typedef {Object} GetProductsOmnibusPricesRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsOmnibusPricesRequest} identType 
  * @property {(products: Array<String>) => GetProductsOmnibusPricesRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsOmnibusPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2281,9 +2281,9 @@
  * @property {(responsibleProducerCode: String) => PostProductsRequest} responsibleProducerCode Responsible producer code
  * @property {(responsiblePersonCode: String) => PostProductsRequest} responsiblePersonCode Responsible person code
  * @property {function} append Append current data to array and start modifying next row
- * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PostProductsRequest} setText Set various types of names or descriptions to the product
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PostProductsRequest} addPrice Increases product price by amount
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PostProductsRequest} setPrice Sets product price by amount
+ * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => postProductsRequest} setText Set various types of names or descriptions to the product
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => postProductsRequest} addPrice Increases product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => postProductsRequest} setPrice Sets product price by amount
  * @property {function} exec Excecute request
  */
 
@@ -2424,13 +2424,13 @@
  * @property {(responsibleProducerCode: String) => PutProductsRequest} responsibleProducerCode Responsible producer code
  * @property {(responsiblePersonCode: String) => PutProductsRequest} responsiblePersonCode Responsible person code
  * @property {function} append Append current data to array and start modifying next row
- * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PutProductsRequest} setText Set various types of names or descriptions to the product
- * @property {() => PutProductsRequest} editMode Set edit mode - disables adding new product
- * @property {() => PutProductsRequest} addMode Set add mode - Api is allowed to create new products
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PutProductsRequest} addPrice Increases product price by amount
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PutProductsRequest} setPrice Sets product price by amount
- * @property {(shopId: Integer, menuIds: Integer) => PutProductsRequest} setMenu Sets product selected IDs
- * @property {(picturesArray: Array<String>) => PutProductsRequest} pictures Sets list of pictures attached to product
+ * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => putProductsRequest} setText Set various types of names or descriptions to the product
+ * @property {() => putProductsRequest} editMode Set edit mode - disables adding new product
+ * @property {() => putProductsRequest} addMode Set add mode - Api is allowed to create new products
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => putProductsRequest} addPrice Increases product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => putProductsRequest} setPrice Sets product price by amount
+ * @property {(shopId: Integer, menuIds: Integer) => putProductsRequest} setMenu Sets product selected IDs
+ * @property {(picturesArray: Array<String>) => putProductsRequest} pictures Sets list of pictures attached to product
  * @property {function} exec Excecute request
  */
 
@@ -2584,7 +2584,7 @@
  * @typedef {Object} GetProductsReservationsRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsReservationsRequest} identType 
  * @property {(products: Array<String>) => GetProductsReservationsRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsReservationsRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2693,7 +2693,7 @@
  * @typedef {Object} GetProductsStocksRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStocksRequest} identType 
  * @property {(products: Array<String>) => GetProductsStocksRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsStocksRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2712,7 +2712,7 @@
  * @typedef {Object} GetProductsStrikethroughPricesRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} identType 
  * @property {(products: Array<String>) => GetProductsStrikethroughPricesRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2848,6 +2848,8 @@
  * @property {(type: String) => GetResponsibilityEntitiesRequest} type Type of entity
  * @property {(resultsPage: Integer) => GetResponsibilityEntitiesRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetResponsibilityEntitiesRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => GetResponsibilityEntitiesRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -3071,6 +3073,8 @@
  * @property {(omitDeleted: 'y'|'n') => GetSnippetsCampaignRequest} omitDeleted Whether to skip the return of deleted campaigns.
  * @property {(resultsPage: Integer) => GetSnippetsCampaignRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetSnippetsCampaignRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => GetSnippetsCampaignRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -3097,6 +3101,8 @@
  * @property {(id: Array<Integer>) => GetSnippetsCookiesRequest} id List of identifiers for specific cookies
  * @property {(resultsPage: Integer) => GetSnippetsCookiesRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetSnippetsCookiesRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => GetSnippetsCookiesRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -3125,6 +3131,8 @@
  * @property {(omitDeleted: 'y'|'n') => GetSnippetsRequest} omitDeleted Whether to skip the return of deleted campaigns.
  * @property {(resultsPage: Integer) => GetSnippetsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetSnippetsRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(page: Integer, limit: Integer) => GetSnippetsRequest} page Define page number and maximum results per page
+ * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
  */
 
@@ -3583,6 +3591,7 @@
  *//**
  * Idosell Gateways.
  * @typedef {Object} Gateways
+ * @property {Gateways} clone Clones request credentials
  * @property {GetClientsBalanceRequest} getClientsBalance Method that enables extracting customer balance information from existing customer accounts.
  * @property {PostClientsBalanceRequest} postClientsBalance Method that allows for customer account balance operations.
  * @property {GetClientsRequest} getClients Method that enables extracting customer account details.
@@ -3891,4 +3900,4 @@
  * @property {PutWmsSuppliersRequest} putWmsSuppliers The method allows information about suppliers to be updated, including address details, description, order preparation time or supplier working hours..
  */
 
-export const DEFAULT_VERSION = 1;
+export const DEFAULT_VERSION = 5;

@@ -10,7 +10,9 @@ const DEFAULT_VERSION = 5;
  * @returns {import('./gates.def.js').Gateways} Gateways Idosell connector - pick gate
  */
 const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
-    const element = { auth: { url, apiKey, version }, params: {}};
+    const auth = { url, apiKey, version, apikey: apiKey.slice(0,6) + '*'.repeat(20) };
+    Object.defineProperty(auth, 'apiKey', { enumerable: false });
+    const element = { auth, params: {}};
     return new Proxy(element, gateProxy);
 }
 
