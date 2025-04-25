@@ -23,14 +23,16 @@ const catchIdosellError = (err) => {
     throw new Error(`${err.response.status}: ${message}`, { cause: err.response.status }) 
 }
 
-const checkNext = (request, response) => {
+const checkNext = (request, response, logPage) => {
     if (!response) return;
     if (response.resultsNumberPage) {
         request.next = response.resultsPage + 1 < response.resultsNumberPage;
         request.params.resultsPage = request.params.resultsPage ? request.params.resultsPage + 1 : 1;
+        if (logPage) logger.gray('Page: ' + response.resultsPage + ' / ' + response.resultsNumberPage)
     } else if (response.results_number_page) {
         request.next = response.results_page + 1 < response.results_number_page;
         request.params.results_page = request.params.results_page ? request.params.results_page + 1 : 1;
+        if (logPage) logger.gray('Page: ' + response.results_page + ' / ' + response.results_page)
     }
     return response;
 }
@@ -72,17 +74,18 @@ export const sendRequest = async (request, options = {}) => {
     const { method, node } = request.gate;
     let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
     if (options.log || options.dump) {
+        console.log(util.inspect({ params: request.params, method, url }, {showHidden: false, depth: null, colors: true}))
         if (options.dump) return;
     }
 
     if (method === 'get' || method === 'delete') {
         url += '?' + queryfy(request.params);
         const response = await axios[method](url, { headers }).then(response => response.data).catch(catchIdosellError);
-        return checkNext(request, response);
+        return checkNext(request, response, options.logPage);
     } else {
         const params = request.rootparams ? request.params : { params: request.params };
         const response = await axios[method](url, params, { headers }).then(response => response.data).catch(catchIdosellError);
-        return checkNext(request, response);
+        return checkNext(request, response, options.logPage);
     }    
 }
 

@@ -263,6 +263,17 @@ import getSnippets from "./methods/getSnippets.js";
 import postSnippets from "./methods/postSnippets.js";
 import putSnippets from "./methods/putSnippets.js";
 import deleteSnippets from "./methods/deleteSnippets.js";
+import postSubscriptionsChangeDeliveryDates from "./methods/postSubscriptionsChangeDeliveryDates.js";
+import postSubscriptionsChangePriceAutoUpdate from "./methods/postSubscriptionsChangePriceAutoUpdate.js";
+import postSubscriptionsChangeStatus from "./methods/postSubscriptionsChangeStatus.js";
+import postSubscriptionsDeleteProduct from "./methods/postSubscriptionsDeleteProduct.js";
+import postSubscriptionsEdit from "./methods/postSubscriptionsEdit.js";
+import postSubscriptionsEditProduct from "./methods/postSubscriptionsEditProduct.js";
+import postSubscriptionsItemsList from "./methods/postSubscriptionsItemsList.js";
+import postSubscriptionsListViewFetchIds from "./methods/postSubscriptionsListViewFetchIds.js";
+import postSubscriptionsListViewList from "./methods/postSubscriptionsListViewList.js";
+import postSubscriptionsSetRebateCode from "./methods/postSubscriptionsSetRebateCode.js";
+import postSubscriptionsUnsetRebateCode from "./methods/postSubscriptionsUnsetRebateCode.js";
 import getSystemConfig from "./methods/getSystemConfig.js";
 import putSystemConfig from "./methods/putSystemConfig.js";
 import getSystemCurrencies from "./methods/getSystemCurrencies.js";
@@ -571,6 +582,17 @@ const gates = {
     postSnippets,
     putSnippets,
     deleteSnippets,
+    postSubscriptionsChangeDeliveryDates,
+    postSubscriptionsChangePriceAutoUpdate,
+    postSubscriptionsChangeStatus,
+    postSubscriptionsDeleteProduct,
+    postSubscriptionsEdit,
+    postSubscriptionsEditProduct,
+    postSubscriptionsItemsList,
+    postSubscriptionsListViewFetchIds,
+    postSubscriptionsListViewList,
+    postSubscriptionsSetRebateCode,
+    postSubscriptionsUnsetRebateCode,
     getSystemConfig,
     putSystemConfig,
     getSystemCurrencies,

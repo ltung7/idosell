@@ -22,8 +22,8 @@
  * @property {(currency: String) => PostClientsBalanceRequest} currency Currency of operation.
  * @property {(note: String) => PostClientsBalanceRequest} note Note.
  * @property {(prepaidId: Integer) => PostClientsBalanceRequest} prepaidId Order payment identifier.
- * @property {(balance: Number, currency: String) => postClientsBalanceRequest} add Adds value to client balance
- * @property {(balance: Number, currency: String) => postClientsBalanceRequest} remove Subtracts value to client balance
+ * @property {(balance: Number, currency: String) => PostClientsBalanceRequest} add Adds value to client balance
+ * @property {(balance: Number, currency: String) => PostClientsBalanceRequest} remove Subtracts value to client balance
  * @property {function} exec Excecute request
  */
 
@@ -36,9 +36,11 @@
  * @property {(clientHasTradeCredit: 'nonzero'|'positive'|'negative'|'zero') => GetClientsRequest} clientHasTradeCredit Trade credit: - positive or negative, - only positive, - only negative, - only zero.
  * @property {(clientLastPurchaseDate: Object) => GetClientsRequest} clientLastPurchaseDate Date of last purchase.
  * @property {(clientsLastModificationDate: Object) => GetClientsRequest} clientsLastModificationDate Last modification date.
- * @property {(returnElements: Array<String>) => GetClientsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available fields: - clientId - clientsLastModificationDate - clientLogin - clientEmail - clientType - showClientAsPartner - blockAutomaticallyAssigningGroupDiscount - clientFirstName - clientLastName - clientBirthDate - clientFirm - clientNip - clientStreet - clientZipCode - clientCity - clientCountryId - langId - currencyId - clientRegionId - clientIsWholesaler - clientVatPreferences - clientGroupDiscountNumber - clientGroupDiscountName - clientCodeExternal - clientPhone1 - clientPhone2 - clientProvinceId - newsletterEmailApprovalsData - shops - clientBalances - clientTradeCredit - clientLoyaltyPoints - operator - isUnregistered - affiliateLogin - affiliateId
+ * @property {(returnElements: Array<String>) => GetClientsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available fields: - clientId - clientsLastModificationDate - clientLogin - clientEmail - clientType - showClientAsPartner - blockAutomaticallyAssigningGroupDiscount - clientFirstName - clientLastName - clientBirthDate - clientFirm - clientNip - clientStreet - clientZipCode - clientCity - clientCountryId - langId - currencyId - clientRegionId - clientIsWholesaler - clientVatPreferences - clientGroupDiscountNumber - clientGroupDiscountName - clientCodeExternal - clientPhone1 - clientPhone2 - clientProvinceId - newsletterEmailApprovalsData - shops - clientBalances - clientTradeCredit - clientLoyaltyPoints - operator - isUnregistered - affiliateLogin - affiliateId - clientRegistrationDate - clientActiveInShops
  * @property {(resultsPage: Integer) => GetClientsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsRequest} resultsLimit Number of results on page. Value from 1 to 100
+ * @property {(clientRegistrationDate: Object) => GetClientsRequest} clientRegistrationDate Client Registration Date 
+ * @property {(shopId: String) => GetClientsRequest} shopId The ID of the shop, that client is assigned to.
  * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsRequest} lastPurchased Type of date according to the index results
  * @property {(dateFrom: DateLike, dateTo: DateLike) => GetClientsRequest} lastModified Type of date according to the index results
  * @property {(page: Integer, limit: Integer) => GetClientsRequest} page Define page number and maximum results per page
@@ -80,7 +82,7 @@
  * @property {(newsletter_email_approvals: Array<Object>) => PostClientsRequest} newsletter_email_approvals List of shops where a customer agreed or didn't agree to receive email newsletter.
  * @property {(newsletter_sms_approvals: Array<Object>) => PostClientsRequest} newsletter_sms_approvals List of shops where a customer agreed or didn't agree to receive sms newsletter.
  * @property {(block_group_auto_assignment: Boolean) => PostClientsRequest} block_group_auto_assignment Block assigning of discount groups automatically based on order history
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostClientsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -122,7 +124,7 @@
  * @property {(affiliateLogin: String) => PutClientsRequest} affiliateLogin The parameter stores information about who acquired the customer
  * @property {(affiliateId: Integer) => PutClientsRequest} affiliateId ID of a partner who acquired a given customer.
  * @property {(clientNote: String) => PutClientsRequest} clientNote Notes from customer.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -171,7 +173,7 @@
  * @property {(clientLogin: String) => DeleteClientsDeliveryAddressRequest} clientLogin Customer's login.
  * @property {(clientCodeExternal: String) => DeleteClientsDeliveryAddressRequest} clientCodeExternal External system code.
  * @property {(clientDeliveryAddressId: Integer) => DeleteClientsDeliveryAddressRequest} clientDeliveryAddressId Delivery address ID.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteClientsDeliveryAddressRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -200,7 +202,7 @@
  * @property {(clientDeliveryAddressProvinceId: String) => PostClientsDeliveryAddressRequest} clientDeliveryAddressProvinceId Administrative region code.
  * @property {(clientDeliveryAddressZipCode: String) => PostClientsDeliveryAddressRequest} clientDeliveryAddressZipCode Recipient's postal code.
  * @property {(clientDeliveryAddressCountry: String) => PostClientsDeliveryAddressRequest} clientDeliveryAddressCountry Recipient's country.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostClientsDeliveryAddressRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -222,7 +224,7 @@
  * @property {(clientDeliveryAddressProvinceId: String) => PutClientsDeliveryAddressRequest} clientDeliveryAddressProvinceId Administrative region code.
  * @property {(clientDeliveryAddressZipCode: String) => PutClientsDeliveryAddressRequest} clientDeliveryAddressZipCode Recipient's postal code.
  * @property {(clientDeliveryAddressCountry: String) => PutClientsDeliveryAddressRequest} clientDeliveryAddressCountry Recipient's country.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsDeliveryAddressRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -239,7 +241,7 @@
  * @property {(giftCards: Array<Object>) => PutClientsGiftcardsBlockRequest} giftCards List of gift cards
  * @property {(id: Integer) => PutClientsGiftcardsBlockRequest} id Card ID
  * @property {(number: String) => PutClientsGiftcardsBlockRequest} number Card number
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsGiftcardsBlockRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -248,7 +250,7 @@
  * @property {(giftCards: Array<Object>) => DeleteClientsGiftcardsRequest} giftCards List of gift cards
  * @property {(id: Integer) => DeleteClientsGiftcardsRequest} id Card ID
  * @property {(number: String) => DeleteClientsGiftcardsRequest} number Card number
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteClientsGiftcardsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -263,7 +265,7 @@
  * @property {(balance: Object) => PostClientsGiftcardsRequest} balance Card balance
  * @property {(shops: Array<Integer>) => PostClientsGiftcardsRequest} shops List of shops the card is active in
  * @property {(note: String) => PostClientsGiftcardsRequest} note 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostClientsGiftcardsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -279,10 +281,10 @@
  * @property {(balance: Object) => PutClientsGiftcardsRequest} balance Card balance
  * @property {(shops: Array<Integer>) => PutClientsGiftcardsRequest} shops List of shops the card is active in
  * @property {(note: String) => PutClientsGiftcardsRequest} note 
- * @property {function} append Append current data to array and start modifying next row
- * @property {(amount: Float, currency: String) => putClientsGiftcardsRequest} add Adds balance to current gift card
- * @property {(amount: Float, currency: String) => putClientsGiftcardsRequest} subtract Subtract from balance to current gift card
- * @property {(amount: Float, currency: String) => putClientsGiftcardsRequest} set Set balance to current gift card
+ * @property {() => PutClientsGiftcardsRequest} append Append current data to array and start modifying next row
+ * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} add Adds balance to current gift card
+ * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} subtract Subtract from balance to current gift card
+ * @property {(amount: Float, currency: String) => PutClientsGiftcardsRequest} set Set balance to current gift card
  * @property {function} exec Excecute request
  */
 
@@ -310,7 +312,7 @@
  * @property {(giftCards: Array<Object>) => PutClientsGiftcardsUnblockRequest} giftCards List of gift cards
  * @property {(id: Integer) => PutClientsGiftcardsUnblockRequest} id Card ID
  * @property {(number: String) => PutClientsGiftcardsUnblockRequest} number Card number
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsGiftcardsUnblockRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -334,7 +336,7 @@
  * @property {(deactivate: Boolean) => PutClientsMembershipCardsRequest} deactivate Determines whether a card should be deactivated.
  * @property {(set_rebate_group: Boolean) => PutClientsMembershipCardsRequest} set_rebate_group Flag that determines whether a discount group should be set.
  * @property {(errors: Object) => PutClientsMembershipCardsRequest} errors Information on error that occurred during gate call.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsMembershipCardsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -371,7 +373,7 @@
  * @property {(payers: Array<Object>) => DeleteClientsPayerAddressRequest} payers 
  * @property {(clientId: Integer) => DeleteClientsPayerAddressRequest} clientId Unique client's number.
  * @property {(payerAddressId: Integer) => DeleteClientsPayerAddressRequest} payerAddressId Buyer's address id.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteClientsPayerAddressRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -398,7 +400,7 @@
  * @property {(payerAddressCity: String) => PostClientsPayerAddressRequest} payerAddressCity Buyer's city.
  * @property {(payerAddressCountryId: String) => PostClientsPayerAddressRequest} payerAddressCountryId Country code in the ISO 3166-1 A2 standard.
  * @property {(payerAddressPhone: String) => PostClientsPayerAddressRequest} payerAddressPhone Buyer's telephone number.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostClientsPayerAddressRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -416,7 +418,7 @@
  * @property {(payerAddressCity: String) => PutClientsPayerAddressRequest} payerAddressCity Buyer's city.
  * @property {(payerAddressCountryId: String) => PutClientsPayerAddressRequest} payerAddressCountryId Country code in the ISO 3166-1 A2 standard.
  * @property {(payerAddressPhone: String) => PutClientsPayerAddressRequest} payerAddressPhone Buyer's telephone number.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsPayerAddressRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -536,7 +538,7 @@
  * @property {(parameter_type: String) => PutClientsPricesDiscountsRequest} parameter_type Parameter type. - DEPRECATED
  * @property {(parameter_value: String) => PutClientsPricesDiscountsRequest} parameter_value Parameter text ID. - DEPRECATED
  * @property {(discount_value: Number) => PutClientsPricesDiscountsRequest} discount_value Size of discount.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsPricesDiscountsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -547,6 +549,7 @@
  * @property {(clientIsActive: 'yes'|'no') => GetClientsProfitPointsRequest} clientIsActive Active
  * @property {(clientHasTradeCredit: 'nonzero'|'positive'|'negative'|'zero') => GetClientsProfitPointsRequest} clientHasTradeCredit Trade credit: - positive or negative, - only positive, - only negative, - only zero.
  * @property {(clientLastPurchaseDate: Object) => GetClientsProfitPointsRequest} clientLastPurchaseDate Date of last purchase.
+ * @property {(pointsModificationDate: Object) => GetClientsProfitPointsRequest} pointsModificationDate Profit points modification date range.
  * @property {(returnElements: Array<String>) => GetClientsProfitPointsRequest} returnElements Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientId - clientProfitPoints - clientProfitPointsHistories
  * @property {(resultsPage: Integer) => GetClientsProfitPointsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetClientsProfitPointsRequest} resultsLimit Number of results on page. Value from 1 to 100
@@ -589,7 +592,7 @@
  * @property {(params: Array<Object>) => DeleteClientsTagsRequest} params Parameters transmitted to method
  * @property {(clientId: Integer) => DeleteClientsTagsRequest} clientId Unique client's number.
  * @property {(tagId: Integer) => DeleteClientsTagsRequest} tagId Tag ID.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteClientsTagsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -605,7 +608,7 @@
  * @property {(clientId: Integer) => PostClientsTagsRequest} clientId Unique client's number.
  * @property {(tagName: String) => PostClientsTagsRequest} tagName Tag name.
  * @property {(tagValue: Integer) => PostClientsTagsRequest} tagValue Tag value.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostClientsTagsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -616,7 +619,7 @@
  * @property {(tagId: Integer) => PutClientsTagsRequest} tagId Tag ID.
  * @property {(operation: 'add'|'set'|'subtract') => PutClientsTagsRequest} operation 
  * @property {(tagValue: Integer) => PutClientsTagsRequest} tagValue Tag value.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutClientsTagsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -665,7 +668,7 @@
  * @property {(pickupPointId: String) => DeleteCouriersPickupPointsRequest} pickupPointId Collection point ID.
  * @property {(pickupPointExternalId: String) => DeleteCouriersPickupPointsRequest} pickupPointExternalId external system code.
  * @property {(courierId: Integer) => DeleteCouriersPickupPointsRequest} courierId Courier ID.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteCouriersPickupPointsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -692,7 +695,7 @@
  * @property {(address: Object) => PostCouriersPickupPointsRequest} address Pickup point address.
  * @property {(coordinates: Object) => PostCouriersPickupPointsRequest} coordinates Geographic coordinates.
  * @property {(operatingDays: Array<Object>) => PostCouriersPickupPointsRequest} operatingDays Personal collection point work hours.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostCouriersPickupPointsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -708,7 +711,7 @@
  * @property {(address: Object) => PutCouriersPickupPointsRequest} address Pickup point address.
  * @property {(coordinates: Object) => PutCouriersPickupPointsRequest} coordinates Geographic coordinates.
  * @property {(operatingDays: Array<Object>) => PutCouriersPickupPointsRequest} operatingDays Personal collection point work hours.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutCouriersPickupPointsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -930,7 +933,7 @@
  * @property {(longDescription: String) => PostEntriesRequest} longDescription Long description
  * @property {(blogUrl: String) => PostEntriesRequest} blogUrl Blog post URL
  * @property {(newsUrl: String) => PostEntriesRequest} newsUrl News item URL
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostEntriesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -984,7 +987,7 @@
  * @property {(menuFilterDisplay: 'name'|'gfx'|'namegfx') => PutMenuFilterRequest} menuFilterDisplay Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics.
  * @property {(menuFilterValueSort: 'y'|'n'|'priority') => PutMenuFilterRequest} menuFilterValueSort Sort by: "y" - alfabetically, "n" - by frequency and order of occurrence of indicated parameter value in found products, "priority" - according to value sequence in parameter.
  * @property {(menuFilterDefaultEnabled: 'y'|'n') => PutMenuFilterRequest} menuFilterDefaultEnabled Enabled by default .
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutMenuFilterRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -996,7 +999,7 @@
  * @property {(menu_id: Integer) => DeleteMenuRequest} menu_id Menu ID.
  * @property {(item_id: Integer) => DeleteMenuRequest} item_id Menu element ID.
  * @property {(item_textid: String) => DeleteMenuRequest} item_textid Menu element text identifier. Example: "item1\item2\item3".
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteMenuRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1020,7 +1023,7 @@
  * @property {(parent_id: String) => PostMenuRequest} parent_id Parent menu element ID.
  * @property {(parent_textid: String) => PostMenuRequest} parent_textid Menu element text identifier. Example: "item1\item2".
  * @property {(lang_data: Array<Object>) => PostMenuRequest} lang_data 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostMenuRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1033,7 +1036,7 @@
  * @property {(item_id: String) => PutMenuRequest} item_id Menu element ID.
  * @property {(item_textid: String) => PutMenuRequest} item_textid Menu element text identifier. Example: "item1\item2\item3".
  * @property {(lang_data: Array<Object>) => PutMenuRequest} lang_data 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutMenuRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1047,7 +1050,7 @@
  * @property {(parent_id: Integer) => PutMenuSortRequest} parent_id Menu element text identifier.
  * @property {(parent_textid: String) => PutMenuSortRequest} parent_textid Menu element text identifier. Example: "item1\item2\item3".
  * @property {(recursive: 'y'|'n') => PutMenuSortRequest} recursive Recurring: y/n!
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutMenuSortRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1096,7 +1099,7 @@
  * @property {(splitPayments: Boolean) => PutOrdersDevideRequest} splitPayments Whether to split payments
  * @property {(basketPosition: Integer) => PutOrdersDevideRequest} basketPosition Item in basket.
  * @property {(quantity: Number) => PutOrdersDevideRequest} quantity Quantity
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutOrdersDevideRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1116,7 +1119,7 @@
  * @property {(documents: Array<Object>) => DeleteOrdersDocumentsRequest} documents List of documents.
  * @property {(orderSerialNumber: Integer) => DeleteOrdersDocumentsRequest} orderSerialNumber Order serial number.
  * @property {(id: Integer) => DeleteOrdersDocumentsRequest} id Document identifier.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteOrdersDocumentsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1124,6 +1127,7 @@
  * @typedef {Object} GetOrdersDocumentsRequest
  * @property {(orderSerialNumber: Array<String>) => GetOrdersDocumentsRequest} orderSerialNumber Order serial number.
  * @property {(documentType: 'sales_confirmation'|'vat_invoice'|'corrective_vat_invoice'|'advance_vat_invoice'|'final_advance_vat_invoice'|'pro_forma_invoice'|'advance_pro_forma_invoice'|'final_advance_pro_forma_invoice'|'delivery_note'|'fiscal_receipt'|'fiscal_invoice'|'other') => GetOrdersDocumentsRequest} documentType Document type
+ * @property {(returnElements: Array<String>) => GetOrdersDocumentsRequest} returnElements Elements returned by api
  * @property {function} exec Excecute request
  */
 
@@ -1136,7 +1140,7 @@
  * @property {(type: 'vat_invoice'|'corrective_vat_invoice'|'other') => PostOrdersDocumentsRequest} type Document type.
  * @property {(returnedInOrderDetails: 'y'|'n') => PostOrdersDocumentsRequest} returnedInOrderDetails Is it to be shown to the customer in the order view.
  * @property {(additionalData: Object) => PostOrdersDocumentsRequest} additionalData Additional information.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostOrdersDocumentsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1194,7 +1198,7 @@
  * @property {(order: Object) => DeleteOrdersImagesRequest} order 
  * @property {(images: Array<Object>) => DeleteOrdersImagesRequest} images List of attachment IDs to be removed from the details of the selected order
  * @property {(id: Integer) => DeleteOrdersImagesRequest} id Attachment ID
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteOrdersImagesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1214,7 +1218,7 @@
  * @property {(type: 'product'|'package') => PostOrdersImagesRequest} type Type. Available values: product - Product photo, package - Package photo
  * @property {(source: String) => PostOrdersImagesRequest} source Attachment source data, depending on the source type selected in the settings. BMP, PNG, JPG, JPEG, GIF or PDF files in Base64 encoding algorithm.
  * @property {(name: String) => PostOrdersImagesRequest} name Name
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostOrdersImagesRequest} append Append current data to array and start modifying next row
  * @property {(orderId: String) => PostOrdersImagesRequest} orderId Define orderId value nested inside order
  * @property {(orderSerialNumber: Integer) => PostOrdersImagesRequest} orderSerialNumber Define orderSerialNumber value nested inside order
  * @property {function} exec Excecute request
@@ -1291,7 +1295,7 @@
  * @property {(billingCurrency: String) => PostOrdersRequest} billingCurrency Order settlement currency.
  * @property {(billingCurrencyRate: Number) => PostOrdersRequest} billingCurrencyRate Panel billing currency exchange rate in relation to billing currency in the shop .
  * @property {(purchaseDate: String) => PostOrdersRequest} purchaseDate Sale date. ISO 8602 format.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostOrdersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1317,7 +1321,7 @@
  * @property {(billingCurrencyRate: Number) => PutOrdersRequest} billingCurrencyRate Panel billing currency exchange rate in relation to billing currency in the shop .
  * @property {(purchaseDate: String) => PutOrdersRequest} purchaseDate Sale date. ISO 8602 format.
  * @property {(estimatedDeliveryDate: String) => PutOrdersRequest} estimatedDeliveryDate Estimated date of shipment of the order in format Y-m-d H:i
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutOrdersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1363,11 +1367,11 @@
  * @property {(stockIds: Array<Integer>) => SearchOrdersRequest} stockIds Define stocks by passing array of values
  * @property {(campaignIds: Array<Integer>) => SearchOrdersRequest} campaignIds Define campaign by passing array of values
  * @property {(discountCodes: Array<String>) => SearchOrdersRequest} discountCodes Define campaign by passing array of values
- * @property {(productId: Integer, sizeId: String|null) => searchOrdersRequest} hasProduct Filter by product ID and optionally product size
- * @property {(orderHasPackage: Boolean) => searchOrdersRequest} hasPackage Filter by orders that have any package number
- * @property {(accountName: String) => searchOrdersRequest} fromAllegro Filter by orders from auction service Allegro
- * @property {(accountName: String) => searchOrdersRequest} fromEbay Filter by orders from action service EBay
- * @property {(accountName: String) => searchOrdersRequest} fromAmazon Filter by orders from action service Amazon
+ * @property {(productId: Integer, sizeId: String|null) => SearchOrdersRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => SearchOrdersRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => SearchOrdersRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => SearchOrdersRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => SearchOrdersRequest} fromAmazon Filter by orders from action service Amazon
  * @property {(page: Integer, limit: Integer) => SearchOrdersRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1389,7 +1393,7 @@
  * @property {(eventId: String) => PostOrdersPackagesRequest} eventId Id.
  * @property {(eventType: 'order'|'rma'|'return') => PostOrdersPackagesRequest} eventType Type.
  * @property {(packages: Array<Object>) => PostOrdersPackagesRequest} packages Information on consignments.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostOrdersPackagesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1399,7 +1403,7 @@
  * @property {(eventId: String) => PutOrdersPackagesRequest} eventId Id.
  * @property {(eventType: 'order'|'rma'|'return') => PutOrdersPackagesRequest} eventType Type.
  * @property {(packages: Array<Object>) => PutOrdersPackagesRequest} packages Information on consignments.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutOrdersPackagesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1426,7 +1430,7 @@
  * @property {(orders: Array<Object>) => PutOrdersProductsSerialNumbersRequest} orders Orders.
  * @property {(orderSerialNumber: Integer) => PutOrdersProductsSerialNumbersRequest} orderSerialNumber Order serial number.
  * @property {(orderProducts: Array<Object>) => PutOrdersProductsSerialNumbersRequest} orderProducts Products list.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutOrdersProductsSerialNumbersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1437,7 +1441,7 @@
  * @property {(products: Array<Object>) => PutOrdersProfitMarginRequest} products Products list.
  * @property {(errors: Object) => PutOrdersProfitMarginRequest} errors Information on error that occurred during gate call.
  * @property {(isProductsErrors: Boolean) => PutOrdersProfitMarginRequest} isProductsErrors Flag marking errors in the result.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutOrdersProfitMarginRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1491,11 +1495,11 @@
  * @property {(stockIds: Array<Integer>) => SearchOrdersUnfinishedRequest} stockIds Define stocks by passing array of values
  * @property {(campaignIds: Array<Integer>) => SearchOrdersUnfinishedRequest} campaignIds Define campaign by passing array of values
  * @property {(discountCodes: Array<String>) => SearchOrdersUnfinishedRequest} discountCodes Define campaign by passing array of values
- * @property {(productId: Integer, sizeId: String|null) => searchOrdersUnfinishedRequest} hasProduct Filter by product ID and optionally product size
- * @property {(orderHasPackage: Boolean) => searchOrdersUnfinishedRequest} hasPackage Filter by orders that have any package number
- * @property {(accountName: String) => searchOrdersUnfinishedRequest} fromAllegro Filter by orders from auction service Allegro
- * @property {(accountName: String) => searchOrdersUnfinishedRequest} fromEbay Filter by orders from action service EBay
- * @property {(accountName: String) => searchOrdersUnfinishedRequest} fromAmazon Filter by orders from action service Amazon
+ * @property {(productId: Integer, sizeId: String|null) => SearchOrdersUnfinishedRequest} hasProduct Filter by product ID and optionally product size
+ * @property {(orderHasPackage: Boolean) => SearchOrdersUnfinishedRequest} hasPackage Filter by orders that have any package number
+ * @property {(accountName: String) => SearchOrdersUnfinishedRequest} fromAllegro Filter by orders from auction service Allegro
+ * @property {(accountName: String) => SearchOrdersUnfinishedRequest} fromEbay Filter by orders from action service EBay
+ * @property {(accountName: String) => SearchOrdersUnfinishedRequest} fromAmazon Filter by orders from action service Amazon
  * @property {(page: Integer, limit: Integer) => SearchOrdersUnfinishedRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1520,9 +1524,9 @@
  * @typedef {Object} GetPackagesLabelsRequest
  * @property {(eventId: Integer) => GetPackagesLabelsRequest} eventId Id.
  * @property {(eventType: 'order'|'rma'|'return') => GetPackagesLabelsRequest} eventType Event type
- * @property {(orderSerialNumber: Integer) => getPackagesLabelsRequest} order Set type to orders with given order serial numbers
- * @property {(rmaId: Integer) => getPackagesLabelsRequest} rma Set type to rma with given rma Ids
- * @property {(returnId: Integer) => getPackagesLabelsRequest} return Set type to returns with given return Ids
+ * @property {(orderSerialNumber: Integer) => GetPackagesLabelsRequest} order Set type to orders with given order serial numbers
+ * @property {(rmaId: Integer) => GetPackagesLabelsRequest} rma Set type to rma with given rma Ids
+ * @property {(returnId: Integer) => GetPackagesLabelsRequest} return Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1534,7 +1538,7 @@
  * @property {(parcelParametersByPackages: Array<Object>) => PostPackagesLabelsRequest} parcelParametersByPackages Shipment configuration options available for Inpost Smile courier
  * @property {(packageId: String) => PostPackagesLabelsRequest} packageId Package ID in system.
  * @property {(parcelParameters: Array<Object>) => PostPackagesLabelsRequest} parcelParameters Shipment configuration options available for a given courier
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostPackagesLabelsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1544,7 +1548,7 @@
  * @property {(orderId: String) => PostPackagesRequest} orderId Order ID.
  * @property {(orderType: 'order'|'rma'|'return') => PostPackagesRequest} orderType Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail"
  * @property {(packages: Array<Object>) => PostPackagesRequest} packages Information on consignments.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostPackagesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1554,7 +1558,7 @@
  * @property {(orderId: String) => PutPackagesRequest} orderId Order ID.
  * @property {(orderType: 'order'|'rma'|'return') => PutPackagesRequest} orderType Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail"
  * @property {(packages: Array<Object>) => PutPackagesRequest} packages Information on consignments.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutPackagesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1565,10 +1569,10 @@
  * @property {(returnLabels: Boolean) => SearchPackagesRequest} returnLabels Return parcel labels.
  * @property {(eventType: 'order'|'rma'|'return') => SearchPackagesRequest} eventType Type.
  * @property {(eventsIds: Array<Integer>) => SearchPackagesRequest} eventsIds IDs.
- * @property {function} append Append current data to array and start modifying next row
- * @property {(orderSerialNumbers: Array<Integer>) => searchPackagesRequest} orders Set type to orders with given order serial numbers
- * @property {(rmaIds: Array<Integer>) => searchPackagesRequest} rma Set type to rma with given rma Ids
- * @property {(returnIds: Array<Integer>) => searchPackagesRequest} returns Set type to returns with given return Ids
+ * @property {() => SearchPackagesRequest} append Append current data to array and start modifying next row
+ * @property {(orderSerialNumbers: Array<Integer>) => SearchPackagesRequest} orders Set type to orders with given order serial numbers
+ * @property {(rmaIds: Array<Integer>) => SearchPackagesRequest} rma Set type to rma with given rma Ids
+ * @property {(returnIds: Array<Integer>) => SearchPackagesRequest} returns Set type to returns with given return Ids
  * @property {function} exec Excecute request
  */
 
@@ -1673,7 +1677,7 @@
  * @property {(errors: Object) => PutProductsAttachmentsRequest} errors Information on error that occurred during gate call.
  * @property {(attachmentsErrorsOccurred: Boolean) => PutProductsAttachmentsRequest} attachmentsErrorsOccurred Flag indicating if there are errors in results of attachments settings.
  * @property {(virtualAttachmentsErrorsOccurred: Boolean) => PutProductsAttachmentsRequest} virtualAttachmentsErrorsOccurred Flag indicating if there are errors in results of virtual attachments settings.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsAttachmentsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1685,7 +1689,7 @@
  * @property {(resultsPage: Integer) => GetProductsAuctionsRequest} resultsPage Page with results number. Numeration starts from 0
  * @property {(resultsLimit: Integer) => GetProductsAuctionsRequest} resultsLimit Number of results on page. Value from 1 to 100
  * @property {(ids: Array<Integer>) => GetProductsAuctionsRequest} ids Define products by passing array of values
- * @property {() => getProductsAuctionsRequest} fromAllegro Get auction data on products
+ * @property {() => GetProductsAuctionsRequest} fromAllegro Get auction data on products
  * @property {(page: Integer, limit: Integer) => GetProductsAuctionsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -1717,7 +1721,7 @@
  * @property {(filterDisplay: 'name'|'gfx'|'namegfx') => PutProductsBrandsFilterRequest} filterDisplay Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics.
  * @property {(filterValueSort: 'y'|'n'|'priority') => PutProductsBrandsFilterRequest} filterValueSort Sort by: "y" - alfabetically, "n" - by frequency and order of occurrence of indicated parameter value in found products, "priority" - according to value sequence in parameter.
  * @property {(filterDefaultEnabled: 'y'|'n') => PutProductsBrandsFilterRequest} filterDefaultEnabled Enabled by default .
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsBrandsFilterRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1737,7 +1741,7 @@
  * @property {(nameInPanel: String) => PostProductsBrandsRequest} nameInPanel Name in panel
  * @property {(imagesSettings: Object) => PostProductsBrandsRequest} imagesSettings 
  * @property {(languagesConfigurations: Array<Object>) => PostProductsBrandsRequest} languagesConfigurations 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostProductsBrandsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1748,7 +1752,7 @@
  * @property {(nameInPanel: String) => PutProductsBrandsRequest} nameInPanel Name in panel
  * @property {(imagesSettings: Object) => PutProductsBrandsRequest} imagesSettings 
  * @property {(languagesConfigurations: Array<Object>) => PutProductsBrandsRequest} languagesConfigurations 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsBrandsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1756,7 +1760,7 @@
  * @typedef {Object} PostProductsBundlesRequest
  * @property {(params: Array<Object>) => PostProductsBundlesRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PostProductsBundlesRequest} products Products list.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostProductsBundlesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1765,7 +1769,7 @@
  * @property {(params: Array<Object>) => DeleteProductsBundlesProductsRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => DeleteProductsBundlesProductsRequest} products Products list.
  * @property {(bundleIdent: Object) => DeleteProductsBundlesProductsRequest} bundleIdent 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteProductsBundlesProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1774,7 +1778,7 @@
  * @property {(params: Array<Object>) => PostProductsBundlesProductsRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PostProductsBundlesProductsRequest} products Products list.
  * @property {(bundleIdent: Object) => PostProductsBundlesProductsRequest} bundleIdent 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostProductsBundlesProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1783,7 +1787,7 @@
  * @property {(params: Array<Object>) => PutProductsBundlesProductsQuantityRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PutProductsBundlesProductsQuantityRequest} products Products list.
  * @property {(bundleIdent: Object) => PutProductsBundlesProductsQuantityRequest} bundleIdent 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsBundlesProductsQuantityRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1792,7 +1796,7 @@
  * @property {(params: Array<Object>) => PutProductsBundlesRenewRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PutProductsBundlesRenewRequest} products Products list.
  * @property {(bundleIdent: Object) => PutProductsBundlesRenewRequest} bundleIdent ID of a set being modified.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsBundlesRenewRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1816,7 +1820,7 @@
  * @property {(priority: Integer) => PutProductsCategoriesRequest} priority Category priority. Value from 1 to 19.
  * @property {(operation: String) => PutProductsCategoriesRequest} operation Operation code. Allowed values. "add" - adds new category, "edit" - edits existing category, "del" - deletes existing category.
  * @property {(lang_data: Array<Object>) => PutProductsCategoriesRequest} lang_data 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsCategoriesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1839,7 +1843,7 @@
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer'|'codeDeliverer') => GetProductsCodeExistenceRequest} identType 
  * @property {(products: Array<String>) => GetProductsCodeExistenceRequest} products Products list.
  * @property {(delivererId: String) => GetProductsCodeExistenceRequest} delivererId 
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsCodeExistenceRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsCodeExistenceRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -1847,7 +1851,7 @@
  * @typedef {Object} PostProductsCollectionsRequest
  * @property {(params: Array<Object>) => PostProductsCollectionsRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PostProductsCollectionsRequest} products Products list.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostProductsCollectionsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1856,7 +1860,7 @@
  * @property {(params: Array<Object>) => DeleteProductsCollectionsProductsRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => DeleteProductsCollectionsProductsRequest} products Products list.
  * @property {(collectionId: Integer) => DeleteProductsCollectionsProductsRequest} collectionId ID of a collection being modified
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteProductsCollectionsProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1865,7 +1869,7 @@
  * @property {(params: Array<Object>) => PostProductsCollectionsProductsRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PostProductsCollectionsProductsRequest} products Products list.
  * @property {(collectionId: Integer) => PostProductsCollectionsProductsRequest} collectionId ID of a collection being modified
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostProductsCollectionsProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1874,7 +1878,7 @@
  * @property {(params: Array<Object>) => PutProductsCollectionsProductsRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PutProductsCollectionsProductsRequest} products Products list.
  * @property {(collectionId: Integer) => PutProductsCollectionsProductsRequest} collectionId ID of a collection being modified.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsCollectionsProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1883,7 +1887,7 @@
  * @property {(params: Array<Object>) => PutProductsCollectionsRenewRequest} params Parameters transmitted to method
  * @property {(products: Array<Object>) => PutProductsCollectionsRenewRequest} products Products list.
  * @property {(collectionIdent: Object) => PutProductsCollectionsRenewRequest} collectionIdent ID of a collection being modified.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsCollectionsRenewRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1897,7 +1901,7 @@
  * @property {(sizePanelName: String) => SearchProductsDeliveryTimeRequest} sizePanelName Size name
  * @property {(productIndex: String) => SearchProductsDeliveryTimeRequest} productIndex Product IAI code
  * @property {(productSizeQuantity: Number) => SearchProductsDeliveryTimeRequest} productSizeQuantity Product quantity.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => SearchProductsDeliveryTimeRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1915,7 +1919,7 @@
  * @property {(productIdent: Object) => PutProductsDescriptionsRequest} productIdent 
  * @property {(productDescriptionsLangData: Array<Object>) => PutProductsDescriptionsRequest} productDescriptionsLangData Array of language-dependent elements.
  * @property {(productAuctionDescriptionsData: Array<Object>) => PutProductsDescriptionsRequest} productAuctionDescriptionsData Product data for auction services
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsDescriptionsRequest} append Append current data to array and start modifying next row
  * @property {(productId: Integer) => PutProductsDescriptionsRequest} productId Define identValue value nested inside productIdent
  * @property {function} exec Excecute request
  */
@@ -1924,7 +1928,7 @@
  * @typedef {Object} PutProductsGroupsMainProductRequest
  * @property {(groups: Array<Object>) => PutProductsGroupsMainProductRequest} groups 
  * @property {(productIdent: Object) => PutProductsGroupsMainProductRequest} productIdent 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsGroupsMainProductRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1932,8 +1936,8 @@
  * @typedef {Object} PutProductsGroupsOrderRequest
  * @property {(groups: Array<Object>) => PutProductsGroupsOrderRequest} groups 
  * @property {(productsInOrder: Array<Object>) => PutProductsGroupsOrderRequest} productsInOrder 
- * @property {function} append Append current data to array and start modifying next row
- * @property {(Array<Integer>) => putProductsGroupsOrderRequest} productIdsInOrder Defines order of products within group by automatically setting proprities in order of appearance
+ * @property {() => PutProductsGroupsOrderRequest} append Append current data to array and start modifying next row
+ * @property {(Array<Integer>) => PutProductsGroupsOrderRequest} productIdsInOrder Defines order of products within group by automatically setting proprities in order of appearance
  * @property {function} exec Excecute request
  */
 
@@ -1944,7 +1948,7 @@
  * @property {(displayInPanel: 'firstAvailable'|'all') => PutProductsGroupsSettingsRequest} displayInPanel Display on the product list in the panel.
  * @property {(displayOnPage: 'firstAvailable'|'all'|'specified') => PutProductsGroupsSettingsRequest} displayOnPage Display on a product list on the page.
  * @property {(specifiedProductIdent: Object) => PutProductsGroupsSettingsRequest} specifiedProductIdent Selected product in the group.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsGroupsSettingsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1962,7 +1966,7 @@
  * @property {(productId: Integer) => DeleteProductsImagesRequest} productId Product IAI code
  * @property {(shopId: Integer) => DeleteProductsImagesRequest} shopId Shop Id
  * @property {(productImagesId: Array<String>) => DeleteProductsImagesRequest} productImagesId 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteProductsImagesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -1976,13 +1980,13 @@
  * @property {(productImages: Array<Object>) => PutProductsImagesRequest} productImages Product photos details.
  * @property {(productIcons: Array<Object>) => PutProductsImagesRequest} productIcons Product icons list.
  * @property {(productImagesSettings: Object) => PutProductsImagesRequest} productImagesSettings Product settings.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsImagesRequest} append Append current data to array and start modifying next row
  * @property {(productId: Integer) => PutProductsImagesRequest} productId Define identValue value nested inside productIdent
  * @property {(shopIcon: String) => PutProductsImagesRequest} shopIcon Append productIconSource value into nested array inside productIcons
  * @property {(auctionIcon: String) => PutProductsImagesRequest} auctionIcon Append productIconSource value into nested array inside productIcons
  * @property {(groupIcon: String) => PutProductsImagesRequest} groupIcon Append productIconSource value into nested array inside productIcons
- * @property {(source: String, priority: Integer) => putProductsImagesRequest} addImage Adds image source with selected priority
- * @property {() => putProductsImagesRequest} base64 Set global image source to base64
+ * @property {(source: String, priority: Integer) => PutProductsImagesRequest} addImage Adds image source with selected priority
+ * @property {() => PutProductsImagesRequest} base64 Set global image source to base64
  * @property {function} exec Excecute request
  */
 
@@ -2015,7 +2019,7 @@
  * @property {(promotionElements: Array<Object>) => PostProductsMarketingPromotionRequest} promotionElements Elements to be affected by the promotion
  * @property {(elementType: 'product'|'series'|'producer'|'category'|'menu') => PostProductsMarketingPromotionRequest} elementType 
  * @property {(elementId: String) => PostProductsMarketingPromotionRequest} elementId Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId)
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostProductsMarketingPromotionRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2037,7 +2041,7 @@
  * @property {(promotionElements: Array<Object>) => PutProductsMarketingPromotionRequest} promotionElements Elements to be affected by the promotion
  * @property {(elementType: 'product'|'series'|'producer'|'category'|'menu') => PutProductsMarketingPromotionRequest} elementType 
  * @property {(elementId: String) => PutProductsMarketingPromotionRequest} elementId Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId)
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsMarketingPromotionRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2045,7 +2049,7 @@
  * @typedef {Object} GetProductsMarketingZonesRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsMarketingZonesRequest} identType 
  * @property {(products: Array<String>) => GetProductsMarketingZonesRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsMarketingZonesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsMarketingZonesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2059,7 +2063,7 @@
  * @property {(assignment_mode: 'auto'|'manual') => PutProductsMarketingZonesRequest} assignment_mode 
  * @property {(marketing_zones: Object) => PutProductsMarketingZonesRequest} marketing_zones 
  * @property {(shops: Array<Object>) => PutProductsMarketingZonesRequest} shops Marketing hotspots in shops
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsMarketingZonesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2067,7 +2071,7 @@
  * @typedef {Object} GetProductsOmnibusPricesRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsOmnibusPricesRequest} identType 
  * @property {(products: Array<String>) => GetProductsOmnibusPricesRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsOmnibusPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsOmnibusPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2078,7 +2082,7 @@
  * @property {(sizes: Array<Object>) => PutProductsOmnibusPricesRequest} sizes List of sizes
  * @property {(omnibusPrices: Object) => PutProductsOmnibusPricesRequest} omnibusPrices Strikethrough price settings.
  * @property {(shops: Array<Object>) => PutProductsOmnibusPricesRequest} shops Strikethrough price settings for the page.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsOmnibusPricesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2122,7 +2126,7 @@
  * @property {(orderSerialNumber: Integer) => PostProductsOpinionsRequest} orderSerialNumber Order serial number.
  * @property {(shopAnswer: String) => PostProductsOpinionsRequest} shopAnswer Reply to an opinion
  * @property {(opinionConfirmedByPurchase: Boolean) => PostProductsOpinionsRequest} opinionConfirmedByPurchase Opinion confirmed with purchase
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostProductsOpinionsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2163,9 +2167,9 @@
  * @property {(search_description: Array<Object>) => PutProductsParametersRequest} search_description Search descriptions of parameter value.
  * @property {(card_icons: Array<Object>) => PutProductsParametersRequest} card_icons Icons of section, parameter or value to display on the product card.
  * @property {(link_icons: Array<Object>) => PutProductsParametersRequest} link_icons Icons of section, parameter or value to display on the list of products.
- * @property {(context_id: String) => PutProductsParametersRequest} context_id Parameter's additional feature. 1. Status: context_id = "CONTEXT_STATE" Takes values context_value_id: - CONTEXT_STATE_NEW - New, - CONTEXT_STATE_USED - Used, - CONTEXT_STATE_REFURBISHED_BY_PRODUCER - Renewed by a manufacturer, - CONTEXT_STATE_REFURBISHED_BY_SELLER - Renewed by a seller, - CONTEXT_STATE_FOR_PARTS_OR_BROKEN - In parts or damaged. 2. Product weight in grams: context_id = "CONTEXT_STD_UNIT_WEIGHT" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 3. A product's value in milliliters: context_id = "CONTEXT_STD_UNIT_VOLUME" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 4. Sex: context_id = "CONTEXT_SEX" Takes values context_value_id: - CONTEXT_SEX_MAN - Man, - CONTEXT_SEX_WOMAN - Woman, - CONTEXT_SEX_UNISEX - Unisex. 5. Age group: context_id = "CONTEXT_AGE_GROUP" Takes values context_value_id: - CONTEXT_AGE_GROUP_ADULT - Adults, - CONTEXT_AGE_GROUP_MINOR - Children. 6. Maximum number of products in an order: context_id = "CONTEXT_MAX_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 7. Maximum number of products in a wholesale order: context_id = "CONTEXT_MAX_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 8. Minimal number of products in an order: context_id = "CONTEXT_MIN_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 9. Minimum number of products in a wholesale order: context_id = "CONTEXT_MIN_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 10. Maximal number of a single size in an order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 11. Maximal number of a single size in a wholesale order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 12. Minimal number of a single size in an order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 13. Minimal number of a single size in a wholesale order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 14. Net weight: context_id = "CONTEXT_WEIGHT_NET" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 15. Color: context_id = "CONTEXT_COLOR" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 16. #!TylkoDlaDoroslych!#: context_id = "CONTEXT_ONLY_ADULTS" Takes values context_value_id: - CONTEXT_ONLY_ADULTS_YES - yes, - CONTEXT_ONLY_ADULTS_NO - no. 17. Prescription drug: context_id = "CONTEXT_PRESCRIPTION_MEDICINE" Takes values context_value_id: - CONTEXT_PRESCRIPTION_MEDICINE_YES - yes, - CONTEXT_PRESCRIPTION_MEDICINE_NO - no. 18. Season Rate: context_id = "CONTEXT_SEASON" Takes values context_value_id: - CONTEXT_SEASON_SPRING - Spring, - CONTEXT_SEASON_SUMMER - Summer, - CONTEXT_SEASON_FALL - Autumn, - CONTEXT_SEASON_WINTER - Winter, - CONTEXT_SEASON_SPRING_SUMMER - Spring/Summer, - CONTEXT_SEASON_FALL_WINTER - Autumn/Winter 19. Risk - signal word: context_id = \"CONTEXT_HAZMAT_SIGNAL\" Takes values context_value_id: - CONTEXT_HAZMAT_SIGNAL_DANGER - danger, - CONTEXT_HAZMAT_SIGNAL_WARNING - warnging, - CONTEXT_HAZMAT_SIGNAL_CAUTION - caution, - CONTEXT_HAZMAT_SIGNAL_NOTICE - notice, 20. Risk - warning pictogram context_id = \"CONTEXT_HAZMAT_PICTOGRAM\" Takes values context_value_id: - GHS01, GHS02, GHS03, GHS04, GHS05, GHS06, GHS07, GHS08, GHS09 21. Risk - type of hazard: context_id = \"CONTEXT_HAZMAT_STATEMENT\" Takes values context_value_id: - H200, H201, H202, H203, H204, H205, H220, H221, H222, H223, H224, H225, H226, H228, H240, H241, H242, H250, H251, H252, H260, H261, H270, H271, H272, H280, H281, H290, H300, H301, H302, H304, H310, H311, H312, H314, H315, H317, H318, H319, H330, H331, H332, H334, H335, H336, H340, H341, H350, H351, H360, H361, H362, H370, H371, H372, H373, H400, H410, H411, H412, H413, EUH 001, EUH 014, EUH 018, EUH 019, EUH 044, EUH 029, EUH 031, EUH 032, EUH 066, EUH 070, EUH 071, EUH 201, EUH 201A, EUH 202, EUH 203, EUH 204, EUH 205, EUH 206, EUH 207, EUH 208, EUH 209, EUH 209A, EUH 210, EUH 401 22. Repair score: context_id = \"CONTEXT_REPAIR_SCORE\" Takes values context_value_id: - The value of the additional feature is set automatically based on the parameter's value 23. Safety - information pictogram: context_id = \"CONTEXT_SAFETY_PICTOGRAM\" Takes values context_value_id: - 1 (Not suitable for small children) - 2 (CE mark) 24. Safety - type of warning: context_id = \"CONTEXT_SAFETY_STATEMENT\" Takes values context_value_id: - 1 (Not suitable for children under 3 years) - 2 (Keep out of the reach of children) - 3 (Product contains a button cell or coin battery) - 4 (Use under the direct supervision of adults) - 5 (Required protective gear. Do not use in public traffic) - 6 (Contains toy. Adult supervision recommended) - 7 (To prevent possible injury from entanglement, remove this toy as soon as the child begins to crawl) - 8 (Use only in shallow water under adult supervision) - 9 (Only use under adult supervision) - 10 (This toy does not provide protection) - 11 (Contains fragrances that may cause allergies) - 12 (For household use only).
+ * @property {(context_id: String) => PutProductsParametersRequest} context_id Parameter's additional feature. 1. Status: context_id = "CONTEXT_STATE" Takes values context_value_id: - CONTEXT_STATE_NEW - New, - CONTEXT_STATE_USED - Used, - CONTEXT_STATE_USED_EXCELLENT - Used - excellent condition - CONTEXT_STATE_USED_VERYGOOD - Used - very good condition - CONTEXT_STATE_USED_CORRECT - Used - good condition - CONTEXT_STATE_USED_ACCEPTABLE - Used - acceptable condition - CONTEXT_STATE_REFURBISHED_EXCELLENT - Refurbished - excellent condition - CONTEXT_STATE_REFURBISHED_VERYGOOD - Refurbished - very good condition - CONTEXT_STATE_REFURBISHED_CORRECT - Refurbished - good condition - CONTEXT_STATE_NEW_OTHERS - New other (see details) - CONTEXT_STATE_NEW_WITH_DEFECTS - New with defects - CONTEXT_STATE_NEW_OEM - New - OEM - CONTEXT_STATE_NEW_OPEN_BOX - New - open box - CONTEXT_STATE_REFURBISHED_BY_PRODUCER - Renewed by a manufacturer, - CONTEXT_STATE_REFURBISHED_BY_SELLER - Renewed by a seller, - CONTEXT_STATE_FOR_PARTS_OR_BROKEN - In parts or damaged. 2. Product weight in grams: context_id = "CONTEXT_STD_UNIT_WEIGHT" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 3. A product's value in milliliters: context_id = "CONTEXT_STD_UNIT_VOLUME" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 4. Sex: context_id = "CONTEXT_SEX" Takes values context_value_id: - CONTEXT_SEX_MAN - Man, - CONTEXT_SEX_WOMAN - Woman, - CONTEXT_SEX_UNISEX - Unisex. 5. Age group: context_id = "CONTEXT_AGE_GROUP" Takes values context_value_id: - CONTEXT_AGE_GROUP_ADULT - Adults, - CONTEXT_AGE_GROUP_MINOR - Children. 6. Maximum number of products in an order: context_id = "CONTEXT_MAX_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 7. Maximum number of products in a wholesale order: context_id = "CONTEXT_MAX_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 8. Minimal number of products in an order: context_id = "CONTEXT_MIN_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 9. Minimum number of products in a wholesale order: context_id = "CONTEXT_MIN_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 10. Maximal number of a single size in an order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 11. Maximal number of a single size in a wholesale order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 12. Minimal number of a single size in an order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 13. Minimal number of a single size in a wholesale order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 14. Net weight: context_id = "CONTEXT_WEIGHT_NET" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 15. Color: context_id = "CONTEXT_COLOR" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 16. #!TylkoDlaDoroslych!#: context_id = "CONTEXT_ONLY_ADULTS" Takes values context_value_id: - CONTEXT_ONLY_ADULTS_YES - yes, - CONTEXT_ONLY_ADULTS_NO - no. 17. Prescription drug: context_id = "CONTEXT_PRESCRIPTION_MEDICINE" Takes values context_value_id: - CONTEXT_PRESCRIPTION_MEDICINE_YES - yes, - CONTEXT_PRESCRIPTION_MEDICINE_NO - no. 18. Season Rate: context_id = "CONTEXT_SEASON" Takes values context_value_id: - CONTEXT_SEASON_SPRING - Spring, - CONTEXT_SEASON_SUMMER - Summer, - CONTEXT_SEASON_FALL - Autumn, - CONTEXT_SEASON_WINTER - Winter, - CONTEXT_SEASON_SPRING_SUMMER - Spring/Summer, - CONTEXT_SEASON_FALL_WINTER - Autumn/Winter 19. Risk - signal word: context_id = \"CONTEXT_HAZMAT_SIGNAL\" Takes values context_value_id: - CONTEXT_HAZMAT_SIGNAL_DANGER - danger, - CONTEXT_HAZMAT_SIGNAL_WARNING - warnging, - CONTEXT_HAZMAT_SIGNAL_CAUTION - caution, - CONTEXT_HAZMAT_SIGNAL_NOTICE - notice, 20. Risk - warning pictogram context_id = \"CONTEXT_HAZMAT_PICTOGRAM\" Takes values context_value_id: - GHS01, GHS02, GHS03, GHS04, GHS05, GHS06, GHS07, GHS08, GHS09 21. Risk - type of hazard: context_id = \"CONTEXT_HAZMAT_STATEMENT\" Takes values context_value_id: - H200, H201, H202, H203, H204, H205, H220, H221, H222, H223, H224, H225, H226, H228, H240, H241, H242, H250, H251, H252, H260, H261, H270, H271, H272, H280, H281, H290, H300, H301, H302, H304, H310, H311, H312, H314, H315, H317, H318, H319, H330, H331, H332, H334, H335, H336, H340, H341, H350, H351, H360, H361, H362, H370, H371, H372, H373, H400, H410, H411, H412, H413, EUH 001, EUH 014, EUH 018, EUH 019, EUH 044, EUH 029, EUH 031, EUH 032, EUH 066, EUH 070, EUH 071, EUH 201, EUH 201A, EUH 202, EUH 203, EUH 204, EUH 205, EUH 206, EUH 207, EUH 208, EUH 209, EUH 209A, EUH 210, EUH 401 22. Repair score: context_id = \"CONTEXT_REPAIR_SCORE\" Takes values context_value_id: - The value of the additional feature is set automatically based on the parameter's value 23. Safety - information pictogram: context_id = \"CONTEXT_SAFETY_PICTOGRAM\" Takes values context_value_id: - 1 (Not suitable for small children) - 2 (CE mark) 24. Safety - type of warning: context_id = \"CONTEXT_SAFETY_STATEMENT\" Takes values context_value_id: - 1 (Not suitable for children under 3 years) - 2 (Keep out of the reach of children) - 3 (Product contains a button cell or coin battery) - 4 (Use under the direct supervision of adults) - 5 (Required protective gear. Do not use in public traffic) - 6 (Contains toy. Adult supervision recommended) - 7 (To prevent possible injury from entanglement, remove this toy as soon as the child begins to crawl) - 8 (Use only in shallow water under adult supervision) - 9 (Only use under adult supervision) - 10 (This toy does not provide protection) - 11 (Contains fragrances that may cause allergies) - 12 (For household use only).
  * @property {(context_value_id: String) => PutProductsParametersRequest} context_value_id value of additional feature - Values described in context_id.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsParametersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2187,7 +2191,7 @@
  * @property {(products: Array<Object>) => DeleteProductsRequest} products Products list.
  * @property {(productId: Integer) => DeleteProductsRequest} productId Product IAI code
  * @property {(productSizeCodeExternal: String) => DeleteProductsRequest} productSizeCodeExternal External product system code for size.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2260,6 +2264,7 @@
  * @property {(associatedProducts: Array<Object>) => PostProductsRequest} associatedProducts List of products recommended with this product
  * @property {(productSizes: Array<Object>) => PostProductsRequest} productSizes Sizes available for products data.
  * @property {(productShopsAttributes: Array<Object>) => PostProductsRequest} productShopsAttributes Data concerning attributes dependent on indicated stores with particular product assigned.
+ * @property {(subscription: Array<Object>) => PostProductsRequest} subscription Products subscription settings.
  * @property {(productNames: Object) => PostProductsRequest} productNames Product name.
  * @property {(productDescriptions: Object) => PostProductsRequest} productDescriptions 
  * @property {(productLongDescriptions: Object) => PostProductsRequest} productLongDescriptions Long product description
@@ -2280,10 +2285,10 @@
  * @property {(productDimensions: Object) => PostProductsRequest} productDimensions Dimensions and overall weight
  * @property {(responsibleProducerCode: String) => PostProductsRequest} responsibleProducerCode Responsible producer code
  * @property {(responsiblePersonCode: String) => PostProductsRequest} responsiblePersonCode Responsible person code
- * @property {function} append Append current data to array and start modifying next row
- * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => postProductsRequest} setText Set various types of names or descriptions to the product
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => postProductsRequest} addPrice Increases product price by amount
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => postProductsRequest} setPrice Sets product price by amount
+ * @property {() => PostProductsRequest} append Append current data to array and start modifying next row
+ * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PostProductsRequest} setText Set various types of names or descriptions to the product
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PostProductsRequest} addPrice Increases product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PostProductsRequest} setPrice Sets product price by amount
  * @property {function} exec Excecute request
  */
 
@@ -2380,6 +2385,7 @@
  * @property {(virtualAttachments: Array<Object>) => PutProductsRequest} virtualAttachments List of product's virtual attachments.
  * @property {(attachmentOperationValues: 'edit'|'add'|'remove') => PutProductsRequest} attachmentOperationValues Operation, that will be performed on attachments to product.
  * @property {(productShopsAttributes: Array<Object>) => PutProductsRequest} productShopsAttributes Data concerning attributes dependent on indicated stores with particular product assigned.
+ * @property {(subscription: Array<Object>) => PutProductsRequest} subscription Products subscription settings.
  * @property {(productNames: Object) => PutProductsRequest} productNames Product name.
  * @property {(productNamesInAuction: Object) => PutProductsRequest} productNamesInAuction DEPRECATED. This parameter is deprecated. Product name for online auctions.
  * @property {(productNamesInPriceComparer: Object) => PutProductsRequest} productNamesInPriceComparer Product name for price comparison websites.
@@ -2423,14 +2429,14 @@
  * @property {(productDimensions: Object) => PutProductsRequest} productDimensions Dimensions and overall weight
  * @property {(responsibleProducerCode: String) => PutProductsRequest} responsibleProducerCode Responsible producer code
  * @property {(responsiblePersonCode: String) => PutProductsRequest} responsiblePersonCode Responsible person code
- * @property {function} append Append current data to array and start modifying next row
- * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => putProductsRequest} setText Set various types of names or descriptions to the product
- * @property {() => putProductsRequest} editMode Set edit mode - disables adding new product
- * @property {() => putProductsRequest} addMode Set add mode - Api is allowed to create new products
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => putProductsRequest} addPrice Increases product price by amount
- * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => putProductsRequest} setPrice Sets product price by amount
- * @property {(shopId: Integer, menuIds: Integer) => putProductsRequest} setMenu Sets product selected IDs
- * @property {(picturesArray: Array<String>) => putProductsRequest} pictures Sets list of pictures attached to product
+ * @property {() => PutProductsRequest} append Append current data to array and start modifying next row
+ * @property {(text: String, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: String, shopId: Integer) => PutProductsRequest} setText Set various types of names or descriptions to the product
+ * @property {() => PutProductsRequest} editMode Set edit mode - disables adding new product
+ * @property {() => PutProductsRequest} addMode Set add mode - Api is allowed to create new products
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PutProductsRequest} addPrice Increases product price by amount
+ * @property {(value: Float, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => PutProductsRequest} setPrice Sets product price by amount
+ * @property {(shopId: Integer, menuIds: Integer) => PutProductsRequest} setMenu Sets product selected IDs
+ * @property {(picturesArray: Array<String>) => PutProductsRequest} pictures Sets list of pictures attached to product
  * @property {function} exec Excecute request
  */
 
@@ -2507,9 +2513,9 @@
  * @property {(bySeries: Array<Integer>) => SearchProductsRequest} bySeries Define productSeriesParams by passing array of values
  * @property {(byWarranties: Array<Integer>) => SearchProductsRequest} byWarranties Define productWarranties by passing array of values
  * @property {(byIndexes: Array<Integer>) => SearchProductsRequest} byIndexes Define productIndexes by passing array of values
- * @property {(onlyMain: Boolean) => searchProductsRequest} onlyMainVersion Toogle to return only main versions
- * @property {(minPrice: Number, maxPrice: Number, priceType: "retail_price"|"wholesale_price"|"minimal_price"|"pos_price"|"last_purchase_price") => searchProductsRequest} byPrice Filter by minimum and maximym price
- * @property {(stockIds: Boolean|Array<Integer>) => searchProductsRequest} inStock Filter by availibility on any stock or selected stocks
+ * @property {(onlyMain: Boolean) => SearchProductsRequest} onlyMainVersion Toogle to return only main versions
+ * @property {(minPrice: Number, maxPrice: Number, priceType: "retail_price"|"wholesale_price"|"minimal_price"|"pos_price"|"last_purchase_price") => SearchProductsRequest} byPrice Filter by minimum and maximym price
+ * @property {(stockIds: Boolean|Array<Integer>) => SearchProductsRequest} inStock Filter by availibility on any stock or selected stocks
  * @property {(page: Integer, limit: Integer) => SearchProductsRequest} page Define page number and maximum results per page
  * @property {() => Integer} count Returns total numer of results
  * @property {function} exec Excecute request
@@ -2576,7 +2582,7 @@
  * @property {(shopId: Integer) => PutProductsQuestionsRequest} shopId Shop Id
  * @property {(answerDate: String) => PutProductsQuestionsRequest} answerDate Date of response.
  * @property {(answerAuthor: String) => PutProductsQuestionsRequest} answerAuthor Response author.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsQuestionsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2584,7 +2590,7 @@
  * @typedef {Object} GetProductsReservationsRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsReservationsRequest} identType 
  * @property {(products: Array<String>) => GetProductsReservationsRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsReservationsRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsReservationsRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2620,7 +2626,7 @@
  * @property {(filterDisplay: 'name'|'gfx'|'namegfx') => PutProductsSeriesFilterRequest} filterDisplay Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics.
  * @property {(filterValueSort: 'y'|'n'|'priority') => PutProductsSeriesFilterRequest} filterValueSort Sort by: "y" - alfabetically, "n" - by frequency and order of occurrence of indicated parameter value in found products, "priority" - according to value sequence in parameter.
  * @property {(filterDefaultEnabled: 'y'|'n') => PutProductsSeriesFilterRequest} filterDefaultEnabled Enabled by default .
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsSeriesFilterRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2643,7 +2649,7 @@
  * @property {(id: Integer) => PutProductsSeriesRequest} id Id
  * @property {(nameInPanel: String) => PutProductsSeriesRequest} nameInPanel Name in panel
  * @property {(shopsConfigurations: Array<Object>) => PutProductsSeriesRequest} shopsConfigurations 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsSeriesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2654,7 +2660,7 @@
  * @property {(deleteSizesIndexesData: Array<String>) => DeleteProductsSizesRequest} deleteSizesIndexesData Product parameters recognized by index.
  * @property {(productId: Integer) => DeleteProductsSizesRequest} productId Product IAI code
  * @property {(sizes: Array<Object>) => DeleteProductsSizesRequest} sizes List of sizes
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteProductsSizesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2673,7 +2679,7 @@
  * @property {(indexesData: Array<Object>) => PutProductsSizesRequest} indexesData Product parameters recognized by index
  * @property {(productId: Integer) => PutProductsSizesRequest} productId Product IAI code
  * @property {(sizes: Array<Object>) => PutProductsSizesRequest} sizes List of sizes
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsSizesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2685,7 +2691,7 @@
  * @property {(productSizeQuantity: Number) => PutProductsStockQuantityRequest} productSizeQuantity Product stock quantity
  * @property {(productPurchasePrice: Number) => PutProductsStockQuantityRequest} productPurchasePrice Cost price
  * @property {(productPurchasePriceNet: Number) => PutProductsStockQuantityRequest} productPurchasePriceNet Net purchase price
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsStockQuantityRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2693,7 +2699,7 @@
  * @typedef {Object} GetProductsStocksRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStocksRequest} identType 
  * @property {(products: Array<String>) => GetProductsStocksRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsStocksRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStocksRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2704,7 +2710,7 @@
  * @property {(sizes: Array<Object>) => PutProductsStocksRequest} sizes List of sizes
  * @property {(settings: Object) => PutProductsStocksRequest} settings 
  * @property {(error: Object) => PutProductsStocksRequest} error Error information.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsStocksRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2712,7 +2718,7 @@
  * @typedef {Object} GetProductsStrikethroughPricesRequest
  * @property {(identType: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} identType 
  * @property {(products: Array<String>) => GetProductsStrikethroughPricesRequest} products Products list.
- * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => getProductsStrikethroughPricesRequest} productId Set product identifiers
+ * @property {(productId: Integer|Array<Integer> type: 'id'|'index'|'codeExtern'|'codeProducer') => GetProductsStrikethroughPricesRequest} productId Set product identifiers
  * @property {function} exec Excecute request
  */
 
@@ -2723,7 +2729,7 @@
  * @property {(sizes: Array<Object>) => PutProductsStrikethroughPricesRequest} sizes List of sizes
  * @property {(stp_settings: Object) => PutProductsStrikethroughPricesRequest} stp_settings 
  * @property {(shops: Array<Object>) => PutProductsStrikethroughPricesRequest} shops Strikethrough price settings for the page.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsStrikethroughPricesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2732,7 +2738,7 @@
  * @property {(products: Array<Object>) => PutProductsSupplierCodeRequest} products Products list.
  * @property {(productId: Integer) => PutProductsSupplierCodeRequest} productId Product IAI code
  * @property {(productDeliverers: Array<Object>) => PutProductsSupplierCodeRequest} productDeliverers Suppliers data
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsSupplierCodeRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2741,7 +2747,7 @@
  * @property {(products: Array<Object>) => PutProductsSupplierProductDataRequest} products Products list.
  * @property {(productId: Integer) => PutProductsSupplierProductDataRequest} productId Product IAI code
  * @property {(productDeliverers: Array<Object>) => PutProductsSupplierProductDataRequest} productDeliverers Suppliers data
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutProductsSupplierProductDataRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2869,7 +2875,7 @@
  * @property {(country: String) => PostResponsibilityEntitiesRequest} country 2-letter ISO country code.
  * @property {(phone: String) => PostResponsibilityEntitiesRequest} phone Phone number.
  * @property {(description: String) => PostResponsibilityEntitiesRequest} description Additional description.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostResponsibilityEntitiesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2889,7 +2895,7 @@
  * @property {(country: String) => PutResponsibilityEntitiesRequest} country 2-letter ISO country code.
  * @property {(phone: String) => PutResponsibilityEntitiesRequest} phone Phone number.
  * @property {(description: String) => PutResponsibilityEntitiesRequest} description Additional description.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutResponsibilityEntitiesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2938,7 +2944,7 @@
  * @property {(price: Number) => PostReturnsRequest} price Price.
  * @property {(serialNumbers: Array<String>) => PostReturnsRequest} serialNumbers 
  * @property {(productOrderAdditional: String) => PostReturnsRequest} productOrderAdditional Additional information.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostReturnsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2952,7 +2958,7 @@
  * @property {(userNote: String) => PutReturnsRequest} userNote 
  * @property {(clientNote: String) => PutReturnsRequest} clientNote Notes from customer.
  * @property {(tryCorrectInvoice: Boolean) => PutReturnsRequest} tryCorrectInvoice 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutReturnsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2963,7 +2969,7 @@
  * @property {(id: Integer) => PutReturnsSerialNumberRequest} id Product ID.
  * @property {(size: String) => PutReturnsSerialNumberRequest} size Size ID.
  * @property {(serialNumbers: Array<String>) => PutReturnsSerialNumberRequest} serialNumbers 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutReturnsSerialNumberRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -2997,7 +3003,7 @@
  * @property {(rmaId: Integer) => PutRmaRequest} rmaId Complaint id.
  * @property {(rmaStatusId: Integer) => PutRmaRequest} rmaStatusId Claim status. Available values: 15 - Complaint not confirmed by the shop service, 17 - The complaint has been cancelled, 18 - Complaint canceled by the customer, 14 - Complaint didn't arrive, 20 - Complaint not handled, 22 - Complaint rejected - no fault was found, 23 - Complaint rejected - the warranty period has expired, 24 - Complaint rejected - defect caused by improper use, 19 - Complaint confirmed, 28 - Complaint is being considered - repair completed, 5 - Complaint is being considered - Product sent to the producer , 4 - Complaint is being considered - Product was sent for testing, 6 - Complaint is being considered - Repair in progress, 29 - Complaint is being considered - the complaint requires additional information from the customer, 7 - Complaint adjusted negatively - no fault was found, 9 - Complaint adjusted negatively - the warranty period has expired, 30 - Complaint adjusted negatively - return shipment sent to the customer, 8 - Complaint adjusted negatively - defect caused by improper use, 25 - Complaint handled positively - return shipment sent to the customer, 12 - Complaint handled positively - replacement for a new product, 13 - Complaint handled positively - replacement for a different product, 26 - Complaint handled positively - a new item was shipped without waiting for the original one, 27 - Complaint handled positively - the recipient's data change on the sales document, 10 - Complaint handled positively - Refund - payment processing, 11 - Complaint handled positively - repair completed - payout made, 31 - Complaint handled positively - Awaiting correction invoice confirmation, 34 - Complaint handled positively - Refund - preparing correction invoice
  * @property {(rmaChat: Array<Object>) => PutRmaRequest} rmaChat Customer correspondence.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutRmaRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3041,7 +3047,7 @@
  * @property {(nameInPanel: String) => PutSizechartsRequest} nameInPanel Name in panel
  * @property {(displayMode: 'single'|'all') => PutSizechartsRequest} displayMode Display mode
  * @property {(languagesData: Array<Object>) => PutSizechartsRequest} languagesData 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutSizechartsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3062,7 +3068,7 @@
  * @property {(description: String) => PutSizesRequest} description Size description.
  * @property {(operation: String) => PutSizesRequest} operation Operation type: add, edit, del
  * @property {(lang_data: Array<Object>) => PutSizesRequest} lang_data 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutSizesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3155,6 +3161,72 @@
  */
 
 /**
+ * @typedef {Object} PostSubscriptionsChangeDeliveryDatesRequest
+ * @property {(subscriptionsDeliveryDatesModel: Object) => PostSubscriptionsChangeDeliveryDatesRequest} subscriptionsDeliveryDatesModel 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsChangePriceAutoUpdateRequest
+ * @property {(subscriptionsAutoPriceModel: Object) => PostSubscriptionsChangePriceAutoUpdateRequest} subscriptionsAutoPriceModel 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsChangeStatusRequest
+ * @property {(subscriptionsStatusModel: Object) => PostSubscriptionsChangeStatusRequest} subscriptionsStatusModel 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsDeleteProductRequest
+ * @property {(subscriptionDeleteProducts: Object) => PostSubscriptionsDeleteProductRequest} subscriptionDeleteProducts 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsEditRequest
+ * @property {(subscriptionsEditRequest: Object) => PostSubscriptionsEditRequest} subscriptionsEditRequest Subscriptions model
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsEditProductRequest
+ * @property {(subscriptionEditProducts: Object) => PostSubscriptionsEditProductRequest} subscriptionEditProducts 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsItemsListRequest
+ * @property {(request: Object) => PostSubscriptionsItemsListRequest} request 
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsListViewFetchIdsRequest
+ * @property {(filter: Object) => PostSubscriptionsListViewFetchIdsRequest} filter Filters that limit the result of a customer query.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsListViewListRequest
+ * @property {(request: Object) => PostSubscriptionsListViewListRequest} request Object describing the request for a list of Subscriptions.
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsSetRebateCodeRequest
+ * @property {(request: Object) => PostSubscriptionsSetRebateCodeRequest} request Object with discount code data to set
+ * @property {function} exec Excecute request
+ */
+
+/**
+ * @typedef {Object} PostSubscriptionsUnsetRebateCodeRequest
+ * @property {(request: Object) => PostSubscriptionsUnsetRebateCodeRequest} request Object with request witch unset rebate code
+ * @property {function} exec Excecute request
+ */
+
+/**
  * @typedef {Object} GetSystemConfigRequest
  * @property {function} exec Excecute request
  */
@@ -3178,7 +3250,7 @@
  * @property {(id: String) => PutSystemCurrenciesRequest} id Currency code in ISO 4217 standard.
  * @property {(rate: Number) => PutSystemCurrenciesRequest} rate Currency exchange rate. Maximal value is 10000.
  * @property {(scale: Integer) => PutSystemCurrenciesRequest} scale Currency smaller unit.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutSystemCurrenciesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3224,7 +3296,7 @@
  * @property {(precisionUnit: Integer) => PutSystemUnitsRequest} precisionUnit Accuracy (number of places after comma)
  * @property {(visible: Boolean) => PutSystemUnitsRequest} visible Visibility
  * @property {(descriptions: Array<Object>) => PutSystemUnitsRequest} descriptions Unit names
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutSystemUnitsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3239,7 +3311,7 @@
  * @property {(vouchers: Array<Object>) => PutVouchersBlockRequest} vouchers 
  * @property {(id: Integer) => PutVouchersBlockRequest} id Voucher ID
  * @property {(number: String) => PutVouchersBlockRequest} number Number.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutVouchersBlockRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3257,7 +3329,7 @@
  * @property {(vouchers: Array<Object>) => PutVouchersUnblockRequest} vouchers 
  * @property {(id: Integer) => PutVouchersUnblockRequest} id Voucher ID
  * @property {(number: String) => PutVouchersUnblockRequest} number Number.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutVouchersUnblockRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3266,7 +3338,7 @@
  * @property {(vouchers: Array<Object>) => DeleteVouchersRequest} vouchers 
  * @property {(id: Integer) => DeleteVouchersRequest} id Voucher ID
  * @property {(number: String) => DeleteVouchersRequest} number Number.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteVouchersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3308,7 +3380,7 @@
  * @property {(balance: Object) => PostVouchersRequest} balance Voucher balance
  * @property {(shops: Array<Integer>) => PostVouchersRequest} shops List of shops the voucher is active in
  * @property {(note: String) => PostVouchersRequest} note 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostVouchersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3324,7 +3396,7 @@
  * @property {(shops: Array<Integer>) => PutVouchersRequest} shops List of shops the voucher is active in
  * @property {(note: String) => PutVouchersRequest} note 
  * @property {(status: 'used'|'unused') => PutVouchersRequest} status Status, possible values: - used - used, - unused - unused,
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutVouchersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3339,7 +3411,7 @@
  * @property {(lang_data: Array<Object>) => PutWarrantiesLanguageDataRequest} lang_data 
  * @property {(warranty_id: String) => PutWarrantiesLanguageDataRequest} warranty_id Warranty ID (numeric or text based).
  * @property {(lang: Array<Object>) => PutWarrantiesLanguageDataRequest} lang 
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutWarrantiesLanguageDataRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3368,7 +3440,7 @@
  * @property {(period: Integer) => PostWarrantiesRequest} period Warranty time. Default value 12.
  * @property {(shopname: Object) => PostWarrantiesRequest} shopname Name of warranty.
  * @property {(description: Object) => PostWarrantiesRequest} description Warranty description.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostWarrantiesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3379,7 +3451,7 @@
  * @property {(name: String) => PutWarrantiesRequest} name Name.
  * @property {(type: 'seller'|'producer') => PutWarrantiesRequest} type 
  * @property {(period: Integer) => PutWarrantiesRequest} period Warranty time. Default value 12.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutWarrantiesRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3498,7 +3570,7 @@
  * @property {(id: Integer) => DeleteWmsStocksdocumentsProductsRequest} id Document identifier.
  * @property {(product: Integer) => DeleteWmsStocksdocumentsProductsRequest} product Stock keeping unit.
  * @property {(size: String) => DeleteWmsStocksdocumentsProductsRequest} size Product size ID.
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => DeleteWmsStocksdocumentsProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3525,7 +3597,7 @@
  * @property {(locationId: Integer) => PostWmsStocksdocumentsProductsRequest} locationId Warehouse location ID. The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> .
  * @property {(locationCode: String) => PostWmsStocksdocumentsProductsRequest} locationCode Storage location code
  * @property {(locationTextId: String) => PostWmsStocksdocumentsProductsRequest} locationTextId Warehouse location full path. Use a backslash (\) as a separator, for example: M1\Section name\Location name. The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> .
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PostWmsStocksdocumentsProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3541,7 +3613,7 @@
  * @property {(locationId: Integer) => PutWmsStocksdocumentsProductsRequest} locationId Warehouse location ID. The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> .
  * @property {(locationCode: String) => PutWmsStocksdocumentsProductsRequest} locationCode Storage location code
  * @property {(locationTextId: String) => PutWmsStocksdocumentsProductsRequest} locationTextId Warehouse location full path. Use a backslash (\) as a separator, for example: M1\Section name\Location name. The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> .
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutWmsStocksdocumentsProductsRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  */
 
@@ -3586,7 +3658,7 @@
  * @property {(description: String) => PutWmsSuppliersRequest} description Description. (limit of 255 characters)
  * @property {(orderCompletionTime: Object) => PutWmsSuppliersRequest} orderCompletionTime Order preparation time for shipment
  * @property {(workDays: Array<Object>) => PutWmsSuppliersRequest} workDays Supplier working hours
- * @property {function} append Append current data to array and start modifying next row
+ * @property {() => PutWmsSuppliersRequest} append Append current data to array and start modifying next row
  * @property {function} exec Excecute request
  *//**
  * Idosell Gateways.
@@ -3857,6 +3929,17 @@
  * @property {PostSnippetsRequest} postSnippets Use this operation to create code snippet.
  * @property {PutSnippetsRequest} putSnippets Use this operation to update code snippet.
  * @property {DeleteSnippetsRequest} deleteSnippets This call is used to remove snippets.
+ * @property {PostSubscriptionsChangeDeliveryDatesRequest} postSubscriptionsChangeDeliveryDates The method allowing to change subscriptions delivery dates
+ * @property {PostSubscriptionsChangePriceAutoUpdateRequest} postSubscriptionsChangePriceAutoUpdate The method allowing to change subscriptions price auto update setting
+ * @property {PostSubscriptionsChangeStatusRequest} postSubscriptionsChangeStatus The method allowing to change subscriptions status
+ * @property {PostSubscriptionsDeleteProductRequest} postSubscriptionsDeleteProduct The method allowing for products in subscription removeing.
+ * @property {PostSubscriptionsEditRequest} postSubscriptionsEdit The method allowing for subscription editing.
+ * @property {PostSubscriptionsEditProductRequest} postSubscriptionsEditProduct The method allowing for products in subscription editing.
+ * @property {PostSubscriptionsItemsListRequest} postSubscriptionsItemsList List of items assigned to subscription.
+ * @property {PostSubscriptionsListViewFetchIdsRequest} postSubscriptionsListViewFetchIds List of subscriptions ID's of the store.
+ * @property {PostSubscriptionsListViewListRequest} postSubscriptionsListViewList List of subscriptions of the store. Allows you to download data for editing and basic statistics.
+ * @property {PostSubscriptionsSetRebateCodeRequest} postSubscriptionsSetRebateCode The method for set rebate code
+ * @property {PostSubscriptionsUnsetRebateCodeRequest} postSubscriptionsUnsetRebateCode The method for set rebate code
  * @property {GetSystemConfigRequest} getSystemConfig Method is used for extracting information about a shop and its most important configuration settings.
  * @property {PutSystemConfigRequest} putSystemConfig The method is used to manage the most important settings in the store and in the panel. It enables, among others, configuration of tax and billing settings and configuration of warehouse management.
  * @property {GetSystemCurrenciesRequest} getSystemCurrencies This method returns the current exchange rate in relation to the currency set in the administration panel.
