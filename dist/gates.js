@@ -315,7 +315,6 @@ import putWmsStocksdocumentsRejectMM from "./methods/putWmsStocksdocumentsReject
 import deleteWmsSuppliers from "./methods/deleteWmsSuppliers.js";
 import getWmsSuppliers from "./methods/getWmsSuppliers.js";
 import putWmsSuppliers from "./methods/putWmsSuppliers.js";
-
 const gates = {
     getClientsBalance,
     postClientsBalance,
@@ -634,24 +633,13 @@ const gates = {
     deleteWmsSuppliers,
     getWmsSuppliers,
     putWmsSuppliers,
-    listProducts: searchProducts,
-    listOrders: searchOrders,
-    listOrdersUnfinished: searchOrdersUnfinished,
-    getClientsGiftcards: searchClientsGiftcards,
-    getClientsCrm: searchClientsCrm,
-    getClientsNewsletterEmailShops: searchClientsNewsletterEmail,
-    getClientsNewsletterEmailSMS: searchClientsNewsletterSms,
-    getOrdersOpinions: searchOrdersOpinions,
-    getPackages: searchPackages,
-    getProductsCategoriesIdosell: searchProductsCategoriesIdosell,
-    getProductsDeliveryTime: searchProductsDeliveryTime,
-    getProductsParameters: searchProductsParameters,
-}
-
+};
 export const gateProxy = {
     get: (object, property) => {
-        if (property === "then") return object;
-        if (!gates[property]) throw new Error("Invalid gate: " + property);
+        if (property === "then")
+            return object;
+        if (!gates[property])
+            throw new Error("Invalid gate: " + property);
         return gates[property](object);
     }
-}
+};

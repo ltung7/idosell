@@ -1,6 +1,5 @@
 import { paramsProxy } from "../params.js";
 import { setProductText, modifyPrice } from "../helpers.js";
-
 export default (object) => {
     object.gate = { method: 'post', node: '/products/products' };
     object.custom = {
@@ -9,9 +8,9 @@ export default (object) => {
         setPrice: (value, type = "retail", net = false) => modifyPrice(value, type, net, "amount_set")
     };
     object.appendable = {
-        except: ["settings","picturesSettings"],
+        except: ["settings", "picturesSettings"],
         arrayNode: "products",
         index: 0
-    }
+    };
     return new Proxy(object, paramsProxy);
-}
+};

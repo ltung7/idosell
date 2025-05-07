@@ -1,6 +1,5 @@
 import { paramsProxy } from "../params.js";
 import { arrayOfObjects } from "../helpers.js";
-
 export default (object) => {
     object.gate = { method: 'post', node: '/clients/giftcards/search' };
     object.custom = {
@@ -9,4 +8,4 @@ export default (object) => {
         pins: arrayOfObjects("giftCards", "pin")
     };
     return new Proxy(object, paramsProxy);
-}
+};

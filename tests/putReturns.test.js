@@ -1,7 +1,7 @@
-import idosell from "./dist/index.js"
+import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("putReturnsStatus", () => {
-    const params = idosell().putReturns.id(2).status(14).getParams();
-    expect(params).toEqual({"returns":[{"id":2,"status":14}]});
+    const params = idosell().putReturns.id(2).status(2).getParams();
+    expect(params).toEqual({"returns":[{"id":2,"status":2}]});
 })

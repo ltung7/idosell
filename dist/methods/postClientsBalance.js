@@ -1,5 +1,4 @@
 import { paramsProxy } from "../params.js";
-
 export default (object) => {
     object.gate = { method: 'post', node: '/clients/balance' };
     object.custom = {
@@ -7,4 +6,4 @@ export default (object) => {
         remove: (balance, currency = "PLN") => ({ operation: "remove", balance, currency })
     };
     return new Proxy(object, paramsProxy);
-}
+};

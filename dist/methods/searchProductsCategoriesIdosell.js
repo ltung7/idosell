@@ -1,6 +1,5 @@
 import { paramsProxy } from "../params.js";
 import { arrayOfObjects, page } from "../helpers.js";
-
 export default (object) => {
     object.gate = { method: 'post', node: '/products/categoriesIdosell/search' };
     object.custom = {
@@ -8,4 +7,4 @@ export default (object) => {
         page
     };
     return new Proxy(object, paramsProxy);
-}
+};

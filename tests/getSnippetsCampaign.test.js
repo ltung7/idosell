@@ -1,0 +1,7 @@
+import idosell from "./dist/index"
+import { expect, test } from "vitest"
+
+test("getSnippetsCampaignId", () => {
+    const params = idosell().getSnippetsCampaign.id(1).getParams();
+    expect(params).toEqual({"id":1});
+})

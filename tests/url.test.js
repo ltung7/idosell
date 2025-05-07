@@ -1,7 +1,7 @@
 // getClients.clientsIds([123,456,789]).lastPurchase("2023-01-01", 1672704000000)
 
 import { queryfy } from "../dist/request";
-import idosell from "./dist/index.js"
+import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("getClientsLastPurchased", () => {

@@ -1,4 +1,4 @@
-import idosell from "./dist/index.js"
+import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("putProductsCountryOfOrigin", () => {
