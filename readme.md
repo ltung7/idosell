@@ -40,7 +40,7 @@ Note that the method *categories()* is used to set the request body, while the *
 Some less obvious gate properties include:
 ```javascript
 idosellRequest.getProducts.exec(); // Translates to GET on /products/products endpoint
-idosellRequest.listProducts.exec(); // Translates to POST on /products/products/get endpoint
+idosellRequest.searchProducts.exec(); // Translates to POST on /products/products/search endpoint
 idosellRequest.deleteProducts.exec(); // Translates to POST on /products/products/delete endpoint
 idosellRequest.deleteProductsOpinions.exec() // Translates to POST on products/opinions/opinions/delete endpoint
 ```
@@ -110,7 +110,7 @@ while (getReturnsRequest.hasNext()) {
 Some endpoints require dates in either the "YYYY-MM-DD" format or the "YYYY-MM-DD HH:mm:ss" format. Many of them use a set of dates to define the range of the results, for example, listing orders dispatched between the start of the month and the end of the same month. Instead, you can use the *dates()* helper:
 
 ```javascript
-const dispatchedOrders = idosellRequest.listOrders.dates('2023-12-01', '2023-12-31', 'dispatch').exec();
+const dispatchedOrders = idosellRequest.searchOrders.dates('2023-12-01', '2023-12-31', 'dispatch').exec();
 // This function will return orders that have dispatch date betwen 2023-12-01 00:00:00 and 2023-12-31 23:59:59
 ```
 
@@ -130,7 +130,7 @@ This example will translate to following request body:
 As an argument, you can pass anything that is accepted as a native Date constructor or leave it empty for the current timestamp. For example:
 
 ```javascript
-const orders = idosellRequest.listOrders.dates(Date.now() - 86400000).exec();
+const orders = idosellRequest.searchOrders.dates(Date.now() - 86400000).exec();
 // This function will return orders added (default value of date type is 'add') between 24 hours ago and now
 ```
 
@@ -211,6 +211,22 @@ for (const { id, code } of productCodes) {
     updateProducts.productId(id).productDisplayedCode(code).append();
 }
 updateProducts.exec()
+```
+
+## Enums
+
+Enums make it easier to browse from several options that can be used as arguments. They canbe imported directly from package.
+
+```javascript
+import idosell, { ENUMS } from "idosell";
+//..
+idosellRequest.searchProducts.returnElements([ ENUMS.PRODUCTS_RETURN_ELEMENTS.CODE ])
+```
+
+Enums can also be used to provide meaningful names to values (like status codes) so you don't have to remember or type raw numbers.
+
+```javascript
+idosellRequest.getReturns.status(ENUMS.RETURN_STATUS.ACCEPTED) // instead of .status(1)
 ```
 
 ## Other formatters
@@ -329,7 +345,7 @@ const ordersFromAllegro = await idosellRequest.params(query).exec();
 You can use the *getParams()* function to retrieve request parameters as Javascript Object.
 
 ```javascript 
-const orderRequest = idosellRequest.listOrders.ordersSerialNumbers([123, 456, 789]).getParams();
+const orderRequest = idosellRequest.searchOrders.ordersSerialNumbers([123, 456, 789]).getParams();
 // Will return Object: { ordersSerialNumbers: [ 123, 456, 789 ] }
 ```
 

@@ -6,6 +6,8 @@ export interface ExecutableOptions {
 
 export type DateLike = string | number | Date;
 
+export type JSObject = Record<string,any>;
+
 export type RequestProxyObject = {
 	auth: {
 		url: string, 
@@ -31,7 +33,7 @@ export type GatewayRequestProxyObject = {
 	rootparams?: boolean
 } & RequestProxyObject;
 
-export interface Gateway<R = Object> {
+export interface Gateway<R = JSObject> {
 	/**
 	 * Executes the query to designated API endpoint
 	 * @param options Use options: log - to console log params, url and method, logPage - to console log current page in a loop
@@ -42,15 +44,15 @@ export interface Gateway<R = Object> {
 	/**
 	 * @returns Object with currently mapped parameters
 	 */
-	getParams: () => Object,
+	getParams: () => JSObject,
 
 	/**
 	 * @description Set object as params
 	 */
-	setParams: (params: Object) => this
+	setParams: (params: JSObject) => this
 }
 
-export interface PagableGateway<T,R = Object> extends Gateway<R> {
+export interface PagableGateway<T,R = JSObject> extends Gateway<R> {
 	/**
      * @returns number of items i.e. products, orders, documents, etc.
      */

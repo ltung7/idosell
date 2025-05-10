@@ -633,6 +633,18 @@ const gates = {
     deleteWmsSuppliers,
     getWmsSuppliers,
     putWmsSuppliers,
+    listProducts: searchProducts,
+    listOrders: searchOrders,
+    listOrdersUnfinished: searchOrdersUnfinished,
+    getClientsGiftcards: searchClientsGiftcards,
+    getClientsCrm: searchClientsCrm,
+    getClientsNewsletterEmailShops: searchClientsNewsletterEmail,
+    getClientsNewsletterEmailSMS: searchClientsNewsletterSms,
+    getOrdersOpinions: searchOrdersOpinions,
+    getPackages: searchPackages,
+    getProductsCategoriesIdosell: searchProductsCategoriesIdosell,
+    getProductsDeliveryTime: searchProductsDeliveryTime,
+    getProductsParameters: searchProductsParameters,
 };
 export const gateProxy = {
     get: (object, property) => {

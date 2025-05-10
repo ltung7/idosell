@@ -1,0 +1,156 @@
+var PRODUCTS_RETURN_ELEMENTS;
+(function (PRODUCTS_RETURN_ELEMENTS) {
+    PRODUCTS_RETURN_ELEMENTS["LANG_DATA"] = "lang_data";
+    PRODUCTS_RETURN_ELEMENTS["ADDING_TIME"] = "adding_time";
+    PRODUCTS_RETURN_ELEMENTS["DELETED"] = "deleted";
+    PRODUCTS_RETURN_ELEMENTS["CODE"] = "code";
+    PRODUCTS_RETURN_ELEMENTS["NOTE"] = "note";
+    PRODUCTS_RETURN_ELEMENTS["TAXCODE"] = "taxcode";
+    PRODUCTS_RETURN_ELEMENTS["INWRAPPER"] = "inwrapper";
+    PRODUCTS_RETURN_ELEMENTS["SELLBY_RETAIL"] = "sellby_retail";
+    PRODUCTS_RETURN_ELEMENTS["SELLBY_WHOLESALE"] = "sellby_wholesale";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCER_ID"] = "producer_id";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCER_NAME"] = "producer_name";
+    PRODUCTS_RETURN_ELEMENTS["IAI_CATEGORY_ID"] = "iaiCategoryId";
+    PRODUCTS_RETURN_ELEMENTS["IAI_CATEGORY_NAME"] = "iaiCategoryName";
+    PRODUCTS_RETURN_ELEMENTS["IAI_CATEGORY_PATH"] = "iaiCategoryPath";
+    PRODUCTS_RETURN_ELEMENTS["CATEGORY_ID"] = "category_id";
+    PRODUCTS_RETURN_ELEMENTS["CATEGORY_NAME"] = "category_name";
+    PRODUCTS_RETURN_ELEMENTS["SIZE_GROUP_ID"] = "size_group_id";
+    PRODUCTS_RETURN_ELEMENTS["MODIFICATION_TIME"] = "modification_time";
+    PRODUCTS_RETURN_ELEMENTS["CURRENCY"] = "currency";
+    PRODUCTS_RETURN_ELEMENTS["CURRENCY_SHOP"] = "currency_shop";
+    PRODUCTS_RETURN_ELEMENTS["BESTSELLER"] = "bestseller";
+    PRODUCTS_RETURN_ELEMENTS["NEW_PRODUCT"] = "new_product";
+    PRODUCTS_RETURN_ELEMENTS["RETAIL_PRICE"] = "retail_price";
+    PRODUCTS_RETURN_ELEMENTS["WHOLESALE_PRICE"] = "wholesale_price";
+    PRODUCTS_RETURN_ELEMENTS["MINIMAL_PRICE"] = "minimal_price";
+    PRODUCTS_RETURN_ELEMENTS["AUTOMATIC_CALCULATION_PRICE"] = "automatic_calculation_price";
+    PRODUCTS_RETURN_ELEMENTS["POS_PRICE"] = "pos_price";
+    PRODUCTS_RETURN_ELEMENTS["STRIKETHROUGH_RETAIL_PRICE"] = "strikethrough_retail_price";
+    PRODUCTS_RETURN_ELEMENTS["STRIKETHROUGH_WHOLESALE_PRICE"] = "strikethrough_wholesale_price";
+    PRODUCTS_RETURN_ELEMENTS["LAST_PURCHASE_PRICE"] = "last_purchase_price";
+    PRODUCTS_RETURN_ELEMENTS["PURCHASE_PRICE_NET_AVERAGE"] = "purchase_price_net_average";
+    PRODUCTS_RETURN_ELEMENTS["PURCHASE_PRICE_NET_LAST"] = "purchase_price_net_last";
+    PRODUCTS_RETURN_ELEMENTS["PURCHASE_PRICE_GROSS_AVERAGE"] = "purchase_price_gross_average";
+    PRODUCTS_RETURN_ELEMENTS["PURCHASE_PRICE_GROSS_LAST"] = "purchase_price_gross_last";
+    PRODUCTS_RETURN_ELEMENTS["VAT"] = "vat";
+    PRODUCTS_RETURN_ELEMENTS["VAT_FREE"] = "vat_free";
+    PRODUCTS_RETURN_ELEMENTS["REBATE"] = "rebate";
+    PRODUCTS_RETURN_ELEMENTS["HOTSPOTS_ZONES"] = "hotspots_zones";
+    PRODUCTS_RETURN_ELEMENTS["PROFIT_POINTS"] = "profit_points";
+    PRODUCTS_RETURN_ELEMENTS["POINTS"] = "points";
+    PRODUCTS_RETURN_ELEMENTS["WEIGHT"] = "weight";
+    PRODUCTS_RETURN_ELEMENTS["EXPORT_TO_PRICECOMPARERS"] = "export_to_pricecomparers";
+    PRODUCTS_RETURN_ELEMENTS["EXPORT_TO_AMAZON_MARKETPLACE"] = "export_to_amazon_marketplace";
+    PRODUCTS_RETURN_ELEMENTS["ENABLE_IN_POS"] = "enable_in_pos";
+    PRODUCTS_RETURN_ELEMENTS["COMPLEX_NOTES"] = "complex_notes";
+    PRODUCTS_RETURN_ELEMENTS["AVAILABLE_PROFILE"] = "available_profile";
+    PRODUCTS_RETURN_ELEMENTS["TRAITS"] = "traits";
+    PRODUCTS_RETURN_ELEMENTS["PARAMETERS"] = "parameters";
+    PRODUCTS_RETURN_ELEMENTS["VERSION_DATA"] = "version_data";
+    PRODUCTS_RETURN_ELEMENTS["ADVANCE"] = "advance";
+    PRODUCTS_RETURN_ELEMENTS["PROMOTION"] = "promotion";
+    PRODUCTS_RETURN_ELEMENTS["DISCOUNT"] = "discount";
+    PRODUCTS_RETURN_ELEMENTS["DISTINGUISHED"] = "distinguished";
+    PRODUCTS_RETURN_ELEMENTS["SPECIAL"] = "special";
+    PRODUCTS_RETURN_ELEMENTS["VISIBLE"] = "visible";
+    PRODUCTS_RETURN_ELEMENTS["PERSISTENT"] = "persistent";
+    PRODUCTS_RETURN_ELEMENTS["PRIORITY"] = "priority";
+    PRODUCTS_RETURN_ELEMENTS["SHOPS_MASK"] = "shops_mask";
+    PRODUCTS_RETURN_ELEMENTS["ICON"] = "icon";
+    PRODUCTS_RETURN_ELEMENTS["ICON_FOR_AUCTIONS"] = "icon_for_auctions";
+    PRODUCTS_RETURN_ELEMENTS["ICON_FOR_GROUP"] = "icon_for_group";
+    PRODUCTS_RETURN_ELEMENTS["PICTURES"] = "pictures";
+    PRODUCTS_RETURN_ELEMENTS["UNIT"] = "unit";
+    PRODUCTS_RETURN_ELEMENTS["WARRANTY"] = "warranty";
+    PRODUCTS_RETURN_ELEMENTS["SERIES"] = "series";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCTS_ASSOCIATED"] = "products_associated";
+    PRODUCTS_RETURN_ELEMENTS["SHOPS"] = "shops";
+    PRODUCTS_RETURN_ELEMENTS["QUANTITIES"] = "quantities";
+    PRODUCTS_RETURN_ELEMENTS["SIZES_ATTRIBUTES"] = "sizes_attributes";
+    PRODUCTS_RETURN_ELEMENTS["SHOPS_ATTRIBUTES"] = "shops_attributes";
+    PRODUCTS_RETURN_ELEMENTS["AUCTION_PRICES"] = "auction_prices";
+    PRODUCTS_RETURN_ELEMENTS["PRICE_COMPARERS_PRICES"] = "price_comparers_prices";
+    PRODUCTS_RETURN_ELEMENTS["DELIVERER"] = "deliverer";
+    PRODUCTS_RETURN_ELEMENTS["SIZES"] = "sizes";
+    PRODUCTS_RETURN_ELEMENTS["SIZE_GROUP_NAME"] = "size_group_name";
+    PRODUCTS_RETURN_ELEMENTS["PICTURES_COUNT"] = "pictures_count";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCT_TYPE"] = "product_type";
+    PRODUCTS_RETURN_ELEMENTS["PRICE_CHANGED_TIME"] = "price_changed_time";
+    PRODUCTS_RETURN_ELEMENTS["QUANTITY_CHANGED_TIME"] = "quantity_changed_time";
+    PRODUCTS_RETURN_ELEMENTS["DELIVERER_NAME"] = "deliverer_name";
+    PRODUCTS_RETURN_ELEMENTS["AVAILABLE_PROFILE_NAME"] = "available_profile_name";
+    PRODUCTS_RETURN_ELEMENTS["AVAILABILITY_MANAGEMENT_TYPE"] = "availability_management_type";
+    PRODUCTS_RETURN_ELEMENTS["SUM_IN_BASKET"] = "sum_in_basket";
+    PRODUCTS_RETURN_ELEMENTS["MENU"] = "menu";
+    PRODUCTS_RETURN_ELEMENTS["AUCTION_SETTINGS"] = "auction_settings";
+    PRODUCTS_RETURN_ELEMENTS["BUNDLE"] = "bundle";
+    PRODUCTS_RETURN_ELEMENTS["SIZESCHART_ID"] = "sizeschart_id";
+    PRODUCTS_RETURN_ELEMENTS["SIZESCHART_NAME"] = "sizeschart_name";
+    PRODUCTS_RETURN_ELEMENTS["SERIALNUMBERS"] = "serialnumbers";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCER_CODES_STANDARD"] = "producer_codes_standard";
+    PRODUCTS_RETURN_ELEMENTS["JAVASCRIPT_IN_THE_ITEM_CARD"] = "javaScriptInTheItemCard";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCT_AUCTION_DESCRIPTIONS_DATA"] = "productAuctionDescriptionsData";
+    PRODUCTS_RETURN_ELEMENTS["PRICE_FORMULA"] = "priceFormula";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCT_INDIVIDUAL_DESCRIPTIONS_DATA"] = "productIndividualDescriptionsData";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCT_INDIVIDUAL_URLS_DATA"] = "productIndividualUrlsData";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCT_SERVICES_DESCRIPTIONS_DATA"] = "productServicesDescriptionsData";
+    PRODUCTS_RETURN_ELEMENTS["CN_TARIC_CODE"] = "cnTaricCode";
+    PRODUCTS_RETURN_ELEMENTS["PRODUCT_IS_GRATIS"] = "productIsGratis";
+    PRODUCTS_RETURN_ELEMENTS["DIMENSIONS"] = "dimensions";
+    PRODUCTS_RETURN_ELEMENTS["RESPONSIBLE_PRODUCER_CODE"] = "responsibleProducerCode";
+    PRODUCTS_RETURN_ELEMENTS["RESPONSIBLE_PERSON_CODE"] = "responsiblePersonCode";
+})(PRODUCTS_RETURN_ELEMENTS || (PRODUCTS_RETURN_ELEMENTS = {}));
+var ORDER_STATUS;
+(function (ORDER_STATUS) {
+    ORDER_STATUS["NEW"] = "new";
+    ORDER_STATUS["ON_ORDER"] = "on_order";
+    ORDER_STATUS["PACKED"] = "packed";
+    ORDER_STATUS["PACKED_FULFILLMENT"] = "packed_fulfillment";
+    ORDER_STATUS["PACKED_READY"] = "packed_ready";
+    ORDER_STATUS["READY"] = "ready";
+    ORDER_STATUS["PAYMENT_WAITING"] = "payment_waiting";
+    ORDER_STATUS["DELIVERY_WAITING"] = "delivery_waiting";
+    ORDER_STATUS["WAIT_FOR_DISPATCH"] = "wait_for_dispatch";
+    ORDER_STATUS["SUSPENDED"] = "suspended";
+    ORDER_STATUS["FINISHED_EXT"] = "finished_ext";
+})(ORDER_STATUS || (ORDER_STATUS = {}));
+var STOCK_DOCUMENT_TYPE;
+(function (STOCK_DOCUMENT_TYPE) {
+    STOCK_DOCUMENT_TYPE["PZ"] = "pz";
+    STOCK_DOCUMENT_TYPE["PW"] = "pw";
+    STOCK_DOCUMENT_TYPE["PX"] = "px";
+    STOCK_DOCUMENT_TYPE["RX"] = "rx";
+    STOCK_DOCUMENT_TYPE["RW"] = "rw";
+    STOCK_DOCUMENT_TYPE["MM"] = "mm";
+    STOCK_DOCUMENT_TYPE["WZ"] = "wz";
+    STOCK_DOCUMENT_TYPE["ZW"] = "zw";
+})(STOCK_DOCUMENT_TYPE || (STOCK_DOCUMENT_TYPE = {}));
+var RETURN_STATUS;
+(function (RETURN_STATUS) {
+    /** @description 1 - Return not handled */
+    RETURN_STATUS[RETURN_STATUS["NOT_HANDLED"] = 1] = "NOT_HANDLED";
+    /** @description 2 - Return accepted */
+    RETURN_STATUS[RETURN_STATUS["ACCEPTED"] = 2] = "ACCEPTED";
+    /** @description 3 - Return not accepted */
+    RETURN_STATUS[RETURN_STATUS["NOT_ACCEPTED"] = 3] = "NOT_ACCEPTED";
+    /** @description 13 - Return canceled by the customer */
+    RETURN_STATUS[RETURN_STATUS["CANCELLED_BY_CUSTOMER"] = 13] = "CANCELLED_BY_CUSTOMER";
+    /** @description 14 - Return canceled */
+    RETURN_STATUS[RETURN_STATUS["CANCELLED"] = 14] = "CANCELLED";
+    /** @description 15 - Resend the order */
+    RETURN_STATUS[RETURN_STATUS["RESEND"] = 15] = "RESEND";
+    /** @description 16 - Abort resending order */
+    RETURN_STATUS[RETURN_STATUS["ABORT_RESEND"] = 16] = "ABORT_RESEND";
+    /** @description 17 - A customer generated a return - it will be delivered personally */
+    RETURN_STATUS[RETURN_STATUS["GENERATED_PERSONAL"] = 17] = "GENERATED_PERSONAL";
+    /** @description 18 - A customer generated a return - it will be sent by the customer */
+    RETURN_STATUS[RETURN_STATUS["GENERATED_SENT"] = 18] = "GENERATED_SENT";
+})(RETURN_STATUS || (RETURN_STATUS = {}));
+export default {
+    PRODUCTS_RETURN_ELEMENTS,
+    ORDER_STATUS,
+    STOCK_DOCUMENT_TYPE,
+    RETURN_STATUS
+};

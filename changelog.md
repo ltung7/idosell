@@ -5,12 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.4] - 2025-03-27
+## [0.3.5] - 2025-05-10
 ### Changed
+- Added enums
+- Improved resposes types
+
+## [0.3.4] - 2025-05-07
+### Changed
+- Improved responses types
+
+### Fixed
+- Fixed aliases and added deprecation warning
+
+
+## [0.3.3] - 2025-04-30
+### Changed
+- Gate definitions become transpiled from typescript files
+- Export main types definitions
+
+
+## [0.3.0] - 2025-04-30
+### Changed
+- Rewrote main files as typescript and added main types and response types
+- Added serveral gates definitions
+
+
+## [0.2.5] - 2025-04-25
+### Changed
+- API version changed to v5
+- Added logging functions as options to exec
+- Added subsription methods
+
+
+## [0.2.4] - 2025-03-27
+### Fixed
 - Fixed several gates definitions
+- Fixed params method for arrays of objects
+
+### Changed
 - Added clone method
 - Hidden custom atttributes from console.log
-- Fixed params method for arrays of objects
 
 
 ## [0.2.3] - 2025-03-26
