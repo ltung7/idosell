@@ -6,5 +6,6 @@ export default (object) => {
         arrayNode: "parcelParametersByPackages",
         index: 0
     };
+    object.arrays = ["parcelParameters", "parcelParametersByPackages"];
     return new Proxy(object, paramsProxy);
 };

@@ -8,5 +8,6 @@ export default (object) => {
         ordered: dateRange({ "nodeName": "ordersAddDate", "fromName": "ordersAddDateBegin", "toName": "ordersAddDateEnd" }),
         page
     };
+    object.arrays = ["clientAffiliateProgram", "clientCodesExternal", "newsletterEmailApprovalsData", "newsletterSmsApprovalsData", "returnElements"];
     return new Proxy(object, paramsProxy);
 };

@@ -12,5 +12,6 @@ export default (object) => {
         orderBy,
         page
     };
+    object.arrays = ["ordersBy"];
     return new Proxy(object, paramsProxy);
 };

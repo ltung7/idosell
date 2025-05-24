@@ -6,5 +6,6 @@ export default (object) => {
         arrayNode: "sizes",
         index: 0
     };
+    object.arrays = ["sizes"];
     return new Proxy(object, paramsProxy);
 };

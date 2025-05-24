@@ -6,5 +6,6 @@ export default (object) => {
         arrayNode: "pickupPointDeleteRequests",
         index: 0
     };
+    object.arrays = ["pickupPointDeleteRequests"];
     return new Proxy(object, paramsProxy);
 };

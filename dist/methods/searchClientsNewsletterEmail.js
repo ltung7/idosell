@@ -7,5 +7,6 @@ export default (object) => {
         page
     };
     object.snakeCase = true;
+    object.arrays = ["shops", "return_elements"];
     return new Proxy(object, paramsProxy);
 };

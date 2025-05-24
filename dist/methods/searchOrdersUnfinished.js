@@ -21,5 +21,6 @@ export default (object) => {
         fromAmazon: orderSource("amazon"),
         page
     };
+    object.arrays = ["ordersStatuses", "couriersName", "ordersIds", "ordersSerialNumbers", "clients", "products", "stocks", "ordersBy"];
     return new Proxy(object, paramsProxy);
 };

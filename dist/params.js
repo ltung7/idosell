@@ -40,6 +40,12 @@ export const paramsProxy = {
                 const param = object.custom[property](...values);
                 Object.assign(object.params, param);
             }
+            else if (object.arrays && object.arrays.includes(property)) {
+                if (Array.isArray(values[0]))
+                    object.params[property] = values[0];
+                else
+                    object.params[property] = [values[0]];
+            }
             else
                 object.params[property] = values[0];
             return new Proxy(object, paramsProxy);

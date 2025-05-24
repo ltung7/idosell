@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.6] - 2025-05-24
+### Changed
+- Idosell v5.4 - Added support to subscription methods
+- Idosell v5.6 - Added params to getProductOpinions
+- Enforce arrays where parameters require to i.e. idosellRequest.searchParams.returnElements('code') instead of .returnElements(['code'])
+
+
 ## [0.3.5] - 2025-05-10
 ### Changed
 - Added enums

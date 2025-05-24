@@ -7,5 +7,6 @@ export default (object) => {
         number: arrayOfObjects("giftCards", "number"),
         pins: arrayOfObjects("giftCards", "pin")
     };
+    object.arrays = ["giftCards"];
     return new Proxy(object, paramsProxy);
 };

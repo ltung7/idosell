@@ -2,7 +2,7 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("searchProductsReturnElements", () => {
-    const params = idosell().searchProducts.returnElements(["code"]).getParams();
+    const params = idosell().searchProducts.returnElements("code").getParams();
     expect(params).toEqual({"returnElements":["code"]});
 })
 

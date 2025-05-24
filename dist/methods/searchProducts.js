@@ -25,5 +25,6 @@ export default (object) => {
         } ; return { productAvailableInStocks }; },
         page
     };
+    object.arrays = ["returnElements", "categories", "producers", "productParams", "productIndexes", "productShops", "productPromotionsIds", "productParametersParams", "productSeriesParams", "productUnits", "productWarranties", "deliverersIds", "ordersBy", "selectedAmazonMarketplacesList", "productVatRates"];
     return new Proxy(object, paramsProxy);
 };

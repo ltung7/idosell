@@ -6,5 +6,6 @@ export default (object) => {
         languages: arrayOfObjects("languagesIds", "languageId"),
         page
     };
+    object.arrays = ["languagesIds", "categoriesIdoSellIds", "categoriesIdoSellNames", "categoriesIdoSellPaths"];
     return new Proxy(object, paramsProxy);
 };

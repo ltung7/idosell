@@ -6,5 +6,6 @@ export default (object) => {
         arrayNode: "categories",
         index: 0
     };
+    object.arrays = ["categories"];
     return new Proxy(object, paramsProxy);
 };

@@ -2588,6 +2588,10 @@ export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOp
     products: (value: Object) => this;
     /** Customer data. */
     clients: (value: Object) => this;
+    /** Review positive score data */
+    scorePositive: (value: Object) => this;
+    /** Review negative score data */
+    scoreNegative: (value: Object) => this;
     /** Date range */
     dateRange: (value: Object) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -4153,53 +4157,109 @@ export interface DeleteSnippetsRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
+export interface PostSubscriptionsAddProductRequest extends Gateway {
+    /** Id of subscription */
+    subscriptionId: (value: number|string) => this;
+    /** Collection of products to edit */
+    products: (value: Array<JSObject>) => this;
+}
+
 export interface PostSubscriptionsChangeDeliveryDatesRequest extends Gateway {
-    subscriptionsDeliveryDatesModel: (value: Object) => this;
+    /** Subscription ids */
+    subscriptionIds: (value: number|string|number[]|string[]) => this;
+    /** Settings that determinates if price should be updated automaticly */
+    upcomingDeliveryDate: (value: string) => this;
+    /** A setting that determines whether to also change the date of the next delivery. */
+    changeNextDeliveryDate: (value: Boolean) => this;
 }
 
 export interface PostSubscriptionsChangePriceAutoUpdateRequest extends Gateway {
-    subscriptionsAutoPriceModel: (value: Object) => this;
+    /** Subscription ids */
+    subscriptionIds: (value: number|string|number[]|string[]) => this;
+    /** Settings that determinates if price should be updated automaticly */
+    autoPriceUpdate: (value: Boolean) => this;
 }
 
 export interface PostSubscriptionsChangeStatusRequest extends Gateway {
-    subscriptionsStatusModel: (value: Object) => this;
+    /** Subscription ids */
+    subscriptionIds: (value: number|string|number[]|string[]) => this;
+    /** Status to set */
+    subscriptionStatus: (value: 'active'|'hold'|'nonpayment'|'finished') => this;
+    /** Option allowing sending e-mail after status change */
+    sendMailAfterStatusChange: (value: Boolean) => this;
+    /** Optian allowing sending SMS after status change */
+    sendSMSAfterStatusChange: (value: Boolean) => this;
 }
 
 export interface PostSubscriptionsDeleteProductRequest extends Gateway {
-    subscriptionDeleteProducts: (value: Object) => this;
+    /** Id of subscription */
+    subscriptionId: (value: number|string) => this;
+    /** Ids in products table to delete */
+    idsToDelete: (value: number|string|number[]|string[]) => this;
 }
 
 export interface PostSubscriptionsEditRequest extends Gateway {
-    /** Subscriptions model */
-    subscriptionsEditRequest: (value: Object) => this;
+    /** Subscription */
+    subscriptionModels: (value: Array<JSObject>) => this;
 }
 
 export interface PostSubscriptionsEditProductRequest extends Gateway {
-    subscriptionEditProducts: (value: Object) => this;
+    /** Id of subscription */
+    subscriptionId: (value: number|string) => this;
+    /** Collection of products to edit */
+    products: (value: Array<JSObject>) => this;
 }
 
 export interface PostSubscriptionsItemsListRequest extends Gateway {
-    request: (value: Object) => this;
+    filter: (value: Object) => this;
+    orderBy: (value: Object) => this;
+    /** Pagination settings. */
+    pagination: (value: Object) => this;
 }
 
 export interface PostSubscriptionsListViewFetchIdsRequest extends Gateway {
-    /** Filters that limit the result of a customer query. */
-    filter: (value: Object) => this;
+    /** Subscription IDs */
+    ids: (value: number|string|number[]|string[]) => this;
+    /** Subscription statuses */
+    statuses: (value: string|string[]) => this;
+    /** Client ID */
+    clientId: (value: number|string) => this;
+    /** Shop ID */
+    shopId: (value: number|string) => this;
+    /** Price change mode */
+    priceChangeMode: (value: 'auto'|'manual') => this;
+    /** A universal structure for time intervals. */
+    createDateTime: (value: Object) => this;
+    /** A universal structure for time intervals. */
+    finishDateTime: (value: Object) => this;
+    /** Universal structure for intervals. */
+    upcomingDeliveryDate: (value: Object) => this;
+    /** Universal structure for intervals. */
+    nextDeliveryDate: (value: Object) => this;
+    /** Text search phrase */
+    textSearch: (value: string) => this;
 }
 
 export interface PostSubscriptionsListViewListRequest extends Gateway {
-    /** Object describing the request for a list of Subscriptions. */
-    request: (value: Object) => this;
+    select: (value: Object) => this;
+    /** Filters that limit the result of a customer query. */
+    filter: (value: Object) => this;
+    /** Order by settings. */
+    orderBy: (value: Object) => this;
+    /** Pagination settings. */
+    pagination: (value: Object) => this;
 }
 
 export interface PostSubscriptionsSetRebateCodeRequest extends Gateway {
-    /** Object with discount code data to set */
-    request: (value: Object) => this;
+    /** Subscription ID */
+    id: (value: number|string) => this;
+    /** Code value */
+    code: (value: string) => this;
 }
 
 export interface PostSubscriptionsUnsetRebateCodeRequest extends Gateway {
-    /** Object with request witch unset rebate code */
-    request: (value: Object) => this;
+    /** Subscription ID */
+    id: (value: number|string) => this;
 }
 
 export interface GetSystemConfigRequest extends Gateway<GetConfigResponse> {}
@@ -4958,6 +5018,7 @@ export interface Gateways {
     postSnippets: PostSnippetsRequest,
     putSnippets: PutSnippetsRequest,
     deleteSnippets: DeleteSnippetsRequest,
+    postSubscriptionsAddProduct: PostSubscriptionsAddProductRequest,
     postSubscriptionsChangeDeliveryDates: PostSubscriptionsChangeDeliveryDatesRequest,
     postSubscriptionsChangePriceAutoUpdate: PostSubscriptionsChangePriceAutoUpdateRequest,
     postSubscriptionsChangeStatus: PostSubscriptionsChangeStatusRequest,

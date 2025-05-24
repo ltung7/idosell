@@ -19,5 +19,6 @@ export default (object) => {
         arrayNode: "productsImages",
         index: 0
     };
+    object.arrays = ["productsImages"];
     return new Proxy(object, paramsProxy);
 };

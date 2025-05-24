@@ -7,5 +7,6 @@ export default (object) => {
         arrayNode: "params",
         index: 0
     };
+    object.arrays = ["params", "deleteSizesIndexesData"];
     return new Proxy(object, paramsProxy);
 };

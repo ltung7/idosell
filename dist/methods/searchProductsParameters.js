@@ -5,5 +5,6 @@ export default (object) => {
     object.custom = {
         page
     };
+    object.arrays = ["ids", "textIds", "languagesIds"];
     return new Proxy(object, paramsProxy);
 };

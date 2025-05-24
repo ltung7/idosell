@@ -263,6 +263,7 @@ import getSnippets from "./methods/getSnippets.js";
 import postSnippets from "./methods/postSnippets.js";
 import putSnippets from "./methods/putSnippets.js";
 import deleteSnippets from "./methods/deleteSnippets.js";
+import postSubscriptionsAddProduct from "./methods/postSubscriptionsAddProduct.js";
 import postSubscriptionsChangeDeliveryDates from "./methods/postSubscriptionsChangeDeliveryDates.js";
 import postSubscriptionsChangePriceAutoUpdate from "./methods/postSubscriptionsChangePriceAutoUpdate.js";
 import postSubscriptionsChangeStatus from "./methods/postSubscriptionsChangeStatus.js";
@@ -581,6 +582,7 @@ const gates = {
     postSnippets,
     putSnippets,
     deleteSnippets,
+    postSubscriptionsAddProduct,
     postSubscriptionsChangeDeliveryDates,
     postSubscriptionsChangePriceAutoUpdate,
     postSubscriptionsChangeStatus,

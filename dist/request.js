@@ -95,8 +95,14 @@ export const sendRequest = async (request, options = {}) => {
         return checkNext(request, response, options.logPage);
     }
     else {
-        const params = request.rootparams ? request.params : { params: request.params };
-        const response = await axios[method](url, params, { headers }).then(response => response.data).catch(catchIdosellError);
+        let body = { params: request.params };
+        if (request.rootparams) {
+            if (request.rootparams === true)
+                body = request.params;
+            else
+                body = { [request.rootparams]: request.params };
+        }
+        const response = await axios[method](url, body, { headers }).then(response => response.data).catch(catchIdosellError);
         return checkNext(request, response, options.logPage);
     }
 };

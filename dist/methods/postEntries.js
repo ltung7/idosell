@@ -6,5 +6,6 @@ export default (object) => {
         arrayNode: "langs",
         index: 0
     };
+    object.arrays = ["visibleOnSitesList", "products", "langs"];
     return new Proxy(object, paramsProxy);
 };

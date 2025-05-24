@@ -6,5 +6,6 @@ export default (object) => {
         arrayNode: "membership_cards",
         index: 0
     };
+    object.arrays = ["membership_cards"];
     return new Proxy(object, paramsProxy);
 };

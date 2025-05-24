@@ -30,7 +30,8 @@ export type GatewayRequestProxyObject = {
 	custom?: Record<string,Function>,
 	snakeCase?: boolean,
 	next?: boolean,
-	rootparams?: boolean
+	rootparams?: string|boolean,
+	arrays?: string[]
 } & RequestProxyObject;
 
 export interface Gateway<R = JSObject> {
