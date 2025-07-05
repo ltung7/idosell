@@ -7,16 +7,19 @@ const requests = {
     hasNext,
     toString,
     getAttributes,
-    setParams: (object, value) => {
+    setParams: (object, value, receiver) => {
         object.params = value;
-        return new Proxy(object, paramsProxy);
+        return receiver;
     }
 };
 export const paramsProxy = {
-    get: (object, property) => {
+    get: (object, property, receiver) => {
+        if (property === 'then') {
+            return Promise.resolve(object);
+        }
         return (...values) => {
             if (requests[property]) {
-                return requests[property](object, values[0]);
+                return requests[property](object, values[0], receiver);
             }
             else if (object.appendable && object.appendable.arrayNode !== property && !object.appendable.except.includes(property)) {
                 if (!object.params[object.appendable.arrayNode])
@@ -28,7 +31,10 @@ export const paramsProxy = {
                 }
                 else if (object.custom && typeof object.custom[property] === 'function') {
                     const param = object.custom[property](...values);
-                    Object.assign(item, param);
+                    if (param.root)
+                        Object.assign(object.params, param.root);
+                    else
+                        Object.assign(item, param);
                 }
                 else {
                     item[property] = values[0];
@@ -46,9 +52,10 @@ export const paramsProxy = {
                 else
                     object.params[property] = [values[0]];
             }
-            else
+            else {
                 object.params[property] = values[0];
-            return new Proxy(object, paramsProxy);
+            }
+            return receiver;
         };
     }
 };

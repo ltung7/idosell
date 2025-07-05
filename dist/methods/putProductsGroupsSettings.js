@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "groups",
         index: 0
     };
+    object.req = ["productIdent"];
     object.arrays = ["groups"];
     return new Proxy(object, paramsProxy);
 };

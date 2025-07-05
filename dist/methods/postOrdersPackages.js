@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "orderPackages",
         index: 0
     };
+    object.req = ["eventId", "eventType", "packages"];
     object.arrays = ["orderPackages"];
     return new Proxy(object, paramsProxy);
 };

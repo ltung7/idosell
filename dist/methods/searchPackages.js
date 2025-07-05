@@ -7,7 +7,7 @@ export default (object) => {
         returns: (returnIds) => ({ eventType: "return", eventsIds: Array.isArray(returnIds) ? returnIds : [returnIds] })
     };
     object.appendable = {
-        except: ["deliveryPackagenumbers", "returnLabels"],
+        except: ["deliveryPackageNumbers", "returnLabels"],
         arrayNode: "events",
         index: 0
     };

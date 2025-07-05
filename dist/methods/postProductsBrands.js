@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "producers",
         index: 0
     };
+    object.req = ["nameInPanel"];
     object.arrays = ["producers"];
     return new Proxy(object, paramsProxy);
 };

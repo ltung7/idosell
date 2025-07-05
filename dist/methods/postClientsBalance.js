@@ -5,5 +5,6 @@ export default (object) => {
         add: (balance, currency = "PLN") => ({ operation: "add", balance, currency }),
         remove: (balance, currency = "PLN") => ({ operation: "remove", balance, currency })
     };
+    object.req = ["clientId", "operation", "balance", "currency"];
     return new Proxy(object, paramsProxy);
 };

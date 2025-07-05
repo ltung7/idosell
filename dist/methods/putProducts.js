@@ -23,6 +23,7 @@ export default (object) => {
         arrayNode: "products",
         index: 0
     };
+    object.req = [{ "any": ["productSizeCodeExternal", "productId", "productIndex", "productSizeCodeProducer"] }];
     object.arrays = ["products"];
     return new Proxy(object, paramsProxy);
 };

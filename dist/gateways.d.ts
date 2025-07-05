@@ -10,7 +10,7 @@ export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalan
     active: (value: 'yes'|'no') => this;
     hasTradeCredit: (value: 'nonzero'|'positive'|'negative'|'zero') => this;
     /** Start and end date (YYYY-MM-DD). */
-    lastPurchaseDate: (value: Object) => this;
+    lastPurchaseDate: (value: JSObject) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientId - clientBalance - clientBalanceHistory */
     returnElements: (value: string|string[]) => this;
     /** Results page number. Numbering begins at 0. Default value: 0. */
@@ -50,9 +50,9 @@ export interface GetClientsRequest extends PagableGateway<GetClientsRequest,GetC
     /** Trade credit: - positive or negative, - only positive, - only negative, - only zero. */
     clientHasTradeCredit: (value: 'nonzero'|'positive'|'negative'|'zero') => this;
     /** Date of last purchase. */
-    clientLastPurchaseDate: (value: Object) => this;
+    clientLastPurchaseDate: (value: JSObject) => this;
     /** Last modification date. */
-    clientsLastModificationDate: (value: Object) => this;
+    clientsLastModificationDate: (value: JSObject) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available fields: - clientId - clientsLastModificationDate - clientLogin - clientEmail - clientType - showClientAsPartner - blockAutomaticallyAssigningGroupDiscount - clientFirstName - clientLastName - clientBirthDate - clientFirm - clientNip - clientStreet - clientZipCode - clientCity - clientCountryId - langId - currencyId - clientRegionId - clientIsWholesaler - clientVatPreferences - clientGroupDiscountNumber - clientGroupDiscountName - clientCodeExternal - clientPhone1 - clientPhone2 - clientProvinceId - newsletterEmailApprovalsData - shops - clientBalances - clientTradeCredit - clientLoyaltyPoints - operator - isUnregistered - affiliateLogin - affiliateId - clientRegistrationDate - clientActiveInShops */
     returnElements: (value: string|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -60,7 +60,7 @@ export interface GetClientsRequest extends PagableGateway<GetClientsRequest,GetC
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
     /** Client Registration Date  */
-    clientRegistrationDate: (value: Object) => this;
+    clientRegistrationDate: (value: JSObject) => this;
     /** The ID of the shop, that client is assigned to. */
     shopId: (value: string) => this;
 }
@@ -221,9 +221,9 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     /** Customer group number */
     clientDiscountGroupNumber: (value: number|string) => this;
     /** Date range of customer registrations */
-    clientRegistrationDate: (value: Object) => this;
+    clientRegistrationDate: (value: JSObject) => this;
     /** Date of last customer login (YYYY-MM-DD) */
-    clientLastLoginDate: (value: Object) => this;
+    clientLastLoginDate: (value: JSObject) => this;
     /** Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
     clientType: (value: 'person'|'person_male'|'person_female'|'firm') => this;
     /** Information about the loyalty program possible values: - yes_voucher - when customers are in a loyalty program and have only used vouchers, - yes_voucher_cash - when customers are in a loyalty program and have only used vouchers or cash deposits, - yes_clients, - yes_orders - when customers are in the loyalty program and have made at least one order, - no - when customers are in the loyalty program, - banned - when customers are blocked. */
@@ -233,9 +233,9 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     /** Permission to SMS Newsletter. */
     newsletterSmsApproval: (value: string) => this;
     /** Shops */
-    searchByShops: (value: Object) => this;
+    searchByShops: (value: JSObject) => this;
     /** Loyalty cards: */
-    clientLoyaltyCard: (value: Object) => this;
+    clientLoyaltyCard: (value: JSObject) => this;
     /** External system code. */
     clientCodeExternal: (value: string) => this;
     /** External system codes list. */
@@ -257,7 +257,7 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     /** Customer loyalty card number, omitted when has_loyalty_card = no. */
     clientLoyaltyCardNumber: (value: string) => this;
     /** Orders. */
-    orders: (value: Object) => this;
+    orders: (value: JSObject) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     returnElements: (value: string|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -396,7 +396,7 @@ export interface PostClientsGiftcardsRequest extends AppendableGateway<PostClien
     /** Card expiration date */
     expirationDate: (expirationDate: string) => this
     /** Card balance */
-    balance: (balance: object) => this
+    balance: (balance: JSObject) => this
     /** List of shops the card is active in */
     shops: (shops: number|string|number[]|string[]) => this
     /**  */
@@ -419,7 +419,7 @@ export interface PutClientsGiftcardsRequest extends AppendableGateway<PutClients
     /** Balance operation type, possible values: - set - balance positioning of funds, - add - add funds to balance, - subtract - subtract funds from balance. */
     balanceOperationType: (balanceOperationType: 'set'|'add'|'subtract') => this
     /** Card balance */
-    balance: (balance: object) => this
+    balance: (balance: JSObject) => this
     /** List of shops the card is active in */
     shops: (shops: number|string|number[]|string[]) => this
     /**  */
@@ -436,7 +436,7 @@ export interface SearchClientsGiftcardsRequest extends Gateway<SearchGiftcardsRe
     /** List of gift cards */
     giftCards: (value: Array<JSObject>) => this;
     /** element is an element array of type searchGiftCards */
-    searchGiftCards: (value: Object) => this;
+    searchGiftCards: (value: JSObject) => this;
     /** Define giftCards values by passing them as an array */
     ids: (values: number|string|number[]|string[]) => this;
     /** Define giftCards values by passing them as an array */
@@ -489,14 +489,14 @@ export interface PutClientsMembershipCardsRequest extends AppendableGateway<PutC
     /** Flag that determines whether a discount group should be set. */
     set_rebate_group: (set_rebate_group: boolean) => this
     /** Information on error that occurred during gate call. */
-    errors: (errors: object) => this
+    errors: (errors: JSObject) => this
 }
 
 export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest,SearchNewsletterEmailResponse> {
     shops: (value: Array<JSObject>) => this;
     /** Customer language ID. */
     language: (value: string) => this;
-    date: (value: Object) => this;
+    date: (value: JSObject) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     return_elements: (value: string|string[]) => this;
     /** Results page number. Numbering begins at 0. Default value: 0. */
@@ -509,7 +509,7 @@ export interface SearchClientsNewsletterSmsRequest extends PagableGateway<Search
     shops: (value: Array<JSObject>) => this;
     /** Customer language ID. */
     language: (value: string) => this;
-    date: (value: Object) => this;
+    date: (value: JSObject) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     return_elements: (value: string|string[]) => this;
     /** Results page number. Numbering begins at 0. Default value: 0. */
@@ -686,7 +686,7 @@ export interface GetClientsPricesDiscountsRequest extends PagableGateway<GetClie
     /** Trade credit: - positive or negative, - only positive, - only negative, - only zero. */
     clientHasTradeCredit: (value: 'nonzero'|'positive'|'negative'|'zero') => this;
     /** Date of last purchase. */
-    clientLastPurchaseDate: (value: Object) => this;
+    clientLastPurchaseDate: (value: JSObject) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientId - clientDiscountIsCombined - clientDiscountType - clientDiscountValue */
     returnElements: (value: string|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -696,7 +696,7 @@ export interface GetClientsPricesDiscountsRequest extends PagableGateway<GetClie
 }
 
 export interface PutClientsPricesDiscountsRequest extends AppendableGateway<PutClientsPricesDiscountsRequest> {
-    customers: (value: Object) => this;
+    customers: (value: JSObject) => this;
     /** Discount type, possible values: - simple */
     discount_type: (value: string) => this;
     /** Action, possible values: - sum_with_other_discounts_to_orders - sum with other discounts assigned to orders, - use_only_if_greater_than_the_sum_of_other_discounts - use only if greater than the sum of other discounts */
@@ -720,9 +720,9 @@ export interface GetClientsProfitPointsRequest extends PagableGateway<GetClients
     /** Trade credit: - positive or negative, - only positive, - only negative, - only zero. */
     clientHasTradeCredit: (value: 'nonzero'|'positive'|'negative'|'zero') => this;
     /** Date of last purchase. */
-    clientLastPurchaseDate: (value: Object) => this;
+    clientLastPurchaseDate: (value: JSObject) => this;
     /** Profit points modification date range. */
-    pointsModificationDate: (value: Object) => this;
+    pointsModificationDate: (value: JSObject) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientId - clientProfitPoints - clientProfitPointsHistories */
     returnElements: (value: string|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -875,9 +875,9 @@ export interface PostCouriersPickupPointsRequest extends AppendableGateway<PostC
     /** Collection point activity. Available values: available, outOfService . */
     serviceStatus: (serviceStatus: 'out_of_service'|'available') => this
     /** Pickup point address. */
-    address: (address: object) => this
+    address: (address: JSObject) => this
     /** Geographic coordinates. */
-    coordinates: (coordinates: object) => this
+    coordinates: (coordinates: JSObject) => this
     /** Personal collection point work hours. */
     operatingDays: (operatingDays: Array<JSObject>) => this
 }
@@ -897,9 +897,9 @@ export interface PutCouriersPickupPointsRequest extends AppendableGateway<PutCou
     /** Collection point activity. Available values: available, outOfService . */
     serviceStatus: (serviceStatus: 'out_of_service'|'available') => this
     /** Pickup point address. */
-    address: (address: object) => this
+    address: (address: JSObject) => this
     /** Geographic coordinates. */
-    coordinates: (coordinates: object) => this
+    coordinates: (coordinates: JSObject) => this
     /** Personal collection point work hours. */
     operatingDays: (operatingDays: Array<JSObject>) => this
 }
@@ -970,11 +970,11 @@ export interface PostCpaRequest extends AppendableGateway<PostCpaRequest> {
     /** CPA campaign id */
     campaign: (campaign: number|string) => this
     /** CPA program page settings simple or advanced, depending on the mode. */
-    pageSettings: (pageSettings: object) => this
+    pageSettings: (pageSettings: JSObject) => this
     /** undefined */
-    display: (display: object) => this
+    display: (display: JSObject) => this
     /** Snippet entry source filter. */
-    sources: (sources: object) => this
+    sources: (sources: JSObject) => this
     /** List of variables that can be used in a body template. */
     variables: (variables: Array<JSObject>) => this
 }
@@ -990,11 +990,11 @@ export interface PutCpaRequest extends AppendableGateway<PutCpaRequest> {
     /** CPA campaign id */
     campaign: (campaign: number|string) => this
     /** CPA program page settings simple or advanced, depending on the mode. */
-    pageSettings: (pageSettings: object) => this
+    pageSettings: (pageSettings: JSObject) => this
     /** undefined */
-    display: (display: object) => this
+    display: (display: JSObject) => this
     /** Snippet entry source filter. */
-    sources: (sources: object) => this
+    sources: (sources: JSObject) => this
     /** List of variables that can be used in a body template. */
     variables: (variables: Array<JSObject>) => this
 }
@@ -1160,7 +1160,7 @@ export interface PostEntriesRequest extends AppendableGateway<PostEntriesRequest
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Photo */
-    pictureData: (value: Object) => this;
+    pictureData: (value: JSObject) => this;
     /** Element including entry content in selected languages */
     langs: (value: Array<JSObject>) => this;
     /** Type of title and shortcut linking: fullContentLink - link to the subpage with full content, givenUrlLink - link to the given URL, noLink - static element */
@@ -1179,6 +1179,10 @@ export interface PostEntriesRequest extends AppendableGateway<PostEntriesRequest
     blogUrl: (blogUrl: string) => this
     /** News item URL */
     newsUrl: (newsUrl: string) => this
+    /** Add Post to blog entries */
+    blog: () => this;
+    /** Add Post to news entries */
+    news: () => this;
 }
 
 export interface PutEntriesRequest extends Gateway {
@@ -1195,7 +1199,7 @@ export interface PutEntriesRequest extends Gateway {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Photo */
-    pictureData: (value: Object) => this;
+    pictureData: (value: JSObject) => this;
     /** Determines whether to delete an entry photo */
     deletePicture: (value: 'y'|'n') => this;
     /** Element including entry content in selected languages */
@@ -1255,7 +1259,7 @@ export interface PutMenuFilterRequest extends AppendableGateway<PutMenuFilterReq
 export interface DeleteMenuRequest extends AppendableGateway<DeleteMenuRequest> {
     menu_list: (value: Array<JSObject>) => this;
     /** Settings. */
-    settings: (value: Object) => this;
+    settings: (value: JSObject) => this;
     /** Shop Id. */
     shop_id: (shop_id: number|string) => this
     /** Menu ID. */
@@ -1284,7 +1288,7 @@ export interface GetMenuRequest extends Gateway {
 export interface PostMenuRequest extends AppendableGateway<PostMenuRequest> {
     menu_list: (value: Array<JSObject>) => this;
     /** Settings */
-    settings: (value: Object) => this;
+    settings: (value: JSObject) => this;
     /** Shop Id. */
     shop_id: (shop_id: number|string) => this
     /** Menu ID. */
@@ -1300,7 +1304,7 @@ export interface PostMenuRequest extends AppendableGateway<PostMenuRequest> {
 export interface PutMenuRequest extends AppendableGateway<PutMenuRequest> {
     menu_list: (value: Array<JSObject>) => this;
     /** Settings. */
-    settings: (value: Object) => this;
+    settings: (value: JSObject) => this;
     /** Shop Id. */
     shop_id: (shop_id: number|string) => this
     /** Menu ID. */
@@ -1316,7 +1320,7 @@ export interface PutMenuRequest extends AppendableGateway<PutMenuRequest> {
 export interface PutMenuSortRequest extends AppendableGateway<PutMenuSortRequest> {
     menu_list: (value: Array<JSObject>) => this;
     /** Settings */
-    settings: (value: Object) => this;
+    settings: (value: JSObject) => this;
     /** Shop Id. */
     shop_id: (shop_id: number|string) => this
     /** Menu ID. */
@@ -1430,7 +1434,7 @@ export interface PostOrdersDocumentsRequest extends AppendableGateway<PostOrders
     /** Is it to be shown to the customer in the order view. */
     returnedInOrderDetails: (returnedInOrderDetails: 'y'|'n') => this
     /** Additional information. */
-    additionalData: (additionalData: object) => this
+    additionalData: (additionalData: JSObject) => this
 }
 
 export interface GetOrdersExportdocumentsEPPRequest extends Gateway {
@@ -1492,7 +1496,7 @@ export interface GetOrdersHistoryRequest extends Gateway {
 }
 
 export interface DeleteOrdersImagesRequest extends AppendableGateway<DeleteOrdersImagesRequest> {
-    order: (value: Object) => this;
+    order: (value: JSObject) => this;
     /** List of attachment IDs to be removed from the details of the selected order */
     images: (value: Array<JSObject>) => this;
     /** Attachment ID */
@@ -1509,8 +1513,8 @@ export interface GetOrdersImagesRequest extends Gateway {
 export interface PostOrdersImagesRequest extends AppendableGateway<PostOrdersImagesRequest> {
     /** Login */
     userName: (value: string) => this;
-    settings: (value: Object) => this;
-    order: (value: Object) => this;
+    settings: (value: JSObject) => this;
+    order: (value: JSObject) => this;
     /** List of image attachments */
     images: (value: Array<JSObject>) => this;
     /** Type. Available values: product - Product photo, package - Package photo */
@@ -1530,13 +1534,13 @@ export interface GetOrdersLabelsRequest extends Gateway {
 
 export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrdersOpinionsRequest,SearchOpinionsResponse> {
     /** Review identification */
-    opinion: (value: Object) => this;
+    opinion: (value: JSObject) => this;
     /** Orders. */
-    orders: (value: Object) => this;
+    orders: (value: JSObject) => this;
     /** Customer data. */
-    clients: (value: Object) => this;
+    clients: (value: JSObject) => this;
     /** Date range */
-    dateRange: (value: Object) => this;
+    dateRange: (value: JSObject) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -1582,7 +1586,7 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest> 
     /** Determines if customer unregistered. Allowed values. "y" - casual client, "n" - registered customer. Default value:: "y". If customer is unregistered, enter customer details in element: "clientWithoutAccountData". For client with account - existing login should be stored in: "clientLogin". */
     clientWithoutAccount: (clientWithoutAccount: string) => this
     /** Balance data for casual client. Object is necessary for casual clients (in case of client_once has y value). */
-    clientWithoutAccountData: (clientWithoutAccountData: object) => this
+    clientWithoutAccountData: (clientWithoutAccountData: JSObject) => this
     /** Customer's login. */
     clientLogin: (clientLogin: string) => this
     /** Customer comments on order. */
@@ -1598,9 +1602,9 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest> 
     /** Delivery cost. */
     deliveryCost: (deliveryCost: number) => this
     /** Delivery address data. */
-    clientDeliveryAddress: (clientDeliveryAddress: object) => this
+    clientDeliveryAddress: (clientDeliveryAddress: JSObject) => this
     /** Buyer's address data. */
-    payerAddress: (payerAddress: object) => this
+    payerAddress: (payerAddress: JSObject) => this
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /** Discount value. */
@@ -1610,7 +1614,7 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest> 
     /** Omits collecting orders via IAI Bridge. */
     ignoreBridge: (ignoreBridge: boolean) => this
     /** Settings */
-    settings: (settings: object) => this
+    settings: (settings: JSObject) => this
     /** Settlement by prices. "gross" - gross, "net" - net, "net_without_VAT" - net without VAT. */
     orderSettledAtPrice: (orderSettledAtPrice: 'gross'|'net'|'net_without_vat') => this
     /** Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
@@ -1651,7 +1655,7 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest> {
     /** Omits collecting orders via IAI Bridge. */
     ignoreBridge: (ignoreBridge: boolean) => this
     /** Settings */
-    settings: (settings: object) => this
+    settings: (settings: JSObject) => this
     /** Consent to send data to cooperating services */
     emailProcessingConsent: (emailProcessingConsent: 'yes'|'no'|'disabled') => this
     /** Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
@@ -1689,9 +1693,9 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     /** Customer data. */
     clients: (value: Array<JSObject>) => this;
     /** Ranges of dates or serial numbers. */
-    ordersRange: (value: Object) => this;
+    ordersRange: (value: JSObject) => this;
     /** Order source data. */
-    orderSource: (value: Object) => this;
+    orderSource: (value: JSObject) => this;
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -1701,11 +1705,11 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     /** Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
     clientRequestInvoice: (value: string) => this;
     /** Information on consignments. */
-    packages: (value: Object) => this;
+    packages: (value: JSObject) => this;
     /** Stock quantities data. */
     stocks: (value: Array<JSObject>) => this;
     /** Used discount codes data. */
-    campaign: (value: Object) => this;
+    campaign: (value: JSObject) => this;
     /** Loyalty points. */
     loyaltyPointsMode: (value: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => this;
     /** Order handler. */
@@ -1822,7 +1826,7 @@ export interface PutOrdersProfitMarginRequest extends AppendableGateway<PutOrder
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /** Information on error that occurred during gate call. */
-    errors: (errors: object) => this
+    errors: (errors: JSObject) => this
     /** Flag marking errors in the result. */
     isProductsErrors: (isProductsErrors: boolean) => this
 }
@@ -1861,9 +1865,9 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Customer data. */
     clients: (value: Array<JSObject>) => this;
     /** Ranges of dates or serial numbers. */
-    ordersRange: (value: Object) => this;
+    ordersRange: (value: JSObject) => this;
     /** Order source data. */
-    orderSource: (value: Object) => this;
+    orderSource: (value: JSObject) => this;
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -1873,11 +1877,11 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Customer asked for invoice. List of parameters: "invoice" - yes (paper invoicing ), "e_invoice" - yes (electronic invoicing ), "n" - no. */
     clientRequestInvoice: (value: string) => this;
     /** Information on consignments. */
-    packages: (value: Object) => this;
+    packages: (value: JSObject) => this;
     /** Stock quantities data. */
     stocks: (value: Array<JSObject>) => this;
     /** Used discount codes data. */
-    campaign: (value: Object) => this;
+    campaign: (value: JSObject) => this;
     /** Loyalty points. */
     loyaltyPointsMode: (value: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => this;
     /** Order handler. */
@@ -2074,7 +2078,7 @@ export interface PutPaymentsRequest extends Gateway {
     account: (value: string) => this;
     /** Data of customer account in store. */
     clientAccount: (value: string) => this;
-    other: (value: Object) => this;
+    other: (value: JSObject) => this;
     /** Transaction ID in external service */
     externalPaymentId: (value: string) => this;
 }
@@ -2100,7 +2104,7 @@ export interface PostPaymentsRepaymentRequest extends Gateway {
     /** Customer account. */
     client_account: (value: string) => this;
     /** Other. */
-    other: (value: Object) => this;
+    other: (value: JSObject) => this;
 }
 
 export interface GetProductsSKUbyBarcodeRequest extends Gateway {
@@ -2113,13 +2117,13 @@ export interface GetProductsSKUbyBarcodeRequest extends Gateway {
 export interface PutProductsAttachmentsRequest extends AppendableGateway<PutProductsAttachmentsRequest> {
     productsAttachments: (value: Array<JSObject>) => this;
     /** Stock keeping unit. */
-    productIdent: (productIdent: object) => this
+    productIdent: (productIdent: JSObject) => this
     /** Product attachments list. */
     attachments: (attachments: Array<JSObject>) => this
     /** List of product's virtual attachments. */
     virtualAttachments: (virtualAttachments: Array<JSObject>) => this
     /** Information on error that occurred during gate call. */
-    errors: (errors: object) => this
+    errors: (errors: JSObject) => this
     /** Flag indicating if there are errors in results of attachments settings. */
     attachmentsErrorsOccurred: (attachmentsErrorsOccurred: boolean) => this
     /** Flag indicating if there are errors in results of virtual attachments settings. */
@@ -2193,7 +2197,7 @@ export interface PostProductsBrandsRequest extends AppendableGateway<PostProduct
     /** Name in panel */
     nameInPanel: (nameInPanel: string) => this
     /**  */
-    imagesSettings: (imagesSettings: object) => this
+    imagesSettings: (imagesSettings: JSObject) => this
     /**  */
     languagesConfigurations: (languagesConfigurations: Array<JSObject>) => this
 }
@@ -2206,7 +2210,7 @@ export interface PutProductsBrandsRequest extends AppendableGateway<PutProductsB
     /** Name in panel */
     nameInPanel: (nameInPanel: string) => this
     /**  */
-    imagesSettings: (imagesSettings: object) => this
+    imagesSettings: (imagesSettings: JSObject) => this
     /**  */
     languagesConfigurations: (languagesConfigurations: Array<JSObject>) => this
 }
@@ -2224,7 +2228,7 @@ export interface DeleteProductsBundlesProductsRequest extends AppendableGateway<
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /**  */
-    bundleIdent: (bundleIdent: object) => this
+    bundleIdent: (bundleIdent: JSObject) => this
 }
 
 export interface PostProductsBundlesProductsRequest extends AppendableGateway<PostProductsBundlesProductsRequest> {
@@ -2233,7 +2237,7 @@ export interface PostProductsBundlesProductsRequest extends AppendableGateway<Po
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /**  */
-    bundleIdent: (bundleIdent: object) => this
+    bundleIdent: (bundleIdent: JSObject) => this
 }
 
 export interface PutProductsBundlesProductsQuantityRequest extends AppendableGateway<PutProductsBundlesProductsQuantityRequest> {
@@ -2242,7 +2246,7 @@ export interface PutProductsBundlesProductsQuantityRequest extends AppendableGat
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /**  */
-    bundleIdent: (bundleIdent: object) => this
+    bundleIdent: (bundleIdent: JSObject) => this
 }
 
 export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutProductsBundlesRenewRequest> {
@@ -2251,7 +2255,7 @@ export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutPro
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /** ID of a set being modified. */
-    bundleIdent: (bundleIdent: object) => this
+    bundleIdent: (bundleIdent: JSObject) => this
 }
 
 export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest> {
@@ -2348,7 +2352,7 @@ export interface PutProductsCollectionsRenewRequest extends AppendableGateway<Pu
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /** ID of a collection being modified. */
-    collectionIdent: (collectionIdent: object) => this
+    collectionIdent: (collectionIdent: JSObject) => this
 }
 
 export interface SearchProductsDeliveryTimeRequest extends AppendableGateway<SearchProductsDeliveryTimeRequest, SearchDeliveryTimeResponse> {
@@ -2382,7 +2386,7 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /**  */
-    productIdent: (productIdent: object) => this
+    productIdent: (productIdent: JSObject) => this
     /** Array of language-dependent elements. */
     productDescriptionsLangData: (productDescriptionsLangData: Array<JSObject>) => this
     /** Product data for auction services */
@@ -2393,7 +2397,7 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
 export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest> {
     groups: (value: Array<JSObject>) => this;
     /**  */
-    productIdent: (productIdent: object) => this
+    productIdent: (productIdent: JSObject) => this
 }
 
 export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProductsGroupsOrderRequest> {
@@ -2407,13 +2411,13 @@ export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProd
 export interface PutProductsGroupsSettingsRequest extends AppendableGateway<PutProductsGroupsSettingsRequest> {
     groups: (value: Array<JSObject>) => this;
     /**  */
-    productIdent: (productIdent: object) => this
+    productIdent: (productIdent: JSObject) => this
     /** Display on the product list in the panel. */
     displayInPanel: (displayInPanel: 'firstavailable'|'all') => this
     /** Display on a product list on the page. */
     displayOnPage: (displayOnPage: 'firstavailable'|'all'|'specified') => this
     /** Selected product in the group. */
-    specifiedProductIdent: (specifiedProductIdent: object) => this
+    specifiedProductIdent: (specifiedProductIdent: JSObject) => this
 }
 
 export interface GetProductsIdBySizecodeRequest extends Gateway {
@@ -2437,11 +2441,11 @@ export interface DeleteProductsImagesRequest extends AppendableGateway<DeletePro
 }
 
 export interface PutProductsImagesRequest extends AppendableGateway<PutProductsImagesRequest> {
-    productsImagesSettings: (value: Object) => this;
+    productsImagesSettings: (value: JSObject) => this;
     /** Information on product images */
     productsImages: (value: Array<JSObject>) => this;
     /**  */
-    productIdent: (productIdent: object) => this
+    productIdent: (productIdent: JSObject) => this
     /** Shop Id */
     shopId: (shopId: number|string) => this
     /** List of shops for which photos will be added (including shop provided in shopId). If parameter is empty or not provided, photos will be added to all shops. */
@@ -2451,7 +2455,7 @@ export interface PutProductsImagesRequest extends AppendableGateway<PutProductsI
     /** Product icons list. */
     productIcons: (productIcons: Array<JSObject>) => this
     /** Product settings. */
-    productImagesSettings: (productImagesSettings: object) => this
+    productImagesSettings: (productImagesSettings: JSObject) => this
     productId: (value: number|string) => this;
     /** Adds image source with selected priority */
     addImage: (source: string, priority: number|string) => this;
@@ -2477,9 +2481,9 @@ export interface PostProductsMarketingPromotionRequest extends AppendableGateway
     /** List of stores IDs When mask is determined, this parameter is omitted. */
     shopsIds: (value: number|string|number[]|string[]) => this;
     /** Special zones */
-    marketingZones: (value: Object) => this;
+    marketingZones: (value: JSObject) => this;
     /** Promotional price settings */
-    newPriceSettings: (value: Object) => this;
+    newPriceSettings: (value: JSObject) => this;
     /** Promotion start date in Y-m-d H:i:s format */
     startDate: (value: string) => this;
     /** Promotion end date in Y-m-d H:i:s format */
@@ -2510,9 +2514,9 @@ export interface PutProductsMarketingPromotionRequest extends AppendableGateway<
     /** List of stores IDs When mask is determined, this parameter is omitted. */
     shopsIds: (value: number|string|number[]|string[]) => this;
     /** Special zones */
-    marketingZones: (value: Object) => this;
+    marketingZones: (value: JSObject) => this;
     /** Promotional price settings */
-    newPriceSettings: (value: Object) => this;
+    newPriceSettings: (value: JSObject) => this;
     /** Promotion start date in Y-m-d H:i:s format */
     startDate: (value: string) => this;
     /** Promotion end date in Y-m-d H:i:s format */
@@ -2549,11 +2553,11 @@ export interface PutProductsMarketingZonesRequest extends AppendableGateway<PutP
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     assignment_mode: (value: 'auto'|'manual') => this;
-    marketing_zones: (value: Object) => this;
+    marketing_zones: (value: JSObject) => this;
     /** Marketing hotspots in shops */
     shops: (value: Array<JSObject>) => this;
     /** Identifier type. */
-    ident: (ident: object) => this
+    ident: (ident: JSObject) => this
 }
 
 export interface GetProductsOmnibusPricesRequest extends Gateway {
@@ -2568,11 +2572,11 @@ export interface PutProductsOmnibusPricesRequest extends AppendableGateway<PutPr
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Identifier type. */
-    ident: (ident: object) => this
+    ident: (ident: JSObject) => this
     /** List of sizes */
     sizes: (sizes: Array<JSObject>) => this
     /** Strikethrough price settings. */
-    omnibusPrices: (omnibusPrices: object) => this
+    omnibusPrices: (omnibusPrices: JSObject) => this
     /** Strikethrough price settings for the page. */
     shops: (shops: Array<JSObject>) => this
 }
@@ -2583,17 +2587,17 @@ export interface DeleteProductsOpinionsRequest extends Gateway {
 
 export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOpinionsRequest> {
     /** Review identification */
-    opinion: (value: Object) => this;
+    opinion: (value: JSObject) => this;
     /** Products list. */
-    products: (value: Object) => this;
+    products: (value: JSObject) => this;
     /** Customer data. */
-    clients: (value: Object) => this;
+    clients: (value: JSObject) => this;
     /** Review positive score data */
-    scorePositive: (value: Object) => this;
+    scorePositive: (value: JSObject) => this;
     /** Review negative score data */
-    scoreNegative: (value: Object) => this;
+    scoreNegative: (value: JSObject) => this;
     /** Date range */
-    dateRange: (value: Object) => this;
+    dateRange: (value: JSObject) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -2624,13 +2628,13 @@ export interface PostProductsOpinionsRequest extends AppendableGateway<PostProdu
     /**  */
     host: (host: string) => this
     /** Customer data. */
-    clients: (clients: object) => this
+    clients: (clients: JSObject) => this
     /**  */
     scorePositive: (scorePositive: number|string) => this
     /**  */
     scoreNegative: (scoreNegative: number|string) => this
     /** Products list. */
-    products: (products: object) => this
+    products: (products: JSObject) => this
     /** Order serial number. */
     orderSerialNumber: (orderSerialNumber: number|string) => this
     /** Reply to an opinion */
@@ -2667,7 +2671,7 @@ export interface PutProductsParametersRequest extends AppendableGateway<PutProdu
     /** Sections, parameters or valued to add or edit. */
     items: (value: Array<JSObject>) => this;
     /** Settings */
-    settings: (value: Object) => this;
+    settings: (value: JSObject) => this;
     /** Parameter ID. */
     id: (id: number|string) => this
     /** Element text ID - can be entered instead of "id". Recognized save format: "section" (without backslash), "parameter\" (parameter without assigned value). */
@@ -2719,9 +2723,9 @@ export interface GetProductsRequest extends Gateway<SearchProductsResponse> {
 
 export interface PostProductsRequest extends AppendableGateway<PostProductsRequest> {
     /** Settings */
-    settings: (value: Object) => this;
+    settings: (value: JSObject) => this;
     /** Icon and photos settings */
-    picturesSettings: (value: Object) => this;
+    picturesSettings: (value: JSObject) => this;
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Product IAI code */
@@ -2765,7 +2769,7 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Optional element, that determines prices edition mode. Default value is "amount_set", when indicated element is omitted in API gate call.. Allowed values "amount_set" - sets product prices to desired value (default mode), "amount_diff" - sets sum difference between prices set (adds or subtracts entered sum from the current price), "percent_diff" - sets percentage difference between prices set (adds or subtracts entered percent from the current price). */
     priceChangeMode: (priceChangeMode: string) => this
     /** The JavaScript formula calculating prices */
-    priceFormula: (priceFormula: object) => this
+    priceFormula: (priceFormula: JSObject) => this
     /** Gross price */
     productRetailPrice: (productRetailPrice: number) => this
     /** Wholesale price */
@@ -2825,13 +2829,13 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** List of photos descriptions */
     productDescriptionPictures: (productDescriptionPictures: string|string[]) => this
     /** Reduced price */
-    productPromotion: (productPromotion: object) => this
+    productPromotion: (productPromotion: JSObject) => this
     /** Discount for shop. */
-    productDiscount: (productDiscount: object) => this
+    productDiscount: (productDiscount: JSObject) => this
     /** Distinguished product in store. */
-    productDistinguished: (productDistinguished: object) => this
+    productDistinguished: (productDistinguished: JSObject) => this
     /** Special product in store. */
-    productSpecial: (productSpecial: object) => this
+    productSpecial: (productSpecial: JSObject) => this
     /** Parameters (distinguished). */
     productParametersDistinction: (productParametersDistinction: Array<JSObject>) => this
     /** List of products recommended with this product */
@@ -2843,23 +2847,23 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Products subscription settings. */
     subscription: (subscription: Array<JSObject>) => this
     /** Product name. */
-    productNames: (productNames: object) => this
+    productNames: (productNames: JSObject) => this
     /**  */
-    productDescriptions: (productDescriptions: object) => this
+    productDescriptions: (productDescriptions: JSObject) => this
     /** Long product description */
-    productLongDescriptions: (productLongDescriptions: object) => this
+    productLongDescriptions: (productLongDescriptions: JSObject) => this
     /** Product data for auction services */
     productAuctionDescriptionsData: (productAuctionDescriptionsData: Array<JSObject>) => this
     /** Product meta title */
-    productMetaTitles: (productMetaTitles: object) => this
+    productMetaTitles: (productMetaTitles: JSObject) => this
     /** Product meta description */
-    productMetaDescriptions: (productMetaDescriptions: object) => this
+    productMetaDescriptions: (productMetaDescriptions: JSObject) => this
     /** Product meta keywords. */
-    productMetaKeywords: (productMetaKeywords: object) => this
+    productMetaKeywords: (productMetaKeywords: JSObject) => this
     /** #!AdresURLDlaTowaru!#. */
-    productUrl: (productUrl: object) => this
+    productUrl: (productUrl: JSObject) => this
     /** Data on product groups (variants) */
-    productVersion: (productVersion: object) => this
+    productVersion: (productVersion: JSObject) => this
     /** Currency ID */
     currencyId: (currencyId: string) => this
     /** Supplier ID. */
@@ -2867,17 +2871,17 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** This parameter is optional and it determines properties edition mode. Default value is "replace". Allowed values: "add" - adds properties to already existent ones, "delete" - removes properties of already existent ones, "delete_group" - removes properties from selected group, "replace" - overwrites properties already existent with new ones (default mode). */
     productParametersDistinctionChangeMode: (productParametersDistinctionChangeMode: 'add'|'delete'|'delete_group'|'replace') => this
     /** Product delivery time from the producer to the shop */
-    productDeliveryTime: (productDeliveryTime: object) => this
+    productDeliveryTime: (productDeliveryTime: JSObject) => this
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
     productSumInBasket: (productSumInBasket: string) => this
     /** Shipping, returns and complaints settings */
-    dispatchSettings: (dispatchSettings: object) => this
+    dispatchSettings: (dispatchSettings: JSObject) => this
     /** Standard unit settings */
-    standardUnit: (standardUnit: object) => this
+    standardUnit: (standardUnit: JSObject) => this
     /** Minimal number of products in an order */
-    minQuantityPerOrder: (minQuantityPerOrder: object) => this
+    minQuantityPerOrder: (minQuantityPerOrder: JSObject) => this
     /** Dimensions and overall weight */
-    productDimensions: (productDimensions: object) => this
+    productDimensions: (productDimensions: JSObject) => this
     /** Responsible producer code */
     responsibleProducerCode: (responsibleProducerCode: string) => this
     /** Responsible person code */
@@ -2892,9 +2896,9 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
 
 export interface PutProductsRequest extends AppendableGateway<PutProductsRequest> {
     /** Settings */
-    settings: (value: Object) => this;
+    settings: (value: JSObject) => this;
     /** Icon and photos settings */
-    picturesSettings: (value: Object) => this;
+    picturesSettings: (value: JSObject) => this;
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Product IAI code */
@@ -2990,7 +2994,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Settings of hotspots display. */
     productHotspotsZones: (productHotspotsZones: Array<JSObject>) => this
     /** Loyalty points. */
-    priceInPoints: (priceInPoints: object) => this
+    priceInPoints: (priceInPoints: JSObject) => this
     /** Loyalty points. */
     loyaltyPoints: (loyaltyPoints: Array<JSObject>) => this
     /** Weight. */
@@ -3026,7 +3030,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Name of warranty for indicated product. */
     warrantyName: (warrantyName: string) => this
     /** The JavaScript formula calculating prices */
-    priceFormula: (priceFormula: object) => this
+    priceFormula: (priceFormula: JSObject) => this
     /** Size chart ID */
     sizeChartId: (sizeChartId: number|string) => this
     /** Size chart name */
@@ -3046,13 +3050,13 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** List of a product's photos with indication of a particular number of the photo. */
     productPicturesReplace: (productPicturesReplace: Array<JSObject>) => this
     /** Reduced price */
-    productPromotion: (productPromotion: object) => this
+    productPromotion: (productPromotion: JSObject) => this
     /** Discount for shop. */
-    productDiscount: (productDiscount: object) => this
+    productDiscount: (productDiscount: JSObject) => this
     /** Distinguished product in store. */
-    productDistinguished: (productDistinguished: object) => this
+    productDistinguished: (productDistinguished: JSObject) => this
     /** Special product in store. */
-    productSpecial: (productSpecial: object) => this
+    productSpecial: (productSpecial: JSObject) => this
     /** Parameters (distinguished). */
     productParametersDistinction: (productParametersDistinction: Array<JSObject>) => this
     /** Configuration parameters */
@@ -3076,29 +3080,29 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Products subscription settings. */
     subscription: (subscription: Array<JSObject>) => this
     /** Product name. */
-    productNames: (productNames: object) => this
+    productNames: (productNames: JSObject) => this
     /** DEPRECATED. This parameter is deprecated. Product name for online auctions. */
-    productNamesInAuction: (productNamesInAuction: object) => this
+    productNamesInAuction: (productNamesInAuction: JSObject) => this
     /** Product name for price comparison websites. */
-    productNamesInPriceComparer: (productNamesInPriceComparer: object) => this
+    productNamesInPriceComparer: (productNamesInPriceComparer: JSObject) => this
     /** Product short description */
-    productParamDescriptions: (productParamDescriptions: object) => this
+    productParamDescriptions: (productParamDescriptions: JSObject) => this
     /** Long product description */
-    productLongDescriptions: (productLongDescriptions: object) => this
+    productLongDescriptions: (productLongDescriptions: JSObject) => this
     /** DEPRECATED. This parameter is deprecated. Product description for marketplaces. */
-    productLongDescriptionsInAuction: (productLongDescriptionsInAuction: object) => this
+    productLongDescriptionsInAuction: (productLongDescriptionsInAuction: JSObject) => this
     /** Product data for auction services */
     productAuctionDescriptionsData: (productAuctionDescriptionsData: Array<JSObject>) => this
     /** Product meta title */
-    productMetaTitles: (productMetaTitles: object) => this
+    productMetaTitles: (productMetaTitles: JSObject) => this
     /** Product meta description */
-    productMetaDescriptions: (productMetaDescriptions: object) => this
+    productMetaDescriptions: (productMetaDescriptions: JSObject) => this
     /** Product meta keywords. */
-    productMetaKeywords: (productMetaKeywords: object) => this
+    productMetaKeywords: (productMetaKeywords: JSObject) => this
     /** #!AdresURLDlaTowaru!#. */
-    productUrl: (productUrl: object) => this
+    productUrl: (productUrl: JSObject) => this
     /** Data on product groups (variants) */
-    productVersion: (productVersion: object) => this
+    productVersion: (productVersion: JSObject) => this
     /** Currency ID */
     currencyId: (currencyId: string) => this
     /** Currency, in which product prices are stored. */
@@ -3110,7 +3114,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** This parameter is optional and it determines properties edition mode. Default value is "replace". Allowed values: "add" - adds properties to already existent ones, "delete" - removes properties of already existent ones, "delete_group" - removes properties from selected group, "replace" - overwrites properties already existent with new ones (default mode). */
     productParametersDistinctionChangeMode: (productParametersDistinctionChangeMode: 'add'|'delete'|'delete_group'|'replace') => this
     /** Product delivery time from the producer to the shop */
-    productDeliveryTime: (productDeliveryTime: object) => this
+    productDeliveryTime: (productDeliveryTime: JSObject) => this
     /** Parameters. */
     productParameters: (productParameters: Array<JSObject>) => this
     /**  */
@@ -3122,7 +3126,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** An array of menu elements */
     productMenuItems: (productMenuItems: Array<JSObject>) => this
     /** #!UsuwaWszystkiePrzypisaneDoProduktuElementyWybranegoMenu!#. */
-    removeAllProductsAssignedToMenu: (removeAllProductsAssignedToMenu: object) => this
+    removeAllProductsAssignedToMenu: (removeAllProductsAssignedToMenu: JSObject) => this
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
     productSumInBasket: (productSumInBasket: string) => this
     /** Settings of prices for shop. Values allowed: "same_prices" - prices in each shop are the same, "different_prices" - prices in each shop are different. */
@@ -3146,17 +3150,17 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Saving serial numbers Available values: "na" - not used, "optional" - Optional, "required" - required. */
     serialNumbersOption: (serialNumbersOption: 'na'|'optional'|'required') => this
     /** Shipping, returns and complaints settings */
-    dispatchSettings: (dispatchSettings: object) => this
+    dispatchSettings: (dispatchSettings: JSObject) => this
     /** Standard unit settings */
-    standardUnit: (standardUnit: object) => this
+    standardUnit: (standardUnit: JSObject) => this
     /** Minimal number of products in an order */
-    minQuantityPerOrder: (minQuantityPerOrder: object) => this
+    minQuantityPerOrder: (minQuantityPerOrder: JSObject) => this
     /**  */
     dynamicPricingEnabled: (dynamicPricingEnabled: string) => this
     /** The setting allows you to reset the inventory to zero */
-    clearStockQuantities: (clearStockQuantities: object) => this
+    clearStockQuantities: (clearStockQuantities: JSObject) => this
     /** Dimensions and overall weight */
-    productDimensions: (productDimensions: object) => this
+    productDimensions: (productDimensions: JSObject) => this
     /** Responsible producer code */
     responsibleProducerCode: (responsibleProducerCode: string) => this
     /** Responsible person code */
@@ -3178,7 +3182,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
 }
 
 export interface SearchProductsRequest extends PagableGateway<SearchProductsRequest,SearchProductsResponse> {
-    dispatchSettings: (value: Object) => this;
+    dispatchSettings: (value: JSObject) => this;
     /** Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash. */
     returnProducts: (value: string) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode */
@@ -3218,7 +3222,7 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** List of special offers, sought products are assigned to. */
     productPromotionsIds: (value: number|string|number[]|string[]) => this;
     /** Settings concerning narrowing list of products found by date. */
-    productDate: (value: Object) => this;
+    productDate: (value: JSObject) => this;
     /** Parameters */
     productParametersParams: (value: Array<JSObject>) => this;
     /** Series, sought products are assigned to. */
@@ -3234,9 +3238,9 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Product code or it's part (based on producer's code, external product system code and code that is visible on a product card). Search is accesible only with available products. */
     containsCodePart: (value: string) => this;
     /** Product availability in stocks */
-    productAvailableInStocks: (value: Object) => this;
+    productAvailableInStocks: (value: JSObject) => this;
     /** Product availability on auctions */
-    productAvailableInAuctions: (value: Object) => this;
+    productAvailableInAuctions: (value: JSObject) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -3262,9 +3266,9 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Product is new. Available values: "y" - is new, "n" - is not new. */
     productInNew: (value: string) => this;
     /** Shops */
-    searchByShops: (value: Object) => this;
+    searchByShops: (value: JSObject) => this;
     /** Price range for sought products. */
-    productSearchPriceRange: (value: Object) => this;
+    productSearchPriceRange: (value: JSObject) => this;
     /** VAT value for sought products */
     productVatRates: (value: Array<Number>) => this;
     /** Is product VAT-free Allowed values "y" - yes, "n" - no. */
@@ -3278,9 +3282,9 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
     productInSumInBasket: (value: string) => this;
     /** Product type. Allowed values: "product_item" - Goods, "product_packaging" - packaging, "product_bundle" - set. "product_collection" - collection. "product_service" - service. "product_virtual" - virtual product. "product_configurable" - configurable product. */
-    productType: (value: Object) => this;
+    productType: (value: JSObject) => this;
     /** An array of menu elements */
-    productMenuItems: (value: Object) => this;
+    productMenuItems: (value: JSObject) => this;
     /** Warehouse location ID */
     productLocationId: (value: number|string) => this;
     /** Warehouse location full path Use a backslash (\) as a separator, for example: M1\Section name\Location name If location_id parameter is provided, the full warehouse location path will not be taken into account */
@@ -3290,7 +3294,7 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Returns reservation information regardless of inventory levels */
     returnEmptyStocksWithReservation: (value: Boolean) => this;
     /** Data for operations on individual photos */
-    picturesData: (value: Object) => this;
+    picturesData: (value: JSObject) => this;
     /** Responsible producer code */
     responsibleProducerCode: (value: string) => this;
     /** Responsible person code */
@@ -3389,7 +3393,7 @@ export interface PutProductsQuestionsRequest extends AppendableGateway<PutProduc
     /** Author. */
     author: (author: string) => this
     /** Stock keeping unit. */
-    productIdent: (productIdent: object) => this
+    productIdent: (productIdent: JSObject) => this
     /** Visibility: "y" - yes, "n" - no */
     visible: (visible: 'n'|'y') => this
     /** Priority. */
@@ -3537,13 +3541,13 @@ export interface PutProductsStocksRequest extends AppendableGateway<PutProductsS
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /**  */
-    ident: (ident: object) => this
+    ident: (ident: JSObject) => this
     /** List of sizes */
     sizes: (sizes: Array<JSObject>) => this
     /**  */
-    settings: (settings: object) => this
+    settings: (settings: JSObject) => this
     /** Error information. */
-    error: (error: object) => this
+    error: (error: JSObject) => this
 }
 
 export interface GetProductsStrikethroughPricesRequest extends Gateway {
@@ -3558,11 +3562,11 @@ export interface PutProductsStrikethroughPricesRequest extends AppendableGateway
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Identifier type. */
-    ident: (ident: object) => this
+    ident: (ident: JSObject) => this
     /** List of sizes */
     sizes: (sizes: Array<JSObject>) => this
     /**  */
-    stp_settings: (stp_settings: object) => this
+    stp_settings: (stp_settings: JSObject) => this
     /** Strikethrough price settings for the page. */
     shops: (shops: Array<JSObject>) => this
 }
@@ -3638,7 +3642,7 @@ export interface PostRefundsAddManualRefundRequest extends Gateway {
     refundValue: (value: Number) => this;
     /** Payment currency. */
     refundCurrency: (value: string) => this;
-    refundDetails: (value: Object) => this;
+    refundDetails: (value: JSObject) => this;
 }
 
 export interface PutRefundsCancelRefundRequest extends Gateway {
@@ -3783,7 +3787,7 @@ export interface GetReturnsRequest extends PagableGateway<GetReturnsRequest,GetR
     /** Search by a return shipment number from a customer to the shop . */
     return_shipping_number: (value: string) => this;
     /** Date range. */
-    range: (value: Object) => this;
+    range: (value: JSObject) => this;
     /** Number of results on page. */
     results_limit: (value: number|string) => this;
     /** Result page number. */
@@ -3836,7 +3840,7 @@ export interface PutReturnsRequest extends AppendableGateway<PutReturnsRequest> 
     /**  */
     status: (status: number|string) => this
     /** Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
-    apiFlag: (apiFlag: object) => this
+    apiFlag: (apiFlag: JSObject) => this
     /** Products list. */
     products: (products: Array<JSObject>) => this
     /**  */
@@ -3871,11 +3875,11 @@ export interface GetRmaRequest extends PagableGateway<GetRmaRequest,GetRmaRespon
     /** Unique client's number. */
     clientId: (value: string) => this;
     /** Complaint creation date in the YYYY-MM-DD format */
-    creationDate: (value: Object) => this;
+    creationDate: (value: JSObject) => this;
     /** Complaint modification date in the YYYY-MM-DD format */
-    modificationDate: (value: Object) => this;
+    modificationDate: (value: JSObject) => this;
     /** Complaint closing date in the YYYY-MM-DD format */
-    endDate: (value: Object) => this;
+    endDate: (value: JSObject) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4091,9 +4095,9 @@ export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsReque
     /** Snippet campaign id */
     campaign: (campaign: number|string) => this
     /** undefined */
-    dateBegin: (dateBegin: object) => this
+    dateBegin: (dateBegin: JSObject) => this
     /** Filter to control snippet activation. */
-    dateEnd: (dateEnd: object) => this
+    dateEnd: (dateEnd: JSObject) => this
     /** Code snippet type. */
     type: (type: 'html'|'javascript'|'cgi') => this
     /** Whether to load contents asynchronously via XHR request. */
@@ -4109,11 +4113,11 @@ export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsReque
     /** Snippet content for each language. */
     body: (body: Array<JSObject>) => this
     /** undefined */
-    display: (display: object) => this
+    display: (display: JSObject) => this
     /** undefined */
-    pages: (pages: object) => this
+    pages: (pages: JSObject) => this
     /** Snippet entry source filter. */
-    sources: (sources: object) => this
+    sources: (sources: JSObject) => this
 }
 
 export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest> {
@@ -4127,9 +4131,9 @@ export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest
     /** Snippet campaign id */
     campaign: (campaign: number|string) => this
     /** undefined */
-    dateBegin: (dateBegin: object) => this
+    dateBegin: (dateBegin: JSObject) => this
     /** Filter to control snippet activation. */
-    dateEnd: (dateEnd: object) => this
+    dateEnd: (dateEnd: JSObject) => this
     /** Code snippet type. */
     type: (type: 'html'|'javascript'|'cgi') => this
     /** Whether to load contents asynchronously via XHR request. */
@@ -4145,11 +4149,11 @@ export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest
     /** Snippet content for each language. */
     body: (body: Array<JSObject>) => this
     /** undefined */
-    display: (display: object) => this
+    display: (display: JSObject) => this
     /** undefined */
-    pages: (pages: object) => this
+    pages: (pages: JSObject) => this
     /** Snippet entry source filter. */
-    sources: (sources: object) => this
+    sources: (sources: JSObject) => this
 }
 
 export interface DeleteSnippetsRequest extends Gateway {
@@ -4211,10 +4215,10 @@ export interface PostSubscriptionsEditProductRequest extends Gateway {
 }
 
 export interface PostSubscriptionsItemsListRequest extends Gateway {
-    filter: (value: Object) => this;
-    orderBy: (value: Object) => this;
+    filter: (value: JSObject) => this;
+    orderBy: (value: JSObject) => this;
     /** Pagination settings. */
-    pagination: (value: Object) => this;
+    pagination: (value: JSObject) => this;
 }
 
 export interface PostSubscriptionsListViewFetchIdsRequest extends Gateway {
@@ -4229,25 +4233,25 @@ export interface PostSubscriptionsListViewFetchIdsRequest extends Gateway {
     /** Price change mode */
     priceChangeMode: (value: 'auto'|'manual') => this;
     /** A universal structure for time intervals. */
-    createDateTime: (value: Object) => this;
+    createDateTime: (value: JSObject) => this;
     /** A universal structure for time intervals. */
-    finishDateTime: (value: Object) => this;
+    finishDateTime: (value: JSObject) => this;
     /** Universal structure for intervals. */
-    upcomingDeliveryDate: (value: Object) => this;
+    upcomingDeliveryDate: (value: JSObject) => this;
     /** Universal structure for intervals. */
-    nextDeliveryDate: (value: Object) => this;
+    nextDeliveryDate: (value: JSObject) => this;
     /** Text search phrase */
     textSearch: (value: string) => this;
 }
 
 export interface PostSubscriptionsListViewListRequest extends Gateway {
-    select: (value: Object) => this;
+    select: (value: JSObject) => this;
     /** Filters that limit the result of a customer query. */
-    filter: (value: Object) => this;
+    filter: (value: JSObject) => this;
     /** Order by settings. */
-    orderBy: (value: Object) => this;
+    orderBy: (value: JSObject) => this;
     /** Pagination settings. */
-    pagination: (value: Object) => this;
+    pagination: (value: JSObject) => this;
 }
 
 export interface PostSubscriptionsSetRebateCodeRequest extends Gateway {
@@ -4266,7 +4270,7 @@ export interface GetSystemConfigRequest extends Gateway<GetConfigResponse> {}
 
 export interface PutSystemConfigRequest extends Gateway {
     /** Panel settings */
-    panelSettings: (value: Object) => this;
+    panelSettings: (value: JSObject) => this;
 }
 
 export interface GetSystemCurrenciesRequest extends Gateway {
@@ -4295,7 +4299,7 @@ export interface PutSystemProcessesAutomationRequest extends Gateway {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Orders. */
-    orders: (value: Object) => this;
+    orders: (value: JSObject) => this;
 }
 
 export interface GetSystemServerLoadRequest extends Gateway {}
@@ -4409,7 +4413,7 @@ export interface PostVouchersRequest extends AppendableGateway<PostVouchersReque
     /** Voucher expiration date */
     expirationDate: (expirationDate: string) => this
     /** Voucher balance */
-    balance: (balance: object) => this
+    balance: (balance: JSObject) => this
     /** List of shops the voucher is active in */
     shops: (shops: number|string|number[]|string[]) => this
     /**  */
@@ -4430,7 +4434,7 @@ export interface PutVouchersRequest extends AppendableGateway<PutVouchersRequest
     /** Balance operation type, possible values: - set - balance positioning of funds, - add - add funds to balance, - subtract - subtract funds from balance. */
     balanceOperationType: (balanceOperationType: 'set'|'add'|'subtract') => this
     /** Voucher balance */
-    balance: (balance: object) => this
+    balance: (balance: JSObject) => this
     /** List of shops the voucher is active in */
     shops: (shops: number|string|number[]|string[]) => this
     /**  */
@@ -4461,7 +4465,7 @@ export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesReques
     results_limit: (value: number|string) => this;
     /** Result page number. */
     results_page: (value: number|string) => this;
-    results_order: (value: Object) => this;
+    results_order: (value: JSObject) => this;
 }
 
 export interface PostWarrantiesRequest extends AppendableGateway<PostWarrantiesRequest> {
@@ -4473,9 +4477,9 @@ export interface PostWarrantiesRequest extends AppendableGateway<PostWarrantiesR
     /** Warranty time. Default value 12. */
     period: (period: number|string) => this
     /** Name of warranty. */
-    shopname: (shopname: object) => this
+    shopname: (shopname: JSObject) => this
     /** Warranty description. */
-    description: (description: object) => this
+    description: (description: JSObject) => this
 }
 
 export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesRequest> {
@@ -4534,7 +4538,7 @@ export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<Ge
     /** Products available in presales. */
     productsInPreorder: (value: 'y'|'n') => this;
     /** Date range */
-    dateRange: (value: Object) => this;
+    dateRange: (value: JSObject) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4622,7 +4626,7 @@ export interface GetWmsStocksdocumentsOpenedDocumentsRequest extends PagableGate
     /** Source warehouse ID. The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>. */
     stockSourceId: (value: number|string) => this;
     /** Date range */
-    dateRange: (value: Object) => this;
+    dateRange: (value: JSObject) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4743,11 +4747,11 @@ export interface PutWmsSuppliersRequest extends AppendableGateway<PutWmsSupplier
     /** VAT no.. (limit of 13 characters) */
     taxCode: (taxCode: string) => this
     /** Average delivery time */
-    averageDeliveryTime: (averageDeliveryTime: object) => this
+    averageDeliveryTime: (averageDeliveryTime: JSObject) => this
     /** Description. (limit of 255 characters) */
     description: (description: string) => this
     /** Order preparation time for shipment */
-    orderCompletionTime: (orderCompletionTime: object) => this
+    orderCompletionTime: (orderCompletionTime: JSObject) => this
     /** Supplier working hours */
     workDays: (workDays: Array<JSObject>) => this
 }

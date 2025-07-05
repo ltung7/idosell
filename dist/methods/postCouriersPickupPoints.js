@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "pickupPoints",
         index: 0
     };
+    object.req = ["courierId", "address", "pickupPointExternalId", "coordinates"];
     object.arrays = ["pickupPoints"];
     return new Proxy(object, paramsProxy);
 };

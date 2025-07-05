@@ -12,6 +12,7 @@ export default (object) => {
         arrayNode: "products",
         index: 0
     };
+    object.req = ["shopsMask"];
     object.arrays = ["products"];
     return new Proxy(object, paramsProxy);
 };

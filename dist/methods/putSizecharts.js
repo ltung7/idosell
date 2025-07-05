@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "sizeCharts",
         index: 0
     };
+    object.req = ["id", "displayMode"];
     object.arrays = ["sizeCharts"];
     return new Proxy(object, paramsProxy);
 };

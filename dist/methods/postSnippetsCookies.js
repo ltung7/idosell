@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "cookies",
         index: 0
     };
+    object.req = ["snippetId"];
     object.arrays = ["cookies"];
     return new Proxy(object, paramsProxy);
 };

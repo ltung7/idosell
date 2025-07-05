@@ -15,3 +15,8 @@ test("searchPackagesRma", () => {
     const params = idosell().searchPackages.rma([1]).getParams();
     expect(params).toEqual({"events":[{"eventType":"rma","eventsIds":[1]}]});
 })
+
+test("searchPackagesDeliveryPackageNumbers", () => {
+    const params = idosell().searchPackages.deliveryPackageNumbers(123456789).getParams();
+    expect(params).toEqual({"deliveryPackageNumbers":[123456789]});
+})

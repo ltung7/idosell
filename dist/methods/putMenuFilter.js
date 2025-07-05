@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "menuFiltersActive",
         index: 0
     };
+    object.req = ["shopId", "productMenuTreeId", "languageId", "productMenuNodeId"];
     object.arrays = ["menuFiltersActive"];
     return new Proxy(object, paramsProxy);
 };

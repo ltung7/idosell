@@ -1,7 +1,8 @@
 export interface ExecutableOptions {
 	log?: boolean,
     dump?: boolean,
-    logPage?: boolean
+    logPage?: boolean,
+	skipCheck?: boolean
 }
 
 export type DateLike = string | number | Date;
@@ -17,6 +18,10 @@ export type RequestProxyObject = {
 	params: Record<string, any>,
 }
 
+export type RequirementType = {
+	any: string[]
+} | string;
+
 export type GatewayRequestProxyObject = {
 	gate: {
 		method: 'get'|'post'|'put'|'delete',
@@ -31,7 +36,8 @@ export type GatewayRequestProxyObject = {
 	snakeCase?: boolean,
 	next?: boolean,
 	rootparams?: string|boolean,
-	arrays?: string[]
+	arrays?: string[],
+	req?: RequirementType[],
 } & RequestProxyObject;
 
 export interface Gateway<R = JSObject> {

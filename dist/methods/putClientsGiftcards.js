@@ -11,6 +11,7 @@ export default (object) => {
         arrayNode: "giftCards",
         index: 0
     };
+    object.req = [{ "any": ["id", "number"] }];
     object.arrays = ["giftCards"];
     return new Proxy(object, paramsProxy);
 };

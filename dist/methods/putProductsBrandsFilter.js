@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "filtersActive",
         index: 0
     };
+    object.req = ["producerId"];
     object.arrays = ["filtersActive"];
     return new Proxy(object, paramsProxy);
 };

@@ -69,6 +69,48 @@ export const queryfy = (params) => {
     }
     return output.slice(0, -1);
 };
+const isMissingRequirement = (obj, required) => {
+    if (typeof required === 'string') {
+        if (obj[required])
+            return false;
+        else
+            return required;
+    }
+    else if (required.any) {
+        for (const field of required.any) {
+            if (obj[field])
+                return false;
+        }
+        return required.any.join(' | ');
+    }
+    return false;
+};
+const processRequired = (request) => {
+    if (!request.req)
+        return;
+    const missing = new Set();
+    for (const req of request.req) {
+        const missingField = isMissingRequirement(request.params, req);
+        if (missingField)
+            missing.add(missingField);
+    }
+    if (request.appendable && request.params[request.appendable.arrayNode]) {
+        for (const req of request.req) {
+            if (typeof req === 'string') {
+                if (request.appendable.except.includes(req))
+                    continue;
+                missing.delete(req);
+                for (const obj of request.params[request.appendable.arrayNode]) {
+                    const missingField = isMissingRequirement(obj, req);
+                    if (missingField)
+                        missing.add(missingField);
+                }
+            }
+        }
+    }
+    if (missing.size)
+        throw new Error(`Brak wymaganych pól: ${[...missing].join(', ')}`);
+};
 export const sendRequest = async (request, options = {}) => {
     if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {
         const array = request.params[request.appendable.arrayNode];
@@ -77,6 +119,8 @@ export const sendRequest = async (request, options = {}) => {
             array.pop();
         }
     }
+    if (!options.skipCheck)
+        processRequired(request);
     const headers = {
         'X-API-KEY': request.auth.apiKey,
         Accept: 'application/json'

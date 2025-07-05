@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "entities",
         index: 0
     };
+    object.req = ["type", "code"];
     object.arrays = ["entities"];
     return new Proxy(object, paramsProxy);
 };

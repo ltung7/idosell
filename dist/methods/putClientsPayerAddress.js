@@ -6,6 +6,7 @@ export default (object) => {
         arrayNode: "payers",
         index: 0
     };
+    object.req = ["clientId", "payerAddressId"];
     object.arrays = ["payers"];
     return new Proxy(object, paramsProxy);
 };
