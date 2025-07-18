@@ -5,5 +5,6 @@ export default (object) => {
     object.custom = {
         productId: getProductIdentList
     };
+    object.req = ["identType", "products"];
     return new Proxy(object, paramsProxy);
 };

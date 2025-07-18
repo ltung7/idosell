@@ -6,5 +6,6 @@ export default (object) => {
         rm: (rmaId) => ({ eventType: "rma", eventId: rmaId }),
         return: (returnId) => ({ eventType: "return", eventId: returnId })
     };
+    object.req = ["eventId", "eventType"];
     return new Proxy(object, paramsProxy);
 };

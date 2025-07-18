@@ -5,5 +5,6 @@ export default (object) => {
     object.custom = {
         dates: dateRange({ "fromName": "dateBegin", "toName": "dateEnd" })
     };
+    object.req = ["dateBegin", "dateEnd", "dateEnd", "applicationType", "documentType"];
     return new Proxy(object, paramsProxy);
 };

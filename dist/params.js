@@ -41,8 +41,9 @@ export const paramsProxy = {
                 }
             }
             else if (object.custom && typeof object.custom[property] === 'function') {
-                if (property === 'page')
-                    values.push(Boolean(object.snakeCase));
+                if (property === 'page') {
+                    values = [values[0] ?? 0, values[1] ?? 100, Boolean(object.snakeCase)];
+                }
                 const param = object.custom[property](...values);
                 Object.assign(object.params, param);
             }
@@ -54,6 +55,12 @@ export const paramsProxy = {
             }
             else {
                 object.params[property] = values[0];
+            }
+            if (object.custom?.page && property !== 'page') {
+                if (object.params.resultsPage)
+                    delete object.params.resultsPage;
+                if (object.params.results_page)
+                    delete object.params.results_page;
             }
             return receiver;
         };

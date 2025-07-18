@@ -11,6 +11,7 @@ export default (object) => {
         arrayNode: "events",
         index: 0
     };
+    object.req = [{ "any": ["events", "deliveryPackageNumbers"] }];
     object.arrays = ["deliveryPackageNumbers", "events"];
     return new Proxy(object, paramsProxy);
 };

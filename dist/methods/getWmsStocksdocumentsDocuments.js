@@ -6,5 +6,6 @@ export default (object) => {
         dates: dateRangeType({ "nodeName": "dateRange", "fromName": "dateBegin", "toName": "dateEnd", "typeName": "dateType", "format": "YYYY-MM-DD HH:mm:ss", "defaultType": "open" }),
         page
     };
+    object.req = ["stockDocumentType"];
     return new Proxy(object, paramsProxy);
 };

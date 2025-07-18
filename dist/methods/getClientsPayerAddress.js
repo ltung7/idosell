@@ -5,5 +5,6 @@ export default (object) => {
     object.custom = {
         page
     };
+    object.req = ["clientId"];
     return new Proxy(object, paramsProxy);
 };

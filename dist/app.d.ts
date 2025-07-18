@@ -79,7 +79,7 @@ export interface PagableGateway<T,R = JSObject> extends Gateway<R> {
 	hasNext: () => boolean
 }
 
-export interface AppendableGateway<T> extends Gateway {
+export interface AppendableGateway<T,R = JSObject> extends Gateway<R> {
 	/**
 	 * Start creating next item in list
 	 */

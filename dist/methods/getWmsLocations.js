@@ -5,5 +5,6 @@ export default (object) => {
     object.custom = {
         page
     };
+    object.req = [{ "any": ["locationId", "stockId"] }];
     return new Proxy(object, paramsProxy);
 };
