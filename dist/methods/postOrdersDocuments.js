@@ -6,7 +6,7 @@ export default (object) => {
         arrayNode: "documents",
         index: 0
     };
-    object.req = ["orderSerialNumber", "name", "pdfBase64", "additionalData"];
+    object.req = ["orderSerialNumber", "name"];
     object.arrays = ["documents"];
     return new Proxy(object, paramsProxy);
 };

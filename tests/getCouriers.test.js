@@ -2,11 +2,11 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("getCouriersCountryCode", () => {
-    const params = idosell().getCouriers.countryCode("PL").getParams();
+    const params = idosell().getCouriers.countryCode("PL").checkParams();
     expect(params).toEqual({"countryCode":"PL"});
 })
 
 test("getCouriersPage", () => {
-    const params = idosell().getCouriers.page(2,10).getParams();
+    const params = idosell().getCouriers.page(2,10).checkParams();
     expect(params).toEqual({"resultsPage":2,"resultsLimit":10});
 })

@@ -2,11 +2,11 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("putSizesName", () => {
-    const params = idosell().putSizes.id("W").name("512GB").getParams();
+    const params = idosell().putSizes.id("W").name("512GB").checkParams();
     expect(params).toEqual({"sizes":[{"id":"W","name":"512GB"}]});
 })
 
 test("putSizesOperation", () => {
-    const params = idosell().putSizes.id("W").name("512GB").description("512GB").operation("edit").getParams();
+    const params = idosell().putSizes.id("W").name("512GB").description("512GB").operation("edit").checkParams();
     expect(params).toEqual({"sizes":[{"id":"W","name":"512GB","description":"512GB","operation":"edit"}]});
 })

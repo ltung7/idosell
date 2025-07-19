@@ -173,5 +173,17 @@ export const countResults = async (request, options) => {
         return response.resultsNumberAll;
 };
 export const getParams = (request) => JSON.parse(JSON.stringify(request.params));
+export const checkParams = (request) => {
+    if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {
+        const array = request.params[request.appendable.arrayNode];
+        const last = array[array.length - 1];
+        if (typeof last === 'object' && Object.keys(last).length === 0) {
+            array.pop();
+        }
+    }
+    processRequired(request);
+    return JSON.parse(JSON.stringify(request.params));
+    ;
+};
 export const toString = (request) => JSON.stringify(request.params);
 export const hasNext = (request) => request.next;

@@ -2,6 +2,6 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("deleteClientsPayerAddressPayerAddressId", () => {
-    const params = idosell().deleteClientsPayerAddress.clientId(3).payerAddressId(1).getParams();
+    const params = idosell().deleteClientsPayerAddress.clientId(3).payerAddressId(1).checkParams();
     expect(params).toEqual({"payers":[{"clientId":3,"payerAddressId":1}]});
 })

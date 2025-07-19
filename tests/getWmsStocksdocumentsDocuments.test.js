@@ -2,21 +2,21 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("getWmsStocksdocumentsDocumentsStockDocumentType", () => {
-    const params = idosell().getWmsStocksdocumentsDocuments.stockDocumentType("pz").getParams();
+    const params = idosell().getWmsStocksdocumentsDocuments.stockDocumentType("pz").checkParams();
     expect(params).toEqual({"stockDocumentType":"pz"});
 })
 
 test("getWmsStocksdocumentsDocumentsStockDocumentStatus", () => {
-    const params = idosell().getWmsStocksdocumentsDocuments.stockDocumentStatus("open").getParams();
+    const params = idosell().getWmsStocksdocumentsDocuments.stockDocumentStatus("open").checkParams();
     expect(params).toEqual({"stockDocumentStatus":"open"});
 })
 
 test("getWmsStocksdocumentsDocumentsPage", () => {
-    const params = idosell().getWmsStocksdocumentsDocuments.page(2,10).getParams();
+    const params = idosell().getWmsStocksdocumentsDocuments.page(2,10).checkParams();
     expect(params).toEqual({"resultsPage":2,"resultsLimit":10});
 })
 
 test("getWmsStocksdocumentsDocumentsDates", () => {
-    const params = idosell().getWmsStocksdocumentsDocuments.stockDocumentType("pz").dates("2023-12-18", "2023-12-31", "open").getParams();
+    const params = idosell().getWmsStocksdocumentsDocuments.stockDocumentType("pz").dates("2023-12-18", "2023-12-31", "open").checkParams();
     expect(params).toEqual({"stockDocumentType":"pz","dateRange":{"dateBegin":"2023-12-18 00:00:00","dateEnd":"2023-12-31 23:59:59","dateType":"open"}});
 })

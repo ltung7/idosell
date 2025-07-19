@@ -13,7 +13,7 @@ export default (object) => {
         arrayNode: "images",
         index: 0
     };
-    object.req = ["order", "images"];
+    object.req = ["order"];
     object.arrays = ["images"];
     return new Proxy(object, paramsProxy);
 };

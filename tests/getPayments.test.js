@@ -2,11 +2,11 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("getPaymentsPaymentNumber", () => {
-    const params = idosell().getPayments.paymentNumber("3532-1").getParams();
+    const params = idosell().getPayments.paymentNumber("3532-1").checkParams();
     expect(params).toEqual({"paymentNumber":"3532-1"});
 })
 
 test("getPaymentsSourceType", () => {
-    const params = idosell().getPayments.sourceType("order").getParams();
+    const params = idosell().getPayments.sourceType("order").checkParams();
     expect(params).toEqual({"sourceType":"order"});
 })
