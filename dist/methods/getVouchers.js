@@ -10,5 +10,6 @@ export default (object) => {
         numbers: arrayOfObjects("vouchers", "number"),
         page
     };
+    object.req = [{ "any": true }];
     return new Proxy(object, paramsProxy);
 };

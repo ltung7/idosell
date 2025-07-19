@@ -1,5 +1,5 @@
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject } from "./app.d.ts"
-import type { GetClientsResponse, SearchClientsCrmResponse, SearchGiftcardsResponse, SearchNewsletterEmailResponse, SearchNewsletterSmsResponse, SearchOpinionsResponse, SearchOrdersResponse, SearchPackagesResponse, SearchCategoriesIdosellResponse, SearchDeliveryTimeResponse, SearchProductsParametersResponse, SearchProductsResponse, GetReturnsResponse, GetRmaResponse, GetConfigResponse, GetStocksdocumentsDocumentsResponse, GetStocksdocumentsProductsResponse }  from "./responses.d.ts"
+import type { GetClientsResponse, SearchClientsCrmResponse, SearchGiftcardsResponse, SearchNewsletterEmailResponse, SearchNewsletterSmsResponse, SearchOpinionsResponse, SearchOrdersResponse, SearchPackagesResponse, SearchCategoriesIdosellResponse, SearchDeliveryTimeResponse, SearchProductsParametersResponse, SearchProductsResponse, GetReturnsResponse, GetRmaResponse, GetSizechartsResponse, GetConfigResponse, GetShopsDataResponse, GetWarrantiesResponse, GetLocationsResponse, GetStocksdocumentsDocumentsResponse, GetStocksdocumentsProductsResponse }  from "./responses.d.ts"
 import * as ENUMS from "./enums";
 
 export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest> {
@@ -17,6 +17,8 @@ export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalan
     resultsPage: (value: number|string) => this;
     /** Maximum number of results on a single page. Default is 100. */
     resultsLimit: (value: number|string) => this;
+    /** Define range of dates */
+    lastPurchased: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface PostClientsBalanceRequest extends Gateway {
@@ -63,6 +65,10 @@ export interface GetClientsRequest extends PagableGateway<GetClientsRequest,GetC
     clientRegistrationDate: (value: JSObject) => this;
     /** The ID of the shop, that client is assigned to. */
     shopId: (value: string) => this;
+    /** Define range of dates */
+    lastPurchased: (dateFrom: DateLike, dateTo: DateLike) => this;
+    /** Define range of dates */
+    lastModified: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface PostClientsRequest extends AppendableGateway<PostClientsRequest> {
@@ -266,6 +272,12 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     resultsLimit: (value: number|string) => this;
     /** Determines, if data - that will be returned - will be exactly as entered values, or values should be fragment of customer data. */
     settingsExactSearch: (value: Boolean) => this;
+    /** Define range of dates */
+    registered: (dateFrom: DateLike, dateTo: DateLike) => this;
+    /** Define range of dates */
+    lastLoggedIn: (dateFrom: DateLike, dateTo: DateLike) => this;
+    /** Define range of dates */
+    ordered: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface DeleteClientsDeliveryAddressRequest extends AppendableGateway<DeleteClientsDeliveryAddressRequest> {
@@ -503,6 +515,8 @@ export interface SearchClientsNewsletterEmailRequest extends PagableGateway<Sear
     results_page: (value: number|string) => this;
     /** Maximum number of results on a single page. Default is 100. */
     results_limit: (value: number|string) => this;
+    /** Define range of dates */
+    dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest,SearchNewsletterSmsResponse> {
@@ -516,6 +530,8 @@ export interface SearchClientsNewsletterSmsRequest extends PagableGateway<Search
     results_page: (value: number|string) => this;
     /** Maximum number of results on a single page. Default is 100. */
     results_limit: (value: number|string) => this;
+    /** Define range of dates */
+    dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface DeleteClientsPayerAddressRequest extends AppendableGateway<DeleteClientsPayerAddressRequest> {
@@ -693,6 +709,8 @@ export interface GetClientsPricesDiscountsRequest extends PagableGateway<GetClie
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
+    /** Define range of dates */
+    lastPurchased: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface PutClientsPricesDiscountsRequest extends AppendableGateway<PutClientsPricesDiscountsRequest> {
@@ -729,6 +747,8 @@ export interface GetClientsProfitPointsRequest extends PagableGateway<GetClients
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
+    /** Define range of dates */
+    lastPurchased: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface PostClientsProfitPointsRequest extends Gateway {
@@ -1449,6 +1469,8 @@ export interface GetOrdersExportdocumentsEPPRequest extends Gateway {
     documentType: (value: 'all'|'stocks'|'invoice'|'payments') => this;
     /** Date the document was first generated. */
     invoiceFirstGeneratedDate: (value: number|string) => this;
+    /** Define range of dates */
+    dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface GetOrdersExportdocumentsJPKRequest extends Gateway {
@@ -1476,6 +1498,8 @@ export interface GetOrdersExportdocumentsJPKRequest extends Gateway {
     stockId: (value: number|string|number[]|string[]) => this;
     /** Forces the file to be generated by background tasks. The file will be generated later. Then, after it is generated, you will be able to download the given file using the returned ID. The file will be available 24h after the task is completed. */
     forceBackgroundGenerate: (value: Boolean) => this;
+    /** Define range of dates */
+    dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface GetOrdersHandlerRequest extends Gateway {
@@ -1552,6 +1576,8 @@ export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrders
     clientId: (value: string) => this;
     clientLogin: (value: string) => this;
     clientCode: (value: string) => this;
+    /** Define range of dates */
+    dates: (dateFrom: DateLike, dateTo: DateLike) => this;
     /** Define ordering of records */
     orderBy: (elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending: boolean) => this;
 }
@@ -2128,6 +2154,7 @@ export interface PutProductsAttachmentsRequest extends AppendableGateway<PutProd
     attachmentsErrorsOccurred: (attachmentsErrorsOccurred: boolean) => this
     /** Flag indicating if there are errors in results of virtual attachments settings. */
     virtualAttachmentsErrorsOccurred: (virtualAttachmentsErrorsOccurred: boolean) => this
+    productId: (value: number|string) => this;
 }
 
 export interface GetProductsAuctionsRequest extends PagableGateway<GetProductsAuctionsRequest> {
@@ -2380,6 +2407,8 @@ export interface GetProductsDescriptionsRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
     /** Shop Id */
     shopId: (value: number|string) => this;
+    /** Set product identifiers */
+    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PutProductsDescriptionsRequest extends AppendableGateway<PutProductsDescriptionsRequest> {
@@ -2392,12 +2421,15 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
     /** Product data for auction services */
     productAuctionDescriptionsData: (productAuctionDescriptionsData: Array<JSObject>) => this
     productId: (value: number|string) => this;
+    /** Set various types of names or descriptions to the product */
+    setText: (text: string, type?: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords", language?: string, shopId?: number|string) => this;
 }
 
 export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest> {
     groups: (value: Array<JSObject>) => this;
     /**  */
     productIdent: (productIdent: JSObject) => this
+    productId: (value: number|string) => this;
 }
 
 export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProductsGroupsOrderRequest> {
@@ -2418,6 +2450,7 @@ export interface PutProductsGroupsSettingsRequest extends AppendableGateway<PutP
     displayOnPage: (displayOnPage: 'firstavailable'|'all'|'specified') => this
     /** Selected product in the group. */
     specifiedProductIdent: (specifiedProductIdent: JSObject) => this
+    productId: (value: number|string) => this;
 }
 
 export interface GetProductsIdBySizecodeRequest extends Gateway {
@@ -2604,6 +2637,8 @@ export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOp
     resultsLimit: (value: number|string) => this;
     /** Possibility of sorting returned list */
     ordersBy: (value: Array<JSObject>) => this;
+    /** Define range of dates */
+    dates: (dateFrom: DateLike, dateTo: DateLike) => this;
     /** Define ordering of records */
     orderBy: (elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending: boolean) => this;
 }
@@ -2887,11 +2922,9 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Responsible person code */
     responsiblePersonCode: (responsiblePersonCode: string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: string, shopId: number|string) => this;
-    /** Increases product price by amount */
-    addPrice: (value: number, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
+    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: string, shopId?: number|string) => this;
     /** Sets product price by amount */
-    setPrice: (value: number, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
+    setPrice: (value: number, type?: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
 }
 
 export interface PutProductsRequest extends AppendableGateway<PutProductsRequest> {
@@ -3166,7 +3199,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Responsible person code */
     responsiblePersonCode: (responsiblePersonCode: string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type: "name"|"short"|"long"|"metatitle"|"metadescription"|"metakeywords"|"acutionname"|"auctiondescription", language: string, shopId: number|string) => this;
+    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: string, shopId?: number|string) => this;
     /** Set edit mode - disables adding new product */
     editMode: () => this;
     /** Set add mode - Api is allowed to create new products */
@@ -3406,6 +3439,7 @@ export interface PutProductsQuestionsRequest extends AppendableGateway<PutProduc
     answerDate: (answerDate: string) => this
     /** Response author. */
     answerAuthor: (answerAuthor: string) => this
+    productId: (value: number|string) => this;
 }
 
 export interface GetProductsReservationsRequest extends Gateway {
@@ -3884,6 +3918,12 @@ export interface GetRmaRequest extends PagableGateway<GetRmaRequest,GetRmaRespon
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
+    /** Define range of dates */
+    created: (dateFrom: DateLike, dateTo: DateLike) => this;
+    /** Define range of dates */
+    modified: (dateFrom: DateLike, dateTo: DateLike) => this;
+    /** Define range of dates */
+    ended: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
 export interface PutRmaRequest extends AppendableGateway<PutRmaRequest> {
@@ -3908,7 +3948,7 @@ export interface DeleteSizechartsRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest> {
+export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest,GetSizechartsResponse> {
     /** IDs */
     ids: (value: number|string|number[]|string[]) => this;
     /** Names of size charts */
@@ -4306,7 +4346,7 @@ export interface GetSystemServerLoadRequest extends Gateway {}
 
 export interface GetSystemServerTimeRequest extends Gateway {}
 
-export interface GetSystemShopsDataRequest extends Gateway {}
+export interface GetSystemShopsDataRequest extends Gateway<GetShopsDataResponse> {}
 
 export interface GetSystemUnitsRequest extends Gateway {
     /** List of languages */
@@ -4395,6 +4435,12 @@ export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest> {
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
+    /** Define range of dates */
+    issued: (dateFrom: DateLike, dateTo: DateLike) => this;
+    /** Define range of dates */
+    expires: (dateFrom: DateLike, dateTo: DateLike) => this;
+    /** Define range of dates */
+    used: (dateFrom: DateLike, dateTo: DateLike) => this;
     /** Define vouchers values by passing them as an array */
     ids: (values: number|string|number[]|string[]) => this;
     /** Define vouchers values by passing them as an array */
@@ -4459,7 +4505,7 @@ export interface DeleteWarrantiesRequest extends Gateway {
     warranty_ids: (value: string|string[]) => this;
 }
 
-export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesRequest> {
+export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesRequest,GetWarrantiesResponse> {
     warranty_ids: (value: string|string[]) => this;
     /** Number of results on page. */
     results_limit: (value: number|string) => this;
@@ -4494,7 +4540,7 @@ export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesReq
     period: (period: number|string) => this
 }
 
-export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest> {
+export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest,GetLocationsResponse> {
     /** Warehouse location ID */
     locationId: (value: number|string) => this;
     /** Storage location code */

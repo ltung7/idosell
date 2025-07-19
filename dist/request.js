@@ -77,6 +77,12 @@ const isMissingRequirement = (obj, required) => {
             return required;
     }
     else if (required.any) {
+        if (required.any === true) {
+            const keys = Object.keys(obj).filter(field => !['results_page', 'results_limit', 'resultsLimit', 'resultsPage'].includes(field)).length;
+            if (keys === 0)
+                return "Dane wyszukiwania";
+            return false;
+        }
         for (const field of required.any) {
             if (obj[field])
                 return false;
@@ -95,6 +101,11 @@ const processRequired = (request) => {
             missing.add(missingField);
     }
     if (request.appendable && request.params[request.appendable.arrayNode]) {
+        const except = request.appendable.except ?? [];
+        for (const item of missing) {
+            if (!except.includes(item))
+                missing.delete(item);
+        }
         for (const req of request.req) {
             if (typeof req === 'string') {
                 if (request.appendable.except.includes(req))

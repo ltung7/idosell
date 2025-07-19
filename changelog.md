@@ -5,7 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.11] - 2025-07-05
+## [0.3.12] - 2025-07-19
+### Changed
+- Specified requirement for any parameter on getReturns and getVouchers
+- Added more enums, responses, tests
+- Added setText function to putProductsDescriptions and modified setText on putProducts to use original nodes
+
+### Fixed
+- Added missing dates functions that were not nested
+- Fixed requirements on appendable gates
+
+## [0.3.11] - 2025-07-18
 ### Fixed
 - Added hard requirements for search/POST and GET gates
 - Auto reset current page on change parameters on paged gates

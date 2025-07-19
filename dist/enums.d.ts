@@ -128,22 +128,238 @@ export enum STOCK_DOCUMENT_TYPE {
 }
 
 export enum RETURN_STATUS {
-    /** @description 1 - Return not handled */
+    /** @description Zwrot nieobsłużony */
     NOT_HANDLED = 1,
-    /** @description 2 - Return accepted */
+    /** @description Zwrot rozpatrzony pozytywnie */
     ACCEPTED = 2,
-    /** @description 3 - Return not accepted */
+    /** @description Zwrot rozpatrzony negatywnie */
     NOT_ACCEPTED = 3,
-    /** @description 13 - Return canceled by the customer */
+    /** @description Zwrot anulowany - Odesłanie towaru klientowi */
+    RETURN_PRODUCTS = 5,
+    /** @description Zwrot anulowany - Towar nie dotarł */
+    REJECTED_NOT_ARRIVED = 6,
+    /** @description Zwrot rozpatrzony negatywnie - Towary nie są nowe */
+    REJECTED_NOT_NEW = 7,
+    /** @description Zwrot rozpatrzony negatywnie - Minął termin na zwrot */
+    REJECTED_DEADLINE = 8,
+    /** @description Zwrot rozpatrzony negatywnie - Towary niezgodne z zamówieniem */
+    REJECTED_NOT_MATCH = 9,
+    /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - skierowanie do wypłaty */
+    ACCEPTED_TO_REFUND = 10,
+    /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - wypłata zrealizowana */
+    ACCEPTED_REFUNDED = 11,
+    /** @description Zwrot anulowany przez klienta */
     CANCELLED_BY_CUSTOMER = 13,
-    /** @description 14 - Return canceled */
+    /** @description Zwrot anulowany */
     CANCELLED = 14,
-    /** @description 15 - Resend the order */
+    /** @description Ponowna wysyłka zamówienia */
     RESEND = 15,
-    /** @description 16 - Abort resending order */
+    /** @description Zaniechanie ponownej wysyłki zamówienia */
     ABORT_RESEND = 16,
-    /** @description 17 - A customer generated a return - it will be delivered personally */
+    /** @description Klient wygenerował zwrot - dostarczy go osobiście */
     GENERATED_PERSONAL = 17,
-    /** @description 18 - A customer generated a return - it will be sent by the customer */
-    GENERATED_SENT = 18
+    /** @description Klient wygenerował zwrot - wyśle go samodzielnie */
+    GENERATED_SENT = 18,
+    /** @description Zwrot rozpatrzony pozytywnie - Oczekiwanie na zatwierdzenie faktury korygującej */
+    ACCEPTED_AWAITING_INVOICE = 19,
+    /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - przygotowanie faktury korygującej */
+    ACCEPTED_PENDING_INVOICE = 20,
+}
+
+export enum RMA_STATUS {
+    /** @description Reklamacja rozpatrywana - Skierowano do testów */
+    PENDING_RETEST = 4,
+    /** @description Reklamacja rozpatrywana - Produkt wysłany do producenta */
+    PENDING_PRODUCER = 5,
+    /** @description Reklamacja rozpatrywana - Trwa naprawianie */
+    PENDING_FIX = 6,
+    /** @description Reklamacja rozpatrzona negatywnie - Nie stwierdzono usterki */
+    NETAGIVE_NO_FAULT = 7,
+    /** @description Reklamacja rozpatrzona negatywnie - Wada spowodowana złą eksploatacją */
+    NETAGIVE_EXPLOITATION = 8,
+    /** @description Reklamacja rozpatrzona negatywnie - Przekroczono termin gwarancji */
+    NETAGIVE_DEADLINE = 9,
+    /** @description Reklamacja rozpatrzona pozytywnie - Zwrot pieniędzy - skierowanie do wypłaty */
+    ACCEPTED_TO_REFUND = 10,
+    /** @description Reklamacja rozpatrzona pozytywnie - Zwrot pieniędzy - wypłata zrealizowana */
+    ACCEPTED_REFUNDED = 11,
+    /** @description Reklamacja rozpatrzona pozytywnie - Wymiana na nowy produkt */
+    ACCEPTED_EXCHANGE = 12,
+    /** @description Reklamacja rozpatrzona pozytywnie - Wymiana produktu na inny */
+    ACCEPTED_REPLACE = 13,
+    /** @description Reklamacja nie dotarła */
+    REJECTED_NOT_ARRIVED = 14,
+    /** @description Reklamacja niepotwierdzona przez obsługę */
+    UNCONFIRMED = 15,
+    /** @description Reklamacja anulowana */
+    CANCELLED = 17,
+    /** @description Reklamacja anulowana przez klienta */
+    CANCELLED_BY_CUSTOMER = 18,
+    /** @description Reklamacja potwierdzona */
+    CONFIRMED = 19,
+    /** @description Reklamacja nieobsłużona */
+    NOT_HANDLED = 20,
+    /** @description Reklamacja odrzucona - Nie stwierdzono usterki */
+    REJECTED_NO_FAULT = 22,
+    /** @description Reklamacja odrzucona - Przekroczono termin gwarancji */
+    REJECTED_DEADLINE = 23,
+    /** @description Reklamacja odrzucona - Wada spowodowana złą eksploatacją */
+    REJECTED_EXPLOITATION = 24,
+    /** @description Reklamacja rozpatrzona pozytywnie - Przesyłka zwrotna wysłana do klienta */
+    ACCEPTED_RESENT = 25,
+    /** @description Reklamacja rozpatrzona pozytywnie - Wysłano nowy towar bez oczekiwania na pierwotny */
+    ACCEPTED_EXCHANGE_WITHOUT_CONFIRM = 26,
+    /** @description Reklamacja rozpatrzona pozytywnie - Zmiana danych odbiorcy na dokumencie sprzedaży */
+    ACCEPTED_DOCUMENT_CHANGE = 27,
+    /** @description Reklamacja rozpatrywana - Naprawa zakończona */
+    PENDING_FIXED = 28,
+    /** @description Reklamacja rozpatrywana - Wymaga dodatkowych informacji od klienta */
+    PENDING_REQUIRE_INFORMATION = 29,
+    /** @description Reklamacja rozpatrzona negatywnie - Przesyłka zwrotna wysłana do klienta */
+    NETAGIVE_RESENT = 30,
+    /** @description Reklamacja rozpatrzona pozytywnie - Oczekiwanie na zatwierdzenie faktury korygującej */
+    ACCEPTED_AWAITING_INVOICE = 31,
+    /** @description Reklamacja rozpatrzona pozytywnie - Zwrot pieniędzy - przygotowanie faktury korygujące */
+    ACCEPTED_PENDING_INVOICE = 34,
+}
+
+export enum PAYMENT_FORMS {
+    /** @description 1 - HHTransfer */
+    HHTRANSFER = 1,
+    /** @description 2 - Karty podarunkowe i bony towarowe */
+    KARTY_PODARUNKOWE_I_BONY_TOWAROWE = 2,
+    /** @description 3 - Gotówka */
+    GOTOWKA = 3,
+    /** @description 4 - Pobranie */
+    POBRANIE = 4,
+    /** @description 5 - Przelew */
+    PRZELEW = 5,
+    /** @description 6 - mTransfer (wycofywany) */
+    MTRANSFER_WYCOFYWANY = 6,
+    /** @description 7 - Inteligo */
+    INTELIGO = 7,
+    /** @description 9 - Dotpay */
+    DOTPAY = 9,
+    /** @description 10 - Przelewy24 */
+    PRZELEWY24 = 10,
+    /** @description 11 - PayU */
+    PAYU = 11,
+    /** @description 12 - SkipJack */
+    SKIPJACK = 12,
+    /** @description 13 - Skrill */
+    SKRILL = 13,
+    /** @description 14 - PayPal */
+    PAYPAL = 14,
+    /** @description 15 - Punkty Zysk */
+    PUNKTY_ZYSK = 15,
+    /** @description 16 - MultiTransfer */
+    MULTITRANSFER = 16,
+    /** @description 17 - eKredyt Żagiel */
+    EKREDYT_ZAGIEL = 17,
+    /** @description 18 - Czek */
+    CZEK = 18,
+    /** @description 19 - Allegro Finanse */
+    ALLEGRO_FINANSE = 19,
+    /** @description 20 - eCard */
+    ECARD = 20,
+    /** @description 21 - eRaty Santander */
+    ERATY_SANTANDER = 21,
+    /** @description 22 - Kompensata */
+    KOMPENSATA = 22,
+    /** @description 23 - PayMaker.eu */
+    PAYMAKER_EU = 23,
+    /** @description 24 - Inpay */
+    INPAY = 24,
+    /** @description 25 - Karta płatnicza (terminal kartowy) */
+    KARTA_PLATNICZA_TERMINAL_KARTOWY = 25,
+    /** @description 26 - PayByNet */
+    PAYBYNET = 26,
+    /** @description 27 - Saldo klienta */
+    SALDO_KLIENTA = 27,
+    /** @description 28 - Credit Agricole Raty */
+    CREDIT_AGRICOLE_RATY = 28,
+    /** @description 29 - IdoPay */
+    IDOPAY = 29,
+    /** @description 30 - tpay.com */
+    TPAY_COM = 30,
+    /** @description 32 - mBank Raty */
+    MBANK_RATY = 32,
+    /** @description 33 - Przelew. Klarna */
+    PRZELEW_KLARNA = 33,
+    /** @description 34 - Amazon Marketplace */
+    AMAZON_MARKETPLACE = 34,
+    /** @description 35 - Nochex */
+    NOCHEX = 35,
+    /** @description 36 - Google Wallet */
+    GOOGLE_WALLET = 36,
+    /** @description 37 - PayU.cz */
+    PAYU_CZ = 37,
+    /** @description 38 - Kredyt kupiecki */
+    KREDYT_KUPIECKI = 38,
+    /** @description 41 - Raty */
+    RATY = 41,
+    /** @description 42 - Shopgate */
+    SHOPGATE = 42,
+    /** @description 43 - Mobile Payment */
+    MOBILE_PAYMENT = 43,
+    /** @description 44 - eService */
+    ESERVICE = 44,
+    /** @description 45 - Barclaycard ePDQ */
+    BARCLAYCARD_EPDQ = 45,
+    /** @description 46 - First Data */
+    FIRST_DATA = 46,
+    /** @description 47 - LeaseLink */
+    LEASELINK = 47,
+    /** @description 48 - CashBill */
+    CASHBILL = 48,
+    /** @description 50 - First Data Polcard */
+    FIRST_DATA_POLCARD = 50,
+    /** @description 51 - Yandex Money */
+    YANDEX_MONEY = 51,
+    /** @description 52 - Payfort */
+    PAYFORT = 52,
+    /** @description 53 - Klarna */
+    KLARNA = 53,
+    /** @description 54 - BitBayPay */
+    BITBAYPAY = 54,
+    /** @description 55 - PayPo */
+    PAYPO = 55,
+    /** @description 56 - Romcard */
+    ROMCARD = 56,
+    /** @description 57 - PayLane */
+    PAYLANE = 57,
+    /** @description 58 - Stripe */
+    STRIPE = 58,
+    /** @description 59 - imoje */
+    IMOJE = 59,
+    /** @description 60 - MyPlacimy.pl */
+    MYPLACIMY_PL = 60,
+    /** @description 61 - Braintree */
+    BRAINTREE = 61,
+    /** @description 62 - Carrefour Marketplace */
+    CARREFOUR_MARKETPLACE = 62,
+    /** @description 63 - Morele.net */
+    MORELE_NET = 63,
+    /** @description 64 - iPłatności */
+    IPLATNOSCI = 64,
+    /** @description 65 - eBay Managed Payments */
+    EBAY_MANAGED_PAYMENTS = 65,
+    /** @description 66 - PKO Leasing */
+    PKO_LEASING = 66,
+    /** @description 67 - Credimax */
+    CREDIMAX = 67,
+    /** @description 68 - PayPal */
+    PAYPAL_68 = 68,
+    /** @description 69 - BNPParibas */
+    BNPPARIBAS = 69,
+    /** @description 70 - Wish Marketplace */
+    WISH_MARKETPLACE = 70,
+    /** @description 71 - Stripe */
+    STRIPE_71 = 71,
+    /** @description 72 - Shopee */
+    SHOPEE = 72,
+    /** @description 73 - InPost Pay */
+    INPOST_PAY = 73,
+    /** @description 74 - Straal */
+    STRAAL = 74,
 }

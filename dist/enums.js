@@ -129,28 +129,246 @@ var STOCK_DOCUMENT_TYPE;
 })(STOCK_DOCUMENT_TYPE || (STOCK_DOCUMENT_TYPE = {}));
 var RETURN_STATUS;
 (function (RETURN_STATUS) {
-    /** @description 1 - Return not handled */
+    /** @description Zwrot nieobsłużony */
     RETURN_STATUS[RETURN_STATUS["NOT_HANDLED"] = 1] = "NOT_HANDLED";
-    /** @description 2 - Return accepted */
+    /** @description Zwrot rozpatrzony pozytywnie */
     RETURN_STATUS[RETURN_STATUS["ACCEPTED"] = 2] = "ACCEPTED";
-    /** @description 3 - Return not accepted */
+    /** @description Zwrot rozpatrzony negatywnie */
     RETURN_STATUS[RETURN_STATUS["NOT_ACCEPTED"] = 3] = "NOT_ACCEPTED";
-    /** @description 13 - Return canceled by the customer */
+    /** @description Zwrot anulowany - Odesłanie towaru klientowi */
+    RETURN_STATUS[RETURN_STATUS["RETURN_PRODUCTS"] = 5] = "RETURN_PRODUCTS";
+    /** @description Zwrot anulowany - Towar nie dotarł */
+    RETURN_STATUS[RETURN_STATUS["REJECTED_NOT_ARRIVED"] = 6] = "REJECTED_NOT_ARRIVED";
+    /** @description Zwrot rozpatrzony negatywnie - Towary nie są nowe */
+    RETURN_STATUS[RETURN_STATUS["REJECTED_NOT_NEW"] = 7] = "REJECTED_NOT_NEW";
+    /** @description Zwrot rozpatrzony negatywnie - Minął termin na zwrot */
+    RETURN_STATUS[RETURN_STATUS["REJECTED_DEADLINE"] = 8] = "REJECTED_DEADLINE";
+    /** @description Zwrot rozpatrzony negatywnie - Towary niezgodne z zamówieniem */
+    RETURN_STATUS[RETURN_STATUS["REJECTED_NOT_MATCH"] = 9] = "REJECTED_NOT_MATCH";
+    /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - skierowanie do wypłaty */
+    RETURN_STATUS[RETURN_STATUS["ACCEPTED_TO_REFUND"] = 10] = "ACCEPTED_TO_REFUND";
+    /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - wypłata zrealizowana */
+    RETURN_STATUS[RETURN_STATUS["ACCEPTED_REFUNDED"] = 11] = "ACCEPTED_REFUNDED";
+    /** @description Zwrot anulowany przez klienta */
     RETURN_STATUS[RETURN_STATUS["CANCELLED_BY_CUSTOMER"] = 13] = "CANCELLED_BY_CUSTOMER";
-    /** @description 14 - Return canceled */
+    /** @description Zwrot anulowany */
     RETURN_STATUS[RETURN_STATUS["CANCELLED"] = 14] = "CANCELLED";
-    /** @description 15 - Resend the order */
+    /** @description Ponowna wysyłka zamówienia */
     RETURN_STATUS[RETURN_STATUS["RESEND"] = 15] = "RESEND";
-    /** @description 16 - Abort resending order */
+    /** @description Zaniechanie ponownej wysyłki zamówienia */
     RETURN_STATUS[RETURN_STATUS["ABORT_RESEND"] = 16] = "ABORT_RESEND";
-    /** @description 17 - A customer generated a return - it will be delivered personally */
+    /** @description Klient wygenerował zwrot - dostarczy go osobiście */
     RETURN_STATUS[RETURN_STATUS["GENERATED_PERSONAL"] = 17] = "GENERATED_PERSONAL";
-    /** @description 18 - A customer generated a return - it will be sent by the customer */
+    /** @description Klient wygenerował zwrot - wyśle go samodzielnie */
     RETURN_STATUS[RETURN_STATUS["GENERATED_SENT"] = 18] = "GENERATED_SENT";
+    /** @description Zwrot rozpatrzony pozytywnie - Oczekiwanie na zatwierdzenie faktury korygującej */
+    RETURN_STATUS[RETURN_STATUS["ACCEPTED_AWAITING_INVOICE"] = 19] = "ACCEPTED_AWAITING_INVOICE";
+    /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - przygotowanie faktury korygującej */
+    RETURN_STATUS[RETURN_STATUS["ACCEPTED_PENDING_INVOICE"] = 20] = "ACCEPTED_PENDING_INVOICE";
 })(RETURN_STATUS || (RETURN_STATUS = {}));
+var RMA_STATUS;
+(function (RMA_STATUS) {
+    /** @description Reklamacja rozpatrywana - Skierowano do testów */
+    RMA_STATUS[RMA_STATUS["PENDING_RETEST"] = 4] = "PENDING_RETEST";
+    /** @description Reklamacja rozpatrywana - Produkt wysłany do producenta */
+    RMA_STATUS[RMA_STATUS["PENDING_PRODUCER"] = 5] = "PENDING_PRODUCER";
+    /** @description Reklamacja rozpatrywana - Trwa naprawianie */
+    RMA_STATUS[RMA_STATUS["PENDING_FIX"] = 6] = "PENDING_FIX";
+    /** @description Reklamacja rozpatrzona negatywnie - Nie stwierdzono usterki */
+    RMA_STATUS[RMA_STATUS["NETAGIVE_NO_FAULT"] = 7] = "NETAGIVE_NO_FAULT";
+    /** @description Reklamacja rozpatrzona negatywnie - Wada spowodowana złą eksploatacją */
+    RMA_STATUS[RMA_STATUS["NETAGIVE_EXPLOITATION"] = 8] = "NETAGIVE_EXPLOITATION";
+    /** @description Reklamacja rozpatrzona negatywnie - Przekroczono termin gwarancji */
+    RMA_STATUS[RMA_STATUS["NETAGIVE_DEADLINE"] = 9] = "NETAGIVE_DEADLINE";
+    /** @description Reklamacja rozpatrzona pozytywnie - Zwrot pieniędzy - skierowanie do wypłaty */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_TO_REFUND"] = 10] = "ACCEPTED_TO_REFUND";
+    /** @description Reklamacja rozpatrzona pozytywnie - Zwrot pieniędzy - wypłata zrealizowana */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_REFUNDED"] = 11] = "ACCEPTED_REFUNDED";
+    /** @description Reklamacja rozpatrzona pozytywnie - Wymiana na nowy produkt */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_EXCHANGE"] = 12] = "ACCEPTED_EXCHANGE";
+    /** @description Reklamacja rozpatrzona pozytywnie - Wymiana produktu na inny */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_REPLACE"] = 13] = "ACCEPTED_REPLACE";
+    /** @description Reklamacja nie dotarła */
+    RMA_STATUS[RMA_STATUS["REJECTED_NOT_ARRIVED"] = 14] = "REJECTED_NOT_ARRIVED";
+    /** @description Reklamacja niepotwierdzona przez obsługę */
+    RMA_STATUS[RMA_STATUS["UNCONFIRMED"] = 15] = "UNCONFIRMED";
+    /** @description Reklamacja anulowana */
+    RMA_STATUS[RMA_STATUS["CANCELLED"] = 17] = "CANCELLED";
+    /** @description Reklamacja anulowana przez klienta */
+    RMA_STATUS[RMA_STATUS["CANCELLED_BY_CUSTOMER"] = 18] = "CANCELLED_BY_CUSTOMER";
+    /** @description Reklamacja potwierdzona */
+    RMA_STATUS[RMA_STATUS["CONFIRMED"] = 19] = "CONFIRMED";
+    /** @description Reklamacja nieobsłużona */
+    RMA_STATUS[RMA_STATUS["NOT_HANDLED"] = 20] = "NOT_HANDLED";
+    /** @description Reklamacja odrzucona - Nie stwierdzono usterki */
+    RMA_STATUS[RMA_STATUS["REJECTED_NO_FAULT"] = 22] = "REJECTED_NO_FAULT";
+    /** @description Reklamacja odrzucona - Przekroczono termin gwarancji */
+    RMA_STATUS[RMA_STATUS["REJECTED_DEADLINE"] = 23] = "REJECTED_DEADLINE";
+    /** @description Reklamacja odrzucona - Wada spowodowana złą eksploatacją */
+    RMA_STATUS[RMA_STATUS["REJECTED_EXPLOITATION"] = 24] = "REJECTED_EXPLOITATION";
+    /** @description Reklamacja rozpatrzona pozytywnie - Przesyłka zwrotna wysłana do klienta */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_RESENT"] = 25] = "ACCEPTED_RESENT";
+    /** @description Reklamacja rozpatrzona pozytywnie - Wysłano nowy towar bez oczekiwania na pierwotny */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_EXCHANGE_WITHOUT_CONFIRM"] = 26] = "ACCEPTED_EXCHANGE_WITHOUT_CONFIRM";
+    /** @description Reklamacja rozpatrzona pozytywnie - Zmiana danych odbiorcy na dokumencie sprzedaży */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_DOCUMENT_CHANGE"] = 27] = "ACCEPTED_DOCUMENT_CHANGE";
+    /** @description Reklamacja rozpatrywana - Naprawa zakończona */
+    RMA_STATUS[RMA_STATUS["PENDING_FIXED"] = 28] = "PENDING_FIXED";
+    /** @description Reklamacja rozpatrywana - Wymaga dodatkowych informacji od klienta */
+    RMA_STATUS[RMA_STATUS["PENDING_REQUIRE_INFORMATION"] = 29] = "PENDING_REQUIRE_INFORMATION";
+    /** @description Reklamacja rozpatrzona negatywnie - Przesyłka zwrotna wysłana do klienta */
+    RMA_STATUS[RMA_STATUS["NETAGIVE_RESENT"] = 30] = "NETAGIVE_RESENT";
+    /** @description Reklamacja rozpatrzona pozytywnie - Oczekiwanie na zatwierdzenie faktury korygującej */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_AWAITING_INVOICE"] = 31] = "ACCEPTED_AWAITING_INVOICE";
+    /** @description Reklamacja rozpatrzona pozytywnie - Zwrot pieniędzy - przygotowanie faktury korygujące */
+    RMA_STATUS[RMA_STATUS["ACCEPTED_PENDING_INVOICE"] = 34] = "ACCEPTED_PENDING_INVOICE";
+})(RMA_STATUS || (RMA_STATUS = {}));
+var PAYMENT_FORMS;
+(function (PAYMENT_FORMS) {
+    /** @description 1 - HHTransfer */
+    PAYMENT_FORMS[PAYMENT_FORMS["HHTRANSFER"] = 1] = "HHTRANSFER";
+    /** @description 2 - Karty podarunkowe i bony towarowe */
+    PAYMENT_FORMS[PAYMENT_FORMS["KARTY_PODARUNKOWE_I_BONY_TOWAROWE"] = 2] = "KARTY_PODARUNKOWE_I_BONY_TOWAROWE";
+    /** @description 3 - Gotówka */
+    PAYMENT_FORMS[PAYMENT_FORMS["GOTOWKA"] = 3] = "GOTOWKA";
+    /** @description 4 - Pobranie */
+    PAYMENT_FORMS[PAYMENT_FORMS["POBRANIE"] = 4] = "POBRANIE";
+    /** @description 5 - Przelew */
+    PAYMENT_FORMS[PAYMENT_FORMS["PRZELEW"] = 5] = "PRZELEW";
+    /** @description 6 - mTransfer (wycofywany) */
+    PAYMENT_FORMS[PAYMENT_FORMS["MTRANSFER_WYCOFYWANY"] = 6] = "MTRANSFER_WYCOFYWANY";
+    /** @description 7 - Inteligo */
+    PAYMENT_FORMS[PAYMENT_FORMS["INTELIGO"] = 7] = "INTELIGO";
+    /** @description 9 - Dotpay */
+    PAYMENT_FORMS[PAYMENT_FORMS["DOTPAY"] = 9] = "DOTPAY";
+    /** @description 10 - Przelewy24 */
+    PAYMENT_FORMS[PAYMENT_FORMS["PRZELEWY24"] = 10] = "PRZELEWY24";
+    /** @description 11 - PayU */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYU"] = 11] = "PAYU";
+    /** @description 12 - SkipJack */
+    PAYMENT_FORMS[PAYMENT_FORMS["SKIPJACK"] = 12] = "SKIPJACK";
+    /** @description 13 - Skrill */
+    PAYMENT_FORMS[PAYMENT_FORMS["SKRILL"] = 13] = "SKRILL";
+    /** @description 14 - PayPal */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYPAL"] = 14] = "PAYPAL";
+    /** @description 15 - Punkty Zysk */
+    PAYMENT_FORMS[PAYMENT_FORMS["PUNKTY_ZYSK"] = 15] = "PUNKTY_ZYSK";
+    /** @description 16 - MultiTransfer */
+    PAYMENT_FORMS[PAYMENT_FORMS["MULTITRANSFER"] = 16] = "MULTITRANSFER";
+    /** @description 17 - eKredyt Żagiel */
+    PAYMENT_FORMS[PAYMENT_FORMS["EKREDYT_ZAGIEL"] = 17] = "EKREDYT_ZAGIEL";
+    /** @description 18 - Czek */
+    PAYMENT_FORMS[PAYMENT_FORMS["CZEK"] = 18] = "CZEK";
+    /** @description 19 - Allegro Finanse */
+    PAYMENT_FORMS[PAYMENT_FORMS["ALLEGRO_FINANSE"] = 19] = "ALLEGRO_FINANSE";
+    /** @description 20 - eCard */
+    PAYMENT_FORMS[PAYMENT_FORMS["ECARD"] = 20] = "ECARD";
+    /** @description 21 - eRaty Santander */
+    PAYMENT_FORMS[PAYMENT_FORMS["ERATY_SANTANDER"] = 21] = "ERATY_SANTANDER";
+    /** @description 22 - Kompensata */
+    PAYMENT_FORMS[PAYMENT_FORMS["KOMPENSATA"] = 22] = "KOMPENSATA";
+    /** @description 23 - PayMaker.eu */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYMAKER_EU"] = 23] = "PAYMAKER_EU";
+    /** @description 24 - Inpay */
+    PAYMENT_FORMS[PAYMENT_FORMS["INPAY"] = 24] = "INPAY";
+    /** @description 25 - Karta płatnicza (terminal kartowy) */
+    PAYMENT_FORMS[PAYMENT_FORMS["KARTA_PLATNICZA_TERMINAL_KARTOWY"] = 25] = "KARTA_PLATNICZA_TERMINAL_KARTOWY";
+    /** @description 26 - PayByNet */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYBYNET"] = 26] = "PAYBYNET";
+    /** @description 27 - Saldo klienta */
+    PAYMENT_FORMS[PAYMENT_FORMS["SALDO_KLIENTA"] = 27] = "SALDO_KLIENTA";
+    /** @description 28 - Credit Agricole Raty */
+    PAYMENT_FORMS[PAYMENT_FORMS["CREDIT_AGRICOLE_RATY"] = 28] = "CREDIT_AGRICOLE_RATY";
+    /** @description 29 - IdoPay */
+    PAYMENT_FORMS[PAYMENT_FORMS["IDOPAY"] = 29] = "IDOPAY";
+    /** @description 30 - tpay.com */
+    PAYMENT_FORMS[PAYMENT_FORMS["TPAY_COM"] = 30] = "TPAY_COM";
+    /** @description 32 - mBank Raty */
+    PAYMENT_FORMS[PAYMENT_FORMS["MBANK_RATY"] = 32] = "MBANK_RATY";
+    /** @description 33 - Przelew. Klarna */
+    PAYMENT_FORMS[PAYMENT_FORMS["PRZELEW_KLARNA"] = 33] = "PRZELEW_KLARNA";
+    /** @description 34 - Amazon Marketplace */
+    PAYMENT_FORMS[PAYMENT_FORMS["AMAZON_MARKETPLACE"] = 34] = "AMAZON_MARKETPLACE";
+    /** @description 35 - Nochex */
+    PAYMENT_FORMS[PAYMENT_FORMS["NOCHEX"] = 35] = "NOCHEX";
+    /** @description 36 - Google Wallet */
+    PAYMENT_FORMS[PAYMENT_FORMS["GOOGLE_WALLET"] = 36] = "GOOGLE_WALLET";
+    /** @description 37 - PayU.cz */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYU_CZ"] = 37] = "PAYU_CZ";
+    /** @description 38 - Kredyt kupiecki */
+    PAYMENT_FORMS[PAYMENT_FORMS["KREDYT_KUPIECKI"] = 38] = "KREDYT_KUPIECKI";
+    /** @description 41 - Raty */
+    PAYMENT_FORMS[PAYMENT_FORMS["RATY"] = 41] = "RATY";
+    /** @description 42 - Shopgate */
+    PAYMENT_FORMS[PAYMENT_FORMS["SHOPGATE"] = 42] = "SHOPGATE";
+    /** @description 43 - Mobile Payment */
+    PAYMENT_FORMS[PAYMENT_FORMS["MOBILE_PAYMENT"] = 43] = "MOBILE_PAYMENT";
+    /** @description 44 - eService */
+    PAYMENT_FORMS[PAYMENT_FORMS["ESERVICE"] = 44] = "ESERVICE";
+    /** @description 45 - Barclaycard ePDQ */
+    PAYMENT_FORMS[PAYMENT_FORMS["BARCLAYCARD_EPDQ"] = 45] = "BARCLAYCARD_EPDQ";
+    /** @description 46 - First Data */
+    PAYMENT_FORMS[PAYMENT_FORMS["FIRST_DATA"] = 46] = "FIRST_DATA";
+    /** @description 47 - LeaseLink */
+    PAYMENT_FORMS[PAYMENT_FORMS["LEASELINK"] = 47] = "LEASELINK";
+    /** @description 48 - CashBill */
+    PAYMENT_FORMS[PAYMENT_FORMS["CASHBILL"] = 48] = "CASHBILL";
+    /** @description 50 - First Data Polcard */
+    PAYMENT_FORMS[PAYMENT_FORMS["FIRST_DATA_POLCARD"] = 50] = "FIRST_DATA_POLCARD";
+    /** @description 51 - Yandex Money */
+    PAYMENT_FORMS[PAYMENT_FORMS["YANDEX_MONEY"] = 51] = "YANDEX_MONEY";
+    /** @description 52 - Payfort */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYFORT"] = 52] = "PAYFORT";
+    /** @description 53 - Klarna */
+    PAYMENT_FORMS[PAYMENT_FORMS["KLARNA"] = 53] = "KLARNA";
+    /** @description 54 - BitBayPay */
+    PAYMENT_FORMS[PAYMENT_FORMS["BITBAYPAY"] = 54] = "BITBAYPAY";
+    /** @description 55 - PayPo */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYPO"] = 55] = "PAYPO";
+    /** @description 56 - Romcard */
+    PAYMENT_FORMS[PAYMENT_FORMS["ROMCARD"] = 56] = "ROMCARD";
+    /** @description 57 - PayLane */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYLANE"] = 57] = "PAYLANE";
+    /** @description 58 - Stripe */
+    PAYMENT_FORMS[PAYMENT_FORMS["STRIPE"] = 58] = "STRIPE";
+    /** @description 59 - imoje */
+    PAYMENT_FORMS[PAYMENT_FORMS["IMOJE"] = 59] = "IMOJE";
+    /** @description 60 - MyPlacimy.pl */
+    PAYMENT_FORMS[PAYMENT_FORMS["MYPLACIMY_PL"] = 60] = "MYPLACIMY_PL";
+    /** @description 61 - Braintree */
+    PAYMENT_FORMS[PAYMENT_FORMS["BRAINTREE"] = 61] = "BRAINTREE";
+    /** @description 62 - Carrefour Marketplace */
+    PAYMENT_FORMS[PAYMENT_FORMS["CARREFOUR_MARKETPLACE"] = 62] = "CARREFOUR_MARKETPLACE";
+    /** @description 63 - Morele.net */
+    PAYMENT_FORMS[PAYMENT_FORMS["MORELE_NET"] = 63] = "MORELE_NET";
+    /** @description 64 - iPłatności */
+    PAYMENT_FORMS[PAYMENT_FORMS["IPLATNOSCI"] = 64] = "IPLATNOSCI";
+    /** @description 65 - eBay Managed Payments */
+    PAYMENT_FORMS[PAYMENT_FORMS["EBAY_MANAGED_PAYMENTS"] = 65] = "EBAY_MANAGED_PAYMENTS";
+    /** @description 66 - PKO Leasing */
+    PAYMENT_FORMS[PAYMENT_FORMS["PKO_LEASING"] = 66] = "PKO_LEASING";
+    /** @description 67 - Credimax */
+    PAYMENT_FORMS[PAYMENT_FORMS["CREDIMAX"] = 67] = "CREDIMAX";
+    /** @description 68 - PayPal */
+    PAYMENT_FORMS[PAYMENT_FORMS["PAYPAL_68"] = 68] = "PAYPAL_68";
+    /** @description 69 - BNPParibas */
+    PAYMENT_FORMS[PAYMENT_FORMS["BNPPARIBAS"] = 69] = "BNPPARIBAS";
+    /** @description 70 - Wish Marketplace */
+    PAYMENT_FORMS[PAYMENT_FORMS["WISH_MARKETPLACE"] = 70] = "WISH_MARKETPLACE";
+    /** @description 71 - Stripe */
+    PAYMENT_FORMS[PAYMENT_FORMS["STRIPE_71"] = 71] = "STRIPE_71";
+    /** @description 72 - Shopee */
+    PAYMENT_FORMS[PAYMENT_FORMS["SHOPEE"] = 72] = "SHOPEE";
+    /** @description 73 - InPost Pay */
+    PAYMENT_FORMS[PAYMENT_FORMS["INPOST_PAY"] = 73] = "INPOST_PAY";
+    /** @description 74 - Straal */
+    PAYMENT_FORMS[PAYMENT_FORMS["STRAAL"] = 74] = "STRAAL";
+})(PAYMENT_FORMS || (PAYMENT_FORMS = {}));
 export default {
     PRODUCTS_RETURN_ELEMENTS,
     ORDER_STATUS,
     STOCK_DOCUMENT_TYPE,
-    RETURN_STATUS
+    RETURN_STATUS,
+    RMA_STATUS,
+    PAYMENT_FORMS
 };

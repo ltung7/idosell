@@ -2126,7 +2126,7 @@ export type SearchGiftcardsResponse = {
             /** @description Is active? */
             blocked: boolean;
         };
-        } & FaultCodeString)[];
+    } & FaultCodeString)[];
 } & PagedResponse;
 
 type SearchNewsletterResponse<T> = {
@@ -2263,15 +2263,6 @@ export type GetStocksdocumentsDocumentsResponse = {
 } & PagedResponse;
 
 export type GetClientsResponse = {
-    /** @description Number of all results found */
-    resultsNumberAll: number;
-    /** @description Number of pages of results found */
-    resultsNumberPage: number;
-    /** @description Page with results number. Numeration starts from 0 */
-    resultsPage: number;
-    /** @description Number of results on page. Value from 1 to 100 */
-    resultsLimit: number;
-    /** @description Object contains detailed information on result of operation. */
     results: {
         /** @description Unique client's number. */
         clientId: number;
@@ -2924,5 +2915,196 @@ export type GetConfigResponse = {
     /** @description Monitoring address protocol from the main Printer window. */
     typeOfPrinterProtocolAdress: string;
 };
+
+export type GetShopsDataResponse = GetConfigResponse & {
+/** @description Shop contact data */
+    shop_contact: {
+        /** @description shop ID */
+        shop_id: number;
+        /** @description Shop name */
+        shop_name: string;
+        /** @description Shop's contact data */
+        contact_data: {
+            /** @description Language code. Codes are compliant with ISO-639-3 standard. */
+            lang_id: string;
+            /** @description Contact email address */
+            contact_email: string;
+            /** @description Contact phone number */
+            contact_phone_number: string;
+        }[];
+    }[];
+    panel_settings: {
+        /** @description Default panel language. */
+        default_lang_id: string;
+        /** @description Panel base currency. */
+        basecurrency_id: string;
+        /** @description Manual stock quantity modification restriction. */
+        stocks_change_disabled: string;
+        /** */
+        stock_state_config: "uncontrolled" | "bridge" | "outside";
+        /** */
+        main_stock_system: "other" | "iai";
+        /** @description Sales documents in third party application. */
+        salesDocumentsAreCreatedByClient: boolean;
+        search_by_code: {
+            /** @description IAI code. */
+            code_iai: boolean;
+            /** @description External system code. */
+            code_extern: boolean;
+            /** @description Producer code. */
+            code_producer: boolean;
+        };
+    };
+    /** @description List of stores. */
+    shops: {
+        /** @description Shop Id. */
+        shop_id: number;
+        /** @description Store name. */
+        shop_name: string;
+        /** @description Default shop language ID in ISO-639-3 standard. */
+        shop_lang_id_default: string;
+        /** @description Determines whether loyalty program is active. */
+        shop_loyalty_active: boolean;
+        active_price_comparers: {
+            /** @example 1 */
+            id: number;
+            /* @description Default price difference. */
+            default_price_percent_diff: number;
+        }[];
+        /** @description Url to default product icon. */
+        default_icon_url: string;
+        branch_document_data: {
+            /** @description Full company name. */
+            company_name: string;
+            /** @description Company short name. */
+            company_short_name: string;
+            /** @description NIP [TIN]. */
+            nip: string;
+            /** @description CRN. */
+            regon: string;
+            /** @description no of entry to NCR. */
+            krs: string;
+            /** @example address */
+            address: string;
+            /** @description ZIP / Post code. */
+            zipcode: string;
+            /** @description Town / City. */
+            city: string;
+            /** @description region. */
+            country: string;
+        };
+        active_client_order_edit_status: string[];
+        /** @description Auction site currency ID. */
+        currency_id: string;
+        client_edit_require_fields: {
+            /** @description Is providing a value required for the field. */
+            lastname: boolean;
+            /** @description Is providing a value required for the field. */
+            email: boolean;
+            /** @description Is providing a value required for the field. */
+            phone: boolean;
+            /** @description Is providing a value required for the field. */
+            vat_number: boolean;
+        };
+        /** @description Defines how to include complimentary products on VAT invoices and receipts. */
+        product_free_invoices: string;
+        /** @description Does the store have active vouchers?. */
+        vouchers: {
+            /** @description Information about whether price comparison service is active. */
+            active: boolean;
+        };
+        /** @description Does the store have active gift cards?. */
+        giftCards: {
+            /** @description Information about whether price comparison service is active. */
+            active: boolean;
+        };
+    }[];
+}
+
+export type GetSizechartsResponse = {
+    sizeCharts: {
+        /** @description Id */
+        id: number;
+        /** @description Name in panel */
+        nameInPanel: string;
+        /** @description Display mode */
+        displayMode: string;
+        languagesData: {
+            /** @description Customer language ID. */
+            language: string;
+            columns: {
+                /** @description Column number */
+                columnNumber: number;
+                /** @description Column name */
+                columnTitle: string;
+            }[];
+            /** @description List of sizes */
+            sizes: {
+                /** @description Size identifier */
+                sizeId: string;
+                /** @description Priority */
+                priority: number;
+                descriptions: {
+                    /** @description Column number */
+                    columnNumber: number;
+                    /** @description Value */
+                    value: string;
+                }[];
+            }[];
+        }[];
+    }[];
+} & PagedResponse;
+
+export type GetLocationsResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Warehouse location ID */
+        locationId: number;
+        /** @description Parent's identifier */
+        parentId: number;
+        /** @description Warehouse location name */
+        locationName: string;
+        /** @description #!SciezkaNazwyLokalizacji!# */
+        locationPath: string;
+        /** @description Storage location code */
+        locationCode: string;
+        /** @description Stock ID */
+        stockId: number;
+        /** @description Products list. */
+        products: {
+            /** @description Product IAI code */
+            productId: number;
+            /** @description Size identifier */
+            sizeId: string;
+            /* @description Quantity */
+            quantity: number;
+        }[];
+    }[];
+} & PagedResponse;
+
+export type GetWarrantiesResponse = {
+    warranties: {
+        /** @description Warranty language id (numeric). */
+        id: number;
+        /** @description Name. */
+        name: string;
+        /** @description Warranty type. */
+        type: string;
+        /** @description Warranty time. */
+        period: number;
+        lang_data: {
+            /** @description Warranty language id (numeric). */
+            id: number;
+            /** @description Warranty language id (numeric) (three letter sequence). */
+            lang_id: string;
+            /** @description Name. */
+            name: string;
+            /** @description warranty icon for language. */
+            icon: string;
+            /** @description Warranty description. */
+            description: string;
+        }[];
+    }[];
+} & PagedSnakecaseResponse;
 
 export { }

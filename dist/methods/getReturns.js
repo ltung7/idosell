@@ -7,5 +7,6 @@ export default (object) => {
         page
     };
     object.snakeCase = true;
+    object.req = [{ "any": true }];
     return new Proxy(object, paramsProxy);
 };

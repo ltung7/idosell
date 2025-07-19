@@ -4,7 +4,6 @@ export default (object) => {
     object.gate = { method: 'post', node: '/products/products' };
     object.custom = {
         setText: setProductText(object),
-        addPrice: (value, type = "retail", net = false) => modifyPrice(value, type, net, "amount_diff"),
         setPrice: (value, type = "retail", net = false) => modifyPrice(value, type, net, "amount_set")
     };
     object.appendable = {

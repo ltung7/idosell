@@ -176,44 +176,64 @@ export const getProductIdentList = (productIds, identType = 'id') => {
     };
 };
 const TEXT_NODES = {
-    name: {
+    productName: {
         main: 'productNames',
         sub: 'productNamesLangData',
         node: 'productName'
     },
-    short: {
+    productParamDescriptions: {
         main: 'productParamDescriptions',
         sub: 'productParamDescriptionsLangData',
         node: 'productParamDescriptions'
     },
-    long: {
+    productLongDescription: {
         main: 'productLongDescriptions',
         sub: 'productLongDescriptionsLangData',
         node: 'productLongDescription'
     },
-    metatitle: {
+    productMetaTitle: {
         main: 'productMetaTitles',
         sub: 'productMetaTitlesLangData',
         node: 'productMetaTitle'
     },
-    metadescription: {
+    productMetaDescription: {
         main: 'productMetaDescriptions',
         sub: 'productMetaDescriptionsLangData',
         node: 'productMetaDescription'
     },
-    metakeywords: {
+    productMetaKeyword: {
         main: 'productMetaKeywords',
         sub: 'productMetaKeywordsLangData',
         node: 'productMetaKeyword'
     },
-    acutionname: {
+    productAuctionName: {
         main: 'productAuctionDescriptionsData',
         node: 'productAuctionName'
     },
-    auctiondescription: {
+    productAuctionDescription: {
         main: 'productAuctionDescriptionsData',
         node: 'productAuctionDescription'
     },
+    productAuctionAdditionalName: {
+        main: 'productAuctionDescriptionsData',
+        node: 'productAuctionAdditionalName'
+    },
+    productNameInPriceComparer: {
+        main: 'productNamesInPriceComparer',
+        sub: 'productNamesInPriceComparerLangData',
+        node: 'productNameInPriceComparer'
+    }
+};
+const LEGACY_TEXT_NODES = {
+    ...TEXT_NODES,
+    name: TEXT_NODES.productName,
+    short: TEXT_NODES.productParamDescriptions,
+    long: TEXT_NODES.productLongDescription,
+    metatitle: TEXT_NODES.productMetaTitle,
+    metadescription: TEXT_NODES.productMetaDescription,
+    metakeywords: TEXT_NODES.productMetaKeyword,
+    acutionname: TEXT_NODES.productAuctionName,
+    auctiondescription: TEXT_NODES.productAuctionDescription
 };
 const getAppendedNode = (object) => {
     if (!object.appendable)
@@ -222,12 +242,12 @@ const getAppendedNode = (object) => {
         object.params[object.appendable.arrayNode] = [{}];
     return object.params[object.appendable.arrayNode][object.appendable.index];
 };
-export const setProductText = (object) => (text, node = 'short', langId = 'pol', shopId) => {
-    if (!TEXT_NODES[node]) {
+export const setProductText = (object) => (text, node = 'productName', langId = 'pol', shopId) => {
+    if (!LEGACY_TEXT_NODES[node]) {
         throw new Error('Invalid node');
     }
     const product = getAppendedNode(object);
-    const nodeData = TEXT_NODES[node];
+    const nodeData = LEGACY_TEXT_NODES[node];
     if (node === 'long' && text[0] !== '<') {
         text = `<p>${text.replaceAll("\n", '</p><p>')}</p>`;
     }
@@ -257,5 +277,29 @@ export const setProductText = (object) => (text, node = 'short', langId = 'pol',
         node[nodeData.node] = text;
         product[nodeData.main].push(node);
     }
+    return product;
+};
+const DESCRIPTION_NODES = ['productName', 'productAuctionName', 'productPriceComparerName', 'productDescription', 'productLongDescription', 'productMetaTitle', 'productMetaDescription', 'productMetaKeywords'];
+export const setProductDescription = (object) => (text, node = 'productName', langId = 'pol', shopId) => {
+    if (!DESCRIPTION_NODES.includes(node)) {
+        throw new Error('Invalid node');
+    }
+    const product = getAppendedNode(object);
+    let langData;
+    if (!product.productDescriptionsLangData) {
+        langData = { langId };
+        if (shopId)
+            langData.shopId = shopId.toString();
+        product.productDescriptionsLangData = [langData];
+    }
+    if (!langData)
+        langData = product.productDescriptionsLangData.find(item => item.langId === langId && (item.shopId === shopId || (shopId === null && !item.shopId)));
+    if (!langData) {
+        langData = { langId };
+        if (shopId)
+            langData.shopId = shopId.toString();
+        product.productDescriptionsLangData.push(langData);
+    }
+    langData[node] = text;
     return product;
 };
