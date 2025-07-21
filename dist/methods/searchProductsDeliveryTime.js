@@ -6,7 +6,7 @@ export default (object) => {
         arrayNode: "products",
         index: 0
     };
-    object.req = ["productId", "sizeId", "products"];
+    object.req = [(object) => ((object.productId && object.sizeId) || object.productIndex) ? false : 'productId + sizeId or productIndex'];
     object.arrays = ["products"];
     return new Proxy(object, paramsProxy);
 };

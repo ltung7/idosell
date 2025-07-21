@@ -7,6 +7,6 @@ test("getClientsPayerAddressClientId", () => {
 })
 
 test("getClientsPayerAddressPage", () => {
-    const params = idosell().getClientsPayerAddress.page(2,10).checkParams();
-    expect(params).toEqual({"resultsPage":2,"resultsLimit":10});
+    const params = idosell().getClientsPayerAddress.clientId("iaisystem").page(2,10).checkParams();
+    expect(params).toEqual({"resultsPage":2,"resultsLimit":10,"clientId":"iaisystem"});
 })

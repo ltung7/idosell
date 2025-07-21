@@ -2,8 +2,8 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("postProductsProductSizes", () => {
-    const params = idosell().postProducts.productSizes([{"sizeId":"uniw"}]).checkParams();
-    expect(params).toEqual({"products":[{"productSizes":[{"sizeId":"uniw"}]}]});
+    const params = idosell().postProducts.shopsMask(1).productSizes([{"sizeId":"uniw"}]).checkParams();
+    expect(params).toEqual({"products":[{"shopsMask":1,"productSizes":[{"sizeId":"uniw"}]}]});
 })
 
 test("postProductsShopsMask", () => {

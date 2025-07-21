@@ -7,11 +7,11 @@ test("getCouriersPickupPointsCourierId", () => {
 })
 
 test("getCouriersPickupPointsPickupPointExternalId", () => {
-    const params = idosell().getCouriersPickupPoints.pickupPointExternalId("101293B").checkParams();
-    expect(params).toEqual({"pickupPointExternalId":"101293B"});
+    const params = idosell().getCouriersPickupPoints.courierId(2270020).pickupPointExternalId("101293B").checkParams();
+    expect(params).toEqual({"pickupPointExternalId":"101293B","courierId":2270020});
 })
 
 test("getCouriersPickupPointsPage", () => {
-    const params = idosell().getCouriersPickupPoints.page(2,10).checkParams();
-    expect(params).toEqual({"resultsPage":2,"resultsLimit":10});
+    const params = idosell().getCouriersPickupPoints.courierId(2270020).page(2,10).checkParams();
+    expect(params).toEqual({"resultsPage":2,"resultsLimit":10,"courierId":2270020});
 })

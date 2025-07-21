@@ -6,7 +6,8 @@ test("getCouriersCountryCode", () => {
     expect(params).toEqual({"countryCode":"PL"});
 })
 
+
 test("getCouriersPage", () => {
-    const params = idosell().getCouriers.page(2,10).checkParams();
-    expect(params).toEqual({"resultsPage":2,"resultsLimit":10});
+    const params = idosell().getCouriers.countryCode("PL").page(2,10).checkParams();
+    expect(params).toEqual({"countryCode":"PL","resultsPage":2,"resultsLimit":10});
 })

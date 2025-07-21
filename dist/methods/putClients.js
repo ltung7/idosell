@@ -6,7 +6,7 @@ export default (object) => {
         arrayNode: "clients",
         index: 0
     };
-    object.req = ["clientLogin", "shopsIds"];
+    object.req = ["clientLogin"];
     object.arrays = ["clients"];
     return new Proxy(object, paramsProxy);
 };

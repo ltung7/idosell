@@ -3,7 +3,7 @@ export default (object) => {
     object.gate = { method: 'post', node: '/entries/entries' };
     object.custom = {
         blog: () => { const visibleOnSitesList = object.params.visibleOnSitesList ?? []; visibleOnSitesList.push({ siteId: "display_on_blog" }); return { root: { visibleOnSitesList } }; },
-        news: () => { const visibleOnSitesList = object.params.visibleOnSitesList ?? []; visibleOnSitesList.push({ sizeId: "display_on_news" }); return { root: { visibleOnSitesList } }; }
+        news: () => { const visibleOnSitesList = object.params.visibleOnSitesList ?? []; visibleOnSitesList.push({ siteId: "display_on_news" }); return { root: { visibleOnSitesList } }; }
     };
     object.appendable = {
         except: ["shopId", "date", "visible", "visibleOnSitesList", "products", "pictureData", "titleLinkType", "link"],

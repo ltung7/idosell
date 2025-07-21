@@ -11,7 +11,8 @@ export default (object) => {
         arrayNode: "events",
         index: 0
     };
-    object.req = [{ "any": ["events", "deliveryPackageNumbers"] }];
+    object.req = [(object) => { if (object.eventType || object.eventIds)
+            return false; return (object.events?.length || object.deliveryPackageNumbers?.length) ? false : 'events | deliveryPackageNumbers'; }];
     object.arrays = ["deliveryPackageNumbers", "events"];
     return new Proxy(object, paramsProxy);
 };

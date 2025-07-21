@@ -3,8 +3,8 @@ import { nest, dateRangeType, orderBy, arrayOfObjects, page } from "../helpers.j
 export default (object) => {
     object.gate = { method: 'post', node: '/products/products/search' };
     object.custom = {
-        byMenus: nest("menuItemsIds", "productMenuItems", {}),
-        byShops: nest("shopsIds", "searchByShops", {}),
+        byMenus: nest("menuItemsIds", "productMenuItems", {}, true),
+        byShops: nest("shopsIds", "searchByShops", {}, true),
         dates: dateRangeType({ "nodeName": "productDate", "fromName": "productDateBegin", "toName": "productDateEnd", "typeName": "productDateMode", "defaultType": "added" }),
         orderBy,
         shops: arrayOfObjects("productShops", "shopId"),

@@ -22,6 +22,6 @@ test("getReturnsDates", () => {
 })
 
 test("getReturnsPage", () => {
-    const params = idosell().getReturns.page(2,10).checkParams();
-    expect(params).toEqual({"results_page":2,"results_limit":10});
+    const params = idosell().getReturns.status(14).page(2,10).checkParams();
+    expect(params).toEqual({"status":14,"results_page":2,"results_limit":10});
 })

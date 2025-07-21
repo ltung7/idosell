@@ -111,6 +111,8 @@ export const nest = (valueName, nodeName, obj = {}, forceArray = false) => (valu
         value = [value];
     const node = { ...obj }, params = {};
     node[valueName] = value;
+    if (!nodeName.length)
+        return node;
     params[nodeName] = node;
     return params;
 };
@@ -302,4 +304,23 @@ export const setProductDescription = (object) => (text, node = 'productName', la
     }
     langData[node] = text;
     return product;
+};
+export const setStp = (object, value, wholesale = false, base = 'price', mode = 'amount_set') => {
+    const node = getAppendedNode(object);
+    const stp_settings = node.stp_settings ?? {};
+    stp_settings.price_change_mode = mode;
+    stp_settings.price_change_basevalue = base;
+    stp_settings[wholesale ? "wholesale_price_change_value" : "retail_price_change_value"] = value;
+    return { stp_settings };
+};
+export const setOmp = (object, value = false, wholesale = false, mode = false) => {
+    const node = getAppendedNode(object);
+    const omnibusPrices = node.omnibusPrices ?? {};
+    if (value) {
+        omnibusPrices[wholesale ? "omnibusPriceWholesale" : "omnibusPriceRetail"] = value;
+    }
+    else if (mode) {
+        omnibusPrices.omnibusPriceManagement = mode;
+    }
+    return { omnibusPrices };
 };

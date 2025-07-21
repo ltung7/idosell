@@ -1,7 +1,7 @@
 import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
-test("getMenuFilterLanguageId", () => {
-    const params = idosell().getMenuFilter.languageId("pol").checkParams();
-    expect(params).toEqual({"languageId":"pol"});
+test("getMenuFilterProductMenu", () => {
+    const params = idosell().getMenuFilter.shopId(1).languageId("pol").productMenuTreeId(1).productMenuNodeId(161).checkParams();
+    expect(params).toEqual({"shopId":1,"languageId":"pol","productMenuTreeId":1,"productMenuNodeId":161});
 })

@@ -76,6 +76,9 @@ const isMissingRequirement = (obj, required) => {
         else
             return required;
     }
+    else if (typeof required === 'function') {
+        return required(obj);
+    }
     else if (required.any) {
         if (required.any === true) {
             const keys = Object.keys(obj).filter(field => !['results_page', 'results_limit', 'resultsLimit', 'resultsPage'].includes(field)).length;
@@ -110,12 +113,11 @@ const processRequired = (request) => {
             if (typeof req === 'string') {
                 if (request.appendable.except.includes(req))
                     continue;
-                missing.delete(req);
-                for (const obj of request.params[request.appendable.arrayNode]) {
-                    const missingField = isMissingRequirement(obj, req);
-                    if (missingField)
-                        missing.add(missingField);
-                }
+            }
+            for (const obj of request.params[request.appendable.arrayNode]) {
+                const missingField = isMissingRequirement(obj, req);
+                if (missingField)
+                    missing.add(missingField);
             }
         }
     }

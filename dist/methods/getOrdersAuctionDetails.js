@@ -1,10 +1,10 @@
 import { paramsProxy } from "../params.js";
-import { arrayOfObjects } from "../helpers.js";
+import { nest } from "../helpers.js";
 export default (object) => {
     object.gate = { method: 'get', node: '/orders/auctionDetails' };
     object.custom = {
-        ids: arrayOfObjects("orders", "identValue", { "identType": "orders_id" }),
-        serialNumbers: arrayOfObjects("orders", "identValue", { "identType": "orders_sn" })
+        ids: nest("orders", "", { "identType": "order_id" }, true),
+        serialNumbers: nest("orders", "", { "identType": "order_sn" }, true)
     };
     return new Proxy(object, paramsProxy);
 };

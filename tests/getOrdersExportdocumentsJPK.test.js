@@ -2,8 +2,8 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("getOrdersExportdocumentsJPK_MAG", () => {
-    const params = idosell().getOrdersExportdocumentsJPK.documentType("JPK_MAG").dateBegin("2023-12-01").dateEnd("2023-12-31").stockId([1]).checkParams();
-    expect(params).toEqual({"documentType":"JPK_MAG","dateBegin":"2023-12-01","dateEnd":"2023-12-31","stockId":[1]});
+    const params = idosell().getOrdersExportdocumentsJPK.documentType("JPK_MAG").dateBegin("2023-12-01").dateEnd("2023-12-31").stockId([1]).currency("PLN").checkParams();
+    expect(params).toEqual({"documentType":"JPK_MAG","dateBegin":"2023-12-01","dateEnd":"2023-12-31","stockId":[1],"currency":"PLN"});
 })
 
 test("getOrdersExportdocumentsJPK", () => {

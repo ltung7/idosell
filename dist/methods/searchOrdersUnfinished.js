@@ -3,8 +3,8 @@ import { nest, dateRangeType, orderBy, arrayOfObjects, orderSource, page } from 
 export default (object) => {
     object.gate = { method: 'post', node: '/orders/unfinished/search' };
     object.custom = {
-        shopIds: nest("shopsIds", "orderSource", {}),
-        byPackageNumbers: nest("packagesNumbers", "packages", { "orderHasPackageNumbers": "y" }),
+        shopIds: nest("shopsIds", "orderSource", {}, true),
+        byPackageNumbers: nest("packagesNumbers", "packages", { "orderHasPackageNumbers": "y" }, true),
         dates: dateRangeType({ "nodeName": "ordersDateRange", "fromName": "ordersDateBegin", "toName": "ordersDateEnd", "typeName": "ordersDateType", "format": "YYYY-MM-DD HH:mm:ss", "nested": "ordersRange", "defaultType": "add" }),
         orderBy,
         logins: arrayOfObjects("clients", "clientLogin", { "type": "login" }),

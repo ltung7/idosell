@@ -6,12 +6,12 @@ test("getOrdersPackagesDeliveryPackageNumbers", () => {
     expect(params).toEqual({"deliveryPackageNumbers":["13489301116623"]});
 })
 
-test("getOrdersPackagesReturnLabels", () => {
-    const params = idosell().getOrdersPackages.returnLabels(true).checkParams();
-    expect(params).toEqual({"returnLabels":true});
-})
-
 test("getOrdersPackagesOrderNumbers", () => {
     const params = idosell().getOrdersPackages.orderNumbers([3]).checkParams();
     expect(params).toEqual({"orderNumbers":[3]});
+})
+
+test("getOrdersPackagesReturnLabels", () => {
+    const params = idosell().getOrdersPackages.returnNumbers(3).returnLabels(true).checkParams();
+    expect(params).toEqual({"returnNumbers":3,"returnLabels":true});
 })

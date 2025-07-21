@@ -1,7 +1,17 @@
-import idosell from "./dist/index"
+import idosell from "./dist/index.ts"
 import { expect, test } from "vitest"
 
 test("getOrdersAuctionDetailsSerialNumbers", () => {
-    const params = idosell().getOrdersAuctionDetails.serialNumbers([2900,2916,3083]).checkParams();
-    expect(params).toEqual({"orders":[{"identType":"orders_sn","identValue":2900},{"identType":"orders_sn","identValue":2916},{"identType":"orders_sn","identValue":3083}]});
+    const params = idosell().getOrdersAuctionDetails.serialNumbers([1706995,1706991]).checkParams();
+    expect(params).toEqual({"identType":"order_sn","orders":[1706995,1706991]});
+})
+
+test("getOrdersAuctionDetailsOrders", () => {
+    const params = idosell().getOrdersAuctionDetails.identType("orders_sn").orders([1706995]).checkParams();
+    expect(params).toEqual({"identType":"orders_sn","orders":[1706995]});
+})
+
+test("getOrdersAuctionDetailsIds", () => {
+    const params = idosell().getOrdersAuctionDetails.ids("client-1").checkParams();
+    expect(params).toEqual({"identType":"order_id","orders":["client-1"]});
 })

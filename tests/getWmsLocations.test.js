@@ -7,6 +7,6 @@ test("getWmsLocationsStockId", () => {
 })
 
 test("getWmsLocationsPage", () => {
-    const params = idosell().getWmsLocations.page(2,10).checkParams();
-    expect(params).toEqual({"resultsPage":2,"resultsLimit":10});
+    const params = idosell().getWmsLocations.stockId(1).page(2,10).checkParams();
+    expect(params).toEqual({"stockId":1,"resultsPage":2,"resultsLimit":10});
 })

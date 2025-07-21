@@ -20,7 +20,7 @@ export type RequestProxyObject = {
 
 export type RequirementType = {
 	any: string[]|true
-} | string;
+} | string | ((RequestProxyObject) => string|false);
 
 export type GatewayRequestProxyObject = {
 	gate: {

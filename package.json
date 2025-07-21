@@ -1,6 +1,6 @@
 {
   "name": "idosell",
-  "version": "0.3.13",
+  "version": "0.3.15",
   "description": "Idosell 3 REST connector",
   "main": "dist/index.js",
   "types": "dist/gateways.d.ts",

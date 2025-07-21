@@ -1365,10 +1365,8 @@ export interface GetOrdersAuctionDetailsRequest extends Gateway {
     identType: (value: 'orders_id'|'orders_sn') => this;
     /** Orders Id values. */
     orders: (value: string|string[]) => this;
-    /** Define orders values by passing them as an array */
-    ids: (values: string|string[]) => this;
-    /** Define orders values by passing them as an array */
-    serialNumbers: (values: number|string|number[]|string[]) => this;
+    ids: (value: string|string[]) => this;
+    serialNumbers: (value: number|string|number[]|string[]) => this;
 }
 
 export interface PutOrdersClientRequest extends Gateway {
@@ -1455,6 +1453,8 @@ export interface PostOrdersDocumentsRequest extends AppendableGateway<PostOrders
     returnedInOrderDetails: (returnedInOrderDetails: 'y'|'n') => this
     /** Additional information. */
     additionalData: (additionalData: JSObject) => this
+    /** Set Issue date */
+    date: (date: string) => this;
 }
 
 export interface GetOrdersExportdocumentsEPPRequest extends Gateway {
@@ -2167,8 +2167,7 @@ export interface GetProductsAuctionsRequest extends PagableGateway<GetProductsAu
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
-    /** Define products values by passing them as an array */
-    ids: (values: number|string|number[]|string[]) => this;
+    ids: (value: number|string|number[]|string[]) => this;
     /** Get auction data on products */
     fromAllegro: () => this;
 }
@@ -2422,7 +2421,7 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
     productAuctionDescriptionsData: (productAuctionDescriptionsData: Array<JSObject>) => this
     productId: (value: number|string) => this;
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type?: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords", language?: string, shopId?: number|string) => this;
+    setText: (text: string, type: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords" = 'productName', language?: string, shopId?: number|string) => this;
 }
 
 export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest> {
@@ -2612,6 +2611,12 @@ export interface PutProductsOmnibusPricesRequest extends AppendableGateway<PutPr
     omnibusPrices: (omnibusPrices: JSObject) => this
     /** Strikethrough price settings for the page. */
     shops: (shops: Array<JSObject>) => this
+    /** Set product identifiers */
+    productId: (productId: number|string, type: 'id'|'index'|'codeExtern'|'codeProducer' = 'id') => this;
+    /** Set retail or wholesale price */
+    setPrice: (price: number, wholesale: boolean = false) => this;
+    /** Set mode to automatic */
+    mode: (automatic: boolean = false) => this;
 }
 
 export interface DeleteProductsOpinionsRequest extends Gateway {
@@ -2922,9 +2927,9 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Responsible person code */
     responsiblePersonCode: (responsiblePersonCode: string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: string, shopId?: number|string) => this;
+    setText: (text: string, type: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer" = 'productName', language?: string, shopId?: number|string) => this;
     /** Sets product price by amount */
-    setPrice: (value: number, type?: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
+    setPrice: (value: number, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation' = 'retail') => this;
 }
 
 export interface PutProductsRequest extends AppendableGateway<PutProductsRequest> {
@@ -3199,7 +3204,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Responsible person code */
     responsiblePersonCode: (responsiblePersonCode: string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: string, shopId?: number|string) => this;
+    setText: (text: string, type: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer" = 'productName', language?: string, shopId?: number|string) => this;
     /** Set edit mode - disables adding new product */
     editMode: () => this;
     /** Set add mode - Api is allowed to create new products */
@@ -3603,6 +3608,14 @@ export interface PutProductsStrikethroughPricesRequest extends AppendableGateway
     stp_settings: (stp_settings: JSObject) => this
     /** Strikethrough price settings for the page. */
     shops: (shops: Array<JSObject>) => this
+    /** Set product identifiers */
+    productId: (productId: number|string, type: 'id'|'index'|'codeExtern'|'codeProducer' = 'id') => this;
+    /** Set precise price */
+    setPrice: (price: number, wholesale: boolean = false) => this;
+    /** Set price relative to current price */
+    addPrice: (value: number, wholesale: boolean = false, base: 'price' | 'price_minimal' | 'price_pos' | 'price_srp' | 'price_crossed' = 'price') => this;
+    /** Set price relative to current price by percent */
+    addPricePercent: (value: number, wholesale: boolean = false, base: 'price' | 'price_minimal' | 'price_pos' | 'price_srp' | 'price_crossed' = 'price') => this;
 }
 
 export interface PutProductsSupplierCodeRequest extends AppendableGateway<PutProductsSupplierCodeRequest> {
