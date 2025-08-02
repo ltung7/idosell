@@ -1,5 +1,5 @@
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject } from "./app.d.ts"
-import type { GetClientsResponse, SearchClientsCrmResponse, SearchGiftcardsResponse, SearchNewsletterEmailResponse, SearchNewsletterSmsResponse, SearchOpinionsResponse, SearchOrdersResponse, SearchPackagesResponse, SearchCategoriesIdosellResponse, SearchDeliveryTimeResponse, SearchProductsParametersResponse, SearchProductsResponse, GetReturnsResponse, GetRmaResponse, GetSizechartsResponse, GetConfigResponse, GetShopsDataResponse, GetWarrantiesResponse, GetLocationsResponse, GetStocksdocumentsDocumentsResponse, GetStocksdocumentsProductsResponse }  from "./responses.d.ts"
+import type { GetClientsResponse, SearchClientsCrmResponse, SearchGiftcardsResponse, SearchNewsletterEmailResponse, SearchNewsletterSmsResponse, GetMenuResponse, GetAuctionDetailsResponse, GetOrdersDocumentsResponse, SearchOpinionsResponse, SearchOrdersResponse, SearchPackagesResponse, GetCategoriesResponse, SearchCategoriesIdosellResponse, SearchDeliveryTimeResponse, SearchProductsParametersResponse, SearchProductsResponse, GetReturnsResponse, GetRmaResponse, GetSizechartsResponse, GetConfigResponse, GetShopsDataResponse, GetWarrantiesResponse, GetLocationsResponse, GetStocksdocumentsDocumentsResponse, GetStocksdocumentsProductsResponse }  from "./responses.d.ts"
 import * as ENUMS from "./enums";
 
 export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest> {
@@ -1290,7 +1290,7 @@ export interface DeleteMenuRequest extends AppendableGateway<DeleteMenuRequest> 
     item_textid: (item_textid: string) => this
 }
 
-export interface GetMenuRequest extends Gateway {
+export interface GetMenuRequest extends Gateway<GetMenuResponse> {
     /** Shop Id. */
     shop_id: (value: number|string) => this;
     /** Tree menu ID. */
@@ -1360,7 +1360,7 @@ export interface GetOrdersAnalyticsRequest extends Gateway {
     orderSerialNumber: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetOrdersAuctionDetailsRequest extends Gateway {
+export interface GetOrdersAuctionDetailsRequest extends Gateway<GetAuctionDetailsResponse> {
     /** Identifier type. */
     identType: (value: 'orders_id'|'orders_sn') => this;
     /** Orders Id values. */
@@ -1429,7 +1429,7 @@ export interface DeleteOrdersDocumentsRequest extends AppendableGateway<DeleteOr
     id: (id: number|string) => this
 }
 
-export interface GetOrdersDocumentsRequest extends Gateway {
+export interface GetOrdersDocumentsRequest extends Gateway<GetOrdersDocumentsResponse> {
     /** Order serial number. */
     orderSerialNumber: (value: string|string[]) => this;
     /** Document type */
@@ -2284,7 +2284,7 @@ export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutPro
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
-export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest> {
+export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest,GetCategoriesResponse> {
     /** List of product category identifiers in the panel */
     ids: (value: number|string|number[]|string[]) => this;
     /** Array of languages categories names should be returned in. "Defaults" value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages. */

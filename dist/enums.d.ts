@@ -114,6 +114,16 @@ export enum ORDER_STATUS {
     WAIT_FOR_DISPATCH = 'wait_for_dispatch',
     SUSPENDED = 'suspended',
     FINISHED_EXT = 'finished_ext',
+    JOINED = 'joined',
+    FALSE = 'false',
+    CANCELED = 'canceled',
+    LOST = 'lost',
+    MISSING = 'missing',
+    WAIT_FOR_PACKAGING = 'wait_for_packaging',
+    WAIT_FOR_RECEIVE = 'wait_for_receive',
+    FINISHED = 'finished',
+    RETURNED = 'returned',
+    COMPLAINED = 'complained'
 }
 
 export enum STOCK_DOCUMENT_TYPE {
@@ -149,9 +159,9 @@ export enum RETURN_STATUS {
     /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - wypłata zrealizowana */
     ACCEPTED_REFUNDED = 11,
     /** @description Zwrot anulowany przez klienta */
-    CANCELLED_BY_CUSTOMER = 13,
+    CANCELED_BY_CUSTOMER = 13,
     /** @description Zwrot anulowany */
-    CANCELLED = 14,
+    CANCELED = 14,
     /** @description Ponowna wysyłka zamówienia */
     RESEND = 15,
     /** @description Zaniechanie ponownej wysyłki zamówienia */
@@ -192,9 +202,9 @@ export enum RMA_STATUS {
     /** @description Reklamacja niepotwierdzona przez obsługę */
     UNCONFIRMED = 15,
     /** @description Reklamacja anulowana */
-    CANCELLED = 17,
+    CANCELED = 17,
     /** @description Reklamacja anulowana przez klienta */
-    CANCELLED_BY_CUSTOMER = 18,
+    CANCELED_BY_CUSTOMER = 18,
     /** @description Reklamacja potwierdzona */
     CONFIRMED = 19,
     /** @description Reklamacja nieobsłużona */

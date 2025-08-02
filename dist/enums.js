@@ -115,6 +115,16 @@ var ORDER_STATUS;
     ORDER_STATUS["WAIT_FOR_DISPATCH"] = "wait_for_dispatch";
     ORDER_STATUS["SUSPENDED"] = "suspended";
     ORDER_STATUS["FINISHED_EXT"] = "finished_ext";
+    ORDER_STATUS["JOINED"] = "joined";
+    ORDER_STATUS["FALSE"] = "false";
+    ORDER_STATUS["CANCELED"] = "canceled";
+    ORDER_STATUS["LOST"] = "lost";
+    ORDER_STATUS["MISSING"] = "missing";
+    ORDER_STATUS["WAIT_FOR_PACKAGING"] = "wait_for_packaging";
+    ORDER_STATUS["WAIT_FOR_RECEIVE"] = "wait_for_receive";
+    ORDER_STATUS["FINISHED"] = "finished";
+    ORDER_STATUS["RETURNED"] = "returned";
+    ORDER_STATUS["COMPLAINED"] = "complained";
 })(ORDER_STATUS || (ORDER_STATUS = {}));
 var STOCK_DOCUMENT_TYPE;
 (function (STOCK_DOCUMENT_TYPE) {
@@ -150,9 +160,9 @@ var RETURN_STATUS;
     /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - wypłata zrealizowana */
     RETURN_STATUS[RETURN_STATUS["ACCEPTED_REFUNDED"] = 11] = "ACCEPTED_REFUNDED";
     /** @description Zwrot anulowany przez klienta */
-    RETURN_STATUS[RETURN_STATUS["CANCELLED_BY_CUSTOMER"] = 13] = "CANCELLED_BY_CUSTOMER";
+    RETURN_STATUS[RETURN_STATUS["CANCELED_BY_CUSTOMER"] = 13] = "CANCELED_BY_CUSTOMER";
     /** @description Zwrot anulowany */
-    RETURN_STATUS[RETURN_STATUS["CANCELLED"] = 14] = "CANCELLED";
+    RETURN_STATUS[RETURN_STATUS["CANCELED"] = 14] = "CANCELED";
     /** @description Ponowna wysyłka zamówienia */
     RETURN_STATUS[RETURN_STATUS["RESEND"] = 15] = "RESEND";
     /** @description Zaniechanie ponownej wysyłki zamówienia */
@@ -193,9 +203,9 @@ var RMA_STATUS;
     /** @description Reklamacja niepotwierdzona przez obsługę */
     RMA_STATUS[RMA_STATUS["UNCONFIRMED"] = 15] = "UNCONFIRMED";
     /** @description Reklamacja anulowana */
-    RMA_STATUS[RMA_STATUS["CANCELLED"] = 17] = "CANCELLED";
+    RMA_STATUS[RMA_STATUS["CANCELED"] = 17] = "CANCELED";
     /** @description Reklamacja anulowana przez klienta */
-    RMA_STATUS[RMA_STATUS["CANCELLED_BY_CUSTOMER"] = 18] = "CANCELLED_BY_CUSTOMER";
+    RMA_STATUS[RMA_STATUS["CANCELED_BY_CUSTOMER"] = 18] = "CANCELED_BY_CUSTOMER";
     /** @description Reklamacja potwierdzona */
     RMA_STATUS[RMA_STATUS["CONFIRMED"] = 19] = "CONFIRMED";
     /** @description Reklamacja nieobsłużona */

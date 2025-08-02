@@ -27,13 +27,14 @@ type FaultCodeString = {
     faultString: string;
 }
 
+/** Typechecked 2025-08-02 */
 export type SearchOrdersResponse = {
     Results: {
-        /** @description Order ID i.e. login-1 */
+        /** @description Order ID. */
         orderId: string;
         /** @description Order note supported by IAI Bridge. */
         orderBridgeNote: string;
-        /** @description Order serial number. i.e. 12345 */
+        /** @description Order serial number. */
         orderSerialNumber: number;
         /** @description Order type. List of values: "p" - wholesale order placed in panel, "t" - wholesale order placed in shop, "n" - retail order placed in shop, "r" - retail order placed in panel. */
         orderType: "p" | "t" | "n" | "r";
@@ -50,7 +51,7 @@ export type SearchOrdersResponse = {
                 /** @description Customer's company name. */
                 clientFirm: string;
                 /** @description Product suggestion. */
-                clientAdditional: string;
+                clientAdditional?: string;
                 /** @description Street and number. */
                 clientStreet: string;
                 /** @description Customer's postal code. */
@@ -103,7 +104,7 @@ export type SearchOrdersResponse = {
                 /** @description Internal Receiving Point Identifier. */
                 clientDeliveryAddressPickupPointInternalId: number;
             };
-            clientPickupPointAddress: {
+            clientPickupPointAddress?: {
                 /** @description Collection point ID. */
                 pickupPointId: string;
                 /** @description Town / City. */
@@ -112,6 +113,7 @@ export type SearchOrdersResponse = {
                 street: string;
                 /** @description ZIP / Post code. */
                 zipCode: string;
+                /** @example description */
                 description: string;
                 /** @description Latitude. */
                 latitude: number;
@@ -121,7 +123,7 @@ export type SearchOrdersResponse = {
                 name: string;
             };
             /** @description Buyer's address data. */
-            payerAddress: {
+            payerAddress?: {
                 /** @description Buyer's address id. */
                 payerAddressId: string;
                 /** @description Buyer's first name. */
@@ -182,16 +184,18 @@ export type SearchOrdersResponse = {
             apiFlag: "none" | "registered" | "realized" | "registered_pos" | "realized_pos" | "registration_fault";
             /** @description Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
             orderStatus: string;
+            /** @example dropshippingOrderStatus */
             dropshippingOrderStatus: string;
             /** @description Type of order confirmation. Confirmations listing: "none" - order unconfirmed , "email" - order confirmed by e-mail, "phone_client" - order confirmed by phone call made by client, "phone_service" - order confirmed by phone call made by staff, "postauction" - order confirmed by auction return page, "willingness" - confirmed by willingness to buy letter, "auctionfod" - confirmed by after-sales form Allegro. */
             orderConfirmation: string;
             /** @description Date of order placing in YYYY-MM-DD HH:MM:SS format. */
             orderAddDate: string;
             /** @description Date of order sending in YYYY-MM-DD HH:MM:SS format. */
-            orderDispatchDate: string;
+            orderDispatchDate: 0 | string | null;
+            /** @example receivedDate */
             receivedDate: string;
             /** @description Order handling time in seconds. */
-            orderPrepareTime: string;
+            orderPrepareTime: number | string;
             /** @description Customer comments on order. */
             clientNoteToOrder: string;
             /** @description Customer remarks for courier. */
@@ -211,7 +215,7 @@ export type SearchOrdersResponse = {
                     /** @description Currency average rate set for order (by default, an average rate of order adding date, if it wasn't manually changed). */
                     orderCurrencyValue: number;
                     /** @description Currency scaler. */
-                    orderCurrencyScale: number;
+                    orderCurrencyScale?: number;
                     /** @description Panel billing currency exchange rate in relation to billing currency in the shop . */
                     billingCurrencyRate: number;
                     /** @description Products cost. */
@@ -225,6 +229,7 @@ export type SearchOrdersResponse = {
                 };
                 /** @description Information on order value in shop account currency. */
                 orderBaseCurrency: {
+                    /** @example billingCurrency */
                     billingCurrency: string;
                     /** @description Products cost. */
                     orderProductsCost: number;
@@ -275,9 +280,9 @@ export type SearchOrdersResponse = {
                 /** @description Currency ID */
                 currencyId: string;
                 /** @description Number of voucher used in a payment. */
-                voucherNumber: string;
+                voucherNumber?: string;
                 /** @description Number of gift card used in a payment. */
-                giftCardNumber: string;
+                giftCardNumber?: string;
             }[];
             /** @description Order source data. */
             orderSourceResults: {
@@ -286,7 +291,7 @@ export type SearchOrdersResponse = {
                 /** @description Shop Id */
                 shopId: number;
                 /** @description Auction site order comes from. Auction sites listing: "allegro" - Allegro.pl, "testwebapi" - Allegro.pl test site, "ebay" - eBay. */
-                auctionsServiceName: string;
+                auctionsServiceName: string | null;
                 /** @description Detailed information on order source. */
                 orderSourceDetails: {
                     /** @description order source type - possible values:. "self_added" - Orders from panel, "shop" - Orders from shop, "search_engine" - Orders from search engines, "auction" - Orders from auctions, "advertisement_campaign" - Advertisement campaigns, "price_comparer" - Price comparison sites, "affiliate_program" - Affiliate programme, "api" - Order from API, "eletronic_offer" - Order from ODT price lst, "cpa" - Order from CPA program, "refferer_site" - Order from reference sites, "pos" - Orders from POS, "marketplace" - Order from the Marketplace, "iai_ads" - Orders from IAI Ads */
@@ -297,10 +302,12 @@ export type SearchOrdersResponse = {
                     orderSourceTypeId: number;
                     /** @description Numerical ID of order source. */
                     orderSourceId: number;
-                    entryProductIdBeforeOrder: number;
-                    sourcePageUrl: string;
+                    /** @example 1 */
+                    entryProductIdBeforeOrder?: number;
+                    /** @example sourcePageUrl */
+                    sourcePageUrl?: string;
                     /** @description The order ID of the external service */
-                    orderExternalId: string;
+                    orderExternalId: string | null;
                     /** @description Order from the InPost Fresh marketplace */
                     fresh: "y" | "n";
                     /** @description Order supported by InPost fulfillment */
@@ -315,22 +322,23 @@ export type SearchOrdersResponse = {
                     orderSourceTypeId: number;
                     /** @description Numerical ID of order source. */
                     orderSourceId: number;
+                    /** @example entryDate */
                     entryDate: string;
                 }[];
             };
             /** @description Data of auction, order comes from (only if it comes from auction). */
             auctionInfo: {
                 /** @description Account ID on auction site. */
-                auctionClientId: string;
+                auctionClientId?: string;
                 /** @description Account login on auction site. */
-                auctionClientLogin: string;
+                auctionClientLogin?: string;
                 /** @description #!TablicaNumerowAukcjiDoZamowienia!#. */
-                auctionItemsIds: {
+                auctionItemsIds?: {
                     /** @description Auction number. */
                     auctionItemId: string;
                 }[];
                 /** @description The customer's email address at the auction service. */
-                auctionClientEmail: string;
+                auctionClientEmail?: string;
             };
             /** @description Consignment data. */
             dispatch: {
@@ -360,7 +368,7 @@ export type SearchOrdersResponse = {
                 /** @description External product system code */
                 productCode: string;
                 /** @description Name of the parameter value, e.g. orange, green, red */
-                versionName: string;
+                versionName?: string;
                 /** @description Size identifier */
                 sizeId: string;
                 /** @description Size name */
@@ -370,7 +378,7 @@ export type SearchOrdersResponse = {
                 /** @description Stock ID */
                 stockId: number;
                 /** @description Serial number of the product. */
-                productSerialNumber: string;
+                productSerialNumber?: string;
                 /** @description Product quantity. */
                 productQuantity: number;
                 /** @description Weight. */
@@ -378,7 +386,7 @@ export type SearchOrdersResponse = {
                 /** @description Value of VAT */
                 productVat: number;
                 /** @description Is product VAT free Allowed values "y" - yes, "n" - no. */
-                productVatFree: string;
+                productVatFree?: string;
                 /** @description Gross price of the product in the currency of the administration panel. */
                 productPanelPrice: number;
                 /** @description Net price of the product in the currency of the administration panel. */
@@ -392,7 +400,7 @@ export type SearchOrdersResponse = {
                 /** @description Product net price of order in shop account currency. */
                 productOrderPriceNetBaseCurrency: number;
                 /** @description List of product suggestions . */
-                orderAdditionalList: {
+                orderAdditionalList?: {
                     /** @description Product suggestion. */
                     orderAdditional: {
                         /** @description Name of suggestion. */
@@ -403,12 +411,14 @@ export type SearchOrdersResponse = {
                 };
                 /** @description Client's remarks on product. */
                 remarksToProduct: string;
+                /** @description Label for grouping products. */
+                label: string | null;
                 /** @description Product selling mode. Available values: "money", "gift", "points". */
                 orderSalesMode: "money" | "gift" | "points";
                 /** @description A set's ID. */
                 bundleId: number;
                 /** @description Serial numbers. */
-                productSerialNumbers: string;
+                productSerialNumbers: string | null;
                 /** @description Additional information. */
                 productOrderAdditional: string;
                 /** @description Item in basket. */
@@ -416,14 +426,16 @@ export type SearchOrdersResponse = {
                 /** @description price information. */
                 productPriceLog: string;
                 /** @description Information about the selected parameters in the configurator. */
-                priceFormulaParameters: {
+                priceFormulaParameters?: {
                     /** @description Parameter ID */
                     parameterId: string;
                     /** @description Parameter name. */
                     parameterName: string;
                     /** @description Parameter values */
                     parameterValues: {
+                        /** @example valueId */
                         valueId: string;
+                        /** @example valueName */
                         valueName: string;
                     }[];
                 }[];
@@ -439,7 +451,7 @@ export type SearchOrdersResponse = {
             /** @description Note to the order. */
             orderNote: string;
             /** @description Information on used discount code. */
-            discountCode: {
+            discountCode?: {
                 /** @description Campaign ID. */
                 campaignId: string;
                 /** @description Name of code. */
@@ -448,14 +460,14 @@ export type SearchOrdersResponse = {
                 discountCodeValue: string;
             };
             /** @description Discount card */
-            discountCard: {
+            discountCard?: {
                 /** @description Name of card */
                 discountCardName: string;
             };
             /** @description Order handler. */
             orderOperatorLogin: string;
             /** @description Order picker. */
-            orderPackingPersonLogin: string;
+            orderPackingPersonLogin: string | null;
             /** @description Sale date. ISO 8602 format. */
             purchaseDate: string;
             /** @description Modification date in YYYY-MM-DD HH:MM:SS format . */
@@ -466,6 +478,7 @@ export type SearchOrdersResponse = {
     }[];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type SearchProductsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -473,6 +486,7 @@ export type SearchProductsResponse = {
         productId: number;
         /** @description External product system code. */
         productDisplayedCode?: string;
+        /** @example productIsDeleted */
         productIsDeleted?: string;
         /** @description Annotation. */
         productNote?: string;
@@ -606,8 +620,10 @@ export type SearchProductsResponse = {
             /** @description URL to small icon graphic file */
             productIconSmallUrl: string;
             /** @description MD5 hash of large icon graphic file */
-            productIconHash?: string;
+            productIconHash?: string | false;
+            /** @example productIconLargeUrlSecond */
             productIconLargeUrlSecond?: string;
+            /** */
             productIconLargeSizeSecond?: number;
         };
         /** @description Information about the external listing icon */
@@ -626,9 +642,13 @@ export type SearchProductsResponse = {
             productAuctionIconSmallUrl?: string;
             /** @description MD5 hash of large icon graphic file */
             productAuctionIconHash?: string;
+            /** @example productAuctionIconLargeUrlSecond */
             productAuctionIconLargeUrlSecond?: string;
+            /** */
             productAuctionIconLargeSizeSecond?: number;
+            /** @example productAuctionIconSmallUrlSecond */
             productAuctionIconSmallUrlSecond?: string;
+            /** */
             productAuctionIconSmallSizeSecond?: number;
         };
         /** @description Information about the product group icon */
@@ -647,18 +667,26 @@ export type SearchProductsResponse = {
             productGroupIconSmallUrl?: string;
             /** @description MD5 hash of large icon graphic file */
             productGroupIconHash?: string;
+            /** @example productGroupIconLargeUrlSecond */
             productGroupIconLargeUrlSecond?: string;
+            /** @example productGroupIconLargeSizeSecond */
             productGroupIconLargeSizeSecond?: string;
+            /** @example productGroupIconSmallUrlSecond */
             productGroupIconSmallUrlSecond?: string;
+            /** */
             productGroupIconSmallSize?: number;
+            /** */
             productGroupIconSmallSizeSecond?: number;
         };
         /** @description Product photos details. */
         productImages?: {
             /** @description URL of a large graphics */
             productImageLargeUrl?: string;
+            /** @example productImageLargeUrlSecond */
             productImageLargeUrlSecond?: string;
+            /** @example productImageMediumUrlSecond */
             productImageMediumUrlSecond?: string;
+            /** @example productImageSmallUrlSecond */
             productImageSmallUrlSecond?: string;
             /** @description URL of a medium graphics */
             productImageMediumUrl?: string;
@@ -772,7 +800,7 @@ export type SearchProductsResponse = {
                 /** @description The same price. Available values: "y" - yes, "n" - no. */
                 versionCommonPrice: string;
                 /** @description Same price for auction services. Available values: "y" - yes, "n" - no. */
-                versionCommonPriceAuctions: string;
+                versionCommonPriceAuctions?: string;
                 /** @description Same advance. Available values: "y" - yes, "n" - no. */
                 versionCommonAdvance: string;
                 /** @description Same quantity discount. Available values: "y" - yes, "n" - no. */
@@ -782,19 +810,19 @@ export type SearchProductsResponse = {
                 /** @description The same loyalty points. Available values: "y" - yes, "n" - no. */
                 versionCommonProfitPoints: string;
                 /** @description The same promotion. Available values: "y" - yes, "n" - no. */
-                versionCommonPromotion: string;
+                versionCommonPromotion?: string;
                 /** @description The same loyalty discount. Available values: "y" - yes, "n" - no. */
-                versionCommonDiscount: string;
+                versionCommonDiscount?: string;
                 /** @description The same privileged products. Available values: "y" - yes, "n" - no. */
-                versionCommonDistinguished: string;
+                versionCommonDistinguished?: string;
                 /** @description The same for special. Available values: "y" - yes, "n" - no. */
-                versionCommonSpecial: string;
+                versionCommonSpecial?: string;
                 /** @description The same related product. Available values: "y" - yes, "n" - no. */
                 versionCommonAssociated: string;
                 /** @description The same visibility. Available values: "y" - yes, "n" - no. */
                 versionCommonVisibility: string;
                 /** @description Same display when not in stock. Available values: "y" - yes, "n" - no. */
-                versionCommonPersistent: string;
+                versionCommonPersistent?: string;
                 /** @description The same priority. Available values: "y" - yes, "n" - no. */
                 versionCommonPriority: string;
                 /** @description The same shops. Available values: "y" - yes, "n" - no. */
@@ -802,7 +830,7 @@ export type SearchProductsResponse = {
                 /** @description The same sizes. Available values: "y" - yes, "n" - no. */
                 versionCommonSizes: string;
                 /** @description The same unit of measure. Available values: "y" - yes, "n" - no. */
-                versionCommonUnit: string;
+                versionCommonUnit?: string;
                 /** @description The same weight. Available values: "y" - yes, "n" - no. */
                 versionCommonWeight: string;
                 /** @description The same parameters. possible values "y" - yes, "n" - no. */
@@ -830,10 +858,10 @@ export type SearchProductsResponse = {
                 /** @description The same objects in menu Available values: "y" - yes, "n" - no. */
                 versionCommonMenuItems: string;
                 /** @description Same promotions Available values: "y" - yes, "n" - no. */
-                versionCommonPromotions: string;
+                versionCommonPromotions?: string;
             };
             /** @description List of product variants. */
-            versionProductsIds: number[];
+            versionProductsIds: string[];
         };
         /** @description Recommended products data. */
         associatedProductsIds?: number[];
@@ -870,16 +898,16 @@ export type SearchProductsResponse = {
             /** @description Product meta title. */
             productMetaTitle: string;
             /** @description Product meta description. */
-            productMetaDescription: string;
+            productMetaDescription?: string;
             /** @description Product meta keywords. */
             productMetaKeywords: string;
         }[];
         /** @description Product data for auction services */
         productAuctionDescriptionsData?: {
             /** @description Auction system ID */
-            productAuctionId: string;
+            productAuctionId: number;
             /** @description Auction site ID */
-            productAuctionSiteId: string;
+            productAuctionSiteId: number;
             /** @description Product name for auction service. */
             productAuctionName: string;
             /** @description Subtitle for auction service */
@@ -925,9 +953,9 @@ export type SearchProductsResponse = {
             /** @description Object determines if the promotion should be active.. Allowed values: "y" - active promotion, "n" - inactive promotion. */
             promoteItemEnabled: string;
             /** @description Strikethrough price */
-            promoteItemNormalPrice: number;
+            promoteItemNormalPrice?: number;
             /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice: number;
+            promoteItemWholesaleNormalPrice?: number;
             /** @description Switching off date */
             promoteItemEndingDate?: string;
         };
@@ -1021,7 +1049,7 @@ export type SearchProductsResponse = {
                     /** @description Product stock quantity */
                     productSizeQuantity: number;
                     /** @description Information of reservations */
-                    productSizeReservations: {
+                    productSizeReservations?: {
                         /** @description Number of products reserved ad hoc. */
                         productSizeReservationAdhoc: number;
                         /** @description Number of products reserved for auctions. */
@@ -1065,27 +1093,27 @@ export type SearchProductsResponse = {
                     /** @description Available stock quantity of product from all stocks. */
                     productSizeQuantityAllStocks: number;
                     /** @description Available product quantity in own stock from before 1 day . */
-                    productSizeDisposition1d: number;
+                    productSizeDisposition1d?: number;
                     /** @description Available product quantity in own stock from before 2 Days. */
-                    productSizeDisposition2d: number;
+                    productSizeDisposition2d?: number;
                     /** @description Available product quantity in own stock from before 3 Days. */
-                    productSizeDisposition3d: number;
+                    productSizeDisposition3d?: number;
                     /** @description Available product quantity in own stock from before 4 Days. */
-                    productSizeDisposition4d: number;
+                    productSizeDisposition4d?: number;
                     /** @description Available product quantity in own stock from before 5 Days. */
-                    productSizeDisposition5d: number;
+                    productSizeDisposition5d?: number;
                     /** @description Available product quantity in own stock from before 6 Days. */
-                    productSizeDisposition6d: number;
+                    productSizeDisposition6d?: number;
                     /** @description Available product quantity in own stock from before 7 Days. */
-                    productSizeDisposition7d: number;
+                    productSizeDisposition7d?: number;
                     /** @description Available product quantity in own stock from before 1 week. */
-                    productSizeDisposition1w: number;
+                    productSizeDisposition1w?: number;
                     /** @description Available product quantity in own stock from before 2 weeks. */
-                    productSizeDisposition2w: number;
+                    productSizeDisposition2w?: number;
                     /** @description Available product quantity in own stock from before 3 weeks. */
-                    productSizeDisposition3w: number;
+                    productSizeDisposition3w?: number;
                     /** @description Available product quantity in own stock from before 4 weeks. */
-                    productSizeDisposition4w: number;
+                    productSizeDisposition4w?: number;
                 }[];
             };
             /** @description Delivery data */
@@ -1300,7 +1328,7 @@ export type SearchProductsResponse = {
                 /** @description Price settings, possible values: "manual" - Price entered manually, "automatically_calculated" - Price calculated automatically. */
                 auctionPricesConfig: string;
                 /** @description Configuration details for setting of parameter  prices_config=automatically_calculated */
-                auctionPricesConfigAutomatonDetails: {
+                auctionPricesConfigAutomatonDetails?: {
                     /** @description Price name, one of values: retail, wholsale, minimal. */
                     priceAutomatonPriceName: string;
                     /** @description Price setting, one of values: own, last_purchased, avarage_purchased, retail, wholsale, minimal */
@@ -1331,7 +1359,7 @@ export type SearchProductsResponse = {
                     priceAutomatonDecimalRoundValue: number;
                 }[];
                 /** @description Parameters for sizes */
-                productAuctionsSizes: {
+                productAuctionsSizes?: {
                     /** @description Size identifier */
                     sizeId: string;
                     /** @description Configuration details for setting of parameter  prices_config=automatically_calculated */
@@ -1372,7 +1400,7 @@ export type SearchProductsResponse = {
                 /** @description price comparison website ID */
                 priceComparisonSiteId: number;
                 /** @description Whether the product is exported in the feed to the sales service */
-                active: boolean;
+                active?: boolean;
                 /** @description price comparison website name */
                 priceComparisonSiteName: string;
                 /** @description Price settings, possible values: "manual" - Price entered manually, "automatically_calculated" - Price calculated automatically. */
@@ -1411,7 +1439,7 @@ export type SearchProductsResponse = {
         /** @description Supplier ID. */
         delivererId?: number;
         /** @description Supplier name. */
-        delivererName?: string;
+        delivererName?: string | null;
         /** @description Sizes available for products data. */
         productSizes?: {
             /** @description Size identifier */
@@ -1487,7 +1515,7 @@ export type SearchProductsResponse = {
         productParameters?: {
             /** @description Parameter ID */
             parameterId: number;
-            /** @description Parameter type * @enum {string} */
+            /** @description Parameter type */
             parameterType: "section" | "parameter";
             /** @description Language data */
             parameterDescriptionsLangData: {
@@ -1543,7 +1571,7 @@ export type SearchProductsResponse = {
             priceFormulaFunction: string;
         };
         /** @description Identifiers of the sets, to which the goods are assigned */
-        bundledIds?: number[];
+        bundledIds?: string[];
         /** @description Data of individual descriptions for stores */
         productIndividualDescriptionsData?: {
             /** @description Shop Id */
@@ -1563,6 +1591,7 @@ export type SearchProductsResponse = {
             shopId: string;
             /** @description Language ID */
             langId: string;
+            /** @example url */
             url: string;
         }[];
         /** @description Individual description data for external services */
@@ -1594,11 +1623,11 @@ export type SearchProductsResponse = {
                 /** @description Exclusion from the Smile service */
                 excludeSmileService: boolean;
                 /** @description List of courier services which cannot be used to ship this product */
-                disallowedCouriers: number[];
+                disallowedCouriers: string[];
             };
             /** @description Free shipping settings */
             freeShippingSettings?: {
-                /** @description Edition mode * @enum {string} */
+                /** @description Edition mode */
                 mode: "no" | "onlyProduct" | "wholeBasket";
                 /** @description Set free shipping for the payment method only . */
                 availablePaymentForms: {
@@ -1617,7 +1646,7 @@ export type SearchProductsResponse = {
                 availableRegions: number[];
             };
             /** @description Return and complaint settings */
-            returnProductSettings: {
+            returnProductSettings?: {
                 /** @description Product can be returned */
                 returnOptions: {
                     enabled: boolean;
@@ -1662,9 +1691,9 @@ export type SearchProductsResponse = {
             productOverallWeight: number;
         };
         /** @description Responsible producer code */
-        responsibleProducerCode?: string;
+        responsibleProducerCode?: string | null;
         /** @description Responsible person code */
-        responsiblePersonCode?: string;
+        responsiblePersonCode?: string | null;
     }[];
 } & PagedResponse;
 
@@ -1728,10 +1757,12 @@ type ProductParameter = {
     parameterValueIds: number[];
 }
 
+/** Typechecked 2025-08-02 */
 export type SearchProductsParametersResponse = {
     parametersResult: Record<string, ProductParameter>;
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type SearchClientsCrmResponse = {
     /** @description List of customers. */
     clientsResults: {
@@ -1741,7 +1772,7 @@ export type SearchClientsCrmResponse = {
         clientLogin: string;
         /** @description E-mail address. */
         clientEmail: string;
-        /** @description Customer type, possible values:- person - if client sex is not determined,- person_male - when client is a male,- person_female - when a customer is a woman,- firm - when client is company. */
+        /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
         clientType: "person" | "person_male" | "person_female" | "firm";
         /** @description Determines, whether client is a wholesaler. */
         clientIsWholesaler: "yes" | "no";
@@ -1763,10 +1794,10 @@ export type SearchClientsCrmResponse = {
         clientLoyaltyPoints: number;
         /** @description Customer discount information */
         clientDiscount: {
-            /** @description Discount type:- advanced,- simple,- none,- group. */
+            /** @description Discount type: - advanced, - simple, - none, - group. */
             clientDiscountType: "advanced" | "simple" | "none" | "group";
             /** @description percentage discount value. (No data is returned if rebate_type is not "simple"). */
-            clientDiscountValue: number;
+            clientDiscountValue?: number;
         };
         /** @description Date of last purchase. */
         clientLastPurchaseDate: string;
@@ -1779,12 +1810,12 @@ export type SearchClientsCrmResponse = {
             /** @description Store name. */
             shopName: string;
         }[];
-        /** @description Information about the loyalty programpossible values:- yes_voucher - when customers are in a loyalty program and have only used vouchers,- yes_voucher_cash - when customers are in a loyalty program and have only used vouchers or cash deposits,- yes_clients,- yes_orders - when customers are in the loyalty program and have made at least one order,- no - when customers are in the loyalty program,- banned - when customers are blocked. */
+        /** @description Information about the loyalty program possible values: - yes_voucher - when customers are in a loyalty program and have only used vouchers, - yes_voucher_cash - when customers are in a loyalty program and have only used vouchers or cash deposits, - yes_clients, - yes_orders - when customers are in the loyalty program and have made at least one order, - no - when customers are in the loyalty program, - banned - when customers are blocked. */
         clientAffiliateProgram: {
-            /** @description Does the customer participate in the loyalty program:- yes_voucher_cash,- yes_voucher,- no,- banned. */
+            /** @description Does the customer participate in the loyalty program: - yes_voucher_cash, - yes_voucher, - no, - banned. */
             clientAffiliateProgramValue: "yes_voucher_cash" | "yes_voucher" | "no" | "banned";
             /** @description Data about loyalty program participant, omitted if active = no / banned. */
-            affiliatePrograms: {
+            affiliatePrograms?: {
                 /** @description Number of all orders. */
                 clientAffiliateProgramTotalOrdersCount: number;
                 /** @description Total cash transaction value. */
@@ -1794,28 +1825,28 @@ export type SearchClientsCrmResponse = {
             }[];
         };
         /** @description List of observed products. If this parameter is returned, the maximum number of results was reached: 10. */
-        clientObservedProductsData: {
+        clientObservedProductsData?: {
             /** @description Product IAI code */
             productId: number;
             /** @description Size identifier */
             sizeId: string;
         }[];
         /** @description List of purchased products. If this parameter is returned, the maximum number of results was reached: 10. */
-        clientPurchasedProductsData: {
+        clientPurchasedProductsData?: {
             /** @description Product IAI code */
             productId: number;
             /** @description Size identifier */
             sizeId: string;
         }[];
         /** @description Order list. If this parameter is returned, the maximum number of results was reached: 10. */
-        clientOrdersData: {
+        clientOrdersData?: {
             /** @description Order ID. */
             orderId: string;
             /** @description Order serial number. */
             orderSerialNumber: number;
         }[];
         /** @description List of completed orders. If this parameter is returned, the maximum number of results was reached: 10. */
-        clientOrdersCompletedData: {
+        clientOrdersCompletedData?: {
             /** @description Order ID. */
             orderId: string;
             /** @description Order serial number. */
@@ -1845,51 +1876,50 @@ export type SearchClientsCrmResponse = {
         }[];
         /** @description Information about customer balance. */
         clientBalances: {
-            /** @description Balance value. */
-            clientBalanceAmount: number;
-            /** @description Currency ID */
-            currencyId: string;
-        }[];
+            [column: string]: {
+                /** @description Balance value. */
+                clientBalanceAmount: number;
+                /** @description Currency ID */
+                currencyId: string;
+            }
+        } | [];
         /** @description Customer orders statistics. */
         clientOrdersStatistic: {
             /** @description Retail turnover. */
-            clientOrdersStatisticRetailValues: {
-                /** @description Total net value. */
-                orderRetailValueNet: number;
-                /** @description Total gross value. */
-                orderRetailValue: number;
-                /** @description Currency ID */
-                currencyId: string;
-            }[];
+            worth_retail: {
+                [currency: string]: {
+                    currency: string;
+                    worth_net: string;
+                    worth_gross: string;
+                }
+            } | [];
             /** @description Wholesale turnover. */
-            clientOrdersStatisticWholesaleValues: {
-                /** @description Total net value. */
-                orderWholesaleValueNet: number;
-                /** @description Total gross value. */
-                orderWholesaleValue: number;
-                /** @description Currency ID */
-                currencyId: string;
-            }[];
+            worth_wholesale: {
+                [currency: string]: {
+                    currency: string;
+                    worth_net: string;
+                    worth_gross: string;
+                }
+            } | [];
             /** @description Turnover with the division to shops. */
-            clientOrdersStatisticValuesByShops: {
+            worth_by_shops: {
                 /** @description Shop Id */
-                shopId: number;
+                shop_id: string;
                 /** @description Turnover with the division to shops. */
-                clientOrdersStatisticValues: {
-                    /** @description Total net value. */
-                    orderValueNet: number;
-                    /** @description Total gross value. */
-                    orderValue: number;
-                    /** @description Currency ID */
-                    currencyId: string;
-                }[];
+                worths: {
+                    [currency: string]: {
+                        currency: string;
+                        worth_net: string;
+                        worth_gross: string;
+                    }
+                } | [];
             }[];
             /** @description Profit margin. */
-            clientProfitMargin: number;
+            profit_margin: number;
             /** @description Average order value. */
-            clientOrderValueAverage: number;
+            worth_average: number;
             /** @description Average amount of products in an order. */
-            clientProductsCountAverage: number;
+            average_products_count: number;
         };
         /** @description Number of returns. */
         clientRmaCount: number;
@@ -1900,8 +1930,8 @@ export type SearchClientsCrmResponse = {
             /** @description Number of returned products. */
             clientReturnsProductsCount: number;
         };
-        clientLoyaltyCards: {
-            /** @description Does the customer have a loyalty card.- yes_active,- yes_not_active,- no. */
+        clientLoyaltyCards?: {
+            /** @description Does the customer have a loyalty card. - yes_active, - yes_not_active, - no. */
             clientHasLoyaltyCard: "yes_active" | "yes_not_active" | "no";
             /** @description Customer loyalty card ID, omitted when has_loyalty_card = no. */
             clientLoyaltyCardId: number;
@@ -1921,6 +1951,7 @@ export type SearchClientsCrmResponse = {
     }[];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type SearchPackagesResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -1985,16 +2016,18 @@ export type SearchPackagesResponse = {
                     /** @description Default value for option */
                     defaultValue: string;
                     /** @description Available values ​​for the options */
-                    options: {
+                    value?: string;
+                    options?: {
                         /** @description Id */
-                        id: string;
+                        id: string | number;
                         /** @description Name */
                         name: string;
                     }[];
                 }[];
                 /** @description Information on error that occurred during gate call. */
-                errors: FaultCodeString;
+                errors?: FaultCodeString;
             };
+            incomingShippingNumber: null;
         };
         /** @description Type. */
         eventType: string;
@@ -2005,6 +2038,7 @@ export type SearchPackagesResponse = {
     }[];
 };
 
+/** Typechecked 2025-08-02 */
 export type SearchCategoriesIdosellResponse = {
     /** @description List of IdoSell Categories */
     categoriesIdoSell: {
@@ -2016,43 +2050,62 @@ export type SearchCategoriesIdosellResponse = {
         productsCount: number;
         /** @description Information about IdoSell Category in a given language  */
         categoryIdoSellLangsData: {
-            /** @description Language ID (code in ISO 639-2). */
-            languageId: string;
-            /** @description IdoSell Category name */
-            categoryIdoSellName: string;
-            /** @description IdoSell Category pathname */
-            categoryIdoSellPath: string;
-        }[];
+            [language: string]: {
+                /** @description Language ID (code in ISO 639-2). */
+                languageId: string;
+                /** @description IdoSell Category name */
+                categoryIdoSellName: string;
+                /** @description IdoSell Category pathname */
+                categoryIdoSellPath: string;
+                }
+        } | [];
     }[];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type SearchOpinionsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
+        /** @example 1 */
         id: number;
+        /** @example content */
         content: string;
+        /** @example createDate */
         createDate: string;
-        points: "1" | "2" | "3" | "4" | "5";
+        /** */
+        points: 0 | 1 | 2 | 3 | 4 | 5;
         confirmed: boolean;
+        /** @example rating */
         rating: string;
         /** @description Customer language ID. */
         language: string;
+        /** @example host */
         host: string;
         /** @description Shop Id */
         shopId: number;
+        /** @example 1 */
         scorePositive: number;
+        /** @example 1 */
         scoreNegative: number;
-        picture: {
+        picture?: {
             large: {
+                /** @example url */
                 url: string;
+                /** @example 1 */
                 width: number;
+                /** @example 1 */
                 height: number;
+                /** @example hash */
                 hash: string;
             };
             small: {
+                /** @example url */
                 url: string;
+                /** @example 1 */
                 width: number;
+                /** @example 1 */
                 height: number;
+                /** @example hash */
                 hash: string;
             };
         };
@@ -2060,9 +2113,11 @@ export type SearchOpinionsResponse = {
         client: {
             /** @description Customer's login. */
             login: string;
+            /** @example 1 */
             id: number;
         };
         order: {
+            /** @example 1 */
             serialNumber: number;
         };
         /** @description Reply to an opinion */
@@ -2074,6 +2129,7 @@ export type SearchOpinionsResponse = {
     }[];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type SearchDeliveryTimeResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -2083,16 +2139,16 @@ export type SearchDeliveryTimeResponse = {
         sizeId: string;
         /** @description Size name */
         sizePanelName: string;
-        /* @description Product stock quantity */
+        /** @description Product stock quantity */
         productSizeQuantity: number;
         /** @description Producer code */
         productProducerCode: string;
         /** @description External product system code for size. */
         productSizeCodeExternal: string;
         /** @description Number of days required to prepare product for shipment */
-        deliveryTimeDays: number;
+        deliveryTimeDays?: number;
         /** @description Number of hours required to prepare product for shipment */
-        deliveryTimeHours: number;
+        deliveryTimeHours?: number;
         /** @description Error number */
         errno: number;
         /** @description Error information. */
@@ -2162,54 +2218,57 @@ export type SearchNewsletterSmsResponse = SearchNewsletterResponse<{
     phone_cellular: string;
 }>;
 
+/** Typechecked 2025-08-02 */
 export type GetStocksdocumentsProductsResponse = {
     /** @description Products list. */
     products: {
         /** @description Stock keeping unit. */
         product: number;
         /** @description Product name. */
-        name: string;
+        name?: string;
         /** @description Product size ID. */
         size: string;
         /** @description Size name */
-        sizeName: string;
+        sizeName?: string;
+        /** @example 1 */
         quantity: number;
-        ordersQuantity: {
+        ordersQuantity?: {
             /** @description Order ID. If the products are not required for the order (they are collected to stock), 0 is returned. */
             orderSerialNumber: number;
-            /* @description Product quantity. */
+            /** @description Product quantity. */
             productQuantity: number;
         }[];
-        /* @description Gross purchase price */
+        /** @description Gross purchase price */
         productPurchasePriceGross: number;
-        /* @description Net purchase price */
+        /** @description Net purchase price */
         productPurchasePriceNet: number;
-        /* @description Value of VAT */
+        /** @description Value of VAT */
         productVat: number;
         /** @description Currency ID */
         currencyId: string;
         /** @description External system code. */
-        sizeCodeExternal: string;
+        sizeCodeExternal?: string;
         /** @description Producer code. */
-        sizeCodeProducer: string;
+        sizeCodeProducer?: string;
         /** @description Product type on the document. */
         typeOnDocument: "temporaryProduct" | "existingProduct";
         /** @description Warehouse location ID.  The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> . */
         locationId: number;
         /** @description Storage location code */
-        locationCode: string;
+        locationCode: string | null;
         /** @description Warehouse location full path.  The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> . */
-        locationPath: string;
+        locationPath: string | null;
     }[];
 } & PagedSnakecaseResponse;
 
+/** Typechecked 2025-08-02 */
 export type GetStocksdocumentsDocumentsResponse = {
     /** @description List of documents. */
     stocksDocuments: {
         /** @description Document identifier. */
         stockDocumentId: number;
         /** @description Document number. */
-        stockDocumentNumber: string;
+        stockDocumentNumber?: string;
         /** @description Document type. */
         stockDocumentType: "pz" | "pw" | "px" | "rx" | "rw" | "wz" | "mm" | "zw";
         /** @description Document status. */
@@ -2219,7 +2278,7 @@ export type GetStocksdocumentsDocumentsResponse = {
         /** @description Stock ID */
         stockId: number;
         /** @description Source warehouse ID */
-        stockSourceId: number;
+        stockSourceId?: number;
         /** @description Document issue date in the YYYY-MM-DD HH:MM:SS format */
         openDate: string;
         /** @description User who issued the document */
@@ -2237,32 +2296,34 @@ export type GetStocksdocumentsDocumentsResponse = {
         /** @description The user who caused the change in stock */
         stockOperationUser: string;
         /** @description Delivery on the way. */
-        deliveryOnTheWay: boolean;
+        deliveryOnTheWay?: boolean;
         /** @description Planned date of acceptance of delivery. */
-        plannedDeliveryDate: string;
+        plannedDeliveryDate?: string;
         /** @description Products available in presales. */
-        productsInPreorder: string;
+        productsInPreorder?: string;
         /** @description Supplier ID. */
-        delivererId: number;
+        delivererId?: number;
         /** @description Purchase document */
-        purchaseDocument: {
+        purchaseDocument?: {
             /** @description Type of purchase document */
             type: "national_VAT_invoice" | "other_purchase_document" | "invoice_without_VAT" | "imports_from_outside_the_EU";
             /** @description Number of purchase document */
             number: string;
         };
         /** @description Order serial number. */
-        orderNumber: number;
+        orderNumber?: number;
         /** @description Supplier name. */
-        delivererName: string;
+        delivererName?: string;
         /** @description Issue date of purchase document */
-        saleDocumentCreationDate: string;
+        saleDocumentCreationDate?: string;
         /** @description settled at */
-        priceType: string;
+        priceType?: string;
     }[];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type GetClientsResponse = {
+    /** @description Object contains detailed information on result of operation. */
     results: {
         /** @description Unique client's number. */
         clientId: number;
@@ -2274,15 +2335,15 @@ export type GetClientsResponse = {
         clientCodeExternal: string;
         /** @description E-mail address. */
         clientEmail: string;
-        /** @description Customer type, possible values:- private - if client sex is not determined,- male - when client is a male,- female - when a customer is a woman,- firm - when client is company. */
+        /** @description Customer type, possible values: - private - if client sex is not determined, - male - when client is a male, - female - when a customer is a woman, - firm - when client is company. */
         clientType: string;
-        /** @description Display as partner on the page:n - No,y - Yes. */
-        showClientAsPartner: "y" | "n";
+        /** @description Display as partner on the page: n - No, y - Yes. */
+        showClientAsPartner: "y" | "n" | "";
         operator: {
             /** @description Customer's login. */
-            login: string;
+            login?: string;
             /** @description Name. */
-            name: string;
+            name?: string;
         };
         /** @description Is client without registration */
         isUnregistered: "y" | "n";
@@ -2328,12 +2389,12 @@ export type GetClientsResponse = {
             currencyId: string;
             /** @description Determines, whether client is a wholesaler. */
             clientIsWholesaler: "yes" | "no";
-            /** @description Is the customer VAT registered:always - always,never - never,neverconfirm - no, this requires confirmation,bycountry - settings as per country. */
+            /** @description Is the customer VAT registered: always - always, never - never, neverconfirm - no, this requires confirmation, bycountry - settings as per country. */
             clientVatPreferences: "always" | "never" | "neverconfirm" | "bycountry";
             /** @description Discount group ID. */
             clientGroupDiscountNumber: number;
             /** @description Customer group name. */
-            clientGroupDiscountName: string;
+            clientGroupDiscountName: string | null;
         };
         /** @description List of shops where a customer agreed or didn't agree to receive email newsletter. */
         newsletterEmailApprovalsData: {
@@ -2351,25 +2412,25 @@ export type GetClientsResponse = {
         }[];
         /** @description Information about customer balance. */
         clientBalances: {
-            /* @description Balance value. */
+            /** @description Balance value. */
             clientBalanceAmount: number;
             /** @description Currency ID */
             currencyId: string;
         }[];
         /** @description Customer trade credit information. */
         clientTradeCredit: {
-            /* @description Granted credit limit. */
+            /** @description Granted credit limit. */
             clientTradeCreditLimit: number;
             /** @description Currency ID */
             currencyId: string;
-            /* @description Used credit limit. */
+            /** @description Used credit limit. */
             clientTradeCreditUsed: number;
         };
         /** @description The parameter stores information about who acquired the customer */
-        affiliateLogin: string;
+        affiliateLogin: string | null;
         /** @description ID of a partner who acquired a given customer. */
         affiliateId: number;
-        /* Format: date
+        /** Format: date
          * @description Client registration date */
         clientRegistrationDate: string;
         /** @description List of shops the customer is active in */
@@ -2382,6 +2443,7 @@ export type GetClientsResponse = {
     }[];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type GetReturnsResponse = {
     /** @description Element that contains the list of found returns. */
     returns: {
@@ -2410,37 +2472,37 @@ export type GetReturnsResponse = {
             /** @description Size identifier. */
             size: string;
             /** @description Code of outside system for product. */
-            product_sizecode: string;
-            /* @description Product quantity. */
+            product_sizecode: string | null;
+            /** @description Product quantity. */
             quantity: number;
-            /* @description Price. */
+            /** @description Price. */
             price: number;
-            /* @description Net price. */
+            /** @description Net price. */
             price_net: number;
-            /* @description Order value. */
+            /** @description Order value. */
             order_price: number;
-            /* @description Net order worth. */
+            /** @description Net order worth. */
             order_price_net: number;
             /** @description Client's remarks on product. */
-            remarks: string;
-            /* @description Loyalty points. */
+            remarks?: string;
+            /** @description Loyalty points. */
             points: number;
-            /* @description Accrued loyalty points. */
+            /** @description Accrued loyalty points. */
             points_awarded: number;
             /** @description Product type. */
             product_type: string;
-            serial_numbers: string[];
+            serial_numbers: Record<string,string> | null;
             /** @description Additional information. */
             product_order_additional: string;
         }[];
         /** @description Added on. */
         date_add: string;
         /** @description Ending date */
-        date_end: string;
+        date_end: string | null;
         /** @description Consignment number assigned to return. */
         package_number: string;
         /** @description Last modification date. */
-        date_last_edit: string;
+        date_last_edit: string | null;
         /** @description Currency. */
         currency: string;
         /** @description Note to return used by IAI Bridge. */
@@ -2449,11 +2511,11 @@ export type GetReturnsResponse = {
         include_shipping_cost: string;
         /** @description Refund additional fee for the payment?. */
         additional_payment_cost: string;
-        /* @description Cost for shop. */
+        /** @description Cost for shop. */
         shop_shipping_cost: number;
         /** @description Return shipping number sent by the customer to the seller */
         incomingShippingNumber: string;
-        /* @description Cost for shop - VAT rate */
+        /** @description Cost for shop - VAT rate */
         shop_shipping_cost_vat: number;
         /** @description Product return method. */
         return_method: string;
@@ -2489,36 +2551,41 @@ export type GetReturnsResponse = {
             payformName: string;
             /** @description Account. */
             payformAccount: string;
-            /* @description Payment amount. */
+            /** @description Payment amount. */
             paymentValue: number;
             /** @description Currency ID */
             currencyId: string;
             /** @description Number of voucher used in a payment. */
-            voucherNumber: string;
+            voucherNumber?: string;
             /** @description Number of gift card used in a payment. */
-            giftCardNumber: string;
+            giftCardNumber?: string;
         }[];
+        /** @description Shop return shipping cost */
+        returnShopShippingCost: number;
+        /** @description Shop return shipping cost - VAT rate */
+        returnShopShippingCostVat: number;
         /** @description Shipping cost of the order */
         shippingCost: {
-            /* @description Gross value. */
+            /** @description Gross value. */
             gross: number;
-            /* @description Net value. */
+            /** @description Net value. */
             net: number;
-            /* @description VAT rate. */
+            /** @description VAT rate. */
             vat: number;
         };
         /** @description Additional costs for the payment of the order */
         additionalPaymentCostValue: {
-            /* @description Gross value. */
+            /** @description Gross value. */
             gross: number;
-            /* @description Net value. */
+            /** @description Net value. */
             net: number;
-            /* @description VAT rate. */
+            /** @description VAT rate. */
             vat: number;
         };
     }[];
 } & PagedSnakecaseResponse;
 
+/** Typechecked 2025-08-02 */
 export type GetRmaResponse = {
     /** @description Complaints. */
     rmas: {
@@ -2529,9 +2596,9 @@ export type GetRmaResponse = {
         /** @description Customer ID */
         clientNumber: number;
         /** @description ID of the product which the complaint concers */
-        productId: string;
+        productId: string | null;
         /** @description Product name. */
-        productName: string;
+        productName: string | null;
         /** @description Current complaint status */
         rmaStatus: string;
         /** @description Complaint creation date in the YYYY-MM-DD format */
@@ -2551,7 +2618,7 @@ export type GetRmaResponse = {
         /** @description Stock ID */
         stockId: number;
         /** @description Login of the user handling the complaint */
-        operatorLogin: string;
+        operatorLogin: string | null;
         /** @description External auction number connected to the order which the complaint concerns */
         orderAuctionNumber: string;
         /** @description Order ID. */
@@ -2570,27 +2637,27 @@ export type GetRmaResponse = {
             size: string;
             /** @description Size code */
             productSizecode: string;
-            /* @description Product quantity */
+            /** @description Product quantity */
             quantity: number;
-            /* @description Product price */
+            /** @description Product price */
             price: number;
-            /* @description Product net price */
+            /** @description Product net price */
             priceNet: number;
-            /* @description Order price */
+            /** @description Order price */
             orderPrice: number;
-            /* @description Order price net */
+            /** @description Order price net */
             orderPriceNet: number;
-            /* @description Points */
+            /** @description Points */
             points: number;
-            /* @description Awarded points */
+            /** @description Awarded points */
             pointsAwarded: number;
             /** @description Product types: `product_item` - single or multi variant product, `product_free` - free product, `product_packaging` - packaging, `product_bundle` - bundle, `product_collection` - collection, `product_service` - service, `product_virtual` - virtual, `product_configurable` - product with configurator */
-            productType: string;
-            /** @description Product serial numbers"1","2"] */
-            serial_numbers: string[];
+            productType: string | null;
+            /** @description Product serial numbers "1", "2" ] */
+            serial_numbers?: Record<string,string>;
             /** @description Additional information */
             productOrderAdditional: string;
-            /** @description List of attachments"1","2"] */
+            /** @description List of attachments "1", "2" ] */
             attachments: string[];
         }[];
         /** @description Customer correspondence */
@@ -2605,14 +2672,15 @@ export type GetRmaResponse = {
             messageAddTime: string;
         }[];
         /** @description Information on error that occurred during gate call. */
-        errors: FaultCodeString
+        errors?: FaultCodeString;
     }[];
     /** @description Flag marking errors in the result. */
     isErrors: boolean;
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type GetConfigResponse = {
-    /** @description Customers ID */
+    /** @example 1 */
     client_id: number;
     /** @description Dedicated server. */
     dedicated_server: boolean;
@@ -2671,13 +2739,13 @@ export type GetConfigResponse = {
         /** @description Fiscal and settlement settings */
         taxSettings: {
             /** @description Sales date settings on sales documents for prepaid orders */
-            saleDatePrepaid: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument";
+            saleDatePrepaid: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument" | null;
             /** @description Sales date settings on sales documents for orders paid with cash on delivery */
-            saleDateCashOnDelivery: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument";
+            saleDateCashOnDelivery: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument" | null;
             /** @description Sales date settings on sales documents for orders paid with trade credit */
-            saleDateTradeCredit: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument";
+            saleDateTradeCredit: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument" | null;
             /** @description Configuration of default currency rate for orders */
-            currencyRate: "currentDay" | "previousDay";
+            currencyRate: "currentDay" | "previousDay" | null;
         };
     };
     panel_literals: {
@@ -2710,7 +2778,7 @@ export type GetConfigResponse = {
         active_price_comparers: {
             /** @description Id */
             id: number;
-            /* @description Default price difference. */
+            /** @description Default price difference. */
             default_price_percent_diff: number;
         }[];
         /** @description Url to default product icon. */
@@ -2763,9 +2831,9 @@ export type GetConfigResponse = {
         defaultConfigReturns: {
             /** @description Refund a shipping fee? */
             defaultIncludeShippingCost: string;
-            /** @description How to proceed with a refund.Available values:"fullOnFirstReturn" - refund all at the first refund,"proportionalToProductQuantity" - refund proportionally to a number of products in an original order,"fullOnAllProductsReturn" - refund at the return of a whole order. */
+            /** @description How to proceed with a refund. Available values: "fullOnFirstReturn" - refund all at the first refund, "proportionalToProductQuantity" - refund proportionally to a number of products in an original order, "fullOnAllProductsReturn" - refund at the return of a whole order. */
             methodReturnShippingCost: "fullOnFirstReturn" | "proportionalToProductQuantity" | "fullOnAllProductsReturn";
-            /** @description Refund.Available values:"shipping" - delivery cost calculated for a primary order,"positive_min_shipping" - the lowest amount of delivery costs available at the moment of placing an order for the selected delivery method (more than zero but less than actual cost charged),"min_shipping" - absolute the lowest delivery cost available at the moment of placing an order for the selected delivery method (for free shipping it is zero). */
+            /** @description Refund. Available values: "shipping" - delivery cost calculated for a primary order, "positive_min_shipping" - the lowest amount of delivery costs available at the moment of placing an order for the selected delivery method (more than zero but less than actual cost charged), "min_shipping" - absolute the lowest delivery cost available at the moment of placing an order for the selected delivery method (for free shipping it is zero). */
             defaultIncludeShippingCostValue: "shipping" | "positive_min_shipping" | "min_shipping";
             /** @description Refund a surcharge for a payment method used in an order? */
             defaultAdditionalPaymentCost: string;
@@ -2781,7 +2849,7 @@ export type GetConfigResponse = {
         unit_name: string;
         /** @description Accuracy (number of places after comma). */
         unit_precision: number;
-        /** @description Object determines unit visibility in panel.List of values:"y" - unit visible in panel,"n" - unit invisible in panel. */
+        /** @description Object determines unit visibility in panel. List of values: "y" - unit visible in panel, "n" - unit invisible in panel. */
         unit_visible: string;
         lang_data: {
             /** @description Language code. Codes are compliant with ISO-639-3 standard. */
@@ -2795,7 +2863,7 @@ export type GetConfigResponse = {
         }[];
     }[];
     /** @description List of warranties. */
-    warranties: {
+    warranties?: {
         /** @description Id */
         id: number;
         /** @description Name */
@@ -2817,10 +2885,10 @@ export type GetConfigResponse = {
     vat_rates: {
         /** @description Id */
         id: number;
-        /* @description VAT rate value. */
+        /** @description VAT rate value. */
         value: number;
     }[];
-    auction_systems: {
+    auction_systems?: {
         /** @description Auction system ID. */
         auction_id: number;
         /** @description Auction site ID. */
@@ -2836,16 +2904,16 @@ export type GetConfigResponse = {
         /** @description Name */
         name: string;
     }[];
-    rebate_profiles: {
+    rebate_profiles?: {
         /** @description Id */
         id: number;
         /** @description Name */
         name: string;
     }[];
     pictures_settings: {
-        /** @description Object determines if the product icon should be scaled.List of values:"y" - icon is scaled,"n" - icon is unscaled. */
+        /** @description Object determines if the product icon should be scaled. List of values: "y" - icon is scaled, "n" - icon is unscaled. */
         icon_resize: string;
-        /** @description Graphic quality in percent (0-100). ."0" - the worst quality,"100" - the best quality (no compression). */
+        /** @description Graphic quality in percent (0-100). . "0" - the worst quality, "100" - the best quality (no compression). */
         icon_quality: number;
         /** @description Large icon width in pixels. */
         icon_large_width: number;
@@ -2863,7 +2931,7 @@ export type GetConfigResponse = {
         group_icon_height: number;
         /** @description Group icon height in pixels. */
         group_icon_width: number;
-        /** @description Photo quality in percents (0-100)."0" - the worst quality,"100" - the best quality (no compression). */
+        /** @description Photo quality in percents (0-100). "0" - the worst quality, "100" - the best quality (no compression). */
         picture_quality: number;
         /** @description Large photo width in pixels. */
         picture_large_width: number;
@@ -2878,16 +2946,18 @@ export type GetConfigResponse = {
         /** @description Small photo height in pixels. */
         picture_small_height: number;
     };
-    price_comparers: {
-        /** @description Id */
-        id: number;
-        /** @description key */
-        key: string;
-        /** @description Name */
-        name: string;
-        /** @description Information about whether price comparison service is active. */
-        active: string;
-    }[];
+   price_comparers: {
+        [id: string]: {
+            /** @description Id */
+            id?: number;
+            /** @example key */
+            key?: string;
+            /** @description Name */
+            name?: string;
+            /** @description Information about whether price comparison service is active. */
+            active?: string;
+        }
+    } | [];
     /** @description Content of the column "Product or service name" on sales documents. */
     inv_prod_name_templace: string;
     /** @description List of document printers. */
@@ -2898,7 +2968,7 @@ export type GetConfigResponse = {
         name: string;
         /** @description Address. */
         address: string;
-        /** @description key */
+        /** @example key */
         key: string;
     }[];
     /** @description List of fiscal printers. */
@@ -2909,14 +2979,15 @@ export type GetConfigResponse = {
         name: string;
         /** @description Address. */
         address: string;
-        /** @description key */
+        /** @example key */
         key: string;
     }[];
     /** @description Monitoring address protocol from the main Printer window. */
     typeOfPrinterProtocolAdress: string;
 };
 
-export type GetShopsDataResponse = GetConfigResponse & {
+/** Typechecked 2025-08-02 */
+export type GetShopsDataResponse = Omit<GetConfigResponse, 'panel_settings'|'shops'> & {
 /** @description Shop contact data */
     shop_contact: {
         /** @description shop ID */
@@ -2933,28 +3004,7 @@ export type GetShopsDataResponse = GetConfigResponse & {
             contact_phone_number: string;
         }[];
     }[];
-    panel_settings: {
-        /** @description Default panel language. */
-        default_lang_id: string;
-        /** @description Panel base currency. */
-        basecurrency_id: string;
-        /** @description Manual stock quantity modification restriction. */
-        stocks_change_disabled: string;
-        /** */
-        stock_state_config: "uncontrolled" | "bridge" | "outside";
-        /** */
-        main_stock_system: "other" | "iai";
-        /** @description Sales documents in third party application. */
-        salesDocumentsAreCreatedByClient: boolean;
-        search_by_code: {
-            /** @description IAI code. */
-            code_iai: boolean;
-            /** @description External system code. */
-            code_extern: boolean;
-            /** @description Producer code. */
-            code_producer: boolean;
-        };
-    };
+    panel_settings: ShopsPanelSettings;
     /** @description List of stores. */
     shops: {
         /** @description Shop Id. */
@@ -3019,42 +3069,52 @@ export type GetShopsDataResponse = GetConfigResponse & {
             active: boolean;
         };
     }[];
-}
+};
 
+/** Typechecked 2025-08-02 */
 export type GetSizechartsResponse = {
     sizeCharts: {
+        [id: string]: {
         /** @description Id */
-        id: number;
-        /** @description Name in panel */
-        nameInPanel: string;
-        /** @description Display mode */
-        displayMode: string;
-        languagesData: {
-            /** @description Customer language ID. */
-            language: string;
-            columns: {
-                /** @description Column number */
-                columnNumber: number;
-                /** @description Column name */
-                columnTitle: string;
+            id: number;
+            /** @description Name in panel */
+            nameInPanel: string;
+            /** @description Display mode */
+            displayMode: string;
+            languagesData: {
+                /** @description Customer language ID. */
+                language: string;
+                columns: {
+                    [column: string]: {
+                        /** @description Column number */
+                        columnNumber: number;
+                        /** @description Column name */
+                        columnTitle: string;
+                    }
+                } | [];
+                /** @description List of sizes */
+                sizes?: {
+                    [column: string]: {
+                        /** @description Size identifier */
+                        sizeId: string;
+                        /** @description Priority */
+                        priority: number;
+                        descriptions: {
+                            [column: string]: {
+                                /** @description Column number */
+                                columnNumber: number;
+                                /** @description Value */
+                                value: string;
+                            }
+                        } | [];
+                    }
+                } | [];
             }[];
-            /** @description List of sizes */
-            sizes: {
-                /** @description Size identifier */
-                sizeId: string;
-                /** @description Priority */
-                priority: number;
-                descriptions: {
-                    /** @description Column number */
-                    columnNumber: number;
-                    /** @description Value */
-                    value: string;
-                }[];
-            }[];
-        }[];
-    }[];
+        }
+    } | [];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type GetLocationsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -3082,6 +3142,7 @@ export type GetLocationsResponse = {
     }[];
 } & PagedResponse;
 
+/** Typechecked 2025-08-02 */
 export type GetWarrantiesResponse = {
     warranties: {
         /** @description Warranty language id (numeric). */
@@ -3106,5 +3167,242 @@ export type GetWarrantiesResponse = {
         }[];
     }[];
 } & PagedSnakecaseResponse;
+
+/** Typechecked 2025-08-02 */
+export type GetCategoriesResponse = {
+    last_changed_time: string;
+    /** @description Element containing a list of found results on a given page. */
+    categories: {
+        /** @description Category id. */
+        id: number;
+        /** @description Parent category ID. */
+        parent_id: number;
+        /** @description PKWiU number. */
+        pkwiu: string;
+        /** @description Priority. */
+        priority: number;
+        /** @description Number of products assigned to category. */
+        product_count: number;
+        /** @description Category ID on Allegro auction site. */
+        allegro_category_id?: number;
+        /** @description Category ID on eBay auction site. */
+        ebay_category_id?: number;
+        /** @description Category ID on WP shopping mall. */
+        wp_category_id?: number;
+        /** @description Category ID on Onet shopping mall. */
+        onet_category_id?: number;
+        /** @description Category ID on Interia shopping mall. */
+        interia_category_id?: number;
+        /** @description Store mask code. */
+        shop_mask?: number;
+        /** @description Array of IDs of stores, in which category is present. */
+        shops?: number[];
+        lang_data: {
+            /** @description Language code. Codes are compliant with ISO-639-3 standard. */
+            lang_id: string;
+            /** @description Category singular name. */
+            singular_name: string;
+            /** @description Category plural name. */
+            plural_name: string;
+            /** @description Category description. */
+            description: string;
+        }[];
+        vatMappings?: {
+            /** @example 1 */
+            regionId: number;
+            /** */
+            vat: number;
+        }[];
+    }[];
+} & PagedSnakecaseResponse;
+
+/** Typechecked 2025-08-02 */
+export type GetMenuResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Menu element ID. */
+        item_id: number;
+        /** @description Parent menu element ID. */
+        parent_id: number;
+        lang_data: {
+            /** @description Language ID. */
+            lang_id: string;
+            /** @description Menu element text identifier. Example: "item1\item2\item3". */
+            item_textid: string;
+            /** @description Menu element name. */
+            name: string;
+            /** @description Menu element order. */
+            priority: number;
+            /** @description Description displayed at the top of products list. */
+            description: string;
+            /** @description Description displayed at the bottom of products list. */
+            description_bottom: string | null;
+            /** @description Own link. */
+            link: string;
+            /** */
+            item_type: "products" | "navigation" | "products_with_rich_text" | "navigation_with_rich_text" | "rich_text" | "static" | "link";
+            /** @description Meta title  . */
+            meta_title: string;
+            /** @description Meta description. */
+            meta_description: string;
+            /** @description Meta - keywords. */
+            meta_keywords: string;
+            /** @description URL address */
+            url: string;
+            /** @description Link target attribute. !_self - open on the same page, !_blank - open in a new page. */
+            href_target: "_self" | "_blank";
+            sort?: {
+                /** @description Default product list view. */
+                view: "normal" | "list" | "gallery";
+                /** @description Sort by. */
+                sort_by: "date" | "priority" | "priorityname" | "name" | "price";
+                /** @description Sort order. */
+                sort_order: "ASC" | "DESC";
+            }[];
+            display_limit?: {
+                /** @description Default product list view. */
+                view: "normal" | "list" | "gallery";
+                /** @description Limit. */
+                limit: number;
+            }[];
+            /** */
+            default_view: "normal" | "list" | "gallery";
+            /** @description Headline name. Leaving this value empty will automatically generate name basing on a name in menu: */
+            headline_name: string;
+            /** @description Display by default nested elements: n - no, y - yes. */
+            expand: "n" | "y";
+            /** @description Element of the menu hidden from the clients: n - no, y - yes. */
+            hidden: "n" | "y";
+            /** @description After clicking on the element in the menu:: expand - Display subelements of the menu if any available, if not - create, reload - reload the page and open. */
+            action: "reload" | "expand" | "";
+            /** @description Element "show all" is:: products_list - link to the list of products, navigation_site - link to the "Navigation" page. */
+            display_all_type: "products_list" | "navigation_site" | "";
+            /** @description Display element "show all": n - no, y - yes. */
+            display_all: "n" | "y" | "";
+            /** @description Disable changing "sort by" for customers: n - no, y - yes, default - #!domyślny!#. */
+            allow_sort_change: "n" | "y" | "default" | "";
+            /** @description Disable possibility of changing the number of displayed products on the page by customers : n - no, y - yes, default - #!domyślny!#. */
+            allow_limit_change: "n" | "y" | "default" | "";
+            /** @description Link to graphic on the "navigation" page. */
+            gfx_nav?: string;
+            /** @description Graphics in menu: n - no, y - yes. */
+            node_gfx: "n" | "y" | null;
+            /** @description Type of graphics - When the cursor is on the link: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_active_type?: "img" | "img_rwd";
+            /** @description Link to graphic - When the cursor is on the link. */
+            gfx_active?: string;
+            /** @description Link to graphic - When the cursor is on the link - Desktop. */
+            gfx_active_desktop?: string;
+            /** @description Link to graphic - When the cursor is on the link - Tablet. */
+            gfx_active_tablet?: string;
+            /** @description Link to graphic - When the cursor is on the link - Mobile. */
+            gfx_active_mobile?: string;
+            /** @description Type of graphics - When the cursor is outside link: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_inactive_type?: "img" | "img_rwd";
+            /** @description Link to graphic - When the cursor is outside link. */
+            gfx?: string;
+            /** @description Link to graphic - When the cursor is outside link - Desktop. */
+            gfx_inactive_desktop?: string;
+            /** @description Link to graphic - When the cursor is outside link - Tablet. */
+            gfx_inactive_tablet?: string;
+            /** @description Link to graphic - When the cursor is outside link - Mobile. */
+            gfx_inactive_mobile?: string;
+            /** @description Type of graphics - When the link is opened: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_omo_type?: "img" | "img_rwd";
+            /** @description Link to graphic - When the link is opened. */
+            gfx_onmouseover?: string;
+            /** @description Link to graphic - When the link is opened - Desktop. */
+            gfx_omo_desktop?: string;
+            /** @description Link to graphic - When the link is opened - Tablet. */
+            gfx_omo_tablet?: string;
+            /** @description Link to graphic - When the link is opened - Mobile. */
+            gfx_omo_mobile?: string;
+            /** @description Add a canonical link that points to the parent menu item: n - no, y - yes. */
+            canonical_to_parent: "n" | "y" | null;
+            /** @description Meta robots index settings: default - automatically generate, index - index, noindex - noindex. */
+            meta_robots_index: "default" | "index" | "noindex" | null;
+            /** @description Meta robots follow settings: default - automatically generate, follow - follow, nofollow - nofollow. */
+            meta_robots_follow: "default" | "follow" | "nofollow" | null;
+        }[];
+    }[];
+};
+
+export type GetAuctionDetailsResponse = {
+    /** @description External listings - orders table. */
+    auctions: {
+        /** @description Order ID. */
+        orderIdent: {
+            /** @description Identifier type. */
+            orderIdentType: "orders_id" | "orders_sn";
+            /** @description ID value. */
+            identValue: string;
+        };
+        /** @description The auctions array for the order. */
+        auctionsDetails?: {
+            /** @description Auction number. */
+            auctionItemId: string | number;
+            /** @description Link to the auction, from which the order came. */
+            auctionUrl: string;
+            /** @description Auction start date. */
+            auctionStartDate: string;
+            /** @description Auction end date. */
+            auctionEndingDate: string;
+            /** @description Transaction details. */
+            auctionTransactionDetails: string;
+        }[];
+        /** @description External marketplace service name. */
+        auctionServiceName?: string | null;
+        /** @description External marketplace service address. */
+        auctionServiceUrl?: string | null;
+        /** @description Auction service account Id . */
+        auctionsAccountId?: string;
+        /** @description External marketplace service account name (which the listing was created from). */
+        auctionsAccountLogin?: string;
+        /** @description Account ID on auction site. */
+        auctionClientId?: string;
+        /** @description Account login on auction site. */
+        auctionClientLogin?: string;
+        /** @description detailed client data. */
+        auctionClientDetails?: string;
+        /** @description Buyer comment. */
+        auctionFeedback?: string;
+        /** @description Order ID in the auction service. */
+        auctionOrderId?: string;
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString;
+    }[];
+    /** @description Flag marking errors in the result. */
+    isErrors: boolean;
+};
+
+export type GetOrdersDocumentsResponse = {
+    /** @description List of documents. */
+    documents: {
+        /** @description Order serial number. */
+        orderSerialNumber: number;
+        /** @description Document type */
+        documentType: "sales_confirmation" | "vat_invoice" | "corrective_vat_invoice" | "advance_vat_invoice" | "final_advance_vat_invoice" | "pro_forma_invoice" | "advance_pro_forma_invoice" | "final_advance_pro_forma_invoice" | "delivery_note" | "fiscal_receipt" | "fiscal_invoice";
+        /** @description Document id. */
+        id?: number;
+        /** @description Document number. */
+        documentId?: string;
+        /** @description Document name */
+        documentName?: string;
+        /** @description Base64 encoded PDF document. */
+        pdfWithDocumentsInBase64?: string;
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString;
+        /** @description Sale date. ISO 8602 format. */
+        documentPurchaseDate?: string | null;
+        /** @example documentIssuedDate */
+        documentIssuedDate?: string | null;
+        /** @description Date of paying for order. */
+        orderPaymentDate?: string | null;
+        /** @description Document data. */
+        documentData?: string;
+        /** @description The identifier of the corrected invoice. */
+        correctedInvoiceId?: string;
+    }[];
+};
 
 export { }

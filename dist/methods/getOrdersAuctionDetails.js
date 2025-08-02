@@ -4,7 +4,7 @@ export default (object) => {
     object.gate = { method: 'get', node: '/orders/auctionDetails' };
     object.custom = {
         ids: nest("orders", "", { "identType": "order_id" }, true),
-        serialNumbers: nest("orders", "", { "identType": "order_sn" }, true)
+        serialNumbers: nest("orders", "", { "identType": "orders_sn" }, true)
     };
     return new Proxy(object, paramsProxy);
 };
