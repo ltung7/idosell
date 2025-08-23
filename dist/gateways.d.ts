@@ -1,5 +1,5 @@
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject } from "./app.d.ts"
-import type { GetClientsResponse, SearchClientsCrmResponse, SearchGiftcardsResponse, SearchNewsletterEmailResponse, SearchNewsletterSmsResponse, GetMenuResponse, GetAuctionDetailsResponse, GetOrdersDocumentsResponse, SearchOpinionsResponse, SearchOrdersResponse, SearchPackagesResponse, GetCategoriesResponse, SearchCategoriesIdosellResponse, SearchDeliveryTimeResponse, SearchProductsParametersResponse, SearchProductsResponse, GetReturnsResponse, GetRmaResponse, GetSizechartsResponse, GetConfigResponse, GetShopsDataResponse, GetWarrantiesResponse, GetLocationsResponse, GetStocksdocumentsDocumentsResponse, GetStocksdocumentsProductsResponse }  from "./responses.d.ts"
+import type { GetClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, SearchClientsGiftcardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, GetConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersPickupPointsResponse, GetMenuResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, GetOrdersDocumentsResponse, SearchOrdersOpinionsResponse, SearchOrdersResponse, GetOrdersPackagesResponse, GetOrdersProfitabilityResponse, GetPackagesLabelsResponse, SearchPackagesResponse, GetProductsSKUbyBarcodeResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, GetProductsCategoriesResponse, SearchCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, GetProductsIdBySizecodeResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, SearchProductsParametersResponse, SearchProductsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, GetProductsSizesResponse, GetProductsStocksResponse, GetResponsibilityEntitiesResponse, GetReturnsResponse, GetRmaResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, GetSizesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, GetSystemUsersResponse, GetWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse }  from "./responses.d.ts"
 import * as ENUMS from "./enums";
 
 export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest> {
@@ -291,7 +291,7 @@ export interface DeleteClientsDeliveryAddressRequest extends AppendableGateway<D
     clientDeliveryAddressId: (clientDeliveryAddressId: number|string) => this
 }
 
-export interface GetClientsDeliveryAddressRequest extends Gateway {
+export interface GetClientsDeliveryAddressRequest extends Gateway<GetClientsDeliveryAddressResponse> {
     /** External system codes list. */
     clientCodesExternal: (value: string|string[]) => this;
     /** Customer ID. */
@@ -444,7 +444,7 @@ export interface PutClientsGiftcardsRequest extends AppendableGateway<PutClients
     set: (amount: number, currency: string) => this;
 }
 
-export interface SearchClientsGiftcardsRequest extends Gateway<SearchGiftcardsResponse> {
+export interface SearchClientsGiftcardsRequest extends Gateway<SearchClientsGiftcardsResponse> {
     /** List of gift cards */
     giftCards: (value: Array<JSObject>) => this;
     /** element is an element array of type searchGiftCards */
@@ -504,7 +504,7 @@ export interface PutClientsMembershipCardsRequest extends AppendableGateway<PutC
     errors: (errors: JSObject) => this
 }
 
-export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest,SearchNewsletterEmailResponse> {
+export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest,SearchClientsNewsletterEmailResponse> {
     shops: (value: Array<JSObject>) => this;
     /** Customer language ID. */
     language: (value: string) => this;
@@ -519,7 +519,7 @@ export interface SearchClientsNewsletterEmailRequest extends PagableGateway<Sear
     dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest,SearchNewsletterSmsResponse> {
+export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest,SearchClientsNewsletterSmsResponse> {
     shops: (value: Array<JSObject>) => this;
     /** Customer language ID. */
     language: (value: string) => this;
@@ -542,7 +542,7 @@ export interface DeleteClientsPayerAddressRequest extends AppendableGateway<Dele
     payerAddressId: (payerAddressId: number|string) => this
 }
 
-export interface GetClientsPayerAddressRequest extends PagableGateway<GetClientsPayerAddressRequest> {
+export interface GetClientsPayerAddressRequest extends PagableGateway<GetClientsPayerAddressRequest,GetClientsPayerAddressResponse> {
     /** Unique client's number. */
     clientId: (value: string) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -814,7 +814,7 @@ export interface PutClientsTagsRequest extends AppendableGateway<PutClientsTagsR
     tagValue: (tagValue: number|string) => this
 }
 
-export interface GetConfigVariablesRequest extends PagableGateway<GetConfigVariablesRequest> {
+export interface GetConfigVariablesRequest extends PagableGateway<GetConfigVariablesRequest,GetConfigVariablesResponse> {
     /** Which component is affected by the configuration. */
     type: (value: 'snippets_campaign') => this;
     /** List of item identifiers for given configuration type. Eg. snippet campaign identifiers. */
@@ -848,7 +848,7 @@ export interface DeleteConfigVariablesRequest extends Gateway {
     key: (value: string|string[]) => this;
 }
 
-export interface GetCouriersAssignedToShippingProfilesRequest extends Gateway {}
+export interface GetCouriersAssignedToShippingProfilesRequest extends Gateway<GetCouriersAssignedToShippingProfilesResponse> {}
 
 export interface GetCouriersRequest extends PagableGateway<GetCouriersRequest> {
     /** Country code in ISO 3166-1 standard. */
@@ -869,7 +869,7 @@ export interface DeleteCouriersPickupPointsRequest extends AppendableGateway<Del
     courierId: (courierId: number|string) => this
 }
 
-export interface GetCouriersPickupPointsRequest extends PagableGateway<GetCouriersPickupPointsRequest> {
+export interface GetCouriersPickupPointsRequest extends PagableGateway<GetCouriersPickupPointsRequest,GetCouriersPickupPointsResponse> {
     /** Courier ID. */
     courierId: (value: number|string) => this;
     /** Collection point ID. */
@@ -1355,12 +1355,12 @@ export interface PutMenuSortRequest extends AppendableGateway<PutMenuSortRequest
     recursive: (recursive: 'y'|'n') => this
 }
 
-export interface GetOrdersAnalyticsRequest extends Gateway {
+export interface GetOrdersAnalyticsRequest extends Gateway<GetOrdersAnalyticsResponse> {
     /** Array of order serial numbers. */
     orderSerialNumber: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetOrdersAuctionDetailsRequest extends Gateway<GetAuctionDetailsResponse> {
+export interface GetOrdersAuctionDetailsRequest extends Gateway<GetOrdersAuctionDetailsResponse> {
     /** Identifier type. */
     identType: (value: 'orders_id'|'orders_sn') => this;
     /** Orders Id values. */
@@ -1556,7 +1556,7 @@ export interface GetOrdersLabelsRequest extends Gateway {
     orderSerialNumber: (value: number|string) => this;
 }
 
-export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrdersOpinionsRequest,SearchOpinionsResponse> {
+export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrdersOpinionsRequest,SearchOrdersOpinionsResponse> {
     /** Review identification */
     opinion: (value: JSObject) => this;
     /** Orders. */
@@ -1662,6 +1662,8 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest> {
     orderSerialNumber: (orderSerialNumber: number|string) => this
     /** Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
     orderStatus: (orderStatus: string) => this
+    /** Order status id . */
+    orderStatusId: (orderStatusId: number|string) => this
     /** Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
     apiFlag: (apiFlag: 'none'|'registered'|'realized'|'registered_pos'|'realized_pos'|'registration_fault') => this
     /** API note added to order. */
@@ -1701,6 +1703,8 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     orderPrepaidStatus: (value: string) => this;
     /** Order status. Status list: "new" - not handled, "finished" - completed, "false" - false, "lost" - lost, "on_order" - in progress, "packed" - being picked, "ready" - ready, "canceled" - canceled by customer, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "suspended" - on hold, "joined" - merged, "finished_ext" - handled in FA application. */
     ordersStatuses: (value: string|string[]) => this;
+    /** Order statusses ids. */
+    ordersStatusesIds: (value: number|string|number[]|string[]) => this;
     shippmentStatus: (value: 'all'|'received'|'non-received') => this;
     /** Shipping companies (packages deliverers). */
     couriersName: (value: string|string[]) => this;
@@ -1784,7 +1788,7 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     fromEbay: (allegroAccount?: string) => this;
 }
 
-export interface GetOrdersPackagesRequest extends Gateway {
+export interface GetOrdersPackagesRequest extends Gateway<GetOrdersPackagesResponse> {
     /** Consignments numbers. */
     deliveryPackageNumbers: (value: string|string[]) => this;
     /** Order serial numbers. */
@@ -1857,7 +1861,7 @@ export interface PutOrdersProfitMarginRequest extends AppendableGateway<PutOrder
     isProductsErrors: (isProductsErrors: boolean) => this
 }
 
-export interface GetOrdersProfitabilityRequest extends Gateway {
+export interface GetOrdersProfitabilityRequest extends Gateway<GetOrdersProfitabilityResponse> {
     /** Order serial number. */
     orderSerialNumber: (value: number|string) => this;
 }
@@ -1871,11 +1875,15 @@ export interface PutOrdersShippingCostsRequest extends Gateway {
     orderDeliveryVat: (value: Number) => this;
 }
 
+export interface GetOrdersStatusesRequest extends Gateway {}
+
 export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest,SearchOrdersResponse> {
     /** Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
     orderPrepaidStatus: (value: string) => this;
     /** Order status. Status list: "new" - not handled, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "finished_ext" - handled in FA application. */
     ordersStatuses: (value: string|string[]) => this;
+    /** Order statuses ids. */
+    ordersStatusesIds: (value: number|string|number[]|string[]) => this;
     /** Shipping companies (packages deliverers). */
     couriersName: (value: string|string[]) => this;
     /** Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit. */
@@ -1966,7 +1974,7 @@ export interface PutOrdersWarehouseRequest extends Gateway {
     externalStockId: (value: 'amazonde'|'amazones'|'amazonfr'|'amazonit'|'amazoncouk'|'amazonnl'|'amazonse'|'amazoncomtr'|'amazonae'|'amazonus'|'amazonpl') => this;
 }
 
-export interface GetPackagesLabelsRequest extends Gateway {
+export interface GetPackagesLabelsRequest extends Gateway<GetPackagesLabelsResponse> {
     /** Id. */
     eventId: (value: number|string) => this;
     /** Event type */
@@ -2133,7 +2141,7 @@ export interface PostPaymentsRepaymentRequest extends Gateway {
     other: (value: JSObject) => this;
 }
 
-export interface GetProductsSKUbyBarcodeRequest extends Gateway {
+export interface GetProductsSKUbyBarcodeRequest extends Gateway<GetProductsSKUbyBarcodeResponse> {
     /** List of sought products by indexes. */
     productIndices: (value: string|string[]) => this;
     /** Search for products only by IAI code */
@@ -2157,7 +2165,7 @@ export interface PutProductsAttachmentsRequest extends AppendableGateway<PutProd
     productId: (value: number|string) => this;
 }
 
-export interface GetProductsAuctionsRequest extends PagableGateway<GetProductsAuctionsRequest> {
+export interface GetProductsAuctionsRequest extends PagableGateway<GetProductsAuctionsRequest,GetProductsAuctionsResponse> {
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
@@ -2208,7 +2216,7 @@ export interface PutProductsBrandsFilterRequest extends AppendableGateway<PutPro
     filterDefaultEnabled: (filterDefaultEnabled: 'y'|'n') => this
 }
 
-export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBrandsRequest> {
+export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBrandsRequest,GetProductsBrandsResponse> {
     /** Result page number. */
     results_page: (value: number|string) => this;
     /** Number of results on page. */
@@ -2284,7 +2292,7 @@ export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutPro
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
-export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest,GetCategoriesResponse> {
+export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest,GetProductsCategoriesResponse> {
     /** List of product category identifiers in the panel */
     ids: (value: number|string|number[]|string[]) => this;
     /** Array of languages categories names should be returned in. "Defaults" value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages. */
@@ -2329,13 +2337,13 @@ export interface SearchProductsCategoriesIdosellRequest extends PagableGateway<S
     languages: (values: number|string|number[]|string[]) => this;
 }
 
-export interface GetProductsCodeExistenceRequest extends Gateway {
+export interface GetProductsCodeExistenceRequest extends Gateway<GetProductsCodeExistenceResponse> {
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer'|'codeDeliverer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
     delivererId: (value: string) => this;
     /** Set product identifiers */
-    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
+    productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PostProductsCollectionsRequest extends AppendableGateway<PostProductsCollectionsRequest> {
@@ -2381,7 +2389,7 @@ export interface PutProductsCollectionsRenewRequest extends AppendableGateway<Pu
     collectionIdent: (collectionIdent: JSObject) => this
 }
 
-export interface SearchProductsDeliveryTimeRequest extends AppendableGateway<SearchProductsDeliveryTimeRequest, SearchDeliveryTimeResponse> {
+export interface SearchProductsDeliveryTimeRequest extends AppendableGateway<SearchProductsDeliveryTimeRequest, SearchProductsDeliveryTimeResponse> {
     /** Stock ID */
     stockId: (value: number|string) => this;
     /** Should products be prepared for personal collection? */
@@ -2399,7 +2407,7 @@ export interface SearchProductsDeliveryTimeRequest extends AppendableGateway<Sea
     productSizeQuantity: (productSizeQuantity: number) => this
 }
 
-export interface GetProductsDescriptionsRequest extends Gateway {
+export interface GetProductsDescriptionsRequest extends Gateway<GetProductsDescriptionsResponse> {
     /** Identifier type. */
     type: (value: 'id'|'index'|'codeExtern'|'codeProducer') => this;
     /** ID value. */
@@ -2407,7 +2415,7 @@ export interface GetProductsDescriptionsRequest extends Gateway {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Set product identifiers */
-    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
+    productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PutProductsDescriptionsRequest extends AppendableGateway<PutProductsDescriptionsRequest> {
@@ -2421,7 +2429,7 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
     productAuctionDescriptionsData: (productAuctionDescriptionsData: Array<JSObject>) => this
     productId: (value: number|string) => this;
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords" = 'productName', language?: string, shopId?: number|string) => this;
+    setText: (text: string, type?: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords" = 'productName', language?: string, shopId?: number|string) => this;
 }
 
 export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest> {
@@ -2452,7 +2460,7 @@ export interface PutProductsGroupsSettingsRequest extends AppendableGateway<PutP
     productId: (value: number|string) => this;
 }
 
-export interface GetProductsIdBySizecodeRequest extends Gateway {
+export interface GetProductsIdBySizecodeRequest extends Gateway<GetProductsIdBySizecodeResponse> {
     /** Search codes. */
     codes: (value: string|string[]) => this;
     /** Type of codes. Acceptable values: "external" (default value) - external system code, "producer" - producer code, and "all" - any of the above codes */
@@ -2578,7 +2586,7 @@ export interface GetProductsMarketingZonesRequest extends Gateway {
     /** Products list. */
     products: (value: string|string[]) => this;
     /** Set product identifiers */
-    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
+    productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PutProductsMarketingZonesRequest extends AppendableGateway<PutProductsMarketingZonesRequest> {
@@ -2592,12 +2600,12 @@ export interface PutProductsMarketingZonesRequest extends AppendableGateway<PutP
     ident: (ident: JSObject) => this
 }
 
-export interface GetProductsOmnibusPricesRequest extends Gateway {
+export interface GetProductsOmnibusPricesRequest extends Gateway<GetProductsOmnibusPricesResponse> {
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
     /** Set product identifiers */
-    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
+    productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PutProductsOmnibusPricesRequest extends AppendableGateway<PutProductsOmnibusPricesRequest> {
@@ -2612,9 +2620,9 @@ export interface PutProductsOmnibusPricesRequest extends AppendableGateway<PutPr
     /** Strikethrough price settings for the page. */
     shops: (shops: Array<JSObject>) => this
     /** Set product identifiers */
-    productId: (productId: number|string, type: 'id'|'index'|'codeExtern'|'codeProducer' = 'id') => this;
+    productId: (productId: number|string, type?: 'id'|'index'|'codeExtern'|'codeProducer' = 'id') => this;
     /** Set retail or wholesale price */
-    setPrice: (price: number, wholesale: boolean = false) => this;
+    setPrice: (price: number, wholesale?: boolean = false) => this;
     /** Set mode to automatic */
     mode: (automatic: boolean = false) => this;
 }
@@ -2623,7 +2631,7 @@ export interface DeleteProductsOpinionsRequest extends Gateway {
     id: (value: number|string) => this;
 }
 
-export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOpinionsRequest> {
+export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOpinionsRequest,GetProductsOpinionsResponse> {
     /** Review identification */
     opinion: (value: JSObject) => this;
     /** Products list. */
@@ -2927,9 +2935,9 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Responsible person code */
     responsiblePersonCode: (responsiblePersonCode: string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer" = 'productName', language?: string, shopId?: number|string) => this;
+    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer" = 'productName', language?: string, shopId?: number|string) => this;
     /** Sets product price by amount */
-    setPrice: (value: number, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation' = 'retail') => this;
+    setPrice: (value: number, type?: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation' = 'retail') => this;
 }
 
 export interface PutProductsRequest extends AppendableGateway<PutProductsRequest> {
@@ -2999,7 +3007,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     productMinimalPriceNet: (productMinimalPriceNet: number) => this
     /** Price for automatic calculations */
     productAutomaticCalculationPrice: (productAutomaticCalculationPrice: number) => this
-    /** #!CenaDoObliczenAutomatycznychNettoDlaKazdegoSklepu!#. */
+    /** Price for automatic net calculations for each store */
     productAutomaticCalculationPriceNet: (productAutomaticCalculationPriceNet: number) => this
     /** price for POS. */
     productPosPrice: (productPosPrice: number) => this
@@ -3137,7 +3145,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     productMetaDescriptions: (productMetaDescriptions: JSObject) => this
     /** Product meta keywords. */
     productMetaKeywords: (productMetaKeywords: JSObject) => this
-    /** #!AdresURLDlaTowaru!#. */
+    /** URL for the product */
     productUrl: (productUrl: JSObject) => this
     /** Data on product groups (variants) */
     productVersion: (productVersion: JSObject) => this
@@ -3163,7 +3171,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     productPriceVatChangeMode: (productPriceVatChangeMode: 'change_net'|'change_gross') => this
     /** An array of menu elements */
     productMenuItems: (productMenuItems: Array<JSObject>) => this
-    /** #!UsuwaWszystkiePrzypisaneDoProduktuElementyWybranegoMenu!#. */
+    /** Deletes all items assigned to the product of the selected menu */
     removeAllProductsAssignedToMenu: (removeAllProductsAssignedToMenu: JSObject) => this
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
     productSumInBasket: (productSumInBasket: string) => this
@@ -3204,17 +3212,17 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Responsible person code */
     responsiblePersonCode: (responsiblePersonCode: string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer" = 'productName', language?: string, shopId?: number|string) => this;
+    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer" = 'productName', language?: string, shopId?: number|string) => this;
     /** Set edit mode - disables adding new product */
     editMode: () => this;
     /** Set add mode - Api is allowed to create new products */
     addMode: () => this;
     /** Increases product price by amount */
-    addPrice: (value: number, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
+    addPrice: (value: number, type?: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
     /** Sets product price by amount */
-    setPrice: (value: number, type: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
+    setPrice: (value: number, type?: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
     /** Sets product selected IDs */
-    setMenu: (shopId: number|string, menuIds: number|string) => this;
+    setMenu: (shopId: number|string, menuIds?: number|string) => this;
     /** Sets list of pictures attached to product */
     pictures: (picturesArray: string|string[]) => this;
 }
@@ -3447,12 +3455,12 @@ export interface PutProductsQuestionsRequest extends AppendableGateway<PutProduc
     productId: (value: number|string) => this;
 }
 
-export interface GetProductsReservationsRequest extends Gateway {
+export interface GetProductsReservationsRequest extends Gateway<GetProductsReservationsResponse> {
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
     /** Set product identifiers */
-    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
+    productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PostProductsRestoreRequest extends Gateway {
@@ -3496,7 +3504,7 @@ export interface PutProductsSeriesFilterRequest extends AppendableGateway<PutPro
     filterDefaultEnabled: (filterDefaultEnabled: 'y'|'n') => this
 }
 
-export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeriesRequest> {
+export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeriesRequest,GetProductsSeriesResponse> {
     /** With "y" value it returns the last series modification date in YYYY-MM-DD HH:MM:SS format. */
     return_last_changed_time: (value: string) => this;
     /** IDs */
@@ -3535,7 +3543,7 @@ export interface DeleteProductsSizesRequest extends AppendableGateway<DeleteProd
     sizes: (sizes: Array<JSObject>) => this
 }
 
-export interface GetProductsSizesRequest extends Gateway {
+export interface GetProductsSizesRequest extends Gateway<GetProductsSizesResponse> {
     /** Allows to change offset and number of records returned */
     page: (pagenumber: number, pageSize?: number) => this;
 }
@@ -3556,6 +3564,10 @@ export interface PutProductsSizesRequest extends AppendableGateway<PutProductsSi
 export interface PutProductsStockQuantityRequest extends AppendableGateway<PutProductsStockQuantityRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
+    /** Product index */
+    productIndex: (productIndex: string) => this
+    /** Product size code producer */
+    productSizeCodeProducer: (productSizeCodeProducer: string) => this
     /** External product system code for size. */
     productSizeCodeExternal: (productSizeCodeExternal: string) => this
     /** Stock ID */
@@ -3568,12 +3580,12 @@ export interface PutProductsStockQuantityRequest extends AppendableGateway<PutPr
     productPurchasePriceNet: (productPurchasePriceNet: number) => this
 }
 
-export interface GetProductsStocksRequest extends Gateway {
+export interface GetProductsStocksRequest extends Gateway<GetProductsStocksResponse> {
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
     /** Set product identifiers */
-    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
+    productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PutProductsStocksRequest extends AppendableGateway<PutProductsStocksRequest> {
@@ -3594,7 +3606,7 @@ export interface GetProductsStrikethroughPricesRequest extends Gateway {
     /** Products list. */
     products: (value: string|string[]) => this;
     /** Set product identifiers */
-    productId: (productId: number|string|number|string|number[]|string[], type: 'id'|'index'|'codeExtern'|'codeProducer') => this;
+    productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
 export interface PutProductsStrikethroughPricesRequest extends AppendableGateway<PutProductsStrikethroughPricesRequest> {
@@ -3609,13 +3621,13 @@ export interface PutProductsStrikethroughPricesRequest extends AppendableGateway
     /** Strikethrough price settings for the page. */
     shops: (shops: Array<JSObject>) => this
     /** Set product identifiers */
-    productId: (productId: number|string, type: 'id'|'index'|'codeExtern'|'codeProducer' = 'id') => this;
+    productId: (productId: number|string, type?: 'id'|'index'|'codeExtern'|'codeProducer' = 'id') => this;
     /** Set precise price */
-    setPrice: (price: number, wholesale: boolean = false) => this;
+    setPrice: (price: number, wholesale?: boolean = false) => this;
     /** Set price relative to current price */
-    addPrice: (value: number, wholesale: boolean = false, base: 'price' | 'price_minimal' | 'price_pos' | 'price_srp' | 'price_crossed' = 'price') => this;
+    addPrice: (value: number, wholesale?: boolean = false, base?: 'price' | 'price_minimal' | 'price_pos' | 'price_srp' | 'price_crossed' = 'price') => this;
     /** Set price relative to current price by percent */
-    addPricePercent: (value: number, wholesale: boolean = false, base: 'price' | 'price_minimal' | 'price_pos' | 'price_srp' | 'price_crossed' = 'price') => this;
+    addPricePercent: (value: number, wholesale?: boolean = false, base?: 'price' | 'price_minimal' | 'price_pos' | 'price_srp' | 'price_crossed' = 'price') => this;
 }
 
 export interface PutProductsSupplierCodeRequest extends AppendableGateway<PutProductsSupplierCodeRequest> {
@@ -3748,7 +3760,7 @@ export interface PutRefundsUpdateRefundRequest extends Gateway {
     refundCurrency: (value: string) => this;
 }
 
-export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResponsibilityEntitiesRequest> {
+export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResponsibilityEntitiesRequest,GetResponsibilityEntitiesResponse> {
     /** List of codes */
     code: (value: string|string[]) => this;
     /** Type of entity */
@@ -3787,6 +3799,8 @@ export interface PostResponsibilityEntitiesRequest extends AppendableGateway<Pos
     phone: (phone: string) => this
     /** Additional description. */
     description: (description: string) => this
+    /** URL to contact page. */
+    url: (url: string) => this
 }
 
 export interface PutResponsibilityEntitiesRequest extends AppendableGateway<PutResponsibilityEntitiesRequest> {
@@ -3817,6 +3831,8 @@ export interface PutResponsibilityEntitiesRequest extends AppendableGateway<PutR
     phone: (phone: string) => this
     /** Additional description. */
     description: (description: string) => this
+    /** URL to contact page. */
+    url: (url: string) => this
 }
 
 export interface DeleteResponsibilityEntitiesRequest extends Gateway {
@@ -3952,9 +3968,9 @@ export interface PutRmaRequest extends AppendableGateway<PutRmaRequest> {
 
 export interface GetRmaStatusesRequest extends Gateway {}
 
-export interface GetShopsCurrenciesRequest extends Gateway {}
+export interface GetShopsCurrenciesRequest extends Gateway<GetShopsCurrenciesResponse> {}
 
-export interface GetShopsLanguagesRequest extends Gateway {}
+export interface GetShopsLanguagesRequest extends Gateway<GetShopsLanguagesResponse> {}
 
 export interface DeleteSizechartsRequest extends Gateway {
     /** #!identyfikatory!# */
@@ -3986,7 +4002,7 @@ export interface PutSizechartsRequest extends AppendableGateway<PutSizechartsReq
     languagesData: (languagesData: Array<JSObject>) => this
 }
 
-export interface GetSizesRequest extends Gateway {
+export interface GetSizesRequest extends Gateway<GetSizesResponse> {
     /** When the value is 'y', the last size modification date is returned, formatted as YYYY-MM-DD HH-MM-SS. */
     return_last_changed_time: (value: string) => this;
 }
@@ -4124,7 +4140,7 @@ export interface DeleteSnippetsCookiesRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest> {
+export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest,GetSnippetsResponse> {
     /** List of campaign identifiers */
     campaign: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -4319,14 +4335,14 @@ export interface PostSubscriptionsUnsetRebateCodeRequest extends Gateway {
     id: (value: number|string) => this;
 }
 
-export interface GetSystemConfigRequest extends Gateway<GetConfigResponse> {}
+export interface GetSystemConfigRequest extends Gateway<GetSystemConfigResponse> {}
 
 export interface PutSystemConfigRequest extends Gateway {
     /** Panel settings */
     panelSettings: (value: JSObject) => this;
 }
 
-export interface GetSystemCurrenciesRequest extends Gateway {
+export interface GetSystemCurrenciesRequest extends Gateway<GetSystemCurrenciesResponse> {
     /** Currency symbol in ISO 4217 format. */
     symbol: (value: string) => this;
     /** Date in format YYYY-MM-DD-HH MM:SS. */
@@ -4359,9 +4375,9 @@ export interface GetSystemServerLoadRequest extends Gateway {}
 
 export interface GetSystemServerTimeRequest extends Gateway {}
 
-export interface GetSystemShopsDataRequest extends Gateway<GetShopsDataResponse> {}
+export interface GetSystemShopsDataRequest extends Gateway<GetSystemShopsDataResponse> {}
 
-export interface GetSystemUnitsRequest extends Gateway {
+export interface GetSystemUnitsRequest extends Gateway<GetSystemUnitsResponse> {
     /** List of languages */
     languagesIds: (value: string|string[]) => this;
 }
@@ -4380,7 +4396,7 @@ export interface PutSystemUnitsRequest extends AppendableGateway<PutSystemUnitsR
     descriptions: (descriptions: Array<JSObject>) => this
 }
 
-export interface GetSystemUsersRequest extends Gateway {
+export interface GetSystemUsersRequest extends Gateway<GetSystemUsersResponse> {
     /** User type. List of options "all" - All users, "active" - Only active users */
     userType: (value: 'all'|'active') => this;
 }
@@ -4553,7 +4569,7 @@ export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesReq
     period: (period: number|string) => this
 }
 
-export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest,GetLocationsResponse> {
+export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest,GetWmsLocationsResponse> {
     /** Warehouse location ID */
     locationId: (value: number|string) => this;
     /** Storage location code */
@@ -4585,7 +4601,7 @@ export interface DeleteWmsStocksdocumentsDocumentsRequest extends Gateway {
     id: (value: number|string) => this;
 }
 
-export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsDocumentsRequest,GetStocksdocumentsDocumentsResponse> {
+export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsDocumentsRequest,GetWmsStocksdocumentsDocumentsResponse> {
     /** Document type. */
     stockDocumentType: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'wz'|'mm'|'zw') => this;
     /** Document status. */
@@ -4706,7 +4722,7 @@ export interface DeleteWmsStocksdocumentsProductsRequest extends AppendableGatew
     size: (size: string) => this
 }
 
-export interface GetWmsStocksdocumentsProductsRequest extends PagableGateway<GetWmsStocksdocumentsProductsRequest,GetStocksdocumentsProductsResponse> {
+export interface GetWmsStocksdocumentsProductsRequest extends PagableGateway<GetWmsStocksdocumentsProductsRequest,GetWmsStocksdocumentsProductsResponse> {
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm'|'wz'|'zw') => this;
     /** Document identifier. */
     id: (value: number|string) => this;
@@ -4770,7 +4786,7 @@ export interface DeleteWmsSuppliersRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetWmsSuppliersRequest extends PagableGateway<GetWmsSuppliersRequest> {
+export interface GetWmsSuppliersRequest extends PagableGateway<GetWmsSuppliersRequest,GetWmsSuppliersResponse> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4945,6 +4961,7 @@ export interface Gateways {
     putOrdersProfitMargin: PutOrdersProfitMarginRequest,
     getOrdersProfitability: GetOrdersProfitabilityRequest,
     putOrdersShippingCosts: PutOrdersShippingCostsRequest,
+    getOrdersStatuses: GetOrdersStatusesRequest,
     searchOrdersUnfinished: SearchOrdersUnfinishedRequest,
     getOrdersWarehouse: GetOrdersWarehouseRequest,
     putOrdersWarehouse: PutOrdersWarehouseRequest,

@@ -127,6 +127,7 @@ import putOrdersProductsSerialNumbers from "./methods/putOrdersProductsSerialNum
 import putOrdersProfitMargin from "./methods/putOrdersProfitMargin.js";
 import getOrdersProfitability from "./methods/getOrdersProfitability.js";
 import putOrdersShippingCosts from "./methods/putOrdersShippingCosts.js";
+import getOrdersStatuses from "./methods/getOrdersStatuses.js";
 import searchOrdersUnfinished from "./methods/searchOrdersUnfinished.js";
 import getOrdersWarehouse from "./methods/getOrdersWarehouse.js";
 import putOrdersWarehouse from "./methods/putOrdersWarehouse.js";
@@ -446,6 +447,7 @@ const gates = {
     putOrdersProfitMargin,
     getOrdersProfitability,
     putOrdersShippingCosts,
+    getOrdersStatuses,
     searchOrdersUnfinished,
     getOrdersWarehouse,
     putOrdersWarehouse,
