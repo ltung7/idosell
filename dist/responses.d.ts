@@ -4902,10 +4902,434 @@ export type GetOrdersStatusesResponse = {
         /** @description Status identifier */
         id: number;
         /** @description Parent status identifier */
-        parentId: string | null;
+        parentId: number | null;
         /** @example Packed by Employee#1 */
         panelName: string;
     }[];
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetPaymentsResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Order serial number. */
+        orderNumber: number;
+        /** @description Payment number for order. */
+        ordinalNumber: number;
+        /** @description Amount of payment. */
+        value: number;
+        /** @description Order currency ID (currency list can be obtained through getShopsData gate). */
+        currency: string;
+        /** @description Registering date. */
+        accountingDate: string;
+        /** */
+        status: "pending" | "processed" | "cancelled";
+        /** @description Form of payment ID. */
+        paymentFormId: number;
+        /** @description Transaction ID in external service */
+        externalPaymentId: string;
+        /** @description The additional status of the payment or refund returned by the third-party service. For returns by IdoPay, possible values are: "waiting", "waiting for funds", "waiting for data", "processed", "confirmed", "rejected", "error". */
+        externalPaymentStatus: string;
+        /** @description Event log. */
+        eventLog: {
+            /** @description Event log. */
+            eventLogList: {
+                /** @description User login. */
+                user: string;
+                /** @description Error code. */
+                eventCode: string;
+                /** @description Date. */
+                date: string;
+                /** */
+                level: "info" | "error" | "warn";
+                /** @description Error description. */
+                details: string;
+            }[];
+        };
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetProductsStrikethroughPricesResponse = {
+    /** @description Products list. */
+    products: {
+        [productId: string]: {
+            /** @description Identifier type. */
+            ident: {
+                /** */
+                type: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description Value. */
+                value: number;
+            };
+            /** @description Strikethrough gross retail price. */
+            strikethrough_retail_price: number;
+            /** @description Strikethrough gross wholesale price. */
+            strikethrough_wholesale_price: number;
+            shops: {
+                [shop: string]: {
+                    /** @description Shop Id */
+                    shop_id: number;
+                    /** @description Strikethrough gross retail price. */
+                    strikethrough_retail_price: number;
+                    /** @description Strikethrough gross wholesale price. */
+                    strikethrough_wholesale_price: number;
+                    /** @description List of sizes */
+                    sizes: {
+                        [size: string]: {
+                            /** @description Identifier type. */
+                            ident: {
+                                /** */
+                                type: "id" | "index" | "codeExtern" | "codeProducer";
+                                /** @description Value. */
+                                value: string;
+                            };
+                            /** @description Strikethrough gross retail price. */
+                            strikethrough_retail_price: number;
+                            /** @description Strikethrough gross wholesale price. */
+                            strikethrough_wholesale_price: number
+                        } | []
+                    }
+                } | []
+            };
+            /** @description Error information. */
+            error?: FaultCodeString
+        } | []
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetSystemProcessesAutomationResponse = {
+    /** @description Orders. */
+    orders: {
+        shops: {
+            /** @description Shop Id */
+            shopId: number;
+            /** @description Allow the status to be changed to "Shipped" even if the order payments and stock levels do not match */
+            alwaysAllowSentStatus: "y" | "n";
+        }[];
+        /** @description Order management restrictions */
+        restrictions: {
+            /** @description Block the ability of selecting a status, if there are products in the warehouse from which the order is being processed, with insufficient stock level. */
+            blockIfIncorrectStockQuantities: {
+                restrictedShops: {
+                    /** @description Shop Id */
+                    shopId: number;
+                    /** @description Block the ability of selecting a status "completed" if there are products in the warehouse from which the order is being processed, with insufficient stock level */
+                    finished: "y" | "n";
+                }[];
+            };
+        };
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetEntriesPagesToDisplayResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description List of pages on which the entry is to be published */
+        pagesToDisplayOn: {
+            /** @description Page ID */
+            siteId: string;
+            /** @description Store name */
+            siteName: string;
+        }[];
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetEntriesResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Blog entry content */
+        entry: {
+            /** @description Date of creating an entry */
+            date: string;
+            /** @description Entry visibility */
+            visible: "y" | "n";
+            /** @description Photo */
+            picture: string;
+            /** @description Name on the page */
+            title: string;
+            /** @description short description */
+            shortDescription: string;
+            /** @description Long description */
+            longDescription: string;
+            /** @description Blog post URL */
+            blogUrl: string;
+            /** @description News item URL */
+            newsUrl: string;
+            /** @description Products list. */
+            products: {
+                /** @description Merchandise identifier */
+                productId: string;
+                /** @description Product name. */
+                productName: string;
+            }[];
+            /** @description List of pages on which the entry is to be published */
+            visibleOnSitesList: {
+                /** @description Page ID */
+                siteId: string;
+                /** @description Store name */
+                siteName: string;
+            }[];
+            /** @description Type of title and shortcut linking: fullContentLink - link to the subpage with full content, givenUrlLink - link to the given URL, noLink - static element */
+            titleLinkType: string;
+            /** @description Provided URL (for link to specified URL option) */
+            link: string;
+        };
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetCpaResponse = {
+    results: {
+        /** @description Id of the CPA program. */
+        id: number | null;
+        /** @description The CPA program name. */
+        name: string;
+        /** @description Whether the CPA program is active. */
+        active: "y" | "n";
+        /** @description CPA campaign id */
+        campaign: number;
+        /** @description CPA program page settings simple or advanced, depending on the mode. */
+        pageSettings: (Omit<{
+            /** @description Whether to display to all sites. */
+            mode: "simple" | "advanced";
+        }, "mode"> & {
+            /** @description Whether to display to all sites. */
+            mode: "simple";
+            /** @description The place where the cpa code is loaded. (For "all" mode)
+|null} */
+            zone: "head" | "bodyBegin" | "bodyEnd" | null;
+            /** @description Snippet content for each language. (For "all" mode) */
+            body: {
+                /** @description Language code. */
+                lang: string;
+                /** @example Hello world */
+                body: string;
+            }[] | null;
+        }) | (Omit<{
+            /** @description Whether to display to all sites. */
+            mode: "simple" | "advanced";
+        }, "mode"> & {
+            /** @description Whether to display to all sites. */
+            mode: "advanced";
+            /** @description Page setting for advance mode */
+            pages: {
+                /** @enum {string} */
+                active: "y" | "n";
+                /** @enum {string} */
+                page: "home" | "basket" | "checkout_payment_delivery" | "checkout_confirmation" | "new_order_placement" | "order_details" | "navigation" | "product_details" | "search_results" | "after_order_place" | "mailing_subscribe" | "other_pages";
+                /** @description The place where the cpa code is loaded. (For "all" mode) */
+                zone: "head" | "bodyBegin" | "bodyEnd";
+                body: {
+                    /** @description Language code. */
+                    lang: string;
+                    /** @example Hello world */
+                    body: string;
+                }[];
+            }[];
+        });
+        display: {
+            /** @description Type of customers to whom to display the snippet */
+            clientType: "all" | "unregistered" | "registered" | "retailer" | "wholesaler";
+            /** @description Whether to display only for newsletter visitors. */
+            newsletter: "y" | "n" | "all";
+            /** @description Whether to display the code snippet only for customers who have placed an order */
+            hasOrders: "y" | "n" | "all";
+            /** @description Display only after entering rebate code */
+            useRebateCode: "y" | "n" | "all";
+        };
+        /** @description Snippet entry source filter. */
+        sources: {
+            direct: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            search: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            advert: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            priceComparers: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            affiliate: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            cpa: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            newsletter: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            social: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            page: {
+                /** @description Whether source filter is active */
+                active: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+        };
+        /** @description List of variables that can be used in a body template. */
+        variables: {
+            name: string;
+            /** @enum {string} */
+            source: "session" | "cookie";
+        }[];
+    }[];
+    pagination: PagedResponse;
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetVouchersTypesResponse = {
+    /** @description List of all discount code campaigns defined in the administration panel */
+    vouchersTypes: {
+        /** @description Discount code campaign ID */
+        voucherTypeId: number;
+        /** @description Discount code campaign name */
+        voucherTypeName: string;
+    }[];
+} & PagedResponse;
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetVouchersResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        voucherData: {
+            /** @description Voucher ID */
+            id: number;
+            /** @description Number. */
+            number: string;
+            /** @description Name. */
+            name: string;
+            /** @description Voucher expiration date */
+            expirationDate: string;
+            /** @description Voucher balance */
+            balance: {
+                /** @description Available balance */
+                amount: number;
+                /** @description Currency. */
+                currency: string;
+            };
+            /** @description List of shops the voucher is active in */
+            shops: number[];
+            /** @example note */
+            note: string;
+            /** @description Status list: "y" - used, "n" - unused, "b" - blocked, "unverified" - awaiting approval */
+            status: string;
+            /** @description Is active? */
+            blocked: "0" | "1";
+        };
+        /** @description Error code. List of error codes: "0" - Operation was successful, "1" - Login failure: invalid username or key, "123" - Error occurred when retrieving voucher data */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+} & PagedResponse;
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetOrdersHistoryResponse = {
+    /** @description List of events */
+    historyEvents: {
+        /** @description Date when the event occurred */
+        eventDate: string;
+        /** @description Login */
+        username: string;
+        /** @description Event details */
+        eventDetails: string;
+    }[];
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetSnippetsCampaignResponse = {
+    results: {
+        /** @description Snippet campaign id */
+        id: number | null;
+        /** @description Snippet campaign name */
+        name: string;
+        /** @description Snippet campaign internal description */
+        description: string;
+        /** @description Shop ids where code snippets are active 1 ] */
+        shop: number[] | null;
+        /** @description Whether the snippet is active */
+        active: "y" | "n";
+        /** @description Whether the snippet campaign is deleted */
+        readonly deleted: "y" | "n";
+        /** @description Snippet order. */
+        order: number;
+        /** @description Number of code snippets associated with the campaign. */
+        readonly snippetCount: number | null;
+        /** @description Number of active code snippets associated with the campaign. */
+        readonly activeSnippetCount: number | null;
+        configVariables: {
+            /** @description Key of config value. */
+            key: string;
+            /** @description Name of config item. */
+            readonly name: string;
+            /** @description Value of config item. */
+            value: string;
+        }[];
+    }[];
+    pagination: PagedResponse;
+};
+
+/** @version v6.3 Typechecked 2025-08-25 */
+export type GetSnippetsCookiesResponse = {
+    results: {
+        /** @description Snippet */
+        id: number | null;
+        /** @description Id of the snippet code. */
+        snippetId: number;
+        /** @description Name of the cookie vendor. */
+        deliverer: string;
+        /** @description Category of the cookie */
+        category: "analytics" | "marketing" | "functional";
+        /** @description Cookie description for each language. */
+        description: {
+            /** @description Language code. */
+            lang: string;
+            /** @example Hello world */
+            body: string;
+        }[];
+        /** @description Name of the cookie. */
+        name: string | null;
+        /** @description Type of the cookie
+|null} */
+        type: "cookie" | "pixel" | "localStorage" | null;
+        /** @description Cookie lifetime mode
+|null} */
+        lifeTimeType: "temporary" | "days" | "minutes" | null;
+        /** @description Cookie lifetime */
+        lifeTime: number | null;
+    }[];
+    pagination: PagedResponse;
 };
 
 export { };

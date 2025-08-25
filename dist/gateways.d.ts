@@ -1,5 +1,5 @@
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject } from "./app.d.ts"
-import type { GetClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, SearchClientsGiftcardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, GetConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersPickupPointsResponse, GetMenuResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, GetOrdersDocumentsResponse, SearchOrdersOpinionsResponse, SearchOrdersResponse, GetOrdersPackagesResponse, GetOrdersProfitabilityResponse, GetPackagesLabelsResponse, SearchPackagesResponse, GetProductsSKUbyBarcodeResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, GetProductsCategoriesResponse, SearchCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, GetProductsIdBySizecodeResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, SearchProductsParametersResponse, SearchProductsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, GetProductsSizesResponse, GetProductsStocksResponse, GetResponsibilityEntitiesResponse, GetReturnsResponse, GetRmaResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, GetSizesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, GetSystemUsersResponse, GetWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse }  from "./responses.d.ts"
+import type { GetClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, SearchClientsGiftcardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, GetConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersPickupPointsResponse, GetCpaResponse, GetEntriesResponse, GetEntriesPagesToDisplayResponse, GetMenuResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, GetOrdersDocumentsResponse, GetOrdersHistoryResponse, SearchOrdersOpinionsResponse, SearchOrdersResponse, GetOrdersPackagesResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetPackagesLabelsResponse, SearchPackagesResponse, GetPaymentsResponse, GetProductsSKUbyBarcodeResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, GetProductsCategoriesResponse, SearchCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, GetProductsIdBySizecodeResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, SearchProductsParametersResponse, SearchProductsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, GetProductsSizesResponse, GetProductsStocksResponse, GetProductsStrikethroughPricesResponse, GetResponsibilityEntitiesResponse, GetReturnsResponse, GetRmaResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, GetSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse }  from "./responses.d.ts"
 import * as ENUMS from "./enums";
 
 export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest> {
@@ -968,7 +968,7 @@ export interface DeleteCpaCampaignRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetCpaRequest extends PagableGateway<GetCpaRequest> {
+export interface GetCpaRequest extends PagableGateway<GetCpaRequest,GetCpaResponse> {
     /** List of campaign identifiers */
     campaign: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -1161,7 +1161,7 @@ export interface DeleteEntriesRequest extends Gateway {
     entryId: (value: number|string) => this;
 }
 
-export interface GetEntriesRequest extends Gateway {
+export interface GetEntriesRequest extends Gateway<GetEntriesResponse> {
     /** Entry ID */
     entryId: (value: number|string) => this;
     /** Language ID */
@@ -1230,7 +1230,7 @@ export interface PutEntriesRequest extends Gateway {
     link: (value: string) => this;
 }
 
-export interface GetEntriesPagesToDisplayRequest extends Gateway {
+export interface GetEntriesPagesToDisplayRequest extends Gateway<GetEntriesPagesToDisplayResponse> {
     /** Language ID */
     langId: (value: string) => this;
 }
@@ -1514,7 +1514,7 @@ export interface PutOrdersHandlerRequest extends Gateway {
     orderOperatorLogin: (value: string) => this;
 }
 
-export interface GetOrdersHistoryRequest extends Gateway {
+export interface GetOrdersHistoryRequest extends Gateway<GetOrdersHistoryResponse> {
     /** Order serial number. */
     orderSerialNumber: (value: number|string) => this;
 }
@@ -1875,7 +1875,7 @@ export interface PutOrdersShippingCostsRequest extends Gateway {
     orderDeliveryVat: (value: Number) => this;
 }
 
-export interface GetOrdersStatusesRequest extends Gateway {}
+export interface GetOrdersStatusesRequest extends Gateway<GetOrdersStatusesResponse> {}
 
 export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest,SearchOrdersResponse> {
     /** Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
@@ -2070,7 +2070,7 @@ export interface GetPaymentsFormsRequest extends Gateway {
     activeOnly: (value: 'yes'|'no') => this;
 }
 
-export interface GetPaymentsRequest extends Gateway {
+export interface GetPaymentsRequest extends Gateway<GetPaymentsResponse> {
     /** Payment number consists of: source ID (order / return ID) and the payment ordinal number, e.g. 1234-1. */
     paymentNumber: (value: string) => this;
     /** Source type. */
@@ -3601,7 +3601,7 @@ export interface PutProductsStocksRequest extends AppendableGateway<PutProductsS
     error: (error: JSObject) => this
 }
 
-export interface GetProductsStrikethroughPricesRequest extends Gateway {
+export interface GetProductsStrikethroughPricesRequest extends Gateway<GetProductsStrikethroughPricesResponse> {
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
@@ -4028,7 +4028,7 @@ export interface PutSizesRequest extends AppendableGateway<PutSizesRequest> {
     lang_data: (lang_data: Array<JSObject>) => this
 }
 
-export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCampaignRequest> {
+export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCampaignRequest,GetSnippetsCampaignResponse> {
     /** List of shop identifiers */
     shopId: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -4082,7 +4082,7 @@ export interface DeleteSnippetsCampaignRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCookiesRequest> {
+export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCookiesRequest,GetSnippetsCookiesResponse> {
     /** List of identifiers for specific cookies */
     id: (value: number|string|number[]|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -4359,7 +4359,7 @@ export interface PutSystemCurrenciesRequest extends AppendableGateway<PutSystemC
     scale: (scale: number|string) => this
 }
 
-export interface GetSystemProcessesAutomationRequest extends Gateway {
+export interface GetSystemProcessesAutomationRequest extends Gateway<GetSystemProcessesAutomationResponse> {
     /** Shop Id */
     shopId: (value: number|string) => this;
 }
@@ -4409,7 +4409,7 @@ export interface PutVouchersBlockRequest extends AppendableGateway<PutVouchersBl
     number: (number: string) => this
 }
 
-export interface GetVouchersTypesRequest extends PagableGateway<GetVouchersTypesRequest> {
+export interface GetVouchersTypesRequest extends PagableGateway<GetVouchersTypesRequest,GetVouchersTypesResponse> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4432,7 +4432,7 @@ export interface DeleteVouchersRequest extends AppendableGateway<DeleteVouchersR
     number: (number: string) => this
 }
 
-export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest> {
+export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest,GetVouchersResponse> {
     vouchers: (value: Array<JSObject>) => this;
     /** Discount code campaign ID */
     voucherTypeId: (value: number|string) => this;
