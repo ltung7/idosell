@@ -3,7 +3,7 @@ import { expect, test } from "vitest"
 
 test("getOrdersAuctionDetailsSerialNumbers", () => {
     const params = idosell().getOrdersAuctionDetails.serialNumbers([1706995,1706991]).checkParams();
-    expect(params).toEqual({"identType":"order_sn","orders":[1706995,1706991]});
+    expect(params).toEqual({"identType":"orders_sn","orders":[1706995,1706991]});
 })
 
 test("getOrdersAuctionDetailsOrders", () => {

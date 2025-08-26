@@ -40,7 +40,7 @@ export type GatewayRequestProxyObject = {
 	req?: RequirementType[],
 } & RequestProxyObject;
 
-export interface Gateway<R = JSObject> {
+export interface Gateway<R = JSObject, P = JSObject> {
 	/**
 	 * Executes the query to designated API endpoint
 	 * @param options Use options: log - to console log params, url and method, logPage - to console log current page in a loop
@@ -51,12 +51,12 @@ export interface Gateway<R = JSObject> {
 	/**
 	 * @returns Object with currently mapped parameters
 	 */
-	getParams: () => JSObject,
+	getParams: () => P,
 
 	/**
 	 * @description Set object as params
 	 */
-	setParams: (params: JSObject) => this
+	setParams: (params: P) => this
 }
 
 export interface PagableGateway<T,R = JSObject> extends Gateway<R> {
@@ -79,7 +79,7 @@ export interface PagableGateway<T,R = JSObject> extends Gateway<R> {
 	hasNext: () => boolean
 }
 
-export interface AppendableGateway<T,R = JSObject> extends Gateway<R> {
+export interface AppendableGateway<T,R = JSObject, P = JSObject> extends Gateway<R, P> {
 	/**
 	 * Start creating next item in list
 	 */

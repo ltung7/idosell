@@ -1,6 +1,6 @@
 {
   "name": "idosell",
-  "version": "0.3.21",
+  "version": "0.4.1",
   "description": "Idosell 3 REST connector",
   "main": "dist/index.js",
   "types": "dist/gateways.d.ts",
@@ -13,7 +13,8 @@
   },
   "keywords": [
     "idosell",
-    "rest"
+    "rest",
+    "typescript"
   ],
   "author": "Tung Le",
   "license": "ISC",

@@ -13,7 +13,7 @@ const idosellRequest = idosell('SHOP_URL', 'API_KEY', API_VERSION)
 
 **API_KEY** can be obtained in your Idosell panel.
 **SHOP_URL** is the base URI of your shop. 
-**API_VERSION** version of the API to call, current default version is **v3**
+**API_VERSION** version of the API to call, current default version is **v6**
 Here are some examples:
 ```
 https://yourdomain.com

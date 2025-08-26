@@ -2039,7 +2039,7 @@ export type SearchPackagesResponse = {
 };
 
 /** @version v6.1 Typechecked 2025-08-02 */
-export type SearchCategoriesIdosellResponse = {
+export type SearchProductsCategoriesIdosellResponse = {
     /** @description List of IdoSell Categories */
     categoriesIdoSell: {
         /** @description IdoSell Category ID */
@@ -5330,6 +5330,277 @@ export type GetSnippetsCookiesResponse = {
         lifeTime: number | null;
     }[];
     pagination: PagedResponse;
+};
+
+/** @version v6.3 Typechecked 2025-08-26 */
+export type PostOrdersResponse = {
+    results: {
+        /** @description List of orders returned in gate call. */
+        ordersResults: {
+            /** @description Error code. */
+            faultCode: number;
+            /** @description Error description. */
+            faultString: string;
+            /** @description Order ID. */
+            orderId: string;
+            /** @description Order serial number. */
+            orderSerialNumber?: number;
+            /** @description The list of products returned due to a gate call */
+            productsResults: null | {
+                /** @description Product IAI code */
+                productId: number;
+                /** @description Size identifier */
+                sizeId: string;
+                /** @description External product system code for size. */
+                productSizeCodeExternal: string;
+                /** @description Stock ID */
+                stockId?: number;
+                /** @description Item in basket. */
+                basketPosition: number;
+                /** @description Error code. */
+                faultCode: number;
+                /** @description Error description. */
+                faultString: string;
+            }[];
+        }[];
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-26 */
+export type PostProductsResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description The list of products returned due to a gate call */
+        productsResults: {
+            /** @description Product IAI code */
+            productId: number;
+            /** @description Size identifier */
+            sizeId: string | null;
+            /** @description External product system code for size. */
+            productSizeCodeExternal: string | null;
+            /** @description Element containing details of the error. */
+            faults?: {
+                /** @description Error code. */
+                faultCode: string;
+                /** @description Error description. */
+                faultString: string;
+            }[];
+            /** @description Object contains detailed information on performed operation. */
+            productResultDetails?: {
+                /** @description Stock ID */
+                stockId?: number;
+                /** @description Product stock quantity */
+                productSizeQuantity?: number;
+                /** @description Shop Id */
+                shopId?: number;
+                /** @description Size identifier */
+                sizeId?: string;
+                /** @description Operation type */
+                operationType?: string;
+                /** @description Element containing details of the error. */
+                fault?: {
+                    /** @description Error code. */
+                    faultCode: string;
+                    /** @description Error description. */
+                    faultString: string;
+                };
+                existingCodes?: {
+                    [code: string]: {
+                        /** @description Product IAI code */
+                        productId: number;
+                        /** @description Size identifier */
+                        sizeId: string;
+                        /** @description External product system code for size. */
+                        productSizeCodeExternal: string;
+                        /** @description Producer code */
+                        productProducerCode: string
+                    } | []
+                };
+            }[];
+        }[];
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-26 */
+export type PutProductsResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description The list of products returned due to a gate call */
+        productsResults: {
+            /** @description Product IAI code */
+            productId: number;
+            /** @description One of the unique, indexed product codes (IAI code / External system code / Producer code) */
+            productIndex?: string;
+            promoteStatus?: {
+                /** @description Is attribute set */
+                promoteIsEnabled: boolean;
+                /** @description Strikethrough price */
+                promoteItemNormalPrice: number;
+                /** @description Gross price */
+                productRetailPrice: number;
+            };
+            /** @description Size identifier */
+            sizeId: string | null;
+            /** @description External product system code for size. */
+            productSizeCodeExternal: string | null;
+            /** @description Element containing details of the error. */
+            faults: {
+                /** @description Error code. */
+                faultCode: string;
+                /** @description Error description. */
+                faultString: string;
+            }[];
+            /** @description Object contains detailed information on performed operation. */
+            productResultDetails: {
+                /** @description Stock ID */
+                stockId: number;
+                /** @description Product stock quantity */
+                productSizeQuantity: number;
+                /** @description Shop Id */
+                shopId: number;
+                /** @description Size identifier */
+                sizeId: string;
+                /** @description Operation type */
+                operationType: string;
+                /** @description Element containing details of the error. */
+                fault: {
+                    /** @description Error code. */
+                    faultCode: string;
+                    /** @description Error description. */
+                    faultString: string;
+                };
+                existingCodes: {
+                    /** @description Product IAI code */
+                    productId: number;
+                    /** @description Size identifier */
+                    sizeId: string;
+                    /** @description External product system code for size. */
+                    productSizeCodeExternal: string;
+                    /** @description Producer code */
+                    productProducerCode: string;
+                }[];
+            }[];
+        }[];
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-26 */
+export type PutOrdersResponse = {
+    results: {
+        /** @description List of orders returned in gate call. */
+        ordersResults: {
+            /** @description Order ID. */
+            orderId: string;
+            /** @description Order serial number. */
+            orderSerialNumber: number;
+            /** @description Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
+            orderStatus: string;
+            /** @description Order status id . */
+            orderStatusId: number;
+            /** @description The list of products returned due to a gate call */
+            productsResults?: {
+                /** @description Product IAI code */
+                productId: number;
+                /** @description Size identifier */
+                sizeId: string;
+                /** @description External product system code for size. */
+                productSizeCodeExternal: string;
+                /** @description Item in basket. */
+                basketPosition: number;
+                /** @description Stock ID */
+                stockId: number;
+                /** @description Error code. List of error codes: 0 - Operation was successful, 1 - Not specified Id or serial number of the order, 2 - Order status entered in call parameters is not handled by the gate, 3 - Customer has not been informed about order status change, 4 - An error occurred during attempt to change order status., 5 - No such status, 6 - If you want to merge orders, use the tool provided by IdoSell Shop, 10 - Balance of payments made by customer for this order does not equal its value. Organize status of payments and try to change order status again., 11 - You cannot fulfill the order, because products are not removed from the stock. Remove the products first., 13 - You cannot send order, because not all product have been transferred from supplier stock., 14 - Balance of payments made by customer for this order does not equal its value. Organize status of payments and try to change order status again., 15 - There are payments registered for this order. Sort status of payments and try again to change the status of order., There are not registered payments for this order. Organize status of payments and try changing order status again., 16 - Order can't be completed by supplier as not all products are from foreign stock, Order cannot be sent. Check reservations and stock quantities., 18 - Ccustomers VAT settings have not been approved yet. To change the status of order confirm settings or charge VAT., 19 - There are products in order bought within presale., 19 - Order cannot be sent. There are products in order bought within presale., 20 - Not all products have been moved to target stock., 21 - You cannot complete order, , 22 - You can't send orders as there are products in it for which serial numbers were not saved, 23 - Order cannot be sent. Not all products have been moved to target stock., 24 - There are sale documents issued to this order. Cancel issued documents and change status next., 25 - Not all of documents demanded by customer have been issued., 2214 - Order status cannot be changed, 26 - Order status cannot be changed. List of products causing problems, 27 - Change of a billing currency is possible only in case of open orders which have neither any issued invoices (or all invoices have the status "cancelled") nor declared or completed payments., 28 - Invalid currency, 29 - Wrong sale date format 32 - Invalid order calculation parameter 33 - Incorrect loyalty point value for a product 34 - Customer does not have enough loyalty points 36 - Incorrect VAT rate of the product */
+                faultCode: number;
+                /** @description Error description. */
+                faultString: string;
+            }[];
+            /** @description Error code. List of error codes: 0 - Operation was successful, 1 - Not specified Id or serial number of the order, 2 - Order status entered in call parameters is not handled by the gate, 3 - Customer has not been informed about order status change, 4 - An error occurred during attempt to change order status., 5 - No such status, 6 - If you want to merge orders, use the tool provided by IdoSell Shop, 10 - Balance of payments made by customer for this order does not equal its value. Organize status of payments and try to change order status again., 11 - You cannot fulfill the order, because products are not removed from the stock. Remove the products first., 13 - You cannot send order, because not all product have been transferred from supplier stock., 14 - Balance of payments made by customer for this order does not equal its value. Organize status of payments and try to change order status again., 15 - There are payments registered for this order. Sort status of payments and try again to change the status of order., There are not registered payments for this order. Organize status of payments and try changing order status again., 16 - Order can't be completed by supplier as not all products are from foreign stock, Order cannot be sent. Check reservations and stock quantities., 18 - Ccustomers VAT settings have not been approved yet. To change the status of order confirm settings or charge VAT., 19 - There are products in order bought within presale., 19 - Order cannot be sent. There are products in order bought within presale., 20 - Not all products have been moved to target stock., 21 - You cannot complete order, , 22 - You can't send orders as there are products in it for which serial numbers were not saved, 23 - Order cannot be sent. Not all products have been moved to target stock., 24 - There are sale documents issued to this order. Cancel issued documents and change status next., 25 - Not all of documents demanded by customer have been issued., 2214 - Order status cannot be changed, 26 - Order status cannot be changed. List of products causing problems, 27 - Change of a billing currency is possible only in case of open orders which have neither any issued invoices (or all invoices have the status "cancelled") nor declared or completed payments., 28 - Invalid currency, 29 - Wrong sale date format 32 - Invalid order calculation parameter 33 - Incorrect loyalty point value for a product 34 - Customer does not have enough loyalty points 36 - Incorrect VAT rate of the product */
+            faultCode: number;
+            /** @description Error description. */
+            faultString: string;
+        }[];
+    };
+};
+
+/** @version v6.3 Typechecked 2025-08-26 */
+export type PostCouriersPickupPointsResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Collection point ID. */
+        pickupPointId: number; 
+        /** @description external system code. */
+        pickupPointExternalId: string;
+        /** @description Courier ID. */
+        courierId: number;
+        /** @description Error code. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+};
+
+/** @version v6.3 Typechecked 2025-08-26 */
+export type PutCouriersPickupPointsResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Collection point ID. */
+        pickupPointId: number;
+        /** @description external system code. */
+        pickupPointExternalId: string;
+        /** @description Courier ID. */
+        courierId: number;
+        /** @description Error code. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+};
+
+export type PostPackagesLabelsResponse = {
+    /** @description Id. */
+    eventId: number;
+    /** @description Type. */
+    eventType: string;
+    /** @description Information on consignments. */
+    packages: {
+        /** @description Parcel ID in the panel */
+        id: string;
+        /** @description Shipment number provided by the courier. Returned only if the courier supports tracking numbers */
+        shippingNumber?: string;
+        /** @description Number of the parcel in the shipmnet given by the courier. Returned only if the courier supports parcel numbers */
+        packageNumber: string;
+    }[];
+    /** @description Package labels encoded in base64 */
+    labels: {
+        /** @description Parcel label encoded with base64 algorythm. */
+        label: string;
+        /** @description Label format */
+        format: "PDF" | "A4" | "16x10" | "EPL" | "ZPL" | "SPL";
+    };
+};
+
+export type PostOrdersDocumentsCreateResponse = {
+    documentsResults: {
+        documentsData: {
+            /** @description Document type */
+            documentType: "vat_invoice" | "corrective_vat_invoice" | "advance_vat_invoice" | "final_advance_vat_invoice" | "pro_forma_invoice" | "advance_pro_forma_invoice" | "final_advance_pro_forma_invoice" | "fiscalInvoice" | "invoices" | "fiscal_receipt" | "sales_confirmation";
+            /** @description Order serial number */
+            orderSerialNumber: number;
+            /** @example  */
+            id?: number;
+            /** @example  */
+            documentNumber?: string;
+            /** @example  */
+            documentData?: string;
+            error: {
+                /** @description Error code. */
+                faultCode: number;
+                /** @description Error description. */
+                faultString: string;
+            };
+        }[];
+        pdfBase64: string;
+    };
 };
 
 export { };
