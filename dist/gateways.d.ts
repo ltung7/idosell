@@ -1,6 +1,6 @@
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject } from "./app.d.ts"
-import type { GetClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, SearchClientsGiftcardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, GetConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersPickupPointsResponse, PostCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaResponse, GetEntriesResponse, GetEntriesPagesToDisplayResponse, GetMenuResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, GetOrdersHistoryResponse, SearchOrdersOpinionsResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetPackagesLabelsResponse, PostPackagesLabelsResponse, SearchPackagesResponse, GetPaymentsResponse, GetProductsSKUbyBarcodeResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, GetProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, GetProductsIdBySizecodeResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, GetProductsSizesResponse, GetProductsStocksResponse, GetProductsStrikethroughPricesResponse, GetResponsibilityEntitiesResponse, GetReturnsResponse, GetRmaResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, GetSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse }  from "./responses.d.ts"
-import type RequestParams from "./reqparams.d.ts";
+import type { GetClientsResponse, PostClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, SearchClientsGiftcardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, GetConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersPickupPointsResponse, PostCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaResponse, GetEntriesResponse, GetEntriesPagesToDisplayResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, GetOrdersHistoryResponse, SearchOrdersOpinionsResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetPackagesLabelsResponse, PostPackagesLabelsResponse, SearchPackagesResponse, GetPaymentsResponse, PostPaymentsResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, GetProductsIdBySizecodeResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, GetProductsSizesResponse, GetProductsStocksResponse, GetProductsStrikethroughPricesResponse, GetResponsibilityEntitiesResponse, PostResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, GetRmaResponse, PutRmaResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, GetSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PostWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse }  from "./responses.d.ts"
+import type * as RequestParams from "./reqparams.d.ts";
 import * as ENUMS from "./enums";
 
 export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest> {
@@ -28,7 +28,7 @@ export interface PostClientsBalanceRequest extends Gateway {
     /** Operation: - add, - remove. */
     operation: (value: string) => this;
     /** Value to add or remove from balance. */
-    balance: (value: Number) => this;
+    balance: (value: number) => this;
     /** Currency of operation. */
     currency: (value: string) => this;
     /** Note. */
@@ -41,7 +41,7 @@ export interface PostClientsBalanceRequest extends Gateway {
     remove: (balance: number, currency: string) => this;
 }
 
-export interface GetClientsRequest extends PagableGateway<GetClientsRequest,GetClientsResponse> {
+export interface GetClientsRequest extends PagableGateway<GetClientsRequest, GetClientsResponse> {
     /** Customer numbers. */
     clientsIds: (value: number|string|number[]|string[]) => this;
     /** External system codes list */
@@ -72,9 +72,9 @@ export interface GetClientsRequest extends PagableGateway<GetClientsRequest,GetC
     lastModified: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface PostClientsRequest extends AppendableGateway<PostClientsRequest, JSObject> {
+export interface PostClientsRequest extends AppendableGateway<PostClientsRequest, PostClientsResponse, RequestParams.PostClientsParams> {
     /** Customer data. */
-    clients: (value: Array<JSObject>) => this;
+    clients: (value: RequestParams.PostClientsParams["clients"]) => this;
     /** Customer's login. */
     login: (login: string) => this
     /** External system code. */
@@ -132,14 +132,14 @@ export interface PostClientsRequest extends AppendableGateway<PostClientsRequest
     /** Field used for identifying request-response pairs for the endpoint. */
     request_reference: (request_reference: string) => this
     /** List of shops where a customer agreed or didn't agree to receive email newsletter. */
-    newsletter_email_approvals: (newsletter_email_approvals: Array<JSObject>) => this
+    newsletter_email_approvals: (newsletter_email_approvals: RequestParams.PostClientsParams["clients"][number]["newsletter_email_approvals"]) => this
     /** List of shops where a customer agreed or didn't agree to receive sms newsletter. */
-    newsletter_sms_approvals: (newsletter_sms_approvals: Array<JSObject>) => this
+    newsletter_sms_approvals: (newsletter_sms_approvals: RequestParams.PostClientsParams["clients"][number]["newsletter_sms_approvals"]) => this
     /** Block assigning of discount groups automatically based on order history */
     block_group_auto_assignment: (block_group_auto_assignment: boolean) => this
 }
 
-export interface PutClientsRequest extends AppendableGateway<PutClientsRequest, JSObject> {
+export interface PutClientsRequest extends AppendableGateway<PutClientsRequest> {
     /** Customer data. */
     clients: (value: Array<JSObject>) => this;
     /** Customer's login. */
@@ -214,7 +214,7 @@ export interface PutClientsRequest extends AppendableGateway<PutClientsRequest, 
     clientNote: (clientNote: string) => this
 }
 
-export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrmRequest,SearchClientsCrmResponse> {
+export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrmRequest, SearchClientsCrmResponse, RequestParams.SearchClientsCrmParams> {
     /** Customer's login. */
     clientLogin: (value: string) => this;
     /** Determines, whether client is a wholesaler. */
@@ -228,21 +228,21 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     /** Customer group number */
     clientDiscountGroupNumber: (value: number|string) => this;
     /** Date range of customer registrations */
-    clientRegistrationDate: (value: JSObject) => this;
+    clientRegistrationDate: (value: RequestParams.SearchClientsCrmParams["clientRegistrationDate"]) => this;
     /** Date of last customer login (YYYY-MM-DD) */
-    clientLastLoginDate: (value: JSObject) => this;
+    clientLastLoginDate: (value: RequestParams.SearchClientsCrmParams["clientLastLoginDate"]) => this;
     /** Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
     clientType: (value: 'person'|'person_male'|'person_female'|'firm') => this;
     /** Information about the loyalty program possible values: - yes_voucher - when customers are in a loyalty program and have only used vouchers, - yes_voucher_cash - when customers are in a loyalty program and have only used vouchers or cash deposits, - yes_clients, - yes_orders - when customers are in the loyalty program and have made at least one order, - no - when customers are in the loyalty program, - banned - when customers are blocked. */
-    clientAffiliateProgram: (value: Array<JSObject>) => this;
+    clientAffiliateProgram: (value: RequestParams.SearchClientsCrmParams["clientAffiliateProgram"]) => this;
     /** Permission to E-mail Newsletter. */
     newsletterEmailApproval: (value: string) => this;
     /** Permission to SMS Newsletter. */
     newsletterSmsApproval: (value: string) => this;
     /** Shops */
-    searchByShops: (value: JSObject) => this;
+    searchByShops: (value: RequestParams.SearchClientsCrmParams["searchByShops"]) => this;
     /** Loyalty cards: */
-    clientLoyaltyCard: (value: JSObject) => this;
+    clientLoyaltyCard: (value: RequestParams.SearchClientsCrmParams["clientLoyaltyCard"]) => this;
     /** External system code. */
     clientCodeExternal: (value: string) => this;
     /** External system codes list. */
@@ -258,13 +258,13 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     /** E-mail address. */
     clientEmail: (value: string) => this;
     /** List of shops where a customer agreed or didn't agree to receive email newsletter. */
-    newsletterEmailApprovalsData: (value: Array<JSObject>) => this;
+    newsletterEmailApprovalsData: (value: RequestParams.SearchClientsCrmParams["newsletterEmailApprovalsData"]) => this;
     /** List of shops where a customer agreed or didn't agree to receive sms newsletter. */
-    newsletterSmsApprovalsData: (value: Array<JSObject>) => this;
+    newsletterSmsApprovalsData: (value: RequestParams.SearchClientsCrmParams["newsletterSmsApprovalsData"]) => this;
     /** Customer loyalty card number, omitted when has_loyalty_card = no. */
     clientLoyaltyCardNumber: (value: string) => this;
     /** Orders. */
-    orders: (value: JSObject) => this;
+    orders: (value: RequestParams.SearchClientsCrmParams["orders"]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     returnElements: (value: string|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -272,7 +272,7 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
     /** Determines, if data - that will be returned - will be exactly as entered values, or values should be fragment of customer data. */
-    settingsExactSearch: (value: Boolean) => this;
+    settingsExactSearch: (value: boolean) => this;
     /** Define range of dates */
     registered: (dateFrom: DateLike, dateTo: DateLike) => this;
     /** Define range of dates */
@@ -281,7 +281,7 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     ordered: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface DeleteClientsDeliveryAddressRequest extends AppendableGateway<DeleteClientsDeliveryAddressRequest, JSObject> {
+export interface DeleteClientsDeliveryAddressRequest extends AppendableGateway<DeleteClientsDeliveryAddressRequest> {
     /** Customer data. */
     clients: (value: Array<JSObject>) => this;
     /** Customer's login. */
@@ -301,7 +301,7 @@ export interface GetClientsDeliveryAddressRequest extends Gateway<GetClientsDeli
     clientLogins: (value: string|string[]) => this;
 }
 
-export interface PostClientsDeliveryAddressRequest extends AppendableGateway<PostClientsDeliveryAddressRequest, JSObject> {
+export interface PostClientsDeliveryAddressRequest extends AppendableGateway<PostClientsDeliveryAddressRequest> {
     /** Customer data. */
     clients: (value: Array<JSObject>) => this;
     /** Customer's login. */
@@ -334,9 +334,9 @@ export interface PostClientsDeliveryAddressRequest extends AppendableGateway<Pos
     clientDeliveryAddressCountry: (clientDeliveryAddressCountry: string) => this
 }
 
-export interface PutClientsDeliveryAddressRequest extends AppendableGateway<PutClientsDeliveryAddressRequest, JSObject> {
+export interface PutClientsDeliveryAddressRequest extends AppendableGateway<PutClientsDeliveryAddressRequest, PutClientsDeliveryAddressResponse, RequestParams.PutClientsDeliveryAddressParams> {
     /** Customer data. */
-    clients: (value: Array<JSObject>) => this;
+    clients: (value: RequestParams.PutClientsDeliveryAddressParams["clients"]) => this;
     /** Customer's login. */
     clientLogin: (clientLogin: string) => this
     /** External system code. */
@@ -377,7 +377,7 @@ export interface PutClientsExternalCodeRequest extends Gateway {
     code_extern: (value: string) => this;
 }
 
-export interface PutClientsGiftcardsBlockRequest extends AppendableGateway<PutClientsGiftcardsBlockRequest, JSObject> {
+export interface PutClientsGiftcardsBlockRequest extends AppendableGateway<PutClientsGiftcardsBlockRequest> {
     /** List of gift cards */
     giftCards: (value: Array<JSObject>) => this;
     /** Card ID */
@@ -386,7 +386,7 @@ export interface PutClientsGiftcardsBlockRequest extends AppendableGateway<PutCl
     number: (number: string) => this
 }
 
-export interface DeleteClientsGiftcardsRequest extends AppendableGateway<DeleteClientsGiftcardsRequest, JSObject> {
+export interface DeleteClientsGiftcardsRequest extends AppendableGateway<DeleteClientsGiftcardsRequest> {
     /** List of gift cards */
     giftCards: (value: Array<JSObject>) => this;
     /** Card ID */
@@ -395,7 +395,7 @@ export interface DeleteClientsGiftcardsRequest extends AppendableGateway<DeleteC
     number: (number: string) => this
 }
 
-export interface PostClientsGiftcardsRequest extends AppendableGateway<PostClientsGiftcardsRequest, JSObject> {
+export interface PostClientsGiftcardsRequest extends AppendableGateway<PostClientsGiftcardsRequest> {
     /** List of cards to add */
     giftCards: (value: Array<JSObject>) => this;
     /** Gift card type id */
@@ -416,7 +416,7 @@ export interface PostClientsGiftcardsRequest extends AppendableGateway<PostClien
     note: (note: string) => this
 }
 
-export interface PutClientsGiftcardsRequest extends AppendableGateway<PutClientsGiftcardsRequest, JSObject> {
+export interface PutClientsGiftcardsRequest extends AppendableGateway<PutClientsGiftcardsRequest> {
     /** List of cards to edit */
     giftCards: (value: Array<JSObject>) => this;
     /** Card ID */
@@ -445,11 +445,11 @@ export interface PutClientsGiftcardsRequest extends AppendableGateway<PutClients
     set: (amount: number, currency: string) => this;
 }
 
-export interface SearchClientsGiftcardsRequest extends Gateway<SearchClientsGiftcardsResponse> {
+export interface SearchClientsGiftcardsRequest extends Gateway<SearchClientsGiftcardsResponse, RequestParams.SearchClientsGiftcardsParams> {
     /** List of gift cards */
-    giftCards: (value: Array<JSObject>) => this;
+    giftCards: (value: RequestParams.SearchClientsGiftcardsParams["giftCards"]) => this;
     /** element is an element array of type searchGiftCards */
-    searchGiftCards: (value: JSObject) => this;
+    searchGiftCards: (value: RequestParams.SearchClientsGiftcardsParams["searchGiftCards"]) => this;
     /** Define giftCards values by passing them as an array */
     ids: (values: number|string|number[]|string[]) => this;
     /** Define giftCards values by passing them as an array */
@@ -465,7 +465,7 @@ export interface GetClientsGiftcardsTypesRequest extends PagableGateway<GetClien
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PutClientsGiftcardsUnblockRequest extends AppendableGateway<PutClientsGiftcardsUnblockRequest, JSObject> {
+export interface PutClientsGiftcardsUnblockRequest extends AppendableGateway<PutClientsGiftcardsUnblockRequest> {
     /** List of gift cards */
     giftCards: (value: Array<JSObject>) => this;
     /** Card ID */
@@ -481,7 +481,7 @@ export interface GetClientsMembershipCardsRequest extends Gateway {
     login: (value: string) => this;
 }
 
-export interface PutClientsMembershipCardsRequest extends AppendableGateway<PutClientsMembershipCardsRequest, JSObject> {
+export interface PutClientsMembershipCardsRequest extends AppendableGateway<PutClientsMembershipCardsRequest> {
     /** Customer ID. */
     id: (value: number|string) => this;
     /** Customer's login. */
@@ -505,11 +505,11 @@ export interface PutClientsMembershipCardsRequest extends AppendableGateway<PutC
     errors: (errors: JSObject) => this
 }
 
-export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest,SearchClientsNewsletterEmailResponse> {
-    shops: (value: Array<JSObject>) => this;
+export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest, SearchClientsNewsletterEmailResponse, RequestParams.SearchClientsNewsletterEmailParams> {
+    shops: (value: RequestParams.SearchClientsNewsletterEmailParams["shops"]) => this;
     /** Customer language ID. */
     language: (value: string) => this;
-    date: (value: JSObject) => this;
+    date: (value: RequestParams.SearchClientsNewsletterEmailParams["date"]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     return_elements: (value: string|string[]) => this;
     /** Results page number. Numbering begins at 0. Default value: 0. */
@@ -520,11 +520,11 @@ export interface SearchClientsNewsletterEmailRequest extends PagableGateway<Sear
     dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest,SearchClientsNewsletterSmsResponse> {
-    shops: (value: Array<JSObject>) => this;
+export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest, SearchClientsNewsletterSmsResponse, RequestParams.SearchClientsNewsletterSmsParams> {
+    shops: (value: RequestParams.SearchClientsNewsletterSmsParams["shops"]) => this;
     /** Customer language ID. */
     language: (value: string) => this;
-    date: (value: JSObject) => this;
+    date: (value: RequestParams.SearchClientsNewsletterSmsParams["date"]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     return_elements: (value: string|string[]) => this;
     /** Results page number. Numbering begins at 0. Default value: 0. */
@@ -535,7 +535,7 @@ export interface SearchClientsNewsletterSmsRequest extends PagableGateway<Search
     dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface DeleteClientsPayerAddressRequest extends AppendableGateway<DeleteClientsPayerAddressRequest, JSObject> {
+export interface DeleteClientsPayerAddressRequest extends AppendableGateway<DeleteClientsPayerAddressRequest> {
     payers: (value: Array<JSObject>) => this;
     /** Unique client's number. */
     clientId: (clientId: number|string) => this
@@ -543,7 +543,7 @@ export interface DeleteClientsPayerAddressRequest extends AppendableGateway<Dele
     payerAddressId: (payerAddressId: number|string) => this
 }
 
-export interface GetClientsPayerAddressRequest extends PagableGateway<GetClientsPayerAddressRequest,GetClientsPayerAddressResponse> {
+export interface GetClientsPayerAddressRequest extends PagableGateway<GetClientsPayerAddressRequest, GetClientsPayerAddressResponse> {
     /** Unique client's number. */
     clientId: (value: string) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -552,7 +552,7 @@ export interface GetClientsPayerAddressRequest extends PagableGateway<GetClients
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostClientsPayerAddressRequest extends AppendableGateway<PostClientsPayerAddressRequest, JSObject> {
+export interface PostClientsPayerAddressRequest extends AppendableGateway<PostClientsPayerAddressRequest> {
     payers: (value: Array<JSObject>) => this;
     /** Unique client's number. */
     clientId: (clientId: number|string) => this
@@ -576,7 +576,7 @@ export interface PostClientsPayerAddressRequest extends AppendableGateway<PostCl
     payerAddressPhone: (payerAddressPhone: string) => this
 }
 
-export interface PutClientsPayerAddressRequest extends AppendableGateway<PutClientsPayerAddressRequest, JSObject> {
+export interface PutClientsPayerAddressRequest extends AppendableGateway<PutClientsPayerAddressRequest> {
     payers: (value: Array<JSObject>) => this;
     /** Unique client's number. */
     clientId: (clientId: string) => this
@@ -714,7 +714,7 @@ export interface GetClientsPricesDiscountsRequest extends PagableGateway<GetClie
     lastPurchased: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface PutClientsPricesDiscountsRequest extends AppendableGateway<PutClientsPricesDiscountsRequest, JSObject> {
+export interface PutClientsPricesDiscountsRequest extends AppendableGateway<PutClientsPricesDiscountsRequest> {
     customers: (value: JSObject) => this;
     /** Discount type, possible values: - simple */
     discount_type: (value: string) => this;
@@ -757,7 +757,7 @@ export interface PostClientsProfitPointsRequest extends Gateway {
     /** Operation: - add, - remove. */
     operation: (value: string) => this;
     /** Amount of points to add or subtract. */
-    score: (value: Number) => this;
+    score: (value: number) => this;
     note: (value: string) => this;
     /** Prepayment ID. */
     order_number: (value: number|string) => this;
@@ -778,7 +778,7 @@ export interface DeleteClientsTagsClearRequest extends Gateway {
     clientId: (value: number|string) => this;
 }
 
-export interface DeleteClientsTagsRequest extends AppendableGateway<DeleteClientsTagsRequest, JSObject> {
+export interface DeleteClientsTagsRequest extends AppendableGateway<DeleteClientsTagsRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Unique client's number. */
@@ -792,7 +792,7 @@ export interface GetClientsTagsRequest extends Gateway {
     clientId: (value: number|string) => this;
 }
 
-export interface PostClientsTagsRequest extends AppendableGateway<PostClientsTagsRequest, JSObject> {
+export interface PostClientsTagsRequest extends AppendableGateway<PostClientsTagsRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Unique client's number. */
@@ -803,7 +803,7 @@ export interface PostClientsTagsRequest extends AppendableGateway<PostClientsTag
     tagValue: (tagValue: number|string) => this
 }
 
-export interface PutClientsTagsRequest extends AppendableGateway<PutClientsTagsRequest, JSObject> {
+export interface PutClientsTagsRequest extends AppendableGateway<PutClientsTagsRequest> {
     /** Unique client's number. */
     clientId: (value: number|string) => this;
     clientTags: (value: Array<JSObject>) => this;
@@ -815,7 +815,7 @@ export interface PutClientsTagsRequest extends AppendableGateway<PutClientsTagsR
     tagValue: (tagValue: number|string) => this
 }
 
-export interface GetConfigVariablesRequest extends PagableGateway<GetConfigVariablesRequest,GetConfigVariablesResponse> {
+export interface GetConfigVariablesRequest extends PagableGateway<GetConfigVariablesRequest, GetConfigVariablesResponse> {
     /** Which component is affected by the configuration. */
     type: (value: 'snippets_campaign') => this;
     /** List of item identifiers for given configuration type. Eg. snippet campaign identifiers. */
@@ -828,7 +828,7 @@ export interface GetConfigVariablesRequest extends PagableGateway<GetConfigVaria
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PutConfigVariablesRequest extends AppendableGateway<PutConfigVariablesRequest, JSObject> {
+export interface PutConfigVariablesRequest extends AppendableGateway<PutConfigVariablesRequest> {
     variables: (value: Array<JSObject>) => this;
     /** Key of config value. */
     key: (key: string) => this
@@ -860,7 +860,7 @@ export interface GetCouriersRequest extends PagableGateway<GetCouriersRequest> {
     resultsLimit: (value: number|string) => this;
 }
 
-export interface DeleteCouriersPickupPointsRequest extends AppendableGateway<DeleteCouriersPickupPointsRequest, JSObject> {
+export interface DeleteCouriersPickupPointsRequest extends AppendableGateway<DeleteCouriersPickupPointsRequest> {
     pickupPointDeleteRequests: (value: Array<JSObject>) => this;
     /** Collection point ID. */
     pickupPointId: (pickupPointId: string) => this
@@ -870,7 +870,7 @@ export interface DeleteCouriersPickupPointsRequest extends AppendableGateway<Del
     courierId: (courierId: number|string) => this
 }
 
-export interface GetCouriersPickupPointsRequest extends PagableGateway<GetCouriersPickupPointsRequest,GetCouriersPickupPointsResponse> {
+export interface GetCouriersPickupPointsRequest extends PagableGateway<GetCouriersPickupPointsRequest, GetCouriersPickupPointsResponse> {
     /** Courier ID. */
     courierId: (value: number|string) => this;
     /** Collection point ID. */
@@ -890,17 +890,17 @@ export interface PostCouriersPickupPointsRequest extends AppendableGateway<PostC
     /** Courier ID. */
     courierId: (courierId: number|string) => this
     /** collection point details. */
-    descriptions: (descriptions: Array<JSObject>) => this
+    descriptions: (descriptions: RequestParams.PostCouriersPickupPointsParams["pickupPoints"][number]["descriptions"]) => this
     /** Accepted payment types. */
     paymentForms: (paymentForms: string|string[]) => this
     /** Collection point activity. Available values: available, outOfService . */
     serviceStatus: (serviceStatus: 'out_of_service'|'available') => this
     /** Pickup point address. */
-    address: (address: JSObject) => this
+    address: (address: RequestParams.PostCouriersPickupPointsParams["pickupPoints"][number]["address"]) => this
     /** Geographic coordinates. */
-    coordinates: (coordinates: JSObject) => this
+    coordinates: (coordinates: RequestParams.PostCouriersPickupPointsParams["pickupPoints"][number]["coordinates"]) => this
     /** Personal collection point work hours. */
-    operatingDays: (operatingDays: Array<JSObject>) => this
+    operatingDays: (operatingDays: RequestParams.PostCouriersPickupPointsParams["pickupPoints"][number]["operatingDays"]) => this
 }
 
 export interface PutCouriersPickupPointsRequest extends AppendableGateway<PutCouriersPickupPointsRequest, PutCouriersPickupPointsResponse, RequestParams.PutCouriersPickupPointsParams> {
@@ -912,17 +912,17 @@ export interface PutCouriersPickupPointsRequest extends AppendableGateway<PutCou
     /** Courier ID. */
     courierId: (courierId: number|string) => this
     /** collection point details. */
-    descriptions: (descriptions: Array<JSObject>) => this
+    descriptions: (descriptions: RequestParams.PutCouriersPickupPointsParams["pickupPoints"][number]["descriptions"]) => this
     /** Accepted payment types. */
     paymentForms: (paymentForms: string|string[]) => this
     /** Collection point activity. Available values: available, outOfService . */
     serviceStatus: (serviceStatus: 'out_of_service'|'available') => this
     /** Pickup point address. */
-    address: (address: JSObject) => this
+    address: (address: RequestParams.PutCouriersPickupPointsParams["pickupPoints"][number]["address"]) => this
     /** Geographic coordinates. */
-    coordinates: (coordinates: JSObject) => this
+    coordinates: (coordinates: RequestParams.PutCouriersPickupPointsParams["pickupPoints"][number]["coordinates"]) => this
     /** Personal collection point work hours. */
-    operatingDays: (operatingDays: Array<JSObject>) => this
+    operatingDays: (operatingDays: RequestParams.PutCouriersPickupPointsParams["pickupPoints"][number]["operatingDays"]) => this
 }
 
 export interface GetCpaCampaignRequest extends PagableGateway<GetCpaCampaignRequest> {
@@ -936,7 +936,7 @@ export interface GetCpaCampaignRequest extends PagableGateway<GetCpaCampaignRequ
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostCpaCampaignRequest extends AppendableGateway<PostCpaCampaignRequest, JSObject> {
+export interface PostCpaCampaignRequest extends AppendableGateway<PostCpaCampaignRequest> {
     campaigns: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -950,7 +950,7 @@ export interface PostCpaCampaignRequest extends AppendableGateway<PostCpaCampaig
     active: (active: 'y'|'n') => this
 }
 
-export interface PutCpaCampaignRequest extends AppendableGateway<PutCpaCampaignRequest, JSObject> {
+export interface PutCpaCampaignRequest extends AppendableGateway<PutCpaCampaignRequest> {
     campaigns: (value: Array<JSObject>) => this;
     /** Snippet campaign id */
     id: (id: number|string) => this
@@ -969,7 +969,7 @@ export interface DeleteCpaCampaignRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetCpaRequest extends PagableGateway<GetCpaRequest,GetCpaResponse> {
+export interface GetCpaRequest extends PagableGateway<GetCpaRequest, GetCpaResponse> {
     /** List of campaign identifiers */
     campaign: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -980,7 +980,7 @@ export interface GetCpaRequest extends PagableGateway<GetCpaRequest,GetCpaRespon
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostCpaRequest extends AppendableGateway<PostCpaRequest, JSObject> {
+export interface PostCpaRequest extends AppendableGateway<PostCpaRequest> {
     cpa: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -1000,7 +1000,7 @@ export interface PostCpaRequest extends AppendableGateway<PostCpaRequest, JSObje
     variables: (variables: Array<JSObject>) => this
 }
 
-export interface PutCpaRequest extends AppendableGateway<PutCpaRequest, JSObject> {
+export interface PutCpaRequest extends AppendableGateway<PutCpaRequest> {
     cpa: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -1169,7 +1169,7 @@ export interface GetEntriesRequest extends Gateway<GetEntriesResponse> {
     langId: (value: string) => this;
 }
 
-export interface PostEntriesRequest extends AppendableGateway<PostEntriesRequest, JSObject> {
+export interface PostEntriesRequest extends AppendableGateway<PostEntriesRequest> {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Date of creating an entry */
@@ -1252,7 +1252,7 @@ export interface GetMenuFilterRequest extends Gateway {
     productMenuNodeId: (value: number|string) => this;
 }
 
-export interface PutMenuFilterRequest extends AppendableGateway<PutMenuFilterRequest, JSObject> {
+export interface PutMenuFilterRequest extends AppendableGateway<PutMenuFilterRequest> {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
@@ -1277,7 +1277,7 @@ export interface PutMenuFilterRequest extends AppendableGateway<PutMenuFilterReq
     menuFilterDefaultEnabled: (menuFilterDefaultEnabled: 'y'|'n') => this
 }
 
-export interface DeleteMenuRequest extends AppendableGateway<DeleteMenuRequest, JSObject> {
+export interface DeleteMenuRequest extends AppendableGateway<DeleteMenuRequest> {
     menu_list: (value: Array<JSObject>) => this;
     /** Settings. */
     settings: (value: JSObject) => this;
@@ -1306,10 +1306,10 @@ export interface GetMenuRequest extends Gateway<GetMenuResponse> {
     textid_separator: (value: string) => this;
 }
 
-export interface PostMenuRequest extends AppendableGateway<PostMenuRequest, JSObject> {
-    menu_list: (value: Array<JSObject>) => this;
+export interface PostMenuRequest extends AppendableGateway<PostMenuRequest, PostMenuResponse, RequestParams.PostMenuParams> {
+    menu_list: (value: RequestParams.PostMenuParams["menu_list"]) => this;
     /** Settings */
-    settings: (value: JSObject) => this;
+    settings: (value: RequestParams.PostMenuParams["settings"]) => this;
     /** Shop Id. */
     shop_id: (shop_id: number|string) => this
     /** Menu ID. */
@@ -1319,13 +1319,13 @@ export interface PostMenuRequest extends AppendableGateway<PostMenuRequest, JSOb
     /** Menu element text identifier. Example: "item1\item2". */
     parent_textid: (parent_textid: string) => this
     /**  */
-    lang_data: (lang_data: Array<JSObject>) => this
+    lang_data: (lang_data: RequestParams.PostMenuParams["menu_list"][number]["lang_data"]) => this
 }
 
-export interface PutMenuRequest extends AppendableGateway<PutMenuRequest, JSObject> {
-    menu_list: (value: Array<JSObject>) => this;
+export interface PutMenuRequest extends AppendableGateway<PutMenuRequest, PutMenuResponse, RequestParams.PutMenuParams> {
+    menu_list: (value: RequestParams.PutMenuParams["menu_list"]) => this;
     /** Settings. */
-    settings: (value: JSObject) => this;
+    settings: (value: RequestParams.PutMenuParams["settings"]) => this;
     /** Shop Id. */
     shop_id: (shop_id: number|string) => this
     /** Menu ID. */
@@ -1335,10 +1335,10 @@ export interface PutMenuRequest extends AppendableGateway<PutMenuRequest, JSObje
     /** Menu element text identifier. Example: "item1\item2\item3". */
     item_textid: (item_textid: string) => this
     /**  */
-    lang_data: (lang_data: Array<JSObject>) => this
+    lang_data: (lang_data: RequestParams.PutMenuParams["menu_list"][number]["lang_data"]) => this
 }
 
-export interface PutMenuSortRequest extends AppendableGateway<PutMenuSortRequest, JSObject> {
+export interface PutMenuSortRequest extends AppendableGateway<PutMenuSortRequest> {
     menu_list: (value: Array<JSObject>) => this;
     /** Settings */
     settings: (value: JSObject) => this;
@@ -1395,33 +1395,33 @@ export interface PutOrdersDeliveryAddressRequest extends Gateway {
     clientLogin: (value: string) => this;
 }
 
-export interface PutOrdersDevideRequest extends AppendableGateway<PutOrdersDevideRequest, JSObject> {
+export interface PutOrdersDevideRequest extends AppendableGateway<PutOrdersDevideRequest> {
     /** Order serial number. */
     orderSerialNumber: (value: number|string) => this;
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Whether to split payments */
-    splitPayments: (value: Boolean) => this;
+    splitPayments: (value: boolean) => this;
     /** Item in basket. */
     basketPosition: (basketPosition: number|string) => this
     /** Quantity */
     quantity: (quantity: number) => this
 }
 
-export interface PostOrdersDocumentsCreateRequest extends Gateway<PostOrdersDocumentsCreateResponse> {
-    orderSerialNumbers: (value: RequestParams.PostOrdersDocumentsCreateParams["orderSerialNumbers"]) => this;
-    actualize: (value: RequestParams.PostOrdersDocumentsCreateParams["actualize"]) => this;
+export interface PostOrdersDocumentsCreateRequest extends Gateway<PostOrdersDocumentsCreateResponse, RequestParams.PostOrdersDocumentsCreateParams> {
+    orderSerialNumbers: (value: number|string|number[]|string[]) => this;
+    actualize: (value: boolean) => this;
     /** Document type */
-    documentType: (value: RequestParams.PostOrdersDocumentsCreateParams["documentType"]) => this;
+    documentType: (value: 'vat_invoice'|'fiscal_invoice'|'corrective_vat_invoice'|'fiscal_receipt'|'sales_confirmation') => this;
     /** Document issued date */
-    documentIssuedDate: (value: RequestParams.PostOrdersDocumentsCreateParams["documentIssuedDate"]) => this;
+    documentIssuedDate: (value: string) => this;
     /** Document purchase date */
-    documentPurchaseDate: (value: RequestParams.PostOrdersDocumentsCreateParams["documentPurchaseDate"]) => this;
+    documentPurchaseDate: (value: string) => this;
     /** Printer id */
-    printerId: (value: RequestParams.PostOrdersDocumentsCreateParams["printerId"]) => this;
+    printerId: (value: number|string) => this;
 }
 
-export interface DeleteOrdersDocumentsRequest extends AppendableGateway<DeleteOrdersDocumentsRequest, JSObject> {
+export interface DeleteOrdersDocumentsRequest extends AppendableGateway<DeleteOrdersDocumentsRequest> {
     /** List of documents. */
     documents: (value: Array<JSObject>) => this;
     /** Order serial number. */
@@ -1439,7 +1439,7 @@ export interface GetOrdersDocumentsRequest extends Gateway<GetOrdersDocumentsRes
     returnElements: (value: string|string[]) => this;
 }
 
-export interface PostOrdersDocumentsRequest extends AppendableGateway<PostOrdersDocumentsRequest, JSObject> {
+export interface PostOrdersDocumentsRequest extends AppendableGateway<PostOrdersDocumentsRequest> {
     /** List of documents. */
     documents: (value: Array<JSObject>) => this;
     /** Order serial number. */
@@ -1498,7 +1498,7 @@ export interface GetOrdersExportdocumentsJPKRequest extends Gateway {
     /** Stock ID */
     stockId: (value: number|string|number[]|string[]) => this;
     /** Forces the file to be generated by background tasks. The file will be generated later. Then, after it is generated, you will be able to download the given file using the returned ID. The file will be available 24h after the task is completed. */
-    forceBackgroundGenerate: (value: Boolean) => this;
+    forceBackgroundGenerate: (value: boolean) => this;
     /** Define range of dates */
     dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
@@ -1520,7 +1520,7 @@ export interface GetOrdersHistoryRequest extends Gateway<GetOrdersHistoryRespons
     orderSerialNumber: (value: number|string) => this;
 }
 
-export interface DeleteOrdersImagesRequest extends AppendableGateway<DeleteOrdersImagesRequest, JSObject> {
+export interface DeleteOrdersImagesRequest extends AppendableGateway<DeleteOrdersImagesRequest> {
     order: (value: JSObject) => this;
     /** List of attachment IDs to be removed from the details of the selected order */
     images: (value: Array<JSObject>) => this;
@@ -1535,7 +1535,7 @@ export interface GetOrdersImagesRequest extends Gateway {
     orderSerialNumber: (value: number|string) => this;
 }
 
-export interface PostOrdersImagesRequest extends AppendableGateway<PostOrdersImagesRequest, JSObject> {
+export interface PostOrdersImagesRequest extends AppendableGateway<PostOrdersImagesRequest> {
     /** Login */
     userName: (value: string) => this;
     settings: (value: JSObject) => this;
@@ -1557,21 +1557,21 @@ export interface GetOrdersLabelsRequest extends Gateway {
     orderSerialNumber: (value: number|string) => this;
 }
 
-export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrdersOpinionsRequest,SearchOrdersOpinionsResponse> {
+export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrdersOpinionsRequest, SearchOrdersOpinionsResponse, RequestParams.SearchOrdersOpinionsParams> {
     /** Review identification */
-    opinion: (value: JSObject) => this;
+    opinion: (value: RequestParams.SearchOrdersOpinionsParams["opinion"]) => this;
     /** Orders. */
-    orders: (value: JSObject) => this;
+    orders: (value: RequestParams.SearchOrdersOpinionsParams["orders"]) => this;
     /** Customer data. */
-    clients: (value: JSObject) => this;
+    clients: (value: RequestParams.SearchOrdersOpinionsParams["clients"]) => this;
     /** Date range */
-    dateRange: (value: JSObject) => this;
+    dateRange: (value: RequestParams.SearchOrdersOpinionsParams["dateRange"]) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
     /** Possibility of sorting returned list */
-    ordersBy: (value: Array<JSObject>) => this;
+    ordersBy: (value: RequestParams.SearchOrdersOpinionsParams["ordersBy"]) => this;
     orderId: (value: string) => this;
     orderSerialNumber: (value: string) => this;
     clientId: (value: string) => this;
@@ -1613,7 +1613,7 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     /** Determines if customer unregistered. Allowed values. "y" - casual client, "n" - registered customer. Default value:: "y". If customer is unregistered, enter customer details in element: "clientWithoutAccountData". For client with account - existing login should be stored in: "clientLogin". */
     clientWithoutAccount: (clientWithoutAccount: string) => this
     /** Balance data for casual client. Object is necessary for casual clients (in case of client_once has y value). */
-    clientWithoutAccountData: (clientWithoutAccountData: JSObject) => this
+    clientWithoutAccountData: (clientWithoutAccountData: RequestParams.PostOrdersParams["orders"][number]["clientWithoutAccountData"]) => this
     /** Customer's login. */
     clientLogin: (clientLogin: string) => this
     /** Customer comments on order. */
@@ -1629,11 +1629,11 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     /** Delivery cost. */
     deliveryCost: (deliveryCost: number) => this
     /** Delivery address data. */
-    clientDeliveryAddress: (clientDeliveryAddress: JSObject) => this
+    clientDeliveryAddress: (clientDeliveryAddress: RequestParams.PostOrdersParams["orders"][number]["clientDeliveryAddress"]) => this
     /** Buyer's address data. */
-    payerAddress: (payerAddress: JSObject) => this
+    payerAddress: (payerAddress: RequestParams.PostOrdersParams["orders"][number]["payerAddress"]) => this
     /** Products list. */
-    products: (products: Array<JSObject>) => this
+    products: (products: RequestParams.PostOrdersParams["orders"][number]["products"]) => this
     /** Discount value. */
     orderRebateValue: (orderRebateValue: number) => this
     /** Order handler. */
@@ -1641,9 +1641,9 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     /** Omits collecting orders via IAI Bridge. */
     ignoreBridge: (ignoreBridge: boolean) => this
     /** Settings */
-    settings: (settings: JSObject) => this
+    settings: (settings: RequestParams.PostOrdersParams["orders"][number]["settings"]) => this
     /** Settlement by prices. "gross" - gross, "net" - net, "net_without_VAT" - net without VAT. */
-    orderSettledAtPrice: (orderSettledAtPrice: 'gross'|'net'|'net_without_vat') => this
+    orderSettledAtPrice: (orderSettledAtPrice: 'gross'|'net'|'net_without_VAT') => this
     /** Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
     clientRequestInvoice: (clientRequestInvoice: string) => this
     /** Order settlement currency. */
@@ -1676,15 +1676,15 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, Pu
     /** Note to the order. */
     orderNote: (orderNote: string) => this
     /** Products list. */
-    products: (products: Array<JSObject>) => this
+    products: (products: RequestParams.PutOrdersParams["orders"][number]["products"]) => this
     /** Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit. */
     orderPaymentType: (orderPaymentType: 'cash_on_delivery'|'prepaid'|'tradecredit') => this
     /** Settlement by prices. "gross" - gross, "net" - net, "net_without_VAT" - net without VAT. */
-    orderSettledAtPrice: (orderSettledAtPrice: 'gross'|'net'|'net_without_vat') => this
+    orderSettledAtPrice: (orderSettledAtPrice: 'gross'|'net'|'net_without_VAT') => this
     /** Omits collecting orders via IAI Bridge. */
     ignoreBridge: (ignoreBridge: boolean) => this
     /** Settings */
-    settings: (settings: JSObject) => this
+    settings: (settings: RequestParams.PutOrdersParams["orders"][number]["settings"]) => this
     /** Consent to send data to cooperating services */
     emailProcessingConsent: (emailProcessingConsent: 'yes'|'no'|'disabled') => this
     /** Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
@@ -1699,9 +1699,9 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, Pu
     estimatedDeliveryDate: (estimatedDeliveryDate: string) => this
 }
 
-export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,SearchOrdersResponse> {
+export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest, SearchOrdersResponse, RequestParams.SearchOrdersParams> {
     /** Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
-    orderPrepaidStatus: (value: string) => this;
+    orderPrepaidStatus: (value: "unpaid" | "restored" | "waiting") => this;
     /** Order status. Status list: "new" - not handled, "finished" - completed, "false" - false, "lost" - lost, "on_order" - in progress, "packed" - being picked, "ready" - ready, "canceled" - canceled by customer, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "suspended" - on hold, "joined" - merged, "finished_ext" - handled in FA application. */
     ordersStatuses: (value: string|string[]) => this;
     /** Order statusses ids. */
@@ -1722,13 +1722,13 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     /** Order serial numbers. */
     ordersSerialNumbers: (value: number|string|number[]|string[]) => this;
     /** Customer data. */
-    clients: (value: Array<JSObject>) => this;
+    clients: (value: RequestParams.SearchOrdersParams["clients"]) => this;
     /** Ranges of dates or serial numbers. */
-    ordersRange: (value: JSObject) => this;
+    ordersRange: (value: RequestParams.SearchOrdersParams["ordersRange"]) => this;
     /** Order source data. */
-    orderSource: (value: JSObject) => this;
+    orderSource: (value: RequestParams.SearchOrdersParams["orderSource"]) => this;
     /** Products list. */
-    products: (value: Array<JSObject>) => this;
+    products: (value: RequestParams.SearchOrdersParams["products"]) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -1736,11 +1736,11 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     /** Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
     clientRequestInvoice: (value: string) => this;
     /** Information on consignments. */
-    packages: (value: JSObject) => this;
+    packages: (value: RequestParams.SearchOrdersParams["packages"]) => this;
     /** Stock quantities data. */
-    stocks: (value: Array<JSObject>) => this;
+    stocks: (value: RequestParams.SearchOrdersParams["stocks"]) => this;
     /** Used discount codes data. */
-    campaign: (value: JSObject) => this;
+    campaign: (value: RequestParams.SearchOrdersParams["campaign"]) => this;
     /** Loyalty points. */
     loyaltyPointsMode: (value: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => this;
     /** Order handler. */
@@ -1748,13 +1748,13 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     /** Order picker. */
     orderPackingPersonLogin: (value: string) => this;
     /** Possibility of sorting returned list */
-    ordersBy: (value: Array<JSObject>) => this;
+    ordersBy: (value: RequestParams.SearchOrdersParams["ordersBy"]) => this;
     /** Method of searching orders by handler. */
     searchingOperatorTypeMatch: (value: 'no_assignment'|'no_empty'|'empty') => this;
     /** Orders with the exceeded date of shipment. */
     ordersDelayed: (value: 'y'|'n') => this;
     /** Combine the components of the set into one item */
-    showBundles: (value: Boolean) => this;
+    showBundles: (value: boolean) => this;
     /** The order ID of the external service */
     orderExternalId: (value: string) => this;
     /** Order currency */
@@ -1799,10 +1799,10 @@ export interface GetOrdersPackagesRequest extends Gateway<GetOrdersPackagesRespo
     /** RMA numbers. */
     rmaNumbers: (value: number|string|number[]|string[]) => this;
     /** Return parcel labels. */
-    returnLabels: (value: Boolean) => this;
+    returnLabels: (value: boolean) => this;
 }
 
-export interface PostOrdersPackagesRequest extends AppendableGateway<PostOrdersPackagesRequest, JSObject> {
+export interface PostOrdersPackagesRequest extends AppendableGateway<PostOrdersPackagesRequest> {
     /** List of parcels assigned to the order Maximum default number: 100 parcels. */
     orderPackages: (value: Array<JSObject>) => this;
     /** Id. */
@@ -1813,7 +1813,7 @@ export interface PostOrdersPackagesRequest extends AppendableGateway<PostOrdersP
     packages: (packages: Array<JSObject>) => this
 }
 
-export interface PutOrdersPackagesRequest extends AppendableGateway<PutOrdersPackagesRequest, JSObject> {
+export interface PutOrdersPackagesRequest extends AppendableGateway<PutOrdersPackagesRequest> {
     /** List of parcels assigned to the order Maximum default number: 100 parcels. */
     orderPackages: (value: Array<JSObject>) => this;
     /** Id. */
@@ -1837,10 +1837,10 @@ export interface GetOrdersPrinterDocumentsRequest extends Gateway {
     objectNumber: (value: string) => this;
     objectType: (value: string) => this;
     printerAccessKey: (value: string) => this;
-    skipNotGeneratedDocument: (value: Boolean) => this;
+    skipNotGeneratedDocument: (value: boolean) => this;
 }
 
-export interface PutOrdersProductsSerialNumbersRequest extends AppendableGateway<PutOrdersProductsSerialNumbersRequest, JSObject> {
+export interface PutOrdersProductsSerialNumbersRequest extends AppendableGateway<PutOrdersProductsSerialNumbersRequest> {
     /** Orders. */
     orders: (value: Array<JSObject>) => this;
     /** Order serial number. */
@@ -1849,7 +1849,7 @@ export interface PutOrdersProductsSerialNumbersRequest extends AppendableGateway
     orderProducts: (orderProducts: Array<JSObject>) => this
 }
 
-export interface PutOrdersProfitMarginRequest extends AppendableGateway<PutOrdersProfitMarginRequest, JSObject> {
+export interface PutOrdersProfitMarginRequest extends AppendableGateway<PutOrdersProfitMarginRequest> {
     /** Orders. */
     orders: (value: Array<JSObject>) => this;
     /** Order serial number. */
@@ -1871,16 +1871,16 @@ export interface PutOrdersShippingCostsRequest extends Gateway {
     /** Order serial number. */
     orderSerialNumber: (value: number|string) => this;
     /** Delivery cost. */
-    deliveryCost: (value: Number) => this;
+    deliveryCost: (value: number) => this;
     /** Delivery VAT. */
-    orderDeliveryVat: (value: Number) => this;
+    orderDeliveryVat: (value: number) => this;
 }
 
 export interface GetOrdersStatusesRequest extends Gateway<GetOrdersStatusesResponse> {}
 
-export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest,SearchOrdersResponse> {
+export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest, SearchOrdersResponse> {
     /** Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
-    orderPrepaidStatus: (value: string) => this;
+    orderPrepaidStatus: (value: "unpaid" | "restored" | "waiting") => this;
     /** Order status. Status list: "new" - not handled, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "finished_ext" - handled in FA application. */
     ordersStatuses: (value: string|string[]) => this;
     /** Order statuses ids. */
@@ -1990,9 +1990,9 @@ export interface GetPackagesLabelsRequest extends Gateway<GetPackagesLabelsRespo
 
 export interface PostPackagesLabelsRequest extends AppendableGateway<PostPackagesLabelsRequest, PostPackagesLabelsResponse, RequestParams.PostPackagesLabelsParams> {
     /** Id. */
-    eventId: (value: RequestParams.PostPackagesLabelsParams["eventId"]) => this;
+    eventId: (value: number|string) => this;
     /** Type. */
-    eventType: (value: RequestParams.PostPackagesLabelsParams["eventType"]) => this;
+    eventType: (value: 'order'|'rma'|'return') => this;
     /** Shipment configuration options available for a given courier */
     parcelParameters: (value: RequestParams.PostPackagesLabelsParams["parcelParameters"]) => this;
     /** Shipment configuration options available for Inpost Smile courier */
@@ -2001,7 +2001,7 @@ export interface PostPackagesLabelsRequest extends AppendableGateway<PostPackage
     packageId: (packageId: string) => this
 }
 
-export interface PostPackagesRequest extends AppendableGateway<PostPackagesRequest, JSObject> {
+export interface PostPackagesRequest extends AppendableGateway<PostPackagesRequest> {
     /** List of parcels assigned to the order Maximum default number: 100 parcels. */
     orderPackages: (value: Array<JSObject>) => this;
     /** Order ID. */
@@ -2012,7 +2012,7 @@ export interface PostPackagesRequest extends AppendableGateway<PostPackagesReque
     packages: (packages: Array<JSObject>) => this
 }
 
-export interface PutPackagesRequest extends AppendableGateway<PutPackagesRequest, JSObject> {
+export interface PutPackagesRequest extends AppendableGateway<PutPackagesRequest> {
     /** List of parcels assigned to the order Maximum default number: 100 parcels. */
     orderPackages: (value: Array<JSObject>) => this;
     /** Order ID. */
@@ -2023,13 +2023,13 @@ export interface PutPackagesRequest extends AppendableGateway<PutPackagesRequest
     packages: (packages: Array<JSObject>) => this
 }
 
-export interface SearchPackagesRequest extends AppendableGateway<SearchPackagesRequest, SearchPackagesResponse> {
+export interface SearchPackagesRequest extends AppendableGateway<SearchPackagesRequest, SearchPackagesResponse, RequestParams.SearchPackagesParams> {
     /** Consignments numbers. */
     deliveryPackageNumbers: (value: string|string[]) => this;
     /** Element, package is assigned to */
-    events: (value: Array<JSObject>) => this;
+    events: (value: RequestParams.SearchPackagesParams["events"]) => this;
     /** Return parcel labels. */
-    returnLabels: (value: Boolean) => this;
+    returnLabels: (value: boolean) => this;
     /** Type. */
     eventType: (eventType: 'order'|'rma'|'return') => this
     /** IDs. */
@@ -2054,7 +2054,7 @@ export interface PostPaymentsCashbackRequest extends Gateway {
     /** Payment number - [order no.]-[payment no.], i.e. 1234-1. */
     paymentNumber: (value: string) => this;
     /** Refund value. */
-    value: (value: Number) => this;
+    value: (value: number) => this;
 }
 
 export interface PutPaymentsConfirmRequest extends Gateway {
@@ -2078,13 +2078,13 @@ export interface GetPaymentsRequest extends Gateway<GetPaymentsResponse> {
     sourceType: (value: 'order'|'return'|'rma') => this;
 }
 
-export interface PostPaymentsRequest extends Gateway {
+export interface PostPaymentsRequest extends Gateway<PostPaymentsResponse, RequestParams.PostPaymentsParams> {
     /** Source ID. */
     sourceId: (value: number|string) => this;
     /** Source type. */
     sourceType: (value: 'order'|'return'|'rma') => this;
     /** Payment amount. */
-    value: (value: Number) => this;
+    value: (value: number) => this;
     /** Number of a bank account to which a payment is sent. */
     account: (value: string) => this;
     type: (value: 'payment'|'advance'|'repayment'|'fee') => this;
@@ -2106,7 +2106,7 @@ export interface PutPaymentsRequest extends Gateway {
     /** Payment method ID. Check getPaymentForms. */
     paymentFormId: (value: number|string) => this;
     /** Refund value. */
-    value: (value: Number) => this;
+    value: (value: number) => this;
     /** Registering date. */
     accountingDate: (value: string) => this;
     /** Number of a bank account to which a payment is sent. */
@@ -2125,13 +2125,13 @@ export interface GetPaymentsProfilesRequest extends PagableGateway<GetPaymentsPr
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostPaymentsRepaymentRequest extends Gateway {
+export interface PostPaymentsRepaymentRequest extends Gateway<PostPaymentsRepaymentResponse, RequestParams.PostPaymentsRepaymentParams> {
     /** Returns ID. */
     source_id: (value: number|string) => this;
     /** Defines payment category. For the payments regarding returns, enter 'return'. */
     source_type: (value: string) => this;
     /** Refund value. */
-    value: (value: Number) => this;
+    value: (value: number) => this;
     /** Payment method ID. Check getPaymentForms. */
     payment_form_id: (value: number|string) => this;
     /** Number of a bank account to which a payment is sent. */
@@ -2139,26 +2139,26 @@ export interface PostPaymentsRepaymentRequest extends Gateway {
     /** Customer account. */
     client_account: (value: string) => this;
     /** Other. */
-    other: (value: JSObject) => this;
+    other: (value: RequestParams.PostPaymentsRepaymentParams["other"]) => this;
 }
 
 export interface GetProductsSKUbyBarcodeRequest extends Gateway<GetProductsSKUbyBarcodeResponse> {
     /** List of sought products by indexes. */
     productIndices: (value: string|string[]) => this;
     /** Search for products only by IAI code */
-    searchOnlyInCodeIai: (value: Boolean) => this;
+    searchOnlyInCodeIai: (value: boolean) => this;
 }
 
-export interface PutProductsAttachmentsRequest extends AppendableGateway<PutProductsAttachmentsRequest, JSObject> {
-    productsAttachments: (value: Array<JSObject>) => this;
+export interface PutProductsAttachmentsRequest extends AppendableGateway<PutProductsAttachmentsRequest, PutProductsAttachmentsResponse, RequestParams.PutProductsAttachmentsParams> {
+    productsAttachments: (value: RequestParams.PutProductsAttachmentsParams["productsAttachments"]) => this;
     /** Stock keeping unit. */
-    productIdent: (productIdent: JSObject) => this
+    productIdent: (productIdent: RequestParams.PutProductsAttachmentsParams["productsAttachments"][number]["productIdent"]) => this
     /** Product attachments list. */
-    attachments: (attachments: Array<JSObject>) => this
+    attachments: (attachments: RequestParams.PutProductsAttachmentsParams["productsAttachments"][number]["attachments"]) => this
     /** List of product's virtual attachments. */
-    virtualAttachments: (virtualAttachments: Array<JSObject>) => this
+    virtualAttachments: (virtualAttachments: RequestParams.PutProductsAttachmentsParams["productsAttachments"][number]["virtualAttachments"]) => this
     /** Information on error that occurred during gate call. */
-    errors: (errors: JSObject) => this
+    errors: (errors: RequestParams.PutProductsAttachmentsParams["productsAttachments"][number]["errors"]) => this
     /** Flag indicating if there are errors in results of attachments settings. */
     attachmentsErrorsOccurred: (attachmentsErrorsOccurred: boolean) => this
     /** Flag indicating if there are errors in results of virtual attachments settings. */
@@ -2166,7 +2166,7 @@ export interface PutProductsAttachmentsRequest extends AppendableGateway<PutProd
     productId: (value: number|string) => this;
 }
 
-export interface GetProductsAuctionsRequest extends PagableGateway<GetProductsAuctionsRequest,GetProductsAuctionsResponse> {
+export interface GetProductsAuctionsRequest extends PagableGateway<GetProductsAuctionsRequest, GetProductsAuctionsResponse> {
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
@@ -2195,7 +2195,7 @@ export interface GetProductsBrandsFilterRequest extends Gateway {
     producerId: (value: number|string) => this;
 }
 
-export interface PutProductsBrandsFilterRequest extends AppendableGateway<PutProductsBrandsFilterRequest, JSObject> {
+export interface PutProductsBrandsFilterRequest extends AppendableGateway<PutProductsBrandsFilterRequest> {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
@@ -2217,7 +2217,7 @@ export interface PutProductsBrandsFilterRequest extends AppendableGateway<PutPro
     filterDefaultEnabled: (filterDefaultEnabled: 'y'|'n') => this
 }
 
-export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBrandsRequest,GetProductsBrandsResponse> {
+export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBrandsRequest, GetProductsBrandsResponse> {
     /** Result page number. */
     results_page: (value: number|string) => this;
     /** Number of results on page. */
@@ -2226,7 +2226,7 @@ export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBran
     languagesIds: (value: string|string[]) => this;
 }
 
-export interface PostProductsBrandsRequest extends AppendableGateway<PostProductsBrandsRequest, JSObject> {
+export interface PostProductsBrandsRequest extends AppendableGateway<PostProductsBrandsRequest> {
     /** List of manufacturers assigned to sought products. */
     producers: (value: Array<JSObject>) => this;
     /** Name in panel */
@@ -2237,7 +2237,7 @@ export interface PostProductsBrandsRequest extends AppendableGateway<PostProduct
     languagesConfigurations: (languagesConfigurations: Array<JSObject>) => this
 }
 
-export interface PutProductsBrandsRequest extends AppendableGateway<PutProductsBrandsRequest, JSObject> {
+export interface PutProductsBrandsRequest extends AppendableGateway<PutProductsBrandsRequest> {
     /** List of manufacturers assigned to sought products. */
     producers: (value: Array<JSObject>) => this;
     /** Id */
@@ -2250,23 +2250,14 @@ export interface PutProductsBrandsRequest extends AppendableGateway<PutProductsB
     languagesConfigurations: (languagesConfigurations: Array<JSObject>) => this
 }
 
-export interface PostProductsBundlesRequest extends AppendableGateway<PostProductsBundlesRequest, JSObject> {
+export interface PostProductsBundlesRequest extends AppendableGateway<PostProductsBundlesRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
     products: (products: Array<JSObject>) => this
 }
 
-export interface DeleteProductsBundlesProductsRequest extends AppendableGateway<DeleteProductsBundlesProductsRequest, JSObject> {
-    /** Parameters transmitted to method */
-    params: (value: Array<JSObject>) => this;
-    /** Products list. */
-    products: (products: Array<JSObject>) => this
-    /**  */
-    bundleIdent: (bundleIdent: JSObject) => this
-}
-
-export interface PostProductsBundlesProductsRequest extends AppendableGateway<PostProductsBundlesProductsRequest, JSObject> {
+export interface DeleteProductsBundlesProductsRequest extends AppendableGateway<DeleteProductsBundlesProductsRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
@@ -2275,7 +2266,7 @@ export interface PostProductsBundlesProductsRequest extends AppendableGateway<Po
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
-export interface PutProductsBundlesProductsQuantityRequest extends AppendableGateway<PutProductsBundlesProductsQuantityRequest, JSObject> {
+export interface PostProductsBundlesProductsRequest extends AppendableGateway<PostProductsBundlesProductsRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
@@ -2284,7 +2275,16 @@ export interface PutProductsBundlesProductsQuantityRequest extends AppendableGat
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
-export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutProductsBundlesRenewRequest, JSObject> {
+export interface PutProductsBundlesProductsQuantityRequest extends AppendableGateway<PutProductsBundlesProductsQuantityRequest> {
+    /** Parameters transmitted to method */
+    params: (value: Array<JSObject>) => this;
+    /** Products list. */
+    products: (products: Array<JSObject>) => this
+    /**  */
+    bundleIdent: (bundleIdent: JSObject) => this
+}
+
+export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutProductsBundlesRenewRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
@@ -2293,7 +2293,7 @@ export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutPro
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
-export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest,GetProductsCategoriesResponse> {
+export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest, GetProductsCategoriesResponse> {
     /** List of product category identifiers in the panel */
     ids: (value: number|string|number[]|string[]) => this;
     /** Array of languages categories names should be returned in. "Defaults" value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages. */
@@ -2306,9 +2306,9 @@ export interface GetProductsCategoriesRequest extends PagableGateway<GetProducts
     return_last_changed_time: (value: string) => this;
 }
 
-export interface PutProductsCategoriesRequest extends AppendableGateway<PutProductsCategoriesRequest, JSObject> {
+export interface PutProductsCategoriesRequest extends AppendableGateway<PutProductsCategoriesRequest, PutProductsCategoriesResponse, RequestParams.PutProductsCategoriesParams> {
     /** List of categories in which sought products are present. */
-    categories: (value: Array<JSObject>) => this;
+    categories: (value: RequestParams.PutProductsCategoriesParams["categories"]) => this;
     /** Category id. */
     id: (id: number|string) => this
     /** Parent category ID. */
@@ -2318,10 +2318,10 @@ export interface PutProductsCategoriesRequest extends AppendableGateway<PutProdu
     /** Operation code. Allowed values. "add" - adds new category, "edit" - edits existing category, "del" - deletes existing category. */
     operation: (operation: string) => this
     /**  */
-    lang_data: (lang_data: Array<JSObject>) => this
+    lang_data: (lang_data: RequestParams.PutProductsCategoriesParams["categories"][number]["lang_data"]) => this
 }
 
-export interface SearchProductsCategoriesIdosellRequest extends PagableGateway<SearchProductsCategoriesIdosellRequest,SearchProductsCategoriesIdosellResponse> {
+export interface SearchProductsCategoriesIdosellRequest extends PagableGateway<SearchProductsCategoriesIdosellRequest, SearchProductsCategoriesIdosellResponse> {
     /** List of languages */
     languagesIds: (value: string|string[]) => this;
     /** Number of IdoSell Categories identifiers */
@@ -2347,23 +2347,14 @@ export interface GetProductsCodeExistenceRequest extends Gateway<GetProductsCode
     productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
-export interface PostProductsCollectionsRequest extends AppendableGateway<PostProductsCollectionsRequest, JSObject> {
+export interface PostProductsCollectionsRequest extends AppendableGateway<PostProductsCollectionsRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
     products: (products: Array<JSObject>) => this
 }
 
-export interface DeleteProductsCollectionsProductsRequest extends AppendableGateway<DeleteProductsCollectionsProductsRequest, JSObject> {
-    /** Parameters transmitted to method */
-    params: (value: Array<JSObject>) => this;
-    /** Products list. */
-    products: (products: Array<JSObject>) => this
-    /** ID of a collection being modified */
-    collectionId: (collectionId: number|string) => this
-}
-
-export interface PostProductsCollectionsProductsRequest extends AppendableGateway<PostProductsCollectionsProductsRequest, JSObject> {
+export interface DeleteProductsCollectionsProductsRequest extends AppendableGateway<DeleteProductsCollectionsProductsRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
@@ -2372,7 +2363,16 @@ export interface PostProductsCollectionsProductsRequest extends AppendableGatewa
     collectionId: (collectionId: number|string) => this
 }
 
-export interface PutProductsCollectionsProductsRequest extends AppendableGateway<PutProductsCollectionsProductsRequest, JSObject> {
+export interface PostProductsCollectionsProductsRequest extends AppendableGateway<PostProductsCollectionsProductsRequest> {
+    /** Parameters transmitted to method */
+    params: (value: Array<JSObject>) => this;
+    /** Products list. */
+    products: (products: Array<JSObject>) => this
+    /** ID of a collection being modified */
+    collectionId: (collectionId: number|string) => this
+}
+
+export interface PutProductsCollectionsProductsRequest extends AppendableGateway<PutProductsCollectionsProductsRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
@@ -2381,7 +2381,7 @@ export interface PutProductsCollectionsProductsRequest extends AppendableGateway
     collectionId: (collectionId: number|string) => this
 }
 
-export interface PutProductsCollectionsRenewRequest extends AppendableGateway<PutProductsCollectionsRenewRequest, JSObject> {
+export interface PutProductsCollectionsRenewRequest extends AppendableGateway<PutProductsCollectionsRenewRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Products list. */
@@ -2390,12 +2390,12 @@ export interface PutProductsCollectionsRenewRequest extends AppendableGateway<Pu
     collectionIdent: (collectionIdent: JSObject) => this
 }
 
-export interface SearchProductsDeliveryTimeRequest extends AppendableGateway<SearchProductsDeliveryTimeRequest, SearchProductsDeliveryTimeResponse> {
+export interface SearchProductsDeliveryTimeRequest extends AppendableGateway<SearchProductsDeliveryTimeRequest, SearchProductsDeliveryTimeResponse, RequestParams.SearchProductsDeliveryTimeParams> {
     /** Stock ID */
     stockId: (value: number|string) => this;
     /** Should products be prepared for personal collection? */
-    isCollectionInPerson: (value: Boolean) => this;
-    products: (value: Array<JSObject>) => this;
+    isCollectionInPerson: (value: boolean) => this;
+    products: (value: RequestParams.SearchProductsDeliveryTimeParams["products"]) => this;
     /** Product Id */
     productId: (productId: number|string) => this
     /** Size identifier */
@@ -2419,7 +2419,7 @@ export interface GetProductsDescriptionsRequest extends Gateway<GetProductsDescr
     productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
-export interface PutProductsDescriptionsRequest extends AppendableGateway<PutProductsDescriptionsRequest, JSObject> {
+export interface PutProductsDescriptionsRequest extends AppendableGateway<PutProductsDescriptionsRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /**  */
@@ -2433,14 +2433,14 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
     setText: (text: string, type?: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords", language?: string, shopId?: number|string) => this;
 }
 
-export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest, JSObject> {
+export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest> {
     groups: (value: Array<JSObject>) => this;
     /**  */
     productIdent: (productIdent: JSObject) => this
     productId: (value: number|string) => this;
 }
 
-export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProductsGroupsOrderRequest, JSObject> {
+export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProductsGroupsOrderRequest> {
     groups: (value: Array<JSObject>) => this;
     /**  */
     productsInOrder: (productsInOrder: Array<JSObject>) => this
@@ -2448,14 +2448,14 @@ export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProd
     productIdsInOrder: (productIds: number|string|number[]|string[]) => this;
 }
 
-export interface PutProductsGroupsSettingsRequest extends AppendableGateway<PutProductsGroupsSettingsRequest, JSObject> {
+export interface PutProductsGroupsSettingsRequest extends AppendableGateway<PutProductsGroupsSettingsRequest> {
     groups: (value: Array<JSObject>) => this;
     /**  */
     productIdent: (productIdent: JSObject) => this
     /** Display on the product list in the panel. */
-    displayInPanel: (displayInPanel: 'firstavailable'|'all') => this
+    displayInPanel: (displayInPanel: 'firstAvailable'|'all') => this
     /** Display on a product list on the page. */
-    displayOnPage: (displayOnPage: 'firstavailable'|'all'|'specified') => this
+    displayOnPage: (displayOnPage: 'firstAvailable'|'all'|'specified') => this
     /** Selected product in the group. */
     specifiedProductIdent: (specifiedProductIdent: JSObject) => this
     productId: (value: number|string) => this;
@@ -2468,7 +2468,7 @@ export interface GetProductsIdBySizecodeRequest extends Gateway<GetProductsIdByS
     type: (value: string) => this;
 }
 
-export interface DeleteProductsImagesRequest extends AppendableGateway<DeleteProductsImagesRequest, JSObject> {
+export interface DeleteProductsImagesRequest extends AppendableGateway<DeleteProductsImagesRequest> {
     /** Parameters transmitted to method */
     params: (value: Array<JSObject>) => this;
     /** Delete all images */
@@ -2481,7 +2481,7 @@ export interface DeleteProductsImagesRequest extends AppendableGateway<DeletePro
     productImagesId: (productImagesId: string|string[]) => this
 }
 
-export interface PutProductsImagesRequest extends AppendableGateway<PutProductsImagesRequest, JSObject> {
+export interface PutProductsImagesRequest extends AppendableGateway<PutProductsImagesRequest> {
     productsImagesSettings: (value: JSObject) => this;
     /** Information on product images */
     productsImages: (value: Array<JSObject>) => this;
@@ -2516,7 +2516,7 @@ export interface GetProductsMarketingPromotionRequest extends Gateway {
     products: (value: number|string|number[]|string[]) => this;
 }
 
-export interface PostProductsMarketingPromotionRequest extends AppendableGateway<PostProductsMarketingPromotionRequest, JSObject> {
+export interface PostProductsMarketingPromotionRequest extends AppendableGateway<PostProductsMarketingPromotionRequest> {
     /** Promotion name */
     promotionName: (value: string) => this;
     /** List of stores IDs When mask is determined, this parameter is omitted. */
@@ -2547,7 +2547,7 @@ export interface PostProductsMarketingPromotionRequest extends AppendableGateway
     elementId: (elementId: string) => this
 }
 
-export interface PutProductsMarketingPromotionRequest extends AppendableGateway<PutProductsMarketingPromotionRequest, JSObject> {
+export interface PutProductsMarketingPromotionRequest extends AppendableGateway<PutProductsMarketingPromotionRequest> {
     /** Promotion ID */
     promotionId: (value: string) => this;
     /** Promotion name */
@@ -2590,7 +2590,7 @@ export interface GetProductsMarketingZonesRequest extends Gateway {
     productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
-export interface PutProductsMarketingZonesRequest extends AppendableGateway<PutProductsMarketingZonesRequest, JSObject> {
+export interface PutProductsMarketingZonesRequest extends AppendableGateway<PutProductsMarketingZonesRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     assignment_mode: (value: 'auto'|'manual') => this;
@@ -2609,7 +2609,7 @@ export interface GetProductsOmnibusPricesRequest extends Gateway<GetProductsOmni
     productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
-export interface PutProductsOmnibusPricesRequest extends AppendableGateway<PutProductsOmnibusPricesRequest, JSObject> {
+export interface PutProductsOmnibusPricesRequest extends AppendableGateway<PutProductsOmnibusPricesRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Identifier type. */
@@ -2632,7 +2632,7 @@ export interface DeleteProductsOpinionsRequest extends Gateway {
     id: (value: number|string) => this;
 }
 
-export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOpinionsRequest,GetProductsOpinionsResponse> {
+export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOpinionsRequest, GetProductsOpinionsResponse> {
     /** Review identification */
     opinion: (value: JSObject) => this;
     /** Products list. */
@@ -2657,7 +2657,7 @@ export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOp
     orderBy: (elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending: boolean) => this;
 }
 
-export interface PostProductsOpinionsRequest extends AppendableGateway<PostProductsOpinionsRequest, JSObject> {
+export interface PostProductsOpinionsRequest extends AppendableGateway<PostProductsOpinionsRequest> {
     /** List of reviews */
     opinions: (value: Array<JSObject>) => this;
     /**  */
@@ -2703,7 +2703,7 @@ export interface PutProductsOpinionsRequest extends Gateway {
     shopAnswer: (value: string) => this;
     picture: (value: string) => this;
     /** Opinion confirmed with purchase */
-    opinionConfirmedByPurchase: (value: Boolean) => this;
+    opinionConfirmedByPurchase: (value: boolean) => this;
 }
 
 export interface GetProductsOpinionsRateRequest extends Gateway {
@@ -2716,7 +2716,7 @@ export interface DeleteProductsParametersRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface PutProductsParametersRequest extends AppendableGateway<PutProductsParametersRequest, JSObject> {
+export interface PutProductsParametersRequest extends AppendableGateway<PutProductsParametersRequest> {
     /** Sections, parameters or valued to add or edit. */
     items: (value: Array<JSObject>) => this;
     /** Settings */
@@ -2741,22 +2741,22 @@ export interface PutProductsParametersRequest extends AppendableGateway<PutProdu
     context_value_id: (context_value_id: string) => this
 }
 
-export interface SearchProductsParametersRequest extends PagableGateway<SearchProductsParametersRequest,SearchProductsParametersResponse> {
+export interface SearchProductsParametersRequest extends PagableGateway<SearchProductsParametersRequest, SearchProductsParametersResponse, RequestParams.SearchProductsParametersParams> {
     /** List of identifiers */
     ids: (value: number|string|number[]|string[]) => this;
     /** Element text ID - can be entered instead of "id". */
-    textIds: (value: Array<JSObject>) => this;
+    textIds: (value: RequestParams.SearchProductsParametersParams["textIds"]) => this;
     /** List of languages */
     languagesIds: (value: string|string[]) => this;
     /** Whether to return a list of parameter value IDs */
-    parameterValueIds: (value: Boolean) => this;
+    parameterValueIds: (value: boolean) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
 }
 
-export interface DeleteProductsRequest extends AppendableGateway<DeleteProductsRequest, JSObject> {
+export interface DeleteProductsRequest extends AppendableGateway<DeleteProductsRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Product IAI code */
@@ -2818,7 +2818,7 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Optional element, that determines prices edition mode. Default value is "amount_set", when indicated element is omitted in API gate call.. Allowed values "amount_set" - sets product prices to desired value (default mode), "amount_diff" - sets sum difference between prices set (adds or subtracts entered sum from the current price), "percent_diff" - sets percentage difference between prices set (adds or subtracts entered percent from the current price). */
     priceChangeMode: (priceChangeMode: string) => this
     /** The JavaScript formula calculating prices */
-    priceFormula: (priceFormula: JSObject) => this
+    priceFormula: (priceFormula: RequestParams.PostProductsParams["products"][number]["priceFormula"]) => this
     /** Gross price */
     productRetailPrice: (productRetailPrice: number) => this
     /** Wholesale price */
@@ -2834,9 +2834,9 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Is product VAT free Allowed values "y" - yes, "n" - no. */
     productVatFree: (productVatFree: string) => this
     /** Different prices for price comparison websites. */
-    productPriceComparisonSitesPrices: (productPriceComparisonSitesPrices: Array<JSObject>) => this
+    productPriceComparisonSitesPrices: (productPriceComparisonSitesPrices: RequestParams.PostProductsParams["products"][number]["productPriceComparisonSitesPrices"]) => this
     /** Object determines if the product is available in POS sale Available values: "n" - no, "y" - yes. */
-    productEnableInPos: (productEnableInPos: string) => this
+    productEnableInPos: (productEnableInPos: "n" | "y") => this
     /** Required advance payment in percents */
     productAdvancePrice: (productAdvancePrice: number) => this
     /** Annotation. */
@@ -2848,17 +2848,17 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Product visibility. Allowed values "y" - product visible, "n" - product not visible. */
     productInVisible: (productInVisible: string) => this
     /** Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock. */
-    productInPersistent: (productInPersistent: string) => this
+    productInPersistent: (productInPersistent: "y" | "n") => this
     /** Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. */
     shopsMask: (shopsMask: number|string) => this
     /** Complex rating Available values: "0" - no, "1" - yes. */
     productComplexNotes: (productComplexNotes: number|string) => this
     /** Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - yes (selected), "n" - invisible. */
-    productInExportToPriceComparisonSites: (productInExportToPriceComparisonSites: string) => this
+    productInExportToPriceComparisonSites: (productInExportToPriceComparisonSites: "y" | "selected" | "n") => this
     /** Selection of comparison sites for which the product visibility will be changed */
-    priceComparisonSites: (priceComparisonSites: Array<JSObject>) => this
+    priceComparisonSites: (priceComparisonSites: RequestParams.PostProductsParams["products"][number]["priceComparisonSites"]) => this
     /** Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible. */
-    productInExportToAmazonMarketplace: (productInExportToAmazonMarketplace: string) => this
+    productInExportToAmazonMarketplace: (productInExportToAmazonMarketplace: "y" | "selected" | "n") => this
     /** Availability profile ID. */
     availableProfile: (availableProfile: number|string) => this
     /** Discount profile ID */
@@ -2878,41 +2878,41 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** List of photos descriptions */
     productDescriptionPictures: (productDescriptionPictures: string|string[]) => this
     /** Reduced price */
-    productPromotion: (productPromotion: JSObject) => this
+    productPromotion: (productPromotion: RequestParams.PostProductsParams["products"][number]["productPromotion"]) => this
     /** Discount for shop. */
-    productDiscount: (productDiscount: JSObject) => this
+    productDiscount: (productDiscount: RequestParams.PostProductsParams["products"][number]["productDiscount"]) => this
     /** Distinguished product in store. */
-    productDistinguished: (productDistinguished: JSObject) => this
+    productDistinguished: (productDistinguished: RequestParams.PostProductsParams["products"][number]["productDistinguished"]) => this
     /** Special product in store. */
-    productSpecial: (productSpecial: JSObject) => this
+    productSpecial: (productSpecial: RequestParams.PostProductsParams["products"][number]["productSpecial"]) => this
     /** Parameters (distinguished). */
-    productParametersDistinction: (productParametersDistinction: Array<JSObject>) => this
+    productParametersDistinction: (productParametersDistinction: RequestParams.PostProductsParams["products"][number]["productParametersDistinction"]) => this
     /** List of products recommended with this product */
-    associatedProducts: (associatedProducts: Array<JSObject>) => this
+    associatedProducts: (associatedProducts: RequestParams.PostProductsParams["products"][number]["associatedProducts"]) => this
     /** Sizes available for products data. */
-    productSizes: (productSizes: Array<JSObject>) => this
+    productSizes: (productSizes: RequestParams.PostProductsParams["products"][number]["productSizes"]) => this
     /** Data concerning attributes dependent on indicated stores with particular product assigned. */
-    productShopsAttributes: (productShopsAttributes: Array<JSObject>) => this
+    productShopsAttributes: (productShopsAttributes: RequestParams.PostProductsParams["products"][number]["productShopsAttributes"]) => this
     /** Products subscription settings. */
-    subscription: (subscription: Array<JSObject>) => this
+    subscription: (subscription: RequestParams.PostProductsParams["products"][number]["subscription"]) => this
     /** Product name. */
-    productNames: (productNames: JSObject) => this
+    productNames: (productNames: RequestParams.PostProductsParams["products"][number]["productNames"]) => this
     /**  */
-    productDescriptions: (productDescriptions: JSObject) => this
+    productDescriptions: (productDescriptions: RequestParams.PostProductsParams["products"][number]["productDescriptions"]) => this
     /** Long product description */
-    productLongDescriptions: (productLongDescriptions: JSObject) => this
+    productLongDescriptions: (productLongDescriptions: RequestParams.PostProductsParams["products"][number]["productLongDescriptions"]) => this
     /** Product data for auction services */
-    productAuctionDescriptionsData: (productAuctionDescriptionsData: Array<JSObject>) => this
+    productAuctionDescriptionsData: (productAuctionDescriptionsData: RequestParams.PostProductsParams["products"][number]["productAuctionDescriptionsData"]) => this
     /** Product meta title */
-    productMetaTitles: (productMetaTitles: JSObject) => this
+    productMetaTitles: (productMetaTitles: RequestParams.PostProductsParams["products"][number]["productMetaTitles"]) => this
     /** Product meta description */
-    productMetaDescriptions: (productMetaDescriptions: JSObject) => this
+    productMetaDescriptions: (productMetaDescriptions: RequestParams.PostProductsParams["products"][number]["productMetaDescriptions"]) => this
     /** Product meta keywords. */
-    productMetaKeywords: (productMetaKeywords: JSObject) => this
+    productMetaKeywords: (productMetaKeywords: RequestParams.PostProductsParams["products"][number]["productMetaKeywords"]) => this
     /** #!AdresURLDlaTowaru!#. */
-    productUrl: (productUrl: JSObject) => this
+    productUrl: (productUrl: RequestParams.PostProductsParams["products"][number]["productUrl"]) => this
     /** Data on product groups (variants) */
-    productVersion: (productVersion: JSObject) => this
+    productVersion: (productVersion: RequestParams.PostProductsParams["products"][number]["productVersion"]) => this
     /** Currency ID */
     currencyId: (currencyId: string) => this
     /** Supplier ID. */
@@ -2920,17 +2920,17 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** This parameter is optional and it determines properties edition mode. Default value is "replace". Allowed values: "add" - adds properties to already existent ones, "delete" - removes properties of already existent ones, "delete_group" - removes properties from selected group, "replace" - overwrites properties already existent with new ones (default mode). */
     productParametersDistinctionChangeMode: (productParametersDistinctionChangeMode: 'add'|'delete'|'delete_group'|'replace') => this
     /** Product delivery time from the producer to the shop */
-    productDeliveryTime: (productDeliveryTime: JSObject) => this
+    productDeliveryTime: (productDeliveryTime: RequestParams.PostProductsParams["products"][number]["productDeliveryTime"]) => this
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-    productSumInBasket: (productSumInBasket: string) => this
+    productSumInBasket: (productSumInBasket: "y" | "n") => this
     /** Shipping, returns and complaints settings */
-    dispatchSettings: (dispatchSettings: JSObject) => this
+    dispatchSettings: (dispatchSettings: RequestParams.PostProductsParams["products"][number]["dispatchSettings"]) => this
     /** Standard unit settings */
-    standardUnit: (standardUnit: JSObject) => this
+    standardUnit: (standardUnit: RequestParams.PostProductsParams["products"][number]["standardUnit"]) => this
     /** Minimal number of products in an order */
-    minQuantityPerOrder: (minQuantityPerOrder: JSObject) => this
+    minQuantityPerOrder: (minQuantityPerOrder: RequestParams.PostProductsParams["products"][number]["minQuantityPerOrder"]) => this
     /** Dimensions and overall weight */
-    productDimensions: (productDimensions: JSObject) => this
+    productDimensions: (productDimensions: RequestParams.PostProductsParams["products"][number]["productDimensions"]) => this
     /** Responsible producer code */
     responsibleProducerCode: (responsibleProducerCode: string) => this
     /** Responsible person code */
@@ -3031,19 +3031,19 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Is product VAT free Allowed values "y" - yes, "n" - no. */
     productVatFree: (productVatFree: string) => this
     /** Different prices for price comparison websites. */
-    productPriceComparisonSitesPrices: (productPriceComparisonSitesPrices: Array<JSObject>) => this
+    productPriceComparisonSitesPrices: (productPriceComparisonSitesPrices: RequestParams.PutProductsParams["products"][number]["productPriceComparisonSitesPrices"]) => this
     /** Object determines if the product is available in POS sale Available values: "n" - no, "y" - yes. */
-    productEnableInPos: (productEnableInPos: string) => this
+    productEnableInPos: (productEnableInPos: "n" | "y") => this
     /** Required advance payment in percents */
     productAdvancePrice: (productAdvancePrice: number) => this
     /** Annotation. */
     productNote: (productNote: string) => this
     /** Settings of hotspots display. */
-    productHotspotsZones: (productHotspotsZones: Array<JSObject>) => this
+    productHotspotsZones: (productHotspotsZones: RequestParams.PutProductsParams["products"][number]["productHotspotsZones"]) => this
     /** Loyalty points. */
-    priceInPoints: (priceInPoints: JSObject) => this
+    priceInPoints: (priceInPoints: RequestParams.PutProductsParams["products"][number]["priceInPoints"]) => this
     /** Loyalty points. */
-    loyaltyPoints: (loyaltyPoints: Array<JSObject>) => this
+    loyaltyPoints: (loyaltyPoints: RequestParams.PutProductsParams["products"][number]["loyaltyPoints"]) => this
     /** Weight. */
     productWeight: (productWeight: number|string) => this
     /** Product visibility. Allowed values "y" - product visible, "n" - product not visible. */
@@ -3055,9 +3055,9 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - Selected, "assign_selected" - Enable the visibility of the product in the export to price comparison sites passed in the priceComparisonSites node. Price comparison sites previously assigned to the commodity will be retained, "unassign_selected" - Disable product visibility in exports to price comparison sites passed in the priceComparisonSites node, "n" - invisible. */
     productInExportToPriceComparisonSites: (productInExportToPriceComparisonSites: 'y'|'selected'|'n') => this
     /** Selection of comparison sites for which the product visibility will be changed */
-    priceComparisonSites: (priceComparisonSites: Array<JSObject>) => this
+    priceComparisonSites: (priceComparisonSites: RequestParams.PutProductsParams["products"][number]["priceComparisonSites"]) => this
     /** Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible. */
-    productInExportToAmazonMarketplace: (productInExportToAmazonMarketplace: string) => this
+    productInExportToAmazonMarketplace: (productInExportToAmazonMarketplace: "y" | "selected" | "n") => this
     /** Array */
     exportToAmazonMarketplacesList: (exportToAmazonMarketplacesList: string|string[]) => this
     /** Export sizes to Amazon: Available values: "y" - all, "n" - leave without change. */
@@ -3077,7 +3077,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Name of warranty for indicated product. */
     warrantyName: (warrantyName: string) => this
     /** The JavaScript formula calculating prices */
-    priceFormula: (priceFormula: JSObject) => this
+    priceFormula: (priceFormula: RequestParams.PutProductsParams["products"][number]["priceFormula"]) => this
     /** Size chart ID */
     sizeChartId: (sizeChartId: number|string) => this
     /** Size chart name */
@@ -3085,7 +3085,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Priority. Allowed values from 1 to 10. */
     productPriority: (productPriority: number|string) => this
     /** Product priority in menu node. */
-    productPriorityInMenuNodes: (productPriorityInMenuNodes: Array<JSObject>) => this
+    productPriorityInMenuNodes: (productPriorityInMenuNodes: RequestParams.PutProductsParams["products"][number]["productPriorityInMenuNodes"]) => this
     /** Product icon link. */
     productIconLink: (productIconLink: string) => this
     /** Photo without background. */
@@ -3093,67 +3093,67 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Icon for a product group. */
     productGroupIconLink: (productGroupIconLink: string) => this
     /** List of product photos */
-    productPictures: (productPictures: Array<JSObject>) => this
+    productPictures: (productPictures: RequestParams.PutProductsParams["products"][number]["productPictures"]) => this
     /** List of a product's photos with indication of a particular number of the photo. */
-    productPicturesReplace: (productPicturesReplace: Array<JSObject>) => this
+    productPicturesReplace: (productPicturesReplace: RequestParams.PutProductsParams["products"][number]["productPicturesReplace"]) => this
     /** Reduced price */
-    productPromotion: (productPromotion: JSObject) => this
+    productPromotion: (productPromotion: RequestParams.PutProductsParams["products"][number]["productPromotion"]) => this
     /** Discount for shop. */
-    productDiscount: (productDiscount: JSObject) => this
+    productDiscount: (productDiscount: RequestParams.PutProductsParams["products"][number]["productDiscount"]) => this
     /** Distinguished product in store. */
-    productDistinguished: (productDistinguished: JSObject) => this
+    productDistinguished: (productDistinguished: RequestParams.PutProductsParams["products"][number]["productDistinguished"]) => this
     /** Special product in store. */
-    productSpecial: (productSpecial: JSObject) => this
+    productSpecial: (productSpecial: RequestParams.PutProductsParams["products"][number]["productSpecial"]) => this
     /** Parameters (distinguished). */
-    productParametersDistinction: (productParametersDistinction: Array<JSObject>) => this
+    productParametersDistinction: (productParametersDistinction: RequestParams.PutProductsParams["products"][number]["productParametersDistinction"]) => this
     /** Configuration parameters */
-    parametersConfigurable: (parametersConfigurable: Array<JSObject>) => this
+    parametersConfigurable: (parametersConfigurable: RequestParams.PutProductsParams["products"][number]["parametersConfigurable"]) => this
     /** List of products recommended with this product */
-    associatedProducts: (associatedProducts: Array<JSObject>) => this
+    associatedProducts: (associatedProducts: RequestParams.PutProductsParams["products"][number]["associatedProducts"]) => this
     /** Sizes available for products data. */
-    productSizes: (productSizes: Array<JSObject>) => this
+    productSizes: (productSizes: RequestParams.PutProductsParams["products"][number]["productSizes"]) => this
     /** Product attachments list. */
-    attachments: (attachments: Array<JSObject>) => this
+    attachments: (attachments: RequestParams.PutProductsParams["products"][number]["attachments"]) => this
     /** The list of attachments to be deleted. */
-    removeAttachments: (removeAttachments: Array<JSObject>) => this
+    removeAttachments: (removeAttachments: RequestParams.PutProductsParams["products"][number]["removeAttachments"]) => this
     /** Do you want to delete attachments for digital files. */
     virtualAttachmentsToRemove: (virtualAttachmentsToRemove: boolean) => this
     /** List of product's virtual attachments. */
-    virtualAttachments: (virtualAttachments: Array<JSObject>) => this
+    virtualAttachments: (virtualAttachments: RequestParams.PutProductsParams["products"][number]["virtualAttachments"]) => this
     /** Operation, that will be performed on attachments to product. */
     attachmentOperationValues: (attachmentOperationValues: 'edit'|'add'|'remove') => this
     /** Data concerning attributes dependent on indicated stores with particular product assigned. */
-    productShopsAttributes: (productShopsAttributes: Array<JSObject>) => this
+    productShopsAttributes: (productShopsAttributes: RequestParams.PutProductsParams["products"][number]["productShopsAttributes"]) => this
     /** Products subscription settings. */
-    subscription: (subscription: Array<JSObject>) => this
+    subscription: (subscription: RequestParams.PutProductsParams["products"][number]["subscription"]) => this
     /** Product name. */
-    productNames: (productNames: JSObject) => this
+    productNames: (productNames: RequestParams.PutProductsParams["products"][number]["productNames"]) => this
     /** DEPRECATED. This parameter is deprecated. Product name for online auctions. */
-    productNamesInAuction: (productNamesInAuction: JSObject) => this
+    productNamesInAuction: (productNamesInAuction: RequestParams.PutProductsParams["products"][number]["productNamesInAuction"]) => this
     /** Product name for price comparison websites. */
-    productNamesInPriceComparer: (productNamesInPriceComparer: JSObject) => this
+    productNamesInPriceComparer: (productNamesInPriceComparer: RequestParams.PutProductsParams["products"][number]["productNamesInPriceComparer"]) => this
     /** Product short description */
-    productParamDescriptions: (productParamDescriptions: JSObject) => this
+    productParamDescriptions: (productParamDescriptions: RequestParams.PutProductsParams["products"][number]["productParamDescriptions"]) => this
     /** Long product description */
-    productLongDescriptions: (productLongDescriptions: JSObject) => this
+    productLongDescriptions: (productLongDescriptions: RequestParams.PutProductsParams["products"][number]["productLongDescriptions"]) => this
     /** DEPRECATED. This parameter is deprecated. Product description for marketplaces. */
-    productLongDescriptionsInAuction: (productLongDescriptionsInAuction: JSObject) => this
+    productLongDescriptionsInAuction: (productLongDescriptionsInAuction: RequestParams.PutProductsParams["products"][number]["productLongDescriptionsInAuction"]) => this
     /** Product data for auction services */
-    productAuctionDescriptionsData: (productAuctionDescriptionsData: Array<JSObject>) => this
+    productAuctionDescriptionsData: (productAuctionDescriptionsData: RequestParams.PutProductsParams["products"][number]["productAuctionDescriptionsData"]) => this
     /** Product meta title */
-    productMetaTitles: (productMetaTitles: JSObject) => this
+    productMetaTitles: (productMetaTitles: RequestParams.PutProductsParams["products"][number]["productMetaTitles"]) => this
     /** Product meta description */
-    productMetaDescriptions: (productMetaDescriptions: JSObject) => this
+    productMetaDescriptions: (productMetaDescriptions: RequestParams.PutProductsParams["products"][number]["productMetaDescriptions"]) => this
     /** Product meta keywords. */
-    productMetaKeywords: (productMetaKeywords: JSObject) => this
+    productMetaKeywords: (productMetaKeywords: RequestParams.PutProductsParams["products"][number]["productMetaKeywords"]) => this
     /** URL for the product */
-    productUrl: (productUrl: JSObject) => this
+    productUrl: (productUrl: RequestParams.PutProductsParams["products"][number]["productUrl"]) => this
     /** Data on product groups (variants) */
-    productVersion: (productVersion: JSObject) => this
+    productVersion: (productVersion: RequestParams.PutProductsParams["products"][number]["productVersion"]) => this
     /** Currency ID */
     currencyId: (currencyId: string) => this
     /** Currency, in which product prices are stored. */
-    productCurrenciesShops: (productCurrenciesShops: Array<JSObject>) => this
+    productCurrenciesShops: (productCurrenciesShops: RequestParams.PutProductsParams["products"][number]["productCurrenciesShops"]) => this
     /** Supplier ID. */
     delivererId: (delivererId: number|string) => this
     /** Supplier name. */
@@ -3161,21 +3161,21 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** This parameter is optional and it determines properties edition mode. Default value is "replace". Allowed values: "add" - adds properties to already existent ones, "delete" - removes properties of already existent ones, "delete_group" - removes properties from selected group, "replace" - overwrites properties already existent with new ones (default mode). */
     productParametersDistinctionChangeMode: (productParametersDistinctionChangeMode: 'add'|'delete'|'delete_group'|'replace') => this
     /** Product delivery time from the producer to the shop */
-    productDeliveryTime: (productDeliveryTime: JSObject) => this
+    productDeliveryTime: (productDeliveryTime: RequestParams.PutProductsParams["products"][number]["productDeliveryTime"]) => this
     /** Parameters. */
-    productParameters: (productParameters: Array<JSObject>) => this
+    productParameters: (productParameters: RequestParams.PutProductsParams["products"][number]["productParameters"]) => this
     /**  */
     clearProductParameters: (clearProductParameters: boolean) => this
     /** Change parameter distinction. */
-    changeParametersDistinction: (changeParametersDistinction: Array<JSObject>) => this
+    changeParametersDistinction: (changeParametersDistinction: RequestParams.PutProductsParams["products"][number]["changeParametersDistinction"]) => this
     /** VAT rate change mode:. "change_gross" - changes the product gross price, leaving the net price unchanged, "change_net" - changes the net price, leaving the gross price unchanged (default mode). */
     productPriceVatChangeMode: (productPriceVatChangeMode: 'change_net'|'change_gross') => this
     /** An array of menu elements */
-    productMenuItems: (productMenuItems: Array<JSObject>) => this
+    productMenuItems: (productMenuItems: RequestParams.PutProductsParams["products"][number]["productMenuItems"]) => this
     /** Deletes all items assigned to the product of the selected menu */
-    removeAllProductsAssignedToMenu: (removeAllProductsAssignedToMenu: JSObject) => this
+    removeAllProductsAssignedToMenu: (removeAllProductsAssignedToMenu: RequestParams.PutProductsParams["products"][number]["removeAllProductsAssignedToMenu"]) => this
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-    productSumInBasket: (productSumInBasket: string) => this
+    productSumInBasket: (productSumInBasket: "y" | "n") => this
     /** Settings of prices for shop. Values allowed: "same_prices" - prices in each shop are the same, "different_prices" - prices in each shop are different. */
     productShopsPricesConfig: (productShopsPricesConfig: 'same_prices'|'different_prices') => this
     /** Price settings for POS. Allowed values: "pos_equals_retail" - sets POS price the same as retail price. Possible to set only if the "shops_prices_config" parameter is set to jest same_prices or there is only one shop in panel, "pos_notequals_retail" - Price for POS different than retail price, "not_available_in_pos" - Product not available for POS sales. "sizes_pos_price_as_base_price" - Remove prices for sizes and set a sale price which equals a basic price. */
@@ -3191,23 +3191,23 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Remove all unused sizes. */
     removeAllUnusedProductSizes: (removeAllUnusedProductSizes: boolean) => this
     /** Standard producer code. Available values: "auto" - Choose automatically, "GTIN14" - GTIN-14 "GTIN13" - GTIN-13 (EAN-13) "ISBN13" - GTIN-13 (ISBN-13) "GTIN12" - GTIN-12 (UPC-A) "ISBN10" - ISBN-10 "GTIN8" - GTIN-8 (EAN-8) "UPCE" - UPC-E "MPN" - MPN "other" - Other */
-    producerCodesStandard: (producerCodesStandard: 'auto'|'gtin14'|'gtin13'|'isbn13'|'gtin12'|'isbn10'|'gtin8'|'upce'|'mpn'|'other') => this
+    producerCodesStandard: (producerCodesStandard: 'auto'|'GTIN14'|'GTIN13'|'ISBN13'|'GTIN12'|'ISBN10'|'GTIN8'|'UPCE'|'MPN'|'other') => this
     /** JavaScript code displayed in the product page of the IdoSell Shop */
-    javaScriptInTheItemCard: (javaScriptInTheItemCard: Array<JSObject>) => this
+    javaScriptInTheItemCard: (javaScriptInTheItemCard: RequestParams.PutProductsParams["products"][number]["javaScriptInTheItemCard"]) => this
     /** Saving serial numbers Available values: "na" - not used, "optional" - Optional, "required" - required. */
     serialNumbersOption: (serialNumbersOption: 'na'|'optional'|'required') => this
     /** Shipping, returns and complaints settings */
-    dispatchSettings: (dispatchSettings: JSObject) => this
+    dispatchSettings: (dispatchSettings: RequestParams.PutProductsParams["products"][number]["dispatchSettings"]) => this
     /** Standard unit settings */
-    standardUnit: (standardUnit: JSObject) => this
+    standardUnit: (standardUnit: RequestParams.PutProductsParams["products"][number]["standardUnit"]) => this
     /** Minimal number of products in an order */
-    minQuantityPerOrder: (minQuantityPerOrder: JSObject) => this
+    minQuantityPerOrder: (minQuantityPerOrder: RequestParams.PutProductsParams["products"][number]["minQuantityPerOrder"]) => this
     /**  */
     dynamicPricingEnabled: (dynamicPricingEnabled: string) => this
     /** The setting allows you to reset the inventory to zero */
-    clearStockQuantities: (clearStockQuantities: JSObject) => this
+    clearStockQuantities: (clearStockQuantities: RequestParams.PutProductsParams["products"][number]["clearStockQuantities"]) => this
     /** Dimensions and overall weight */
-    productDimensions: (productDimensions: JSObject) => this
+    productDimensions: (productDimensions: RequestParams.PutProductsParams["products"][number]["productDimensions"]) => this
     /** Responsible producer code */
     responsibleProducerCode: (responsibleProducerCode: string) => this
     /** Responsible person code */
@@ -3228,56 +3228,56 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     pictures: (picturesArray: string|string[]) => this;
 }
 
-export interface SearchProductsRequest extends PagableGateway<SearchProductsRequest,SearchProductsResponse> {
-    dispatchSettings: (value: JSObject) => this;
+export interface SearchProductsRequest extends PagableGateway<SearchProductsRequest, SearchProductsResponse, RequestParams.SearchProductsParams> {
+    dispatchSettings: (value: RequestParams.SearchProductsParams["dispatchSettings"]) => this;
     /** Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash. */
-    returnProducts: (value: string) => this;
+    returnProducts: (value: "active" | "deleted" | "in_trash") => this;
     /** Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode */
     returnElements: (value: string|string[]) => this;
     /** Product availability. Available values: "y" - available, "n" - unavailable. */
-    productIsAvailable: (value: string) => this;
+    productIsAvailable: (value: "y" | "n") => this;
     /** Product visibility in store Available values: "y" - Visible, "n" - Invisible. */
-    productIsVisible: (value: string) => this;
+    productIsVisible: (value: "y" | "n") => this;
     /** Product group ID */
     productVersionId: (value: number|string) => this;
     /** Promoted product. Available values: "y" - promoted, "n" - not promoted. */
-    productInPromotion: (value: string) => this;
+    productInPromotion: (value: "y" | "n") => this;
     /** Product on sale. Available values: "y" - on sale, "n" - not on sale. */
-    productInDiscount: (value: string) => this;
+    productInDiscount: (value: "y" | "n") => this;
     /** Distinguished product. Available values: "y" - distinguished, "n" - not distinguished. */
-    productInDistinguished: (value: string) => this;
+    productInDistinguished: (value: "y" | "n") => this;
     /** Special product. Available values: "y" - #!specjalny!#, "n" - not special. */
-    productInSpecial: (value: string) => this;
+    productInSpecial: (value: "y" | "n") => this;
     /** Product available for points. Available values: "y" - Available for points, "n" - Unavailable for points. */
-    productInForPointsSelling: (value: string) => this;
+    productInForPointsSelling: (value: "y" | "n") => this;
     /** Observed product. Available values: "Y" - observed, "n" - not observed. */
-    productIsObservedByClients: (value: string) => this;
+    productIsObservedByClients: (value: "Y" | "n") => this;
     /** Element determines if default product (with 0 ID, contains settings of newly added products) should be omitted Available values: "y" - omits default product, "n" - allows to download default product. */
-    skipDefaultProduct: (value: string) => this;
+    skipDefaultProduct: (value: "y" | "n") => this;
     /** The item specifies whether promotional prices are to be shown in price nodes. Available values: "y" - show promotional prices, "n" - do not show promotional prices. (default value) */
-    showPromotionsPrices: (value: string) => this;
+    showPromotionsPrices: (value: "y" | "n") => this;
     /** List of categories in which sought products are present. */
-    categories: (value: Array<JSObject>) => this;
+    categories: (value: RequestParams.SearchProductsParams["categories"]) => this;
     /** List of manufacturers assigned to sought products. */
-    producers: (value: Array<JSObject>) => this;
+    producers: (value: RequestParams.SearchProductsParams["producers"]) => this;
     /** List of sought products. This parameter can be used, when there have been no other parameter entered productIndexes. */
-    productParams: (value: Array<JSObject>) => this;
+    productParams: (value: RequestParams.SearchProductsParams["productParams"]) => this;
     /** List of sought products by indexes. */
-    productIndexes: (value: Array<JSObject>) => this;
+    productIndexes: (value: RequestParams.SearchProductsParams["productIndexes"]) => this;
     /** Data of stores product is assigned to. */
-    productShops: (value: Array<JSObject>) => this;
+    productShops: (value: RequestParams.SearchProductsParams["productShops"]) => this;
     /** List of special offers, sought products are assigned to. */
     productPromotionsIds: (value: number|string|number[]|string[]) => this;
     /** Settings concerning narrowing list of products found by date. */
-    productDate: (value: JSObject) => this;
+    productDate: (value: RequestParams.SearchProductsParams["productDate"]) => this;
     /** Parameters */
-    productParametersParams: (value: Array<JSObject>) => this;
+    productParametersParams: (value: RequestParams.SearchProductsParams["productParametersParams"]) => this;
     /** Series, sought products are assigned to. */
-    productSeriesParams: (value: Array<JSObject>) => this;
+    productSeriesParams: (value: RequestParams.SearchProductsParams["productSeriesParams"]) => this;
     /** List of units of measure assigned to sought products. */
-    productUnits: (value: Array<JSObject>) => this;
+    productUnits: (value: RequestParams.SearchProductsParams["productUnits"]) => this;
     /** Narrowing list of products by set warranties. */
-    productWarranties: (value: Array<JSObject>) => this;
+    productWarranties: (value: RequestParams.SearchProductsParams["productWarranties"]) => this;
     /** Suppliers, sought products are assigned to. */
     deliverersIds: (value: number|string|number[]|string[]) => this;
     /** Product contains text (searches in short and long description).  */
@@ -3285,15 +3285,15 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Product code or it's part (based on producer's code, external product system code and code that is visible on a product card). Search is accesible only with available products. */
     containsCodePart: (value: string) => this;
     /** Product availability in stocks */
-    productAvailableInStocks: (value: JSObject) => this;
+    productAvailableInStocks: (value: RequestParams.SearchProductsParams["productAvailableInStocks"]) => this;
     /** Product availability on auctions */
-    productAvailableInAuctions: (value: JSObject) => this;
+    productAvailableInAuctions: (value: RequestParams.SearchProductsParams["productAvailableInAuctions"]) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
     /** Possibility of sorting returned list */
-    ordersBy: (value: Array<JSObject>) => this;
+    ordersBy: (value: RequestParams.SearchProductsParams["ordersBy"]) => this;
     /** Language ID that allows to search and return data in chosen language. This parameter is optional. If it's lacking, she search process unfolds in all available languages. */
     productSearchingLangId: (value: string) => this;
     /** Currency ID allowing to search and browse products in given currency. This parameter is optional, when it's lacking, the search process unfolds in all available currencies.  */
@@ -3303,45 +3303,45 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Annotation contains text. */
     productHasNote: (value: string) => this;
     /** Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - Selected, "assign_selected" - Enable the visibility of the product in the export to price comparison sites passed in the priceComparisonSites node. Price comparison sites previously assigned to the commodity will be retained, "unassign_selected" - Disable product visibility in exports to price comparison sites passed in the priceComparisonSites node, "n" - invisible. */
-    productInExportToPriceComparisonSites: (value: string) => this;
+    productInExportToPriceComparisonSites: (value: "y" | "selected" | "assign_selected" | "unassign_selected" | "n") => this;
     /** Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible. */
-    productInExportToAmazonMarketplace: (value: string) => this;
+    productInExportToAmazonMarketplace: (value: "y" | "selected" | "n") => this;
     /** List of Amazon regional sites to which the product is exported (only in case of "selected" option) */
     selectedAmazonMarketplacesList: (value: string|string[]) => this;
     /** Product is bestseller. Available values: "n" - no, "y" - yes. */
-    productInBestseller: (value: string) => this;
+    productInBestseller: (value: "n" | "y") => this;
     /** Product is new. Available values: "y" - is new, "n" - is not new. */
-    productInNew: (value: string) => this;
+    productInNew: (value: "y" | "n") => this;
     /** Shops */
-    searchByShops: (value: JSObject) => this;
+    searchByShops: (value: RequestParams.SearchProductsParams["searchByShops"]) => this;
     /** Price range for sought products. */
-    productSearchPriceRange: (value: JSObject) => this;
+    productSearchPriceRange: (value: RequestParams.SearchProductsParams["productSearchPriceRange"]) => this;
     /** VAT value for sought products */
     productVatRates: (value: Array<Number>) => this;
     /** Is product VAT-free Allowed values "y" - yes, "n" - no. */
     productIsVatFree: (value: string) => this;
     /** Product has defined wholesale price. Available values: "y" - has wholesale price, "n" - does not have wholesale price. */
-    productHasWholesalePrice: (value: string) => this;
+    productHasWholesalePrice: (value: "y" | "n") => this;
     /** Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock. */
-    productInPersistent: (value: string) => this;
+    productInPersistent: (value: "y" | "n") => this;
     /** Settings of products returned with variants All products with variants are returned by default Available values: version_all - returns all variants, version_main - returns only main variant. */
     returnProductsVersions: (value: string) => this;
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-    productInSumInBasket: (value: string) => this;
+    productInSumInBasket: (value: "y" | "n") => this;
     /** Product type. Allowed values: "product_item" - Goods, "product_packaging" - packaging, "product_bundle" - set. "product_collection" - collection. "product_service" - service. "product_virtual" - virtual product. "product_configurable" - configurable product. */
-    productType: (value: JSObject) => this;
+    productType: (value: RequestParams.SearchProductsParams["productType"]) => this;
     /** An array of menu elements */
-    productMenuItems: (value: JSObject) => this;
+    productMenuItems: (value: RequestParams.SearchProductsParams["productMenuItems"]) => this;
     /** Warehouse location ID */
     productLocationId: (value: number|string) => this;
     /** Warehouse location full path Use a backslash (\) as a separator, for example: M1\Section name\Location name If location_id parameter is provided, the full warehouse location path will not be taken into account */
     productLocationTextId: (value: string) => this;
     /** Return all size attributes regardless of whether product prices are the same as the base price or if they differ from it. Available values: 1 - all size attributes will be returned; 0 - only attributes of those sizes, where the prices will be different from the base price (default value) will be returned. */
-    alwaysReturnProductShopSizesAttributes: (value: Boolean) => this;
+    alwaysReturnProductShopSizesAttributes: (value: boolean) => this;
     /** Returns reservation information regardless of inventory levels */
-    returnEmptyStocksWithReservation: (value: Boolean) => this;
+    returnEmptyStocksWithReservation: (value: boolean) => this;
     /** Data for operations on individual photos */
-    picturesData: (value: JSObject) => this;
+    picturesData: (value: RequestParams.SearchProductsParams["picturesData"]) => this;
     /** Responsible producer code */
     responsibleProducerCode: (value: string) => this;
     /** Responsible person code */
@@ -3422,7 +3422,7 @@ export interface GetProductsQuestionsRequest extends Gateway {
     productId: (value: number|string) => this;
 }
 
-export interface PutProductsQuestionsRequest extends AppendableGateway<PutProductsQuestionsRequest, JSObject> {
+export interface PutProductsQuestionsRequest extends AppendableGateway<PutProductsQuestionsRequest> {
     /** Question Board. */
     questions: (value: Array<JSObject>) => this;
     /** Question ID. */
@@ -3483,7 +3483,7 @@ export interface GetProductsSeriesFilterRequest extends Gateway {
     serieId: (value: number|string) => this;
 }
 
-export interface PutProductsSeriesFilterRequest extends AppendableGateway<PutProductsSeriesFilterRequest, JSObject> {
+export interface PutProductsSeriesFilterRequest extends AppendableGateway<PutProductsSeriesFilterRequest> {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
@@ -3505,7 +3505,7 @@ export interface PutProductsSeriesFilterRequest extends AppendableGateway<PutPro
     filterDefaultEnabled: (filterDefaultEnabled: 'y'|'n') => this
 }
 
-export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeriesRequest,GetProductsSeriesResponse> {
+export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeriesRequest, GetProductsSeriesResponse> {
     /** With "y" value it returns the last series modification date in YYYY-MM-DD HH:MM:SS format. */
     return_last_changed_time: (value: string) => this;
     /** IDs */
@@ -3520,7 +3520,7 @@ export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeri
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PutProductsSeriesRequest extends AppendableGateway<PutProductsSeriesRequest, JSObject> {
+export interface PutProductsSeriesRequest extends AppendableGateway<PutProductsSeriesRequest> {
     /** Series list. */
     series: (value: Array<JSObject>) => this;
     /** Id */
@@ -3531,7 +3531,7 @@ export interface PutProductsSeriesRequest extends AppendableGateway<PutProductsS
     shopsConfigurations: (shopsConfigurations: Array<JSObject>) => this
 }
 
-export interface DeleteProductsSizesRequest extends AppendableGateway<DeleteProductsSizesRequest, JSObject> {
+export interface DeleteProductsSizesRequest extends AppendableGateway<DeleteProductsSizesRequest> {
     /** Edition mode */
     mode: (value: 'delete_by_size'|'delete_all') => this;
     /** Parameters transmitted to method */
@@ -3549,7 +3549,7 @@ export interface GetProductsSizesRequest extends Gateway<GetProductsSizesRespons
     page: (pagenumber: number, pageSize?: number) => this;
 }
 
-export interface PutProductsSizesRequest extends AppendableGateway<PutProductsSizesRequest, JSObject> {
+export interface PutProductsSizesRequest extends AppendableGateway<PutProductsSizesRequest> {
     /** Edition mode */
     mode: (value: 'edit'|'add'|'replace') => this;
     /** Product parameters recognized by product ID or its sizes */
@@ -3562,7 +3562,7 @@ export interface PutProductsSizesRequest extends AppendableGateway<PutProductsSi
     sizes: (sizes: Array<JSObject>) => this
 }
 
-export interface PutProductsStockQuantityRequest extends AppendableGateway<PutProductsStockQuantityRequest, JSObject> {
+export interface PutProductsStockQuantityRequest extends AppendableGateway<PutProductsStockQuantityRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Product index */
@@ -3589,7 +3589,7 @@ export interface GetProductsStocksRequest extends Gateway<GetProductsStocksRespo
     productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
-export interface PutProductsStocksRequest extends AppendableGateway<PutProductsStocksRequest, JSObject> {
+export interface PutProductsStocksRequest extends AppendableGateway<PutProductsStocksRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /**  */
@@ -3610,7 +3610,7 @@ export interface GetProductsStrikethroughPricesRequest extends Gateway<GetProduc
     productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
 
-export interface PutProductsStrikethroughPricesRequest extends AppendableGateway<PutProductsStrikethroughPricesRequest, JSObject> {
+export interface PutProductsStrikethroughPricesRequest extends AppendableGateway<PutProductsStrikethroughPricesRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Identifier type. */
@@ -3631,7 +3631,7 @@ export interface PutProductsStrikethroughPricesRequest extends AppendableGateway
     addPricePercent: (value: number, wholesale?: boolean, base?: 'price' | 'price_minimal' | 'price_pos' | 'price_srp' | 'price_crossed') => this;
 }
 
-export interface PutProductsSupplierCodeRequest extends AppendableGateway<PutProductsSupplierCodeRequest, JSObject> {
+export interface PutProductsSupplierCodeRequest extends AppendableGateway<PutProductsSupplierCodeRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Product IAI code */
@@ -3640,7 +3640,7 @@ export interface PutProductsSupplierCodeRequest extends AppendableGateway<PutPro
     productDeliverers: (productDeliverers: Array<JSObject>) => this
 }
 
-export interface PutProductsSupplierProductDataRequest extends AppendableGateway<PutProductsSupplierProductDataRequest, JSObject> {
+export interface PutProductsSupplierProductDataRequest extends AppendableGateway<PutProductsSupplierProductDataRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     /** Product IAI code */
@@ -3672,7 +3672,7 @@ export interface PutProductsSynchronizationFinishUploadRequest extends Gateway {
     /** Total number of files in the parcel. */
     filesInPackage: (value: number|string) => this;
     /** Whether to verify the package by sparsifying files and preparing requests. It may take a few minutes to answer. */
-    verifyFiles: (value: Boolean) => this;
+    verifyFiles: (value: boolean) => this;
 }
 
 export interface PostRefundsAddAutomaticRefundRequest extends Gateway {
@@ -3686,7 +3686,7 @@ export interface PostRefundsAddAutomaticRefundForOrderRequest extends Gateway {
     /** Source ID. */
     sourceId: (value: number|string) => this;
     /** Amount. */
-    refundValue: (value: Number) => this;
+    refundValue: (value: number) => this;
     /** Payment ID. */
     paymentId: (value: number|string) => this;
     /** Payment currency. */
@@ -3699,7 +3699,7 @@ export interface PostRefundsAddManualRefundRequest extends Gateway {
     /** Source ID. */
     sourceId: (value: number|string) => this;
     /** Amount. */
-    refundValue: (value: Number) => this;
+    refundValue: (value: number) => this;
     /** Payment currency. */
     refundCurrency: (value: string) => this;
     refundDetails: (value: JSObject) => this;
@@ -3756,12 +3756,12 @@ export interface PutRefundsUpdateRefundRequest extends Gateway {
     /** Payment ID. */
     paymentId: (value: string) => this;
     /** Amount. */
-    refundValue: (value: Number) => this;
+    refundValue: (value: number) => this;
     /** Payment currency. */
     refundCurrency: (value: string) => this;
 }
 
-export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResponsibilityEntitiesRequest,GetResponsibilityEntitiesResponse> {
+export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResponsibilityEntitiesRequest, GetResponsibilityEntitiesResponse> {
     /** List of codes */
     code: (value: string|string[]) => this;
     /** Type of entity */
@@ -3772,8 +3772,8 @@ export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResp
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostResponsibilityEntitiesRequest extends AppendableGateway<PostResponsibilityEntitiesRequest, JSObject> {
-    entities: (value: Array<JSObject>) => this;
+export interface PostResponsibilityEntitiesRequest extends AppendableGateway<PostResponsibilityEntitiesRequest, PostResponsibilityEntitiesResponse, RequestParams.PostResponsibilityEntitiesParams> {
+    entities: (value: RequestParams.PostResponsibilityEntitiesParams["entities"]) => this;
     /** Type of entity */
     type: (value: 'producer'|'person') => this;
     /** Identificator of the entity. */
@@ -3804,7 +3804,7 @@ export interface PostResponsibilityEntitiesRequest extends AppendableGateway<Pos
     url: (url: string) => this
 }
 
-export interface PutResponsibilityEntitiesRequest extends AppendableGateway<PutResponsibilityEntitiesRequest, JSObject> {
+export interface PutResponsibilityEntitiesRequest extends AppendableGateway<PutResponsibilityEntitiesRequest> {
     entities: (value: Array<JSObject>) => this;
     /** Type of entity */
     type: (value: 'producer'|'person') => this;
@@ -3843,7 +3843,7 @@ export interface DeleteResponsibilityEntitiesRequest extends Gateway {
     type: (value: string) => this;
 }
 
-export interface GetReturnsRequest extends PagableGateway<GetReturnsRequest,GetReturnsResponse> {
+export interface GetReturnsRequest extends PagableGateway<GetReturnsRequest, GetReturnsResponse> {
     /** Search by the order serial number to which a return was added. */
     order_sn: (value: number|string) => this;
     /** Search by return ID. */
@@ -3863,23 +3863,23 @@ export interface GetReturnsRequest extends PagableGateway<GetReturnsRequest,GetR
     /** Search by ID of a stock to which a return is sent. */
     stock_id: (value: number|string) => this;
     /** Return a set as its constituent products */
-    bundleAsProducts: (value: Boolean) => this;
+    bundleAsProducts: (value: boolean) => this;
     /** Define range of dates and their type */
     dates: (dateFrom: DateLike, dateTo: DateLike, type: "date_add"|"date_end") => this;
 }
 
-export interface PostReturnsRequest extends AppendableGateway<PostReturnsRequest, JSObject> {
+export interface PostReturnsRequest extends AppendableGateway<PostReturnsRequest, PostReturnsResponse, RequestParams.PostReturnsParams> {
     /** Order serial number */
     order_sn: (value: number|string) => this;
     stock_id: (value: number|string) => this;
     /** Products list. */
-    products: (value: Array<JSObject>) => this;
+    products: (value: RequestParams.PostReturnsParams["products"]) => this;
     status: (value: number|string) => this;
-    client_received: (value: Boolean) => this;
-    change_status: (value: Boolean) => this;
+    client_received: (value: boolean) => this;
+    change_status: (value: boolean) => this;
     courier_id: (value: number|string) => this;
     return_operator: (value: string) => this;
-    tryCorrectInvoice: (value: Boolean) => this;
+    tryCorrectInvoice: (value: boolean) => this;
     include_shipping_cost: (value: string) => this;
     additional_payment_cost: (value: string) => this;
     emptyReturn: (value: 'n'|'y') => this;
@@ -3897,16 +3897,16 @@ export interface PostReturnsRequest extends AppendableGateway<PostReturnsRequest
     productOrderAdditional: (productOrderAdditional: string) => this
 }
 
-export interface PutReturnsRequest extends AppendableGateway<PutReturnsRequest, JSObject> {
-    returns: (value: Array<JSObject>) => this;
+export interface PutReturnsRequest extends AppendableGateway<PutReturnsRequest, PutReturnsResponse, RequestParams.PutReturnsParams> {
+    returns: (value: RequestParams.PutReturnsParams["returns"]) => this;
     /**  */
     id: (id: number|string) => this
     /**  */
     status: (status: number|string) => this
     /** Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
-    apiFlag: (apiFlag: JSObject) => this
+    apiFlag: (apiFlag: RequestParams.PutReturnsParams["returns"][number]["apiFlag"]) => this
     /** Products list. */
-    products: (products: Array<JSObject>) => this
+    products: (products: RequestParams.PutReturnsParams["returns"][number]["products"]) => this
     /**  */
     userNote: (userNote: string) => this
     /** Notes from customer. */
@@ -3915,7 +3915,7 @@ export interface PutReturnsRequest extends AppendableGateway<PutReturnsRequest, 
     tryCorrectInvoice: (tryCorrectInvoice: boolean) => this
 }
 
-export interface PutReturnsSerialNumberRequest extends AppendableGateway<PutReturnsSerialNumberRequest, JSObject> {
+export interface PutReturnsSerialNumberRequest extends AppendableGateway<PutReturnsSerialNumberRequest> {
     /** Return number. */
     return_id: (value: number|string) => this;
     /** Products list. */
@@ -3930,7 +3930,7 @@ export interface PutReturnsSerialNumberRequest extends AppendableGateway<PutRetu
 
 export interface GetReturnsStatusesRequest extends Gateway {}
 
-export interface GetRmaRequest extends PagableGateway<GetRmaRequest,GetRmaResponse> {
+export interface GetRmaRequest extends PagableGateway<GetRmaRequest, GetRmaResponse> {
     rmaIds: (value: number|string|number[]|string[]) => this;
     /** Stock ID */
     stockId: (value: number|string) => this;
@@ -3956,15 +3956,15 @@ export interface GetRmaRequest extends PagableGateway<GetRmaRequest,GetRmaRespon
     ended: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface PutRmaRequest extends AppendableGateway<PutRmaRequest, JSObject> {
+export interface PutRmaRequest extends AppendableGateway<PutRmaRequest, PutRmaResponse, RequestParams.PutRmaParams> {
     /** Complaints. */
-    rmas: (value: Array<JSObject>) => this;
+    rmas: (value: RequestParams.PutRmaParams["rmas"]) => this;
     /** Complaint id. */
     rmaId: (rmaId: number|string) => this
     /** Claim status. Available values: 15 - Complaint not confirmed by the shop service, 17 - The complaint has been cancelled, 18 - Complaint canceled by the customer, 14 - Complaint didn't arrive, 20 - Complaint not handled, 22 - Complaint rejected - no fault was found, 23 - Complaint rejected - the warranty period has expired, 24 - Complaint rejected - defect caused by improper use, 19 - Complaint confirmed, 28 - Complaint is being considered - repair completed, 5 - Complaint is being considered - Product sent to the producer , 4 - Complaint is being considered - Product was sent for testing, 6 - Complaint is being considered - Repair in progress, 29 - Complaint is being considered - the complaint requires additional information from the customer, 7 - Complaint adjusted negatively - no fault was found, 9 - Complaint adjusted negatively - the warranty period has expired, 30 - Complaint adjusted negatively - return shipment sent to the customer, 8 - Complaint adjusted negatively - defect caused by improper use, 25 - Complaint handled positively - return shipment sent to the customer, 12 - Complaint handled positively - replacement for a new product, 13 - Complaint handled positively - replacement for a different product, 26 - Complaint handled positively - a new item was shipped without waiting for the original one, 27 - Complaint handled positively - the recipient's data change on the sales document, 10 - Complaint handled positively - Refund - payment processing, 11 - Complaint handled positively - repair completed - payout made, 31 - Complaint handled positively - Awaiting correction invoice confirmation, 34 - Complaint handled positively - Refund - preparing correction invoice */
     rmaStatusId: (rmaStatusId: number|string) => this
     /** Customer correspondence. */
-    rmaChat: (rmaChat: Array<JSObject>) => this
+    rmaChat: (rmaChat: RequestParams.PutRmaParams["rmas"][number]["rmaChat"]) => this
 }
 
 export interface GetRmaStatusesRequest extends Gateway {}
@@ -3978,7 +3978,7 @@ export interface DeleteSizechartsRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest,GetSizechartsResponse> {
+export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest, GetSizechartsResponse> {
     /** IDs */
     ids: (value: number|string|number[]|string[]) => this;
     /** Names of size charts */
@@ -3991,7 +3991,7 @@ export interface GetSizechartsRequest extends PagableGateway<GetSizechartsReques
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PutSizechartsRequest extends AppendableGateway<PutSizechartsRequest, JSObject> {
+export interface PutSizechartsRequest extends AppendableGateway<PutSizechartsRequest> {
     sizeCharts: (value: Array<JSObject>) => this;
     /** Id */
     id: (id: number|string) => this
@@ -4008,7 +4008,7 @@ export interface GetSizesRequest extends Gateway<GetSizesResponse> {
     return_last_changed_time: (value: string) => this;
 }
 
-export interface PutSizesRequest extends AppendableGateway<PutSizesRequest, JSObject> {
+export interface PutSizesRequest extends AppendableGateway<PutSizesRequest> {
     /** Size table. */
     sizes: (value: Array<JSObject>) => this;
     /** Error code. */
@@ -4029,7 +4029,7 @@ export interface PutSizesRequest extends AppendableGateway<PutSizesRequest, JSOb
     lang_data: (lang_data: Array<JSObject>) => this
 }
 
-export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCampaignRequest,GetSnippetsCampaignResponse> {
+export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCampaignRequest, GetSnippetsCampaignResponse> {
     /** List of shop identifiers */
     shopId: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -4042,7 +4042,7 @@ export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCa
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostSnippetsCampaignRequest extends AppendableGateway<PostSnippetsCampaignRequest, JSObject> {
+export interface PostSnippetsCampaignRequest extends AppendableGateway<PostSnippetsCampaignRequest> {
     campaigns: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -4060,7 +4060,7 @@ export interface PostSnippetsCampaignRequest extends AppendableGateway<PostSnipp
     configVariables: (configVariables: Array<JSObject>) => this
 }
 
-export interface PutSnippetsCampaignRequest extends AppendableGateway<PutSnippetsCampaignRequest, JSObject> {
+export interface PutSnippetsCampaignRequest extends AppendableGateway<PutSnippetsCampaignRequest> {
     campaigns: (value: Array<JSObject>) => this;
     /** Snippet campaign id */
     id: (id: number|string) => this
@@ -4083,7 +4083,7 @@ export interface DeleteSnippetsCampaignRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCookiesRequest,GetSnippetsCookiesResponse> {
+export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCookiesRequest, GetSnippetsCookiesResponse> {
     /** List of identifiers for specific cookies */
     id: (value: number|string|number[]|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -4092,7 +4092,7 @@ export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCoo
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostSnippetsCookiesRequest extends AppendableGateway<PostSnippetsCookiesRequest, JSObject> {
+export interface PostSnippetsCookiesRequest extends AppendableGateway<PostSnippetsCookiesRequest> {
     cookies: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -4107,14 +4107,14 @@ export interface PostSnippetsCookiesRequest extends AppendableGateway<PostSnippe
     /** Name of the cookie. */
     name: (name: string) => this
     /** Type of the cookie */
-    type: (type: 'cookie'|'pixel'|'localstorage') => this
+    type: (type: 'cookie'|'pixel'|'localStorage') => this
     /** Cookie lifetime mode */
     lifeTimeType: (lifeTimeType: 'temporary'|'days'|'minutes') => this
     /** Cookie lifetime */
     lifeTime: (lifeTime: number|string) => this
 }
 
-export interface PutSnippetsCookiesRequest extends AppendableGateway<PutSnippetsCookiesRequest, JSObject> {
+export interface PutSnippetsCookiesRequest extends AppendableGateway<PutSnippetsCookiesRequest> {
     cookies: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -4129,7 +4129,7 @@ export interface PutSnippetsCookiesRequest extends AppendableGateway<PutSnippets
     /** Name of the cookie. */
     name: (name: string) => this
     /** Type of the cookie */
-    type: (type: 'cookie'|'pixel'|'localstorage') => this
+    type: (type: 'cookie'|'pixel'|'localStorage') => this
     /** Cookie lifetime mode */
     lifeTimeType: (lifeTimeType: 'temporary'|'days'|'minutes') => this
     /** Cookie lifetime */
@@ -4141,7 +4141,7 @@ export interface DeleteSnippetsCookiesRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest,GetSnippetsResponse> {
+export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest, GetSnippetsResponse> {
     /** List of campaign identifiers */
     campaign: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -4154,7 +4154,7 @@ export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest,Ge
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsRequest, JSObject> {
+export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsRequest> {
     snippets: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -4177,7 +4177,7 @@ export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsReque
     /** Content waiting time (timeout) in seconds. */
     timeout: (timeout: number|string) => this
     /** The place where the code snippet is loaded. */
-    zone: (zone: 'head'|'bodybegin'|'bodyend') => this
+    zone: (zone: 'head'|'bodyBegin'|'bodyEnd') => this
     /** The order in which the code snippet will be displayed. */
     order: (order: number|string) => this
     /** Snippet content for each language. */
@@ -4190,7 +4190,7 @@ export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsReque
     sources: (sources: JSObject) => this
 }
 
-export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest, JSObject> {
+export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest> {
     snippets: (value: Array<JSObject>) => this;
     /** undefined */
     id: (id: number|string) => this
@@ -4213,7 +4213,7 @@ export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest
     /** Content waiting time (timeout) in seconds. */
     timeout: (timeout: number|string) => this
     /** The place where the code snippet is loaded. */
-    zone: (zone: 'head'|'bodybegin'|'bodyend') => this
+    zone: (zone: 'head'|'bodyBegin'|'bodyEnd') => this
     /** The order in which the code snippet will be displayed. */
     order: (order: number|string) => this
     /** Snippet content for each language. */
@@ -4244,14 +4244,14 @@ export interface PostSubscriptionsChangeDeliveryDatesRequest extends Gateway {
     /** Settings that determinates if price should be updated automaticly */
     upcomingDeliveryDate: (value: string) => this;
     /** A setting that determines whether to also change the date of the next delivery. */
-    changeNextDeliveryDate: (value: Boolean) => this;
+    changeNextDeliveryDate: (value: boolean) => this;
 }
 
 export interface PostSubscriptionsChangePriceAutoUpdateRequest extends Gateway {
     /** Subscription ids */
     subscriptionIds: (value: number|string|number[]|string[]) => this;
     /** Settings that determinates if price should be updated automaticly */
-    autoPriceUpdate: (value: Boolean) => this;
+    autoPriceUpdate: (value: boolean) => this;
 }
 
 export interface PostSubscriptionsChangeStatusRequest extends Gateway {
@@ -4260,9 +4260,9 @@ export interface PostSubscriptionsChangeStatusRequest extends Gateway {
     /** Status to set */
     subscriptionStatus: (value: 'active'|'hold'|'nonpayment'|'finished') => this;
     /** Option allowing sending e-mail after status change */
-    sendMailAfterStatusChange: (value: Boolean) => this;
+    sendMailAfterStatusChange: (value: boolean) => this;
     /** Optian allowing sending SMS after status change */
-    sendSMSAfterStatusChange: (value: Boolean) => this;
+    sendSMSAfterStatusChange: (value: boolean) => this;
 }
 
 export interface PostSubscriptionsDeleteProductRequest extends Gateway {
@@ -4350,7 +4350,7 @@ export interface GetSystemCurrenciesRequest extends Gateway<GetSystemCurrenciesR
     date: (value: string) => this;
 }
 
-export interface PutSystemCurrenciesRequest extends AppendableGateway<PutSystemCurrenciesRequest, JSObject> {
+export interface PutSystemCurrenciesRequest extends AppendableGateway<PutSystemCurrenciesRequest> {
     currencies: (value: Array<JSObject>) => this;
     /** Currency code in ISO 4217 standard. */
     id: (id: string) => this
@@ -4383,7 +4383,7 @@ export interface GetSystemUnitsRequest extends Gateway<GetSystemUnitsResponse> {
     languagesIds: (value: string|string[]) => this;
 }
 
-export interface PutSystemUnitsRequest extends AppendableGateway<PutSystemUnitsRequest, JSObject> {
+export interface PutSystemUnitsRequest extends AppendableGateway<PutSystemUnitsRequest> {
     units: (value: Array<JSObject>) => this;
     /** #!IdentyfikatorJednostki!# */
     id: (id: number|string) => this
@@ -4402,7 +4402,7 @@ export interface GetSystemUsersRequest extends Gateway<GetSystemUsersResponse> {
     userType: (value: 'all'|'active') => this;
 }
 
-export interface PutVouchersBlockRequest extends AppendableGateway<PutVouchersBlockRequest, JSObject> {
+export interface PutVouchersBlockRequest extends AppendableGateway<PutVouchersBlockRequest> {
     vouchers: (value: Array<JSObject>) => this;
     /** Voucher ID */
     id: (id: number|string) => this
@@ -4410,14 +4410,14 @@ export interface PutVouchersBlockRequest extends AppendableGateway<PutVouchersBl
     number: (number: string) => this
 }
 
-export interface GetVouchersTypesRequest extends PagableGateway<GetVouchersTypesRequest,GetVouchersTypesResponse> {
+export interface GetVouchersTypesRequest extends PagableGateway<GetVouchersTypesRequest, GetVouchersTypesResponse> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
 }
 
-export interface PutVouchersUnblockRequest extends AppendableGateway<PutVouchersUnblockRequest, JSObject> {
+export interface PutVouchersUnblockRequest extends AppendableGateway<PutVouchersUnblockRequest> {
     vouchers: (value: Array<JSObject>) => this;
     /** Voucher ID */
     id: (id: number|string) => this
@@ -4425,7 +4425,7 @@ export interface PutVouchersUnblockRequest extends AppendableGateway<PutVouchers
     number: (number: string) => this
 }
 
-export interface DeleteVouchersRequest extends AppendableGateway<DeleteVouchersRequest, JSObject> {
+export interface DeleteVouchersRequest extends AppendableGateway<DeleteVouchersRequest> {
     vouchers: (value: Array<JSObject>) => this;
     /** Voucher ID */
     id: (id: number|string) => this
@@ -4433,7 +4433,7 @@ export interface DeleteVouchersRequest extends AppendableGateway<DeleteVouchersR
     number: (number: string) => this
 }
 
-export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest,GetVouchersResponse> {
+export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest, GetVouchersResponse> {
     vouchers: (value: Array<JSObject>) => this;
     /** Discount code campaign ID */
     voucherTypeId: (value: number|string) => this;
@@ -4446,9 +4446,9 @@ export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest,Ge
     /** Notes contain */
     noteContain: (value: string) => this;
     /** Value from */
-    balanceFrom: (value: Number) => this;
+    balanceFrom: (value: number) => this;
     /** Value to */
-    balanceTo: (value: Number) => this;
+    balanceTo: (value: number) => this;
     /** Expiration date from */
     expirationDateFrom: (value: string) => this;
     /** Expiration date to */
@@ -4477,7 +4477,7 @@ export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest,Ge
     numbers: (values: number|string|number[]|string[]) => this;
 }
 
-export interface PostVouchersRequest extends AppendableGateway<PostVouchersRequest, JSObject> {
+export interface PostVouchersRequest extends AppendableGateway<PostVouchersRequest> {
     /** List of vouchers to add */
     vouchers: (value: Array<JSObject>) => this;
     /** Gift voucher type id */
@@ -4496,7 +4496,7 @@ export interface PostVouchersRequest extends AppendableGateway<PostVouchersReque
     note: (note: string) => this
 }
 
-export interface PutVouchersRequest extends AppendableGateway<PutVouchersRequest, JSObject> {
+export interface PutVouchersRequest extends AppendableGateway<PutVouchersRequest> {
     /** List of vouchers to edit */
     vouchers: (value: Array<JSObject>) => this;
     /** Voucher ID */
@@ -4523,7 +4523,7 @@ export interface GetWarrantiesCountTotalRequest extends Gateway {
     warranty_ids: (value: string|string[]) => this;
 }
 
-export interface PutWarrantiesLanguageDataRequest extends AppendableGateway<PutWarrantiesLanguageDataRequest, JSObject> {
+export interface PutWarrantiesLanguageDataRequest extends AppendableGateway<PutWarrantiesLanguageDataRequest> {
     lang_data: (value: Array<JSObject>) => this;
     /** Warranty ID (numeric or text based). */
     warranty_id: (warranty_id: string) => this
@@ -4535,7 +4535,7 @@ export interface DeleteWarrantiesRequest extends Gateway {
     warranty_ids: (value: string|string[]) => this;
 }
 
-export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesRequest,GetWarrantiesResponse> {
+export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesRequest, GetWarrantiesResponse> {
     warranty_ids: (value: string|string[]) => this;
     /** Number of results on page. */
     results_limit: (value: number|string) => this;
@@ -4544,7 +4544,7 @@ export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesReques
     results_order: (value: JSObject) => this;
 }
 
-export interface PostWarrantiesRequest extends AppendableGateway<PostWarrantiesRequest, JSObject> {
+export interface PostWarrantiesRequest extends AppendableGateway<PostWarrantiesRequest> {
     warranties: (value: Array<JSObject>) => this;
     /** Name. */
     name: (name: string) => this
@@ -4558,7 +4558,7 @@ export interface PostWarrantiesRequest extends AppendableGateway<PostWarrantiesR
     description: (description: JSObject) => this
 }
 
-export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesRequest, JSObject> {
+export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesRequest> {
     warranties: (value: Array<JSObject>) => this;
     /** Warranty ID (numeric or text based). */
     id: (id: string) => this
@@ -4570,7 +4570,7 @@ export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesReq
     period: (period: number|string) => this
 }
 
-export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest,GetWmsLocationsResponse> {
+export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest, GetWmsLocationsResponse> {
     /** Warehouse location ID */
     locationId: (value: number|string) => this;
     /** Storage location code */
@@ -4602,7 +4602,7 @@ export interface DeleteWmsStocksdocumentsDocumentsRequest extends Gateway {
     id: (value: number|string) => this;
 }
 
-export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsDocumentsRequest,GetWmsStocksdocumentsDocumentsResponse> {
+export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsDocumentsRequest, GetWmsStocksdocumentsDocumentsResponse> {
     /** Document type. */
     stockDocumentType: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'wz'|'mm'|'zw') => this;
     /** Document status. */
@@ -4623,7 +4623,7 @@ export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<Ge
     dates: (dateFrom: DateLike, dateTo: DateLike, type: "open"|"modify"|"close"|"stockOperation") => this;
 }
 
-export interface PostWmsStocksdocumentsDocumentsRequest extends Gateway {
+export interface PostWmsStocksdocumentsDocumentsRequest extends Gateway<PostWmsStocksdocumentsDocumentsResponse, RequestParams.PostWmsStocksdocumentsDocumentsParams> {
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => this;
     /** Target warehouse ID. The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>. */
     stockId: (value: number|string) => this;
@@ -4679,7 +4679,7 @@ export interface PutWmsStocksdocumentsDocumentsRequest extends Gateway {
     /** Purchase price currency, e.g. PLN, USD, GBP */
     currencyForPurchasePrice: (value: string) => this;
     /** Currency exchange rate (Currency conversion) */
-    currencyForPurchasePriceRate: (value: Number) => this;
+    currencyForPurchasePriceRate: (value: number) => this;
     /** Type of currency rate. Available values: "custom" - not typical, "currentDay" - the currency rate from the day of issuing a stock document, "customDay" - on a selected day, "previousDay" - the currency rate of a working day preceding the date of the stock document issue. */
     currencyForPurchasePriceRateType: (value: 'custom'|'currentDay'|'customDay'|'previousDay') => this;
     /** Currency rate of the day. Correct format is yyyy-mm-dd, e.g. 2007-12-31.. */
@@ -4711,7 +4711,7 @@ export interface GetWmsStocksdocumentsOpenedDocumentsRequest extends PagableGate
     dates: (dateFrom: DateLike, dateTo: DateLike, type: "open"|"modify") => this;
 }
 
-export interface DeleteWmsStocksdocumentsProductsRequest extends AppendableGateway<DeleteWmsStocksdocumentsProductsRequest, JSObject> {
+export interface DeleteWmsStocksdocumentsProductsRequest extends AppendableGateway<DeleteWmsStocksdocumentsProductsRequest> {
     /** Products list. */
     products: (value: Array<JSObject>) => this;
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => this;
@@ -4723,7 +4723,7 @@ export interface DeleteWmsStocksdocumentsProductsRequest extends AppendableGatew
     size: (size: string) => this
 }
 
-export interface GetWmsStocksdocumentsProductsRequest extends PagableGateway<GetWmsStocksdocumentsProductsRequest,GetWmsStocksdocumentsProductsResponse> {
+export interface GetWmsStocksdocumentsProductsRequest extends PagableGateway<GetWmsStocksdocumentsProductsRequest, GetWmsStocksdocumentsProductsResponse> {
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm'|'wz'|'zw') => this;
     /** Document identifier. */
     id: (value: number|string) => this;
@@ -4733,9 +4733,9 @@ export interface GetWmsStocksdocumentsProductsRequest extends PagableGateway<Get
     results_limit: (value: number|string) => this;
 }
 
-export interface PostWmsStocksdocumentsProductsRequest extends AppendableGateway<PostWmsStocksdocumentsProductsRequest, JSObject> {
+export interface PostWmsStocksdocumentsProductsRequest extends AppendableGateway<PostWmsStocksdocumentsProductsRequest, PostWmsStocksdocumentsProductsResponse, RequestParams.PostWmsStocksdocumentsProductsParams> {
     /** Products list. */
-    products: (value: Array<JSObject>) => this;
+    products: (value: RequestParams.PostWmsStocksdocumentsProductsParams["products"]) => this;
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => this;
     /** Document identifier. */
     id: (value: number|string) => this;
@@ -4755,9 +4755,9 @@ export interface PostWmsStocksdocumentsProductsRequest extends AppendableGateway
     locationTextId: (locationTextId: string) => this
 }
 
-export interface PutWmsStocksdocumentsProductsRequest extends AppendableGateway<PutWmsStocksdocumentsProductsRequest, JSObject> {
+export interface PutWmsStocksdocumentsProductsRequest extends AppendableGateway<PutWmsStocksdocumentsProductsRequest, PutWmsStocksdocumentsProductsResponse, RequestParams.PutWmsStocksdocumentsProductsParams> {
     /** Products list. */
-    products: (value: Array<JSObject>) => this;
+    products: (value: RequestParams.PutWmsStocksdocumentsProductsParams["products"]) => this;
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => this;
     /** Document identifier. */
     id: (value: number|string) => this;
@@ -4787,20 +4787,20 @@ export interface DeleteWmsSuppliersRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetWmsSuppliersRequest extends PagableGateway<GetWmsSuppliersRequest,GetWmsSuppliersResponse> {
+export interface GetWmsSuppliersRequest extends PagableGateway<GetWmsSuppliersRequest, GetWmsSuppliersResponse> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
     /** Return quantity of products assigned to supplier */
-    returnProductsCount: (value: Boolean) => this;
+    returnProductsCount: (value: boolean) => this;
     /** Names */
     names: (value: string|string[]) => this;
     /** IDs */
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface PutWmsSuppliersRequest extends AppendableGateway<PutWmsSuppliersRequest, JSObject> {
+export interface PutWmsSuppliersRequest extends AppendableGateway<PutWmsSuppliersRequest> {
     suppliers: (value: Array<JSObject>) => this;
     /** Id */
     id: (id: number|string) => this
@@ -5180,4 +5180,4 @@ export interface Gateways {
 
 declare const defaultExport: (url: string, apiKey: string, version?: number | string) => Gateways;
 export default defaultExport;
-export { ENUMS }
+export { ENUMS, RequestParams }

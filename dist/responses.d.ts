@@ -27,7 +27,6 @@ type FaultCodeString = {
     faultString: string;
 }
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchOrdersResponse = {
     Results: {
         /** @description Order ID. */
@@ -478,7 +477,6 @@ export type SearchOrdersResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchProductsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -1757,12 +1755,10 @@ type ProductParameter = {
     parameterValueIds: number[];
 }
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchProductsParametersResponse = {
     parametersResult: Record<string, ProductParameter>;
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchClientsCrmResponse = {
     /** @description List of customers. */
     clientsResults: {
@@ -1951,7 +1947,6 @@ export type SearchClientsCrmResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchPackagesResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -2038,7 +2033,6 @@ export type SearchPackagesResponse = {
     }[];
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchProductsCategoriesIdosellResponse = {
     /** @description List of IdoSell Categories */
     categoriesIdoSell: {
@@ -2062,7 +2056,6 @@ export type SearchProductsCategoriesIdosellResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchOrdersOpinionsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -2129,7 +2122,6 @@ export type SearchOrdersOpinionsResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type SearchProductsDeliveryTimeResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -2218,7 +2210,6 @@ export type SearchClientsNewsletterSmsResponse = SearchNewsletterResponse<{
     phone_cellular: string;
 }>;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetWmsStocksdocumentsProductsResponse = {
     /** @description Products list. */
     products: {
@@ -2261,7 +2252,6 @@ export type GetWmsStocksdocumentsProductsResponse = {
     }[];
 } & PagedSnakecaseResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetWmsStocksdocumentsDocumentsResponse = {
     /** @description List of documents. */
     stocksDocuments: {
@@ -2321,7 +2311,6 @@ export type GetWmsStocksdocumentsDocumentsResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetClientsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -2443,7 +2432,6 @@ export type GetClientsResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetReturnsResponse = {
     /** @description Element that contains the list of found returns. */
     returns: {
@@ -2585,7 +2573,6 @@ export type GetReturnsResponse = {
     }[];
 } & PagedSnakecaseResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetRmaResponse = {
     /** @description Complaints. */
     rmas: {
@@ -2678,7 +2665,6 @@ export type GetRmaResponse = {
     isErrors: boolean;
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetSystemConfigResponse = {
     /** @example 1 */
     client_id: number;
@@ -2986,8 +2972,30 @@ export type GetSystemConfigResponse = {
     typeOfPrinterProtocolAdress: string;
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
-export type GetSystemShopsDataResponse = Omit<GetConfigResponse, 'panel_settings'|'shops'> & {
+type ShopsPanelSettings = {
+    /** @description Default panel language. */
+    default_lang_id: string;
+    /** @description Panel base currency. */
+    basecurrency_id: string;
+    /** @description Manual stock quantity modification restriction. */
+    stocks_change_disabled: string;
+    /** */
+    stock_state_config: "uncontrolled" | "bridge" | "outside";
+    /** */
+    main_stock_system: "other" | "iai";
+    /** @description Sales documents in third party application. */
+    salesDocumentsAreCreatedByClient: boolean;
+    search_by_code: {
+        /** @description IAI code. */
+        code_iai: boolean;
+        /** @description External system code. */
+        code_extern: boolean;
+        /** @description Producer code. */
+        code_producer: boolean;
+    };
+}
+
+export type GetSystemShopsDataResponse = Omit<GetSystemConfigResponse, 'panel_settings'|'shops'> & {
 /** @description Shop contact data */
     shop_contact: {
         /** @description shop ID */
@@ -3071,7 +3079,6 @@ export type GetSystemShopsDataResponse = Omit<GetConfigResponse, 'panel_settings
     }[];
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetSizechartsResponse = {
     sizeCharts: {
         [id: string]: {
@@ -3114,7 +3121,6 @@ export type GetSizechartsResponse = {
     } | [];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetWmsLocationsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -3142,7 +3148,6 @@ export type GetWmsLocationsResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetWarrantiesResponse = {
     warranties: {
         /** @description Warranty language id (numeric). */
@@ -3168,7 +3173,6 @@ export type GetWarrantiesResponse = {
     }[];
 } & PagedSnakecaseResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetProductsCategoriesResponse = {
     last_changed_time: string;
     /** @description Element containing a list of found results on a given page. */
@@ -3216,7 +3220,6 @@ export type GetProductsCategoriesResponse = {
     }[];
 } & PagedSnakecaseResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetMenuResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -3327,7 +3330,6 @@ export type GetMenuResponse = {
     }[];
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetOrdersAuctionDetailsResponse = {
     /** @description External listings - orders table. */
     auctions: {
@@ -3376,7 +3378,6 @@ export type GetOrdersAuctionDetailsResponse = {
     isErrors: boolean;
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetOrdersDocumentsResponse = {
     /** @description List of documents. */
     documents: {
@@ -3731,7 +3732,6 @@ export type GetCouriersPickupPointsResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetClientsDeliveryAddressResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -3770,7 +3770,6 @@ export type GetClientsDeliveryAddressResponse = {
     }[];
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetClientsPayerAddressResponse = {
     payerAddressesResults: {
         /** @description Buyer's address id. */
@@ -3798,7 +3797,6 @@ export type GetClientsPayerAddressResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetProductsAuctionsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -3835,7 +3833,6 @@ export type GetProductsAuctionsResponse = {
     } & PagedResponse;
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetProductsBrandsResponse = {
     /** @description Element containing a list of found results on a given page. */
     producers: {
@@ -3887,7 +3884,6 @@ export type GetProductsBrandsResponse = {
     }[];
 } & PagedSnakecaseResponse;
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetProductsDescriptionsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -3953,7 +3949,6 @@ export type GetProductsDescriptionsResponse = {
     errorsOccurred: boolean;
 };
 
-/** @version v6.1 Typechecked 2025-08-02 */
 export type GetProductsOpinionsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -4022,7 +4017,6 @@ export type GetProductsOpinionsResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetSnippetsResponse = {
     results: {
         /** @description Id of the code snippet. */
@@ -4160,7 +4154,6 @@ export type GetSnippetsResponse = {
     pagination: PagedResponse;
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetSystemUsersResponse = {
     /** @description List of panel users. */
     users: {
@@ -4222,7 +4215,6 @@ export type GetSystemUsersResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetWmsSuppliersResponse = {
     /** @description List of product suppliers */
     suppliers: {
@@ -4278,7 +4270,6 @@ export type GetWmsSuppliersResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetProductsCodeExistenceResponse = {
     results: {
         /** @description Products list. */
@@ -4297,7 +4288,6 @@ export type GetProductsCodeExistenceResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetProductsIdBySizecodeResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -4316,7 +4306,6 @@ export type GetProductsIdBySizecodeResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetProductsOmnibusPricesResponse = {
     /** @description Products list. */
     products: {
@@ -4357,7 +4346,6 @@ export type GetProductsOmnibusPricesResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetProductsSizesResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -4407,7 +4395,6 @@ export type GetProductsSizesResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetProductsSKUbyBarcodeResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -4554,7 +4541,6 @@ export type GetProductsSKUbyBarcodeResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetSystemUnitsResponse = {
     result: {
         units: {
@@ -4584,7 +4570,6 @@ export type GetSystemUnitsResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetProductsReservationsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -4625,7 +4610,6 @@ export type GetProductsReservationsResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetProductsSeriesResponse = {
     /** @description Date of last modification (YYYY-MM-DD HH-MM-SS). */
     last_changed_time: string;
@@ -4648,7 +4632,6 @@ export type GetProductsSeriesResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetShopsCurrenciesResponse = {
     /** @description List of shops */
     shops: {
@@ -4668,7 +4651,6 @@ export type GetShopsCurrenciesResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetShopsLanguagesResponse = {
     /** @description List of shops */
     shops: {
@@ -4713,7 +4695,6 @@ export type GetConfigVariablesResponse = {
     pagination: PagedResponse;
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetSystemCurrenciesResponse = {
     /** @description Number of decimal spaces for price rounding. */
     currency_round: number;
@@ -4733,7 +4714,6 @@ export type GetSystemCurrenciesResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetPackagesLabelsResponse = {
     /** @description Package labels encoded in base64 */
     labels: string[];
@@ -4741,7 +4721,6 @@ export type GetPackagesLabelsResponse = {
     labelsType: "PDF" | "A4" | "16x10" | "SPL" | "ZPL" | "EPL" | "DPL";
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetOrdersProfitabilityResponse = {
     /** @description Order value (net) */
     totalPrice: number;
@@ -4761,7 +4740,6 @@ export type GetOrdersProfitabilityResponse = {
     profitMarginPercent: number;
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetOrdersPackagesResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -4846,7 +4824,6 @@ export type GetOrdersPackagesResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetOrdersAnalyticsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: null |  {
@@ -4870,7 +4847,6 @@ export type GetOrdersAnalyticsResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetCouriersAssignedToShippingProfilesResponse = {
     couriers: {
         [courier: string]: {
@@ -4896,7 +4872,6 @@ export type GetCouriersAssignedToShippingProfilesResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-23 */
 export type GetOrdersStatusesResponse = {
     statuses: {
         /** @description Status identifier */
@@ -4908,7 +4883,6 @@ export type GetOrdersStatusesResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetPaymentsResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -4949,7 +4923,6 @@ export type GetPaymentsResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetProductsStrikethroughPricesResponse = {
     /** @description Products list. */
     products: {
@@ -4997,7 +4970,6 @@ export type GetProductsStrikethroughPricesResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetSystemProcessesAutomationResponse = {
     /** @description Orders. */
     orders: {
@@ -5022,7 +4994,6 @@ export type GetSystemProcessesAutomationResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetEntriesPagesToDisplayResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -5036,7 +5007,6 @@ export type GetEntriesPagesToDisplayResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetEntriesResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -5080,7 +5050,6 @@ export type GetEntriesResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetCpaResponse = {
     results: {
         /** @description Id of the CPA program. */
@@ -5207,7 +5176,6 @@ export type GetCpaResponse = {
     pagination: PagedResponse;
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetVouchersTypesResponse = {
     /** @description List of all discount code campaigns defined in the administration panel */
     vouchersTypes: {
@@ -5218,7 +5186,6 @@ export type GetVouchersTypesResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetVouchersResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -5254,7 +5221,6 @@ export type GetVouchersResponse = {
     }[];
 } & PagedResponse;
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetOrdersHistoryResponse = {
     /** @description List of events */
     historyEvents: {
@@ -5267,7 +5233,6 @@ export type GetOrdersHistoryResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetSnippetsCampaignResponse = {
     results: {
         /** @description Snippet campaign id */
@@ -5300,7 +5265,6 @@ export type GetSnippetsCampaignResponse = {
     pagination: PagedResponse;
 };
 
-/** @version v6.3 Typechecked 2025-08-25 */
 export type GetSnippetsCookiesResponse = {
     results: {
         /** @description Snippet */
@@ -5332,7 +5296,6 @@ export type GetSnippetsCookiesResponse = {
     pagination: PagedResponse;
 };
 
-/** @version v6.3 Typechecked 2025-08-26 */
 export type PostOrdersResponse = {
     results: {
         /** @description List of orders returned in gate call. */
@@ -5366,7 +5329,6 @@ export type PostOrdersResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-26 */
 export type PostProductsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -5421,7 +5383,6 @@ export type PostProductsResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-26 */
 export type PutProductsResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -5484,7 +5445,6 @@ export type PutProductsResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-26 */
 export type PutOrdersResponse = {
     results: {
         /** @description List of orders returned in gate call. */
@@ -5522,7 +5482,6 @@ export type PutOrdersResponse = {
     };
 };
 
-/** @version v6.3 Typechecked 2025-08-26 */
 export type PostCouriersPickupPointsResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -5539,7 +5498,6 @@ export type PostCouriersPickupPointsResponse = {
     }[];
 };
 
-/** @version v6.3 Typechecked 2025-08-26 */
 export type PutCouriersPickupPointsResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -5600,6 +5558,295 @@ export type PostOrdersDocumentsCreateResponse = {
             };
         }[];
         pdfBase64: string;
+    };
+};
+
+export type PostClientsResponse = {
+    /** @description Customer data. */
+    clients: {
+        /** @description Information about newly created customer accounts. */
+        status: boolean;
+        /** @description Parameters transmitted to method */
+        params: {
+            /** @description Customer ID. */
+            id: number;
+            /** @description Customer's login. */
+            login: string;
+            /** @description Field used for identifying request-response pairs for the endpoint. */
+            request_reference?: string;
+        };
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString[];
+    }[];
+};
+
+export type PostReturnsResponse = {
+    /** @example 1 */
+    return_id: number;
+};
+
+export type PostWmsStocksdocumentsDocumentsResponse = {
+    /** @description Document identifier. */
+    id: number;
+};
+
+export type PostWmsStocksdocumentsProductsResponse = {
+    errors?: FaultCodeString;
+} | [];
+
+export type PostPaymentsResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Transaction ID. */
+        paymentId: string;
+    };
+};
+
+export type PutReturnsResponse = {
+    errors?: FaultCodeString;
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @example 1 */
+        id: number;
+        errors: FaultCodeString;
+    }[];
+};
+
+export type PutRmaResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        rmasResults: {
+            /** @description Complaint id. */
+            rmaId: number;
+            /** @description Error code. */
+            faultCode: number;
+            /** @description Error description. */
+            faultString?: string;
+        }[];
+    };
+};
+
+export type PutWmsStocksdocumentsProductsResponse = {
+    errors?: FaultCodeString;
+} | [];
+
+export type PostMenuResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Shop Id. */
+        shop_id: number;
+        /** @description Menu ID. */
+        menu_id: number;
+        /** @description Menu element ID */
+        item_id: number;
+        /** @description Parent menu element ID. Example: "item1\item2\item3". */
+        item_textid: string;
+        /** @description Parent menu element ID */
+        parent_id: number;
+        /** @description Menu element text identifier. Example: "item1\item2\item3". */
+        parent_textid: string | null;
+        /** @description Error code. List of error codes: "0" - Operation was successful, "1" - Incorrect shop id, "2" - Incorrect language ID, "3" - Incorrect menu id, "4" - Element with indicated ID doesn't exist, "5" - Element name is empty, "6" - Element with the provided name already exists. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+        /** @description Error adding graphics. */
+        faultGfx: {
+            /** @description Graphic type. List of types: "gfx_nav" - Graphic on the "navigation" page, "gfx_active" - Graphic - When the cursor is on the link, "gfx_active_desktop" - Graphic - When the cursor is on the link - Desktop, "gfx_active_tablet" - Graphic - When the cursor is on the link - Tablet, "gfx_active_mobile" - Graphic - When the cursor is on the link - Mobile, "gfx" - Graphic - When the cursor is outside link, "gfx_inactive_desktop" - Graphic - When the cursor is outside link - Desktop, "gfx_inactive_tablet" - Graphic - When the cursor is outside link - Tablet, "gfx_inactive_mobile" - Graphic - When the cursor is outside link - Mobile, "gfx_onmouseover" - Graphic - When the link is opened, "gfx_omo_desktop" - Graphic - When the link is opened - Desktop, "gfx_omo_tablet" - Graphic - When the link is opened - Tablet, "gfx_omo_mobile" - Graphic - When the link is opened - Mobile. */
+            type: string;
+            /** @description Graphic error code. List of error codes: "101" - File is not a graphics format, "102" - File size too large, "103" - Graphic is too wide, "104" - Graphics is too narrow. */
+            code: number;
+            /** @description Graphic error description. */
+            val: string;
+        }[];
+    }[];
+};
+
+export type PutClientsDeliveryAddressResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Information whether the operation was successful. */
+        resultStatus: boolean;
+        /** @description Object contains detailed information on performed operation. */
+        clientDeliveryAddressResult: {
+            /** @description Unique client's number. */
+            clientId: number;
+            /** @description Delivery address ID. */
+            clientDeliveryAddressId: number;
+        };
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString[];
+    }[];
+};
+
+export type PutProductsAttachmentsResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Stock keeping unit. */
+        productIdent: {
+            /** @description ID value. */
+            identValue: string | number;
+            /** @description Identifier type. */
+            productIdentType: "id" | "index" | "codeExtern" | "codeProducer";
+        };
+        /** @description Product attachments list. */
+        attachments?: {
+            /** @description Attachment file link. */
+            attachmentUrl: string;
+            /** @description Attachment name. */
+            attachmentName: string;
+            /** @description Language ID */
+            langId: string;
+            /** @description File type: audio, video, doc, other. */
+            attachmentFileType: "audio" | "video" | "doc" | "other" | "image";
+            /** @description Type of customer, attachment should be available for: 'all','ordered','wholesaler','wholesaler_or_ordered','wholesaler_and_ordered'. */
+            attachmentEnable: "all" | "ordered" | "wholesaler" | "wholesaler_or_orderer" | "wholesaler_and_ordered";
+            /** @description Attachment ID. */
+            attachmentId?: number;
+            /** @description Attachment downloads record. */
+            attachmentDownloadLog: "y" | "n";
+            /** @description Attachment file extension. */
+            attachmentFileExtension?: string;
+            /** @description Attachment number. */
+            attachmentPriority?: number;
+            /** @description Flag indicating if an attachment should be removed. */
+            attachmentToDelete?: boolean;
+            /** @description Attachment document types list. */
+            documentTypes?: {
+                /** @description Document type. */
+                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "others";
+                /** @description Additional description. */
+                description?: string;
+            }[];
+            /** @description Information on error that occurred during gate call. */
+            errors?: FaultCodeString;
+        }[];
+        /** @description List of product's virtual attachments. */
+        virtualAttachments?: {
+            /** @description Attachment file link. */
+            attachmentUrl: string;
+            /** @description Attachment name. */
+            attachmentName: {
+                /** @description List of languages. */
+                attachmentLanguages: {
+                    /** @description Language ID */
+                    langId: string;
+                    /** @description Language name */
+                    langName: string;
+                    /** @description Literal in selected language. */
+                    langValue: string;
+                }[];
+            };
+            /** @description Full version or sample. */
+            attachmentType: "full" | "demo";
+            /** @description Number of attachment downloads limit. */
+            attachmentLimits: {
+                /** @description Number of downloads limit. */
+                attachmentDownloadsLimit: number;
+                /** @description Number of days file should be available. */
+                attachmentDaysLimit: number;
+            };
+            /** @description Attachment ID. */
+            attachmentId: number;
+            /** @description Attachment number. */
+            attachmentPriority: number;
+            /** @description Flag indicating if an attachment should be removed. */
+            attachmentToDelete: boolean;
+            /** @description Information on error that occurred during gate call. */
+            errors?: FaultCodeString;
+        }[];
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString;
+        /** @description Flag indicating if there are errors in results of attachments settings. */
+        attachmentsErrorsOccurred?: boolean;
+        /** @description Flag indicating if there are errors in results of virtual attachments settings. */
+        virtualAttachmentsErrorsOccurred?: boolean;
+    }[];
+    /** @description Information about whether any errors occurred. */
+    errorsOccurred: boolean;
+};
+
+export type PutMenuResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Shop Id. */
+        shop_id: number;
+        /** @description Menu ID. */
+        menu_id: number;
+        /** @description Menu element ID. */
+        item_id: string;
+        /** @description Menu element text identifier. Example: "item1\item2\item3". */
+        item_textid: null | string;
+        /** @description Error code. List of error codes: "0" - Operation was successful, "1" - Incorrect shop id, "2" - Incorrect language ID, "3" - Incorrect menu id, "4" - Element with indicated ID doesn't exist, "5" - Element name is empty, "6" - Element with the provided name already exists, "7" - Menu element ID or menu element text identifier is required. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+        /** @description Error adding graphics. */
+        faultGfx: {
+            /** @description Graphic type. List of types: "gfx_nav" - Graphic on the "navigation" page, "gfx_active" - Graphic - When the cursor is on the link, "gfx_active_desktop" - Graphic - When the cursor is on the link - Desktop, "gfx_active_tablet" - Graphic - When the cursor is on the link - Tablet, "gfx_active_mobile" - Graphic - When the cursor is on the link - Mobile, "gfx" - Graphic - When the cursor is outside link, "gfx_inactive_desktop" - Graphic - When the cursor is outside link - Desktop, "gfx_inactive_tablet" - Graphic - When the cursor is outside link - Tablet, "gfx_inactive_mobile" - Graphic - When the cursor is outside link - Mobile, "gfx_onmouseover" - Graphic - When the link is opened, "gfx_omo_desktop" - Graphic - When the link is opened - Desktop, "gfx_omo_tablet" - Graphic - When the link is opened - Tablet, "gfx_omo_mobile" - Graphic - When the link is opened - Mobile. */
+            type: string;
+            /** @description Graphic error code. List of error codes: "101" - File is not a graphics format, "102" - File size too large, "103" - Graphic is too wide, "104" - Graphics is too narrow. */
+            code: number;
+            /** @description Graphic error description. */
+            val: string;
+        }[];
+    }[];
+};
+
+export type PostPaymentsRepaymentResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Payment ID. */
+        payment_id: string;
+    };
+};
+
+export type PostResponsibilityEntitiesResponse = {
+    /** @description Results */
+    results: {
+        /** @description Responsible entity code */
+        code: string;
+        /** @description Errors */
+        errors: ((({
+            /** @description Error code. */
+            code: string;
+            /** @description Field associated with the error. */
+            field: string | null;
+            /** @description Error description. */
+            message: string | null;
+            /** @description Value associated with the error. */
+            value: string | null;
+            /** @description Unique identifier of the error (for support). */
+            uid: string | null;
+        } & {
+            errorCode: string;
+        }) & {
+            /** @description Possible values: - unexpected_error - invalid_language_code - invalid_language_for_shop - invalid_shop - invalid_date_range - invalid_number_range - collection_is_empty - collection_limit_exceeded - invalid_parameter_for_post_method - invalid_parameter_for_put_method - no_data - connection_error
+             * */
+            errorCode: string;
+        }) | {
+            code: string;
+        })[];
+    }[];
+};
+
+export type PutProductsCategoriesResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description List of categories in which sought products are present. */
+        categories: {
+            /** @description Category id. */
+            id: number;
+            /** @description Parent category ID. */
+            parent_id?: number;
+            /** @description Priority. */
+            priority?: number;
+            /** @description Operation code. */
+            operation?: string;
+            /** @description Error code. Error description: "0" - Operation was successful, "1" - Login failure: invalid username or key, "4" - Shop has been blocked due to number of overdue invoices owed to IAI Company */
+            faultCode: number;
+            /** @description Error description. */
+            faultString: string;
+        }[];
     };
 };
 

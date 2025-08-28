@@ -1,5 +1,3 @@
-import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject } from "./app.d.ts";
-
 export type PostOrdersParams = {
     /** @description Orders. */
     orders: {
@@ -2255,6 +2253,1618 @@ export type PostOrdersDocumentsCreateParams = {
     documentPurchaseDate?: string;
     /** @description Printer id */
     printerId?: number;
+};
+
+export type PostClientsParams = {
+    /** @description Customer data. */
+    clients: {
+        /** @description Customer's login. */
+        login?: string;
+        /** @description External system code. */
+        code_extern?: string;
+        /** @description Customer e-mail address. */
+        email: string;
+        /** @description Customer's first name. */
+        firstname?: string;
+        /** @description Customer's last name. */
+        lastname?: string;
+        /** @description Address. */
+        street: string;
+        /** @description Customer's postal code. */
+        zipcode: string;
+        /** @description Customer's city. */
+        city: string;
+        /** @description Customer country (ISO 3166-1 alfa-2 code). */
+        country_code?: string;
+        /** @description Administrative region code. */
+        province_code?: string;
+        /** @description Customer password (min. 8 characters). */
+        password?: string;
+        /** @description Date of birth. */
+        birth_date?: string;
+        /** @description Customer phone number. */
+        phone: string;
+        /** @example company */
+        company?: string;
+        /** @description Customer Tax no. */
+        vat_number?: string;
+        /** @description Determines, whether client is a wholesaler. */
+        wholesaler?: boolean;
+        /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
+        client_type?: "person" | "person_male" | "person_female" | "firm";
+        /** @description Customer language ID. */
+        language?: string;
+        /** @description Determines, in which store account should be active. */
+        shops: number[];
+        /** @description Defines availability of log in to other pages than the ones given in the element: shops  . */
+        block_autosigning_to_shops?: boolean;
+        /** @description Customer default currency (ISO 4217 code). */
+        currency?: string;
+        delivery_dates?: string[];
+        /** @description Customer account balance in external system. */
+        external_balance_value?: number;
+        /** @description Debt limit. */
+        external_trade_credit_limit_value?: number;
+        /** @description Have customer agreed to a newsletter. List of allowed parameters: "y" - yes, "n" - no. The value will be set in all shops in which the customer account is active. */
+        email_newsletter?: boolean;
+        /** @description Have customer agreed to a newsletter. List of allowed parameters: "y" - yes, "n" - no. The value will be set in all shops in which the customer account is active. */
+        sms_newsletter?: boolean;
+        /** @description Discount group ID. */
+        client_group?: number;
+        /** @description Field used for identifying request-response pairs for the endpoint. */
+        request_reference?: string;
+        /** @description List of shops where a customer agreed or didn't agree to receive email newsletter. */
+        newsletter_email_approvals?: {
+            /** @description Have customer agreed to a newsletter. List of allowed parameters: "y" - yes, "n" - no. */
+            approval?: "y" | "n";
+            /** @description Store ID. */
+            shop_id?: number;
+        }[];
+        /** @description List of shops where a customer agreed or didn't agree to receive sms newsletter. */
+        newsletter_sms_approvals?: {
+            /** @description Have customer agreed to a newsletter. List of allowed parameters: "y" - yes, "n" - no. */
+            approval?: "y" | "n";
+            /** @description Store ID. */
+            shop_id?: number;
+        }[];
+        /** @description Block assigning of discount groups automatically based on order history */
+        block_group_auto_assignment?: boolean;
+    }[];
+};
+
+export type PostReturnsParams = {
+    /** @description Order serial number */
+    order_sn: number;
+    /** @example 1 */
+    stock_id: number;
+    /** @description Products list. */
+    products: {
+        /** @example 1 */
+        id?: number;
+        /** @example size */
+        size?: string;
+        /** */
+        quantity?: number;
+        /** @description Price. */
+        price?: number;
+        serialNumbers?: string[];
+        /** @description Additional information. */
+        productOrderAdditional?: string;
+    }[];
+    /** @example 1 */
+    status?: number;
+    client_received?: boolean;
+    change_status?: boolean;
+    /** @example 1 */
+    courier_id?: number;
+    /** @example return_operator */
+    return_operator?: string;
+    tryCorrectInvoice?: boolean;
+    /** @example include_shipping_cost */
+    include_shipping_cost?: string;
+    /** @example additional_payment_cost */
+    additional_payment_cost?: string;
+    /** */
+    emptyReturn?: "n" | "y";
+};
+
+export type PostWmsStocksdocumentsDocumentsParams = {
+    /** */
+    type: "pz" | "pw" | "px" | "rx" | "rw" | "mm";
+    /** @description Target warehouse ID.   The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>. */
+    stockId: number;
+    /** @description Document number. */
+    stockDocumentNumber?: string;
+    /** @description Source warehouse ID.   The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>. */
+    stockSourceId?: number;
+    /** @example note */
+    note?: string;
+    /** @description Products available in presales. Available values: "y" - yes, "n" - no. */
+    productsInPreorder?: "y" | "n";
+    /** @description Supplier ID. */
+    delivererId?: number;
+    /** @description Type of purchase document. Available values: "national_VAT_invoice" - National VAT invoice, "other_purchase_document" - Other purchase document, "invoice_without_VAT" - Invoice without VAT (EU), "imports_from_outside_the_EU" - Import from outside EU. */
+    wnt?: "national_VAT_invoice" | "other_purchase_document" | "invoice_without_VAT" | "imports_from_outside_the_EU";
+    /** @description Issue date of purchase document. Correct format is yyyy-mm-dd, e.g. 2007-12-31.. */
+    saleDocumentCreationDate?: string;
+    /** @description Planned date of acceptance of delivery. Correct format is yyyy-mm-dd, e.g. 2007-12-31. Requires parameter: "confirmed=on_the_way". */
+    deliveryOnTheWayPlannedDeliveryDate?: string;
+    /** @description Document status. Available values: "open" - open, "on_the_way" - on the way. */
+    confirmed?: "open" | "on_the_way";
+    /** @description Purchase price currency, e.g. PLN, USD, GBP */
+    currencyForPurchasePrice?: string;
+    /** @description Settlement by prices. Available values: "brutto" - Gross value, "netto" - Net value */
+    priceType?: "brutto" | "netto";
+    /** @description Methods of stock level correction. Available values: "fifo" - first-in, first-out (FIFO), "lifo" - last-in, first-out (LIFO) */
+    queueType?: "fifo" | "lifo";
+};
+
+export type PostWmsStocksdocumentsProductsParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Stock keeping unit. */
+        product: number;
+        /** @description Product size ID. */
+        size: string;
+        /** @description Product quantity. */
+        quantity: number;
+        /** @description Cost price */
+        productPurchasePrice?: number;
+        /** @description Warehouse location ID.  The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> . */
+        locationId?: number;
+        /** @description Storage location code */
+        locationCode?: string;
+        /** @description Warehouse location full path. Use a backslash (\) as a separator, for example:  M1\Section name\Location name.  The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> . */
+        locationTextId?: string;
+    }[];
+    /** */
+    type: "pz" | "pw" | "px" | "rx" | "rw" | "mm";
+    /** @description Document identifier. */
+    id: number;
+};
+
+export type PostPaymentsParams = {
+    /** @description Source ID. */
+    sourceId: number;
+    /** @description Source type. */
+    sourceType: "order" | "return" | "rma";
+    /** @description Payment amount. */
+    value: number;
+    /** @description Number of a bank account to which a payment is sent. */
+    account?: string;
+    /** */
+    type: "payment" | "advance" | "repayment" | "fee";
+    /** @description Form of payment ID. */
+    paymentFormId: number;
+    /** @description Gift card or voucher number */
+    paymentVoucherKey?: string;
+    /** @description Gift card PIN. */
+    giftCardPIN?: number;
+    /** @description Transaction ID in external service */
+    externalPaymentId?: string;
+};
+
+export type PutReturnsParams = {
+    returns: {
+        /** @example 1 */
+        id: number;
+        /** @example 1 */
+        status?: number;
+        /** @description Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
+        apiFlag?: {
+            /** */
+            flag?: "none" | "registered" | "registration_fault";
+            /** @example note */
+            note?: string;
+        };
+        /** @description Products list. */
+        products?: {
+            /** @example 1 */
+            id?: number;
+            /** @example size */
+            size?: string;
+            /** */
+            quantity?: number;
+            /** @description Price. */
+            price?: number;
+            serialNumbers?: string[];
+            /** @description Additional information. */
+            productOrderAdditional?: string;
+        }[];
+        /** @example userNote */
+        userNote?: string;
+        /** @description Notes from customer. */
+        clientNote?: string;
+        tryCorrectInvoice?: boolean;
+    }[];
+};
+
+export type PutRmaParams = {
+    /** @description Complaints. */
+    rmas: {
+        /** @description Complaint id. */
+        rmaId: number;
+        /** @description Claim status. Available values: 15 - Complaint not confirmed by the shop service, 17 - The complaint has been cancelled, 18 - Complaint canceled by the customer, 14 - Complaint didn't arrive, 20 - Complaint not handled, *                 22 - Complaint rejected - no fault was found, 23 - Complaint rejected - the warranty period has expired, 24 - Complaint rejected - defect caused by improper use, *                 19 - Complaint confirmed, *                 28 - Complaint is being considered - repair completed, 5 - Complaint is being considered - Product sent to the producer , 4 - Complaint is being considered - Product was sent for testing, 6 - Complaint is being considered - Repair in progress, 29 - Complaint is being considered - the complaint requires additional information from the customer, *                 7 - Complaint adjusted negatively - no fault was found, 9 - Complaint adjusted negatively - the warranty period has expired, 30 - Complaint adjusted negatively - return shipment sent to the customer, 8 - Complaint adjusted negatively - defect caused by improper use, *                 25 - Complaint handled positively  - return shipment sent to the customer, 12 - Complaint handled positively  - replacement for a new product, 13 - Complaint handled positively  - replacement for a different product, 26 - Complaint handled positively  - a new item was shipped without waiting for the original one, 27 - Complaint handled positively  - the recipient's data change on the sales document, 10 - Complaint handled positively  - Refund - payment processing, 11 - Complaint handled positively  - repair completed - payout made, 31 - Complaint handled positively  - Awaiting correction invoice confirmation, 34 - Complaint handled positively  - Refund - preparing correction invoice */
+        rmaStatusId?: number;
+        /** @description Customer correspondence. */
+        rmaChat?: {
+            /** @description Message content */
+            message?: string;
+        }[];
+    }[];
+};
+
+export type PutWmsStocksdocumentsProductsParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Stock keeping unit. */
+        product: number;
+        /** @description Product size ID. */
+        size: string;
+        /** @description Product quantity. */
+        quantity?: number;
+        /** @description Cost price */
+        productPurchasePrice?: number;
+        /** @description Warehouse location ID.  The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> . */
+        locationId?: number;
+        /** @description Storage location code */
+        locationCode?: string;
+        /** @description Warehouse location full path. Use a backslash (\) as a separator, for example:  M1\Section name\Location name.  The list of available warehouse locations can be downloaded via the method <a href = "pl/shop/api/?action=method&function=locations&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=locations">Locations</a> . */
+        locationTextId?: string;
+    }[];
+    /** */
+    type: "pz" | "pw" | "px" | "rx" | "rw" | "mm";
+    /** @description Document identifier. */
+    id: number;
+};
+
+export type PostMenuParams = {
+    menu_list: {
+        /** @description Shop Id. */
+        shop_id: number;
+        /** @description Menu ID. */
+        menu_id: number;
+        /** @description Parent menu element ID. */
+        parent_id?: string;
+        /** @description Menu element text identifier. Example: "item1\item2". */
+        parent_textid?: string;
+        lang_data: {
+            /** @description Language ID. */
+            lang_id?: string;
+            /** @description Menu element name. */
+            name?: string;
+            /** @description Menu element order. */
+            priority?: number;
+            /** @description Description displayed at the top of products list. */
+            description?: string;
+            /** @description Description displayed at the bottom of products list. */
+            description_bottom?: string;
+            /** @description Own link. */
+            link?: string;
+            /** */
+            item_type?: "products" | "navigation" | "products_with_rich_text" | "navigation_with_rich_text" | "rich_text" | "static" | "link";
+            /** @description Meta - title. */
+            meta_title?: string;
+            /** @description Meta description. */
+            meta_description?: string;
+            /** @description Meta - keywords. */
+            meta_keywords?: string;
+            /** @description URL address */
+            url?: string;
+            /** @description Link target attribute: !_self - open on the same page, !_blank - open in a new page. */
+            href_target?: "_self" | "_blank";
+            sort?: {
+                /** @description Default product list view. */
+                view?: "normal" | "list" | "gallery";
+                /** @description Sort by. */
+                sort_by?: "date" | "priority" | "priorityname" | "name" | "price";
+                /** @description Sort order. */
+                sort_order?: "ASC" | "DESC";
+            }[];
+            display_limit?: {
+                /** @description Default product list view. */
+                view?: "normal" | "list" | "gallery";
+                /** @description Limit. */
+                limit?: number;
+            }[];
+            /** */
+            default_view?: "normal" | "list" | "gallery";
+            /** @description Headline name. Leaving this value empty will automatically generate name basing on a name in menu. */
+            headline_name?: string;
+            /** @description Display by default nested elements. n - no, y - yes. */
+            expand?: "n" | "y";
+            /** @description Element of the menu hidden from the clients: n - no, y - yes. */
+            hidden?: "n" | "y";
+            /** @description After clicking on the element in the menu:: expand - Display subelements of the menu if any available, if not - create, reload - reload the page and open. */
+            action?: "reload" | "expand";
+            /** @description Element "show all" is:: products_list - link to the list of products, navigation_site - link to the "Navigation" page. */
+            display_all_type?: "products_list" | "navigation_site";
+            /** @description Display element "show all": n - no, y - yes. */
+            display_all?: "n" | "y";
+            /** @description Disable changing "sort by" for customers: n - no, y - yes. */
+            allow_sort_change?: "n" | "y";
+            /** @description Disable possibility of changing the number of displayed products on the page by customers : n - no, y - yes. */
+            allow_limit_change?: "n" | "y";
+            /** @description Graphics in menu: n - no, y - yes. */
+            node_gfx?: "n" | "y";
+            /** @description Type of graphics - When the cursor is on the link: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_active_type?: "img" | "img_rwd";
+            /** @description Type of graphics - When the cursor is outside link: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_inactive_type?: "img" | "img_rwd";
+            /** @description Type of graphics - When the link is opened: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_omo_type?: "img" | "img_rwd";
+            /** @description Graphic on the "navigation" page. */
+            gfx_nav?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link. */
+            gfx_active?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link - Desktop. */
+            gfx_active_desktop?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link - Tablet. */
+            gfx_active_tablet?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link - Mobile. */
+            gfx_active_mobile?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link. */
+            gfx?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link - Desktop. */
+            gfx_inactive_desktop?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link - Tablet. */
+            gfx_inactive_tablet?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link - Mobile. */
+            gfx_inactive_mobile?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened. */
+            gfx_onmouseover?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened - Desktop. */
+            gfx_omo_desktop?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened - Tablet. */
+            gfx_omo_tablet?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened - Mobile. */
+            gfx_omo_mobile?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Add a canonical link that points to the parent menu item: n - no, y - yes. */
+            canonical_to_parent?: "n" | "y";
+            /** @description Meta robots index settings: default - automatically generate, index - index, noindex - noindex. */
+            meta_robots_index?: "default" | "index" | "noindex";
+            /** @description Meta robots follow settings: default - automatically generate, follow - follow, nofollow - nofollow. */
+            meta_robots_follow?: "default" | "follow" | "nofollow";
+        }[];
+    }[];
+    /** @description Settings */
+    settings?: {
+        /** @description Default: "\". */
+        textid_separator?: string;
+    };
+};
+
+export type PutClientsDeliveryAddressParams = {
+    /** @description Customer data. */
+    clients: {
+        /** @description Customer's login. */
+        clientLogin: string;
+        /** @description External system code. */
+        clientCodeExternal?: string;
+        /** @description Delivery address ID. */
+        clientDeliveryAddressId: string | number;
+        /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+        shopsIds: number[];
+        /** @description Currency ID */
+        currencyId?: string;
+        /** @description Recipient's first name. */
+        clientDeliveryAddressFirstName?: string;
+        /** @description Recipient's last name. */
+        clientDeliveryAddressLastName?: string;
+        /** @description Additional information. */
+        clientDeliveryAddressAdditional?: string;
+        /** @description Cell phone. */
+        clientDeliveryAddressPhone1?: string;
+        /** @description Recipient's city. */
+        clientDeliveryAddressCity?: string;
+        /** @description Recipient street and number. */
+        clientDeliveryAddressStreet?: string;
+        /** @description Administrative region code. */
+        clientDeliveryAddressRegionId?: string;
+        /** @description Administrative region code. */
+        clientDeliveryAddressProvinceId?: string;
+        /** @description Recipient's postal code. */
+        clientDeliveryAddressZipCode?: string;
+        /** @description Recipient's country. */
+        clientDeliveryAddressCountry?: string;
+    }[];
+};
+
+export type PutProductsAttachmentsParams = {
+    productsAttachments: {
+        /** @description Stock keeping unit. */
+        productIdent: {
+            /** @description ID value. */
+            identValue: string | number;
+            /** @description Identifier type. */
+            productIdentType: "id" | "index" | "codeExtern" | "codeProducer";
+        };
+        /** @description Product attachments list. */
+        attachments?: {
+            /** @description Attachment file link. */
+            attachmentUrl: string;
+            /** @description Attachment name. */
+            attachmentName: string;
+            /** @description Language ID */
+            langId: string;
+            /** @description File type: audio, video, doc, other. */
+            attachmentFileType: "audio" | "video" | "doc" | "other" | "image";
+            /** @description Type of customer, attachment should be available for: 'all','ordered','wholesaler','wholesaler_or_ordered','wholesaler_and_ordered'. */
+            attachmentEnable: "all" | "ordered" | "wholesaler" | "wholesaler_or_orderer" | "wholesaler_and_ordered";
+            /** @description Attachment ID. */
+            attachmentId?: number;
+            /** @description Attachment downloads record. */
+            attachmentDownloadLog: "y" | "n";
+            /** @description Attachment file extension. */
+            attachmentFileExtension?: string;
+            /** @description Attachment number. */
+            attachmentPriority?: number;
+            /** @description Flag indicating if an attachment should be removed. */
+            attachmentToDelete?: boolean;
+            /** @description Attachment document types list. */
+            documentTypes?: {
+                /** @description Document type. */
+                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "others";
+                /** @description Additional description. */
+                description?: string;
+            }[];
+        }[];
+        /** @description List of product's virtual attachments. */
+        virtualAttachments?: {
+            /** @description Attachment file link. */
+            attachmentUrl?: string;
+            /** @description Attachment name. */
+            attachmentName?: {
+                /** @description List of languages. */
+                attachmentLanguages?: {
+                    /** @description Language ID */
+                    langId?: string;
+                    /** @description Language name */
+                    langName?: string;
+                    /** @description Literal in selected language. */
+                    langValue?: string;
+                }[];
+            };
+            /** @description Full version or sample. */
+            attachmentType?: "full" | "demo";
+            /** @description Number of attachment downloads limit. */
+            attachmentLimits?: {
+                /** @description Number of downloads limit. */
+                attachmentDownloadsLimit?: number;
+                /** @description Number of days file should be available. */
+                attachmentDaysLimit?: number;
+            };
+            /** @description Attachment ID. */
+            attachmentId?: number;
+            /** @description Attachment number. */
+            attachmentPriority?: number;
+            /** @description Information on error that occurred during gate call. */
+            errors?: {
+                /** @description Error code. */
+                faultCode?: number;
+                /** @description Error description. */
+                faultString?: string;
+            };
+            /** @description Flag indicating if an attachment should be removed. */
+            attachmentToDelete?: boolean;
+        }[];
+        /** @description Information on error that occurred during gate call. */
+        errors?: {
+            /** @description Error code. */
+            faultCode?: number;
+            /** @description Error description. */
+            faultString?: string;
+        };
+        /** @description Flag indicating if there are errors in results of attachments settings. */
+        attachmentsErrorsOccurred?: boolean;
+        /** @description Flag indicating if there are errors in results of virtual attachments settings. */
+        virtualAttachmentsErrorsOccurred?: boolean;
+    }[];
+};
+
+export type PutMenuParams = {
+    menu_list: {
+        /** @description Shop Id. */
+        shop_id: number;
+        /** @description Menu ID. */
+        menu_id: number;
+        /** @description Menu element ID. */
+        item_id: string;
+        /** @description Menu element text identifier. Example: "item1\item2\item3". */
+        item_textid?: string;
+        lang_data?: {
+            /** @description Language ID. */
+            lang_id?: string;
+            /** @description Menu element name. */
+            name?: string;
+            /** @description Menu element order. */
+            priority?: number;
+            /** @description Description displayed at the top of products list. */
+            description?: string;
+            /** @description Description displayed at the bottom of products list. */
+            description_bottom?: string;
+            /** @description Own link. */
+            link?: string;
+            /** */
+            item_type?: "products" | "navigation" | "products_with_rich_text" | "navigation_with_rich_text" | "rich_text" | "static" | "link";
+            /** @description Meta title  . */
+            meta_title?: string;
+            /** @description Meta description. */
+            meta_description?: string;
+            /** @description Meta - keywords. */
+            meta_keywords?: string;
+            /** @description URL address */
+            url?: string;
+            /** @description Link target attribute: !_self - open on the same page, !_blank - open in a new page. */
+            href_target?: "_self" | "_blank";
+            sort?: {
+                /** @description Default product list view. */
+                view?: "normal" | "list" | "gallery";
+                /** @description Sort by. */
+                sort_by?: "date" | "priority" | "priorityname" | "name" | "price";
+                /** @description Sort order. */
+                sort_order?: "ASC" | "DESC";
+            }[];
+            display_limit?: {
+                /** @description Default product list view. */
+                view?: "normal" | "list" | "gallery";
+                /** @description Limit. */
+                limit?: number;
+            }[];
+            /** */
+            default_view?: "normal" | "list" | "gallery";
+            /** @description Headline name. Leaving this value empty will automatically generate name basing on a name in menu. */
+            headline_name?: string;
+            /** @description Display by default nested elements. n - no, y - yes. */
+            expand?: "n" | "y";
+            /** @description Element of the menu hidden from the clients: n - no, y - yes. */
+            hidden?: "n" | "y";
+            /** @description After clicking on the element in the menu:: expand - Display subelements of the menu if any available, if not - create, reload - reload the page and open. */
+            action?: "reload" | "expand";
+            /** @description Element "show all" is:: products_list - link to the list of products, navigation_site - link to the "Navigation" page. */
+            display_all_type?: "products_list" | "navigation_site";
+            /** @description Display element "show all": n - no, y - yes. */
+            display_all?: "n" | "y";
+            /** @description Disable changing "sort by" for customers: n - no, y - yes. */
+            allow_sort_change?: "n" | "y";
+            /** @description Disable possibility of changing the number of displayed products on the page by customers : n - no, y - yes. */
+            allow_limit_change?: "n" | "y";
+            /** @description Graphics in menu: n - no, y - yes. */
+            node_gfx?: "n" | "y";
+            /** @description Type of graphics - When the cursor is on the link: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_active_type?: "img" | "img_rwd";
+            /** @description Type of graphics - When the cursor is outside link: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_inactive_type?: "img" | "img_rwd";
+            /** @description Type of graphics - When the link is opened: img - Image (one size for computers, tablets and smartphones, not recommended), img_rwd - Image (three sizes for RWD). */
+            gfx_omo_type?: "img" | "img_rwd";
+            /** @description Graphic on the "navigation" page. */
+            gfx_nav?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link. */
+            gfx_active?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link - Desktop. */
+            gfx_active_desktop?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link - Tablet. */
+            gfx_active_tablet?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is on the link - Mobile. */
+            gfx_active_mobile?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link. */
+            gfx?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link - Desktop. */
+            gfx_inactive_desktop?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link - Tablet. */
+            gfx_inactive_tablet?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the cursor is outside link - Mobile. */
+            gfx_inactive_mobile?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened. */
+            gfx_onmouseover?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened - Desktop. */
+            gfx_omo_desktop?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened - Tablet. */
+            gfx_omo_tablet?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Graphic - When the link is opened - Mobile. */
+            gfx_omo_mobile?: {
+                /** @description Graphic encoded with Base64 */
+                base64?: string;
+                /** @description Graphic format */
+                format?: "jpg" | "jpeg" | "png" | "gif" | "svg" | "webp";
+            };
+            /** @description Add a canonical link that points to the parent menu item: n - no, y - yes. */
+            canonical_to_parent?: "n" | "y";
+            /** @description Meta robots index settings: default - automatically generate, index - index, noindex - noindex. */
+            meta_robots_index?: "default" | "index" | "noindex";
+            /** @description Meta robots follow settings: default - automatically generate, follow - follow, nofollow - nofollow. */
+            meta_robots_follow?: "default" | "follow" | "nofollow";
+        }[];
+    }[];
+    /** @description Settings. */
+    settings?: {
+        /** @description Default: "\". */
+        textid_separator?: string;
+    };
+};
+
+export type PostPaymentsRepaymentParams = {
+    /** @description Returns ID. */
+    source_id: number;
+    /** @description Defines payment category. For the payments regarding returns, enter 'return'. */
+    source_type: string;
+    /** @description Refund value. */
+    value: number;
+    /** @description Payment method ID. Check getPaymentForms. */
+    payment_form_id: number;
+    /** @description Number of a bank account to which a payment is sent. */
+    account?: string;
+    /** @description Customer account. */
+    client_account?: string;
+    /** @description Other. */
+    other?: {
+        /** @description Payment system. */
+        system?: number;
+        /** @description Number. */
+        number?: string;
+        /** @description Month. */
+        month?: number;
+        /** @description Year. */
+        year?: number;
+        /** @description Security code. */
+        securityCode?: string;
+        /** @description Name. */
+        name?: string;
+    };
+};
+
+export type PostResponsibilityEntitiesParams = {
+    entities: {
+        /** @description Identificator of the entity. */
+        id?: number;
+        /** @description Short name/code. */
+        code: string;
+        /** @description Full name. */
+        name: string;
+        /** @description E-mail address. */
+        mail: string;
+        /** @description Street. */
+        street: string;
+        /** @description Building number. */
+        number?: number | null;
+        /** @description Apartment number. */
+        subnumber?: number | null;
+        /** @description Zipcode. */
+        zipcode: string;
+        /** @description City. */
+        city: string;
+        /** @description 2-letter ISO country code. */
+        country: string;
+        /** @description Phone number. */
+        phone?: string | null;
+        /** @description Additional description. */
+        description?: string | null;
+        /** @description URL to contact page. */
+        url?: string | null;
+    }[];
+    /** @description Type of entity */
+    type: "producer" | "person";
+};
+
+export type PutProductsCategoriesParams = {
+    /** @description List of categories in which sought products are present. */
+    categories: {
+        /** @description Category id. */
+        id: number;
+        /** @description Parent category ID. */
+        parent_id?: number;
+        /** @description Category priority. Value from 1 to 19. */
+        priority?: number;
+        /** @description Operation code. Allowed values. "add" - adds new category, "edit" - edits existing category, "del" - deletes existing category. */
+        operation?: string;
+        lang_data?: {
+            /** @description Language code. Codes are compliant with ISO-639-3 standard. */
+            lang_id?: string;
+            /** @description Category singular name. */
+            singular_name?: string;
+            /** @description Category plural name. */
+            plural_name?: string;
+        }[];
+    }[];
+};
+
+export type SearchProductsParams = {
+    dispatchSettings?: {
+        enabled?: boolean;
+        shippingSettings?: {
+            /** */
+            codDisabled?: "true" | "false";
+            /** */
+            dvpOnly?: "true" | "false";
+            /** */
+            insuranceOnly?: "true" | "false";
+            atypicalSize?: boolean;
+            /** @description Exclusion from the Smile service */
+            excludeSmileService?: boolean;
+            /** @description List of courier services which cannot be used to ship this product. IDs couriers */
+            disallowedCouriers?: number[];
+        };
+        freeShippingSettings?: {
+            /** @description Edition mode */
+            mode?: "no" | "onlyProduct" | "wholeBasket";
+            /** @description Set free shipping for the payment method only  */
+            availablePaymentForms?: {
+                prepaid?: boolean;
+                /** @description Cash on delivery. */
+                cashOnDelivery?: boolean;
+                tradeCredit?: boolean;
+            };
+            /** @description List of courier services for which shipping is free. IDs couriers */
+            availableCouriers?: number[];
+            /** @description List of courier services by which the products can be sent free of charge. IDs couriers */
+            availableCouriersForSingleProduct?: number[];
+            /** @description List of regions with free shipment. IDs Delivery regions */
+            availableRegions?: number[];
+        };
+        returnProductSettings?: {
+            /** @description Product can be returned */
+            returnOptions?: {
+                enabled?: boolean;
+                firm?: boolean;
+                hurt?: boolean;
+                detalist?: boolean;
+            };
+            /** */
+            byOwnService?: "true" | "false";
+            /** */
+            byInPostSzybkieZwrotyByIAI?: "true" | "false";
+        };
+    };
+    /** @description Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash. */
+    returnProducts?: string;
+    /** @description Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode */
+    returnElements?: string[];
+    /** @description Product availability. Available values: "y" - available, "n" - unavailable. */
+    productIsAvailable?: string;
+    /** @description Product visibility in store Available values: "y" - Visible, "n" - Invisible. */
+    productIsVisible?: string;
+    /** @description Product group ID */
+    productVersionId?: number;
+    /** @description Promoted product. Available values: "y" - promoted, "n" - not promoted. */
+    productInPromotion?: string;
+    /** @description Product on sale. Available values: "y" - on sale, "n" - not on sale. */
+    productInDiscount?: string;
+    /** @description Distinguished product. Available values: "y" - distinguished, "n" - not distinguished. */
+    productInDistinguished?: string;
+    /** @description Special product. Available values: "y" - #!specjalny!#, "n" - not special. */
+    productInSpecial?: string;
+    /** @description Product available for points. Available values: "y" - Available for points, "n" - Unavailable for points. */
+    productInForPointsSelling?: string;
+    /** @description Observed product. Available values: "Y" - observed, "n" - not observed. */
+    productIsObservedByClients?: string;
+    /** @description Element determines if default product (with 0 ID, contains settings of newly added products) should be omitted Available values: "y" - omits default product, "n" - allows to download default product. */
+    skipDefaultProduct?: string;
+    /** @description The item specifies whether promotional prices are to be shown in price nodes. Available values: "y" - show promotional prices, "n" - do not show promotional prices. (default value) */
+    showPromotionsPrices?: string;
+    /** @description List of categories in which sought products are present. */
+    categories?: {
+        /** @description Category id */
+        categoryId?: number;
+        /** @description Category name */
+        categoryName?: string;
+    }[];
+    /** @description List of manufacturers assigned to sought products. */
+    producers?: {
+        /** @description Brand ID */
+        producerId?: number;
+        /** @description Brand name */
+        producerName?: string;
+    }[];
+    /** @description List of sought products. This parameter can be used, when there have been no other parameter entered productIndexes. */
+    productParams?: {
+        /** @description Product IAI code */
+        productId?: number;
+        /** @description External product system code */
+        productCode?: string;
+        /** @description Product name. */
+        productName?: string;
+        /** @description External product system code for size. */
+        productSizeCodeExternal?: string;
+        /** @description Producer code */
+        productProducerCode?: string;
+        /** @description The product is free of charge. Possible values: "y" - is free of charge, "n" - is not free of charge. */
+        productIsGratis?: string;
+    }[];
+    /** @description List of sought products by indexes. */
+    productIndexes?: {
+        /** @description One of the unique, indexed product codes (IAI code / External system code / Producer code) */
+        productIndex?: string;
+    }[];
+    /** @description Data of stores product is assigned to. */
+    productShops?: {
+        /** @description Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. */
+        shopsMask?: number;
+        /** @description Shop Id */
+        shopId?: number;
+    }[];
+    /** @description List of special offers, sought products are assigned to. */
+    productPromotionsIds?: number[];
+    /** @description Settings concerning narrowing list of products found by date. */
+    productDate?: {
+        /** @description Date type. Allowed values "added" - #!dataDodaniaProduktu!#, "finished" - date of running out of product, "resumed" - date of resuming product, "modified" - date of last modification of product, "quantity_changed" - date of last product stock quantity modification, "price_changed" - date of last price change, "modified_and_quantity_changed" - date of last modification and stock quantity change. */
+        productDateMode?: string;
+        /** @description Starting date in the YYYY-MM-DD format */
+        productDateBegin?: string;
+        /** @description End date in the YYYY-MM-DD format */
+        productDateEnd?: string;
+    };
+    /** @description Parameters */
+    productParametersParams?: {
+        /** @description Parameters group name */
+        parameterNames?: string[];
+        /** @description Properties IDs */
+        parameterValuesIds?: number[];
+        /** @description Parameters name */
+        parameterValuesNames?: string[];
+        /** @description Parameters group ID */
+        productParameterIds?: {
+            /** @description Set properties groups ID. */
+            productParameterIdsEnabled?: number[];
+            /** @description Unset properties groups ID. */
+            productParameterIdsDisabled?: number[];
+        };
+    }[];
+    /** @description Series, sought products are assigned to. */
+    productSeriesParams?: {
+        /** @description ID of series, to which product belongs. */
+        seriesId?: number;
+        /** @description Name of series, to which the product belongs, visible in panel. */
+        seriesPanelName?: string;
+        /** @description Names of series in indicated language visible in shop. */
+        seriesDescriptionsLangData?: {
+            /** @description Name of series in indicated language */
+            seriesName?: string;
+            /** @description Language ID */
+            langId?: string;
+        }[];
+    }[];
+    /** @description List of units of measure assigned to sought products. */
+    productUnits?: {
+        /** @description Product unit of measure ID. */
+        unitId?: number;
+        /** @description Product unit of measure name. */
+        unitName?: string;
+        /** @description Unit of measure precision. */
+        unitPrecision?: number;
+    }[];
+    /** @description Narrowing list of products by set warranties. */
+    productWarranties?: {
+        /** @description Product warranty ID. */
+        warrantyId?: number;
+        /** @description Name of warranty for indicated product. */
+        warrantyName?: string;
+    }[];
+    /** @description Suppliers, sought products are assigned to. */
+    deliverersIds?: number[];
+    /** @description Product contains text (searches in short and long description). */
+    containsText?: string;
+    /** @description Product code or it's part (based on producer's code, external product system code and code that is visible on a product card). Search is accesible only with available products. */
+    containsCodePart?: string;
+    /** @description Product availability in stocks */
+    productAvailableInStocks?: {
+        /** @description Determines whether availability in stocks has been set. Available values: "y" - is available in stocks, "n" - unavailable in stocks. */
+        productIsAvailableInStocks?: string;
+        /** @description Narrowing list to stocks sought trough Empty list concerns all stocks. */
+        productAvailableInStocksIds?: number[];
+    };
+    /** @description Product availability on auctions */
+    productAvailableInAuctions?: {
+        /** @description Determines whether availability on auctions has been set. Available values: "y" - is available on auctions, "n" - is not available on auctions. */
+        productIsAvailableInAuctions?: string;
+        /** @description Narrow list of auction accounts sought through. */
+        productAvailableInAuctionsAccountsIds?: number[];
+    };
+    /** @description Page with results number. Numeration starts from 0 */
+    resultsPage?: number;
+    /** @description Number of results on page. Value from 1 to 100 */
+    resultsLimit?: number;
+    /** @description Possibility of sorting returned list */
+    ordersBy?: {
+        /** @description Name of field, list will be sorted by. Available values: "id" - product ID, "name" - Product name, "code" - Product code, "product_sizecode" - External system code, "code_producer" - Producer code, "retail_price" - Retail price of the product, "pos_price" - price for POS, "vat" - Value of VAT, "wholesale_price" - wholesale price, "minimal_price" - Minimal price, "pictures_count" - number of product photos, "auction_name" - product name for auction sites, "pricecomparer_name" - Product name for price comparison websites, "version_name" - Name of the good in the group, "series_name" - Name of the batch, "category_name" - Category name, "deliverer_name" - Supplier name, "adding_time" - Date of entry, "modification_time" - date modified, "price_changed_time" - Date of last price change, "quantity_changed_time" - Date of modification of stock levels, "currency" - Currency DEPRECATED. This parameter is deprecated, "currency_shop" - Currency, "taxcode" - PKWiU [PCPandS], "meta_title" - Products meta titles, "meta_description" - Products meta description, "meta_keywords" - Products meta keywords, "suggested_price" - Recommended price. "observed_clients" - Number of visitors, who signed up to re-availability notifications "observed_time" - Average time of waiting for availability notification "wishes_clients" - Customers, who added product to favorites "wishes_time" - Average number of days, product is in favorites */
+        elementName?: string;
+        /** @description Determines sorting direction. Available values: "ASC" - ascending, "DESC" - descending. */
+        sortDirection?: string;
+    }[];
+    /** @description Language ID that allows to search and return data in chosen language. This parameter is optional. If it's lacking, she search process unfolds in all available languages. */
+    productSearchingLangId?: string;
+    /** @description Currency ID allowing to search and browse products in given currency. This parameter is optional, when it's lacking, the search process unfolds in all available currencies. */
+    productSearchingCurrencyId?: string;
+    /** @description Currency ID allowing for returning all product prices in an indicated currency */
+    returnPricesCurrency?: string;
+    /** @description Annotation contains text. */
+    productHasNote?: string;
+    /** @description Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - Selected, "assign_selected" - Enable the visibility of the product in the export to price comparison sites passed in the priceComparisonSites node. Price comparison sites previously assigned to the commodity will be retained, "unassign_selected" - Disable product visibility in exports to price comparison sites passed in the priceComparisonSites node, "n" - invisible. */
+    productInExportToPriceComparisonSites?: string;
+    /** @description Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible. */
+    productInExportToAmazonMarketplace?: string;
+    /** @description List of Amazon regional sites to which the product is exported (only in case of "selected" option) */
+    selectedAmazonMarketplacesList?: string[];
+    /** @description Product is bestseller. Available values: "n" - no, "y" - yes. */
+    productInBestseller?: string;
+    /** @description Product is new. Available values: "y" - is new, "n" - is not new. */
+    productInNew?: string;
+    /** @description Shops */
+    searchByShops?: {
+        /** @description Determine data search method on basis of options set for stores. Available values: "in_one_of_selected" - in one of indicated stores, "in_all_of_selected" - in all indicated stores, This parameter is optional. When it's lacking, search is performed by option: in one of indicated stores (in_one_of_selected). */
+        searchModeInShops?: string;
+        /** @description Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. */
+        shopsMask?: number;
+        /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+        shopsIds?: number[];
+    };
+    /** @description Price range for sought products. */
+    productSearchPriceRange?: {
+        /** @description Determines price type for indicated values. Available values: "retail_price" - Retail price of the product, "wholesale_price" - Wholesale price of the product, "minimal_price" - Product minimal price, "pos_price" - price for POS, "last_purchase_price" - Last purchase price. */
+        productSearchPriceMode?: string;
+        /** @description Minimal price for product. */
+        productSearchPriceMin?: number;
+        /** @description Maximum price for product. */
+        productSearchPriceMax?: number;
+        /** @description Shop Id */
+        shopId?: number;
+    };
+    /** @description VAT value for sought products */
+    productVatRates?: number[];
+    /** @description Is product VAT-free Allowed values "y" - yes, "n" - no. */
+    productIsVatFree?: string;
+    /** @description Product has defined wholesale price. Available values: "y" - has wholesale price, "n" - does not have wholesale price. */
+    productHasWholesalePrice?: string;
+    /** @description Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock. */
+    productInPersistent?: string;
+    /** @description Settings of products returned with variants All products with variants are returned by default Available values: version_all - returns all variants, version_main - returns only main variant. */
+    returnProductsVersions?: string;
+    /** @description Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
+    productInSumInBasket?: string;
+    /** @description Product type. Allowed values: "product_item" - Goods, "product_packaging" - packaging, "product_bundle" - set. "product_collection" - collection. "product_service" - service. "product_virtual" - virtual product. "product_configurable" - configurable product. */
+    productType?: {
+        /** @description Should products be returned on list. By default this parameter is set on true. */
+        productTypeInItem?: boolean;
+        /** @description Should sets be returned on list. By default this parameter is set on true. */
+        productTypeInBundle?: boolean;
+        /** @description Should collections be returned. By default this parameter is set on true. */
+        productTypeInCollection?: boolean;
+        /** @description Should packagings be returned on list. By default this parameter is set on true. */
+        productTypeInPackaging?: boolean;
+        /** @description Should services be returned. By default this parameter is set on true. */
+        productTypeInService?: boolean;
+        /** @description Should virtuals be returned. By default this parameter is set on true. */
+        productTypeInVirtual?: boolean;
+        /** @description Should configurable be returned. By default this parameter is set on true. */
+        productTypeInConfigurable?: boolean;
+    };
+    /** @description An array of menu elements */
+    productMenuItems?: {
+        /** @description An array of IDs */
+        menuItemsIds?: number[];
+        /** @description An array of text IDs */
+        menuItemsTextIds?: {
+            /** @description Menu element text identifier. Example: "item1\item2\item3". */
+            menuItemTextId?: string;
+            /** @description Shop Id */
+            shopId?: number;
+            /** @description ID of the menu zone displayed in the mask */
+            menuId?: number;
+            /** @description The separator separates the individual elements of a text id. Default: "\". */
+            menuItemTextIdSeparator?: string;
+        }[];
+    };
+    /** @description Warehouse location ID */
+    productLocationId?: number;
+    /** @description Warehouse location full path Use a backslash (\) as a separator, for example:  M1\Section name\Location name If location_id parameter is provided, the full warehouse location path will not be taken into account */
+    productLocationTextId?: string;
+    /** @description Return all size attributes regardless of whether product prices are the same as the base price or if they differ from it. Available values: 1 - all size attributes will be returned; 0 - only attributes of those sizes, where the prices will be different from the base price (default value) will be returned. */
+    alwaysReturnProductShopSizesAttributes?: boolean;
+    /** @description Returns reservation information regardless of inventory levels */
+    returnEmptyStocksWithReservation?: boolean;
+    /** @description Data for operations on individual photos */
+    picturesData?: {
+        /** @description Shop Id */
+        shopId?: number;
+        /** @description External service identifier */
+        serviceId?: number;
+    };
+    /** @description Responsible producer code */
+    responsibleProducerCode?: string;
+    /** @description Responsible person code */
+    responsiblePersonCode?: string;
+};
+
+export type SearchOrdersParams = {
+    /** @description Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
+    orderPrepaidStatus?: string;
+    /** @description Order status. Status list: "new" - not handled, "finished" - completed, "false" - false, "lost" - lost, "on_order" - in progress, "packed" - being picked, "ready" - ready, "canceled" - canceled by customer, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "suspended" - on hold, "joined" - merged, "finished_ext" - handled in FA application. */
+    ordersStatuses?: string[];
+    /** @description Order statusses ids. */
+    ordersStatusesIds?: number[];
+    /** */
+    shippmentStatus?: "all" | "received" | "non-received";
+    /** @description Shipping companies (packages deliverers). */
+    couriersName?: string[];
+    /** @description Courier service identifiers */
+    couriersId?: number[];
+    /** @description Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit. */
+    orderPaymentType?: string;
+    withMissingSalesDocuments?: string[];
+    /** @description Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail" */
+    orderType?: "wholesale" | "retail" | "dropshipping" | "deliverer";
+    /** */
+    dropshippingOrderStatus?: "all" | "finished" | "canceled" | "notCanceled";
+    /** @description Orders IDs. */
+    ordersIds?: string[];
+    /** @description Order serial numbers. */
+    ordersSerialNumbers?: number[];
+    /** @description Customer data. */
+    clients?: {
+        /** @description Customer's login. */
+        clientLogin?: string;
+        /** @description Unique client's number. */
+        clientId?: number;
+        /** @description Customer's first name. */
+        clientFirstName?: string;
+        /** @description Customer's last name. */
+        clientLastName?: string;
+        /** @description Customer's city. */
+        clientCity?: string;
+        /** @description E-mail address. */
+        clientEmail?: string;
+        /** @description Parameter can be used to search for orders assigned to customer with VAT number. Available values: "y" - customer has VAT number, "n" - customer does not have VAT number. */
+        clientHasTaxNumber?: string;
+        /** @description Parameter allows to choose, by which data orders should be searched. Includes city, firstname, lastname. Available values: "billing_data" - search by billing data - default, "delivery_data"- search by delivery data, "billing_delivery_data" - search by billing and delivery data. */
+        clientSearchingMode?: string;
+        /** @description Customer's company name. */
+        clientFirm?: string;
+        /** @description Customer Tax no. */
+        clientNip?: string;
+        /** @description Country ID in accordance with ISO-3166. */
+        clientCountryId?: string;
+        /** @description Region name takes priority over clientCountryId. */
+        clientCountryName?: string;
+    }[];
+    /** @description Ranges of dates or serial numbers. */
+    ordersRange?: {
+        /** @description Data for date range */
+        ordersDateRange?: {
+            /** @description Type of date according to the orders are searched. Type of date listing: "add" - date of order was placed, "modified" - date of order modification, "dispatch" - date or order dispatch, "payment" - date of order payment, "last_payments_operation" - date of last payment operation, "declared_payments" - date of last payment. */
+            ordersDateType?: "add" | "modified" | "dispatch" | "payment" | "last_payments_operation" | "declared_payments";
+            /** @description Date chart according to which orders are searched. Type of date listing: "add" - date of order was placed, "modified" - date of order modification, "dispatch" - date or order dispatch, "payment" - date of order payment. "last_payments_operation" - date of last payment operation, "declared_payments" - date of last payment. */
+            ordersDatesTypes?: {
+                /** */
+                ordersDatesType?: "add" | "modified" | "dispatch" | "payment" | "last_payments_operation" | "declared_payments";
+            }[];
+            /** @description Beginning date in YYYY-MM-DD HH:MM:SS format. */
+            ordersDateBegin?: string;
+            /** @description Ending date in YYYY-MM-DD HH:MM:SS format. */
+            ordersDateEnd?: string;
+        };
+        /** @description Data for serial number range. */
+        ordersSerialNumberRange?: {
+            /** @description Starting number of serial numbers range for sought products. */
+            ordersSerialNumberBegin?: number;
+            /** @description Ending number for serial number range. */
+            ordersSerialNumberEnd?: number;
+        };
+    };
+    /** @description Order source data. */
+    orderSource?: {
+        /** @description Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. */
+        shopsMask?: number;
+        /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+        shopsIds?: number[];
+        /** @description Object used for order searching based on auctions' parameters. */
+        auctionsParams?: {
+            /** @description Auction sites names. Auction sites listing: "allegro" - Allegro.pl, "testwebapi" - Allegro.pl test site, "ebay" - eBay. */
+            auctionsServicesNames?: string[];
+            /** @description Auctions' numbers. */
+            auctionsItemsIds?: number[];
+            /** @description Auction sites accounts' data. */
+            auctionsAccounts?: {
+                /** @description Auction service account Id . */
+                auctionsAccountId?: number;
+                /** @description External marketplace service account name (which the listing was created from). */
+                auctionsAccountLogin?: string;
+            }[];
+            /** @description Client's account on auction site data. */
+            auctionsClients?: {
+                /** @description Account ID on auction site. */
+                auctionClientId?: string;
+                /** @description Account login on auction site. */
+                auctionClientLogin?: string;
+            }[];
+        };
+    };
+    /** @description Products list. */
+    products?: {
+        /** @description Product IAI code */
+        productId?: number;
+        /** @description Product name. */
+        productName?: string;
+        /** @description Size identifier */
+        sizeId?: string;
+        /** @description Size name */
+        sizePanelName?: string;
+    }[];
+    /** @description Page with results number. Numeration starts from 0 */
+    resultsPage?: number;
+    /** @description Number of results on page. Value from 1 to 100 */
+    resultsLimit?: number;
+    /** @description Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
+    clientRequestInvoice?: string;
+    /** @description Information on consignments. */
+    packages?: {
+        /** @description Consignments numbers. */
+        packagesNumbers?: string[];
+        /** @description Does order have consignment number assigned. Available values: "y" - yes, "n" - no. */
+        orderHasPackageNumbers?: string;
+        /** @description Multipack order. Available values: "y" - yes, "n" - no. */
+        hasMultiPackages?: "y" | "n";
+    };
+    /** @description Stock quantities data. */
+    stocks?: {
+        /** @description Stock ID */
+        stockId?: number;
+    }[];
+    /** @description Used discount codes data. */
+    campaign?: {
+        /** @description Campaign ID. */
+        campaignId?: number;
+        /** @description Discount codes. */
+        discountCodes?: string[];
+    };
+    /** @description Loyalty points. */
+    loyaltyPointsMode?: "all" | "given" | "taken" | "given_or_taken" | "given_and_taken" | "not_given_nor_taken";
+    /** @description Order handler. */
+    orderOperatorLogin?: string;
+    /** @description Order picker. */
+    orderPackingPersonLogin?: string;
+    /** @description Possibility of sorting returned list */
+    ordersBy?: {
+        /** @description Name of field, list will be sorted by. Available values: "id" - product ID, "name" - Product name, "code" - Product code, "product_sizecode" - External system code, "code_producer" - Producer code, "retail_price" - Retail price of the product, "pos_price" - price for POS, "vat" - Value of VAT, "wholesale_price" - wholesale price, "minimal_price" - Minimal price, "pictures_count" - number of product photos, "auction_name" - product name for auction sites, "pricecomparer_name" - Product name for price comparison websites, "version_name" - Name of the good in the group, "series_name" - Name of the batch, "category_name" - Category name, "deliverer_name" - Supplier name, "adding_time" - Date of entry, "modification_time" - date modified, "price_changed_time" - Date of last price change, "quantity_changed_time" - Date of modification of stock levels, "currency" - Currency DEPRECATED. This parameter is deprecated, "currency_shop" - Currency, "taxcode" - PKWiU [PCPandS], "meta_title" - Products meta titles, "meta_description" - Products meta description, "meta_keywords" - Products meta keywords, "suggested_price" - Recommended price. "observed_clients" - Number of visitors, who signed up to re-availability notifications "observed_time" - Average time of waiting for availability notification "wishes_clients" - Customers, who added product to favorites "wishes_time" - Average number of days, product is in favorites */
+        elementName?: string;
+        /** @description Determines sorting direction. Available values: "ASC" - ascending, "DESC" - descending. */
+        sortDirection?: string;
+    }[];
+    /** @description Method of searching orders by handler. */
+    searchingOperatorTypeMatch?: "no_assignment" | "no_empty" | "empty";
+    /** @description Orders with the exceeded date of shipment. */
+    ordersDelayed?: "y" | "n";
+    /** @description Combine the components of the set into one item */
+    showBundles?: boolean;
+    /** @description The order ID of the external service */
+    orderExternalId?: string;
+    /** @description Order currency */
+    orderCurrency?: string;
+};
+
+export type SearchProductsParametersParams = {
+    /** @description List of identifiers */
+    ids?: number[];
+    /** @description Element text ID - can be entered instead of "id". */
+    textIds?: {
+        /** @description Language ID */
+        languageId?: string;
+        /** @description Text value */
+        value?: string;
+    }[];
+    /** @description List of languages */
+    languagesIds?: string[];
+    /** @description Whether to return a list of parameter value IDs */
+    parameterValueIds?: boolean;
+    /** @description Page with results number. Numeration starts from 0 */
+    resultsPage?: number;
+    /** @description Number of results on page. Value from 1 to 100 */
+    resultsLimit?: number;
+};
+
+export type SearchProductsDeliveryTimeParams = {
+    /** @description Stock ID */
+    stockId?: number;
+    /** @description Should products be prepared for personal collection? */
+    isCollectionInPerson?: boolean;
+    products: {
+        /** @description Product Id */
+        productId?: number;
+        /** @description Size identifier */
+        sizeId?: string;
+        /** @description Size name */
+        sizePanelName?: string;
+        /** @description Product IAI code */
+        productIndex?: string;
+        /** @description Product quantity. */
+        productSizeQuantity?: number;
+    }[];
+};
+
+export type SearchPackagesParams = {
+    /** @description Consignments numbers. */
+    deliveryPackageNumbers?: string[];
+    /** @description Element, package is assigned to */
+    events: {
+        /** @description Type. */
+        eventType?: "order" | "rma" | "return";
+        /** @description IDs. */
+        eventsIds?: number[];
+    }[];
+    /** @description Return parcel labels. */
+    returnLabels?: boolean;
+};
+
+export type SearchClientsCrmParams = {
+    /** @description Customer's login. */
+    clientLogin?: string;
+    /** @description Determines, whether client is a wholesaler. */
+    clientIsWholesaler?: "yes" | "no";
+    /** @description Country ID in accordance with ISO-3166. */
+    clientCountryId?: string;
+    /** @description Language ID */
+    langId?: string;
+    /** @description Customer service representative. */
+    clientCustomerServiceRepresentativeLogin?: string;
+    /** @description Customer group number */
+    clientDiscountGroupNumber?: number;
+    /** @description Date range of customer registrations */
+    clientRegistrationDate?: {
+        /** @description Start date (YYYY-MM-DD). */
+        clientRegistrationDateBegin?: string;
+        /** @description End date (YYYY-MM-DD). */
+        clientRegistrationDateEnd?: string;
+    };
+    /** @description Date of last customer login (YYYY-MM-DD) */
+    clientLastLoginDate?: {
+        /** @description Start date (YYYY-MM-DD). */
+        clientLastLoginDateBegin?: string;
+        /** @description End date (YYYY-MM-DD). */
+        clientLastLoginDateEnd?: string;
+    };
+    /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
+    clientType?: "person" | "person_male" | "person_female" | "firm";
+    /** @description Information about the loyalty program possible values: - yes_voucher - when customers are in a loyalty program and have only used vouchers, - yes_voucher_cash - when customers are in a loyalty program and have only used vouchers or cash deposits, - yes_clients, - yes_orders - when customers are in the loyalty program and have made at least one order, - no - when customers are in the loyalty program, - banned - when customers are blocked. */
+    clientAffiliateProgram?: {
+        /** @description Does the customer participate in the loyalty program: - yes_voucher_cash, - yes_voucher, - no, - banned. */
+        clientAffiliateProgramValue?: "yes_voucher" | "yes_voucher_cash" | "yes_clients" | "yes_orders" | "no" | "banned";
+    }[];
+    /** @description Permission to E-mail Newsletter. */
+    newsletterEmailApproval?: string;
+    /** @description Permission to SMS Newsletter. */
+    newsletterSmsApproval?: string;
+    /** @description Shops */
+    searchByShops?: {
+        /** @description How to match shops. - one_of_selected - searches for customers assigned to at least one shop present in shopsList. - exactly_selected - searches for customers assigned to all shops present in shopsList. */
+        searchModeInShops?: "one_of_selected" | "exactly_selected";
+        /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+        shopsIds?: number[];
+    };
+    /** @description Loyalty cards: */
+    clientLoyaltyCard?: {
+        /** @description Does the customer have a loyalty card. - yes_active, - yes_not_active, - no. */
+        clientHasLoyaltyCard?: "yes_active" | "yes_not_active" | "no";
+        /** @description Customer loyalty card ID, omitted when has_loyalty_card = no. */
+        clientLoyaltyCardId?: number;
+        /** @description Customer loyalty card number, omitted when has_loyalty_card = no. */
+        clientLoyaltyCardNumber?: string;
+    };
+    /** @description External system code. */
+    clientCodeExternal?: string;
+    /** @description External system codes list. */
+    clientCodesExternal?: string[];
+    /** @description Customer's first name. */
+    clientFirstName?: string;
+    /** @description Customer's last name. */
+    clientLastName?: string;
+    /** @description Customer Tax no. */
+    clientNip?: string;
+    /** @description Customer's company name. */
+    clientFirm?: string;
+    /** @description E-mail address. */
+    clientEmail?: string;
+    /** @description List of shops where a customer agreed or didn't agree to receive email newsletter. */
+    newsletterEmailApprovalsData?: {
+        /** @description Permission to E-mail Newsletter. */
+        inNewsletterEmailApproval?: "y" | "n";
+        /** @description Shop Id */
+        shopId?: number;
+    }[];
+    /** @description List of shops where a customer agreed or didn't agree to receive sms newsletter. */
+    newsletterSmsApprovalsData?: {
+        /** @description Permission to SMS Newsletter. */
+        inNewsletterSmsApproval?: "y" | "n";
+        /** @description Shop Id */
+        shopId?: number;
+    }[];
+    /** @description Customer loyalty card number, omitted when has_loyalty_card = no. */
+    clientLoyaltyCardNumber?: string;
+    /** @description Orders. */
+    orders?: {
+        /** @description Has the customer made an order. - yes, - no. */
+        clientHasOrders?: "yes" | "no";
+        /** @description Minimum order value, omitted when hasOrders = no. */
+        ordersMinimalValue?: number;
+        /** @description Data for serial number range. */
+        ordersSerialNumberRange?: {
+            /** @description Starting number of serial numbers range for sought products. */
+            ordersSerialNumberBegin?: string;
+            /** @description Ending number for serial number range. */
+            ordersSerialNumberEnd?: string;
+        };
+        /** @description Date range of orders made by customers, omitted when hasOrders = no. */
+        ordersAddDate?: {
+            /** @description Start date (YYYY-MM-DD). */
+            ordersAddDateBegin?: string;
+            /** @description End date (YYYY-MM-DD). */
+            ordersAddDateEnd?: string;
+        };
+    };
+    /** @description Elements to be returned by the endpoint. By default all elements are returned */
+    returnElements?: string[];
+    /** @description Page with results number. Numeration starts from 0 */
+    resultsPage?: number;
+    /** @description Number of results on page. Value from 1 to 100 */
+    resultsLimit?: number;
+    /** @description Determines, if data - that will be returned - will be exactly as entered values, or values should be fragment of customer data. */
+    settingsExactSearch?: boolean;
+};
+
+export type SearchClientsGiftcardsParams = {
+    /** @description List of gift cards */
+    giftCards?: {
+        /** @description Card ID */
+        id?: number;
+        /** @description Card number */
+        number?: string;
+        /** @description Card PIN */
+        pin?: string;
+    }[];
+    /** @description element is an element array of type searchGiftCards */
+    searchGiftCards?: {
+        /** @description Gift cards type ID */
+        giftCardTypeId?: number;
+        /** @description Name */
+        name?: string;
+        /** @description Notes contain */
+        noteContain?: string;
+        /** @description Value from */
+        balanceFrom?: number;
+        /** @description Value to */
+        balanceTo?: number;
+        /** @description Expiration date from */
+        expirationDateFrom?: string;
+        /** @description Expiration date to */
+        expirationDateTo?: string;
+        /** @description Created from */
+        issueDateFrom?: string;
+        /** @description Created to */
+        issueDateTo?: string;
+        /** @description Page with results number. Numeration starts from 0 */
+        resultsPage?: number;
+        /** @description Number of results on page. Value from 1 to 100 */
+        resultsLimit?: number;
+    };
+};
+
+export type SearchClientsNewsletterEmailParams = {
+    shops?: {
+        /** @description Store ID. */
+        shop_id?: number;
+        /** @description Have customer agreed to a newsletter. List of allowed parameters: "y" - yes, "n" - no. */
+        approval?: "y" | "n";
+        /** @description Is registered: y - only registered customers, n - only non-registered customers, null (argument not sent) - all. */
+        registered?: "y" | "n";
+    }[];
+    /** @description Customer language ID. */
+    language?: string;
+    date?: {
+        /** @description Start date (YYYY-MM-DD HH:MM:SS). */
+        from?: string;
+        /** @description End date (YYYY-MM-DD HH:MM:SS). */
+        to?: string;
+    };
+    /** @description Elements to be returned by the endpoint. By default all elements are returned */
+    return_elements?: string[];
+    /** @description Results page number. Numbering begins at 0. Default value: 0. */
+    results_page?: number;
+    /** @description Maximum number of results on a single page. Default is 100. */
+    results_limit?: number;
+};
+
+export type SearchOrdersOpinionsParams = {
+    /** @description Review identification */
+    opinion?: {
+        /** @example 1 */
+        id?: number;
+        /** @description Customer language ID. */
+        language?: string;
+        confirmed?: boolean;
+        /** @example host */
+        host?: string;
+        /** @description Shop Id */
+        shopId?: number;
+    };
+    /** @description Orders. */
+    orders?: {
+        /** */
+        type?: "id" | "serialNumber";
+        /** @example value */
+        value?: string;
+    };
+    /** @description Customer data. */
+    clients?: {
+        /** */
+        type?: "id" | "login" | "codeExtern";
+        /** @example value */
+        value?: string;
+    };
+    /** @description Date range */
+    dateRange?: {
+        /** @example begin */
+        begin?: string;
+        /** @example end */
+        end?: string;
+    };
+    /** @description Page with results number. Numeration starts from 0 */
+    resultsPage?: number;
+    /** @description Number of results on page. Value from 1 to 100 */
+    resultsLimit?: number;
+    /** @description Possibility of sorting returned list */
+    ordersBy?: {
+        /** @description Field name by which a list will be sorted. Available values: "date" - Date of adding an opinion, "rating" - Rating attached to opinion, "scorePositive" - Usefulness of the opinion - number of positive ratings, "scoreNegative" - Usefulness of the opinion - number of negative ratings, "modificationDatetime" - Last modification date */
+        elementName?: string;
+        /** @description Determines sorting direction. Available values: "ASC" - ascending, "DESC" - descending. */
+        sortDirection?: string;
+    }[];
+};
+
+export type SearchClientsNewsletterSmsParams = {
+    shops?: {
+        /** @description Store ID. */
+        shop_id?: number;
+        /** @description Have customer agreed to a newsletter. List of allowed parameters: "y" - yes, "n" - no. */
+        approval?: "y" | "n";
+        /** @description Is registered: yes - only registered customers, no - only non-registered customers, null (argument not sent) - all. */
+        registered?: "y" | "n";
+    }[];
+    /** @description Customer language ID. */
+    language?: string;
+    date?: {
+        /** @description Start date (YYYY-MM-DD HH:MM:SS). */
+        from?: string;
+        /** @description End date (YYYY-MM-DD HH:MM:SS). */
+        to?: string;
+    };
+    /** @description Elements to be returned by the endpoint. By default all elements are returned */
+    return_elements?: string[];
+    /** @description Results page number. Numbering begins at 0. Default value: 0. */
+    results_page?: number;
+    /** @description Maximum number of results on a single page. Default is 100. */
+    results_limit?: number;
 };
 
 export { };

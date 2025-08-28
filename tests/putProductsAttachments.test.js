@@ -2,8 +2,8 @@ import idosell from "./dist/index"
 import { expect, test } from "vitest"
 
 test("putProductsAttachmentsAttachments", () => {
-    const params = idosell().putProductsAttachments.productIdent({"identValue":"33","productIdentType":"id"}).attachments([{"attachmentUrl":"https://el.macropart.com/_app/immutable/assets/Macropart-logo.be38339c.svg","attachmentName":"mpt","langId":"pol","attachmentFileType":"image","attachmentEnable":"all","attachmentDownloadLog":"y"}]).checkParams();
-    expect(params).toEqual({"productsAttachments":[{"productIdent":{"identValue":"33","productIdentType":"id"},"attachments":[{"attachmentUrl":"https://el.macropart.com/_app/immutable/assets/Macropart-logo.be38339c.svg","attachmentName":"mpt","langId":"pol","attachmentFileType":"image","attachmentEnable":"all","attachmentDownloadLog":"y"}]}]});
+    const params = idosell().putProductsAttachments.productIdent({"identValue":"33","productIdentType":"id"}).attachments([{"attachmentUrl":"https://pl.wikipedia.org/static/images/icons/wikipedia.png","attachmentName":"mpt","langId":"pol","attachmentFileType":"image","attachmentEnable":"all","attachmentDownloadLog":"y"}]).checkParams();
+    expect(params).toEqual({"productsAttachments":[{"productIdent":{"identValue":"33","productIdentType":"id"},"attachments":[{"attachmentUrl":"https://pl.wikipedia.org/static/images/icons/wikipedia.png","attachmentName":"mpt","langId":"pol","attachmentFileType":"image","attachmentEnable":"all","attachmentDownloadLog":"y"}]}]});
 })
 
 test("putProductsAttachmentsProductId", () => {

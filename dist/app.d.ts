@@ -59,7 +59,7 @@ export interface Gateway<R = JSObject, P = JSObject> {
 	setParams: (params: P) => this
 }
 
-export interface PagableGateway<T,R = JSObject> extends Gateway<R> {
+export interface PagableGateway<T,R = JSObject, P = JSObject> extends Gateway<R, P> {
 	/**
      * @returns number of items i.e. products, orders, documents, etc.
      */
