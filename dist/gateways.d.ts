@@ -36,9 +36,9 @@ export interface PostClientsBalanceRequest extends Gateway {
     /** Order payment identifier. */
     prepaidId: (value: number|string) => this;
     /** Adds value to client balance */
-    add: (balance: number, currency: string) => this;
+    add: (balance: number, currency?: string) => this;
     /** Subtracts value to client balance */
-    remove: (balance: number, currency: string) => this;
+    remove: (balance: number, currency?: string) => this;
 }
 
 export interface GetClientsRequest extends PagableGateway<GetClientsRequest, GetClientsResponse> {
@@ -438,11 +438,11 @@ export interface PutClientsGiftcardsRequest extends AppendableGateway<PutClients
     /**  */
     note: (note: string) => this
     /** Adds balance to current gift card */
-    add: (amount: number, currency: string) => this;
+    add: (amount: number, currency?: string) => this;
     /** Subtract from balance to current gift card */
-    subtract: (amount: number, currency: string) => this;
+    subtract: (amount: number, currency?: string) => this;
     /** Set balance to current gift card */
-    set: (amount: number, currency: string) => this;
+    set: (amount: number, currency?: string) => this;
 }
 
 export interface SearchClientsGiftcardsRequest extends Gateway<SearchClientsGiftcardsResponse, RequestParams.SearchClientsGiftcardsParams> {
@@ -1550,6 +1550,8 @@ export interface PostOrdersImagesRequest extends AppendableGateway<PostOrdersIma
     name: (name: string) => this
     orderId: (value: string) => this;
     orderSerialNumber: (value: number|string) => this;
+    /** Sets image source for order */
+    source: (value: string) => this;
 }
 
 export interface GetOrdersLabelsRequest extends Gateway {
@@ -1580,7 +1582,7 @@ export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrders
     /** Define range of dates */
     dates: (dateFrom: DateLike, dateTo: DateLike) => this;
     /** Define ordering of records */
-    orderBy: (elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending: boolean) => this;
+    orderBy: (elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending?: boolean) => this;
 }
 
 export interface GetOrdersOpinionsRateRequest extends Gateway {
@@ -1759,12 +1761,18 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     orderExternalId: (value: string) => this;
     /** Order currency */
     orderCurrency: (value: string) => this;
+    /** Subscription id */
+    subscription: (value: number|string) => this;
+    /** Subscription ids */
+    subscriptionIds: (value: number|string|number[]|string[]) => this;
+    /** Orders from subscriptions */
+    subscriptionsOrders: (value: 'y'|'n') => this;
     shopIds: (value: number|string|number[]|string[]) => this;
     byPackageNumbers: (value: string|string[]) => this;
     /** Define range of dates and their type */
-    dates: (dateFrom: DateLike, dateTo: DateLike, type: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => this;
+    dates: (dateFrom: DateLike, dateTo: DateLike, type?: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => this;
     /** Define ordering of records */
-    orderBy: (elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: boolean) => this;
+    orderBy: (elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending?: boolean) => this;
     /** Define clients values by passing them as an array */
     logins: (values: string|string[]) => this;
     /** Define clients values by passing them as an array */
@@ -1780,13 +1788,13 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     /** Filter orders that contain select product */
     hasProduct: (productId: number|string, sizeId?: number|string) => this;
     /** Filter orders that have package */
-    hasPackage: (orderHasPackage: boolean) => this;
+    hasPackage: (orderHasPackage?: boolean) => this;
     /** Filter orders by an any or selected Allegro account */
     fromAllegro: (allegroAccount?: string) => this;
     /** Filter orders by an any or selected Amazon account */
-    fromAmazon: (allegroAccount?: string) => this;
+    fromAmazon: (amazonAccount?: string) => this;
     /** Filter orders by an any or selected EBay account */
-    fromEbay: (allegroAccount?: string) => this;
+    fromEbay: (ebayAccount?: string) => this;
 }
 
 export interface GetOrdersPackagesRequest extends Gateway<GetOrdersPackagesResponse> {
@@ -1932,9 +1940,9 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     shopIds: (value: number|string|number[]|string[]) => this;
     byPackageNumbers: (value: string|string[]) => this;
     /** Define range of dates and their type */
-    dates: (dateFrom: DateLike, dateTo: DateLike, type: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => this;
+    dates: (dateFrom: DateLike, dateTo: DateLike, type?: "add"|"modified"|"dispatch"|"payment"|"last_payments_operation"|"declared_payments") => this;
     /** Define ordering of records */
-    orderBy: (elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending: boolean) => this;
+    orderBy: (elementName: "id"|"sn"|"order_time"|"status"|"order_source"|"order_cost"|"discount_code"|"ready_to_send_date", descending?: boolean) => this;
     /** Define clients values by passing them as an array */
     logins: (values: string|string[]) => this;
     /** Define clients values by passing them as an array */
@@ -1950,13 +1958,13 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Filter orders that contain select product */
     hasProduct: (productId: number|string, sizeId?: number|string) => this;
     /** Filter orders that have package */
-    hasPackage: (orderHasPackage: boolean) => this;
+    hasPackage: (orderHasPackage?: boolean) => this;
     /** Filter orders by an any or selected Allegro account */
     fromAllegro: (allegroAccount?: string) => this;
     /** Filter orders by an any or selected Amazon account */
-    fromAmazon: (allegroAccount?: string) => this;
+    fromAmazon: (amazonAccount?: string) => this;
     /** Filter orders by an any or selected EBay account */
-    fromEbay: (allegroAccount?: string) => this;
+    fromEbay: (ebayAccount?: string) => this;
 }
 
 export interface GetOrdersWarehouseRequest extends Gateway {
@@ -2499,7 +2507,7 @@ export interface PutProductsImagesRequest extends AppendableGateway<PutProductsI
     productImagesSettings: (productImagesSettings: JSObject) => this
     productId: (value: number|string) => this;
     /** Adds image source with selected priority */
-    addImage: (source: string, priority: number|string) => this;
+    addImage: (source: string, priority?: number|string) => this;
     /** Set global image source to base64 */
     base64: () => this;
 }
@@ -2625,7 +2633,7 @@ export interface PutProductsOmnibusPricesRequest extends AppendableGateway<PutPr
     /** Set retail or wholesale price */
     setPrice: (price: number, wholesale?: boolean) => this;
     /** Set mode to automatic */
-    mode: (automatic: boolean) => this;
+    mode: (manual?: boolean) => this;
 }
 
 export interface DeleteProductsOpinionsRequest extends Gateway {
@@ -2654,7 +2662,7 @@ export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOp
     /** Define range of dates */
     dates: (dateFrom: DateLike, dateTo: DateLike) => this;
     /** Define ordering of records */
-    orderBy: (elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending: boolean) => this;
+    orderBy: (elementName: "date"|"rating"|"scorePositive"|"scoreNegative"|"modificationDatetime", descending?: boolean) => this;
 }
 
 export interface PostProductsOpinionsRequest extends AppendableGateway<PostProductsOpinionsRequest> {
@@ -3349,9 +3357,9 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     byMenus: (value: number|string|number[]|string[]) => this;
     byShops: (value: number|string|number[]|string[]) => this;
     /** Define range of dates and their type */
-    dates: (dateFrom: DateLike, dateTo: DateLike, type: "added"|"finished"|"resumed"|"modified"|"quantity_changed"|"price_changed"|"modified_and_quantity_changed") => this;
+    dates: (dateFrom: DateLike, dateTo: DateLike, type?: "added"|"finished"|"resumed"|"modified"|"quantity_changed"|"price_changed"|"modified_and_quantity_changed") => this;
     /** Define ordering of records */
-    orderBy: (elementName: "id"|"name"|"code"|"product_sizecode"|"code_producer"|"retail_price"|"pos_price"|"vat"|"wholesale_price"|"minimal_price"|"pictures_count"|"auction_name"|"pricecomparer_name"|"version_name"|"series_name"|"category_name"|"deliverer_name"|"adding_time"|"modification_time"|"price_changed_time"|"quantity_changed_time"|"currency"|"currency_shop"|"taxcode"|"meta_title"|"meta_description"|"meta_keywords"|"suggested_price"|"observed_clients"|"observed_time"|"wishes_clients"|"wishes_time", descending: boolean) => this;
+    orderBy: (elementName: "id"|"name"|"code"|"product_sizecode"|"code_producer"|"retail_price"|"pos_price"|"vat"|"wholesale_price"|"minimal_price"|"pictures_count"|"auction_name"|"pricecomparer_name"|"version_name"|"series_name"|"category_name"|"deliverer_name"|"adding_time"|"modification_time"|"price_changed_time"|"quantity_changed_time"|"currency"|"currency_shop"|"taxcode"|"meta_title"|"meta_description"|"meta_keywords"|"suggested_price"|"observed_clients"|"observed_time"|"wishes_clients"|"wishes_time", descending?: boolean) => this;
     /** Define productShops values by passing them as an array */
     shops: (values: number|string|number[]|string[]) => this;
     /** Define productParams values by passing them as an array */
@@ -3369,11 +3377,11 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Define productIndexes values by passing them as an array */
     byIndexes: (values: number|string|number[]|string[]) => this;
     /** Toogle to return only main versions */
-    onlyMainVersion: (onlyMain: boolean) => this;
+    onlyMainVersion: (onlyMain?: boolean) => this;
     /** Filter by minimum and maximum price */
-    byPrice: (minPrice: number, maxPrice: number, priceType: "retail_price"|"wholesale_price"|"minimal_price"|"pos_price"|"last_purchase_price") => this;
+    byPrice: (minPrice: number, maxPrice: number, priceType?: "retail_price"|"wholesale_price"|"minimal_price"|"pos_price"|"last_purchase_price") => this;
     /** Filter by availibility on any stock or selected stocks */
-    inStock: (stockIds: boolean|number|string|number[]|string[]) => this;
+    inStock: (stockIds?: boolean|number|string|number[]|string[]) => this;
 }
 
 export interface DeleteProductsProductsToFacebookCatalogRequest extends Gateway {
@@ -3865,7 +3873,7 @@ export interface GetReturnsRequest extends PagableGateway<GetReturnsRequest, Get
     /** Return a set as its constituent products */
     bundleAsProducts: (value: boolean) => this;
     /** Define range of dates and their type */
-    dates: (dateFrom: DateLike, dateTo: DateLike, type: "date_add"|"date_end") => this;
+    dates: (dateFrom: DateLike, dateTo: DateLike, type?: "date_add"|"date_end") => this;
 }
 
 export interface PostReturnsRequest extends AppendableGateway<PostReturnsRequest, PostReturnsResponse, RequestParams.PostReturnsParams> {
@@ -4620,7 +4628,7 @@ export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<Ge
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
     /** Define range of dates and their type */
-    dates: (dateFrom: DateLike, dateTo: DateLike, type: "open"|"modify"|"close"|"stockOperation") => this;
+    dates: (dateFrom: DateLike, dateTo: DateLike, type?: "open"|"modify"|"close"|"stockOperation") => this;
 }
 
 export interface PostWmsStocksdocumentsDocumentsRequest extends Gateway<PostWmsStocksdocumentsDocumentsResponse, RequestParams.PostWmsStocksdocumentsDocumentsParams> {
@@ -4708,7 +4716,7 @@ export interface GetWmsStocksdocumentsOpenedDocumentsRequest extends PagableGate
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
     /** Define range of dates and their type */
-    dates: (dateFrom: DateLike, dateTo: DateLike, type: "open"|"modify") => this;
+    dates: (dateFrom: DateLike, dateTo: DateLike, type?: "open"|"modify") => this;
 }
 
 export interface DeleteWmsStocksdocumentsProductsRequest extends AppendableGateway<DeleteWmsStocksdocumentsProductsRequest> {
