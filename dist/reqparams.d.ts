@@ -3867,4 +3867,2321 @@ export type SearchClientsNewsletterSmsParams = {
     results_limit?: number;
 };
 
+export type PutWmsSuppliersParams = {
+    suppliers: {
+        /** @description Id */
+        id?: number;
+        /** @description Name. */
+        name: string;
+        /** @description e-mail address. (limit of 50 characters) */
+        email?: string;
+        /** @description Phone number. (limit of 20 characters) */
+        phone?: string;
+        /** @description Fax. (limit of 20 characters) */
+        fax?: string;
+        /** @description Address. (limit of 50 characters) */
+        street?: string;
+        /** @description ZIP / Post code. (limit of 6 characters) */
+        zipCode?: string;
+        /** @description Town / City. (limit of 50 characters) */
+        city?: string;
+        /** @description Region ID */
+        country?: number;
+        /** @description VAT no.. (limit of 13 characters) */
+        taxCode?: string;
+        /** @description Average delivery time */
+        averageDeliveryTime?: {
+            /** @description value */
+            value?: number;
+            /** @description Unit */
+            unit?: "minutes" | "hours" | "days" | "immediately";
+        };
+        /** @description Description. (limit of 255 characters) */
+        description?: string;
+        /** @description Order preparation time for shipment */
+        orderCompletionTime?: {
+            /** @description value */
+            value?: number;
+            /** @description Unit */
+            unit?: "minutes" | "hours" | "days" | "immediately";
+        };
+        /** @description Supplier working hours */
+        workDays?: {
+            /** @description day */
+            day?: number;
+            /** */
+            type?: "deliverer_closed" | "deliverer_open_hours" | "deliverer_open_24h";
+            /** @description from */
+            from?: string;
+            /** @description to */
+            to?: string;
+        }[];
+    }[];
+};
+
+export type PutWarrantiesParams = {
+    warranties: {
+        /** @description Warranty ID (numeric or text based). */
+        id: string;
+        /** @description Name. */
+        name?: string;
+        /** */
+        type?: "seller" | "producer";
+        /** @description Warranty time. Default value 12. */
+        period?: number;
+    }[];
+};
+
+export type PutSystemUnitsParams = {
+    units: {
+        /** @description #!IdentyfikatorJednostki!# */
+        id: number;
+        /** @description Name in panel (limit of 30 characters) */
+        nameInPanel?: string;
+        /** @description Accuracy (number of places after comma) */
+        precisionUnit?: number;
+        /** @description Visibility */
+        visible?: boolean;
+        /** @description Unit names */
+        descriptions?: {
+            /** @description ISO-639-3 Language */
+            language?: string;
+            /** @description Name (singular) (limit of 30 characters) */
+            nameSingular?: string;
+            /** @description Name (plural) (limit of 30 characters) */
+            namePlural?: string;
+            /** @description Name (by fractions) (limit of 30 characters) */
+            nameFractions?: string;
+        }[];
+    }[];
+};
+
+export type PutSizesParams = {
+    /** @description Size table. */
+    sizes: {
+        /** @description Error code. */
+        faultCode?: number;
+        /** @description Error description. */
+        faultString?: string;
+        /** @description Size group ID. */
+        group_id?: number;
+        /** @description Size identifier. */
+        id?: string;
+        /** @description Category plural name. */
+        name?: string;
+        /** @description Size description. */
+        description?: string;
+        /** @description Operation type: add, edit, del */
+        operation: string;
+        lang_data?: {
+            /** @description Language code. Codes are compliant with ISO-639-3 standard. */
+            lang_id?: string;
+            /** @description Category plural name. */
+            name?: string;
+        }[];
+    }[];
+};
+
+export type PutSizechartsParams = {
+    sizeCharts: {
+        /** @description Id */
+        id: number;
+        /** @description Name in panel */
+        nameInPanel?: string;
+        /** @description Display mode */
+        displayMode: "single" | "all";
+        languagesData?: {
+            /** @description Customer language ID. */
+            language?: string;
+            columns?: {
+                /** @description Column number */
+                columnNumber?: number;
+                /** @description Column name */
+                columnTitle?: string;
+            }[];
+            /** @description List of sizes */
+            sizes?: {
+                /** @description Size identifier */
+                sizeId?: string;
+                /** @description Priority */
+                priority?: number;
+                descriptions?: {
+                    /** @description Column number */
+                    columnNumber?: number;
+                    /** @description Value */
+                    value?: string;
+                }[];
+            }[];
+        }[];
+    }[];
+};
+
+export type PutProductsParametersParams = {
+    /** @description Sections, parameters or valued to add or edit. */
+    items: {
+        /** @description Parameter ID. */
+        id: number;
+        /** @description Element text ID - can be entered instead of "id". Recognized save format: "section" (without backslash), "parameter\" (parameter without assigned value). */
+        item_text_ids?: {
+            /** @description Language ID. */
+            lang_id?: string;
+            /** @description Text value. */
+            value?: string;
+        }[];
+        /** @description Names of section, parameter or value. */
+        names?: {
+            /** @description Language ID. */
+            lang_id?: string;
+            /** @description Text value. */
+            value?: string;
+        }[];
+        /** @description Descriptions of section, parameter or value. */
+        descriptions?: {
+            /** @description Language ID. */
+            lang_id?: string;
+            /** @description Text value. */
+            value?: string;
+        }[];
+        /** @description Search descriptions of parameter value. */
+        search_description?: {
+            /** @description Language ID */
+            lang_id?: string;
+            /** @description Text value */
+            value?: string;
+            /** @description Shop Id */
+            shop_id?: number;
+        }[];
+        /** @description Icons of section, parameter or value to display on the product card. */
+        card_icons?: {
+            /** @description Language ID. */
+            lang_id?: string;
+            /** @description Text value. */
+            value?: string;
+            /** @description Shop Id */
+            shop_id?: number;
+        }[];
+        /** @description Icons of section, parameter or value to display on the list of products. */
+        link_icons?: {
+            /** @description Language ID. */
+            lang_id?: string;
+            /** @description Text value. */
+            value?: string;
+            /** @description Shop Id */
+            shop_id?: number;
+        }[];
+        /** @description Parameter's additional feature. 1. Status: context_id = "CONTEXT_STATE" Takes values context_value_id: - CONTEXT_STATE_NEW - New, - CONTEXT_STATE_USED - Used, - CONTEXT_STATE_USED_EXCELLENT - Used - excellent condition - CONTEXT_STATE_USED_VERYGOOD - Used - very good condition - CONTEXT_STATE_USED_CORRECT - Used - good condition - CONTEXT_STATE_USED_ACCEPTABLE - Used - acceptable condition - CONTEXT_STATE_REFURBISHED_EXCELLENT - Refurbished - excellent condition - CONTEXT_STATE_REFURBISHED_VERYGOOD - Refurbished - very good condition - CONTEXT_STATE_REFURBISHED_CORRECT - Refurbished - good condition - CONTEXT_STATE_NEW_OTHERS - New other (see details) - CONTEXT_STATE_NEW_WITH_DEFECTS - New with defects - CONTEXT_STATE_NEW_OEM - New - OEM - CONTEXT_STATE_NEW_OPEN_BOX - New - open box - CONTEXT_STATE_REFURBISHED_BY_PRODUCER - Renewed by a manufacturer, - CONTEXT_STATE_REFURBISHED_BY_SELLER - Renewed by a seller, - CONTEXT_STATE_FOR_PARTS_OR_BROKEN - In parts or damaged. 2. Product weight in grams: context_id = "CONTEXT_STD_UNIT_WEIGHT" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 3. A product's value in milliliters: context_id = "CONTEXT_STD_UNIT_VOLUME" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 4. Sex: context_id = "CONTEXT_SEX" Takes values context_value_id: - CONTEXT_SEX_MAN - Man, - CONTEXT_SEX_WOMAN - Woman, - CONTEXT_SEX_UNISEX - Unisex. 5. Age group: context_id = "CONTEXT_AGE_GROUP" Takes values context_value_id: - CONTEXT_AGE_GROUP_ADULT - Adults, - CONTEXT_AGE_GROUP_MINOR - Children. 6. Maximum number of products in an order: context_id = "CONTEXT_MAX_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 7. Maximum number of products in a wholesale order: context_id = "CONTEXT_MAX_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 8. Minimal number of products in an order: context_id = "CONTEXT_MIN_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 9. Minimum number of products in a wholesale order: context_id = "CONTEXT_MIN_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 10. Maximal number of a single size in an order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 11. Maximal number of a single size in a wholesale order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 12. Minimal number of a single size in an order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 13. Minimal number of a single size in a wholesale order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 14. Net weight: context_id = "CONTEXT_WEIGHT_NET" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 15. Color: context_id = "CONTEXT_COLOR" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 16. #!TylkoDlaDoroslych!#: context_id = "CONTEXT_ONLY_ADULTS" Takes values context_value_id: - CONTEXT_ONLY_ADULTS_YES - yes, - CONTEXT_ONLY_ADULTS_NO - no. 17. Prescription drug: context_id = "CONTEXT_PRESCRIPTION_MEDICINE" Takes values context_value_id: - CONTEXT_PRESCRIPTION_MEDICINE_YES - yes, - CONTEXT_PRESCRIPTION_MEDICINE_NO - no. 18. Season Rate: context_id = "CONTEXT_SEASON" Takes values context_value_id: - CONTEXT_SEASON_SPRING - Spring, - CONTEXT_SEASON_SUMMER - Summer, - CONTEXT_SEASON_FALL - Autumn, - CONTEXT_SEASON_WINTER - Winter, - CONTEXT_SEASON_SPRING_SUMMER - Spring/Summer, - CONTEXT_SEASON_FALL_WINTER - Autumn/Winter 19. Risk - signal word: context_id = \"CONTEXT_HAZMAT_SIGNAL\" Takes values context_value_id: - CONTEXT_HAZMAT_SIGNAL_DANGER - danger, - CONTEXT_HAZMAT_SIGNAL_WARNING - warnging, - CONTEXT_HAZMAT_SIGNAL_CAUTION - caution, - CONTEXT_HAZMAT_SIGNAL_NOTICE - notice, 20. Risk - warning pictogram context_id = \"CONTEXT_HAZMAT_PICTOGRAM\" Takes values context_value_id: - GHS01, GHS02, GHS03, GHS04, GHS05, GHS06, GHS07, GHS08, GHS09 21. Risk - type of hazard: context_id = \"CONTEXT_HAZMAT_STATEMENT\" Takes values context_value_id: - H200, H201, H202, H203, H204, H205, H220, H221, H222, H223, H224, H225, H226, H228, H240, H241, H242, H250, H251, H252, H260, H261, H270, H271, H272, H280, H281, H290, H300, H301, H302, H304, H310, H311, H312, H314, H315, H317, H318, H319, H330, H331, H332, H334, H335, H336, H340, H341, H350, H351, H360, H361, H362, H370, H371, H372, H373, H400, H410, H411, H412, H413, EUH 001, EUH 014, EUH 018, EUH 019, EUH 044, EUH 029, EUH 031, EUH 032, EUH 066, EUH 070, EUH 071, EUH 201, EUH 201A, EUH 202, EUH 203, EUH 204, EUH 205, EUH 206, EUH 207, EUH 208, EUH 209, EUH 209A, EUH 210, EUH 401 22. Repair score: context_id = \"CONTEXT_REPAIR_SCORE\" Takes values context_value_id: - The value of the additional feature is set automatically based on the parameter's value 23. Safety - information pictogram: context_id = \"CONTEXT_SAFETY_PICTOGRAM\" Takes values context_value_id: - 1 (Not suitable for small children) - 2 (CE mark) 24. Safety - type of warning: context_id = \"CONTEXT_SAFETY_STATEMENT\" Takes values context_value_id: - 1 (Not suitable for children under 3 years) - 2 (Keep out of the reach of children) - 3 (Product contains a button cell or coin battery) - 4 (Use under the direct supervision of adults) - 5 (Required protective gear. Do not use in public traffic) - 6 (Contains toy. Adult supervision recommended) - 7 (To prevent possible injury from entanglement, remove this toy as soon as the child begins to crawl) - 8 (Use only in shallow water under adult supervision) - 9 (Only use under adult supervision) - 10 (This toy does not provide protection) - 11 (Contains fragrances that may cause allergies) - 12 (For household use only). */
+        context_id?: string;
+        /** @description value of additional feature - Values described in context_id. */
+        context_value_id?: string;
+    }[];
+    /** @description Settings */
+    settings?: {
+        /** */
+        icons_input_type?: "base64" | "url";
+    };
+};
+
+export type PutPaymentsParams = {
+    /** @description Defines payment category. For the payments regarding returns, enter 'return'. */
+    sourceType: "order" | "return" | "rma";
+    /** @description Payment number - [order no.]-[payment no.], i.e. 1234-1. */
+    paymentNumber: string;
+    /** @description Payment method ID. Check getPaymentForms. */
+    paymentFormId?: number;
+    /** @description Refund value. */
+    value: number;
+    /** @description Registering date. */
+    accountingDate?: string;
+    /** @description Number of a bank account to which a payment is sent. */
+    account?: string;
+    /** @description Data of customer account in store. */
+    clientAccount?: string;
+    other?: {
+        /** @description Payment system. */
+        system?: number;
+    };
+    /** @description Transaction ID in external service */
+    externalPaymentId?: string;
+};
+
+export type PostWarrantiesParams = {
+    warranties: {
+        /** @description Name. */
+        name: string;
+        /** */
+        type?: "seller" | "producer";
+        /** @description Warranty time. Default value 12. */
+        period?: number;
+        /** @description Name of warranty. */
+        shopname?: {
+            languages?: {
+                /** @description Language ID. */
+                language_id?: string;
+                /** @description Language name. */
+                language_name?: string;
+                /** @description Literal in selected language. */
+                value?: string;
+            }[];
+        };
+        /** @description Warranty description. */
+        description?: {
+            languages?: {
+                /** @description Language ID. */
+                language_id?: string;
+                /** @description Language name. */
+                language_name?: string;
+                /** @description Literal in selected language. */
+                value?: string;
+            }[];
+        };
+    }[];
+};
+
+export type PostVouchersParams = {
+    /** @description List of vouchers to add */
+    vouchers: {
+        /** @description Gift voucher type id */
+        typeId: number;
+        /** @description Number. */
+        number: string;
+        /** @description Name. */
+        name: string;
+        /** @description Voucher expiration date */
+        expirationDate?: string;
+        /** @description Voucher balance */
+        balance: {
+            /** @description Available balance */
+            amount?: number;
+            /** @description Currency. */
+            currency?: string;
+        };
+        /** @description List of shops the voucher is active in */
+        shops: number[];
+        /** @example note */
+        note?: string;
+    }[];
+};
+
+export type PostEntriesParams = {
+    /** @description Shop Id */
+    shopId: number;
+    /** @description Date of creating an entry */
+    date: string;
+    /** @description Entry visibility */
+    visible: "y" | "n";
+    /** @description List of pages on which the entry is to be published */
+    visibleOnSitesList: {
+        /** @description Site ID */
+        siteId?: string;
+    }[];
+    /** @description Products list. */
+    products?: {
+        /** @description Merchandise identifier */
+        productId?: number;
+    }[];
+    /** @description Photo */
+    pictureData?: {
+        /** @description Photo encoded with Base64 */
+        pictureBase64?: string;
+        /** @description Photo format */
+        pictureFormat?: "jpg" | "jpeg" | "png" | "gif";
+    };
+    /** @description Element including entry content in selected languages */
+    langs: {
+        /** @description Language ID */
+        langId: string;
+        /** @description Name on the page */
+        title?: string;
+        /** @description short description */
+        shortDescription?: string;
+        /** @description Long description */
+        longDescription?: string;
+        /** @description Blog post URL */
+        blogUrl?: string;
+        /** @description News item URL */
+        newsUrl?: string;
+    }[];
+    /** @description Type of title and shortcut linking: fullContentLink - link to the subpage with full content, givenUrlLink - link to the given URL, noLink - static element */
+    titleLinkType?: "fullContentLink" | "givenUrlLink" | "noLink";
+    /** @description Provided URL (for link to specified URL option) */
+    link?: string;
+};
+
+export type PostClientsPayerAddressParams = {
+    payers: {
+        /** @description Unique client's number. */
+        clientId: number;
+        /** @description Buyer's first name. */
+        payerAddressFirstName?: string;
+        /** @description Buyer's last name. */
+        payerAddressLastName?: string;
+        /** @description Company name. */
+        payerAddressFirm?: string;
+        /** @description Customer VAT ID. */
+        payerAddressNip?: string;
+        /** @description Buyer's street name and house number. */
+        payerAddressStreet: string;
+        /** @description Buyer's postal code. */
+        payerAddressZipCode: string;
+        /** @description Buyer's city. */
+        payerAddressCity: string;
+        /** @description Country code in the ISO 3166-1 A2 standard. */
+        payerAddressCountryId: string;
+        /** @description Buyer's telephone number. */
+        payerAddressPhone?: string;
+    }[];
+};
+
+export type PostClientsDeliveryAddressParams = {
+    /** @description Customer data. */
+    clients: {
+        /** @description Customer's login. */
+        clientLogin: string;
+        /** @description External system code. */
+        clientCodeExternal?: string;
+        /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+        shopsIds: number[];
+        /** @description Currency ID */
+        currencyId?: string;
+        /** @description Recipient's first name. */
+        clientDeliveryAddressFirstName: string;
+        /** @description Recipient's last name. */
+        clientDeliveryAddressLastName: string;
+        /** @description Additional information. */
+        clientDeliveryAddressAdditional?: string;
+        /** @description Cell phone. */
+        clientDeliveryAddressPhone1?: string;
+        /** @description Recipient's city. */
+        clientDeliveryAddressCity: string;
+        /** @description Recipient street and number. */
+        clientDeliveryAddressStreet: string;
+        /** @description Administrative region code. */
+        clientDeliveryAddressRegionId?: string;
+        /** @description Administrative region code. */
+        clientDeliveryAddressProvinceId?: string;
+        /** @description Recipient's postal code. */
+        clientDeliveryAddressZipCode: string;
+        /** @description Recipient's country. */
+        clientDeliveryAddressCountry?: string;
+    }[];
+};
+
+export type PostSnippetsParams = {
+    snippets: ({
+        /** @description Id of the code snippet. */
+        id?: number | null;
+        /** @description The snippet name. */
+        name: string;
+        /** @description Whether the snippet is active. */
+        active?: "y" | "n";
+        /** @description Snippet campaign id */
+        campaign: number;
+        dateBegin?: {
+            /** @description Whether date condition is active */
+            defined?: "y" | "n";
+            /** Format: date
+             * @description Date of snippet activation */
+            date?: string | null;
+        } & {
+            /** @description Automatic shutdown control */
+            autoBlock?: "y" | "n";
+        };
+        /** @description Filter to control snippet activation. */
+        dateEnd?: {
+            /** @description Whether date condition is active */
+            defined?: "y" | "n";
+            /** Format: date
+             * @description Date of snippet activation */
+            date?: string | null;
+        };
+        /** @description Code snippet type. */
+        type?: "html" | "javascript" | "cgi";
+        /** @description Whether to load contents asynchronously via XHR request. */
+        useAjax?: "y" | "n";
+        /** @description Url. */
+        link?: string;
+        /** @description Content waiting time (timeout) in seconds. */
+        timeout?: number;
+        /** @description The place where the code snippet is loaded. */
+        zone?: "head" | "bodyBegin" | "bodyEnd";
+        /** @description The order in which the code snippet will be displayed. */
+        order?: number;
+        /** @description Snippet content for each language. */
+        body?: {
+            /** @description Language code. */
+            lang?: string;
+            /** @example Hello world */
+            body?: string;
+        }[];
+        display?: {
+            /** @description Type of customers to whom to display the snippet */
+            clientType?: "all" | "unregistered" | "registered" | "retailer" | "wholesaler";
+            /** @description Whether to display only for newsletter visitors. */
+            newsletter?: "y" | "n" | "all";
+            /** @description Whether to display the code snippet only for customers who have placed an order */
+            hasOrders?: "y" | "n" | "all";
+            /** @description Display only after entering rebate code */
+            useRebateCode?: "y" | "n" | "all";
+        } & {
+            /** @description Display on desktop screens */
+            screen?: "y" | "n";
+            /** @description Display on mobile tablets */
+            tablet?: "y" | "n";
+            /** @description Display on mobile phones */
+            phone?: "y" | "n";
+        };
+        pages?: {
+            /** @description Whether to display to all sites. */
+            all?: "y" | "n";
+            /** @description List of selected pages where snippet shows (works for all=n mode). If passed, the url should be omitted. */
+            pages?: ("home" | "basket" | "checkout_payment_delivery" | "checkout_confirmation" | "new_order_placement" | "order_details" | "navigation" | "product_details" | "search_results" | "after_order_place" | "mailing_subscribe" | "payment_success" | "payment_error" | "payment_pending" | "other_pages")[];
+            /** @description List of selected url (works for all=n mode) If passed, pages should be omitted. */
+            url?: string[];
+        };
+        /** @description Snippet entry source filter. */
+        sources?: {
+            direct?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            search?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            advert?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            priceComparers?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            affiliate?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            cpa?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            newsletter?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            social?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            page?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+        };
+        /** @description Whether the snippet is marked as deleted. */
+        readonly deleted?: "y" | "n";
+        /** @description The number of cookies associated with the snippet. */
+        readonly cookiesCount?: number;
+    } & {
+        /** @example null */
+        id?: number | null;
+    })[];
+};
+
+export type PostSnippetsCampaignParams = {
+    campaigns: ({
+        /** @description Snippet campaign id */
+        id?: number | null;
+        /** @description Snippet campaign name */
+        name: string;
+        /** @description Snippet campaign internal description */
+        description?: string;
+        /** @description Shop ids where code snippets are active 1 ] */
+        shop: number[] | null;
+        /** @description Whether the snippet is active */
+        active?: "y" | "n";
+        /** @description Whether the snippet campaign is deleted */
+        readonly deleted?: "y" | "n";
+        /** @description Snippet order. */
+        order?: number;
+        /** @description Number of code snippets associated with the campaign. */
+        readonly snippetCount?: number | null;
+        /** @description Number of active code snippets associated with the campaign. */
+        readonly activeSnippetCount?: number | null;
+        configVariables?: {
+            /** @description Key of config value. */
+            key?: string;
+            /** @description Name of config item. */
+            readonly name: string;
+            /** @description Value of config item. */
+            value?: string;
+        }[];
+    } & {
+        /** @example null */
+        id?: number | null;
+    })[];
+};
+
+export type PostSnippetsCookiesParams = {
+    cookies: ({
+        /** @description Snippet */
+        id?: number | null;
+        /** @description Id of the snippet code. */
+        snippetId: number;
+        /** @description Name of the cookie vendor. */
+        deliverer: string;
+        /** @description Category of the cookie */
+        category?: "analytics" | "marketing" | "functional";
+        /** @description Cookie description for each language. */
+        description?: {
+            /** @description Language code. */
+            lang?: string;
+            /** @example Hello world */
+            body?: string;
+        }[];
+        /** @description Name of the cookie. */
+        name?: string | null;
+        /** @description Type of the cookie|null} */
+        type?: "cookie" | "pixel" | "localStorage" | null;
+        /** @description Cookie lifetime mode|null} */
+        lifeTimeType?: "temporary" | "days" | "minutes" | null;
+        /** @description Cookie lifetime */
+        lifeTime?: number | null;
+    } & {
+        /** @example null */
+        id?: number | null;
+    })[];
+};
+
+export type PostCpaParams = {
+    cpa: ({
+        /** @description Id of the CPA program. */
+        id?: number | null;
+        /** @description The CPA program name. */
+        name: string;
+        /** @description Whether the CPA program is active. */
+        active?: "y" | "n";
+        /** @description CPA campaign id */
+        campaign: number;
+        /** @description CPA program page settings simple or advanced, depending on the mode. */
+        pageSettings?: (Omit<{
+            /** @description Whether to display to all sites. */
+            mode: "simple" | "advanced";
+        }, "mode"> & {
+            /** @description Whether to display to all sites. */
+            mode?: "simple";
+            /** @description The place where the cpa code is loaded. (For "all" mode)|null} */
+            zone?: "head" | "bodyBegin" | "bodyEnd" | null;
+            /** @description Snippet content for each language. (For "all" mode) */
+            body?: {
+                /** @description Language code. */
+                lang?: string;
+                /** @example Hello world */
+                body?: string;
+            }[] | null;
+        }) | (Omit<{
+            /** @description Whether to display to all sites. */
+            mode: "simple" | "advanced";
+        }, "mode"> & {
+            /** @description Whether to display to all sites. */
+            mode?: "advanced";
+            /** @description Page setting for advance mode */
+            pages?: {
+                /** @enum {string} */
+                active?: "y" | "n";
+                /** @enum {string} */
+                page?: "home" | "basket" | "checkout_payment_delivery" | "checkout_confirmation" | "new_order_placement" | "order_details" | "navigation" | "product_details" | "search_results" | "after_order_place" | "mailing_subscribe" | "other_pages";
+                /** @description The place where the cpa code is loaded. (For "all" mode) */
+                zone?: "head" | "bodyBegin" | "bodyEnd";
+                body?: {
+                    /** @description Language code. */
+                    lang?: string;
+                    /** @example Hello world */
+                    body?: string;
+                }[];
+            }[];
+        });
+        display?: {
+            /** @description Type of customers to whom to display the snippet */
+            clientType?: "all" | "unregistered" | "registered" | "retailer" | "wholesaler";
+            /** @description Whether to display only for newsletter visitors. */
+            newsletter?: "y" | "n" | "all";
+            /** @description Whether to display the code snippet only for customers who have placed an order */
+            hasOrders?: "y" | "n" | "all";
+            /** @description Display only after entering rebate code */
+            useRebateCode?: "y" | "n" | "all";
+        };
+        /** @description Snippet entry source filter. */
+        sources?: {
+            direct?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            search?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            advert?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            priceComparers?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            affiliate?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            cpa?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            newsletter?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            social?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            page?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+        };
+        /** @description List of variables that can be used in a body template. */
+        variables?: {
+            name: string;
+            /** @enum {string} */
+            source?: "session" | "cookie";
+        }[];
+    } & {
+        /** @example null */
+        id?: number | null;
+    })[];
+};
+
+export type PostCpaCampaignParams = {
+    campaigns: ({
+        /** @description Snippet campaign id */
+        id?: number | null;
+        /** @description Snippet campaign name */
+        name: string;
+        /** @description Snippet campaign internal description */
+        description?: string;
+        /** @description Shop ids where code snippets are active 1 ] */
+        shop: number[] | null;
+        /** @description Whether the snippet is active */
+        active?: "y" | "n";
+        /** @description Number of CPA programs associated with the campaign. */
+        readonly cpaCount?: number | null;
+        /** @description Number of active CPA programs associated with the campaign. */
+        readonly activeCpaCount?: number | null;
+    } & {
+        /** @example null */
+        id?: number | null;
+    })[];
+};
+
+export type PutClientsParams = {
+    /** @description Customer data. */
+    clients: {
+        /** @description Customer's login. */
+        clientLogin: string;
+        /** @description E-mail address. */
+        clientEmail?: string;
+        /** @description Customer's first name. */
+        clientFirstName?: string;
+        /** @description Customer's last name. */
+        clientLastName?: string;
+        /** @description Street and number. */
+        clientStreet?: string;
+        /** @description Customer's postal code. */
+        clientZipCode?: string;
+        /** @description Customer's city. */
+        clientCity?: string;
+        /** @description Country ID in accordance with ISO-3166. */
+        clientCountryId?: string;
+        /** @description Administrative region code. */
+        clientProvinceId?: string;
+        /** @description Customer password (min. 8 characters). */
+        clientPassword?: string;
+        /** @description Date of birth. */
+        clientBirthDate?: string;
+        /** @description Cell phone. */
+        clientPhone1?: string;
+        /** @description Customer's company name. */
+        clientFirm?: string;
+        /** @description Customer Tax no. */
+        clientNip?: string;
+        /** @description Determines, whether client is a wholesaler. */
+        clientIsWholesaler?: boolean;
+        /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
+        clientType?: "person" | "person_male" | "person_female" | "firm";
+        /** @description Language ID */
+        langId?: string;
+        /** @description Defines availability of log in to other pages than the ones given in the element: shops  . */
+        blockLoginToOtherShops?: boolean;
+        /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+        shopsIds?: number[];
+        /** @description Currency ID */
+        currencyId?: string;
+        /** @description External system code. */
+        clientCodeExternal?: string;
+        /** @description List with delivery dates and times */
+        deliveryDates?: {
+            /** @description Delivery date in format: Y-m-d */
+            deliveryDate?: string;
+            /** @description Delivery time in format: H:i */
+            deliveryHours?: string[];
+        }[];
+        /** @description Customer account balance in external system. */
+        clientBalanceAmountExternal?: number;
+        /** @description Debt limit. */
+        clientTradeCreditLimitExternal?: number;
+        /** @description Permission to E-mail Newsletter. */
+        newsletterEmailApproval?: boolean;
+        /** @description Permission to SMS Newsletter. */
+        newsletterSmsApproval?: boolean;
+        /** @description Discount group ID. */
+        clientGroupDiscountNumber?: number;
+        /** @description Field used for identifying request-response pairs for the endpoint. */
+        requestReference?: string;
+        /** @description List of shops where a customer agreed or didn't agree to receive email newsletter. */
+        newsletterEmailApprovalsData?: {
+            /** @description Permission to E-mail Newsletter. */
+            inNewsletterEmailApproval?: "y" | "n";
+            /** @description Shop Id */
+            shopId?: number;
+        }[];
+        /** @description List of shops where a customer agreed or didn't agree to receive sms newsletter. */
+        newsletterSmsApprovalsData?: {
+            /** @description Permission to SMS Newsletter. */
+            inNewsletterSmsApproval?: "y" | "n";
+            /** @description Shop Id */
+            shopId?: number;
+        }[];
+        /** @description Is the customer active */
+        clientActive?: boolean;
+        /** @description Number of days to pay for invoice */
+        numberOfDaysToPay?: number;
+        /** @description The parameter stores information about who acquired the customer */
+        affiliateLogin?: string;
+        /** @description ID of a partner who acquired a given customer. */
+        affiliateId?: number;
+        /** @description Notes from customer. */
+        clientNote?: string;
+    }[];
+};
+
+export type PutClientsPayerAddressParams = {
+    payers: {
+        /** @description Unique client's number. */
+        clientId: string;
+        /** @description Buyer's address id. */
+        payerAddressId: string;
+        /** @description Buyer's first name. */
+        payerAddressFirstName?: string;
+        /** @description Buyer's last name. */
+        payerAddressLastName?: string;
+        /** @description Company name. */
+        payerAddressFirm?: string;
+        /** @description Customer VAT ID. */
+        payerAddressNip?: string;
+        /** @description Buyer's street name and house number. */
+        payerAddressStreet?: string;
+        /** @description Buyer's postal code. */
+        payerAddressZipCode?: string;
+        /** @description Buyer's city. */
+        payerAddressCity?: string;
+        /** @description Country code in the ISO 3166-1 A2 standard. */
+        payerAddressCountryId?: string;
+        /** @description Buyer's telephone number. */
+        payerAddressPhone?: string;
+    }[];
+};
+
+export type PutCpaCampaignParams = {
+    campaigns: {
+        /** @description Snippet campaign id */
+        id: number | null;
+        /** @description Snippet campaign name */
+        name?: string;
+        /** @description Snippet campaign internal description */
+        description?: string;
+        /** @description Shop ids where code snippets are active 1 ] */
+        shop?: number[] | null;
+        /** @description Whether the snippet is active */
+        active?: "y" | "n";
+        /** @description Number of CPA programs associated with the campaign. */
+        readonly cpaCount?: number | null;
+        /** @description Number of active CPA programs associated with the campaign. */
+        readonly activeCpaCount?: number | null;
+    }[];
+};
+
+export type PutCpaParams = {
+    cpa: ({
+        /** @description Id of the CPA program. */
+        id: number | null;
+        /** @description The CPA program name. */
+        name?: string;
+        /** @description Whether the CPA program is active. */
+        active?: "y" | "n";
+        /** @description CPA campaign id */
+        campaign?: number;
+        /** @description CPA program page settings simple or advanced, depending on the mode. */
+        pageSettings?: (Omit<{
+            /** @description Whether to display to all sites. */
+            mode: "simple" | "advanced";
+        }, "mode"> & {
+            /** @description Whether to display to all sites. */
+            mode?: "simple";
+            /** @description The place where the cpa code is loaded. (For "all" mode)|null} */
+            zone?: "head" | "bodyBegin" | "bodyEnd" | null;
+            /** @description Snippet content for each language. (For "all" mode) */
+            body?: {
+                /** @description Language code. */
+                lang?: string;
+                /** @example Hello world */
+                body?: string;
+            }[] | null;
+        }) | (Omit<{
+            /** @description Whether to display to all sites. */
+            mode: "simple" | "advanced";
+        }, "mode"> & {
+            /** @description Whether to display to all sites. */
+            mode?: "advanced";
+            /** @description Page setting for advance mode */
+            pages?: {
+                /** @enum {string} */
+                active?: "y" | "n";
+                /** @enum {string} */
+                page?: "home" | "basket" | "checkout_payment_delivery" | "checkout_confirmation" | "new_order_placement" | "order_details" | "navigation" | "product_details" | "search_results" | "after_order_place" | "mailing_subscribe" | "other_pages";
+                /** @description The place where the cpa code is loaded. (For "all" mode) */
+                zone?: "head" | "bodyBegin" | "bodyEnd";
+                body?: {
+                    /** @description Language code. */
+                    lang?: string;
+                    /** @example Hello world */
+                    body?: string;
+                }[];
+            }[];
+        });
+        display?: {
+            /** @description Type of customers to whom to display the snippet */
+            clientType?: "all" | "unregistered" | "registered" | "retailer" | "wholesaler";
+            /** @description Whether to display only for newsletter visitors. */
+            newsletter?: "y" | "n" | "all";
+            /** @description Whether to display the code snippet only for customers who have placed an order */
+            hasOrders?: "y" | "n" | "all";
+            /** @description Display only after entering rebate code */
+            useRebateCode?: "y" | "n" | "all";
+        };
+        /** @description Snippet entry source filter. */
+        sources?: {
+            direct?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            search?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            advert?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            priceComparers?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            affiliate?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            cpa?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            newsletter?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            social?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            page?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+        };
+        /** @description List of variables that can be used in a body template. */
+        variables?: {
+            name?: string;
+            /** @enum {string} */
+            source?: "session" | "cookie";
+        }[];
+    } & {
+        /** @example null */
+        id: number | null;
+    })[];
+};
+
+export type PutSnippetsParams = {
+    snippets: ({
+        /** @description Id of the code snippet. */
+        id: number | null;
+        /** @description The snippet name. */
+        name?: string;
+        /** @description Whether the snippet is active. */
+        active?: "y" | "n";
+        /** @description Snippet campaign id */
+        campaign?: number;
+        dateBegin?: {
+            /** @description Whether date condition is active */
+            defined?: "y" | "n";
+            /** Format: date
+             * @description Date of snippet activation */
+            date?: string | null;
+        } & {
+            /** @description Automatic shutdown control */
+            autoBlock?: "y" | "n";
+        };
+        /** @description Filter to control snippet activation. */
+        dateEnd?: {
+            /** @description Whether date condition is active */
+            defined?: "y" | "n";
+            /** Format: date
+             * @description Date of snippet activation */
+            date?: string | null;
+        };
+        /** @description Code snippet type. */
+        type?: "html" | "javascript" | "cgi";
+        /** @description Whether to load contents asynchronously via XHR request. */
+        useAjax?: "y" | "n";
+        /** @description Url. */
+        link?: string;
+        /** @description Content waiting time (timeout) in seconds. */
+        timeout?: number;
+        /** @description The place where the code snippet is loaded. */
+        zone?: "head" | "bodyBegin" | "bodyEnd";
+        /** @description The order in which the code snippet will be displayed. */
+        order?: number;
+        /** @description Snippet content for each language. */
+        body?: {
+            /** @description Language code. */
+            lang?: string;
+            /** @example Hello world */
+            body?: string;
+        }[];
+        display?: {
+            /** @description Type of customers to whom to display the snippet */
+            clientType?: "all" | "unregistered" | "registered" | "retailer" | "wholesaler";
+            /** @description Whether to display only for newsletter visitors. */
+            newsletter?: "y" | "n" | "all";
+            /** @description Whether to display the code snippet only for customers who have placed an order */
+            hasOrders?: "y" | "n" | "all";
+            /** @description Display only after entering rebate code */
+            useRebateCode?: "y" | "n" | "all";
+        } & {
+            /** @description Display on desktop screens */
+            screen?: "y" | "n";
+            /** @description Display on mobile tablets */
+            tablet?: "y" | "n";
+            /** @description Display on mobile phones */
+            phone?: "y" | "n";
+        };
+        pages?: {
+            /** @description Whether to display to all sites. */
+            all?: "y" | "n";
+            /** @description List of selected pages where snippet shows (works for all=n mode). If passed, the url should be omitted. */
+            pages?: ("home" | "basket" | "checkout_payment_delivery" | "checkout_confirmation" | "new_order_placement" | "order_details" | "navigation" | "product_details" | "search_results" | "after_order_place" | "mailing_subscribe" | "payment_success" | "payment_error" | "payment_pending" | "other_pages")[];
+            /** @description List of selected url (works for all=n mode) If passed, pages should be omitted. */
+            url?: string[];
+        };
+        /** @description Snippet entry source filter. */
+        sources?: {
+            direct?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id: number | null;
+            } | null;
+            search?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            advert?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            priceComparers?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            affiliate?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            cpa?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            newsletter?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            social?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+            page?: {
+                /** @description Whether source filter is active */
+                active?: "y" | "n";
+                /** @description Id of service of given source */
+                id?: number | null;
+            } | null;
+        };
+        /** @description Whether the snippet is marked as deleted. */
+        readonly deleted?: "y" | "n";
+        /** @description The number of cookies associated with the snippet. */
+        readonly cookiesCount?: number;
+    } & {
+        /** @example null */
+        id: number | null;
+    })[];
+};
+
+export type PutSnippetsCampaignParams = {
+    campaigns: {
+        /** @description Snippet campaign id */
+        id: number | null;
+        /** @description Snippet campaign name */
+        name?: string;
+        /** @description Snippet campaign internal description */
+        description?: string;
+        /** @description Shop ids where code snippets are active 1 ] */
+        shop?: number[] | null;
+        /** @description Whether the snippet is active */
+        active?: "y" | "n";
+        /** @description Whether the snippet campaign is deleted */
+        readonly deleted?: "y" | "n";
+        /** @description Snippet order. */
+        order?: number;
+        /** @description Number of code snippets associated with the campaign. */
+        readonly snippetCount?: number | null;
+        /** @description Number of active code snippets associated with the campaign. */
+        readonly activeSnippetCount?: number | null;
+        configVariables?: {
+            /** @description Key of config value. */
+            key?: string;
+            /** @description Name of config item. */
+            readonly name?: string;
+            /** @description Value of config item. */
+            value?: string;
+        }[];
+    }[];
+};
+
+export type PutSnippetsCookiesParams = {
+    cookies: ({
+        /** @description Snippet */
+        id: number | null;
+        /** @description Id of the snippet code. */
+        snippetId?: number;
+        /** @description Name of the cookie vendor. */
+        deliverer?: string;
+        /** @description Category of the cookie */
+        category?: "analytics" | "marketing" | "functional";
+        /** @description Cookie description for each language. */
+        description?: {
+            /** @description Language code. */
+            lang?: string;
+            /** @example Hello world */
+            body?: string;
+        }[];
+        /** @description Name of the cookie. */
+        name?: string | null;
+        /** @description Type of the cookie|null} */
+        type?: "cookie" | "pixel" | "localStorage" | null;
+        /** @description Cookie lifetime mode|null} */
+        lifeTimeType?: "temporary" | "days" | "minutes" | null;
+        /** @description Cookie lifetime */
+        lifeTime?: number | null;
+    } & {
+        /** @example null */
+        id: number | null;
+    })[];
+};
+
+export type PutEntriesParams = {
+    /** @description Entry ID */
+    entryId: number;
+    /** @description Shop Id */
+    shopId: number;
+    /** @description Date of creating an entry */
+    date?: string;
+    /** @description Entry visibility */
+    visible?: "y" | "n";
+    /** @description List of pages on which the entry is to be published */
+    visibleOnSitesList?: {
+        /** @description Page ID */
+        siteId?: string;
+    }[];
+    /** @description Products list. */
+    products?: {
+        /** @description Merchandise identifier */
+        productId?: number;
+    }[];
+    /** @description Photo */
+    pictureData?: {
+        /** @description Photo encoded with Base64 */
+        pictureBase64?: string;
+        /** @description Photo format */
+        pictureFormat?: "jpg" | "jpeg" | "png" | "gif";
+    };
+    /** @description Determines whether to delete an entry photo */
+    deletePicture?: "y" | "n";
+    /** @description Element including entry content in selected languages */
+    langs?: {
+        /** @description Language ID */
+        langId?: string;
+        /** @description Name on the page */
+        title?: string;
+        /** @description short description */
+        shortDescription?: string;
+        /** @description Long description */
+        longDescription?: string;
+        /** @description Blog post URL */
+        blogUrl?: string;
+        /** @description News item URL */
+        newsUrl?: string;
+    }[];
+    /** @description Type of title and shortcut linking: fullContentLink - link to the subpage with full content, givenUrlLink - link to the given URL, noLink - static element */
+    titleLinkType?: "fullContentLink" | "givenUrlLink" | "noLink";
+    /** @description Provided URL (for link to specified URL option) */
+    link?: string;
+};
+
+export type PutResponsibilityEntitiesParams = {
+    entities: {
+        /** @description Identificator of the entity. */
+        id?: number;
+        /** @description Short name/code. */
+        code: string;
+        /** @description Full name. */
+        name?: string;
+        /** @description E-mail address. */
+        mail?: string;
+        /** @description Street. */
+        street?: string;
+        /** @description Building number. */
+        number?: string | null;
+        /** @description Apartment number. */
+        subnumber?: string | null;
+        /** @description Zipcode. */
+        zipcode?: string;
+        /** @description City. */
+        city?: string;
+        /** @description 2-letter ISO country code. */
+        country?: string;
+        /** @description Phone number. */
+        phone?: string | null;
+        /** @description Additional description. */
+        description?: string | null;
+        /** @description URL to contact page. */
+        url?: string | null;
+    }[];
+    /** @description Type of entity */
+    type: "producer" | "person";
+};
+
+export type PutSystemCurrenciesParams = {
+    currencies: {
+        /** @description Currency code in ISO 4217 standard. */
+        id: string;
+        /** @description Currency exchange rate. Maximal value is 10000. */
+        rate: number;
+        /** @description Currency smaller unit. */
+        scale: number;
+    }[];
+};
+
+export type PutVouchersParams = {
+    /** @description List of vouchers to edit */
+    vouchers: {
+        /** @description Voucher ID */
+        id: number;
+        /** @description Number. */
+        number?: string;
+        /** @description Name. */
+        name?: string;
+        /** @description Voucher expiration date */
+        expirationDate?: string;
+        /** @description Balance operation type, possible values: - set - balance positioning of funds, - add - add funds to balance, - subtract - subtract funds from balance. */
+        balanceOperationType?: "set" | "add" | "subtract";
+        /** @description Voucher balance */
+        balance?: {
+            /** @description Available balance */
+            amount?: number;
+            /** @description Currency. */
+            currency?: string;
+        };
+        /** @description List of shops the voucher is active in */
+        shops?: number[];
+        /** @example note */
+        note?: string;
+        /** @description Status, possible values: - used - used, - unused - unused, */
+        status?: "used" | "unused";
+    }[];
+};
+
+export type PutProductsBrandsParams = {
+    /** @description List of manufacturers assigned to sought products. */
+    producers: {
+        /** @description Id */
+        id: number;
+        /** @description Name in panel */
+        nameInPanel?: string;
+        imagesSettings?: {
+            /** @description Images source type. Available values: base64 - image data encoded using the base64 algorithm (default), url - image file link */
+            sourceType?: "base64" | "url";
+        };
+        languagesConfigurations?: {
+            productsListImagesConfiguration?: {
+                /** @description Type of graphics */
+                graphicType?: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic?: string;
+                /** @description #!GrafikaDlaEkranowKomputera#! */
+                pcGraphic?: string;
+                /** @description Graphics for tablets */
+                tabletGraphic?: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic?: string;
+            };
+            /** @description Graphic displayed on product card */
+            productCardImagesConfiguration?: {
+                /** @description Type of graphics */
+                graphicType?: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic?: string;
+                /** @description #!GrafikaDlaEkranowKomputera#! */
+                pcGraphic?: string;
+                /** @description Graphics for tablets */
+                tabletGraphic?: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic?: string;
+            };
+            /** @description Language ID (code in ISO 639-2). */
+            languageId?: string;
+            shopsConfigurations?: {
+                /** @description Name. */
+                name?: string;
+                /** @description Name displayed in the website header */
+                headerName?: string;
+                /** @description Description displayed at the top of products list */
+                descriptionTop?: string;
+                /** @description Description displayed at the bottom of products list */
+                descriptionBottom?: string;
+                /** @description Shop Id */
+                shopId?: number;
+                /** @description Products display settings */
+                view?: "default" | "own";
+                /** @description Enable customers to change sorting */
+                enableSort?: boolean;
+                /** @description Enable customers to change the number of products displayed */
+                enableChangeDisplayCount?: boolean;
+                /** @description Number of displayed products */
+                numberOfProductsGrid?: number;
+                /** @description Selected sorting mode */
+                sortModeGrid?: "d_relevance" | "d_date" | "a_date" | "d_priority" | "a_priority" | "a_priorityname" | "d_priorityname" | "d_priorityonly" | "a_priorityonly" | "a_name" | "d_name" | "a_price" | "d_price";
+                /** @description Meta settings */
+                metaSettings?: "auto" | "custom";
+                /** @description Title */
+                metaTitle?: string;
+                /** @description Description */
+                metaDescription?: string;
+                /** @description Keywords */
+                metaKeywords?: string;
+                /** @description Meta robots settings for index attribute */
+                metaRobotsSettingsIndex?: "auto" | "index" | "noindex";
+                /** @description Meta robots settings for follow attribute */
+                metaRobotsSettingsFollow?: "auto" | "follow" | "nofollow";
+            }[];
+        }[];
+    }[];
+};
+
+export type PutProductsDescriptionsParams = {
+    /** @description Products list. */
+    products: {
+        productIdent: {
+            /** @description Identifier type. */
+            productIdentType?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue?: string;
+        };
+        /** @description Array of language-dependent elements. */
+        productDescriptionsLangData?: {
+            /** @description Language ID */
+            langId?: string;
+            /** @description Shop Id */
+            shopId?: number;
+            /** @description Product name. */
+            productName?: string;
+            /** @description Product name for auction service. */
+            productAuctionName?: string;
+            /** @description Product name for price comparison websites */
+            productPriceComparerName?: string;
+            /** @description Short product description. */
+            productDescription?: string;
+            /** @description Long product description. */
+            productLongDescription?: string;
+            productDescriptionSections?: {
+                descriptionSections?: {
+                    section_1?: {
+                        /** @enum {string} */
+                        type: "text" | "photo" | "video" | "html";
+                        /** @description HTML content depending on the type */
+                        content: string;
+                    };
+                    section_2?: {
+                        /** @enum {string} */
+                        type: "text" | "photo" | "video" | "html";
+                        /** @description HTML content depending on the type */
+                        content: string;
+                    };
+                }[];
+            };
+            /** @description DEPRECATED. This parameter is deprecated. Long product description for external listings. */
+            productAuctionLongDescription?: string;
+            /** @description Product meta title. */
+            productMetaTitle?: string;
+            /** @description Product meta description. */
+            productMetaDescription?: string;
+            /** @description Product meta keywords. */
+            productMetaKeywords?: string;
+        }[];
+        /** @description Product data for auction services */
+        productAuctionDescriptionsData?: {
+            /** @description Auction system ID */
+            productAuctionId?: string;
+            /** @description Auction site ID */
+            productAuctionSiteId?: string;
+            /** @description Product name for auction service. */
+            productAuctionName?: string;
+            /** @description Subtitle for auction service */
+            productAuctionAdditionalName?: string;
+            /** @description Product description for marketplaces */
+            productAuctionDescription?: string;
+        }[];
+    }[];
+};
+
+export type PostProductsBrandsParams = {
+    /** @description List of manufacturers assigned to sought products. */
+    producers: {
+        /** @description Name in panel */
+        nameInPanel: string;
+        imagesSettings?: {
+            /** @description Images source type. Available values: base64 - image data encoded using the base64 algorithm (default), url - image file link */
+            sourceType?: "base64" | "url";
+        };
+        languagesConfigurations?: {
+            productsListImagesConfiguration?: {
+                /** @description Type of graphics */
+                graphicType?: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic?: string;
+                /** @description #!GrafikaDlaEkranowKomputera#! */
+                pcGraphic?: string;
+                /** @description Graphics for tablets */
+                tabletGraphic?: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic?: string;
+            };
+            /** @description Graphic displayed on product card */
+            productCardImagesConfiguration?: {
+                /** @description Type of graphics */
+                graphicType?: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic?: string;
+                /** @description #!GrafikaDlaEkranowKomputera#! */
+                pcGraphic?: string;
+                /** @description Graphics for tablets */
+                tabletGraphic?: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic?: string;
+            };
+            /** @description Language ID (code in ISO 639-2). */
+            languageId?: string;
+            shopsConfigurations?: {
+                /** @description Name. */
+                name?: string;
+                /** @description Name displayed in the website header */
+                headerName?: string;
+                /** @description Description displayed at the top of products list */
+                descriptionTop?: string;
+                /** @description Description displayed at the bottom of products list */
+                descriptionBottom?: string;
+                /** @description Shop Id */
+                shopId?: number;
+                /** @description Products display settings */
+                view?: "default" | "own";
+                /** @description Enable customers to change sorting */
+                enableSort?: boolean;
+                /** @description Enable customers to change the number of products displayed */
+                enableChangeDisplayCount?: boolean;
+                /** @description Number of displayed products */
+                numberOfProductsGrid?: number;
+                /** @description Selected sorting mode */
+                sortModeGrid?: "d_relevance" | "d_date" | "a_date" | "d_priority" | "a_priority" | "a_priorityname" | "d_priorityname" | "d_priorityonly" | "a_priorityonly" | "a_name" | "d_name" | "a_price" | "d_price";
+                /** @description Meta settings */
+                metaSettings?: "auto" | "custom";
+                /** @description Title */
+                metaTitle?: string;
+                /** @description Description */
+                metaDescription?: string;
+                /** @description Keywords */
+                metaKeywords?: string;
+                /** @description Array */
+                metaRobotsSettingsIndex?: "auto" | "index" | "noindex";
+                /** @description Array */
+                metaRobotsSettingsFollow?: "auto" | "follow" | "nofollow";
+            }[];
+        }[];
+    }[];
+};
+
+export type PostProductsOpinionsParams = {
+    /** @description List of reviews */
+    opinions: {
+        /** @example createDate */
+        createDate?: string;
+        confirmed?: boolean;
+        /** @example rating */
+        rating?: string;
+        /** @example content */
+        content?: string;
+        /** @description Customer language ID. */
+        language?: string;
+        /** @example picture */
+        picture?: string;
+        /** @description Shop Id */
+        shopId?: number;
+        /** @example host */
+        host?: string;
+        /** @description Customer data. */
+        clients?: {
+            /** */
+            type?: "id" | "login" | "codeExtern";
+            /** @example value */
+            value?: string;
+            /** @description Name. */
+            name?: string;
+            /** @description E-mail address */
+            email?: string;
+        };
+        /** @example 1 */
+        scorePositive?: number;
+        /** @example 1 */
+        scoreNegative?: number;
+        /** @description Products list. */
+        products: {
+            /** */
+            type?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @example value */
+            value?: string;
+        };
+        /** @description Order serial number. */
+        orderSerialNumber?: number;
+        /** @description Reply to an opinion */
+        shopAnswer?: string;
+        /** @description Opinion confirmed with purchase */
+        opinionConfirmedByPurchase?: boolean;
+    }[];
+};
+
+export type PutProductsOpinionsParams = {
+    /** @example 1 */
+    id: number;
+    /** */
+    confirmed?: "y" | "n";
+    /** */
+    rating?: "1" | "2" | "3" | "4" | "5";
+    /** @example content */
+    content?: string;
+    /** @description Customer language ID. */
+    language?: string;
+    /** @description Reply to an opinion */
+    shopAnswer?: string;
+    /** @example picture */
+    picture?: string;
+    /** @description Opinion confirmed with purchase */
+    opinionConfirmedByPurchase?: boolean;
+};
+
+export type PutProductsGroupsMainProductParams = {
+    groups: {
+        productIdent: {
+            /** @description Identifier type. */
+            productIdentType?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue?: string;
+        };
+    }[];
+};
+
+export type PostProductsMarketingPromotionParams = {
+    /** @description Promotion name */
+    promotionName: string;
+    /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+    shopsIds: number[];
+    /** @description Special zones */
+    marketingZones: {
+        /** @description Reduced price */
+        promotion?: "y" | "n";
+        /** @description Sale */
+        discount?: "y" | "n";
+        /** @description Distinguished product */
+        distinguished?: "y" | "n";
+        /** @description Special product */
+        special?: "y" | "n";
+        /** @description New */
+        new?: "y" | "n";
+    };
+    /** @description Promotional price settings */
+    newPriceSettings?: {
+        /** */
+        type?: "retail" | "wholesale" | "pos";
+        /** @description Discount value */
+        discountValue?: number;
+        /** @description ISO 4217 currency */
+        currencyId?: string;
+        /** @description Edition mode */
+        mode?: "percent_diff" | "amount_diff" | "amount_set";
+        /** @description Fractional price value */
+        endValue?: string;
+    };
+    /** @description Promotion start date in Y-m-d H:i:s format */
+    startDate?: string;
+    /** @description Promotion end date in Y-m-d H:i:s format */
+    endDate?: string;
+    /** @description Change the status of hidden products to visible while starting the special offer */
+    changeProductsToVisibleWhileStarting?: "y" | "n";
+    /** @description After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) */
+    removeProductsAfterStockLevelRunsDown?: "y" | "n";
+    /** @description After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) */
+    removeProductsAfterOwnStockLevelRunsDown?: "y" | "n";
+    /** @description Reduce based on price (net/gross) */
+    reduceBasingPrice?: "net" | "gross";
+    /** @description Price reduction calculation method */
+    calculationMethod?: "sum" | "chooseAdvantageous";
+    /** @description Elements to be affected by the promotion */
+    promotionElements?: {
+        /** */
+        elementType?: "product" | "series" | "producer" | "category" | "menu";
+        /** @description Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
+        elementId?: string;
+    }[];
+};
+
+export type PutProductsMarketingZonesParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Identifier type. */
+        ident: {
+            /** */
+            type?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description Value. */
+            value?: string;
+        };
+        /** */
+        assignment_mode?: "auto" | "manual";
+        marketing_zones?: {
+            /** @description Promoted product. */
+            promotion?: "yes" | "no";
+            /** @description Product on sale. */
+            discount?: "yes" | "no";
+            /** @description Distinguished product. */
+            distinguished?: "yes" | "no";
+            /** @description Special product. */
+            special?: "yes" | "no";
+        };
+        /** @description Marketing hotspots in shops */
+        shops?: {
+            /** @description Shop Id */
+            shop_id?: number;
+            /** */
+            assignment_mode?: "auto" | "manual";
+            marketing_zones?: {
+                /** @description Promoted product. */
+                promotion?: "yes" | "no";
+                /** @description Product on sale. */
+                discount?: "yes" | "no";
+                /** @description Distinguished product. */
+                distinguished?: "yes" | "no";
+                /** @description Special product. */
+                special?: "yes" | "no";
+            };
+        }[];
+    }[];
+    /** */
+    assignment_mode?: "auto" | "manual";
+    marketing_zones?: {
+        /** @description Promoted product. */
+        promotion?: "yes" | "no";
+        /** @description Product on sale. */
+        discount?: "yes" | "no";
+        /** @description Distinguished product. */
+        distinguished?: "yes" | "no";
+        /** @description Special product. */
+        special?: "yes" | "no";
+    };
+    /** @description Marketing hotspots in shops */
+    shops?: {
+        /** @description Shop Id */
+        shop_id?: number;
+        /** */
+        assignment_mode?: "auto" | "manual";
+        marketing_zones?: {
+            /** @description Promoted product. */
+            promotion?: "yes" | "no";
+            /** @description Product on sale. */
+            discount?: "yes" | "no";
+            /** @description Distinguished product. */
+            distinguished?: "yes" | "no";
+            /** @description Special product. */
+            special?: "yes" | "no";
+        };
+    }[];
+};
+
+export type PutProductsImagesParams = {
+    productsImagesSettings?: {
+        /** @description How to provide information about images of products. */
+        productsImagesSourceType?: "base64" | "url";
+        /** @description Whether images for products should be scalable. */
+        productsImagesApplyMacro?: boolean;
+    };
+    /** @description Information on product images */
+    productsImages: {
+        productIdent: {
+            /** @description ID value. */
+            identValue?: string;
+            /** @description Identifier type. */
+            productIdentType?: "id" | "index" | "codeExtern" | "codeProducer";
+        };
+        /** @description Shop Id */
+        shopId?: number;
+        /** @description List of shops for which photos will be added (including shop provided in shopId). If parameter is empty or not provided, photos will be added to all shops. */
+        otherShopsForPic?: number[];
+        /** @description Product photos details. */
+        productImages?: {
+            /** @description Product photo. */
+            productImageSource?: string;
+            /** @description A product photo's number. */
+            productImageNumber?: number;
+            /** @description Picture priority */
+            productImagePriority?: number;
+            /** @description Flag marking if a picture should be deleted. */
+            deleteProductImage?: boolean;
+        }[];
+        /** @description Product icons list. */
+        productIcons?: {
+            /** @description Photo in the goods list. */
+            productIconSource?: string;
+            /** @description Flag indicating whether to remove the product icon. */
+            deleteProductIcon?: boolean;
+            /** @description Icon type. */
+            productIconType?: "shop" | "auction" | "group";
+        }[];
+        /** @description Product settings. */
+        productImagesSettings?: {
+            /** @description How to provide information about images of product. */
+            productImagesSourceType?: "base64" | "url";
+            /** @description Whether images for products should be scalable. */
+            productImagesApplyMacro?: boolean;
+        };
+    }[];
+};
+
+export type PutProductsSeriesParams = {
+    /** @description Series list. */
+    series: {
+        /** @description Id */
+        id: number;
+        /** @description Name in panel */
+        nameInPanel?: string;
+        shopsConfigurations?: {
+            /** @description Shop Id */
+            shopId?: number;
+            /** @description Customer language ID. */
+            language?: string;
+            /** @description Name on the page */
+            nameOnPage?: string;
+            /** @description Name displayed in the website header */
+            headerName?: string;
+            /** @description Description */
+            description?: string;
+            /** @description Products display settings */
+            view?: "default" | "own";
+            /** @description Enable customers to change sorting */
+            enableSort?: boolean;
+            /** @description Enable customers to change the number of products displayed */
+            enableChangeDisplayCount?: boolean;
+            /** @description Number of displayed products */
+            numberOfProductsGrid?: number;
+            /** @description Selected sorting mode */
+            sortModeGrid?: "d_relevance" | "d_date" | "a_date" | "d_priority" | "a_priority" | "a_priorityname" | "d_priorityname" | "d_priorityonly" | "a_priorityonly" | "a_name" | "d_name" | "a_price" | "d_price";
+            imagesConfiguration?: {
+                /** @description Type of graphics */
+                graphicType?: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic?: string;
+                /** @description Graphics for computer screens */
+                pcGraphic?: string;
+                /** @description Graphics for tablets */
+                tabletGraphic?: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic?: string;
+            };
+            /** @description Meta settings */
+            metaSettings?: "auto" | "custom";
+            /** @description Title */
+            metaTitle?: string;
+            /** @description Description */
+            metaDescription?: string;
+            /** @description Keywords */
+            metaKeywords?: string;
+            /** @description Meta robots settings for index attribute */
+            metaRobotsSettingsIndex?: "auto" | "index" | "noindex";
+            /** @description Meta robots settings for follow attribute */
+            metaRobotsSettingsFollow?: "auto" | "follow" | "nofollow";
+        }[];
+    }[];
+};
+
+export type PutProductsSizesParams = {
+    /** @description Edition mode */
+    mode?: "edit" | "add" | "replace";
+    /** @description Product parameters recognized by product ID or its sizes */
+    sizesProductsData: {
+        /** @description Product IAI code */
+        productId: number;
+        /** @description List of sizes */
+        sizes: {
+            /** @description Size identifier */
+            sizeId?: string;
+            /** @description Size name */
+            sizePanelName?: string;
+            /** @description Parameters set for sizes. */
+            sizeData?: {
+                /** @description Weight. */
+                productWeight?: number;
+                /** @description Producer code */
+                codeProducer?: string;
+                /** @description External product system code for size. */
+                productSizeCodeExternal?: string;
+                /** @description Parameters set for shops */
+                sitesData?: {
+                    /** @description Page ID */
+                    siteId?: number;
+                    /** @description Prices in shops */
+                    productPrices?: {
+                        /** @description Gross price */
+                        productRetailPrice?: number;
+                        /** @description Wholesale price */
+                        productWholesalePrice?: number;
+                        /** @description Minimal price */
+                        productMinimalPrice?: number;
+                        /** @description Recommended retail price */
+                        productSuggestedPrice?: number;
+                    };
+                }[];
+            };
+        }[];
+    }[];
+    /** @description Product parameters recognized by index */
+    indexesData?: {
+        /** @description Product index. */
+        sizeIndex?: string;
+        /** @description Parameters set for sizes. */
+        sizeData?: {
+            /** @description Weight. */
+            productWeight?: number;
+            /** @description Producer code */
+            codeProducer?: string;
+            /** @description External product system code for size. */
+            productSizeCodeExternal?: string;
+            /** @description Parameters set for shops */
+            sitesData?: {
+                /** @description Page ID */
+                siteId?: number;
+                prices?: {
+                    /** @description Retail price */
+                    productPriceRetail?: number;
+                    /** @description Wholesale price */
+                    productPriceWholesale?: number;
+                    /** @description Minimal price for product. */
+                    productSearchPriceMin?: number;
+                    /** @description Recommended retail price */
+                    productPriceSuggested?: number;
+                };
+            }[];
+        };
+    }[];
+};
+
+export type PutProductsStockQuantityParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Product index */
+        productIndex?: string;
+        /** @description Product size code producer */
+        productSizeCodeProducer?: string;
+        /** @description External product system code for size. */
+        productSizeCodeExternal: string;
+        /** @description Stock ID */
+        stockId: number;
+        /** @description Product stock quantity */
+        productSizeQuantity?: number;
+        /** @description Cost price */
+        productPurchasePrice?: number;
+        /** @description Net purchase price */
+        productPurchasePriceNet?: number;
+    }[];
+};
+
+export type PutProductsStocksParams = {
+    /** @description Products list. */
+    products: {
+        ident: {
+            /** */
+            identType?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue?: string;
+        };
+        /** @description List of sizes */
+        sizes: {
+            ident: {
+                /** */
+                identType?: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description ID value. */
+                identValue?: string;
+            };
+            /** @description Product quantity. */
+            quantity?: {
+                /** @description Stock operations. */
+                stocks?: {
+                    /** @description Stock ID. */
+                    stock_id?: number;
+                    quantity_operation?: {
+                        /** @description Operation type. */
+                        operation?: "set" | "add" | "substract";
+                        /** @description Product quantity. */
+                        quantity?: number;
+                    };
+                    /** @description Warehouse location ID. */
+                    location_id?: number;
+                    /** @description Warehouse location full path. Use a backslash (\) as a separator, for example:  M1\Section name\Location name. If location_id parameter is provided, the full warehouse location path will not be taken into account. */
+                    location_text_id?: string;
+                    /** @description Storage location code */
+                    location_code?: string;
+                    /** @description Additional locations. */
+                    additionalLocations?: {
+                        /** @description Element specifying the modification mode for additional locations. Available values: "add" - assignment of additional product location, "remove" - Remove the assignment of an additional location to the product. */
+                        additionalLocationSettings?: "add" | "remove";
+                        /** @description Warehouse location ID. */
+                        additionalLocationId?: number;
+                        /** @description Warehouse location full path. */
+                        additionalLocationTextId?: string;
+                        /** @description Storage location code */
+                        additionalLocationCode?: string;
+                    }[];
+                }[];
+            };
+        }[];
+        settings?: {
+            productIndent?: {
+                /** */
+                identType?: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description ID value. */
+                identValue?: string;
+            };
+            sizesIndent?: {
+                /** */
+                identType?: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description ID value. */
+                identValue?: string;
+            };
+        };
+        /** @description Error information. */
+        error?: {
+            /** @description Error code. */
+            faultCode?: number;
+            /** @description Error description. */
+            faultString?: string;
+        };
+    }[];
+};
+
+export type PutProductsSupplierCodeParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Product IAI code */
+        productId: number;
+        /** @description Suppliers data */
+        productDeliverers: {
+            /** @description Supplier ID. */
+            delivererId?: number;
+            /** @description Sizes available for products data. */
+            productSizes?: {
+                /** @description Size identifier */
+                sizeId?: string;
+                /** @description Supplier code for size */
+                sizeDelivererCode?: string;
+            }[];
+        }[];
+    }[];
+};
+
+export type PutProductsMarketingPromotionParams = {
+    /** @description Promotion ID */
+    promotionId: string;
+    /** @description Promotion name */
+    promotionName?: string;
+    /** @description List of stores IDs When mask is determined, this parameter is omitted. */
+    shopsIds?: number[];
+    /** @description Special zones */
+    marketingZones?: {
+        /** @description Reduced price */
+        promotion?: "y" | "n";
+        /** @description Sale */
+        discount?: "y" | "n";
+        /** @description Distinguished product */
+        distinguished?: "y" | "n";
+        /** @description Special product */
+        special?: "y" | "n";
+        /** @description New */
+        new?: "y" | "n";
+    };
+    /** @description Promotional price settings */
+    newPriceSettings?: {
+        /** */
+        type?: "retail" | "wholesale" | "pos";
+        /** @description Discount value */
+        discountValue?: number;
+        /** @description ISO 4217 currency */
+        currencyId?: string;
+        /** @description Edition mode */
+        mode?: "percent_diff" | "amount_diff" | "amount_set";
+        /** @description Fractional price value */
+        endValue?: string;
+    };
+    /** @description Promotion start date in Y-m-d H:i:s format */
+    startDate?: string;
+    /** @description Promotion end date in Y-m-d H:i:s format */
+    endDate?: string;
+    /** @description Change the status of hidden products to visible while starting the special offer */
+    changeProductsToVisibleWhileStarting?: "y" | "n";
+    /** @description After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) */
+    removeProductsAfterStockLevelRunsDown?: "y" | "n";
+    /** @description After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu) */
+    removeProductsAfterOwnStockLevelRunsDown?: "y" | "n";
+    /** @description Reduce based on price (net/gross) */
+    reduceBasingPrice?: "net" | "gross";
+    /** @description Price reduction calculation method */
+    calculationMethod?: "sum" | "chooseAdvantageous";
+    /** @description Specifies whether to remove all existing promotion elements */
+    removeAllPromotionElements?: "y" | "n";
+    /** @description Elements to be affected by the promotion */
+    promotionElements?: {
+        /** */
+        elementType?: "product" | "series" | "producer" | "category" | "menu";
+        /** @description Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
+        elementId?: string;
+    }[];
+};
+
+export type PutProductsOmnibusPricesParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Identifier type. */
+        ident: {
+            /** */
+            type?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description Value. */
+            value?: string;
+        };
+        /** @description List of sizes */
+        sizes?: {
+            /** @description Identifier type. */
+            ident?: {
+                /** */
+                type?: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description Value. */
+                value?: string;
+            };
+            /** @description Strikethrough price settings. */
+            omnibusPrices?: {
+                /** @description How to manage the lowest price before promotion. */
+                omnibusPriceManagement?: "automatic" | "manual";
+                /** @description Lowest retail price before active promotion (gross). */
+                omnibusPriceRetail?: number;
+                /** @description Lowest wholesale price before active promotion (gross). */
+                omnibusPriceWholesale?: number;
+            };
+            /** @description Strikethrough price settings for the page. */
+            shops?: {
+                /** @description Shop Id */
+                shopId?: number;
+                /** @description Strikethrough price settings. */
+                omnibusPrices?: {
+                    /** @description How to manage the lowest price before promotion. */
+                    omnibusPriceManagement?: "automatic" | "manual";
+                    /** @description Lowest retail price before active promotion (gross). */
+                    omnibusPriceRetail?: number;
+                    /** @description Lowest wholesale price before active promotion (gross). */
+                    omnibusPriceWholesale?: number;
+                };
+            }[];
+        }[];
+        /** @description Strikethrough price settings. */
+        omnibusPrices?: {
+            /** @description How to manage the lowest price before promotion. */
+            omnibusPriceManagement?: "automatic" | "manual";
+            /** @description Lowest retail price before active promotion (gross). */
+            omnibusPriceRetail?: number;
+            /** @description Lowest wholesale price before active promotion (gross). */
+            omnibusPriceWholesale?: number;
+        };
+        /** @description Strikethrough price settings for the page. */
+        shops?: {
+            /** @description Shop Id */
+            shopId?: number;
+            /** @description Strikethrough price settings. */
+            omnibusPrices?: {
+                /** @description How to manage the lowest price before promotion. */
+                omnibusPriceManagement?: "automatic" | "manual";
+                /** @description Lowest retail price before active promotion (gross). */
+                omnibusPriceRetail?: number;
+                /** @description Lowest wholesale price before active promotion (gross). */
+                omnibusPriceWholesale?: number;
+            };
+        }[];
+    }[];
+};
+
+export type PutProductsQuestionsParams = {
+    /** @description Question Board. */
+    questions: {
+        /** @description Question ID. */
+        id?: number;
+        /** @description Language of the question e.g. 'pol', 'eng'. */
+        lang?: string;
+        /** @description Your question(base64). */
+        question?: string;
+        /** @description Content of the answer(base64). */
+        answer?: string;
+        /** @description The date the question was created. */
+        dateAdd?: string;
+        /** @description The name and address of the host from which the question was added. */
+        host?: string;
+        /** @description Author. */
+        author?: string;
+        /** @description Stock keeping unit. */
+        productIdent?: {
+            /** @description Product IAI code */
+            productId?: string;
+            /** @description Identifier type. */
+            productIdentType?: "id" | "codeExtern" | "codeProducer";
+        };
+        /** @description Visibility: "y" - yes, "n" - no */
+        visible?: "n" | "y";
+        /** @description Priority. */
+        priority?: number;
+        /** @description Validate the question: "y" - yes, "n" - no */
+        confirmed?: "n" | "y";
+        /** @description Shop Id */
+        shopId?: number;
+        /** @description Date of response. */
+        answerDate?: string;
+        /** @description Response author. */
+        answerAuthor?: string;
+    }[];
+};
+
+export type PutProductsStrikethroughPricesParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Identifier type. */
+        ident: {
+            /** */
+            type?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description Value. */
+            value?: string;
+        };
+        /** @description List of sizes */
+        sizes?: {
+            /** @description Identifier type. */
+            ident?: {
+                /** */
+                type?: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description Value. */
+                value?: string;
+            };
+            stp_settings?: {
+                /** */
+                price_change_mode?: "amount_set" | "amount_diff" | "percent_diff";
+                /** */
+                price_change_basevalue?: "price" | "price_minimal" | "price_pos" | "price_srp" | "price_crossed";
+                /** @description Strikethrough retail price value change in relation to the starting price. */
+                retail_price_change_value?: number;
+                /** @description Strikethrough wholesale price value change in relation to the starting price. */
+                wholesale_price_change_value?: number;
+            };
+            /** @description Strikethrough price settings for the page. */
+            shops?: {
+                /** @description Shop Id */
+                shop_id?: number;
+                stp_settings?: {
+                    /** */
+                    price_change_mode?: "amount_set" | "amount_diff" | "percent_diff";
+                    /** */
+                    price_change_basevalue?: "price" | "price_minimal" | "price_pos" | "price_srp" | "price_crossed";
+                    /** @description Strikethrough retail price value change in relation to the starting price. */
+                    retail_price_change_value?: number;
+                    /** @description Strikethrough wholesale price value change in relation to the starting price. */
+                    wholesale_price_change_value?: number;
+                };
+            }[];
+        }[];
+        stp_settings?: {
+            /** */
+            price_change_mode?: "amount_set" | "amount_diff" | "percent_diff";
+            /** */
+            price_change_basevalue?: "price" | "price_minimal" | "price_pos" | "price_srp" | "price_crossed";
+            /** @description Strikethrough retail price value change in relation to the starting price. */
+            retail_price_change_value?: number;
+            /** @description Strikethrough wholesale price value change in relation to the starting price. */
+            wholesale_price_change_value?: number;
+        };
+        /** @description Strikethrough price settings for the page. */
+        shops?: {
+            /** @description Shop Id */
+            shop_id?: number;
+            stp_settings?: {
+                /** */
+                price_change_mode?: "amount_set" | "amount_diff" | "percent_diff";
+                /** */
+                price_change_basevalue?: "price" | "price_minimal" | "price_pos" | "price_srp" | "price_crossed";
+                /** @description Strikethrough retail price value change in relation to the starting price. */
+                retail_price_change_value?: number;
+                /** @description Strikethrough wholesale price value change in relation to the starting price. */
+                wholesale_price_change_value?: number;
+            };
+        }[];
+    }[];
+};
+
+export type PutProductsSupplierProductDataParams = {
+    /** @description Products list. */
+    products: {
+        /** @description Product IAI code */
+        productId: number;
+        /** @description Suppliers data */
+        productDeliverers?: {
+            /** @description Supplier ID. */
+            delivererId?: number;
+            /** @description Sizes available for products data. */
+            productSizes?: {
+                /** @description Size identifier */
+                sizeId?: string;
+                /** @description Supplier code */
+                sizeDelivererCode?: string;
+                /** @description Supplier's stock level */
+                quantity?: number;
+                /** @description Last purchase price */
+                lastPrice?: number;
+                /** @description Last net purchase price */
+                lastPriceNet?: number;
+            }[];
+            /** @description #!UstawieniePozwalaWyzerowacStanyMagazynowegoDostawcyDlaWszystkichRozmiarowDanegoProduktu!# */
+            clearAllQuantities?: boolean;
+        }[];
+    }[];
+};
+
 export { };

@@ -20,7 +20,7 @@ export type RequestProxyObject = {
 
 export type RequirementType = {
 	any: string[]|true
-} | string | ((RequestProxyObject) => string|false);
+} | string | ((arg: RequestProxyObject | Record<string,any>) => string|false);
 
 export type GatewayRequestProxyObject = {
 	gate: {
@@ -57,6 +57,11 @@ export interface Gateway<R = JSObject, P = JSObject> {
 	 * @description Set object as params
 	 */
 	setParams: (params: P) => this
+
+	/**
+	 * @description Checks if minimal parameters are provided. If not, throws an error.
+	 */
+	checkParams: () => void
 }
 
 export interface PagableGateway<T,R = JSObject, P = JSObject> extends Gateway<R, P> {

@@ -105,7 +105,7 @@ export type SearchOrdersResponse = {
             };
             clientPickupPointAddress?: {
                 /** @description Collection point ID. */
-                pickupPointId: string;
+                pickupPointId: number;
                 /** @description Town / City. */
                 city: string;
                 /** @description Address. */
@@ -183,6 +183,8 @@ export type SearchOrdersResponse = {
             apiFlag: "none" | "registered" | "realized" | "registered_pos" | "realized_pos" | "registration_fault";
             /** @description Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
             orderStatus: string;
+            /** @description Order status id. */
+            orderStatusId: number;
             /** @example dropshippingOrderStatus */
             dropshippingOrderStatus: string;
             /** @description Type of order confirmation. Confirmations listing: "none" - order unconfirmed , "email" - order confirmed by e-mail, "phone_client" - order confirmed by phone call made by client, "phone_service" - order confirmed by phone call made by staff, "postauction" - order confirmed by auction return page, "willingness" - confirmed by willingness to buy letter, "auctionfod" - confirmed by after-sales form Allegro. */
@@ -194,7 +196,7 @@ export type SearchOrdersResponse = {
             /** @example receivedDate */
             receivedDate: string;
             /** @description Order handling time in seconds. */
-            orderPrepareTime: number;
+            orderPrepareTime: number | null;
             /** @description Customer comments on order. */
             clientNoteToOrder: string;
             /** @description Customer remarks for courier. */
@@ -471,6 +473,8 @@ export type SearchOrdersResponse = {
             purchaseDate: string;
             /** @description Modification date in YYYY-MM-DD HH:MM:SS format . */
             orderChangeDate: string;
+            /** @description Subscription's identifier */
+            subscriptionId: number;
         };
         /** @description Information on error that occurred during gate call. */
         errors: FaultCodeString[];
@@ -5110,7 +5114,7 @@ export type GetCpaResponse = {
             useRebateCode: "y" | "n" | "all";
         };
         /** @description Snippet entry source filter. */
-        sources: {
+        sources?: {
             direct: {
                 /** @description Whether source filter is active */
                 active: "y" | "n";
@@ -5167,7 +5171,7 @@ export type GetCpaResponse = {
             } | null;
         };
         /** @description List of variables that can be used in a body template. */
-        variables: {
+        variables?: {
             name: string;
             /** @enum {string} */
             source: "session" | "cookie";
@@ -5800,8 +5804,354 @@ export type PostPaymentsRepaymentResponse = {
     };
 };
 
-export type PostResponsibilityEntitiesResponse = {
-    /** @description Results */
+export type PutProductsCategoriesResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description List of categories in which sought products are present. */
+        categories: {
+            /** @description Category id. */
+            id: number;
+            /** @description Parent category ID. */
+            parent_id?: number;
+            /** @description Priority. */
+            priority?: number;
+            /** @description Operation code. */
+            operation?: string;
+            /** @description Error code. Error description: "0" - Operation was successful, "1" - Login failure: invalid username or key, "4" - Shop has been blocked due to number of overdue invoices owed to IAI Company */
+            faultCode: number;
+            /** @description Error description. */
+            faultString: string;
+        }[];
+    };
+};
+
+export type GetCouriersResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Courier ID. */
+        courierId: number;
+        /** @description Courier name. */
+        name: string;
+        /** @description Information if a courier delivers to personal collection points. */
+        hasPickupPoints: boolean;
+    }[];
+} & PagedResponse;
+
+export type PutWmsSuppliersResponse = {
+    suppliersResponse: {
+        /** @description Id */
+        id: number;
+        /** @description Name. */
+        name: string;
+        /** @description Quantities of products */
+        productsCount: number;
+        /** @description E-mail address */
+        email: string | null;
+        /** @description Phone number. */
+        phone: string | null;
+        /** @description Fax */
+        fax: string | null;
+        /** @description Address. */
+        street: string | null;
+        /** @description ZIP / Post code */
+        zipCode: string | null;
+        /** @description Town / City. */
+        city: string | null;
+        /** @description Region ID */
+        country: number;
+        /** @description VAT no. */
+        taxCode: string | null;
+        /** @description Average delivery time */
+        averageDeliveryTime: {
+            /** @description value */
+            value?: number;
+            /** @description Unit */
+            unit?: string;
+        };
+        /** @description Description */
+        description: string | null;
+        /** @description Order preparation time for shipment */
+        orderCompletionTime: {
+            /** @description value */
+            value?: number;
+            /** @description Unit */
+            unit?: string;
+        };
+        /** @description Supplier working hours */
+        workDays: null | {
+            /** @description day */
+            day: number;
+            /** @example type */
+            type: string;
+            /** @description from */
+            from: string;
+            /** @description to */
+            to: string;
+        }[];
+        supplierErrors?: {
+            /** @description Error code. */
+            faultCode: string;
+            /** @description Error description. */
+            faultString: string;
+        }[];
+    }[];
+};
+
+export type PutWarrantiesResponse = {
+    warranties: {
+        /** @description Warranty ID. */
+        id: number;
+        /** @description Name. */
+        name: string;
+        /** @description Information on error that occurred during gate call. */
+        errors: FaultCodeString;
+    }[];
+};
+
+export type PutSystemUnitsResponse = {
+    result: {
+        unitsResponse: {
+            /** @description #!IdentyfikatorJednostki!# */
+            id: number;
+            /** @description Name in panel (limit of 30 characters) */
+            nameInPanel: string;
+            /** @description Accuracy (number of places after comma) */
+            precisionUnit: number;
+            /** @description Visibility */
+            visible: boolean | null;
+            /** @description Unit names */
+            descriptions: null | {
+                /** @description ISO-639-3 Language */
+                language: string;
+                /** @description Name (singular) (limit of 30 characters) */
+                nameSingular: string;
+                /** @description Name (plural) (limit of 30 characters) */
+                namePlural: string;
+                /** @description Name (by fractions) (limit of 30 characters) */
+                nameFractions: string;
+            }[];
+            unitErrors?: {
+                /** @description Error code. */
+                faultCode: string;
+                /** @description Error description. */
+                faultString: string;
+            }[];
+        }[];
+    };
+};
+
+export type PutSizesResponse = {
+    /** @description Element contains list of sizes. */
+    sizes: {
+        /** @description Error code. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+        /** @description Size group ID. */
+        group_id: number;
+        /** @description Size identifier. */
+        id: string | null;
+        /** @description Category plural name. */
+        name: string;
+        /** @description Size description. */
+        description: string | null;
+        /** @description Operation type: add, edit, del */
+        operation: string;
+        lang_data?: {
+            /** @description Language code. Codes are compliant with ISO-639-3 standard. */
+            lang_id: string;
+            /** @description Category plural name. */
+            name: string;
+        }[];
+    }[];
+};
+
+export type PutSizechartsResponse = {
+    sizeChartsResponse: {
+        /** @description Id */
+        id: number;
+        /** @description Name in panel */
+        nameInPanel: string;
+        /** @description Display mode */
+        displayMode: string;
+        languagesData: {
+            /** @description Customer language ID. */
+            language: string;
+            columns: {
+                /** @description Column number */
+                columnNumber: number;
+                /** @description Column name */
+                columnTitle: string;
+            }[];
+            /** @description List of sizes */
+            sizes: {
+                /** @description Size identifier */
+                sizeId: string;
+                /** @description Priority */
+                priority: number;
+                descriptions: {
+                    /** @description Column number */
+                    columnNumber: number;
+                    /** @description Value */
+                    value: string;
+                }[];
+            }[];
+        }[];
+        chartErrors?: {
+            /** @description Error code */
+            faultCode: string;
+            /** @description Error description */
+            faultString: string;
+        }[];
+    }[];
+};
+
+export type PutProductsParametersResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description ID of added or edited section, parameter or value. */
+        item_id: number;
+        /** @description Error code. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+};
+
+export type PutPaymentsResponse = {
+    headers: {
+        [name: string]: unknown;
+    };
+    content: never;
+};
+
+export type PostVouchersResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        /** @description Voucher ID */
+        id: number;
+        /** @description Number. */
+        number: string;
+        /** @description Error code. List of error codes: "0" - Operation was successful, "1" - Login failure: invalid username or key, "121" - Error occurred when adding a voucher */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+};
+
+export type PostEntriesResponse = {
+    result: {
+        /** @description Entry ID */
+        entryId: number;
+    };
+};
+
+export type PostClientsPayerAddressResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Information whether the operation was successful. */
+        resultStatus: boolean;
+        payerAddressResult: {
+            /** @description Buyer's address id. */
+            payerAddressId: number;
+        };
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString[];
+    }[];
+};
+
+export type PostClientsDeliveryAddressResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Information whether the operation was successful. */
+        resultStatus: boolean;
+        /** @description Object contains detailed information on performed operation. */
+        clientDeliveryAddressResult?: {
+            /** @description Delivery address ID. */
+            clientDeliveryAddressId: number;
+        };
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString[];
+    }[];
+};
+
+export type PutClientsResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Information whether the operation was successful. */
+        resultStatus: boolean;
+        /** @description Information, whether account was successfully edited, or about error, if one occurred. */
+        clientsResult?: {
+            /** @description Unique client's number. */
+            clientId: number;
+            /** @description Field used for identifying request-response pairs for the endpoint. */
+            requestReference?: string;
+        };
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString[];
+    }[];
+};
+
+export type PutClientsPayerAddressResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Information whether the operation was successful. */
+        resultStatus: boolean;
+        /** @description Payer address information */
+        payerAddressResult?: {
+            /** @description Unique client's number. */
+            clientId: number;
+            /** @description Buyer's address id. */
+            payerAddressId: number;
+        };
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString[];
+    }[];
+};
+
+type CmsResult = {
+    id: number;
+    errors: {
+        code: string;
+        field?: string | null;
+        value?: string | null;
+        message?: string;
+        uid?: string;
+    }[]
+}
+
+export type CmsResponse = {
+    errors?: [];
+    results: CmsResult[];
+};
+
+export type CmsCampaignResponse = {
+    errors?: [];
+    results: (CmsResult & { name: string })[];
+};
+
+export type GetCpaCampaignResponse = {
+    results: {
+        /** @description Snippet campaign id */
+        id: number | null;
+        /** @description Snippet campaign name */
+        name: string;
+        /** @description Snippet campaign internal description */
+        description: string;
+        /** @description Shop ids where code snippets are active 1 ] */
+        shop: number[] | null;
+        /** @description Whether the snippet is active */
+        active: "y" | "n";
+        /** @description Number of CPA programs associated with the campaign. */
+        readonly cpaCount: number | null;
+        /** @description Number of active CPA programs associated with the campaign. */
+        readonly activeCpaCount: number | null;
+    }[];
+    pagination: PagedResponse;
+};
+
+export type PutResponsibilityEntitiesResponse = {
+    errors: [];
     results: {
         /** @description Responsible entity code */
         code: string;
@@ -5829,20 +6179,422 @@ export type PostResponsibilityEntitiesResponse = {
     }[];
 };
 
-export type PutProductsCategoriesResponse = {
+export type PutSystemCurrenciesResponse = {
+    currencies: {
+        /** @description Currency code in ISO 4217 standard. */
+        id: string;
+        /** @description Currency exchange rate. */
+        rate: null | string;
+        /** @description Error code. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+};
+
+export type PutVouchersResponse = {
     /** @description Parameters concerning returned results */
     result: {
-        /** @description List of categories in which sought products are present. */
-        categories: {
-            /** @description Category id. */
-            id: number;
-            /** @description Parent category ID. */
-            parent_id?: number;
-            /** @description Priority. */
-            priority?: number;
-            /** @description Operation code. */
-            operation?: string;
-            /** @description Error code. Error description: "0" - Operation was successful, "1" - Login failure: invalid username or key, "4" - Shop has been blocked due to number of overdue invoices owed to IAI Company */
+        /** @description Voucher ID */
+        id: number;
+        /** @description Number. */
+        number: string;
+        /** @description Voucher balance */
+        balance: {
+            /** @description Available balance */
+            amount: number;
+            /** @description Currency. */
+            currency: string;
+        };
+        /** @description Error code. List of error codes: "0" - Operation was successful, "1" - Login failure: invalid username or key, "122" - Error occurred when editing a voucher */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+};
+
+export type PutProductsBrandsResponse = {
+    errors?: {
+        faultCode: string
+        faultString: string
+    };
+    producersResponse: {
+        /** @description Id */
+        id?: number;
+        /** @description Name in panel */
+        nameInPanel: string;
+        languagesConfigurations?: null | {
+            productsListImagesConfiguration: {
+                /** @description Type of graphics */
+                graphicType: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic: string;
+                /** @description #!GrafikaDlaEkranowKomputera#! */
+                pcGraphic: string;
+                /** @description Graphics for tablets */
+                tabletGraphic: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic: string;
+            };
+            /** @description Graphic displayed on product card */
+            productCardImagesConfiguration: {
+                /** @description Type of graphics */
+                graphicType: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic: string;
+                /** @description #!GrafikaDlaEkranowKomputera#! */
+                pcGraphic: string;
+                /** @description Graphics for tablets */
+                tabletGraphic: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic: string;
+            };
+            /** @description Language ID (code in ISO 639-2). */
+            languageId: string;
+            shopsConfigurations: {
+                /** @description Name. */
+                name: string;
+                /** @description Name displayed in the website header */
+                headerName: string;
+                /** @description Description displayed at the top of products list */
+                descriptionTop: string;
+                /** @description Description displayed at the bottom of products list */
+                descriptionBottom: string;
+                /** @description Shop Id */
+                shopId: number;
+                /** @description Products display settings */
+                view: "default" | "own";
+                /** @description Enable customers to change sorting */
+                enableSort: boolean;
+                /** @description Enable customers to change the number of products displayed */
+                enableChangeDisplayCount: boolean;
+                /** @description Number of displayed products */
+                numberOfProductsGrid: number;
+                /** @description Selected sorting mode */
+                sortModeGrid: "d_relevance" | "d_date" | "a_date" | "d_priority" | "a_priority" | "a_priorityname" | "d_priorityname" | "d_priorityonly" | "a_priorityonly" | "a_name" | "d_name" | "a_price" | "d_price";
+                /** @description Meta settings */
+                metaSettings: "auto" | "custom";
+                /** @description Title */
+                metaTitle: string;
+                /** @description Description */
+                metaDescription: string;
+                /** @description Keywords */
+                metaKeywords: string;
+                /** @description Array */
+                metaRobotsSettingsIndex: "auto" | "index" | "noindex";
+                /** @description Array */
+                metaRobotsSettingsFollow: "auto" | "follow" | "nofollow";
+            }[];
+        }[];
+        producerErrors?: {
+            /** @description Error code. */
+            faultCode: string;
+            /** @description Error description. */
+            faultString: string;
+        }[];
+    }[];
+};
+
+export type PutProductsDescriptionsResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    errors?: {
+        faultCode: number
+        faultString: null
+    };
+    results: {
+        productIdent: {
+            /** @description Identifier type. */
+            productIdentType: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue: string;
+        };
+        /** @description Error information. */
+        error?: FaultCodeString;
+    }[];
+    /** @description Information about whether any errors occurred. */
+    errorsOccurred: boolean;
+};
+
+export type PostProductsOpinionsResponse = {
+    /** @description Parameters concerning returned results */
+    result: {
+        opinions: string[];
+    };
+};
+
+export type PutProductsGroupsMainProductResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    errors?: {
+        faultCode: number
+        faultString: null
+    };
+    results: {
+        productIdent: {
+            /** @description Identifier type. */
+            productIdentType: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue: string;
+        };
+        /** @description Error information. */
+        error?: FaultCodeString;
+    }[];
+    /** @description Information about whether any errors occurred. */
+    errorsOccurred: boolean;
+};
+
+export type PostProductsMarketingPromotionResponse = {
+    results: {
+        /** @description Promotion ID */
+        newPromotionId: number;
+        /** @description Promotion name */
+        newPromotionName: string;
+    };
+};
+
+export type PutProductsMarketingZonesResponse = {
+    /** @description Products list. */
+    products: {
+        /** @description Identifier type. */
+        ident: {
+            /** */
+            type: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description Value. */
+            value: string;
+        };
+        /** @description Error information. */
+        error: {
+            /** @description Error code. List of error codes: "0" - Operation was successful, "1" - Login failure: invalid username or key, "3" - Shop has been blocked due to number of overdue invoices owed to IAI Company, "4" - Incorrect product ID sent, "5" - Wrong size Id sent */
+            faultCode: number;
+            /** @description Error description. */
+            faultString: string;
+        };
+    }[];
+};
+
+export type PutProductsImagesResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        productIdent: {
+            /** @description ID value. */
+            identValue: string;
+            /** @description Identifier type. */
+            productIdentType: "id" | "index" | "codeExtern" | "codeProducer";
+        };
+        /** @description Product photos details. */
+        productImages: {
+            /** @description Product photo. */
+            productImageSource: string | null;
+            /** @description A product photo's number. */
+            productImageNumber: number;
+            /** @description Picture priority */
+            productImagePriority: number;
+            /** @description Flag marking if a picture should be deleted. */
+            deleteProductImage?: boolean;
+            /** @description Information on error that occurred during gate call. */
+            errors?: FaultCodeString;
+        }[];
+        /** @description Product icons list. */
+        productIcons?: {
+            /** @example productIconSourceType */
+            productIconSourceType: string;
+            /** @description Information on error that occurred during gate call. */
+            errors?: FaultCodeString;
+            /** @description Flag indicating whether to remove the product icon. */
+            deleteProductIcon: boolean;
+            /** @description Icon type. */
+            productIconType: "shop" | "auction" | "group";
+        }[];
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString;
+        isImagesErrors?: boolean;
+        /** @description Flag marking if there are errors in results of setting icons. */
+        isIconsErrors?: boolean;
+        /** @description Product settings. */
+        productImagesSettings?: {
+            /** @description Way of delivering information about a picture. */
+            productImageSourceType: "base64" | "url";
+            /** @description Whether images for products should be scalable. */
+            productImagesApplyMacro: boolean;
+        };
+    }[];
+};
+
+export type PutProductsSeriesResponse = {
+    seriesResponse: {
+        /** @description Id */
+        id: number;
+        /** @description Name in panel */
+        nameInPanel: string;
+        shopsConfigurations: {
+            /** @description Shop Id */
+            shopId: number;
+            /** @description Customer language ID. */
+            language: string;
+            /** @example nameOnPage */
+            nameOnPage: string;
+            /** @description Name displayed in the website header */
+            headerName: string;
+            /** @example description */
+            description: string;
+            /** @description Products display settings */
+            view: "default" | "own";
+            /** @example defaultView */
+            defaultView: string;
+            /** @description Enable customers to change sorting */
+            enableSort: boolean;
+            /** @description Enable customers to change the number of products displayed */
+            enableChangeDisplayCount: boolean;
+            /** @description Number of displayed products */
+            numberOfProductsGrid: number;
+            /** @description Selected sorting mode */
+            sortModeGrid: "d_relevance" | "d_date" | "a_date" | "d_priority" | "a_priority" | "a_priorityname" | "d_priorityname" | "d_priorityonly" | "a_priorityonly" | "a_name" | "d_name" | "a_price" | "d_price";
+            imagesConfiguration: {
+                /** @description Type of graphics */
+                graphicType: "img" | "img_rwd";
+                /** @description Image (one size for computers, tablets and smartphones, not recommended) */
+                singleGraphic: string;
+                /** @description Graphics for computer screens */
+                pcGraphic: string;
+                /** @description Graphics for tablets */
+                tabletGraphic: string;
+                /** @description Graphics for smartphones */
+                phoneGraphic: string;
+            };
+            /** @description Meta settings */
+            metaSettings: "auto" | "custom";
+            /** @description Title */
+            metaTitle: string;
+            /** @description Description */
+            metaDescription: string;
+            /** @description Keywords */
+            metaKeywords: string;
+            /** */
+            metaRobotsSettingsIndex: "auto" | "index" | "noindex";
+            /** */
+            metaRobotsSettingsFollow: "auto" | "follow" | "nofollow";
+        }[];
+        serieErrors?: {
+            /** @description Error code. */
+            faultCode: string;
+            /** @description Error description. */
+            faultString: string;
+        }[];
+    }[];
+};
+
+export type PutProductsSizesResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description Product IAI code */
+        productId: number;
+        /** @description List of sizes */
+        sizes?: {
+            /** @description Size identifier */
+            sizeId: string;
+            /** @description Size name */
+            sizePanelName: string;
+            /** @description Information on error that occurred during gate call. */
+            errors?: FaultCodeString[];
+            /** @description Page list */
+            sites?: {
+                /** @description Page ID */
+                siteId: number;
+                /** @description Information on error that occurred during gate call. */
+                errors?: FaultCodeString[];
+            }[];
+        }[];
+        /** @description Product index. */
+        sizeIndex?: string;
+        /** @description Information on error that occurred during gate call. */
+        errors?: FaultCodeString[];
+    }[];
+};
+
+export type PutProductsStockQuantityResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description External product system code for size. */
+        productSizeCodeExternal?: string;
+        /** @description External product producer code for size. */
+        productSizeCodeProducer?: string;
+        /** @description Product index. */
+        productIndex?: string;
+        /** @description Stock ID */
+        stockId: number;
+        /** @description Error code. */
+        faultCode: number;
+        /** @description Error description. */
+        faultString: string;
+    }[];
+};
+
+export type PutProductsStocksResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        ident: {
+            /** */
+            identType: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue: string;
+        };
+        /** @description List of sizes */
+        sizes: {
+            ident: {
+                /** */
+                identType: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description ID value. */
+                identValue: string;
+            };
+            /** @description Error information. */
+            error?: FaultCodeString;
+        }[];
+        /** @description Flag marking errors in the result. */
+        isSizesErrors?: boolean;
+        /** @description Error information. */
+        error?: FaultCodeString;
+    }[];
+    /** @description Flag marking errors in the result. */
+    isErrors: null | boolean;
+};
+
+export type PutProductsSupplierCodeResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description The list of products returned due to a gate call */
+        productsResults: {
+            /** @description Product IAI code */
+            productId: number;
+            /** @description Error code. */
+            faultCode: number;
+            /** @description Error description. */
+            faultString: string;
+        }[];
+    };
+};
+
+export type PutProductsMarketingPromotionResponse = {
+    results: {
+        /** @description Promotion ID */
+        promotionId: number;
+        /** @description Promotion name */
+        promotionName: string;
+    };
+};
+
+export type PutProductsSupplierProductDataResponse = {
+    /** @description Object contains detailed information on result of operation. */
+    results: {
+        /** @description The list of products returned due to a gate call */
+        productsResults: {
+            /** @description Product IAI code */
+            productId: number;
+            /** @description Size identifier */
+            sizeId: string;
+            /** @description Supplier ID. */
+            delivererId: number;
+            /** @example sizeDelivererCode */
+            sizeDelivererCode?: string;
+            /** @description Error code. */
             faultCode: number;
             /** @description Error description. */
             faultString: string;

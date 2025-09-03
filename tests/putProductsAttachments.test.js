@@ -7,6 +7,6 @@ test("putProductsAttachmentsAttachments", () => {
 })
 
 test("putProductsAttachmentsProductId", () => {
-    const params = idosell().putProductsAttachments.productId(30).checkParams();
-    expect(params).toEqual({"productsAttachments":[{"productIdent":{"productIdentType":"id","identValue":30}}]});
+    const params = idosell().putProductsAttachments.productId(30).attachments([]).checkParams();
+    expect(params).toEqual({"productsAttachments":[{"productIdent":{"productIdentType":"id","identValue":30},"attachments":[]}]});
 })

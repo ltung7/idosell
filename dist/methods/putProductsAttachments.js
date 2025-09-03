@@ -10,7 +10,7 @@ export default (object) => {
         arrayNode: "productsAttachments",
         index: 0
     };
-    object.req = ["attachmentUrl", "identValue", "productIdentType", "productIdent", "attachmentName", "langId", "attachmentFileType", "attachmentEnable", "attachmentDownloadLog"];
+    object.req = ["productIdent", { "any": ["attachments", "virtualAttachments"] }];
     object.arrays = ["productsAttachments"];
     return new Proxy(object, paramsProxy);
 };
