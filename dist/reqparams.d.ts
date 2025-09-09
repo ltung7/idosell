@@ -6184,4 +6184,956 @@ export type PutProductsSupplierProductDataParams = {
     }[];
 };
 
+export type PostOrdersDocumentsParams = {
+    /** @description List of documents. */
+    documents: {
+        /** @description Order serial number. */
+        orderSerialNumber: number;
+        /** @description File name. */
+        name: string;
+        /** @description BMP, PNG, JPG, JPEG, GIF or PDF files in Base64 encoding algorithm. */
+        pdfBase64?: string;
+        /** @description Document type. */
+        type?: "vat_invoice" | "corrective_vat_invoice" | "other";
+        /** @description Is it to be shown to the customer in the order view. */
+        returnedInOrderDetails?: "y" | "n";
+        /** @description Additional information. */
+        additionalData?: {
+            /** @description Document number. */
+            documentId?: string;
+            /** @description The date document was issued in the ISO 8601 format (YYYY-MM-DD). */
+            documentIssuedDate?: string;
+        };
+    }[];
+};
+
+export type PostOrdersImagesParams = {
+    /** @description Login */
+    userName?: string;
+    settings?: {
+        /** @description Source type. Available values: base64 - Attachment data encoded using the base64 algorithm, url - Attachment file link */
+        sourceType?: "base64" | "url";
+    };
+    order: {
+        /** @description Order ID */
+        orderId?: string;
+        /** @description Order serial number */
+        orderSerialNumber?: number;
+    };
+    /** @description List of image attachments */
+    images: {
+        /** @description Type. Available values: product - Product photo, package - Package photo */
+        type?: "product" | "package";
+        /** @description Attachment source data, depending on the source type selected in the settings. BMP, PNG, JPG, JPEG, GIF or PDF files in Base64 encoding algorithm. */
+        source?: string;
+        /** @description Name */
+        name?: string;
+    }[];
+};
+
+export type PostOrdersPackagesParams = {
+    /** @description List of parcels assigned to the order Maximum default number: 100 parcels. */
+    orderPackages: {
+        /** @description Id. */
+        eventId: string;
+        /** @description Type. */
+        eventType: "order" | "rma" | "return";
+        /** @description Information on consignments. */
+        packages: {
+            /** @description Shipment ID. */
+            deliveryPackageId?: number;
+            /** @description Courier ID. */
+            courierId?: string;
+            /** @description Package number. */
+            deliveryPackageNumber?: string;
+            /** @description consignment number. */
+            deliveryShippingNumber?: string;
+            /** @description Package parameters. */
+            deliveryPackageParameters?: {
+                /** @description Product weight (g). */
+                productWeight?: number;
+                /** @description Packaging weight (g). */
+                packagingWeight?: number;
+            };
+            /** @description Cost for shop. */
+            shippingStoreCosts?: {
+                /** @description Value. */
+                amount?: number;
+                /** @description Value Added Tax. */
+                tax?: number;
+            };
+        }[];
+    }[];
+};
+
+export type PostPackagesParams = {
+    /** @description List of parcels assigned to the order Maximum default number: 100 parcels. */
+    orderPackages: {
+        /** @description Order ID. */
+        orderId: string;
+        /** @description Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail" */
+        orderType: "order" | "rma" | "return";
+        /** @description Information on consignments. */
+        packages: {
+            /** @description Courier Id. */
+            delivery?: number;
+            /** @description Number of the parcel in the shipmnet given by the courier. Returned only if the courier supports parcel numbers */
+            packageNumber?: string;
+            /** @description Shipment number provided by the courier. Returned only if the courier supports tracking numbers */
+            shippingNumber?: string;
+            /** @description Package parameters (this option is temporarily unavailable). */
+            packageParameters?: string;
+            /** @description Cost for shop. */
+            shippingStoreCosts?: {
+                /** @description Value. */
+                amount?: number;
+                /** @description Value Added Tax. */
+                tax?: number;
+            };
+        }[];
+    }[];
+};
+
+export type PostProductsProductsToFacebookCatalogParams = {
+    /** @description You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel */
+    facebookCatalogId?: number;
+    /** @description Shop Id */
+    shopId?: number;
+    /** @description Products list. */
+    products?: number[];
+};
+
+export type PostProductsProductsToPromotionParams = {
+    /** @description Special offer ID */
+    promotionId?: number;
+    /** @description Products list. */
+    products?: number[];
+};
+
+export type SearchProductsCategoriesIdosellParams = {
+    /** @description List of languages */
+    languagesIds?: ("pol" | "eng" | "ger")[];
+    /** @description Number of IdoSell Categories identifiers */
+    categoriesIdoSellIds?: string[];
+    /** @description IdoSell Categories name list */
+    categoriesIdoSellNames?: string[];
+    /** @description IdoSell Categories path list */
+    categoriesIdoSellPaths?: string[];
+    /** @description Page with results number. Numeration starts from 0 */
+    resultsPage?: number;
+    /** @description Number of results on page. Value from 1 to 100 */
+    resultsLimit?: number;
+};
+
+export type PostClientsPricelistsParams = {
+    /** @description Name of individual price list. */
+    priceListName: string;
+    /** @description Restrict visibility to products listed in price list (other products will remain hidden) - yes - no */
+    onlyOrderProductsWithManuallySetPrices?: "yes" | "no";
+    /** @description Restrict products visibility to products listed in price list, remaining products will be seen as "Call for price" - yes - no */
+    onlySeeProductsWithManuallySetPrices?: "yes" | "no";
+};
+
+export type PutClientsPricelistsParams = {
+    /** @description Individual price list ID. */
+    priceListId: number;
+    /** @description Name of individual price list. */
+    priceListName?: string;
+    /** @description Restrict visibility to products listed in price list (other products will remain hidden) - yes - no */
+    onlyOrderProductsWithManuallySetPrices?: "yes" | "no";
+    /** @description Restrict products visibility to products listed in price list, remaining products will be seen as "Call for price" - yes - no */
+    onlySeeProductsWithManuallySetPrices?: "yes" | "no";
+};
+
+export type PutClientsPricelistsClientsParams = {
+    /** @description Individual price list ID. */
+    priceListId: number;
+    /** @description Customer numbers. */
+    clientsIds: number[];
+};
+
+export type PutClientsPricelistsProductsParams = {
+    /** @description Individual price list ID. */
+    priceListId: number;
+    /** @description Products list. */
+    products?: {
+        /** @description Product IAI code */
+        productId?: number;
+        /** @description Price. */
+        price?: number;
+        /** @description Currency ID */
+        currencyId?: string;
+    }[];
+    /** @description List of manufacturers assigned to sought products. */
+    producers?: {
+        /** @description Brand ID */
+        producerId?: number;
+        /** @description Price. */
+        price?: number;
+        /** @description Currency ID */
+        currencyId?: string;
+    }[];
+    /** @description Series list. */
+    series?: {
+        /** @description ID of series, to which product belongs. */
+        seriesId?: number;
+        /** @description Price. */
+        price?: number;
+        /** @description Currency ID */
+        currencyId?: string;
+    }[];
+    /** @description List of categories in which sought products are present. */
+    categories?: {
+        /** @description Category id */
+        categoryId?: number;
+        /** @description Price. */
+        price?: number;
+        /** @description Currency ID */
+        currencyId?: string;
+    }[];
+    menuItems?: {
+        /** @description ID of the menu node to which the product is to be assigned */
+        menuItemId?: number;
+        /** @description Price. */
+        price?: number;
+        /** @description Currency ID */
+        currencyId?: string;
+    }[];
+};
+
+export type PutClientsPricelistsRenameParams = {
+    /** @description Name of individual price list. */
+    priceListName?: string;
+    /** @description Individual price list ID. */
+    priceListId: number;
+};
+
+export type PostClientsBalanceParams = {
+    /** @description Unique client's number. */
+    clientId: number;
+    /** @description Operation: - add, - remove. */
+    operation: string;
+    /** @description Value to add or remove from balance. */
+    balance: number;
+    /** @description Currency of operation. */
+    currency: string;
+    /** @description Note. */
+    note?: string;
+    /** @description Order payment identifier. */
+    prepaidId?: number;
+};
+
+export type PostClientsGiftcardsParams = {
+    /** @description List of cards to add */
+    giftCards: {
+        /** @description Gift card type id */
+        typeId: number;
+        /** @description Card number */
+        number: string;
+        /** @description Card PIN */
+        pin: string;
+        /** @description Name of card */
+        name: string;
+        /** @description Card expiration date */
+        expirationDate?: string;
+        /** @description Card balance */
+        balance: {
+            /** @description Available balance */
+            amount?: number;
+            /** @description Currency. */
+            currency?: string;
+        };
+        /** @description List of shops the card is active in */
+        shops: number[];
+        /** @example note */
+        note?: string;
+    }[];
+};
+
+export type PostClientsTagsParams = {
+    params: {
+        /** @description Unique client's number. */
+        clientId: number;
+        /** @description Tag name. */
+        tagName: string;
+        /** @description Tag value. */
+        tagValue: number;
+    }[];
+};
+
+export type PostDeliveriesRegionsParams = {
+    /** @description Name of the region in the panel */
+    regionName?: string;
+    /** @description Shop Id */
+    shopId?: number;
+    /** @description The range of postal codes from %s */
+    postCodeFrom?: string;
+    /** @description The range of postal codes to %s */
+    postCodeTo?: string;
+    /** @description ID of the country for which the region is being added */
+    parentRegionId: number;
+};
+
+export type PostDiscountsGroupsParams = {
+    /** @description Discount group name */
+    discountGroupName: string;
+};
+
+export type PostDiscountsRebatesCardParams = {
+    /** @description Discount card type */
+    campaign_id: number;
+    /** @description Card number */
+    card_number: string;
+};
+
+export type PostDiscountsRebatesCodeParams = {
+    /** @description Campaign ID */
+    campaign_id: number;
+    /** @description Code */
+    code_number: string;
+};
+
+export type PutClientsExternalCodeParams = {
+    /** @example 1 */
+    client_id?: number;
+    /** @description Customer's login. */
+    client_login?: string;
+    /** @description External system code. */
+    code_extern?: string;
+};
+
+export type PutClientsGiftcardsParams = {
+    /** @description List of cards to edit */
+    giftCards: {
+        /** @description Card ID */
+        id?: number;
+        /** @description Card number */
+        number?: string;
+        /** @description Card PIN */
+        pin?: string;
+        /** @description Name of card */
+        name?: string;
+        /** @description Card expiration date */
+        expirationDate?: string;
+        /** @description Balance operation type, possible values: - set - balance positioning of funds, - add - add funds to balance, - subtract - subtract funds from balance. */
+        balanceOperationType?: "set" | "add" | "subtract";
+        /** @description Card balance */
+        balance?: {
+            /** @description Available balance */
+            amount?: number;
+            /** @description Currency ID */
+            currency?: string;
+        };
+        /** @description List of shops the card is active in */
+        shops?: number[];
+        /** @example note */
+        note?: string;
+    }[];
+};
+
+export type PutClientsGiftcardsBlockParams = {
+    /** @description List of gift cards */
+    giftCards: {
+        /** @description Card ID */
+        id?: number;
+        /** @description Card number */
+        number?: string;
+    }[];
+};
+
+export type PutClientsGiftcardsUnblockParams = {
+    /** @description List of gift cards */
+    giftCards: {
+        /** @description Card ID */
+        id?: number;
+        /** @description Card number */
+        number?: string;
+    }[];
+};
+
+export type PutClientsMembershipCardsParams = {
+    /** @description Customer ID. */
+    id?: number;
+    /** @description Customer's login. */
+    login?: string;
+    membership_cards: {
+        /** @description Card ID entered by customer. */
+        ordinal_number?: number;
+        /** @description Card ID. */
+        card_type?: number;
+        /** @description Loyalty card number. */
+        number?: string;
+        /** @description Card PIN. */
+        pin?: number;
+        /** @description Issue date. */
+        creation_date?: string;
+        /** @description Determines whether a card should be deactivated. */
+        deactivate?: boolean;
+        /** @description Flag that determines whether a discount group should be set. */
+        set_rebate_group?: boolean;
+        /** @description Information on error that occurred during gate call. */
+        errors?: {
+            /** @description Error code. List of error codes: 0 - Operation was successful, 1 - Login failure: invalid username or key, 2 - Empty result, 3 - No parameters were received, 4 - Shop has been blocked due to number of overdue invoices owed to IAI Company */
+            faultCode?: number;
+            /** @description Error description. */
+            faultString?: string;
+        };
+    }[];
+};
+
+export type PutClientsPricesDiscountsParams = {
+    customers?: {
+        customers_numbers?: number[];
+    };
+    /** @description Discount type, possible values: - simple */
+    discount_type?: string;
+    /** @description Action, possible values: - sum_with_other_discounts_to_orders - sum with other discounts assigned to orders, - use_only_if_greater_than_the_sum_of_other_discounts - use only if greater than the sum of other discounts */
+    discount_operating?: string;
+    discount_parameters: {
+        /** @description Parameter type. - DEPRECATED */
+        parameter_type?: string;
+        /** @description Parameter text ID. - DEPRECATED */
+        parameter_value?: string;
+        /** Format: decimal
+         * @description Size of discount. */
+        discount_value?: number;
+    }[];
+};
+
+export type PutClientsTagsParams = {
+    /** @description Unique client's number. */
+    clientId?: number;
+    clientTags: {
+        /** @description Tag ID. */
+        tagId?: number;
+        /** */
+        operation?: "add" | "set" | "subtract";
+        /** @description Tag value. */
+        tagValue?: number;
+    }[];
+};
+
+export type PutPackagesParams = {
+    /** @description List of parcels assigned to the order Maximum default number: 100 parcels. */
+    orderPackages: {
+        /** @description Order ID. */
+        orderId?: string;
+        /** @description Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail" */
+        orderType?: "order" | "rma" | "return";
+        /** @description Information on consignments. */
+        packages?: {
+            /** @description Package ID in system. */
+            packageId?: number;
+            /** @description Courier Id. */
+            delivery?: number;
+            /** @description Number of the parcel in the shipmnet given by the courier. Returned only if the courier supports parcel numbers */
+            packageNumber?: string;
+            /** @description Shipment number provided by the courier. Returned only if the courier supports tracking numbers */
+            shippingNumber?: string;
+            /** @description Package parameters (this option is temporarily unavailable). */
+            packageParameters?: string;
+            /** @description Cost for shop. */
+            shippingStoreCosts?: {
+                /** @description Value. */
+                amount?: number;
+                /** @description Value Added Tax. */
+                tax?: number;
+            };
+        }[];
+    }[];
+};
+
+export type PostClientsProfitPointsParams = {
+    /** @example 1 */
+    client_id: number;
+    /** @description Operation: - add, - remove. */
+    operation: string;
+    /** @description Amount of points to add or subtract. */
+    score: number;
+    /** @example note */
+    note?: string;
+    /** @description Prepayment ID. */
+    order_number?: number;
+};
+
+export type PutDiscountsGroupsParams = {
+    /** @description Discount group ID */
+    discountGroupId: number;
+    /** @description Discount group name */
+    discountGroupName: string;
+};
+
+export type PutDiscountsRebatesBlockCardParams = {
+    /** @description Card number */
+    card_number: string;
+};
+
+export type PutDiscountsRebatesUnblockCardParams = {
+    /** @description Card number */
+    card_number: string;
+};
+
+export type PutOrdersClientParams = {
+    /** @description Order serial number. */
+    orderSerialNumber?: number;
+    /** @description Unique client's number. */
+    clientId?: number;
+};
+
+export type PutOrdersCourierParams = {
+    /** @description Order serial number. */
+    orderSerialNumber: number;
+    /** @description Courier ID. */
+    courierId: number;
+    /** @description Collection point ID. */
+    pickupPointId?: string;
+};
+
+export type PutOrdersDeliveryAddressParams = {
+    /** @description Order serial number. */
+    orderSerialNumber: number;
+    /** @description Delivery address ID. */
+    clientDeliveryAddressId: number;
+    /** @description Customer's login. */
+    clientLogin: string;
+};
+
+export type PutOrdersHandlerParams = {
+    /** @description Order serial number. */
+    orderSerialNumber: number;
+    /** @description Order handler. */
+    orderOperatorLogin: string;
+};
+
+export type PutOrdersPackagesParams = {
+    /** @description List of parcels assigned to the order Maximum default number: 100 parcels. */
+    orderPackages: {
+        /** @description Id. */
+        eventId: string;
+        /** @description Type. */
+        eventType: "order" | "rma" | "return";
+        /** @description Information on consignments. */
+        packages?: {
+            /** @description Shipment ID. */
+            deliveryPackageId?: number;
+            /** @description Courier ID. */
+            courierId?: string;
+            /** @description Package number. */
+            deliveryPackageNumber?: string;
+            /** @description consignment number. */
+            deliveryShippingNumber?: string;
+            /** @description Package parameters. */
+            deliveryPackageParameters?: {
+                /** @description Product weight (g). */
+                productWeight?: number;
+                /** @description Packaging weight (g). */
+                packagingWeight?: number;
+            };
+            /** @description Cost for shop. */
+            shippingStoreCosts?: {
+                /** @description Value. */
+                amount?: number;
+                /** @description Value Added Tax. */
+                tax?: number;
+            };
+        }[];
+    }[];
+};
+
+export type PutVouchersUnblockParams = {
+    vouchers: {
+        /** @description Voucher ID */
+        id?: number;
+        /** @description Number. */
+        number?: string;
+    }[];
+};
+
+export type PutVouchersBlockParams = {
+    vouchers: {
+        /** @description Voucher ID */
+        id?: number;
+        /** @description Number. */
+        number?: string;
+    }[];
+};
+
+export type PutProductsGroupsSettingsParams = {
+    groups: {
+        productIdent: {
+            /** @description Identifier type. */
+            productIdentType?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue?: string;
+        };
+        /** @description Display on the product list in the panel. */
+        displayInPanel?: "firstAvailable" | "all";
+        /** @description Display on a product list on the page. */
+        displayOnPage?: "firstAvailable" | "all" | "specified";
+        /** @description Selected product in the group. */
+        specifiedProductIdent?: {
+            /** @description Identifier type. */
+            productIdentType?: "id" | "index" | "codeExtern" | "codeProducer";
+            /** @description ID value. */
+            identValue?: string;
+        };
+    }[];
+};
+
+export type PutOrdersWarehouseParams = {
+    /** @description Order serial number. */
+    orderSerialNumber: number;
+    /** @description Stock ID */
+    stockId: number;
+    /** @description Order handler. */
+    orderOperatorLogin?: string;
+    /** @description External warehouse ID (if required) */
+    externalStockId?: "amazonde" | "amazones" | "amazonfr" | "amazonit" | "amazoncouk" | "amazonnl" | "amazonse" | "amazoncomtr" | "amazonae" | "amazonus" | "amazonpl";
+};
+
+export type PutOrdersShippingCostsParams = {
+    /** @description Order serial number. */
+    orderSerialNumber: number;
+    /** @description Delivery cost. */
+    deliveryCost: number;
+    /** @description Delivery VAT. */
+    orderDeliveryVat?: number;
+};
+
+export type PutOrdersProfitMarginParams = {
+    /** @description Orders. */
+    orders: {
+        /** @description Order serial number. */
+        orderSerialNumber?: number;
+        /** @description Products list. */
+        products?: {
+            productIdent?: {
+                /** @description ID value. */
+                identValue?: string;
+                /** @description Identifier type. */
+                productIdentType?: "id" | "index" | "codeExtern";
+            };
+            /** @description Size identifier */
+            sizeId?: string;
+            /** @description Product profit margin gross. */
+            productProfitMargin?: number;
+            /** @description Product profit margin net. */
+            productProfitMarginNet?: number;
+            /** @description Information on error that occurred during gate call. */
+            errors?: {
+                /** @description Error code. */
+                faultCode?: number;
+                /** @description Error description. */
+                faultString?: string;
+            };
+        }[];
+        /** @description Information on error that occurred during gate call. */
+        errors?: {
+            /** @description Error code. */
+            faultCode?: number;
+            /** @description Error description. */
+            faultString?: string;
+        };
+        /** @description Flag marking errors in the result. */
+        isProductsErrors?: boolean;
+    }[];
+};
+
+export type PutOrdersPickupPointParams = {
+    /** @description Order serial number. */
+    orderSerialNumber: number;
+    /** @description Collection point ID. */
+    pickupPointId: string;
+};
+
+export type PutDiscountsGroupsProductsParams = {
+    /** @description Discount group ID */
+    discountGroupId: number;
+    /** @description Products list. */
+    products?: {
+        /** @description ID */
+        id?: number;
+        /** @description Price */
+        price?: number;
+        /** @description Currency. */
+        currency?: string;
+    }[];
+    /** @description Brands */
+    producers?: {
+        /** @description ID */
+        id?: number;
+        /** @description Price */
+        price?: number;
+        /** @description Currency. */
+        currency?: string;
+    }[];
+    /** @description Series */
+    series?: {
+        /** @description ID */
+        id?: number;
+        /** @description Price */
+        price?: number;
+        /** @description Currency. */
+        currency?: string;
+    }[];
+    /** @description List of categories in which sought products are present. */
+    categories?: {
+        /** @description ID */
+        id?: number;
+        /** @description Price */
+        price?: number;
+        /** @description Currency. */
+        currency?: string;
+    }[];
+    /** @description Menu elements */
+    menuItems?: {
+        /** @description ID */
+        id?: number;
+        /** @description Price */
+        price?: number;
+        /** @description Currency. */
+        currency?: string;
+    }[];
+};
+
+export type PutOrdersProductsSerialNumbersParams = {
+    /** @description Orders. */
+    orders: {
+        /** @description Order serial number. */
+        orderSerialNumber: number;
+        /** @description Products list. */
+        orderProducts: {
+            /** @description Product IAI code */
+            productId?: number;
+            /** @description Size identifier */
+            sizeId?: string;
+            /** @description Serial numbers. */
+            productSerialNumbers?: string[];
+        }[];
+    }[];
+};
+
+export type PutProductsGroupsOrderParams = {
+    groups: {
+        productsInOrder: {
+            productIdent?: {
+                /** @description Identifier type. */
+                productIdentType?: "id" | "index" | "codeExtern" | "codeProducer";
+                /** @description ID value. */
+                identValue?: string;
+            };
+            /** @description The order of products in the group. Value needs to be more than 0. */
+            priority?: number;
+        }[];
+    }[];
+};
+
+export type PostPaymentsCancelParams = {
+    /** @description Defines payment category. For the payments regarding returns, enter 'return'. */
+    sourceType: "order" | "return" | "rma";
+    /** @description Payment number - [order no.]-[payment no.], i.e. 1234-1. */
+    paymentNumber: string;
+};
+
+export type PutPaymentsConfirmParams = {
+    /** @description Defines payment category. For the payments regarding returns, enter 'return'. */
+    sourceType: "order" | "return" | "rma";
+    /** @description Payment number - [order no.]-[payment no.], i.e. 1234-1. */
+    paymentNumber: string;
+    /** @description Registering date */
+    accountingDate?: string;
+};
+
+export type PutConfigVariablesParams = {
+    variables: ({
+        /** @description Key of config value. */
+        key: string;
+        /** @description Name of config item. */
+        readonly name?: string;
+        /** @description Value of config item. */
+        value?: string;
+    } & {
+        /** @description The type of module for which the configuration is used */
+        type: "snippets_campaign";
+        /** @description Identifier of the item in used module */
+        itemId: number;
+        /** @description Name of config item. */
+        name?: string;
+    })[];
+};
+
+export type PutMenuSortParams = {
+    menu_list: {
+        /** @description Shop Id. */
+        shop_id: number;
+        /** @description Menu ID. */
+        menu_id: number;
+        /** @description Language ID. */
+        lang_id: string;
+        /** @description Menu element text identifier. */
+        parent_id?: number;
+        /** @description Menu element text identifier. Example: "item1\item2\item3". */
+        parent_textid?: string;
+        /** @description Recurring: y/n! */
+        recursive?: "y" | "n";
+    }[];
+    /** @description Settings */
+    settings?: {
+        /** @description Default: "\". */
+        textid_separator?: string;
+    };
+};
+
+export type PutSystemConfigParams = {
+    /** @description Panel settings */
+    panelSettings: {
+        /** @description The main warehouse and sales system */
+        mainStockSystem?: "other" | "iai";
+        /** @description Stock quantities in third party application */
+        stockStateConfig?: "uncontrolled" | "bridge" | "outside";
+        /** @description Fiscal and settlement settings */
+        taxSettings?: {
+            /** @description Sales date settings on sales documents for prepaid orders */
+            saleDatePrepaid?: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument";
+            /** @description Sales date settings on sales documents for orders paid with cash on delivery */
+            saleDateCashOnDelivery?: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument";
+            /** @description Sales date settings on sales documents for orders paid with trade credit */
+            saleDateTradeCredit?: "saleDateFromOrder" | "saleDateFromPayment" | "saleDateFromDocument";
+            /** @description Configuration of default currency rate for orders */
+            currencyRate?: "currentDay" | "previousDay";
+        };
+        shops?: {
+            /** @description Shop Id */
+            shopId?: number;
+            /** @description Sales documents in third party application. */
+            salesDocumentsAreCreatedByClient?: "y" | "n";
+        }[];
+    };
+};
+
+export type PutSystemProcessesAutomationParams = {
+    /** @description Shop Id */
+    shopId?: number;
+    /** @description Orders. */
+    orders: {
+        /** @description Allow the status to be changed to "Shipped" even if the order payments and stock levels do not match */
+        alwaysAllowSentStatus?: "y" | "n";
+        /** @description Order management restrictions */
+        restrictions?: {
+            /** @description Block the ability of selecting a status, if there are products in the warehouse from which the order is being processed, with insufficient stock level. */
+            blockIfIncorrectStockQuantities?: {
+                /** */
+                finished?: "y" | "n";
+            };
+        };
+    };
+};
+
+export type PutWarrantiesLanguageDataParams = {
+    lang_data: {
+        /** @description Warranty ID (numeric or text based). */
+        warranty_id: string;
+        lang: {
+            /** @description Warranty language id (numeric) (three letter sequence). */
+            lang_id?: string;
+            /** @description Warranty name. */
+            name?: string;
+            /** @description warranty icon for language. */
+            icon?: string;
+            icon_settings?: {
+                /** */
+                format?: "jpg" | "gif" | "png";
+                /** */
+                data_type?: "url" | "base64";
+            };
+            /** @description Warranty description. */
+            description?: string;
+        }[];
+    }[];
+};
+
+export type PutDeliveriesDefaultProfilesParams = {
+    /** @description Country ID */
+    regionId: number;
+    /** @description Shop Id */
+    shopId: number;
+    /** @description ID of delivery profile for retail sales */
+    retailProfileId?: number;
+    /** @description ID of delivery profile for wholesale sales */
+    wholesaleProfileId?: number;
+};
+
+export type PutReturnsSerialNumberParams = {
+    /** @description Return number. */
+    return_id: number;
+    /** @description Products list. */
+    products: {
+        /** @description Product ID. */
+        id?: number;
+        /** @description Size ID. */
+        size: string;
+        serialNumbers: string[];
+    }[];
+};
+
+export type PutWmsStocksdocumentsDocumentsParams = {
+    /** @description Document identifier. */
+    stockDocumentId: number;
+    /** @description Document type. Available values: "pz" - goods received note (GRN), "pw" - internal delivery note (IDN), "px" - goods received correction note (GRX), "rx" - goods despatch note (GRN) , "rw" - goods issued note (GIN), "mm" - inter-warehouse transfer. */
+    stockDocumentType: "pz" | "pw" | "px" | "rx" | "rw" | "mm";
+    /** @description Number of purchase document */
+    stockDocumentNumber?: string;
+    /** @description Target warehouse ID. The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>. */
+    stockId?: number;
+    /** @description Source warehouse ID. The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>. */
+    stockSourceId?: number;
+    /** @example note */
+    note?: string;
+    /** @description Products available in presales. Available values: "y" - yes, "n" - no. */
+    productsInPreorder?: "y" | "n";
+    /** @description Supplier ID. */
+    delivererId?: number;
+    /** @description Type of purchase document. Available values: "national_VAT_invoice" - National VAT invoice, "other_purchase_document" - Other purchase document, "invoice_without_VAT" - Invoice without VAT (EU), "imports_from_outside_the_EU" - Import from outside EU. */
+    wnt?: "national_VAT_invoice" | "other_purchase_document" | "invoice_without_VAT" | "imports_from_outside_the_EU";
+    /** @description Issue date of purchase document. Correct format is yyyy-mm-dd, e.g. 2007-12-31.. */
+    saleDocumentCreationDate?: string;
+    /** @description Planned date of acceptance of delivery. Correct format is yyyy-mm-dd, e.g. 2007-12-31. Requires parameter: "confirmed=on_the_way". */
+    deliveryOnTheWayPlannedDeliveryDate?: string;
+    /** @description Document status. Available values: "open" - open, "on_the_way" - on the way. */
+    confirmed?: "open" | "on_the_way";
+    /** @description Purchase price currency, e.g. PLN, USD, GBP */
+    currencyForPurchasePrice?: string;
+    /** @description Currency exchange rate (Currency conversion) */
+    currencyForPurchasePriceRate?: number;
+    /** @description Type of currency rate. Available values: "custom" - not typical, "currentDay" - the currency rate from the day of issuing a stock document, "customDay" - on a selected day, "previousDay" - the currency rate of a working day preceding the date of the stock document issue. */
+    currencyForPurchasePriceRateType?: "custom" | "currentDay" | "customDay" | "previousDay";
+    /** @description Currency rate of the day. Correct format is yyyy-mm-dd, e.g. 2007-12-31.. */
+    currencyForPurchasePriceRateDate?: string;
+    /** @description Settlement by prices. Available values: "brutto" - Gross value, "netto" - Net value. */
+    priceType?: "brutto" | "netto";
+    /** @description Methods of stock level correction. Available values: "fifo" - first-in, first-out (FIFO), "lifo" - last-in, first-out (LIFO). */
+    queueType?: "fifo" | "lifo";
+    /** @description Verification date */
+    verificationDate?: string;
+    /** @description Users verification */
+    verificationUser?: string;
+};
+
+export type PutWmsStocksdocumentsCloseParams = {
+    /** */
+    type: "pz" | "pw" | "px" | "rx" | "rw" | "mm";
+    /** @description Document identifier. */
+    id: number;
+};
+
+export type PutWmsStocksdocumentsRejectMMParams = {
+    /** @description Document identifier. */
+    id: number;
+};
+
+export type PutWmsStocksdocumentsAcceptMMParams = {
+    /** @description Document identifier. */
+    id: number;
+};
+
 export { };
