@@ -324,3 +324,20 @@ export const setOmp = (object, value = false, wholesale = false, mode = false) =
     }
     return { omnibusPrices };
 };
+export const appendPackageParams = (object, id, defaultValue) => (value) => {
+    let current;
+    if (!value?.length)
+        value = defaultValue;
+    if (!value?.length)
+        return false;
+    const parcelParameters = object.params.parcelParameters ?? [];
+    if (parcelParameters.length) {
+        current = parcelParameters.find(item => item.id === id);
+        if (current)
+            current.value = value;
+    }
+    if (!current) {
+        parcelParameters.push({ id, value });
+    }
+    return { root: { parcelParameters: parcelParameters } };
+};

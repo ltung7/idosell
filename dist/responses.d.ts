@@ -1150,22 +1150,6 @@ export type GetCouriersPickupPointsResponse = {
     }[];
 } & PagedResponse;
 
-export type PostCouriersPickupPointsResponse = {
-    /** @description Parameters concerning returned results */
-    result: {
-        /** @description Collection point ID. */
-        pickupPointId: number; 
-        /** @description external system code. */
-        pickupPointExternalId: string;
-        /** @description Courier ID. */
-        courierId: number;
-        /** @description Error code. */
-        faultCode: number;
-        /** @description Error description. */
-        faultString: string;
-    }[];
-};
-
 export type PutCouriersPickupPointsResponse = {
     /** @description Parameters concerning returned results */
     result: {
@@ -2042,26 +2026,6 @@ export type GetOrdersPackagesResponse = {
     }[];
 };
 
-export type PostOrdersPackagesResponse = {
-    /** @description Object contains detailed information on result of operation. */
-    results: {
-        /** @description Id. */
-        eventId: string;
-        /** @description List of packages. */
-        packagesResults: {
-            /** @description Shipment ID. */
-            deliveryPackageId: number;
-            /** @description Information on error that occurred during gate call. */
-            errors: {
-                /** @description Error code. List of error codes: "0" - Operation was successful, "1" - Login failure: invalid username or key, "2" - Too many elements were included in a single request Maximum number of elements: 100, "3" - Shop has been blocked due to number of overdue invoices owed to IAI Company */
-                faultCode: number;
-                /** @description Error description. */
-                faultString: string;
-            };
-        }[];
-    }[];
-};
-
 export type PutOrdersPackagesResponse = {
     /** @description Object contains detailed information on result of operation. */
     results: {
@@ -2696,13 +2660,6 @@ export type GetOrdersWarehouseResponse = {
     };
 };
 
-export type GetPackagesLabelsResponse = {
-    /** @description Package labels encoded in base64 */
-    labels: string[];
-    /** @description Label type */
-    labelsType: "PDF" | "A4" | "16x10" | "SPL" | "ZPL" | "EPL" | "DPL";
-};
-
 export type PostPackagesLabelsResponse = {
     /** @description Id. */
     eventId: number;
@@ -2811,26 +2768,6 @@ export type SearchPackagesResponse = {
         eventId: number;
         /** @description Parcel label encoded with base64 algorythm. */
         label?: string;
-    }[];
-};
-
-export type PostPackagesResponse = {
-    /** @description Object contains detailed information on result of operation. */
-    results: {
-        /** @description Order ID. */
-        orderId: string;
-        /** @description Information on consignments. */
-        packages: {
-            /** @description Package ID in system. */
-            packageId: number;
-            /** @description Information on error that occurred during gate call. */
-            errors: {
-                /** @description Error code. */
-                faultCode: number;
-                /** @description Error description. */
-                faultString: string;
-            };
-        }[];
     }[];
 };
 
