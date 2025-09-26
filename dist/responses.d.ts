@@ -1948,27 +1948,27 @@ export type GetOrdersPackagesResponse = {
         /** @description Information on error that occurred during gate call. */
         errors?: FaultCodeString;
         /** @description Package details. */
-        deliveryPackage: {} | {
+        deliveryPackage: {
             /** @description Shipment ID. */
-            deliveryPackageId: number;
+            deliveryPackageId?: number;
             /** @description Package number. */
-            deliveryPackageNumber: string;
+            deliveryPackageNumber?: string;
             /** @description consignment number. */
-            deliveryShippingNumber: string;
+            deliveryShippingNumber?: string;
             /** @description Courier ID. */
-            courierId: number;
+            courierId?: number;
             /** @description Name of the supplier of the shipment. */
-            courierName: string;
+            courierName?: string;
             /** @description Selected delivery date. */
-            deliveryDate: string;
+            deliveryDate?: string;
             /** @description Additional information on delivery date. */
-            deliveryDateAdditional: string;
+            deliveryDateAdditional?: string;
             /** @description Estimated date of shipment of the order. */
-            estimatedDeliveryDate: string;
+            estimatedDeliveryDate?: string;
             /** @description Date of receipt by the buyer, possible formats: "YYYY-MM-dd HH:mm:ss", "YYYY-MM-dd", */
-            receivedDate: string;
+            receivedDate?: string;
             /** @description Package parameters. */
-            deliveryPackageParameters: {
+            deliveryPackageParameters?: {
                 /** @description Cash on delivery. */
                 cashOnDelivery: number;
                 /** @description Postal cash on delivery currency. */
@@ -4697,18 +4697,18 @@ export type SearchProductsResponse = {
                     }[];
                 }[];
             }[];
-            /** @description Parameters set for price comparison websites */
-            productShopPriceComparisonSites: {
-                /** @description price comparison website ID */
-                priceComparisonSiteId: number;
-                /** @description Whether the product is exported in the feed to the sales service */
+            /** @description Parameters set for external services (price comparison & marketplace sites) */
+            externalServicesList: {
+                /** @description External service ID */
+                id: number;
+                /** @description Whether the product is exported in the feed to the service */
                 active?: boolean;
-                /** @description price comparison website name */
-                priceComparisonSiteName: string;
-                /** @description Price settings, possible values: "manual" - Price entered manually, "automatically_calculated" - Price calculated automatically. */
-                priceComparisonSitePricesConfig?: string;
+                /** @description External service name */
+                name: string;
+                /** @description Price settings, possible values: "manual" - Price entered manually, "automatically_calculated" - Price calculated automatically, "default_price" - Product's default price. */
+                pricesConfig?: string;
                 /** @description Configuration details for setting of parameter  prices_config=automatically_calculated */
-                priceComparisonSitePriceConfigAutomatonDetails?: {
+                priceConfigAutomatonDetails?: {
                     /** @description Price setting, one of values: own, last_purchased, avarage_purchased, retail, wholsale, minimal */
                     priceAutomatonPriceSettings: string;
                     /** @description Price type, one of values: gross, net */

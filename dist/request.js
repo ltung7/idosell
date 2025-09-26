@@ -180,7 +180,10 @@ export const checkParams = (request) => {
         const array = request.params[request.appendable.arrayNode];
         const last = array[array.length - 1];
         if (typeof last === 'object' && Object.keys(last).length === 0) {
-            array.pop();
+            if (array.length === 1)
+                delete request.params[request.appendable.arrayNode];
+            else
+                array.pop();
         }
     }
     processRequired(request);

@@ -2,6 +2,8 @@
 
 This package wraps around the Idosell REST Api to make it easier to use by implementing chainable options, more intuitive methods and helpers to format requests more easily. [Official Idosell documentation](https://idosell.readme.io/docs) is still applicable for the most part.
 
+Visit [This page](https://idosell-converter.vercel.app/) for more detailed usage and examples.
+
 ## Basic use
 
 Package translates awkward gate names into more readable method names using REST verbs and gateways. Most of the possible methods are kept as is, only changed to camel case. For example:

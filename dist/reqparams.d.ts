@@ -2139,6 +2139,8 @@ export type PostCouriersPickupPointsParams = {
             city?: string;
             /** @description Administrative region (code in ISO 3166-2). */
             provinceCode?: string;
+            /** @description Country code (ISO 3166-1 alpha-2). */
+            countryCode?: string;
         };
         /** @description Geographic coordinates. */
         coordinates: {
