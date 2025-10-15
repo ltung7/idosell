@@ -1,23 +1,23 @@
-export var ProductQuantityKey;
-(function (ProductQuantityKey) {
-    ProductQuantityKey["ProductSizeQuantityOwnStock"] = "productSizeQuantityOwnStock";
-    ProductQuantityKey["ProductSizeQuantityOutsideStock"] = "productSizeQuantityOutsideStock";
-    ProductQuantityKey["ProductSizeQuantityAllStocks"] = "productSizeQuantityAllStocks";
-    ProductQuantityKey["ProductStocksQuantities"] = "productStocksQuantities";
-    ProductQuantityKey["ProductOrdersUnfinishedQuantities"] = "productOrdersUnfinishedQuantities";
-    ProductQuantityKey["ProductSizesDeliveries"] = "productSizesDeliveries";
-    ProductQuantityKey["ProductSizesDispositionsInAuctions"] = "productSizesDispositionsInAuctions";
-})(ProductQuantityKey || (ProductQuantityKey = {}));
+export var QunatityType;
+(function (QunatityType) {
+    QunatityType["ProductSizeQuantityOwnStock"] = "productSizeQuantityOwnStock";
+    QunatityType["ProductSizeQuantityOutsideStock"] = "productSizeQuantityOutsideStock";
+    QunatityType["ProductSizeQuantityAllStocks"] = "productSizeQuantityAllStocks";
+    QunatityType["ProductStocksQuantities"] = "productStocksQuantities";
+    QunatityType["ProductOrdersUnfinishedQuantities"] = "productOrdersUnfinishedQuantities";
+    QunatityType["ProductSizesDeliveries"] = "productSizesDeliveries";
+    QunatityType["ProductSizesDispositionsInAuctions"] = "productSizesDispositionsInAuctions";
+})(QunatityType || (QunatityType = {}));
 const productQuantityPathMap = {
     // ----- Product Dispositions -----
-    [ProductQuantityKey.ProductSizeQuantityOwnStock]: ["productSizesDispositions", "productSizesDispositionsInSales", "productSizeQuantityOwnStock"],
-    [ProductQuantityKey.ProductSizeQuantityOutsideStock]: ["productSizesDispositions", "productSizesDispositionsInSales", "productSizeQuantityOutsideStock"],
-    [ProductQuantityKey.ProductSizeQuantityAllStocks]: ["productSizesDispositions", "productSizesDispositionsInSales", "productSizeQuantityAllStocks"],
-    [ProductQuantityKey.ProductSizesDispositionsInAuctions]: ["productSizesDispositions", "productSizesDispositionsInAuctions", "productSizeQuantity"],
+    [QunatityType.ProductSizeQuantityOwnStock]: ["productSizesDispositions", "productSizesDispositionsInSales", "productSizeQuantityOwnStock"],
+    [QunatityType.ProductSizeQuantityOutsideStock]: ["productSizesDispositions", "productSizesDispositionsInSales", "productSizeQuantityOutsideStock"],
+    [QunatityType.ProductSizeQuantityAllStocks]: ["productSizesDispositions", "productSizesDispositionsInSales", "productSizeQuantityAllStocks"],
+    [QunatityType.ProductSizesDispositionsInAuctions]: ["productSizesDispositions", "productSizesDispositionsInAuctions", "productSizeQuantity"],
     // ----- Stocks & related quantities -----
-    [ProductQuantityKey.ProductStocksQuantities]: ["productStocksQuantities", "productSizeQuantity"],
-    [ProductQuantityKey.ProductOrdersUnfinishedQuantities]: ["productOrdersUnfinishedQuantities", "productSizeQuantity"],
-    [ProductQuantityKey.ProductSizesDeliveries]: ["productSizesDeliveries", "productSizeQuantity"],
+    [QunatityType.ProductStocksQuantities]: ["productStocksQuantities", "productSizeQuantity"],
+    [QunatityType.ProductOrdersUnfinishedQuantities]: ["productOrdersUnfinishedQuantities", "productSizeQuantity"],
+    [QunatityType.ProductSizesDeliveries]: ["productSizesDeliveries", "productSizeQuantity"],
 };
 const getProductSizeArrayNode = (productStocksData, key) => {
     const pathNode = productQuantityPathMap[key];
@@ -46,7 +46,7 @@ const getProductSizeArray = (productStocksData, path) => {
     }
     return [];
 };
-const sumProductQuantities = (productStocksData, stockType = ProductQuantityKey.ProductSizeQuantityOwnStock) => {
+const sumProductQuantities = (productStocksData, stockType = QunatityType.ProductSizeQuantityOwnStock) => {
     const { arr, node } = getProductSizeArrayNode(productStocksData, stockType);
     return arr.reduce((total, item) => {
         const value = item[node];
@@ -56,9 +56,11 @@ const sumProductQuantities = (productStocksData, stockType = ProductQuantityKey.
     }, 0);
 };
 const getIaiCode = (productId, sizeId) => {
+    if (sizeId === 'uniw')
+        return productId.toString();
     return [productId, sizeId].join('-');
 };
-const mapSizeQuantites = (product, stockType = ProductQuantityKey.ProductSizeQuantityOwnStock) => {
+const mapSizeQuantites = (product, stockType = QunatityType.ProductSizeQuantityOwnStock) => {
     const obj = {};
     if (!product.productStocksData)
         return obj;
@@ -89,6 +91,7 @@ const mapProductCodes = (product, codeType = 'productSizeCodeProducer') => {
     return obj;
 };
 export default {
+    QUANTITY_TYPE_ENUM: QunatityType,
     getIaiCode,
     sumProductQuantities,
     mapSizeQuantites,
