@@ -758,6 +758,12 @@ export type PostProductsParams = {
         responsibleProducerCode?: string;
         /** @description Responsible person code */
         responsiblePersonCode?: string;
+        /** @description Deposit type */
+        depositType?: number;
+        /** @description Product deposit id */
+        depositProductId?: number;
+        /** @description Product deposit count */
+        depositCount?: number;
     }[];
 };
 
@@ -2004,6 +2010,12 @@ export type PutProductsParams = {
         responsibleProducerCode?: string;
         /** @description Responsible person code */
         responsiblePersonCode?: string;
+        /** @description Deposit type */
+        depositType?: number;
+        /** @description Product deposit id */
+        depositProductId?: number;
+        /** @description Product deposit count */
+        depositCount?: number;
     }[];
 };
 

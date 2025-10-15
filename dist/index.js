@@ -1,4 +1,5 @@
 import ENUMS from "./enums.js";
+import utils from "./utils.js";
 import { gateProxy } from "./gates.js";
 export const DEFAULT_VERSION = 7;
 const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
@@ -8,4 +9,4 @@ const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
     return new Proxy(element, gateProxy);
 };
 export default idosell;
-export { ENUMS };
+export { ENUMS, utils };
