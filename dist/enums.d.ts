@@ -373,3 +373,27 @@ export enum PAYMENT_FORMS {
     /** @description 74 - Straal */
     STRAAL = 74,
 }
+
+export enum PRODUCT_SIZE_COUNTABLE {
+    QUANTITY = 'productSizeQuantity',
+    QUANTITY_OWN = 'productSizeQuantityOwnStock',
+    QUANTITY_OUTSIDE = 'productSizeQuantityOutsideStock',
+    QUANTITY_ALL = 'productSizeQuantityAllStocks',
+    QUANTITY_ORDERS_UNFINISHED = 'productOrdersUnfinishedQuantities',
+    DELIVERIES = 'productSizesDeliveries',
+    AUCTIONS = 'productSizesDispositionsInAuctions',
+}
+
+export enum PRODUCT_SIZE_STRING {
+    NAME = 'sizePanelName',
+    CODE_PRODUCER = 'productSizeCodeProducer',
+    CODE_EXTERNAL = 'productSizeCodeExternal',
+    LOCATION = 'stockLocationCode',
+    LOCATION_CODE = 'stockLocationTextId',
+}
+
+export enum PRODUCE_SIZE_INDEX {
+    NAME = 'sizePanelName',
+    ID = 'sizeId',
+    IAI_CODE = 'iaiCode'
+}

@@ -95,7 +95,7 @@ export const dateRangeType = ({ nodeName, fromName, toName, typeName, defaultTyp
     const param = {};
     ;
     const node = getDateRangeNode(fromName, toName, dateFrom, dateTo, format);
-    if (dateType === null && defaultType)
+    if (!dateType && defaultType)
         dateType = defaultType;
     node[typeName] = dateType;
     if (nested) {

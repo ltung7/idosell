@@ -731,7 +731,7 @@ export type PostProductsParams = {
         };
         /** @description Standard unit settings */
         standardUnit?: {
-            /** @description Possible special contexts corresponding to standard units. Available values: "CONTEXT_STD_UNIT_WEIGHT" - #!WagaTowaruWGramach!#, "CONTEXT_STD_UNIT_WEIGHT_SI" - Product weight in kilograms, "CONTEXT_STD_UNIT_VOLUME" - A product's value in milliliters "CONTEXT_STD_UNIT_VOLUME_SI" - A product's value in liters "CONTEXT_STD_UNIT_LENGTH" - Length of product in meters "CONTEXT_STD_UNIT_AREA_M2" - Area of ​​product in square meters "CONTEXT_STD_UNIT_VOLUME_M3" - The volume of products in cubic meters "CONTEXT_STD_UNIT_QUANTITY_PACKAGE" - Number of pieces per pack for standard unit */
+            /** @description Possible special contexts corresponding to standard units. Available values: "CONTEXT_STD_UNIT_WEIGHT" - #!WagaTowaruWGramach!#, "CONTEXT_STD_UNIT_WEIGHT_SI" - Product weight in kilograms, "CONTEXT_STD_UNIT_VOLUME" - A product's value in milliliters "CONTEXT_STD_UNIT_VOLUME_SI" - A product's value in liters "CONTEXT_STD_UNIT_LENGTH" - Length of product in meters "CONTEXT_STD_UNIT_AREA_M2" - Area of product in square meters "CONTEXT_STD_UNIT_VOLUME_M3" - The volume of products in cubic meters "CONTEXT_STD_UNIT_QUANTITY_PACKAGE" - Number of pieces per pack for standard unit */
             contextValue?: "CONTEXT_STD_UNIT_WEIGHT" | "CONTEXT_STD_UNIT_WEIGHT_SI" | "CONTEXT_STD_UNIT_VOLUME" | "CONTEXT_STD_UNIT_VOLUME_SI" | "CONTEXT_STD_UNIT_LENGTH" | "CONTEXT_STD_UNIT_AREA_M2" | "CONTEXT_STD_UNIT_VOLUME_M3" | "CONTEXT_STD_UNIT_QUANTITY_PACKAGE";
             /** @description Total length/volume/area/weight of product */
             standardUnitValue?: number;
@@ -1974,7 +1974,7 @@ export type PutProductsParams = {
         };
         /** @description Standard unit settings */
         standardUnit?: {
-            /** @description Possible special contexts corresponding to standard units. Available values: "CONTEXT_STD_UNIT_WEIGHT" - Product weight in grams, "CONTEXT_STD_UNIT_WEIGHT_SI" - Product weight in kilograms, "CONTEXT_STD_UNIT_VOLUME" - A product's value in milliliters "CONTEXT_STD_UNIT_VOLUME_SI" - A product's value in liters "CONTEXT_STD_UNIT_LENGTH" - Length of product in meters "CONTEXT_STD_UNIT_AREA_M2" - Area of ​​product in square meters "CONTEXT_STD_UNIT_VOLUME_M3" - The volume of products in cubic meters "CONTEXT_STD_UNIT_QUANTITY_PACKAGE" - Number of pieces per pack for standard unit */
+            /** @description Possible special contexts corresponding to standard units. Available values: "CONTEXT_STD_UNIT_WEIGHT" - Product weight in grams, "CONTEXT_STD_UNIT_WEIGHT_SI" - Product weight in kilograms, "CONTEXT_STD_UNIT_VOLUME" - A product's value in milliliters "CONTEXT_STD_UNIT_VOLUME_SI" - A product's value in liters "CONTEXT_STD_UNIT_LENGTH" - Length of product in meters "CONTEXT_STD_UNIT_AREA_M2" - Area of product in square meters "CONTEXT_STD_UNIT_VOLUME_M3" - The volume of products in cubic meters "CONTEXT_STD_UNIT_QUANTITY_PACKAGE" - Number of pieces per pack for standard unit */
             contextValue?: "CONTEXT_STD_UNIT_WEIGHT" | "CONTEXT_STD_UNIT_WEIGHT_SI" | "CONTEXT_STD_UNIT_VOLUME" | "CONTEXT_STD_UNIT_VOLUME_SI" | "CONTEXT_STD_UNIT_LENGTH" | "CONTEXT_STD_UNIT_AREA_M2" | "CONTEXT_STD_UNIT_VOLUME_M3" | "CONTEXT_STD_UNIT_QUANTITY_PACKAGE";
             /** @description Total length/volume/area/weight of product */
             standardUnitValue?: number;
@@ -2257,12 +2257,10 @@ export type PostPackagesLabelsParams = {
 export type PostOrdersDocumentsCreateParams = {
     /** @example [ 1, 2 ] */
     orderSerialNumbers: number[];
-    /** @example false */
+    /** @deprecated */
     actualize?: boolean;
     /** @description Document type */
     documentType: "vat_invoice" | "fiscal_invoice" | "corrective_vat_invoice" | "fiscal_receipt" | "sales_confirmation";
-    /** @description Document issued date */
-    documentIssuedDate?: string;
     /** @description Document purchase date */
     documentPurchaseDate?: string;
     /** @description Printer id */
@@ -2302,6 +2300,8 @@ export type PostClientsParams = {
         company?: string;
         /** @description Customer Tax no. */
         vat_number?: string;
+        /** @description Customer NIP UE declaration */
+        nip_ue_declaration?: "yes" | "no";
         /** @description Determines, whether client is a wholesaler. */
         wholesaler?: boolean;
         /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
@@ -4664,6 +4664,8 @@ export type PutClientsParams = {
         clientFirm?: string;
         /** @description Customer Tax no. */
         clientNip?: string;
+        /** @description Customer NIP UE declaration */
+        clientNipUeDeclaration?: "yes" | "no";
         /** @description Determines, whether client is a wholesaler. */
         clientIsWholesaler?: boolean;
         /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
@@ -5709,6 +5711,8 @@ export type PutProductsSeriesParams = {
             headerName?: string;
             /** @description Description */
             description?: string;
+            /** @description Description bottom */
+            descriptionBottom?: string;
             /** @description Products display settings */
             view?: "default" | "own";
             /** @description Enable customers to change sorting */

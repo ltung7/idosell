@@ -1,31 +1,27 @@
+import type { PRODUCT_SIZE_COUNTABLE, PRODUCT_SIZE_STRING } from "./enums.d";
 import type { SearchProductsResponse } from "./responses.d.ts"
-
-export enum QunatityType {
-    ProductSizeQuantityOwnStock = "productSizeQuantityOwnStock",
-    ProductSizeQuantityOutsideStock = "productSizeQuantityOutsideStock",
-    ProductSizeQuantityAllStocks = "productSizeQuantityAllStocks",
-    ProductStocksQuantities = "productStocksQuantities",
-    ProductOrdersUnfinishedQuantities = "productOrdersUnfinishedQuantities",
-    ProductSizesDeliveries = "productSizesDeliveries",
-    ProductSizesDispositionsInAuctions = "productSizesDispositionsInAuctions",
-}
 
 export type IdosellProduct = SearchProductsResponse['results'][0];
 
 export type GetIaICodeFunction = (productId: number|string, sizeId: string) => string;
 
-export type SumProductQuantitiesFunction = (productStocksData: IdosellProduct['productStocksData'], stockType?: QunatityType) => number;
+export type SumProductQuantitiesFunction = (productStocksData: IdosellProduct['productStocksqData'], stockType?: PRODUCT_SIZE_COUNTABLE | `${PRODUCT_SIZE_COUNTABLE}`) => number;
 
-export type MapSizeQuantitesFunction = (product: IdosellProduct, stockType?: QunatityType) => Record<string,number>;
+export type MapSizeQuantitesFunction = (product: IdosellProduct, stockType?: PRODUCT_SIZE_COUNTABLE | `${PRODUCT_SIZE_COUNTABLE}`) => Record<string,number>;
 
-export type MapProductCodesFunction = (product: IdosellProduct, codeType?: 'productSizeCodeExternal'|'productSizeCodeProducer'|'sizePanelName') => Record<string,string>;
+export type MapProductCodesFunction = (product: IdosellProduct, codeType?: PRODUCT_SIZE_STRING | `${PRODUCT_SIZE_STRING}`, stockId?: number|string) => Record<string,string>;
+
+export type GetLangDataFunction = <T extends { langId: string}>(array: T[], langId?: string) => T|undefined;
+
+export type ClearParametersLangDataFunction = (products: SearchProductsResponse['results'], langId: string = 'pol') => SearchProductsResponse['results'];
 
 declare namespace utils {
-    const QUANTITY_TYPE_ENUM: typeof QunatityType;
     const getIaiCode: GetIaICodeFunction;
     const sumProductQuantities: SumProductQuantitiesFunction;
     const mapSizeQuantites: MapSizeQuantitesFunction;
     const mapProductCodes: MapProductCodesFunction;
+    const getLangData: GetLangDataFunction;
+    const clearParametersLangData: ClearParametersLangDataFunction;
 }
 
 export default utils;
