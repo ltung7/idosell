@@ -68,29 +68,36 @@ const productSizesPathMap = {
         'productSizesDispositionsInAuctions',
         'array'
     ],
-    [ENUMS.PRODUCT_SIZE_STRING.NAME]: [
+    [ENUMS.PRODUCT_SIZE_CODES.NAME]: [
         'productSizes',
         'array'
     ],
-    [ENUMS.PRODUCT_SIZE_STRING.CODE_PRODUCER]: [
+    [ENUMS.PRODUCT_SIZE_CODES.CODE_PRODUCER]: [
         'productSizesAttributes',
         'array'
     ],
-    [ENUMS.PRODUCT_SIZE_STRING.CODE_EXTERNAL]: [
+    [ENUMS.PRODUCT_SIZE_CODES.CODE_EXTERNAL]: [
         'productStocksData',
         'productStocksQuantities',
         'array',
         'productSizesData',
         'array'
     ],
-    [ENUMS.PRODUCT_SIZE_STRING.LOCATION]: [
+    [ENUMS.PRODUCT_SIZE_LOCATIONS.NAME]: [
         'productStocksData',
         'productSizesStocksLocations',
         'array',
         'productSizesLocation',
         'array'
     ],
-    [ENUMS.PRODUCT_SIZE_STRING.LOCATION_CODE]: [
+    [ENUMS.PRODUCT_SIZE_LOCATIONS.CODE]: [
+        'productStocksData',
+        'productSizesStocksLocations',
+        'array',
+        'productSizesLocation',
+        'array'
+    ],
+    [ENUMS.PRODUCT_SIZE_LOCATIONS.ID]: [
         'productStocksData',
         'productSizesStocksLocations',
         'array',
@@ -133,14 +140,8 @@ const mapSizeQuantites = (product, nodeName = ENUMS.PRODUCT_SIZE_COUNTABLE.QUANT
     });
     return aggregated;
 };
-const mapProductCodes = (product, codeType = ENUMS.PRODUCT_SIZE_STRING.NAME, stockId) => {
-    let results = getTraversedPathElements(product, codeType);
-    if (['stockLocationTextId', 'stockLocationCode'].includes(codeType)) {
-        if (!stockId)
-            throw new Error("Stock Id is required to map locations");
-        const prefix = 'M' + stockId;
-        results = results.filter(item => item.stockLocationTextId.startsWith(prefix));
-    }
+const mapProductCodes = (product, codeType = ENUMS.PRODUCT_SIZE_CODES.NAME) => {
+    const results = getTraversedPathElements(product, codeType);
     const mapped = {};
     results.forEach(item => {
         if (item?.sizeId && item[codeType] !== undefined) {
@@ -151,6 +152,41 @@ const mapProductCodes = (product, codeType = ENUMS.PRODUCT_SIZE_STRING.NAME, sto
             }
         }
     });
+    return mapped;
+};
+const SUB_TYPE_NODES = {
+    stockLocationTextId: 'stockAdditionalLocationTextId',
+    stockLocationId: 'stockAdditionalLocationId',
+    stockLocationCode: 'stockAdditionalLocationCode'
+};
+const mapProductLocations = (product, stockId, locationType = ENUMS.PRODUCT_SIZE_LOCATIONS.NAME) => {
+    let results = getTraversedPathElements(product, locationType);
+    if (stockId) {
+        const prefix = 'M' + stockId;
+        results = results.filter((location) => location.stockLocationTextId.startsWith(prefix));
+    }
+    const mapped = {};
+    const subNode = SUB_TYPE_NODES[locationType];
+    for (const item of results) {
+        const { sizeId } = item;
+        if (!mapped[sizeId]) {
+            mapped[sizeId] = [];
+        }
+        // main location
+        const mainLocation = item[locationType];
+        if (mainLocation) {
+            mapped[sizeId].push(mainLocation.toString());
+        }
+        // additional locations
+        if (item.stockAdditionalLocations?.length) {
+            for (const additional of item.stockAdditionalLocations) {
+                const value = additional[subNode];
+                if (value) {
+                    mapped[sizeId].push(value.toString());
+                }
+            }
+        }
+    }
     return mapped;
 };
 const getLangData = (arr, langId = 'pol') => {
@@ -180,6 +216,7 @@ export default {
     getIaiCode,
     mapSizeQuantites,
     mapProductCodes,
+    mapProductLocations,
     getLangData,
     clearParametersLangData
 };

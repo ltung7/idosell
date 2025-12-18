@@ -384,12 +384,16 @@ export enum PRODUCT_SIZE_COUNTABLE {
     AUCTIONS = 'productSizesDispositionsInAuctions',
 }
 
-export enum PRODUCT_SIZE_STRING {
+export enum PRODUCT_SIZE_CODES {
     NAME = 'sizePanelName',
     CODE_PRODUCER = 'productSizeCodeProducer',
     CODE_EXTERNAL = 'productSizeCodeExternal',
-    LOCATION = 'stockLocationCode',
-    LOCATION_CODE = 'stockLocationTextId',
+}
+
+export enum PRODUCT_SIZE_LOCATIONS {
+    CODE = 'stockLocationCode',
+    NAME = 'stockLocationTextId',
+    ID = 'stockLocationId'
 }
 
 export enum PRODUCE_SIZE_INDEX {
