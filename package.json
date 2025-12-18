@@ -1,6 +1,6 @@
 {
   "name": "idosell",
-  "version": "0.4.17",
+  "version": "0.4.18",
   "description": "Idosell 3 REST connector",
   "main": "dist/index.js",
   "types": "dist/gateways.d.ts",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://idosell-converter.vercel.app",
   "dependencies": {
-    "axios": "^1.8.4"
+    "axios": "^1.13.2"
   },
   "type": "module"
 }
