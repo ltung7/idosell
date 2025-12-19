@@ -1,7 +1,8 @@
-import type { SearchProductsResponse } from "$dist/responses";
+import type { SearchProductsResponse } from "../dist/responses";
 
 export const STOCK_PRODUCT: SearchProductsResponse['results'][number] = {
-    "productId": 541321313,
+    "productId": 1234,
+    "productDisplayedCode": 'ZERO',
     "productStocksData": {
         "productSizesDeliveries": [
             {

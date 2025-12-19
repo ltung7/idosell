@@ -379,15 +379,16 @@ export enum PRODUCT_SIZE_COUNTABLE {
     QUANTITY_OWN = 'productSizeQuantityOwnStock',
     QUANTITY_OUTSIDE = 'productSizeQuantityOutsideStock',
     QUANTITY_ALL = 'productSizeQuantityAllStocks',
-    QUANTITY_ORDERS_UNFINISHED = 'productOrdersUnfinishedQuantities',
+    QUANTITY_UNFINISHED = 'productOrdersUnfinishedQuantities',
     DELIVERIES = 'productSizesDeliveries',
     AUCTIONS = 'productSizesDispositionsInAuctions',
+    RESERVATIONS = 'productSizeReservationOrder'
 }
 
 export enum PRODUCT_SIZE_CODES {
     NAME = 'sizePanelName',
     CODE_PRODUCER = 'productSizeCodeProducer',
-    CODE_EXTERNAL = 'productSizeCodeExternal',
+    CODE_EXTERNAL = 'productSizeCodeExternal'
 }
 
 export enum PRODUCT_SIZE_LOCATIONS {

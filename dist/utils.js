@@ -1,3 +1,4 @@
+import { PRODUCE_SIZE_INDEX } from "./enums.d.js";
 import ENUMS from "./enums.js";
 const getIaiCode = (productId, sizeId) => {
     if (sizeId === 'uniw')
@@ -50,7 +51,7 @@ const productSizesPathMap = {
         'productSizesDispositionsInSales',
         'array'
     ],
-    [ENUMS.PRODUCT_SIZE_COUNTABLE.QUANTITY_ORDERS_UNFINISHED]: [
+    [ENUMS.PRODUCT_SIZE_COUNTABLE.QUANTITY_UNFINISHED]: [
         'productStocksData',
         'productOrdersUnfinishedQuantities',
         'array',
@@ -66,6 +67,13 @@ const productSizesPathMap = {
         'productStocksData',
         'productSizesDispositions',
         'productSizesDispositionsInAuctions',
+        'array'
+    ],
+    [ENUMS.PRODUCT_SIZE_COUNTABLE.RESERVATIONS]: [
+        'productStocksData',
+        'productStocksQuantities',
+        'array',
+        'productSizesData',
         'array'
     ],
     [ENUMS.PRODUCT_SIZE_CODES.NAME]: [
@@ -126,29 +134,55 @@ const sumProductQuantities = (productStocksData, nodeName = ENUMS.PRODUCT_SIZE_C
     });
     return sum;
 };
-const mapSizeQuantites = (product, nodeName = ENUMS.PRODUCT_SIZE_COUNTABLE.QUANTITY_OWN) => {
+const getProductIndexFunction = (type, product) => {
+    switch (type) {
+        case PRODUCE_SIZE_INDEX.ID: return (obj) => obj.sizeId;
+        case PRODUCE_SIZE_INDEX.IAI_CODE: return (obj) => getIaiCode(product.productId, obj.sizeId);
+        case PRODUCE_SIZE_INDEX.NAME: {
+            return (obj) => {
+                if (obj.sizePanelName)
+                    return obj.sizePanelName;
+                if (product.productSizes) {
+                    const nameItem = product.productSizes.find(size => size.sizeId === obj.sizeId);
+                    if (nameItem)
+                        return nameItem.sizePanelName;
+                }
+                throw new Error("Could not index by name - sizePanelName and productSizes missing");
+            };
+        }
+        default: throw new Error('Invalid indexBy');
+    }
+};
+const mapSizeQuantites = (product, nodeName = ENUMS.PRODUCT_SIZE_COUNTABLE.QUANTITY_OWN, indexBy = ENUMS.PRODUCE_SIZE_INDEX.ID) => {
     const results = getTraversedPathElements(product, nodeName);
+    if (nodeName === 'productSizeReservationOrder') {
+        results.forEach(node => {
+            node.productSizeReservationOrder = node.productSizeReservations.productSizeReservationOrder;
+        });
+    }
     const aggregated = {};
     if (['productOrdersUnfinishedQuantities', 'productSizesDeliveries', 'productSizesDispositionsInAuctions'].includes(nodeName))
         nodeName = 'productSizeQuantity';
+    const getIndex = getProductIndexFunction(indexBy, product);
     results.forEach(item => {
         if (item?.sizeId && item[nodeName] !== undefined) {
-            const sizeId = String(item.sizeId);
+            const index = getIndex(item) ?? item.sizeId;
             const value = Number(item[nodeName]) || 0;
-            aggregated[sizeId] = (aggregated[sizeId] || 0) + value;
+            aggregated[index] = (aggregated[index] || 0) + value;
         }
     });
     return aggregated;
 };
-const mapProductCodes = (product, codeType = ENUMS.PRODUCT_SIZE_CODES.NAME) => {
+const mapProductCodes = (product, codeType = ENUMS.PRODUCT_SIZE_CODES.NAME, indexBy = ENUMS.PRODUCE_SIZE_INDEX.ID) => {
     const results = getTraversedPathElements(product, codeType);
     const mapped = {};
+    const getIndex = getProductIndexFunction(indexBy, product);
     results.forEach(item => {
         if (item?.sizeId && item[codeType] !== undefined) {
-            const sizeId = String(item.sizeId);
+            const index = getIndex(item) ?? item.sizeId;
             const value = String(item[codeType] || '');
-            if (!mapped[sizeId] || value) {
-                mapped[sizeId] = value;
+            if (!mapped[index] || value) {
+                mapped[index] = value;
             }
         }
     });
@@ -159,7 +193,24 @@ const SUB_TYPE_NODES = {
     stockLocationId: 'stockAdditionalLocationId',
     stockLocationCode: 'stockAdditionalLocationCode'
 };
-const mapProductLocations = (product, stockId, locationType = ENUMS.PRODUCT_SIZE_LOCATIONS.NAME) => {
+const mapAllProductCodes = (product, indexBy) => {
+    const results = getTraversedPathElements(product, ENUMS.PRODUCT_SIZE_CODES.CODE_PRODUCER);
+    const mapped = {};
+    const getIndex = getProductIndexFunction(indexBy, product);
+    for (const item of results) {
+        const index = getIndex(item);
+        if (!mapped[index]) {
+            mapped[index] = [];
+        }
+        mapped[index].push(getIaiCode(product.productId, item.sizeId));
+        if (item.productSizeCodeProducer?.length)
+            mapped[index].push(item.productSizeCodeProducer);
+        if (item.productSizeCodeExternal?.length)
+            mapped[index].push(item.productSizeCodeExternal);
+    }
+    return mapped;
+};
+const mapProductLocations = (product, stockId, locationType = ENUMS.PRODUCT_SIZE_LOCATIONS.NAME, indexBy = ENUMS.PRODUCE_SIZE_INDEX.ID) => {
     let results = getTraversedPathElements(product, locationType);
     if (stockId) {
         const prefix = 'M' + stockId;
@@ -167,22 +218,23 @@ const mapProductLocations = (product, stockId, locationType = ENUMS.PRODUCT_SIZE
     }
     const mapped = {};
     const subNode = SUB_TYPE_NODES[locationType];
+    const getIndex = getProductIndexFunction(indexBy, product);
     for (const item of results) {
-        const { sizeId } = item;
-        if (!mapped[sizeId]) {
-            mapped[sizeId] = [];
+        const index = getIndex(item);
+        if (!mapped[index]) {
+            mapped[index] = [];
         }
         // main location
         const mainLocation = item[locationType];
         if (mainLocation) {
-            mapped[sizeId].push(mainLocation.toString());
+            mapped[index].push(mainLocation.toString());
         }
         // additional locations
         if (item.stockAdditionalLocations?.length) {
             for (const additional of item.stockAdditionalLocations) {
                 const value = additional[subNode];
                 if (value) {
-                    mapped[sizeId].push(value.toString());
+                    mapped[index].push(value.toString());
                 }
             }
         }
@@ -212,11 +264,20 @@ const clearParametersLangData = (products, langId = 'pol') => {
     return products;
 };
 export default {
-    sumProductQuantities,
+    /** @description The method allows you to build an IAI code from the product ID and size ID. */
     getIaiCode,
+    /** @description The method allows you to sum up the current stock levels: warehouses, available stocks, etc. */
+    sumProductQuantities,
+    /** @description The method allows mapping the sum of the current stock levels (in warehouses, at disposal, etc.) divided into sizes */
     mapSizeQuantites,
+    /** @description The method allows mapping the producers's or external system's codes stored in the system to SKUs */
     mapProductCodes,
+    /** @description The method allows mapping all known codes: IAI code, manufacturer code or external code as an array */
+    mapAllProductCodes,
+    /** @description This method allows you to map product locations stored in the system, broken down by size. You can select a specific warehouse or list all of them, both primary and secondary. */
     mapProductLocations,
+    /** @description Get first item (description, series, parameter name or value) with the selected langId */
     getLangData,
+    /** @description Modifies product response by removing all parameter names nad values that are not in selected langId */
     clearParametersLangData
 };

@@ -380,9 +380,10 @@ var PRODUCT_SIZE_COUNTABLE;
     PRODUCT_SIZE_COUNTABLE["QUANTITY_OWN"] = "productSizeQuantityOwnStock";
     PRODUCT_SIZE_COUNTABLE["QUANTITY_OUTSIDE"] = "productSizeQuantityOutsideStock";
     PRODUCT_SIZE_COUNTABLE["QUANTITY_ALL"] = "productSizeQuantityAllStocks";
-    PRODUCT_SIZE_COUNTABLE["QUANTITY_ORDERS_UNFINISHED"] = "productOrdersUnfinishedQuantities";
+    PRODUCT_SIZE_COUNTABLE["QUANTITY_UNFINISHED"] = "productOrdersUnfinishedQuantities";
     PRODUCT_SIZE_COUNTABLE["DELIVERIES"] = "productSizesDeliveries";
     PRODUCT_SIZE_COUNTABLE["AUCTIONS"] = "productSizesDispositionsInAuctions";
+    PRODUCT_SIZE_COUNTABLE["RESERVATIONS"] = "productSizeReservationOrder";
 })(PRODUCT_SIZE_COUNTABLE || (PRODUCT_SIZE_COUNTABLE = {}));
 var PRODUCT_SIZE_CODES;
 (function (PRODUCT_SIZE_CODES) {

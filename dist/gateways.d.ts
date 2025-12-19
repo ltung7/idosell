@@ -3343,7 +3343,7 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Price range for sought products. */
     productSearchPriceRange: (value: RequestParams.SearchProductsParams["productSearchPriceRange"]) => this;
     /** VAT value for sought products */
-    productVatRates: (value: Array<Number>) => this;
+    productVatRates: (value: number|number[]) => this;
     /** Is product VAT-free Allowed values "y" - yes, "n" - no. */
     productIsVatFree: (value: string) => this;
     /** Product has defined wholesale price. Available values: "y" - has wholesale price, "n" - does not have wholesale price. */
@@ -5206,4 +5206,4 @@ export interface Gateways {
 
 declare const defaultExport: (url: string, apiKey: string, version?: number | string) => Gateways;
 export default defaultExport;
-export { ENUMS, RequestParams }
+export { ENUMS, RequestParams, utils }
