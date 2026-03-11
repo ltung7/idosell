@@ -1,10 +1,11 @@
 import axios from "axios";
 import { page } from "./helpers.js";
-import { inspect } from 'util';
+import { IdosellFaultStringError } from "./errors.js";
 const DECODE_TABLE = [
     ['Å\x82', "ł"],
     ['Ä\x99', 'ę']
 ];
+const DEFAULT_LOG_FUNCTION = console.log;
 const catchIdosellError = (err) => {
     if (!err.response) {
         if (err.cause)
@@ -29,21 +30,28 @@ const catchIdosellError = (err) => {
     throw new Error(`${err.response.status}: ${message}`, { cause: err.response.status });
 };
 const checkNext = (request, response, logPage) => {
+    if (logPage === true)
+        logPage = DEFAULT_LOG_FUNCTION;
     if (!response)
         return;
-    if (response?.errors?.faultCode > 0)
-        throw new Error(response.errors.faultString, { cause: response.errors });
+    if (response?.errors?.faultString) {
+        const faultStructure = {
+            faultCode: response?.errors?.faultCode ?? 999,
+            faultString: response.errors.faultString,
+        };
+        throw new IdosellFaultStringError(response.errors.faultString, faultStructure);
+    }
     if (response.resultsNumberPage) {
         request.next = response.resultsPage + 1 < response.resultsNumberPage;
         request.params.resultsPage = request.params.resultsPage ? request.params.resultsPage + 1 : 1;
         if (logPage)
-            console.log('Page: ' + response.resultsPage + ' / ' + response.resultsNumberPage);
+            logPage('Page: ' + response.resultsPage + ' / ' + response.resultsNumberPage);
     }
     else if (response.results_number_page) {
         request.next = response.results_page + 1 < response.results_number_page;
         request.params.results_page = request.params.results_page ? request.params.results_page + 1 : 1;
         if (logPage)
-            console.log('Page: ' + response.results_page + ' / ' + response.results_page);
+            logPage('Page: ' + response.results_page + ' / ' + response.results_page);
     }
     return response;
 };
@@ -141,10 +149,21 @@ export const sendRequest = async (request, options = {}) => {
     request.next = false;
     const { method, node } = request.gate;
     let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
-    if (options.log || options.dump) {
-        console.log(inspect({ params: request.params, method, url }, { showHidden: false, depth: null, colors: true }));
-        if (options.dump)
+    if (options.dump || options.log) {
+        const dumpData = { params: request.params, method, url };
+        if (options.dump) {
+            if (options.dump === true)
+                DEFAULT_LOG_FUNCTION(dumpData);
+            else
+                options.dump(dumpData);
             return {};
+        }
+        else if (options.log) {
+            if (options.log === true)
+                DEFAULT_LOG_FUNCTION(dumpData);
+            else
+                options.log(dumpData);
+        }
     }
     if (method === 'get' || method === 'delete') {
         url += '?' + queryfy(request.params);

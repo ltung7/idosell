@@ -1,4 +1,3 @@
-import { PRODUCE_SIZE_INDEX } from "./enums.d.js";
 import ENUMS from "./enums.js";
 const getIaiCode = (productId, sizeId) => {
     if (sizeId === 'uniw')
@@ -136,9 +135,9 @@ const sumProductQuantities = (productStocksData, nodeName = ENUMS.PRODUCT_SIZE_C
 };
 const getProductIndexFunction = (type, product) => {
     switch (type) {
-        case PRODUCE_SIZE_INDEX.ID: return (obj) => obj.sizeId;
-        case PRODUCE_SIZE_INDEX.IAI_CODE: return (obj) => getIaiCode(product.productId, obj.sizeId);
-        case PRODUCE_SIZE_INDEX.NAME: {
+        case ENUMS.PRODUCE_SIZE_INDEX.ID: return (obj) => obj.sizeId;
+        case ENUMS.PRODUCE_SIZE_INDEX.IAI_CODE: return (obj) => getIaiCode(product.productId, obj.sizeId);
+        case ENUMS.PRODUCE_SIZE_INDEX.NAME: {
             return (obj) => {
                 if (obj.sizePanelName)
                     return obj.sizePanelName;
@@ -263,6 +262,13 @@ const clearParametersLangData = (products, langId = 'pol') => {
     }
     return products;
 };
+const removeRmaAttachments = (rmaResponse) => {
+    for (const rma of rmaResponse.rmas) {
+        for (const product of rma.products)
+            product.attachments = [];
+    }
+    return rmaResponse;
+};
 export default {
     /** @description The method allows you to build an IAI code from the product ID and size ID. */
     getIaiCode,
@@ -279,5 +285,7 @@ export default {
     /** @description Get first item (description, series, parameter name or value) with the selected langId */
     getLangData,
     /** @description Modifies product response by removing all parameter names nad values that are not in selected langId */
-    clearParametersLangData
+    clearParametersLangData,
+    /** @description Removes attachments to RMA that are returned by default, helps to reduce data if serialized or forwarded */
+    removeRmaAttachments
 };

@@ -1,9 +1,17 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject } from "./app.d.ts"
+import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject, IdosellErrorFaultStructure } from "./app.d.ts"
 import type { GetClientsBalanceResponse, BooleanStatusResponse, GetClientsResponse, PostClientsResponse, PutClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PostClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, VouchersResponse, PutVouchersResponse, SearchClientsGiftcardsResponse, GetClientsGiftcardsTypesResponse, GetClientsMembershipCardsResponse, PutClientsMembershipCardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, PostClientsPayerAddressResponse, PutClientsPayerAddressResponse, GetClientsPricelistsClientsResponse, PutClientsPricelistsClientsResponse, GetClientsPricelistsResponse, PostClientsPricelistsResponse, GetClientsPricelistsProductsResponse, PutClientsPricelistsProductsResponse, GetClientsPricesActiveCardResponse, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountsResponse, PutClientsPricesDiscountsResponse, GetClientsProfitPointsResponse, GetClientsProvinceListResponse, GetClientsTagsResponse, PostClientsTagsResponse, PutClientsTagsResponse, GetConfigVariablesResponse, PutConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersResponse, GetCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaCampaignResponse, CmsCampaignResponse, CmsResponse, GetCpaResponse, GetDeliveriesProfilesResponse, GetDeliveriesRegionsResponse, PostDeliveriesRegionsResponse, GetDiscountsGroupsClientsResponse, GetDiscountsGroupsResponse, PostDiscountsGroupsResponse, GetEntriesResponse, PostEntriesResponse, GetEntriesPagesToDisplayResponse, GetEntriesSourcesResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, PutMenuSortResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PutOrdersCourierResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, PostOrdersDocumentsResponse, GetOrdersHandlerResponse, GetOrdersHistoryResponse, GetOrdersImagesResponse, PostOrdersImagesResponse, GetOrdersLabelsResponse, SearchOrdersOpinionsResponse, GetOrdersOpinionsRateResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, PutOrdersPackagesResponse, PutOrdersProductsSerialNumbersResponse, PutOrdersProfitMarginResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetOrdersWarehouseResponse, PostPackagesLabelsResponse, PutPackagesResponse, SearchPackagesResponse, GetPaymentsFormsResponse, GetPaymentsResponse, PostPaymentsResponse, GetPaymentsProfilesResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, PutProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, ProductIdentResponse, PutProductsGroupsSettingsResponse, GetProductsIdBySizecodeResponse, PutProductsImagesResponse, GetProductsMarketingPromotionResponse, PostProductsMarketingPromotionResponse, PutProductsMarketingPromotionResponse, GetProductsMarketingZonesResponse, PutProductsMarketingZonesResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, PostProductsOpinionsResponse, GetProductsOpinionsRateResponse, PutProductsParametersResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, GetProductsQuestionsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, PutProductsSeriesResponse, GetProductsSizesResponse, PutProductsSizesResponse, PutProductsStockQuantityResponse, GetProductsStocksResponse, PutProductsStocksResponse, GetProductsStrikethroughPricesResponse, PutProductsSupplierCodeResponse, PutProductsSupplierProductDataResponse, GetResponsibilityEntitiesResponse, PutResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, PutReturnsSerialNumberResponse, GetRmaResponse, PutRmaResponse, GetRmaStatusesResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, PutSizechartsResponse, GetSizesResponse, PutSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, PutSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemServerLoadResponse, GetSystemServerTimeResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, PutSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesCountTotalResponse, PutWarrantiesLanguageDataResponse, GetWarrantiesResponse, PutWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, PutWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse, PutWmsSuppliersResponse } from "./responses.d.ts"
 import type * as RequestParams from "./reqparams.d.ts";
 import * as ENUMS from "./enums";
 import utils from "./utils";
+
+export class IdosellFaultStringError extends Error {
+    cause: IdosellFaultStringError;
+    constructor(message: string, cause: IdosellErrorFaultStructure);
+}
+
+export function catchEmptyList(): (_err: IdosellFaultStringError) => undefined;
+export function catchEmptyList<T>(_defaultValue: T): (_err: IdosellFaultStringError) => T;
 
 export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest, GetClientsBalanceResponse> {
     /** Customer Id */
@@ -67,7 +75,7 @@ export interface GetClientsRequest extends PagableGateway<GetClientsRequest, Get
     /** Client Registration Date  */
     clientRegistrationDate: (value: JSObject) => this;
     /** The ID of the shop, that client is assigned to. */
-    shopId: (value: string) => this;
+    shopId: (value: number|string) => this;
     /** Define range of dates */
     lastPurchased: (dateFrom: DateLike, dateTo: DateLike) => this;
     /** Define range of dates */
@@ -163,7 +171,7 @@ export interface PutClientsRequest extends AppendableGateway<PutClientsRequest, 
     /** Country ID in accordance with ISO-3166. */
     clientCountryId: (clientCountryId: string) => this
     /** Administrative region code. */
-    clientProvinceId: (clientProvinceId: string) => this
+    clientProvinceId: (clientProvinceId: number|string) => this
     /** Customer password (min. 8 characters). */
     clientPassword: (clientPassword: string) => this
     /** Date of birth. */
@@ -331,9 +339,9 @@ export interface PostClientsDeliveryAddressRequest extends AppendableGateway<Pos
     /** Recipient street and number. */
     clientDeliveryAddressStreet: (clientDeliveryAddressStreet: string) => this
     /** Administrative region code. */
-    clientDeliveryAddressRegionId: (clientDeliveryAddressRegionId: string) => this
+    clientDeliveryAddressRegionId: (clientDeliveryAddressRegionId: number|string) => this
     /** Administrative region code. */
-    clientDeliveryAddressProvinceId: (clientDeliveryAddressProvinceId: string) => this
+    clientDeliveryAddressProvinceId: (clientDeliveryAddressProvinceId: number|string) => this
     /** Recipient's postal code. */
     clientDeliveryAddressZipCode: (clientDeliveryAddressZipCode: string) => this
     /** Recipient's country. */
@@ -348,7 +356,7 @@ export interface PutClientsDeliveryAddressRequest extends AppendableGateway<PutC
     /** External system code. */
     clientCodeExternal: (clientCodeExternal: string) => this
     /** Delivery address ID. */
-    clientDeliveryAddressId: (clientDeliveryAddressId: string) => this
+    clientDeliveryAddressId: (clientDeliveryAddressId: number|string) => this
     /** List of stores IDs When mask is determined, this parameter is omitted. */
     shopsIds: (shopsIds: number|string|number[]|string[]) => this
     /** Currency ID */
@@ -366,9 +374,9 @@ export interface PutClientsDeliveryAddressRequest extends AppendableGateway<PutC
     /** Recipient street and number. */
     clientDeliveryAddressStreet: (clientDeliveryAddressStreet: string) => this
     /** Administrative region code. */
-    clientDeliveryAddressRegionId: (clientDeliveryAddressRegionId: string) => this
+    clientDeliveryAddressRegionId: (clientDeliveryAddressRegionId: number|string) => this
     /** Administrative region code. */
-    clientDeliveryAddressProvinceId: (clientDeliveryAddressProvinceId: string) => this
+    clientDeliveryAddressProvinceId: (clientDeliveryAddressProvinceId: number|string) => this
     /** Recipient's postal code. */
     clientDeliveryAddressZipCode: (clientDeliveryAddressZipCode: string) => this
     /** Recipient's country. */
@@ -551,7 +559,7 @@ export interface DeleteClientsPayerAddressRequest extends AppendableGateway<Dele
 
 export interface GetClientsPayerAddressRequest extends PagableGateway<GetClientsPayerAddressRequest, GetClientsPayerAddressResponse> {
     /** Unique client's number. */
-    clientId: (value: string) => this;
+    clientId: (value: number|string) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -585,9 +593,9 @@ export interface PostClientsPayerAddressRequest extends AppendableGateway<PostCl
 export interface PutClientsPayerAddressRequest extends AppendableGateway<PutClientsPayerAddressRequest, PutClientsPayerAddressResponse, RequestParams.PutClientsPayerAddressParams> {
     payers: (value: RequestParams.PutClientsPayerAddressParams["payers"]) => this;
     /** Unique client's number. */
-    clientId: (clientId: string) => this
+    clientId: (clientId: number|string) => this
     /** Buyer's address id. */
-    payerAddressId: (payerAddressId: string) => this
+    payerAddressId: (payerAddressId: number|string) => this
     /** Buyer's first name. */
     payerAddressFirstName: (payerAddressFirstName: string) => this
     /** Buyer's last name. */
@@ -869,7 +877,7 @@ export interface GetCouriersRequest extends PagableGateway<GetCouriersRequest, G
 export interface DeleteCouriersPickupPointsRequest extends AppendableGateway<DeleteCouriersPickupPointsRequest> {
     pickupPointDeleteRequests: (value: Array<JSObject>) => this;
     /** Collection point ID. */
-    pickupPointId: (pickupPointId: string) => this
+    pickupPointId: (pickupPointId: number|string) => this
     /** external system code. */
     pickupPointExternalId: (pickupPointExternalId: string) => this
     /** Courier ID. */
@@ -880,7 +888,7 @@ export interface GetCouriersPickupPointsRequest extends PagableGateway<GetCourie
     /** Courier ID. */
     courierId: (value: number|string) => this;
     /** Collection point ID. */
-    pickupPointId: (value: string) => this;
+    pickupPointId: (value: number|string) => this;
     /** External system code. */
     pickupPointExternalId: (value: string) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -912,7 +920,7 @@ export interface PostCouriersPickupPointsRequest extends AppendableGateway<PostC
 export interface PutCouriersPickupPointsRequest extends AppendableGateway<PutCouriersPickupPointsRequest, PutCouriersPickupPointsResponse, RequestParams.PutCouriersPickupPointsParams> {
     pickupPoints: (value: RequestParams.PutCouriersPickupPointsParams["pickupPoints"]) => this;
     /** Collection point ID. */
-    pickupPointId: (pickupPointId: string) => this
+    pickupPointId: (pickupPointId: number|string) => this
     /** external system code. */
     pickupPointExternalId: (pickupPointExternalId: string) => this
     /** Courier ID. */
@@ -1272,7 +1280,7 @@ export interface PutMenuFilterRequest extends AppendableGateway<PutMenuFilterReq
     /** Active filters. */
     menuFiltersActive: (value: Array<JSObject>) => this;
     /** Menu filter ID. */
-    menuFilterId: (menuFilterId: string) => this
+    menuFilterId: (menuFilterId: number|string) => this
     /** Filter name on page. */
     menuFilterName: (menuFilterName: string) => this
     /** Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics. */
@@ -1321,7 +1329,7 @@ export interface PostMenuRequest extends AppendableGateway<PostMenuRequest, Post
     /** Menu ID. */
     menu_id: (menu_id: number|string) => this
     /** Parent menu element ID. */
-    parent_id: (parent_id: string) => this
+    parent_id: (parent_id: number|string) => this
     /** Menu element text identifier. Example: "item1\item2". */
     parent_textid: (parent_textid: string) => this
     /**  */
@@ -1337,7 +1345,7 @@ export interface PutMenuRequest extends AppendableGateway<PutMenuRequest, PutMen
     /** Menu ID. */
     menu_id: (menu_id: number|string) => this
     /** Menu element ID. */
-    item_id: (item_id: string) => this
+    item_id: (item_id: number|string) => this
     /** Menu element text identifier. Example: "item1\item2\item3". */
     item_textid: (item_textid: string) => this
     /**  */
@@ -1389,7 +1397,7 @@ export interface PutOrdersCourierRequest extends Gateway<PutOrdersCourierRespons
     /** Courier ID. */
     courierId: (value: number|string) => this;
     /** Collection point ID. */
-    pickupPointId: (value: string) => this;
+    pickupPointId: (value: number|string) => this;
 }
 
 export interface PutOrdersDeliveryAddressRequest extends Gateway {
@@ -1436,7 +1444,7 @@ export interface DeleteOrdersDocumentsRequest extends AppendableGateway<DeleteOr
 
 export interface GetOrdersDocumentsRequest extends Gateway<GetOrdersDocumentsResponse> {
     /** Order serial number. */
-    orderSerialNumber: (value: string|string[]) => this;
+    orderSerialNumber: (value: number|string|number[]|string[]) => this;
     /** Document type */
     documentType: (value: 'sales_confirmation'|'vat_invoice'|'corrective_vat_invoice'|'advance_vat_invoice'|'final_advance_vat_invoice'|'pro_forma_invoice'|'advance_pro_forma_invoice'|'final_advance_pro_forma_invoice'|'delivery_note'|'fiscal_receipt'|'fiscal_invoice'|'other') => this;
     /** Elements returned by api */
@@ -1629,7 +1637,7 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     /** Courier ID. */
     courierId: (courierId: number|string) => this
     /** Collection point ID. */
-    pickupPointId: (pickupPointId: string) => this
+    pickupPointId: (pickupPointId: number|string) => this
     /** Delivery cost. */
     deliveryCost: (deliveryCost: number) => this
     /** Delivery address data. */
@@ -1662,7 +1670,7 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, Pu
     /** Orders. */
     orders: (value: RequestParams.PutOrdersParams["orders"]) => this;
     /** Order ID. */
-    orderId: (orderId: string) => this
+    orderId: (orderId: number|string) => this
     /** Order serial number. */
     orderSerialNumber: (orderSerialNumber: number|string) => this
     /** Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
@@ -1722,7 +1730,7 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     orderType: (value: 'wholesale'|'retail'|'dropshipping'|'deliverer') => this;
     dropshippingOrderStatus: (value: 'all'|'finished'|'canceled'|'notCanceled') => this;
     /** Orders IDs. */
-    ordersIds: (value: string|string[]) => this;
+    ordersIds: (value: number|string|number[]|string[]) => this;
     /** Order serial numbers. */
     ordersSerialNumbers: (value: number|string|number[]|string[]) => this;
     /** Customer data. */
@@ -1816,7 +1824,7 @@ export interface PostOrdersPackagesRequest extends AppendableGateway<PostOrdersP
     /** List of parcels assigned to the order Maximum default number: 100 parcels. */
     orderPackages: (value: RequestParams.PostOrdersPackagesParams["orderPackages"]) => this;
     /** Id. */
-    eventId: (eventId: string) => this
+    eventId: (eventId: number|string) => this
     /** Type. */
     eventType: (eventType: 'order'|'rma'|'return') => this
     /** Information on consignments. */
@@ -1827,7 +1835,7 @@ export interface PutOrdersPackagesRequest extends AppendableGateway<PutOrdersPac
     /** List of parcels assigned to the order Maximum default number: 100 parcels. */
     orderPackages: (value: RequestParams.PutOrdersPackagesParams["orderPackages"]) => this;
     /** Id. */
-    eventId: (eventId: string) => this
+    eventId: (eventId: number|string) => this
     /** Type. */
     eventType: (eventType: 'order'|'rma'|'return') => this
     /** Information on consignments. */
@@ -1838,7 +1846,7 @@ export interface PutOrdersPickupPointRequest extends Gateway<PutOrdersCourierRes
     /** Order serial number. */
     orderSerialNumber: (value: number|string) => this;
     /** Collection point ID. */
-    pickupPointId: (value: string) => this;
+    pickupPointId: (value: number|string) => this;
 }
 
 export interface GetOrdersPrinterDocumentsRequest extends Gateway {
@@ -1904,7 +1912,7 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Dropshipping order status in the supplier's system. Allowed values: "all" - all, "finished" - sent, "canceled" - canceled, "notCanceled" - failed to cancel. */
     dropshippingOrderStatus: (value: 'all'|'finished'|'canceled'|'notCanceled') => this;
     /** Orders IDs. */
-    ordersIds: (value: string|string[]) => this;
+    ordersIds: (value: number|string|number[]|string[]) => this;
     /** Order serial numbers. */
     ordersSerialNumbers: (value: number|string|number[]|string[]) => this;
     /** Customer data. */
@@ -2008,7 +2016,7 @@ export interface PostPackagesLabelsRequest extends AppendableGateway<PostPackage
     /** Shipment configuration options available for Inpost Smile courier */
     parcelParametersByPackages: (value: RequestParams.PostPackagesLabelsParams["parcelParametersByPackages"]) => this;
     /** Package ID in system. */
-    packageId: (packageId: string) => this
+    packageId: (packageId: number|string) => this
     /** Set order serial number */
     orderSn: (orderSn: number |string) => this;
     /** Set default parcel size */
@@ -2220,7 +2228,7 @@ export interface PutProductsBrandsFilterRequest extends AppendableGateway<PutPro
     /** Active filters. */
     filtersActive: (value: Array<JSObject>) => this;
     /** Menu filter ID. */
-    filterId: (filterId: string) => this
+    filterId: (filterId: number|string) => this
     /** Filter name on page. */
     filterName: (filterName: string) => this
     /** Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics. */
@@ -2356,7 +2364,7 @@ export interface GetProductsCodeExistenceRequest extends Gateway<GetProductsCode
     identType: (value: 'id'|'index'|'codeExtern'|'codeProducer'|'codeDeliverer') => this;
     /** Products list. */
     products: (value: string|string[]) => this;
-    delivererId: (value: string) => this;
+    delivererId: (value: number|string) => this;
     /** Set product identifiers */
     productId: (productId: number|string|number|string|number[]|string[], type?: 'id'|'index'|'codeExtern'|'codeProducer') => this;
 }
@@ -2413,7 +2421,7 @@ export interface SearchProductsDeliveryTimeRequest extends AppendableGateway<Sea
     /** Product Id */
     productId: (productId: number|string) => this
     /** Size identifier */
-    sizeId: (sizeId: string) => this
+    sizeId: (sizeId: number|string) => this
     /** Size name */
     sizePanelName: (sizePanelName: string) => this
     /** Product IAI code */
@@ -2492,7 +2500,7 @@ export interface DeleteProductsImagesRequest extends AppendableGateway<DeletePro
     /** Shop Id */
     shopId: (shopId: number|string) => this
     /**  */
-    productImagesId: (productImagesId: string|string[]) => this
+    productImagesId: (productImagesId: number|string|number[]|string[]) => this
 }
 
 export interface PutProductsImagesRequest extends AppendableGateway<PutProductsImagesRequest, PutProductsImagesResponse, RequestParams.PutProductsImagesParams> {
@@ -2558,12 +2566,12 @@ export interface PostProductsMarketingPromotionRequest extends AppendableGateway
     /**  */
     elementType: (elementType: 'product'|'series'|'producer'|'category'|'menu') => this
     /** Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
-    elementId: (elementId: string) => this
+    elementId: (elementId: number|string) => this
 }
 
 export interface PutProductsMarketingPromotionRequest extends AppendableGateway<PutProductsMarketingPromotionRequest, PutProductsMarketingPromotionResponse, RequestParams.PutProductsMarketingPromotionParams> {
     /** Promotion ID */
-    promotionId: (value: string) => this;
+    promotionId: (value: number|string) => this;
     /** Promotion name */
     promotionName: (value: string) => this;
     /** List of stores IDs When mask is determined, this parameter is omitted. */
@@ -2593,7 +2601,7 @@ export interface PutProductsMarketingPromotionRequest extends AppendableGateway<
     /**  */
     elementType: (elementType: 'product'|'series'|'producer'|'category'|'menu') => this
     /** Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
-    elementId: (elementId: string) => this
+    elementId: (elementId: number|string) => this
 }
 
 export interface GetProductsMarketingZonesRequest extends Gateway<GetProductsMarketingZonesResponse> {
@@ -2750,9 +2758,9 @@ export interface PutProductsParametersRequest extends AppendableGateway<PutProdu
     /** Icons of section, parameter or value to display on the list of products. */
     link_icons: (link_icons: RequestParams.PutProductsParametersParams["items"][number]["link_icons"]) => this
     /** Parameter's additional feature. 1. Status: context_id = "CONTEXT_STATE" Takes values context_value_id: - CONTEXT_STATE_NEW - New, - CONTEXT_STATE_USED - Used, - CONTEXT_STATE_USED_EXCELLENT - Used - excellent condition - CONTEXT_STATE_USED_VERYGOOD - Used - very good condition - CONTEXT_STATE_USED_CORRECT - Used - good condition - CONTEXT_STATE_USED_ACCEPTABLE - Used - acceptable condition - CONTEXT_STATE_REFURBISHED_EXCELLENT - Refurbished - excellent condition - CONTEXT_STATE_REFURBISHED_VERYGOOD - Refurbished - very good condition - CONTEXT_STATE_REFURBISHED_CORRECT - Refurbished - good condition - CONTEXT_STATE_NEW_OTHERS - New other (see details) - CONTEXT_STATE_NEW_WITH_DEFECTS - New with defects - CONTEXT_STATE_NEW_OEM - New - OEM - CONTEXT_STATE_NEW_OPEN_BOX - New - open box - CONTEXT_STATE_REFURBISHED_BY_PRODUCER - Renewed by a manufacturer, - CONTEXT_STATE_REFURBISHED_BY_SELLER - Renewed by a seller, - CONTEXT_STATE_FOR_PARTS_OR_BROKEN - In parts or damaged. 2. Product weight in grams: context_id = "CONTEXT_STD_UNIT_WEIGHT" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 3. A product's value in milliliters: context_id = "CONTEXT_STD_UNIT_VOLUME" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 4. Sex: context_id = "CONTEXT_SEX" Takes values context_value_id: - CONTEXT_SEX_MAN - Man, - CONTEXT_SEX_WOMAN - Woman, - CONTEXT_SEX_UNISEX - Unisex. 5. Age group: context_id = "CONTEXT_AGE_GROUP" Takes values context_value_id: - CONTEXT_AGE_GROUP_ADULT - Adults, - CONTEXT_AGE_GROUP_MINOR - Children. 6. Maximum number of products in an order: context_id = "CONTEXT_MAX_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 7. Maximum number of products in a wholesale order: context_id = "CONTEXT_MAX_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 8. Minimal number of products in an order: context_id = "CONTEXT_MIN_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 9. Minimum number of products in a wholesale order: context_id = "CONTEXT_MIN_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 10. Maximal number of a single size in an order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 11. Maximal number of a single size in a wholesale order: context_id = "CONTEXT_MAX_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 12. Minimal number of a single size in an order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_RETAIL_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 13. Minimal number of a single size in a wholesale order: context_id = "CONTEXT_MIN_SIZE_QUANTITY_PER_WHOLESALE_ORDER" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 14. Net weight: context_id = "CONTEXT_WEIGHT_NET" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 15. Color: context_id = "CONTEXT_COLOR" Takes values context_value_id: - Value of additional feature is set automatically basing on the parameter's value. 16. #!TylkoDlaDoroslych!#: context_id = "CONTEXT_ONLY_ADULTS" Takes values context_value_id: - CONTEXT_ONLY_ADULTS_YES - yes, - CONTEXT_ONLY_ADULTS_NO - no. 17. Prescription drug: context_id = "CONTEXT_PRESCRIPTION_MEDICINE" Takes values context_value_id: - CONTEXT_PRESCRIPTION_MEDICINE_YES - yes, - CONTEXT_PRESCRIPTION_MEDICINE_NO - no. 18. Season Rate: context_id = "CONTEXT_SEASON" Takes values context_value_id: - CONTEXT_SEASON_SPRING - Spring, - CONTEXT_SEASON_SUMMER - Summer, - CONTEXT_SEASON_FALL - Autumn, - CONTEXT_SEASON_WINTER - Winter, - CONTEXT_SEASON_SPRING_SUMMER - Spring/Summer, - CONTEXT_SEASON_FALL_WINTER - Autumn/Winter 19. Risk - signal word: context_id = \"CONTEXT_HAZMAT_SIGNAL\" Takes values context_value_id: - CONTEXT_HAZMAT_SIGNAL_DANGER - danger, - CONTEXT_HAZMAT_SIGNAL_WARNING - warnging, - CONTEXT_HAZMAT_SIGNAL_CAUTION - caution, - CONTEXT_HAZMAT_SIGNAL_NOTICE - notice, 20. Risk - warning pictogram context_id = \"CONTEXT_HAZMAT_PICTOGRAM\" Takes values context_value_id: - GHS01, GHS02, GHS03, GHS04, GHS05, GHS06, GHS07, GHS08, GHS09 21. Risk - type of hazard: context_id = \"CONTEXT_HAZMAT_STATEMENT\" Takes values context_value_id: - H200, H201, H202, H203, H204, H205, H220, H221, H222, H223, H224, H225, H226, H228, H240, H241, H242, H250, H251, H252, H260, H261, H270, H271, H272, H280, H281, H290, H300, H301, H302, H304, H310, H311, H312, H314, H315, H317, H318, H319, H330, H331, H332, H334, H335, H336, H340, H341, H350, H351, H360, H361, H362, H370, H371, H372, H373, H400, H410, H411, H412, H413, EUH 001, EUH 014, EUH 018, EUH 019, EUH 044, EUH 029, EUH 031, EUH 032, EUH 066, EUH 070, EUH 071, EUH 201, EUH 201A, EUH 202, EUH 203, EUH 204, EUH 205, EUH 206, EUH 207, EUH 208, EUH 209, EUH 209A, EUH 210, EUH 401 22. Repair score: context_id = \"CONTEXT_REPAIR_SCORE\" Takes values context_value_id: - The value of the additional feature is set automatically based on the parameter's value 23. Safety - information pictogram: context_id = \"CONTEXT_SAFETY_PICTOGRAM\" Takes values context_value_id: - 1 (Not suitable for small children) - 2 (CE mark) 24. Safety - type of warning: context_id = \"CONTEXT_SAFETY_STATEMENT\" Takes values context_value_id: - 1 (Not suitable for children under 3 years) - 2 (Keep out of the reach of children) - 3 (Product contains a button cell or coin battery) - 4 (Use under the direct supervision of adults) - 5 (Required protective gear. Do not use in public traffic) - 6 (Contains toy. Adult supervision recommended) - 7 (To prevent possible injury from entanglement, remove this toy as soon as the child begins to crawl) - 8 (Use only in shallow water under adult supervision) - 9 (Only use under adult supervision) - 10 (This toy does not provide protection) - 11 (Contains fragrances that may cause allergies) - 12 (For household use only). */
-    context_id: (context_id: string) => this
+    context_id: (context_id: number|string) => this
     /** value of additional feature - Values described in context_id. */
-    context_value_id: (context_value_id: string) => this
+    context_value_id: (context_value_id: number|string) => this
 }
 
 export interface SearchProductsParametersRequest extends PagableGateway<SearchProductsParametersRequest, SearchProductsParametersResponse, RequestParams.SearchProductsParametersParams> {
@@ -2781,7 +2789,7 @@ export interface DeleteProductsRequest extends AppendableGateway<DeleteProductsR
 
 export interface GetProductsRequest extends Gateway<SearchProductsResponse> {
     /** List of the unique, indexed product codes (IAI code / External system code / Producer code). You can transfer a maximum of 100 products IDs in one request. */
-    productIds: (value: string|string[]) => this;
+    productIds: (value: number|string|number[]|string[]) => this;
 }
 
 export interface PostProductsRequest extends AppendableGateway<PostProductsRequest, PostProductsResponse, RequestParams.PostProductsParams> {
@@ -3520,7 +3528,7 @@ export interface PutProductsSeriesFilterRequest extends AppendableGateway<PutPro
     /** Active filters. */
     filtersActive: (value: Array<JSObject>) => this;
     /** Menu filter ID. */
-    filterId: (filterId: string) => this
+    filterId: (filterId: number|string) => this
     /** Filter name on page. */
     filterName: (filterName: string) => this
     /** Display as: "name" - text, "gfx" - graphics, "namegfx" - text and graphics. */
@@ -3963,7 +3971,7 @@ export interface GetRmaRequest extends PagableGateway<GetRmaRequest, GetRmaRespo
     /** Login of the user handling the complaint */
     operatorLogin: (value: string) => this;
     /** Unique client's number. */
-    clientId: (value: string) => this;
+    clientId: (value: number|string) => this;
     /** Complaint creation date in the YYYY-MM-DD format */
     creationDate: (value: JSObject) => this;
     /** Complaint modification date in the YYYY-MM-DD format */
@@ -4044,7 +4052,7 @@ export interface PutSizesRequest extends AppendableGateway<PutSizesRequest, PutS
     /** Size group ID. */
     group_id: (group_id: number|string) => this
     /** Size identifier. */
-    id: (id: string) => this
+    id: (id: number|string) => this
     /** Category plural name. */
     name: (name: string) => this
     /** Size description. */
@@ -4546,23 +4554,23 @@ export interface PutVouchersRequest extends AppendableGateway<PutVouchersRequest
 }
 
 export interface GetWarrantiesCountTotalRequest extends Gateway<GetWarrantiesCountTotalResponse> {
-    warranty_ids: (value: string|string[]) => this;
+    warranty_ids: (value: number|string|number[]|string[]) => this;
 }
 
 export interface PutWarrantiesLanguageDataRequest extends AppendableGateway<PutWarrantiesLanguageDataRequest, PutWarrantiesLanguageDataResponse, RequestParams.PutWarrantiesLanguageDataParams> {
     lang_data: (value: RequestParams.PutWarrantiesLanguageDataParams["lang_data"]) => this;
     /** Warranty ID (numeric or text based). */
-    warranty_id: (warranty_id: string) => this
+    warranty_id: (warranty_id: number|string) => this
     /**  */
     lang: (lang: RequestParams.PutWarrantiesLanguageDataParams["lang_data"][number]["lang"]) => this
 }
 
 export interface DeleteWarrantiesRequest extends Gateway {
-    warranty_ids: (value: string|string[]) => this;
+    warranty_ids: (value: number|string|number[]|string[]) => this;
 }
 
 export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesRequest, GetWarrantiesResponse> {
-    warranty_ids: (value: string|string[]) => this;
+    warranty_ids: (value: number|string|number[]|string[]) => this;
     /** Number of results on page. */
     results_limit: (value: number|string) => this;
     /** Result page number. */
@@ -4587,7 +4595,7 @@ export interface PostWarrantiesRequest extends AppendableGateway<PostWarrantiesR
 export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesRequest, PutWarrantiesResponse, RequestParams.PutWarrantiesParams> {
     warranties: (value: RequestParams.PutWarrantiesParams["warranties"]) => this;
     /** Warranty ID (numeric or text based). */
-    id: (id: string) => this
+    id: (id: number|string) => this
     /** Name. */
     name: (name: string) => this
     /**  */

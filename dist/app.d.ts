@@ -1,7 +1,13 @@
+export interface ExecutableDumpParams {
+	url: string;
+	method: string;
+	params: Record<string,any>;
+}
+
 export interface ExecutableOptions {
-	log?: boolean,
-    dump?: boolean,
-    logPage?: boolean,
+	log?: boolean | ((obj: ExecutableDumpParams) => void),
+    dump?: boolean | ((obj: ExecutableDumpParams) => void),
+    logPage?: boolean | ((text: string) => void),
 	skipCheck?: boolean
 }
 
@@ -32,12 +38,13 @@ export type GatewayRequestProxyObject = {
 		arrayNode: string,
 		except: string[]
 	},
-	custom?: Record<string,Function>,
+	custom?: Record<string,(..._: any) => false|Record<string,any>>,
 	snakeCase?: boolean,
 	next?: boolean,
 	rootparams?: string|boolean,
 	arrays?: string[],
 	req?: RequirementType[],
+	n?: Record<string,number>,
 } & RequestProxyObject;
 
 export interface Gateway<R = JSObject, P = JSObject> {
@@ -89,6 +96,11 @@ export interface AppendableGateway<T,R = JSObject, P = JSObject> extends Gateway
 	 * Start creating next item in list
 	 */
 	append: () => T
+}
+
+export interface IdosellErrorFaultStructure {
+	faultCode: number;
+	faultString: string;
 }
 
 export {};

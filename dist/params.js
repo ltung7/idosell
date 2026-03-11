@@ -32,10 +32,12 @@ export const paramsProxy = {
                 }
                 else if (object.custom && typeof object.custom[property] === 'function') {
                     const param = object.custom[property](...values);
-                    if (param.root)
-                        Object.assign(object.params, param.root);
-                    else
-                        Object.assign(item, param);
+                    if (param) {
+                        if (param.root)
+                            Object.assign(object.params, param.root);
+                        else
+                            Object.assign(item, param);
+                    }
                 }
                 else {
                     item[property] = values[0];

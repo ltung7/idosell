@@ -17,7 +17,7 @@ export type MapProductLocationsFunction = (product: IdosellProduct, stockId?: nu
 
 export type GetLangDataFunction = <T extends { langId: string}>(array: T[], langId?: string) => T|undefined;
 
-export type ClearParametersLangDataFunction = (products: SearchProductsResponse['results'], langId: string = 'pol') => SearchProductsResponse['results'];
+export type ClearParametersLangDataFunction = (products: SearchProductsResponse['results'], langId?: string) => SearchProductsResponse['results'];
 
 declare namespace utils {
     /** @description The method allows you to build an IAI code from the product ID and size ID. */

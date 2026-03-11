@@ -1,6 +1,7 @@
 import ENUMS from "./enums.js";
 import utils from "./utils.js";
 import { gateProxy } from "./gates.js";
+import { IdosellFaultStringError, catchEmptyList } from "./errors.js";
 export const DEFAULT_VERSION = 7;
 const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
     const auth = { url, apiKey, version, apikey: apiKey ? apiKey.slice(0, 6) + '*'.repeat(20) : "" };
@@ -9,4 +10,4 @@ const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
     return new Proxy(element, gateProxy);
 };
 export default idosell;
-export { ENUMS, utils };
+export { ENUMS, utils, IdosellFaultStringError, catchEmptyList };

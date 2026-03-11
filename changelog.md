@@ -5,12 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.23] - 2025-03-11
+### Changed
+- Added custom error class
+- Fixed types for ids that can be integer instead of string
+- Changed types of execution options, this allows custom logs
+
 ## [0.4.20] - 2025-12-18
+### Changed
 - Added indexing option for utils functions
 - Fixed typings and tests
 - Added descriptions
 
 ## [0.4.18] - 2025-12-18
+### Changed
 - Updated to v7.10
 - Updated utils
 - Fixed dates helper default value
