@@ -1758,6 +1758,10 @@ export type GetOrdersDocumentsResponse = {
         documentId?: string;
         /** @description Document name */
         documentName?: string;
+        /** @description Internal document number in the KSeF system */
+        ksefNumber: string;
+        /** @description Document status in the IdoSell system */
+        ksefDocumentStatus: "pending" | "processing" | "completed" | "failed" | "skipped";
         /** @description Base64 encoded PDF document. */
         pdfWithDocumentsInBase64?: string;
         /** @description Information on error that occurred during gate call. */
@@ -4962,6 +4966,8 @@ export type SearchProductsResponse = {
         responsibleProducerCode?: string | null;
         /** @description Responsible person code */
         responsiblePersonCode?: string | null;
+        /** @description Minimum stock level */
+        minStockLevel?: number;
     }[];
 } & PagedResponse;
 
@@ -8660,7 +8666,484 @@ export type GetProductsResponse = {
         depositProductId?: number;
         /** @description Product deposit count */
         depositCount?: number;
+        /** @description Minimum stock level */
+        minStockLevel?: number;
     }[];
 } & { resultsLimit: number; };
+
+export type GetOrdersResponse = {
+    Results: {
+        /** @description Order ID. */
+        orderId: string;
+        /** @description Order note supported by IAI Bridge. */
+        orderBridgeNote: string;
+        /** @description Order serial number. */
+        orderSerialNumber: number;
+        /** @description Order type. List of values: "p" - wholesale order placed in panel, "t" - wholesale order placed in shop, "n" - retail order placed in shop, "r" - retail order placed in panel. */
+        orderType: "p" | "t" | "n" | "r";
+        /** @description Customer data. */
+        clientResult: {
+            /** @description Client's billing address' data. */
+            clientBillingAddress: {
+                /** @description Customer's first name. */
+                clientFirstName: string;
+                /** @description Customer's last name. */
+                clientLastName: string;
+                /** @description Customer Tax no. */
+                clientNip: string;
+                /** @description Customer's company name. */
+                clientFirm: string;
+                /** @description Product suggestion. */
+                clientAdditional: string;
+                /** @description Street and number. */
+                clientStreet: string;
+                /** @description Customer's postal code. */
+                clientZipCode: string;
+                /** @description Customer's city. */
+                clientCity: string;
+                /** @description Region name takes priority over clientCountryId. */
+                clientCountryName: string;
+                /** @description Client NIP verification status */
+                clientNipUeVerified: string;
+                /** @description Country ID in accordance with ISO-3166. */
+                clientCountryId: string;
+                /** @description Cell phone. */
+                clientPhone1: string;
+                /** @description Land line. */
+                clientPhone2: string;
+                /** @description Administrative region code. */
+                clientProvinceId: string;
+                /** @description Administrative region. */
+                clientProvince: string;
+            };
+            /** @description Delivery address data. */
+            clientDeliveryAddress: {
+                /** @description Delivery address ID. */
+                clientDeliveryAddressId: string;
+                /** @description Recipient's first name. */
+                clientDeliveryAddressFirstName: string;
+                /** @description Recipient's last name. */
+                clientDeliveryAddressLastName: string;
+                /** @description Company name. */
+                clientDeliveryAddressFirm: string;
+                /** @description Recipient street and number. */
+                clientDeliveryAddressStreet: string;
+                /** @description Recipient's postal code. */
+                clientDeliveryAddressZipCode: string;
+                /** @description Recipient's city. */
+                clientDeliveryAddressCity: string;
+                /** @description Recipient's country. */
+                clientDeliveryAddressCountry: string;
+                /** @description Country code in ISO 3166-1 standard. */
+                clientDeliveryAddressCountryId: string;
+                /** @description Cell phone. */
+                clientDeliveryAddressPhone1: string;
+                /** @description Land line. */
+                clientDeliveryAddressPhone2: string;
+                /** @description Administrative region code. */
+                clientDeliveryAddressProvinceId: string;
+                /** @description Administrative region. */
+                clientDeliveryAddressProvince: string;
+                /** @description Type of delivery address resulting from the type of delivery e.g. collection point. Available values: "client" - Address provided by customer to which he/she wishes to receive the shipment, "pickupPoint"- The address of the pickup point selected by the customer from which the customer wishes to pick up the order, "warehouse" - The address of the warehouse selected by the customer from which the customer wishes to pick up the order. */
+                clientDeliveryAddressType: "client" | "pickupPoint" | "warehouse";
+                /** @description Internal Receiving Point Identifier. */
+                clientDeliveryAddressPickupPointInternalId: number;
+            };
+            clientPickupPointAddress: {
+                /** @description Collection point ID. */
+                pickupPointId: string;
+                /** @description External service collection point ID. */
+                externalPickupPointId: string;
+                /** @description Town / City. */
+                city: string;
+                /** @description Address. */
+                street: string;
+                /** @description ZIP / Post code. */
+                zipCode: string;
+                /** @example description */
+                description: string;
+                /** @description Latitude. */
+                latitude: number;
+                /** @description Longitude. */
+                longitude: number;
+                /** @description Name. */
+                name: string;
+            };
+            /** @description Buyer's address data. */
+            payerAddress: {
+                /** @description Buyer's address id. */
+                payerAddressId: string;
+                /** @description Buyer's first name. */
+                payerAddressFirstName: string;
+                /** @description Buyer's last name. */
+                payerAddressLastName: string;
+                /** @description Company name. */
+                payerAddressFirm: string;
+                /** @description Customer VAT ID. */
+                payerAddressNip: string;
+                /** @description Buyer's street name and house number. */
+                payerAddressStreet: string;
+                /** @description Buyer's postal code. */
+                payerAddressZipCode: string;
+                /** @description Buyer's city. */
+                payerAddressCity: string;
+                /** @description Buyer's country. */
+                payerAddressCountry: string;
+                /** @description Country code in the ISO 3166-1 A2 standard. */
+                payerAddressCountryId: string;
+                /** @description Buyer's telephone number. */
+                payerAddressPhone: string;
+            };
+            /** @description Data of customer account in store. */
+            clientAccount: {
+                /** @description Unique client's number. */
+                clientId: number;
+                /** @description Customer's login. */
+                clientLogin: string;
+                /** @description E-mail address. */
+                clientEmail: string;
+                /** @description Cell phone. */
+                clientPhone1: string;
+                /** @description Land line. */
+                clientPhone2: string;
+                /** @description External system code. */
+                clientCodeExternal: string;
+            };
+            /** @description End customer details. */
+            endClientAccount: {
+                /** @description Unique client's number. */
+                clientId: number;
+                /** @description Customer's login. */
+                clientLogin: string;
+                /** @description E-mail address. */
+                clientEmail: string;
+                /** @description Cell phone. */
+                clientPhone1: string;
+                /** @description Land line. */
+                clientPhone2: string;
+                /** @description External system code. */
+                clientCodeExternal: string;
+            };
+            /** @description Is client on black list? */
+            clientOnBlackList: boolean;
+        };
+        /** @description Order data. */
+        orderDetails: {
+            /** @description Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
+            apiFlag: "none" | "registered" | "realized" | "registered_pos" | "realized_pos" | "registration_fault";
+            /** @description Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
+            orderStatus: string;
+            /** @description Order status id */
+            orderStatusId: string;
+            /** @description Date of change of status to the currently set status in YYYY-MM-DD HH:MM:SS format. */
+            orderStatusChangeDate: string;
+            /** @example dropshippingOrderStatus */
+            dropshippingOrderStatus: string;
+            /** @description Type of order confirmation. Confirmations listing: "none" - order unconfirmed , "email" - order confirmed by e-mail, "phone_client" - order confirmed by phone call made by client, "phone_service" - order confirmed by phone call made by staff, "postauction" - order confirmed by auction return page, "willingness" - confirmed by willingness to buy letter, "auctionfod" - confirmed by after-sales form Allegro. */
+            orderConfirmation: string;
+            /** @description Date of order placing in YYYY-MM-DD HH:MM:SS format. */
+            orderAddDate: string;
+            /** @description Date of order sending in YYYY-MM-DD HH:MM:SS format. */
+            orderDispatchDate: string | null;
+            /** @example receivedDate */
+            receivedDate: string;
+            /** @description Order handling time in seconds. */
+            orderPrepareTime: string;
+            /** @description Customer comments on order. */
+            clientNoteToOrder: string;
+            /** @description Customer remarks for courier. */
+            clientNoteToCourier: string;
+            /** @description Order payment data. */
+            payments: {
+                /** @description Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit. */
+                orderPaymentType: string;
+                /** @description Number of days. */
+                orderPaymentDays: number;
+                /** @description Accrued discount. */
+                orderRebatePercent: number;
+                /** @description Information on order value in currency of order adding. */
+                orderCurrency: {
+                    /** @description Currency ID */
+                    currencyId: string;
+                    /** @description Currency average rate set for order (by default, an average rate of order adding date, if it wasn't manually changed). */
+                    orderCurrencyValue: number;
+                    /** @description Currency scaler. */
+                    orderCurrencyScale: number;
+                    /** @description Panel billing currency exchange rate in relation to billing currency in the shop . */
+                    billingCurrencyRate: number;
+                    /** @description Products cost. */
+                    orderProductsCost: number;
+                    /** @description Shipping costs. */
+                    orderDeliveryCost: number;
+                    /** @description Additional charge for selected payment method. */
+                    orderPayformCost: number;
+                    /** @description Additional fee for insurance. */
+                    orderInsuranceCost: number;
+                };
+                /** @description Information on order value in shop account currency. */
+                orderBaseCurrency: {
+                    /** @example billingCurrency */
+                    billingCurrency: string;
+                    /** @description Products cost. */
+                    orderProductsCost: number;
+                    /** @description Shipping costs. */
+                    orderDeliveryCost: number;
+                    /** @description Delivery VAT. */
+                    orderDeliveryVat: number;
+                    /** @description Additional charge for selected payment method. */
+                    orderPayformCost: number;
+                    /** @description VAT for additional fee for the chosen form of payment. */
+                    orderPayformVat: number;
+                    /** @description Additional fee for insurance. */
+                    orderInsuranceCost: number;
+                    /** @description Insurance VAT rate (in percents). */
+                    orderInsuranceVat: number;
+                };
+                /** @description Order currency squaring method. "gross" - calculated in gross prices, "net" - squared in net prices. */
+                orderWorthCalculateType: "gross" | "net";
+                /** @description Information if the VAT for the current order was calculated: "y" - yes, "n" - no. */
+                orderVatExists: string;
+            };
+            /** @description Information about prepayment for the order. */
+            prepaids: {
+                /** @description Order payment identifier. */
+                prepaidId: number;
+                /** @description Payment number for order. */
+                paymentOrdinalNumber: number;
+                /** @description Payment number - [order no.]-[payment no.], i.e. 1234-1. */
+                paymentNumber: string;
+                /** @description Date of payment addition. */
+                paymentAddDate: string;
+                /** @description Client's payment modification date. */
+                paymentModifiedDateByClient: string;
+                /** @description Payment modification date made by shop staff. */
+                paymentModifiedDateByShop: string;
+                /** @description Payment status. */
+                paymentStatus: string;
+                /** @description Transaction type: "payment" - payment, "advance" - advance payment, "repayment" - return, "fee" - handling fee. */
+                paymentType: "payment" | "advance" | "repayment" | "fee";
+                /** @description Form of payment ID. */
+                payformId: number;
+                /** @description Name of payment form. */
+                payformName: string;
+                /** @description Account. */
+                payformAccount: string;
+                /** @description Payment amount. */
+                paymentValue: number;
+                /** @description Currency ID */
+                currencyId: string;
+                /** @description Number of voucher used in a payment. */
+                voucherNumber: string;
+                /** @description Number of gift card used in a payment. */
+                giftCardNumber: string;
+            }[];
+            /** @description Order source data. */
+            orderSourceResults: {
+                /** @description order source type - possible values:. "self_added" - Orders from panel, "shop" - Orders from shop, "search_engine" - Orders from search engines, "auction" - Orders from auctions, "advertisement_campaign" - Advertisement campaigns, "price_comparer" - Price comparison sites, "affiliate_program" - Affiliate programme, "api" - Order from API, "eletronic_offer" - Order from ODT price lst, "cpa" - Order from CPA program, "refferer_site" - Order from reference sites, "pos" - Orders from POS, "marketplace" - Order from the Marketplace, "iai_ads" - Orders from IAI Ads */
+                orderSourceType: string;
+                /** @description Shop Id */
+                shopId: number;
+                /** @description Auction site order comes from. Auction sites listing: "allegro" - Allegro.pl, "testwebapi" - Allegro.pl test site, "ebay" - eBay. */
+                auctionsServiceName: string;
+                /** @description Detailed information on order source. */
+                orderSourceDetails: {
+                    /** @description order source type - possible values:. "self_added" - Orders from panel, "shop" - Orders from shop, "search_engine" - Orders from search engines, "auction" - Orders from auctions, "advertisement_campaign" - Advertisement campaigns, "price_comparer" - Price comparison sites, "affiliate_program" - Affiliate programme, "api" - Order from API, "eletronic_offer" - Order from ODT price lst, "cpa" - Order from CPA program, "refferer_site" - Order from reference sites, "pos" - Orders from POS, "marketplace" - Order from the Marketplace, "iai_ads" - Orders from IAI Ads */
+                    orderSourceType: string;
+                    /** @description Exact source name. */
+                    orderSourceName: string;
+                    /** @description Numerical ID of order source type. */
+                    orderSourceTypeId: number;
+                    /** @description Numerical ID of order source. */
+                    orderSourceId: number;
+                    /** @example 1 */
+                    entryProductIdBeforeOrder: number;
+                    /** @example sourcePageUrl */
+                    sourcePageUrl: string;
+                    /** @description The order ID of the external service */
+                    orderExternalId: string;
+                    /** @description Order from the InPost Fresh marketplace */
+                    fresh: "y" | "n";
+                    /** @description Order supported by InPost fulfillment */
+                    fulfillment: "y" | "n";
+                };
+                preorderSourcesDetails: {
+                    /** @description order source type - possible values:. "self_added" - Orders from panel, "shop" - Orders from shop, "search_engine" - Orders from search engines, "auction" - Orders from auctions, "advertisement_campaign" - Advertisement campaigns, "price_comparer" - Price comparison sites, "affiliate_program" - Affiliate programme, "api" - Order from API, "eletronic_offer" - Order from ODT price lst, "cpa" - Order from CPA program, "refferer_site" - Order from reference sites, "pos" - Orders from POS, "marketplace" - Order from the Marketplace, "iai_ads" - Orders from IAI Ads */
+                    orderSourceType: string;
+                    /** @description Exact source name. */
+                    orderSourceName: string;
+                    /** @description Numerical ID of order source type. */
+                    orderSourceTypeId: number;
+                    /** @description Numerical ID of order source. */
+                    orderSourceId: number;
+                    /** @example entryDate */
+                    entryDate: string;
+                }[];
+            };
+            /** @description Data of auction, order comes from (only if it comes from auction). */
+            auctionInfo: {
+                /** @description Account ID on auction site. */
+                auctionClientId: string;
+                /** @description Account login on auction site. */
+                auctionClientLogin: string;
+                /** @description #!TablicaNumerowAukcjiDoZamowienia!#. */
+                auctionItemsIds: {
+                    /** @description Auction number. */
+                    auctionItemId: string;
+                }[];
+                /** @description The customer's email address at the auction service. */
+                auctionClientEmail: string;
+            };
+            /** @description Consignment data. */
+            dispatch: {
+                /** @description Courier ID. */
+                courierId: number;
+                /** @description Name of the supplier of the shipment. */
+                courierName: string;
+                /** @description Courier via webservice. */
+                courierWebserviceOnly: boolean;
+                /** @description Shipment ID. */
+                deliveryPackageId: string;
+                /** @description Selected delivery date. */
+                deliveryDate: string;
+                /** @description Additional information on delivery date. */
+                deliveryDateAdditional: string;
+                /** @description Estimated date of shipment of the order. */
+                estimatedDeliveryDate: string;
+                /** @description Parcel weight. */
+                deliveryWeight: number;
+            };
+            /** @description The list of products returned due to a gate call */
+            productsResults: {
+                /** @description Product IAI code */
+                productId: number;
+                /** @description Product name. */
+                productName: string;
+                /** @description External product system code */
+                productCode: string;
+                /** @description Name of the parameter value, e.g. orange, green, red */
+                versionName: string;
+                /** @description Size identifier */
+                sizeId: string;
+                /** @description Size name */
+                sizePanelName: string;
+                /** @description External product system code for size. */
+                productSizeCodeExternal: string;
+                /** @description Stock ID */
+                stockId: number;
+                /** @description Serial number of the product. */
+                productSerialNumber: string;
+                /** @description Product quantity. */
+                productQuantity: number;
+                /** @description Weight. */
+                productWeight: number;
+                /** @description Value of VAT */
+                productVat: number;
+                /** @description Is product VAT free Allowed values "y" - yes, "n" - no. */
+                productVatFree: string;
+                /** @description Gross price of the product in the currency of the administration panel. */
+                productPanelPrice: number;
+                /** @description Net price of the product in the currency of the administration panel. */
+                productPanelPriceNet: number;
+                /** @description Product gross price of order in order currency. */
+                productOrderPrice: number;
+                /** @description Product net price of order in order currency. */
+                productOrderPriceNet: number;
+                /** @description Product gross price of order in shop account currency. */
+                productOrderPriceBaseCurrency: number;
+                /** @description Product net price of order in shop account currency. */
+                productOrderPriceNetBaseCurrency: number;
+                /** @description List of product suggestions . */
+                orderAdditionalList: {
+                    /** @description Product suggestion. */
+                    orderAdditional: {
+                        /** @description Name of suggestion. */
+                        orderAdditionalName: string;
+                        /** @description Value of suggestion. */
+                        orderAdditionalValue: string;
+                    };
+                };
+                /** @description Client's remarks on product. */
+                remarksToProduct: string;
+                /** @description Label for grouping products. */
+                label: string;
+                /** @description Product selling mode. Available values: "money", "gift", "points". */
+                orderSalesMode: "money" | "gift" | "points";
+                /** @description A set's ID. */
+                bundleId: number;
+                /** @description Serial numbers. */
+                productSerialNumbers: string;
+                /** @description Additional information. */
+                productOrderAdditional: string;
+                /** @description Item in basket. */
+                basketPosition: number;
+                /** @description price information. */
+                productPriceLog: string;
+                /** @description Information about the selected parameters in the configurator. */
+                priceFormulaParameters: {
+                    /** @description Parameter ID */
+                    parameterId: string;
+                    /** @description Parameter name. */
+                    parameterName: string;
+                    /** @description Parameter values */
+                    parameterValues: {
+                        /** @example valueId */
+                        valueId: string;
+                        /** @example valueName */
+                        valueName: string;
+                    }[];
+                }[];
+                /** @description Is product packed? */
+                productPacked: boolean;
+            }[];
+            /** @description Parameter determines if product has been removed from stock. List of values: "y" - removed from stock, "n" - put in stock. */
+            productRemovedInStock: "y" | "n";
+            /** @description Stock ID */
+            stockId: number;
+            /** @description Customer asked for invoice. List of parameters: "y" - yes (paper invoicing ), "e" - yes (electronic invoicing ), "n" - no. */
+            clientRequestInvoice: string;
+            /** @description Delivery address ID. */
+            clientDeliveryAddressId: number;
+            /** @description Note to the order. */
+            orderNote: string;
+            /** @description Information on used discount code. */
+            discountCode: {
+                /** @description Campaign ID. */
+                campaignId: string;
+                /** @description Name of code. */
+                discountCodeName: string;
+                /** @description Accrued discount */
+                discountCodeValue: string;
+            };
+            /** @description Discount card */
+            discountCard: {
+                /** @description Name of card */
+                discountCardName: string;
+            };
+            /** @description Order handler. */
+            orderOperatorLogin: string;
+            /** @description Order picker. */
+            orderPackingPersonLogin: string;
+            /** @description Sale date. ISO 8602 format. */
+            purchaseDate: string;
+            /** @description Modification date in YYYY-MM-DD HH:MM:SS format . */
+            orderChangeDate: string;
+            /** @description Source subscription identifier. */
+            subscriptionId: number;
+            /** @description Are all products packed? */
+            allProductPacked: boolean;
+            /** @description Planned date of packing */
+            plannedDateOfPacking: string | null;
+            /** @description Is order verified? */
+            verified: boolean;
+        };
+        /** @description Information on error that occurred during gate call. */
+        errors: {
+            /** @description Error code. */
+            faultCode: number;
+            /** @description Error description. */
+            faultString: string;
+        }[];
+    }[];
+};
 
 export { };

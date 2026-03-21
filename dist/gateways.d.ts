@@ -1664,6 +1664,10 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     billingCurrencyRate: (billingCurrencyRate: number) => this
     /** Sale date. ISO 8602 format. */
     purchaseDate: (purchaseDate: string) => this
+    /** Planned date of packing */
+    plannedDateOfPacking: (plannedDateOfPacking: string) => this
+    /** Planned date of shipment */
+    estimatedDeliveryDate: (estimatedDeliveryDate: string) => this
 }
 
 export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, PutOrdersResponse, RequestParams.PutOrdersParams> {
@@ -1709,6 +1713,8 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, Pu
     purchaseDate: (purchaseDate: string) => this
     /** Estimated date of shipment of the order in format Y-m-d H:i */
     estimatedDeliveryDate: (estimatedDeliveryDate: string) => this
+    /** Planned date of packing */
+    plannedDateOfPacking: (plannedDateOfPacking: string) => this
 }
 
 export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest, SearchOrdersResponse, RequestParams.SearchOrdersParams> {

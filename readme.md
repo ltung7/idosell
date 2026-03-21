@@ -4,6 +4,8 @@ This package wraps around the Idosell REST Api to make it easier to use by imple
 
 Visit [This page](https://idosell-converter.vercel.app/) for more detailed usage and examples.
 
+[![npm version](https://img.shields.io/npm/v/idosell.svg)](https://www.npmjs.com/package/idosell)
+
 ## Basic use
 
 Package translates awkward gate names into more readable method names using REST verbs and gateways. Most of the possible methods are kept as is, only changed to camel case. For example:
