@@ -40,11 +40,12 @@ export type GatewayRequestProxyObject = {
 	},
 	custom?: Record<string,(..._: any) => false|Record<string,any>>,
 	snakeCase?: boolean,
+	paginationObject?: boolean,
 	next?: boolean,
 	rootparams?: string|boolean,
 	arrays?: string[],
 	req?: RequirementType[],
-	n?: Record<string,number>,
+	n?: Record<string,number>
 } & RequestProxyObject;
 
 export interface Gateway<R = JSObject, P = JSObject> {

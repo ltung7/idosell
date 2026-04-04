@@ -16,9 +16,20 @@ const catchIdosellError = (err) => {
     if (!err.response.headers['x-error'] && err.response.headers['content-type'].indexOf('json') < 0)
         throw new Error('500: Invalid response from Api gateway');
     let message = err.response.headers['x-error'];
-    for (const [search, replace] of DECODE_TABLE) {
-        message = message.replaceAll(search, replace);
+    if (err.response?.data?.errors) {
+        let errorObj = err.response?.data?.errors;
+        if (Array.isArray(errorObj))
+            errorObj = errorObj[0];
+        if (errorObj.message)
+            message = errorObj.message;
     }
+    if (message) {
+        for (const [search, replace] of DECODE_TABLE) {
+            message = message.replaceAll(search, replace);
+        }
+    }
+    else
+        message = 'Unknown error';
     if (err.response.status === 403) {
         const match = message.match(/Scope: ([a-z]+), level: ([rw]{1,2})/);
         if (match) {
@@ -41,17 +52,27 @@ const checkNext = (request, response, logPage) => {
         };
         throw new IdosellFaultStringError(response.errors.faultString, faultStructure);
     }
+    function handlePagination(currentPage, totalPages, request, paramsUpdate) {
+        request.next = currentPage + 1 < totalPages;
+        if (paramsUpdate)
+            Object.assign(request.params, paramsUpdate);
+        if (typeof logPage === 'function') {
+            logPage('Page: ' + currentPage + ' / ' + totalPages);
+        }
+    }
     if (response.resultsNumberPage) {
-        request.next = response.resultsPage + 1 < response.resultsNumberPage;
-        request.params.resultsPage = request.params.resultsPage ? request.params.resultsPage + 1 : 1;
-        if (logPage)
-            logPage('Page: ' + response.resultsPage + ' / ' + response.resultsNumberPage);
+        handlePagination(response.resultsPage, response.resultsNumberPage, request, { resultsPage: response.resultsPage + 1 });
     }
     else if (response.results_number_page) {
-        request.next = response.results_page + 1 < response.results_number_page;
-        request.params.results_page = request.params.results_page ? request.params.results_page + 1 : 1;
-        if (logPage)
-            logPage('Page: ' + response.results_page + ' / ' + response.results_page);
+        handlePagination(response.results_page, response.results_number_page, request, { results_page: response.results_page + 1 });
+    }
+    else if (response.pagination) {
+        request.params.pagination.page = response.pagination.resultsPage + 1;
+        handlePagination(response.pagination.resultsPage, response.pagination.resultsNumberPage, request);
+    }
+    else if (response.data?.pagination) {
+        request.params.pagination.page = response.data.pagination.resultsPage + 1;
+        handlePagination(response.data.pagination.resultsPage, response.data.pagination.resultsNumberPage, request);
     }
     return response;
 };
@@ -190,6 +211,8 @@ export const countResults = async (request, options) => {
         return 0;
     if (request.snakeCase)
         return parseInt(response.results_number_all);
+    else if (request.paginationObject)
+        return response.pagination.resultsNumberAll;
     else
         return response.resultsNumberAll;
 };

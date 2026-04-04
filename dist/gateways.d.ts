@@ -1664,10 +1664,8 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     billingCurrencyRate: (billingCurrencyRate: number) => this
     /** Sale date. ISO 8602 format. */
     purchaseDate: (purchaseDate: string) => this
-    /** Planned date of packing */
-    plannedDateOfPacking: (plannedDateOfPacking: string) => this
-    /** Planned date of shipment */
-    estimatedDeliveryDate: (estimatedDeliveryDate: string) => this
+    /** Split payment MPP marking */
+    splitPayment: (splitPayment: boolean) => this
 }
 
 export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, PutOrdersResponse, RequestParams.PutOrdersParams> {
@@ -1681,6 +1679,8 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, Pu
     orderStatus: (orderStatus: string) => this
     /** Order status id . */
     orderStatusId: (orderStatusId: number|string) => this
+    /** Transaction type. */
+    transactionType: (transactionType: 'national'|'oss'|'export'|'intra') => this
     /** Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
     apiFlag: (apiFlag: 'none'|'registered'|'realized'|'registered_pos'|'realized_pos'|'registration_fault') => this
     /** API note added to order. */
@@ -1713,6 +1713,8 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, Pu
     purchaseDate: (purchaseDate: string) => this
     /** Estimated date of shipment of the order in format Y-m-d H:i */
     estimatedDeliveryDate: (estimatedDeliveryDate: string) => this
+    /** Split payment MPP marking */
+    splitPayment: (splitPayment: boolean) => this
     /** Planned date of packing */
     plannedDateOfPacking: (plannedDateOfPacking: string) => this
 }
@@ -1724,6 +1726,8 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     ordersStatuses: (value: string|string[]) => this;
     /** Order statusses ids. */
     ordersStatusesIds: (value: number|string|number[]|string[]) => this;
+    /** Transaction type. */
+    transactionType: (value: 'national'|'oss'|'export'|'intra') => this;
     shippmentStatus: (value: 'all'|'received'|'non-received') => this;
     /** Shipping companies (packages deliverers). */
     couriersName: (value: string|string[]) => this;
@@ -3272,7 +3276,7 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     dispatchSettings: (value: RequestParams.SearchProductsParams["dispatchSettings"]) => this;
     /** Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash. */
     returnProducts: (value: "active" | "deleted" | "in_trash") => this;
-    /** Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode */
+    /** Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode, * dimensions, * depositProductId, * depositType, * depositCount, * minStockLevel, * productAttachments */
     returnElements: (value: string|string[]) => this;
     /** Product availability. Available values: "y" - available, "n" - unavailable. */
     productIsAvailable: (value: "y" | "n") => this;
@@ -3416,7 +3420,7 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     inStock: (stockIds?: boolean|number|string|number[]|string[]) => this;
 }
 
-export interface DeleteProductsProductsToFacebookCatalogRequest extends Gateway {
+export interface DeleteProductsToFacebookCatalogRequest extends Gateway {
     /** You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel */
     facebookCatalogId: (value: number|string) => this;
     /** Shop Id */
@@ -3425,14 +3429,14 @@ export interface DeleteProductsProductsToFacebookCatalogRequest extends Gateway 
     products: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetProductsProductsToFacebookCatalogRequest extends Gateway {
+export interface GetProductsToFacebookCatalogRequest extends Gateway {
     /** You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel */
     facebookCatalogId: (value: number|string) => this;
     /** Shop Id */
     shopId: (value: number|string) => this;
 }
 
-export interface PostProductsProductsToFacebookCatalogRequest extends Gateway {
+export interface PostProductsToFacebookCatalogRequest extends Gateway {
     /** You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel */
     facebookCatalogId: (value: number|string) => this;
     /** Shop Id */
@@ -3441,14 +3445,14 @@ export interface PostProductsProductsToFacebookCatalogRequest extends Gateway {
     products: (value: number|string|number[]|string[]) => this;
 }
 
-export interface DeleteProductsProductsToPromotionRequest extends Gateway {
+export interface DeleteProductsToPromotionRequest extends Gateway {
     /** Special offer ID */
     promotionId: (value: number|string) => this;
     /** Products list. */
     products: (value: number|string|number[]|string[]) => this;
 }
 
-export interface PostProductsProductsToPromotionRequest extends Gateway<PutProductsMarketingPromotionResponse, RequestParams.PostProductsProductsToPromotionParams> {
+export interface PostProductsToPromotionRequest extends Gateway<PutProductsMarketingPromotionResponse, RequestParams.PostProductsToPromotionParams> {
     /** Special offer ID */
     promotionId: (value: number|string) => this;
     /** Products list. */
@@ -3713,6 +3717,235 @@ export interface PutProductsSynchronizationFinishUploadRequest extends Gateway {
     filesInPackage: (value: number|string) => this;
     /** Whether to verify the package by sparsifying files and preparing requests. It may take a few minutes to answer. */
     verifyFiles: (value: boolean) => this;
+}
+
+export interface PostPromotionsElementsRequest extends AppendableGateway<PostPromotionsElementsRequest> {
+    /** Array of PromotionElement objects */
+    elements: (value: Array<JSObject>) => this;
+    /** ID */
+    id: (id: string) => this
+    /** Promotion element type */
+    type: (type: 'product'|'series'|'producer'|'category'|'menu') => this
+    /** Promotion element name */
+    name: (name: string) => this
+    /** Promotion ID */
+    promotionId: (promotionId: number|string) => this
+    /** Correlated elements id eg. product versions id */
+    correlatedElementsId: (correlatedElementsId: number|string|number[]|string[]) => this
+}
+
+export interface SearchPromotionsElementsRequest extends PagableGateway<SearchPromotionsElementsRequest> {
+    filter: (value: JSObject) => this;
+    /** Pagination settings. */
+    pagination: (value: JSObject) => this;
+    /** Order by settings. */
+    orderBy: (value: JSObject) => this;
+    /** Elements IDs */
+    ids: (value: string|string[]) => this;
+    /** Element types */
+    types: (value: 'product'|'series'|'producer'|'category'|'menu'|Array<'product'|'series'|'producer'|'category'|'menu'>) => this;
+    /** Promotion IDs */
+    promotionIds: (value: number|string|number[]|string[]) => this;
+    /** Define ordering of records */
+    orderByProperty: (elementName: "promotion_id"|"type"|"element_id", descending?: boolean) => this;
+}
+
+export interface DeletePromotionsElementsRequest extends AppendableGateway<DeletePromotionsElementsRequest> {
+    /** Array of PromotionElement objects */
+    elements: (value: Array<JSObject>) => this;
+    /** ID */
+    id: (id: string) => this
+    /** Promotion element type */
+    type: (type: 'product'|'series'|'producer'|'category'|'menu') => this
+    /** Promotion element name */
+    name: (name: string) => this
+    /** Promotion ID */
+    promotionId: (promotionId: number|string) => this
+    /** Correlated elements id eg. product versions id */
+    correlatedElementsId: (correlatedElementsId: number|string|number[]|string[]) => this
+}
+
+export interface SearchPromotionsHistoryRequest extends PagableGateway<SearchPromotionsHistoryRequest> {
+    /** Filters that limit the result of a customer query. */
+    filter: (value: JSObject) => this;
+    /** Pagination settings. */
+    pagination: (value: JSObject) => this;
+    /** Promotion ID */
+    promotionId: (value: number|string) => this;
+}
+
+export interface PostPromotionsRequest extends Gateway {
+    /** Promotion name */
+    name: (value: string) => this;
+    /** Array of shop ids */
+    activeInShops: (value: number|string|number[]|string[]) => this;
+    /** Promotion zones */
+    types: (value: string|string[]) => this;
+    /** Promotion start datetime */
+    startTime: (value: string) => this;
+    /** Promotion end datetime */
+    endTime: (value: string) => this;
+    /** Change visibility */
+    changeVisibility: (value: boolean) => this;
+    /** Auto unpin */
+    autoUnpin: (value: boolean) => this;
+    /** Auto unpin own stocks */
+    autoUnpinOwnStocks: (value: boolean) => this;
+    /** Price type */
+    priceType: (value: 'retail'|'wholesale'|'pos') => this;
+    /** A representation of a floating-point number with precise accuracy. */
+    newPriceValue: (value: JSObject) => this;
+    /** Currency */
+    currency: (value: string) => this;
+    /** Discount type */
+    newPriceDiscountType: (value: 'percent'|'minus'|'set') => this;
+    /** New price round */
+    newPriceRound: (value: 'whole'|'first'|'second') => this;
+    /** New price end */
+    newPriceEnd: (value: number|string) => this;
+    /** Net or gross */
+    netGross: (value: 'gross'|'net') => this;
+    /** Charge type */
+    chargeType: (value: 'lowest'|'sum') => this;
+    /** Enable in marketplaces */
+    enableInMarketplaces: (value: 'y'|'n'|'yes_for_dynamic_pricing_products') => this;
+    /** Status */
+    status: (value: 'waiting'|'active'|'closed') => this;
+}
+
+export interface DeletePromotionsRequest extends Gateway {
+    promotionId: (value: number|string) => this;
+}
+
+export interface PutPromotionsRequest extends Gateway {
+    /** Promotion name */
+    name: (value: string) => this;
+    /** Array of shop ids */
+    activeInShops: (value: number|string|number[]|string[]) => this;
+    /** Promotion zones */
+    types: (value: string|string[]) => this;
+    /** Promotion start datetime */
+    startTime: (value: string) => this;
+    /** Promotion end datetime */
+    endTime: (value: string) => this;
+    /** Change visibility */
+    changeVisibility: (value: boolean) => this;
+    /** Auto unpin */
+    autoUnpin: (value: boolean) => this;
+    /** Auto unpin own stocks */
+    autoUnpinOwnStocks: (value: boolean) => this;
+    /** Price type */
+    priceType: (value: 'retail'|'wholesale'|'pos') => this;
+    /** A representation of a floating-point number with precise accuracy. */
+    newPriceValue: (value: JSObject) => this;
+    /** Currency */
+    currency: (value: string) => this;
+    /** Discount type */
+    newPriceDiscountType: (value: 'percent'|'minus'|'set') => this;
+    /** New price round */
+    newPriceRound: (value: 'whole'|'first'|'second') => this;
+    /** New price end */
+    newPriceEnd: (value: number|string) => this;
+    /** Net or gross */
+    netGross: (value: 'gross'|'net') => this;
+    /** Charge type */
+    chargeType: (value: 'lowest'|'sum') => this;
+    /** Enable in marketplaces */
+    enableInMarketplaces: (value: 'y'|'n'|'yes_for_dynamic_pricing_products') => this;
+    /** Status */
+    status: (value: 'waiting'|'active'|'closed') => this;
+    /** Promotion ID */
+    promotionId: (promotionId: number) => this;
+}
+
+export interface PostPromotionsEndRequest extends Gateway {
+    /** ID of promotion */
+    promotionId: (value: number|string) => this;
+}
+
+export interface GetPromotionsRequest extends Gateway {
+    promotionId: (value: number|string) => this;
+}
+
+export interface SearchPromotionsListViewRequest extends PagableGateway<SearchPromotionsListViewRequest> {
+    /** Filters that limit the result of a customer query. */
+    filter: (value: JSObject) => this;
+    /** Pagination settings. */
+    pagination: (value: JSObject) => this;
+    /** Order by settings. */
+    orderBy: (value: JSObject) => this;
+    /** Promotion ID */
+    ids: (value: number|string|number[]|string[]) => this;
+    /** Promotion name */
+    name: (value: string) => this;
+    /** Change visibility */
+    changeVisibility: (value: boolean) => this;
+    /** Array of shop ids */
+    activeInShops: (value: number|string|number[]|string[]) => this;
+    /** Promotion zones */
+    types: (value: 'promotion'|'special'|'discount'|'distinguished'|'bestseller'|'new'|Array<'promotion'|'special'|'discount'|'distinguished'|'bestseller'|'new'>) => this;
+    /** Price types */
+    priceTypes: (value: 'retail'|'wholesale'|'pos'|Array<'retail'|'wholesale'|'pos'>) => this;
+    /** Promotion statuses */
+    statuses: (value: 'waiting'|'active'|'closed'|Array<'waiting'|'active'|'closed'>) => this;
+    /** Date range */
+    dateRange: (value: JSObject) => this;
+    /** Array of products in promotion */
+    productsNotInPromotion: (value: number|string|number[]|string[]) => this;
+    /** Define ordering of records */
+    orderByProperty: (elementName: "id"|"name"|"start_time"|"end_time"|"new_price_value"|"new_price_end"|"elements_modification_date", descending?: boolean) => this;
+}
+
+export interface PostPromotionsStartRequest extends Gateway {
+    /** ID of promotion */
+    promotionId: (value: number|string) => this;
+}
+
+export interface DeletePromotionsArchiveRequest extends Gateway {
+    promotionId: (value: number|string) => this;
+}
+
+export interface GetPromotionsArchiveRequest extends Gateway {
+    promotionId: (value: number|string) => this;
+}
+
+export interface SearchPromotionsArchiveRequest extends PagableGateway<SearchPromotionsArchiveRequest> {
+    /** Filters that limit the result of a customer query. */
+    filter: (value: JSObject) => this;
+    /** Pagination settings. */
+    pagination: (value: JSObject) => this;
+    /** Order by settings. */
+    orderBy: (value: JSObject) => this;
+    /** Shops IDs */
+    shops: (value: number|string|number[]|string[]) => this;
+    archivedDate: (value: JSObject) => this;
+    /** Define ordering of records */
+    orderByProperty: (elementName: "id"|"shop_mask"|"archived_date", descending?: boolean) => this;
+}
+
+export interface GetPromotionsSettingsRequest extends Gateway {}
+
+export interface PutPromotionsSettingsRequest extends Gateway {
+    /** Days to archive */
+    daysLeftToArchive: (value: number|string) => this;
+    /** Days to remove from archive */
+    daysLeftToRemove: (value: number|string) => this;
+    /** Show promo price on products list */
+    showPriceOnProductsList: (value: number|string) => this;
+    /** Automatically suggest default start date */
+    automaticallySuggestDefaultStartDate: (value: 'on'|'off') => this;
+    /** Automatically suggest default end date */
+    automaticallySuggestDefaultEndDate: (value: 'on'|'off') => this;
+    /** Default start date */
+    defaultStartDate: (value: number|string) => this;
+    /** Default end date */
+    defaultEndDate: (value: number|string) => this;
+    /** Default start time */
+    defaultStartTime: (value: number|string) => this;
+    /** Default end time */
+    defaultEndTime: (value: number|string) => this;
+    /** Days to automatically close empty promotions */
+    daysLeftToClose: (value: number|string) => this;
 }
 
 export interface PostRefundsAddAutomaticRefundRequest extends Gateway {
@@ -4324,7 +4557,7 @@ export interface PostSubscriptionsEditProductRequest extends Gateway {
     products: (value: Array<JSObject>) => this;
 }
 
-export interface PostSubscriptionsItemsListRequest extends Gateway {
+export interface SearchSubscriptionsItemsRequest extends Gateway {
     filter: (value: JSObject) => this;
     orderBy: (value: JSObject) => this;
     /** Pagination settings. */
@@ -4354,7 +4587,7 @@ export interface PostSubscriptionsListViewFetchIdsRequest extends Gateway {
     textSearch: (value: string) => this;
 }
 
-export interface PostSubscriptionsListViewListRequest extends Gateway {
+export interface SearchSubscriptionsListViewRequest extends Gateway {
     select: (value: JSObject) => this;
     /** Filters that limit the result of a customer query. */
     filter: (value: JSObject) => this;
@@ -5073,11 +5306,11 @@ export interface Gateways {
     postProducts: PostProductsRequest,
     putProducts: PutProductsRequest,
     searchProducts: SearchProductsRequest,
-    deleteProductsProductsToFacebookCatalog: DeleteProductsProductsToFacebookCatalogRequest,
-    getProductsProductsToFacebookCatalog: GetProductsProductsToFacebookCatalogRequest,
-    postProductsProductsToFacebookCatalog: PostProductsProductsToFacebookCatalogRequest,
-    deleteProductsProductsToPromotion: DeleteProductsProductsToPromotionRequest,
-    postProductsProductsToPromotion: PostProductsProductsToPromotionRequest,
+    deleteProductsToFacebookCatalog: DeleteProductsToFacebookCatalogRequest,
+    getProductsToFacebookCatalog: GetProductsToFacebookCatalogRequest,
+    postProductsToFacebookCatalog: PostProductsToFacebookCatalogRequest,
+    deleteProductsToPromotion: DeleteProductsToPromotionRequest,
+    postProductsToPromotion: PostProductsToPromotionRequest,
     getProductsQuestions: GetProductsQuestionsRequest,
     putProductsQuestions: PutProductsQuestionsRequest,
     getProductsReservations: GetProductsReservationsRequest,
@@ -5099,6 +5332,22 @@ export interface Gateways {
     putProductsSupplierProductData: PutProductsSupplierProductDataRequest,
     postProductsSynchronizationFile: PostProductsSynchronizationFileRequest,
     putProductsSynchronizationFinishUpload: PutProductsSynchronizationFinishUploadRequest,
+    postPromotionsElements: PostPromotionsElementsRequest,
+    searchPromotionsElements: SearchPromotionsElementsRequest,
+    deletePromotionsElements: DeletePromotionsElementsRequest,
+    searchPromotionsHistory: SearchPromotionsHistoryRequest,
+    postPromotions: PostPromotionsRequest,
+    deletePromotions: DeletePromotionsRequest,
+    putPromotions: PutPromotionsRequest,
+    postPromotionsEnd: PostPromotionsEndRequest,
+    getPromotions: GetPromotionsRequest,
+    searchPromotionsListView: SearchPromotionsListViewRequest,
+    postPromotionsStart: PostPromotionsStartRequest,
+    deletePromotionsArchive: DeletePromotionsArchiveRequest,
+    getPromotionsArchive: GetPromotionsArchiveRequest,
+    searchPromotionsArchive: SearchPromotionsArchiveRequest,
+    getPromotionsSettings: GetPromotionsSettingsRequest,
+    putPromotionsSettings: PutPromotionsSettingsRequest,
     postRefundsAddAutomaticRefund: PostRefundsAddAutomaticRefundRequest,
     postRefundsAddAutomaticRefundForOrder: PostRefundsAddAutomaticRefundForOrderRequest,
     postRefundsAddManualRefund: PostRefundsAddManualRefundRequest,
@@ -5146,9 +5395,9 @@ export interface Gateways {
     postSubscriptionsDeleteProduct: PostSubscriptionsDeleteProductRequest,
     postSubscriptionsEdit: PostSubscriptionsEditRequest,
     postSubscriptionsEditProduct: PostSubscriptionsEditProductRequest,
-    postSubscriptionsItemsList: PostSubscriptionsItemsListRequest,
+    searchSubscriptionsItems: SearchSubscriptionsItemsRequest,
     postSubscriptionsListViewFetchIds: PostSubscriptionsListViewFetchIdsRequest,
-    postSubscriptionsListViewList: PostSubscriptionsListViewListRequest,
+    searchSubscriptionsListView: SearchSubscriptionsListViewRequest,
     postSubscriptionsSetRebateCode: PostSubscriptionsSetRebateCodeRequest,
     postSubscriptionsUnsetRebateCode: PostSubscriptionsUnsetRebateCodeRequest,
     getSystemConfig: GetSystemConfigRequest,
@@ -5215,7 +5464,15 @@ export interface Gateways {
     /** @deprecated */
     getProductsDeliveryTime: SearchProductsDeliveryTimeRequest
     /** @deprecated */
-    getProductsParameters: SearchProductsParametersRequest
+    getProductsProductsProductsToFacebookCatalog: GetProductsToFacebookCatalogRequest
+    /** @deprecated */
+    postProductsProductsToPromotion: PostProductsToPromotionRequest
+    /** @deprecated */
+    postProductsProductsToFacebookCatalog: PostProductsToFacebookCatalogRequest
+    /** @deprecated */
+    deleteProductsProductsToFacebookCatalog: DeleteProductsToFacebookCatalogRequest
+    /** @deprecated */
+    deleteProductsProductsToPromotion: DeleteProductsToPromotionRequest
 }
 
 declare const defaultExport: (url: string, apiKey: string, version?: number | string) => Gateways;

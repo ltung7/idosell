@@ -6312,7 +6312,7 @@ export type PostPackagesParams = {
     }[];
 };
 
-export type PostProductsProductsToFacebookCatalogParams = {
+export type PostProductsToFacebookCatalogParams = {
     /** @description You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel */
     facebookCatalogId?: number;
     /** @description Shop Id */
@@ -6321,7 +6321,7 @@ export type PostProductsProductsToFacebookCatalogParams = {
     products?: number[];
 };
 
-export type PostProductsProductsToPromotionParams = {
+export type PostProductsToPromotionParams = {
     /** @description Special offer ID */
     promotionId?: number;
     /** @description Products list. */

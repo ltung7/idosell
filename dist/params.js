@@ -13,6 +13,19 @@ const requests = {
         return receiver;
     }
 };
+function deepAssignSecondLevel(target, source) {
+    for (const key of Object.keys(source)) {
+        if (key in target &&
+            typeof target[key] === 'object' && target[key] !== null &&
+            typeof source[key] === 'object' && source[key] !== null) {
+            Object.assign(target[key], source[key]);
+        }
+        else {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}
 export const paramsProxy = {
     get: (object, property, receiver) => {
         if (property === 'then') {
@@ -48,7 +61,8 @@ export const paramsProxy = {
                     values = [values[0] ?? 0, values[1] ?? 100, Boolean(object.snakeCase)];
                 }
                 const param = object.custom[property](...values);
-                Object.assign(object.params, param);
+                if (param)
+                    deepAssignSecondLevel(object.params, param);
             }
             else if (object.arrays && object.arrays.includes(property)) {
                 if (Array.isArray(values[0]))

@@ -198,11 +198,11 @@ import getProducts from "./methods/getProducts.js";
 import postProducts from "./methods/postProducts.js";
 import putProducts from "./methods/putProducts.js";
 import searchProducts from "./methods/searchProducts.js";
-import deleteProductsProductsToFacebookCatalog from "./methods/deleteProductsProductsToFacebookCatalog.js";
-import getProductsProductsToFacebookCatalog from "./methods/getProductsProductsToFacebookCatalog.js";
-import postProductsProductsToFacebookCatalog from "./methods/postProductsProductsToFacebookCatalog.js";
-import deleteProductsProductsToPromotion from "./methods/deleteProductsProductsToPromotion.js";
-import postProductsProductsToPromotion from "./methods/postProductsProductsToPromotion.js";
+import deleteProductsToFacebookCatalog from "./methods/deleteProductsToFacebookCatalog.js";
+import getProductsToFacebookCatalog from "./methods/getProductsToFacebookCatalog.js";
+import postProductsToFacebookCatalog from "./methods/postProductsToFacebookCatalog.js";
+import deleteProductsToPromotion from "./methods/deleteProductsToPromotion.js";
+import postProductsToPromotion from "./methods/postProductsToPromotion.js";
 import getProductsQuestions from "./methods/getProductsQuestions.js";
 import putProductsQuestions from "./methods/putProductsQuestions.js";
 import getProductsReservations from "./methods/getProductsReservations.js";
@@ -224,6 +224,22 @@ import putProductsSupplierCode from "./methods/putProductsSupplierCode.js";
 import putProductsSupplierProductData from "./methods/putProductsSupplierProductData.js";
 import postProductsSynchronizationFile from "./methods/postProductsSynchronizationFile.js";
 import putProductsSynchronizationFinishUpload from "./methods/putProductsSynchronizationFinishUpload.js";
+import postPromotionsElements from "./methods/postPromotionsElements.js";
+import searchPromotionsElements from "./methods/searchPromotionsElements.js";
+import deletePromotionsElements from "./methods/deletePromotionsElements.js";
+import searchPromotionsHistory from "./methods/searchPromotionsHistory.js";
+import postPromotions from "./methods/postPromotions.js";
+import deletePromotions from "./methods/deletePromotions.js";
+import putPromotions from "./methods/putPromotions.js";
+import postPromotionsEnd from "./methods/postPromotionsEnd.js";
+import getPromotions from "./methods/getPromotions.js";
+import searchPromotionsListView from "./methods/searchPromotionsListView.js";
+import postPromotionsStart from "./methods/postPromotionsStart.js";
+import deletePromotionsArchive from "./methods/deletePromotionsArchive.js";
+import getPromotionsArchive from "./methods/getPromotionsArchive.js";
+import searchPromotionsArchive from "./methods/searchPromotionsArchive.js";
+import getPromotionsSettings from "./methods/getPromotionsSettings.js";
+import putPromotionsSettings from "./methods/putPromotionsSettings.js";
 import postRefundsAddAutomaticRefund from "./methods/postRefundsAddAutomaticRefund.js";
 import postRefundsAddAutomaticRefundForOrder from "./methods/postRefundsAddAutomaticRefundForOrder.js";
 import postRefundsAddManualRefund from "./methods/postRefundsAddManualRefund.js";
@@ -271,9 +287,9 @@ import postSubscriptionsChangeStatus from "./methods/postSubscriptionsChangeStat
 import postSubscriptionsDeleteProduct from "./methods/postSubscriptionsDeleteProduct.js";
 import postSubscriptionsEdit from "./methods/postSubscriptionsEdit.js";
 import postSubscriptionsEditProduct from "./methods/postSubscriptionsEditProduct.js";
-import postSubscriptionsItemsList from "./methods/postSubscriptionsItemsList.js";
+import searchSubscriptionsItems from "./methods/searchSubscriptionsItems.js";
 import postSubscriptionsListViewFetchIds from "./methods/postSubscriptionsListViewFetchIds.js";
-import postSubscriptionsListViewList from "./methods/postSubscriptionsListViewList.js";
+import searchSubscriptionsListView from "./methods/searchSubscriptionsListView.js";
 import postSubscriptionsSetRebateCode from "./methods/postSubscriptionsSetRebateCode.js";
 import postSubscriptionsUnsetRebateCode from "./methods/postSubscriptionsUnsetRebateCode.js";
 import getSystemConfig from "./methods/getSystemConfig.js";
@@ -518,11 +534,11 @@ const gates = {
     postProducts,
     putProducts,
     searchProducts,
-    deleteProductsProductsToFacebookCatalog,
-    getProductsProductsToFacebookCatalog,
-    postProductsProductsToFacebookCatalog,
-    deleteProductsProductsToPromotion,
-    postProductsProductsToPromotion,
+    deleteProductsToFacebookCatalog,
+    getProductsToFacebookCatalog,
+    postProductsToFacebookCatalog,
+    deleteProductsToPromotion,
+    postProductsToPromotion,
     getProductsQuestions,
     putProductsQuestions,
     getProductsReservations,
@@ -544,6 +560,22 @@ const gates = {
     putProductsSupplierProductData,
     postProductsSynchronizationFile,
     putProductsSynchronizationFinishUpload,
+    postPromotionsElements,
+    searchPromotionsElements,
+    deletePromotionsElements,
+    searchPromotionsHistory,
+    postPromotions,
+    deletePromotions,
+    putPromotions,
+    postPromotionsEnd,
+    getPromotions,
+    searchPromotionsListView,
+    postPromotionsStart,
+    deletePromotionsArchive,
+    getPromotionsArchive,
+    searchPromotionsArchive,
+    getPromotionsSettings,
+    putPromotionsSettings,
     postRefundsAddAutomaticRefund,
     postRefundsAddAutomaticRefundForOrder,
     postRefundsAddManualRefund,
@@ -591,9 +623,9 @@ const gates = {
     postSubscriptionsDeleteProduct,
     postSubscriptionsEdit,
     postSubscriptionsEditProduct,
-    postSubscriptionsItemsList,
+    searchSubscriptionsItems,
     postSubscriptionsListViewFetchIds,
-    postSubscriptionsListViewList,
+    searchSubscriptionsListView,
     postSubscriptionsSetRebateCode,
     postSubscriptionsUnsetRebateCode,
     getSystemConfig,
@@ -648,7 +680,11 @@ const gates = {
     getPackages: searchPackages,
     getProductsCategoriesIdosell: searchProductsCategoriesIdosell,
     getProductsDeliveryTime: searchProductsDeliveryTime,
-    getProductsParameters: searchProductsParameters,
+    getProductsProductsProductsToFacebookCatalog: getProductsToFacebookCatalog,
+    postProductsProductsToPromotion: postProductsToPromotion,
+    postProductsProductsToFacebookCatalog: postProductsToFacebookCatalog,
+    deleteProductsProductsToFacebookCatalog: deleteProductsToFacebookCatalog,
+    deleteProductsProductsToPromotion: deleteProductsToPromotion,
 };
 export const gateProxy = {
     get: (object, property) => {

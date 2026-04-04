@@ -3,7 +3,9 @@ import utils from "./utils.js";
 import { gateProxy } from "./gates.js";
 import { IdosellFaultStringError, catchEmptyList } from "./errors.js";
 export const DEFAULT_VERSION = 7;
-function normalizeUrl(input) {
+function normalizeUrl(input = "") {
+    if (!input.length)
+        return "";
     const trimmed = input.trim();
     const withProtocol = trimmed
         .replace(/^https?:\/\//i, "") // strip existing protocol

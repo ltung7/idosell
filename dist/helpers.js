@@ -53,12 +53,30 @@ export const page = (page = 0, limit, snakeCase = false) => {
         resultsLimit: limit
     };
 };
+export const paginationObject = (page = 0, limit) => {
+    if (!limit)
+        limit = 100;
+    return {
+        pagination: {
+            page,
+            perPage: limit
+        }
+    };
+};
 export const orderBy = (elementName, descending = true) => {
     return {
         ordersBy: [{
                 elementName,
                 sortDirection: descending ? 'DESC' : 'ASC'
             }]
+    };
+};
+export const orderByProperty = (property, descending = true) => {
+    return {
+        orderBy: {
+            property,
+            orderByDirection: descending ? 'desc' : 'asc'
+        }
     };
 };
 export const date = ({ nodeName, format }) => (dateValue) => {
