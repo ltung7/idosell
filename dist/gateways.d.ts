@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject, IdosellErrorFaultStructure } from "./app.d.ts"
-import type { GetClientsBalanceResponse, BooleanStatusResponse, GetClientsResponse, PostClientsResponse, PutClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PostClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, VouchersResponse, PutVouchersResponse, SearchClientsGiftcardsResponse, GetClientsGiftcardsTypesResponse, GetClientsMembershipCardsResponse, PutClientsMembershipCardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, PostClientsPayerAddressResponse, PutClientsPayerAddressResponse, GetClientsPricelistsClientsResponse, PutClientsPricelistsClientsResponse, GetClientsPricelistsResponse, PostClientsPricelistsResponse, GetClientsPricelistsProductsResponse, PutClientsPricelistsProductsResponse, GetClientsPricesActiveCardResponse, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountsResponse, PutClientsPricesDiscountsResponse, GetClientsProfitPointsResponse, GetClientsProvinceListResponse, GetClientsTagsResponse, PostClientsTagsResponse, PutClientsTagsResponse, GetConfigVariablesResponse, PutConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersResponse, GetCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaCampaignResponse, CmsCampaignResponse, CmsResponse, GetCpaResponse, GetDeliveriesProfilesResponse, GetDeliveriesRegionsResponse, PostDeliveriesRegionsResponse, GetDiscountsGroupsClientsResponse, GetDiscountsGroupsResponse, PostDiscountsGroupsResponse, GetEntriesResponse, PostEntriesResponse, GetEntriesPagesToDisplayResponse, GetEntriesSourcesResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, PutMenuSortResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PutOrdersCourierResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, PostOrdersDocumentsResponse, GetOrdersHandlerResponse, GetOrdersHistoryResponse, GetOrdersImagesResponse, PostOrdersImagesResponse, GetOrdersLabelsResponse, SearchOrdersOpinionsResponse, GetOrdersOpinionsRateResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, PutOrdersPackagesResponse, PutOrdersProductsSerialNumbersResponse, PutOrdersProfitMarginResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetOrdersWarehouseResponse, PostPackagesLabelsResponse, PutPackagesResponse, SearchPackagesResponse, GetPaymentsFormsResponse, GetPaymentsResponse, PostPaymentsResponse, GetPaymentsProfilesResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, PutProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, ProductIdentResponse, PutProductsGroupsSettingsResponse, GetProductsIdBySizecodeResponse, PutProductsImagesResponse, GetProductsMarketingPromotionResponse, PostProductsMarketingPromotionResponse, PutProductsMarketingPromotionResponse, GetProductsMarketingZonesResponse, PutProductsMarketingZonesResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, PostProductsOpinionsResponse, GetProductsOpinionsRateResponse, PutProductsParametersResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, GetProductsQuestionsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, PutProductsSeriesResponse, GetProductsSizesResponse, PutProductsSizesResponse, PutProductsStockQuantityResponse, GetProductsStocksResponse, PutProductsStocksResponse, GetProductsStrikethroughPricesResponse, PutProductsSupplierCodeResponse, PutProductsSupplierProductDataResponse, GetResponsibilityEntitiesResponse, PutResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, PutReturnsSerialNumberResponse, GetRmaResponse, PutRmaResponse, GetRmaStatusesResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, PutSizechartsResponse, GetSizesResponse, PutSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, PutSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemServerLoadResponse, GetSystemServerTimeResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, PutSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesCountTotalResponse, PutWarrantiesLanguageDataResponse, GetWarrantiesResponse, PutWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, PutWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse, PutWmsSuppliersResponse } from "./responses.d.ts"
+import type { GetClientsBalanceResponse, BooleanStatusResponse, GetClientsResponse, PostClientsResponse, PutClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PostClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, VouchersResponse, PutVouchersResponse, SearchClientsGiftcardsResponse, GetClientsGiftcardsTypesResponse, GetClientsMembershipCardsResponse, PutClientsMembershipCardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, PostClientsPayerAddressResponse, PutClientsPayerAddressResponse, GetClientsPricelistsClientsResponse, PutClientsPricelistsClientsResponse, GetClientsPricelistsResponse, PostClientsPricelistsResponse, GetClientsPricelistsProductsResponse, PutClientsPricelistsProductsResponse, GetClientsPricesActiveCardResponse, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountsResponse, PutClientsPricesDiscountsResponse, GetClientsProfitPointsResponse, GetClientsProvinceListResponse, GetClientsTagsResponse, PostClientsTagsResponse, PutClientsTagsResponse, GetConfigVariablesResponse, PutConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersResponse, GetCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaCampaignResponse, CmsCampaignResponse, CmsResponse, GetCpaResponse, GetDeliveriesProfilesResponse, GetDeliveriesRegionsResponse, PostDeliveriesRegionsResponse, GetDiscountsGroupsClientsResponse, GetDiscountsGroupsResponse, PostDiscountsGroupsResponse, GetEntriesResponse, PostEntriesResponse, GetEntriesPagesToDisplayResponse, GetEntriesSourcesResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, PutMenuSortResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PutOrdersCourierResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, PostOrdersDocumentsResponse, GetOrdersHandlerResponse, GetOrdersHistoryResponse, GetOrdersImagesResponse, PostOrdersImagesResponse, GetOrdersLabelsResponse, SearchOrdersOpinionsResponse, GetOrdersOpinionsRateResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, PutOrdersPackagesResponse, PutOrdersProductsSerialNumbersResponse, PutOrdersProfitMarginResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetOrdersWarehouseResponse, PostPackagesLabelsResponse, PutPackagesResponse, SearchPackagesResponse, GetPaymentsFormsResponse, GetPaymentsResponse, PostPaymentsResponse, GetPaymentsProfilesResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, PutProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, ProductIdentResponse, PutProductsGroupsSettingsResponse, GetProductsIdBySizecodeResponse, PutProductsImagesResponse, GetProductsMarketingPromotionResponse, PostProductsMarketingPromotionResponse, PutProductsMarketingPromotionResponse, GetProductsMarketingZonesResponse, PutProductsMarketingZonesResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, PostProductsOpinionsResponse, GetProductsOpinionsRateResponse, PutProductsParametersResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, GetProductsQuestionsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, PutProductsSeriesResponse, GetProductsSizesResponse, PutProductsSizesResponse, PutProductsStockQuantityResponse, GetProductsStocksResponse, PutProductsStocksResponse, GetProductsStrikethroughPricesResponse, PutProductsSupplierCodeResponse, PutProductsSupplierProductDataResponse, PromotionBoolResponse, SearchPromotionsElementsResponse, SearchPromotionsHistoryResponse, PromotionIdResponse, GetPromotionsResponse, SearchPromotionsListViewResponse, GetPromotionsArchiveResponse, SearchPromotionsArchiveResponse, GetPromotionsSettingsResponse, GetResponsibilityEntitiesResponse, PutResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, PutReturnsSerialNumberResponse, GetRmaResponse, PutRmaResponse, GetRmaStatusesResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, PutSizechartsResponse, GetSizesResponse, PutSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, PutSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemServerLoadResponse, GetSystemServerTimeResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, PutSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesCountTotalResponse, PutWarrantiesLanguageDataResponse, GetWarrantiesResponse, PutWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, PutWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse, PutWmsSuppliersResponse } from "./responses.d.ts"
 import type * as RequestParams from "./reqparams.d.ts";
 import * as ENUMS from "./enums";
 import utils from "./utils";
@@ -3719,9 +3719,9 @@ export interface PutProductsSynchronizationFinishUploadRequest extends Gateway {
     verifyFiles: (value: boolean) => this;
 }
 
-export interface PostPromotionsElementsRequest extends AppendableGateway<PostPromotionsElementsRequest> {
+export interface PostPromotionsElementsRequest extends AppendableGateway<PostPromotionsElementsRequest, PromotionBoolResponse, RequestParams.PostPromotionsElementsParams> {
     /** Array of PromotionElement objects */
-    elements: (value: Array<JSObject>) => this;
+    elements: (value: RequestParams.PostPromotionsElementsParams["elements"]) => this;
     /** ID */
     id: (id: string) => this
     /** Promotion element type */
@@ -3734,12 +3734,12 @@ export interface PostPromotionsElementsRequest extends AppendableGateway<PostPro
     correlatedElementsId: (correlatedElementsId: number|string|number[]|string[]) => this
 }
 
-export interface SearchPromotionsElementsRequest extends PagableGateway<SearchPromotionsElementsRequest> {
-    filter: (value: JSObject) => this;
+export interface SearchPromotionsElementsRequest extends PagableGateway<SearchPromotionsElementsRequest, SearchPromotionsElementsResponse, RequestParams.SearchPromotionsElementsParams> {
+    filter: (value: RequestParams.SearchPromotionsElementsParams["filter"]) => this;
     /** Pagination settings. */
-    pagination: (value: JSObject) => this;
+    pagination: (value: RequestParams.SearchPromotionsElementsParams["pagination"]) => this;
     /** Order by settings. */
-    orderBy: (value: JSObject) => this;
+    orderBy: (value: RequestParams.SearchPromotionsElementsParams["orderBy"]) => this;
     /** Elements IDs */
     ids: (value: string|string[]) => this;
     /** Element types */
@@ -3750,9 +3750,9 @@ export interface SearchPromotionsElementsRequest extends PagableGateway<SearchPr
     orderByProperty: (elementName: "promotion_id"|"type"|"element_id", descending?: boolean) => this;
 }
 
-export interface DeletePromotionsElementsRequest extends AppendableGateway<DeletePromotionsElementsRequest> {
+export interface DeletePromotionsElementsRequest extends AppendableGateway<DeletePromotionsElementsRequest, PromotionBoolResponse, RequestParams.DeletePromotionsElementsParams> {
     /** Array of PromotionElement objects */
-    elements: (value: Array<JSObject>) => this;
+    elements: (value: RequestParams.DeletePromotionsElementsParams["elements"]) => this;
     /** ID */
     id: (id: string) => this
     /** Promotion element type */
@@ -3765,16 +3765,16 @@ export interface DeletePromotionsElementsRequest extends AppendableGateway<Delet
     correlatedElementsId: (correlatedElementsId: number|string|number[]|string[]) => this
 }
 
-export interface SearchPromotionsHistoryRequest extends PagableGateway<SearchPromotionsHistoryRequest> {
+export interface SearchPromotionsHistoryRequest extends PagableGateway<SearchPromotionsHistoryRequest, SearchPromotionsHistoryResponse, RequestParams.SearchPromotionsHistoryParams> {
     /** Filters that limit the result of a customer query. */
-    filter: (value: JSObject) => this;
+    filter: (value: RequestParams.SearchPromotionsHistoryParams["filter"]) => this;
     /** Pagination settings. */
-    pagination: (value: JSObject) => this;
+    pagination: (value: RequestParams.SearchPromotionsHistoryParams["pagination"]) => this;
     /** Promotion ID */
     promotionId: (value: number|string) => this;
 }
 
-export interface PostPromotionsRequest extends Gateway {
+export interface PostPromotionsRequest extends Gateway<PromotionIdResponse, RequestParams.PostPromotionsParams> {
     /** Promotion name */
     name: (value: string) => this;
     /** Array of shop ids */
@@ -3794,7 +3794,7 @@ export interface PostPromotionsRequest extends Gateway {
     /** Price type */
     priceType: (value: 'retail'|'wholesale'|'pos') => this;
     /** A representation of a floating-point number with precise accuracy. */
-    newPriceValue: (value: JSObject) => this;
+    newPriceValue: (value: RequestParams.PostPromotionsParams["newPriceValue"]) => this;
     /** Currency */
     currency: (value: string) => this;
     /** Discount type */
@@ -3813,11 +3813,11 @@ export interface PostPromotionsRequest extends Gateway {
     status: (value: 'waiting'|'active'|'closed') => this;
 }
 
-export interface DeletePromotionsRequest extends Gateway {
+export interface DeletePromotionsRequest extends Gateway<PromotionBoolResponse, RequestParams.PromotionIdParams> {
     promotionId: (value: number|string) => this;
 }
 
-export interface PutPromotionsRequest extends Gateway {
+export interface PutPromotionsRequest extends Gateway<PromotionIdResponse, RequestParams.PutPromotionsParams> {
     /** Promotion name */
     name: (value: string) => this;
     /** Array of shop ids */
@@ -3837,7 +3837,7 @@ export interface PutPromotionsRequest extends Gateway {
     /** Price type */
     priceType: (value: 'retail'|'wholesale'|'pos') => this;
     /** A representation of a floating-point number with precise accuracy. */
-    newPriceValue: (value: JSObject) => this;
+    newPriceValue: (value: RequestParams.PutPromotionsParams["newPriceValue"]) => this;
     /** Currency */
     currency: (value: string) => this;
     /** Discount type */
@@ -3858,22 +3858,22 @@ export interface PutPromotionsRequest extends Gateway {
     promotionId: (promotionId: number) => this;
 }
 
-export interface PostPromotionsEndRequest extends Gateway {
+export interface PostPromotionsEndRequest extends Gateway<PromotionIdResponse, RequestParams.PromotionIdParams> {
     /** ID of promotion */
     promotionId: (value: number|string) => this;
 }
 
-export interface GetPromotionsRequest extends Gateway {
+export interface GetPromotionsRequest extends Gateway<GetPromotionsResponse, RequestParams.PromotionIdParams> {
     promotionId: (value: number|string) => this;
 }
 
-export interface SearchPromotionsListViewRequest extends PagableGateway<SearchPromotionsListViewRequest> {
+export interface SearchPromotionsListViewRequest extends PagableGateway<SearchPromotionsListViewRequest, SearchPromotionsListViewResponse, RequestParams.SearchPromotionsListViewParams> {
     /** Filters that limit the result of a customer query. */
-    filter: (value: JSObject) => this;
+    filter: (value: RequestParams.SearchPromotionsListViewParams["filter"]) => this;
     /** Pagination settings. */
-    pagination: (value: JSObject) => this;
+    pagination: (value: RequestParams.SearchPromotionsListViewParams["pagination"]) => this;
     /** Order by settings. */
-    orderBy: (value: JSObject) => this;
+    orderBy: (value: RequestParams.SearchPromotionsListViewParams["orderBy"]) => this;
     /** Promotion ID */
     ids: (value: number|string|number[]|string[]) => this;
     /** Promotion name */
@@ -3889,14 +3889,14 @@ export interface SearchPromotionsListViewRequest extends PagableGateway<SearchPr
     /** Promotion statuses */
     statuses: (value: 'waiting'|'active'|'closed'|Array<'waiting'|'active'|'closed'>) => this;
     /** Date range */
-    dateRange: (value: JSObject) => this;
+    dateRange: (value: RequestParams.SearchPromotionsListViewParams["dateRange"]) => this;
     /** Array of products in promotion */
     productsNotInPromotion: (value: number|string|number[]|string[]) => this;
     /** Define ordering of records */
     orderByProperty: (elementName: "id"|"name"|"start_time"|"end_time"|"new_price_value"|"new_price_end"|"elements_modification_date", descending?: boolean) => this;
 }
 
-export interface PostPromotionsStartRequest extends Gateway {
+export interface PostPromotionsStartRequest extends Gateway<PromotionIdResponse, RequestParams.PromotionIdParams> {
     /** ID of promotion */
     promotionId: (value: number|string) => this;
 }
@@ -3905,27 +3905,27 @@ export interface DeletePromotionsArchiveRequest extends Gateway {
     promotionId: (value: number|string) => this;
 }
 
-export interface GetPromotionsArchiveRequest extends Gateway {
+export interface GetPromotionsArchiveRequest extends Gateway<GetPromotionsArchiveResponse, RequestParams.PromotionIdParams> {
     promotionId: (value: number|string) => this;
 }
 
-export interface SearchPromotionsArchiveRequest extends PagableGateway<SearchPromotionsArchiveRequest> {
+export interface SearchPromotionsArchiveRequest extends PagableGateway<SearchPromotionsArchiveRequest, SearchPromotionsArchiveResponse, RequestParams.SearchPromotionsArchiveParams> {
     /** Filters that limit the result of a customer query. */
-    filter: (value: JSObject) => this;
+    filter: (value: RequestParams.SearchPromotionsArchiveParams["filter"]) => this;
     /** Pagination settings. */
-    pagination: (value: JSObject) => this;
+    pagination: (value: RequestParams.SearchPromotionsArchiveParams["pagination"]) => this;
     /** Order by settings. */
-    orderBy: (value: JSObject) => this;
+    orderBy: (value: RequestParams.SearchPromotionsArchiveParams["orderBy"]) => this;
     /** Shops IDs */
     shops: (value: number|string|number[]|string[]) => this;
-    archivedDate: (value: JSObject) => this;
+    archivedDate: (value: RequestParams.SearchPromotionsArchiveParams["archivedDate"]) => this;
     /** Define ordering of records */
     orderByProperty: (elementName: "id"|"shop_mask"|"archived_date", descending?: boolean) => this;
 }
 
-export interface GetPromotionsSettingsRequest extends Gateway {}
+export interface GetPromotionsSettingsRequest extends Gateway<GetPromotionsSettingsResponse> {}
 
-export interface PutPromotionsSettingsRequest extends Gateway {
+export interface PutPromotionsSettingsRequest extends Gateway<PromotionBoolResponse, RequestParams.PutPromotionsSettingsParams> {
     /** Days to archive */
     daysLeftToArchive: (value: number|string) => this;
     /** Days to remove from archive */

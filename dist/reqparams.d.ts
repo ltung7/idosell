@@ -7154,4 +7154,167 @@ export type PutWmsStocksdocumentsAcceptMMParams = {
     id: number;
 };
 
+export type PromotionIdParams = {
+    /** @description ID of promotion */
+    promotionId: number;
+};
+
+type PaginationParam = {
+    /** @description Page index (starting from 0)
+     * @default 0 */
+    page?: number;
+    /** @description Number of records per page.
+     * @default 100 */
+    perPage?: number;
+};
+
+type DateRangeParam = {
+    /** Format: date
+     * @description Date "from" (RFC) */
+    from?: string | null;
+    /** Format: date
+     * @description Date "to" (RFC) */
+    to?: string | null;
+} | null;
+
+type PromotionBody = {
+    /** @description Promotion name */
+    name?: string;
+    /** @description Promotion zones */
+    types?: ("promotion" | "special" | "discount" | "distinguished" | "bestseller" | "new")[];
+    /** @description Promotion start datetime */
+    startTime?: string;
+    /** @description Promotion end datetime */
+    endTime?: string;
+    /** @description Change visibility */
+    changeVisibility?: boolean;
+    /** @description Auto unpin */
+    autoUnpin?: boolean;
+    /** @description Auto unpin own stocks */
+    autoUnpinOwnStocks?: boolean;
+    /** @description Price type */
+    priceType?: "retail" | "wholesale" | "pos";
+    /** @description Currency */
+    currency?: string;
+    /** @description Discount type */
+    newPriceDiscountType?: "percent" | "minus" | "set";
+    /** @description New price round */
+    newPriceRound?: "whole" | "first" | "second";
+    /** @description New price end */
+    newPriceEnd?: number;
+    /** @description Net or gross */
+    netGross?: "gross" | "net";
+    /** @description Charge type */
+    chargeType?: "lowest" | "sum";
+    /** @description Enable in marketplaces */
+    enableInMarketplaces?: "y" | "n" | "yes_for_dynamic_pricing_products";
+    /** @description Status */
+    status?: "waiting" | "active" | "closed";
+};
+
+export type PostPromotionsParams = PromotionBody & {
+    /** @description Array of shop ids */
+    activeInShops: number[];
+    /** @description A representation of a floating-point number with precise accuracy. */
+    newPriceValue: { value: string };
+};
+
+export type PutPromotionsParams = PromotionBody & PromotionIdParams & {
+    /** @description Array of shop ids */
+    activeInShops?: number[];
+    /** @description A representation of a floating-point number with precise accuracy. */
+    newPriceValue?: { value: string };
+};
+
+type PromotionElementsBody = {
+    /** @description Array of PromotionElement objects */
+    elements: {
+        /** @description ID */
+        id: string;
+        /** @description Promotion element type */
+        type: "product" | "series" | "producer" | "category" | "menu";
+        /** @description Promotion ID */
+        promotionId: number;
+    }[];
+};
+
+export type PostPromotionsElementsParams = PromotionElementsBody;
+export type DeletePromotionsElementsParams = PromotionElementsBody;
+
+export type SearchPromotionsHistoryParams = {
+    filter: {
+        /** @description Promotion ID */
+        promotionId: number;
+    };
+    pagination?: PaginationParam;
+};
+
+export type SearchPromotionsElementsParams = {
+    /** @example {"types": ["category", "series"], "ids": ["213"], "promotionIds": [534]} */
+    filter?: {
+        /** @description Elements IDs */
+        ids?: string[];
+        /** @description Element types */
+        types?: ("product" | "series" | "producer" | "category" | "menu")[];
+        /** @description Promotion IDs */
+        promotionIds?: number[];
+    };
+    pagination?: PaginationParam;
+    orderBy?: {
+        /** @default promotion_id */
+        property?: "promotion_id" | "type" | "element_id";
+        /** @default desc */
+        orderByDirection?: "asc" | "desc";
+    };
+};
+
+export type SearchPromotionsListViewParams = {
+    filter?: {
+        ids?: number[] | null;
+        name?: string;
+        changeVisibility?: boolean;
+        /** @description Array of shop ids */
+        activeInShops?: number[];
+        types?: ("promotion" | "special" | "discount" | "distinguished" | "bestseller" | "new")[];
+        priceTypes?: ("retail" | "wholesale" | "pos")[];
+        statuses?: ("waiting" | "active" | "closed")[];
+        dateRange?: DateRangeParam;
+        productsNotInPromotion?: number[] | null;
+    };
+    pagination?: PaginationParam;
+    orderBy?: {
+        /** @default id */
+        property?: "id" | "name" | "start_time" | "end_time" | "new_price_value" | "new_price_end" | "elements_modification_date";
+        /** @default desc */
+        orderByDirection?: "asc" | "desc";
+    };
+};
+
+export type SearchPromotionsArchiveParams = {
+    filter?: {
+        shops?: number[];
+        archivedDate?: DateRangeParam;
+    };
+    pagination?: PaginationParam;
+    orderBy?: {
+        /** @default id */
+        property?: "id" | "shop_mask" | "archived_date";
+        /** @default desc */
+        orderByDirection?: "asc" | "desc";
+    };
+};
+
+export type PutPromotionsSettingsParams = {
+    daysLeftToArchive?: number;
+    daysLeftToRemove?: number;
+    showPriceOnProductsList?: number;
+    automaticallySuggestDefaultStartDate?: "on" | "off";
+    automaticallySuggestDefaultEndDate?: "on" | "off";
+    defaultStartDate?: number;
+    defaultEndDate?: number;
+    defaultStartTime?: number;
+    defaultEndTime?: number;
+    daysLeftToClose?: number;
+};
+
 export { };

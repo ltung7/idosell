@@ -20,6 +20,9 @@ type PagedSnakecaseResponse = {
     results_limit: number;
 };
 
+type PaginatedResponse = {
+    pagination: PagedResponse
+}
 type FaultCodeString = {
     /** @description Error code. */
     faultCode: number;
@@ -9145,5 +9148,113 @@ export type GetOrdersResponse = {
         }[];
     }[];
 };
+
+type PromotionErrorEntry = {
+    /** @description Error code. */
+    code: string;
+    /** @description Field associated with the error. */
+    field: string | null;
+    /** @description Error description. */
+    message: string | null;
+    /** @description Value associated with the error. */
+    value: string | null;
+    /** @description Unique identifier of the error (for support). */
+    uid: string | null;
+};
+
+type PromotionApiResponse<T> = {
+    data: T;
+    isError: boolean;
+    errors: PromotionErrorEntry[];
+};
+
+type PromotionData = {
+    /** @description ID of promotion */
+    promotionId: number;
+    name: string;
+    /** @description Array of shop ids */
+    activeInShops: number[];
+    types: ("promotion" | "special" | "discount" | "distinguished" | "bestseller" | "new")[];
+    startTime: string;
+    endTime: string;
+    changeVisibility: boolean;
+    autoUnpin: boolean;
+    autoUnpinOwnStocks: boolean;
+    priceType: "retail" | "wholesale" | "pos";
+    /** @description A representation of a floating-point number with precise accuracy. */
+    newPriceValue: { value: string };
+    currency: string;
+    newPriceDiscountType: "percent" | "minus" | "set";
+    newPriceRound: "whole" | "first" | "second";
+    newPriceEnd: number;
+    netGross: "gross" | "net";
+    chargeType: "lowest" | "sum";
+    enableInMarketplaces: "y" | "n" | "yes_for_dynamic_pricing_products";
+    status: "waiting" | "active" | "closed";
+    elementsModificationDate: string | null;
+    /** @description Promotion archive datetime — optional in list/get, required in archive */
+    archivedDate?: string | null;
+    /** @description Promotion elements count e.g. { "products": 1 } */
+    elementsCount: Record<string, number>;
+    elements?: unknown[];
+};
+
+type PromotionArchiveData = Omit<PromotionData, "archivedDate" | "elementsCount" | "elements"> & {
+    archivedDate: string | null;
+    elementsCount: Record<string, never>;
+    elements: unknown[];
+};
+
+export type SearchPromotionsHistoryResponse = PromotionApiResponse<{
+    list: {
+        readonly id: number;
+        readonly date: string;
+        readonly login: string;
+        readonly description: string;
+    }[];
+    pagination: PagedResponse;
+}>;
+
+export type SearchPromotionsElementsResponse = PromotionApiResponse<{
+    list: {
+        id: string;
+        type: "product" | "series" | "producer" | "category" | "menu";
+        name: string;
+        promotionId: number;
+        /** @description Correlated elements id */
+        correlatedElementsId?: number[];
+    }[];
+    pagination: PagedResponse;
+}>;
+
+export type SearchPromotionsListViewResponse = PromotionApiResponse<{
+    list: PromotionData[];
+    pagination: PagedResponse;
+}>;
+
+export type SearchPromotionsArchiveResponse = PromotionApiResponse<{
+    list: PromotionArchiveData[];
+    pagination: PagedResponse;
+}>;
+
+export type GetPromotionsResponse = PromotionApiResponse<PromotionData>;
+export type GetPromotionsArchiveResponse = PromotionApiResponse<PromotionArchiveData>;
+
+export type GetPromotionsSettingsResponse = PromotionApiResponse<{
+    daysLeftToArchive: number;
+    daysLeftToRemove: number;
+    showPriceOnProductsList: number;
+    automaticallySuggestDefaultStartDate: "on" | "off";
+    automaticallySuggestDefaultEndDate: "on" | "off";
+    defaultStartDate: number;
+    defaultEndDate: number;
+    defaultStartTime: number;
+    defaultEndTime: number;
+    daysLeftToClose: number;
+}>;
+
+export type PromotionIdResponse = PromotionApiResponse<number>;
+
+export type PromotionBoolResponse = PromotionApiResponse<boolean | null>;
 
 export { };
