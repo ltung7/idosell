@@ -67,7 +67,6 @@ const checkNext = (request, response, logPage) => {
         handlePagination(response.results_page, response.results_number_page, request, { results_page: response.results_page + 1 });
     }
     else if (response.pagination) {
-        console.log({ rp: request.params, qp: response.pagination });
         request.params.pagination.page = response.pagination.resultsPage + 1;
         handlePagination(response.pagination.resultsPage, response.pagination.resultsNumberPage, request);
     }

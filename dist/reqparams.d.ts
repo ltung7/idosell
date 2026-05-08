@@ -325,50 +325,6 @@ export type PostProductsParams = {
         productPictures?: string[];
         /** @description List of photos descriptions */
         productDescriptionPictures?: string[];
-        /** @description Reduced price */
-        productPromotion?: {
-            /** @description Object determines if the promotion should be active.. Allowed values "y" - active promotion, "n" - inactive promotion. */
-            promoteInEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-        };
-        /** @description Discount for shop. */
-        productDiscount?: {
-            /** @description Object determines if the promotion should be active.. Allowed values "y" - active promotion, "n" - inactive promotion. */
-            promoteInEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-        };
-        /** @description Distinguished product in store. */
-        productDistinguished?: {
-            /** @description Object determines if the promotion should be active.. Allowed values "y" - active promotion, "n" - inactive promotion. */
-            promoteInEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-        };
-        /** @description Special product in store. */
-        productSpecial?: {
-            /** @description Object determines if the promotion should be active.. Allowed values "y" - active promotion, "n" - inactive promotion. */
-            promoteInEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-        };
         /** @description Parameters (distinguished). */
         productParametersDistinction?: {
             /** @description Parameter ID */
@@ -1094,66 +1050,6 @@ export type PutProductsParams = {
             /** @description A picture in url or base64 (depends on pictures_input_type). */
             productPictureSource?: string;
         }[];
-        /** @description Reduced price */
-        productPromotion?: {
-            /** @description Is attribute set */
-            promoteIsEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Net strikethrough price. */
-            promoteItemNormalPriceNet?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Net wholesale strikethrough price. */
-            promoteItemWholesaleNormalPriceNet?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-        };
-        /** @description Discount for shop. */
-        productDiscount?: {
-            /** @description Is attribute set */
-            promoteIsEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Net strikethrough price. */
-            promoteItemNormalPriceNet?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Net wholesale strikethrough price. */
-            promoteItemWholesaleNormalPriceNet?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-        };
-        /** @description Distinguished product in store. */
-        productDistinguished?: {
-            /** @description Is attribute set */
-            promoteIsEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Net strikethrough price. */
-            promoteItemNormalPriceNet?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-            /** @description Net wholesale strikethrough price. */
-            promoteItemWholesaleNormalPriceNet?: number;
-        };
-        /** @description Special product in store. */
-        productSpecial?: {
-            /** @description Is attribute set */
-            promoteIsEnabled?: string;
-            /** @description Strikethrough price */
-            promoteItemNormalPrice?: number;
-            /** @description Net strikethrough price. */
-            promoteItemNormalPriceNet?: number;
-            /** @description Strikethrough wholesale price */
-            promoteItemWholesaleNormalPrice?: number;
-            /** @description Net wholesale strikethrough price. */
-            promoteItemWholesaleNormalPriceNet?: number;
-            /** @description Switching off date */
-            promoteItemEndingDate?: string;
-        };
         /** @description Parameters (distinguished). */
         productParametersDistinction?: {
             /** @description Parameter ID */
@@ -6512,12 +6408,15 @@ export type PostDiscountsRebatesCodeParams = {
 };
 
 export type PutClientsExternalCodeParams = {
-    /** @example 1 */
-    client_id?: number;
-    /** @description Customer's login. */
-    client_login?: string;
-    /** @description External system code. */
-    code_extern?: string;
+    /** @description Customer data. */
+    clients: {
+        /** @example 1 */
+        client_id?: number;
+        /** @description Customer's login. */
+        client_login?: string;
+        /** @description External system code. */
+        code_extern?: string;
+    }[];
 };
 
 export type PutClientsGiftcardsParams = {
@@ -7315,6 +7214,15 @@ export type PutPromotionsSettingsParams = {
     defaultStartTime?: number;
     defaultEndTime?: number;
     daysLeftToClose?: number;
+};
+
+export type GetProductsAttachmentsGetContentParams = {
+    /** @description - product identifier value */
+    productIdentValue: string;
+    /** @description - product identifier type */
+    productIdentType: "codeExtern" | "codeProducer" | "index" | "id";
+    /** @description - product attachment ID */
+    attachmentId: number;
 };
 
 export { };

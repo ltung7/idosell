@@ -146,6 +146,7 @@ import putPayments from "./methods/putPayments.js";
 import getPaymentsProfiles from "./methods/getPaymentsProfiles.js";
 import postPaymentsRepayment from "./methods/postPaymentsRepayment.js";
 import getProductsSKUbyBarcode from "./methods/getProductsSKUbyBarcode.js";
+import getProductsAttachmentsGetContent from "./methods/getProductsAttachmentsGetContent.js";
 import putProductsAttachments from "./methods/putProductsAttachments.js";
 import getProductsAuctions from "./methods/getProductsAuctions.js";
 import deleteProductsBrands from "./methods/deleteProductsBrands.js";
@@ -178,9 +179,6 @@ import getProductsIdBySizecode from "./methods/getProductsIdBySizecode.js";
 import deleteProductsImages from "./methods/deleteProductsImages.js";
 import putProductsImages from "./methods/putProductsImages.js";
 import getProductsMarketingAllFacebookCatalogIds from "./methods/getProductsMarketingAllFacebookCatalogIds.js";
-import getProductsMarketingPromotion from "./methods/getProductsMarketingPromotion.js";
-import postProductsMarketingPromotion from "./methods/postProductsMarketingPromotion.js";
-import putProductsMarketingPromotion from "./methods/putProductsMarketingPromotion.js";
 import getProductsMarketingZones from "./methods/getProductsMarketingZones.js";
 import putProductsMarketingZones from "./methods/putProductsMarketingZones.js";
 import getProductsOmnibusPrices from "./methods/getProductsOmnibusPrices.js";
@@ -249,6 +247,7 @@ import getRefundsGetPossibleAutoRefunds from "./methods/getRefundsGetPossibleAut
 import getRefundsGetRefundStatus from "./methods/getRefundsGetRefundStatus.js";
 import getRefundsRetrieveRefundsList from "./methods/getRefundsRetrieveRefundsList.js";
 import putRefundsUpdateRefund from "./methods/putRefundsUpdateRefund.js";
+import getRegulationsHistory from "./methods/getRegulationsHistory.js";
 import getResponsibilityEntities from "./methods/getResponsibilityEntities.js";
 import postResponsibilityEntities from "./methods/postResponsibilityEntities.js";
 import putResponsibilityEntities from "./methods/putResponsibilityEntities.js";
@@ -333,6 +332,9 @@ import putWmsStocksdocumentsRejectMM from "./methods/putWmsStocksdocumentsReject
 import deleteWmsSuppliers from "./methods/deleteWmsSuppliers.js";
 import getWmsSuppliers from "./methods/getWmsSuppliers.js";
 import putWmsSuppliers from "./methods/putWmsSuppliers.js";
+import getProductsMarketingPromotion from "./methods/getProductsMarketingPromotion.js";
+import postProductsMarketingPromotion from "./methods/postProductsMarketingPromotion.js";
+import putProductsMarketingPromotion from "./methods/putProductsMarketingPromotion.js";
 const gates = {
     getClientsBalance,
     postClientsBalance,
@@ -482,6 +484,7 @@ const gates = {
     getPaymentsProfiles,
     postPaymentsRepayment,
     getProductsSKUbyBarcode,
+    getProductsAttachmentsGetContent,
     putProductsAttachments,
     getProductsAuctions,
     deleteProductsBrands,
@@ -514,9 +517,6 @@ const gates = {
     deleteProductsImages,
     putProductsImages,
     getProductsMarketingAllFacebookCatalogIds,
-    getProductsMarketingPromotion,
-    postProductsMarketingPromotion,
-    putProductsMarketingPromotion,
     getProductsMarketingZones,
     putProductsMarketingZones,
     getProductsOmnibusPrices,
@@ -585,6 +585,7 @@ const gates = {
     getRefundsGetRefundStatus,
     getRefundsRetrieveRefundsList,
     putRefundsUpdateRefund,
+    getRegulationsHistory,
     getResponsibilityEntities,
     postResponsibilityEntities,
     putResponsibilityEntities,
@@ -669,6 +670,9 @@ const gates = {
     deleteWmsSuppliers,
     getWmsSuppliers,
     putWmsSuppliers,
+    getProductsMarketingPromotion,
+    postProductsMarketingPromotion,
+    putProductsMarketingPromotion,
     listProducts: searchProducts,
     listOrders: searchOrders,
     listOrdersUnfinished: searchOrdersUnfinished,

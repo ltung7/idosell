@@ -2,7 +2,7 @@ import ENUMS from "./enums.js";
 import utils from "./utils.js";
 import { gateProxy } from "./gates.js";
 import { IdosellFaultStringError, catchEmptyList } from "./errors.js";
-export const DEFAULT_VERSION = 7;
+export const DEFAULT_VERSION = 8;
 function normalizeUrl(input = "") {
     if (!input.length)
         return "";

@@ -1,6 +1,7 @@
 import { paramsProxy } from "../params.js";
 export default (object) => {
     object.gate = { method: 'post', node: '/products/marketing/promotion' };
+    object.auth.version = 7;
     object.appendable = {
         except: ["promotionName", "shopsIds", "marketingZones", "newPriceSettings", "startDate", "endDate", "changeProductsToVisibleWhileStarting", "removeProductsAfterStockLevelRunsDown", "reduceBasingPrice", "calculationMethod"],
         arrayNode: "promotionElements",

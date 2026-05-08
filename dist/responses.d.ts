@@ -992,7 +992,7 @@ export type GetConfigVariablesResponse = {
         /** @description Key of config value. */
         key: string;
         /** @description Name of config item. */
-        readonly name: string;
+        name: string;
         /** @description Value of config item. */
         value: string;
     } & {
@@ -1012,7 +1012,7 @@ export type PutConfigVariablesResponse = {
             /** @description Key of config value. */
             key: string;
             /** @description Name of config item. */
-            readonly name?: string;
+            name?: string;
             /** @description Value of config item. */
             value: string;
         } & {
@@ -1185,9 +1185,9 @@ export type GetCpaCampaignResponse = {
         /** @description Whether the snippet is active */
         active: "y" | "n";
         /** @description Number of CPA programs associated with the campaign. */
-        readonly cpaCount: number | null;
+        cpaCount: number | null;
         /** @description Number of active CPA programs associated with the campaign. */
-        readonly activeCpaCount: number | null;
+        activeCpaCount: number | null;
     }[];
     pagination: PagedResponse;
 };
@@ -3493,6 +3493,8 @@ export type PutProductsMarketingZonesResponse = {
 export type GetProductsOmnibusPricesResponse = {
     /** @description Products list. */
     products: never[] | Record<string, {
+        /** @description Product ID */
+        productId: number;
         shops: never[] | Record<string, {
             /** @description Shop Id */
             shop_id: number;
@@ -6251,18 +6253,18 @@ export type GetSnippetsCampaignResponse = {
         /** @description Whether the snippet is active */
         active: "y" | "n";
         /** @description Whether the snippet campaign is deleted */
-        readonly deleted: "y" | "n";
+        deleted: "y" | "n";
         /** @description Snippet order. */
         order: number;
         /** @description Number of code snippets associated with the campaign. */
-        readonly snippetCount: number | null;
+        snippetCount: number | null;
         /** @description Number of active code snippets associated with the campaign. */
-        readonly activeSnippetCount: number | null;
+        activeSnippetCount: number | null;
         configVariables: {
             /** @description Key of config value. */
             key: string;
             /** @description Name of config item. */
-            readonly name: string;
+            name: string;
             /** @description Value of config item. */
             value: string;
         }[];
@@ -6431,9 +6433,9 @@ export type GetSnippetsResponse = {
             } | null;
         };
         /** @description Whether the snippet is marked as deleted. */
-        readonly deleted: "y" | "n";
+        deleted: "y" | "n";
         /** @description The number of cookies associated with the snippet. */
-        readonly cookiesCount: number;
+        cookiesCount: number;
     }[];
     pagination: PagedResponse;
 };
@@ -9207,10 +9209,10 @@ type PromotionArchiveData = Omit<PromotionData, "archivedDate" | "elementsCount"
 
 export type SearchPromotionsHistoryResponse = PromotionApiResponse<{
     list: {
-        readonly id: number;
-        readonly date: string;
-        readonly login: string;
-        readonly description: string;
+        id: number;
+        date: string;
+        login: string;
+        description: string;
     }[];
     pagination: PagedResponse;
 }>;
@@ -9256,5 +9258,41 @@ export type GetPromotionsSettingsResponse = PromotionApiResponse<{
 export type PromotionIdResponse = PromotionApiResponse<number>;
 
 export type PromotionBoolResponse = PromotionApiResponse<boolean | null>;
+
+export type GetRegulationsHistoryResponse = {
+    results: {
+        /** @description Document's type */
+        type: string;
+        /** @description Language ISO code. */
+        langId: string;
+        /** @description Shop ID. */
+        shopId: number;
+        /** @description Content. */
+        content: string;
+        /** @description Creation time. */
+        creationTime: number;
+        /** @description User. */
+        user: string;
+        /** @description Change type. */
+        changeType: "auto" | "user";
+        /** @description Change source (y - auto, m - markdown editor, n - WYSIWYG/HTML editor). */
+        isDefault: "y" | "m" | "n";
+        /** @description Setting to check if revision was published in shop. */
+        wasPublished: number;
+        /** @description 2-letter ISO country code. */
+        country: string;
+    }[];
+    pagination: {
+        /** @description Pagination settings. */
+        appliedFilter: {
+            /** @description Page index (starting from 0)
+             * @default 0 */
+            page: number;
+            /** @description Number of records per page.
+             * @default 100 */
+            perPage: number;
+        };
+    };
+};
 
 export { };

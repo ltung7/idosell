@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject, IdosellErrorFaultStructure } from "./app.d.ts"
-import type { GetClientsBalanceResponse, BooleanStatusResponse, GetClientsResponse, PostClientsResponse, PutClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PostClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, VouchersResponse, PutVouchersResponse, SearchClientsGiftcardsResponse, GetClientsGiftcardsTypesResponse, GetClientsMembershipCardsResponse, PutClientsMembershipCardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, PostClientsPayerAddressResponse, PutClientsPayerAddressResponse, GetClientsPricelistsClientsResponse, PutClientsPricelistsClientsResponse, GetClientsPricelistsResponse, PostClientsPricelistsResponse, GetClientsPricelistsProductsResponse, PutClientsPricelistsProductsResponse, GetClientsPricesActiveCardResponse, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountsResponse, PutClientsPricesDiscountsResponse, GetClientsProfitPointsResponse, GetClientsProvinceListResponse, GetClientsTagsResponse, PostClientsTagsResponse, PutClientsTagsResponse, GetConfigVariablesResponse, PutConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersResponse, GetCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaCampaignResponse, CmsCampaignResponse, CmsResponse, GetCpaResponse, GetDeliveriesProfilesResponse, GetDeliveriesRegionsResponse, PostDeliveriesRegionsResponse, GetDiscountsGroupsClientsResponse, GetDiscountsGroupsResponse, PostDiscountsGroupsResponse, GetEntriesResponse, PostEntriesResponse, GetEntriesPagesToDisplayResponse, GetEntriesSourcesResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, PutMenuSortResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PutOrdersCourierResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, PostOrdersDocumentsResponse, GetOrdersHandlerResponse, GetOrdersHistoryResponse, GetOrdersImagesResponse, PostOrdersImagesResponse, GetOrdersLabelsResponse, SearchOrdersOpinionsResponse, GetOrdersOpinionsRateResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, PutOrdersPackagesResponse, PutOrdersProductsSerialNumbersResponse, PutOrdersProfitMarginResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetOrdersWarehouseResponse, PostPackagesLabelsResponse, PutPackagesResponse, SearchPackagesResponse, GetPaymentsFormsResponse, GetPaymentsResponse, PostPaymentsResponse, GetPaymentsProfilesResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, PutProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, ProductIdentResponse, PutProductsGroupsSettingsResponse, GetProductsIdBySizecodeResponse, PutProductsImagesResponse, GetProductsMarketingPromotionResponse, PostProductsMarketingPromotionResponse, PutProductsMarketingPromotionResponse, GetProductsMarketingZonesResponse, PutProductsMarketingZonesResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, PostProductsOpinionsResponse, GetProductsOpinionsRateResponse, PutProductsParametersResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, GetProductsQuestionsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, PutProductsSeriesResponse, GetProductsSizesResponse, PutProductsSizesResponse, PutProductsStockQuantityResponse, GetProductsStocksResponse, PutProductsStocksResponse, GetProductsStrikethroughPricesResponse, PutProductsSupplierCodeResponse, PutProductsSupplierProductDataResponse, PromotionBoolResponse, SearchPromotionsElementsResponse, SearchPromotionsHistoryResponse, PromotionIdResponse, GetPromotionsResponse, SearchPromotionsListViewResponse, GetPromotionsArchiveResponse, SearchPromotionsArchiveResponse, GetPromotionsSettingsResponse, GetResponsibilityEntitiesResponse, PutResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, PutReturnsSerialNumberResponse, GetRmaResponse, PutRmaResponse, GetRmaStatusesResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, PutSizechartsResponse, GetSizesResponse, PutSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, PutSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemServerLoadResponse, GetSystemServerTimeResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, PutSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesCountTotalResponse, PutWarrantiesLanguageDataResponse, GetWarrantiesResponse, PutWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, PutWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse, PutWmsSuppliersResponse } from "./responses.d.ts"
+import type { GetClientsBalanceResponse, BooleanStatusResponse, GetClientsResponse, PostClientsResponse, PutClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PostClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, VouchersResponse, PutVouchersResponse, SearchClientsGiftcardsResponse, GetClientsGiftcardsTypesResponse, GetClientsMembershipCardsResponse, PutClientsMembershipCardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, PostClientsPayerAddressResponse, PutClientsPayerAddressResponse, GetClientsPricelistsClientsResponse, PutClientsPricelistsClientsResponse, GetClientsPricelistsResponse, PostClientsPricelistsResponse, GetClientsPricelistsProductsResponse, PutClientsPricelistsProductsResponse, GetClientsPricesActiveCardResponse, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountsResponse, PutClientsPricesDiscountsResponse, GetClientsProfitPointsResponse, GetClientsProvinceListResponse, GetClientsTagsResponse, PostClientsTagsResponse, PutClientsTagsResponse, GetConfigVariablesResponse, PutConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersResponse, GetCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaCampaignResponse, CmsCampaignResponse, CmsResponse, GetCpaResponse, GetDeliveriesProfilesResponse, GetDeliveriesRegionsResponse, PostDeliveriesRegionsResponse, GetDiscountsGroupsClientsResponse, GetDiscountsGroupsResponse, PostDiscountsGroupsResponse, GetEntriesResponse, PostEntriesResponse, GetEntriesPagesToDisplayResponse, GetEntriesSourcesResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, PutMenuSortResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PutOrdersCourierResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, PostOrdersDocumentsResponse, GetOrdersHandlerResponse, GetOrdersHistoryResponse, GetOrdersImagesResponse, PostOrdersImagesResponse, GetOrdersLabelsResponse, SearchOrdersOpinionsResponse, GetOrdersOpinionsRateResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, PutOrdersPackagesResponse, PutOrdersProductsSerialNumbersResponse, PutOrdersProfitMarginResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetOrdersWarehouseResponse, PostPackagesLabelsResponse, PutPackagesResponse, SearchPackagesResponse, GetPaymentsFormsResponse, GetPaymentsResponse, PostPaymentsResponse, GetPaymentsProfilesResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, PutProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, ProductIdentResponse, PutProductsGroupsSettingsResponse, GetProductsIdBySizecodeResponse, PutProductsImagesResponse, GetProductsMarketingZonesResponse, PutProductsMarketingZonesResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, PostProductsOpinionsResponse, GetProductsOpinionsRateResponse, PutProductsParametersResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, PutProductsMarketingPromotionResponse, GetProductsQuestionsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, PutProductsSeriesResponse, GetProductsSizesResponse, PutProductsSizesResponse, PutProductsStockQuantityResponse, GetProductsStocksResponse, PutProductsStocksResponse, GetProductsStrikethroughPricesResponse, PutProductsSupplierCodeResponse, PutProductsSupplierProductDataResponse, PromotionBoolResponse, SearchPromotionsElementsResponse, SearchPromotionsHistoryResponse, PromotionIdResponse, GetPromotionsResponse, SearchPromotionsListViewResponse, GetPromotionsArchiveResponse, SearchPromotionsArchiveResponse, GetPromotionsSettingsResponse, GetResponsibilityEntitiesResponse, PutResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, PutReturnsSerialNumberResponse, GetRmaResponse, PutRmaResponse, GetRmaStatusesResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, PutSizechartsResponse, GetSizesResponse, PutSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, PutSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemServerLoadResponse, GetSystemServerTimeResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, PutSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesCountTotalResponse, PutWarrantiesLanguageDataResponse, GetWarrantiesResponse, PutWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, PutWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse, PutWmsSuppliersResponse, GetProductsMarketingPromotionResponse, PostProductsMarketingPromotionResponse } from "./responses.d.ts"
 import type * as RequestParams from "./reqparams.d.ts";
 import * as ENUMS from "./enums";
 import utils from "./utils";
@@ -111,7 +111,6 @@ export interface PostClientsRequest extends AppendableGateway<PostClientsRequest
     birth_date: (birth_date: string) => this
     /** Customer phone number. */
     phone: (phone: string) => this
-    /**  */
     company: (company: string) => this
     /** Customer Tax no. */
     vat_number: (vat_number: string) => this
@@ -129,7 +128,6 @@ export interface PostClientsRequest extends AppendableGateway<PostClientsRequest
     block_autosigning_to_shops: (block_autosigning_to_shops: boolean) => this
     /** Customer default currency (ISO 4217 code). */
     currency: (currency: string) => this
-    /**  */
     delivery_dates: (delivery_dates: string|string[]) => this
     /** Customer account balance in external system. */
     external_balance_value: (external_balance_value: number) => this
@@ -383,12 +381,14 @@ export interface PutClientsDeliveryAddressRequest extends AppendableGateway<PutC
     clientDeliveryAddressCountry: (clientDeliveryAddressCountry: string) => this
 }
 
-export interface PutClientsExternalCodeRequest extends Gateway {
-    client_id: (value: number|string) => this;
+export interface PutClientsExternalCodeRequest extends AppendableGateway<PutClientsExternalCodeRequest, JSObject, RequestParams.PutClientsExternalCodeParams> {
+    /** Customer data. */
+    clients: (value: RequestParams.PutClientsExternalCodeParams["clients"]) => this;
+    client_id: (client_id: number|string) => this
     /** Customer's login. */
-    client_login: (value: string) => this;
+    client_login: (client_login: string) => this
     /** External system code. */
-    code_extern: (value: string) => this;
+    code_extern: (code_extern: string) => this
 }
 
 export interface PutClientsGiftcardsBlockRequest extends AppendableGateway<PutClientsGiftcardsBlockRequest, VouchersResponse, RequestParams.PutClientsGiftcardsBlockParams> {
@@ -426,7 +426,6 @@ export interface PostClientsGiftcardsRequest extends AppendableGateway<PostClien
     balance: (balance: RequestParams.PostClientsGiftcardsParams["giftCards"][number]["balance"]) => this
     /** List of shops the card is active in */
     shops: (shops: number|string|number[]|string[]) => this
-    /**  */
     note: (note: string) => this
 }
 
@@ -449,7 +448,6 @@ export interface PutClientsGiftcardsRequest extends AppendableGateway<PutClients
     balance: (balance: RequestParams.PutClientsGiftcardsParams["giftCards"][number]["balance"]) => this
     /** List of shops the card is active in */
     shops: (shops: number|string|number[]|string[]) => this
-    /**  */
     note: (note: string) => this
     /** Adds balance to current gift card */
     add: (amount: number, currency?: string) => this;
@@ -823,7 +821,6 @@ export interface PutClientsTagsRequest extends AppendableGateway<PutClientsTagsR
     clientTags: (value: RequestParams.PutClientsTagsParams["clientTags"]) => this;
     /** Tag ID. */
     tagId: (tagId: number|string) => this
-    /**  */
     operation: (operation: 'add'|'set'|'subtract') => this
     /** Tag value. */
     tagValue: (tagValue: number|string) => this
@@ -952,7 +949,6 @@ export interface GetCpaCampaignRequest extends PagableGateway<GetCpaCampaignRequ
 
 export interface PostCpaCampaignRequest extends AppendableGateway<PostCpaCampaignRequest, CmsCampaignResponse, RequestParams.PostCpaCampaignParams> {
     campaigns: (value: RequestParams.PostCpaCampaignParams["campaigns"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** Snippet campaign name */
     name: (name: string) => this
@@ -996,7 +992,6 @@ export interface GetCpaRequest extends PagableGateway<GetCpaRequest, GetCpaRespo
 
 export interface PostCpaRequest extends AppendableGateway<PostCpaRequest, CmsResponse, RequestParams.PostCpaParams> {
     cpa: (value: RequestParams.PostCpaParams["cpa"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** The CPA program name. */
     name: (name: string) => this
@@ -1006,7 +1001,6 @@ export interface PostCpaRequest extends AppendableGateway<PostCpaRequest, CmsRes
     campaign: (campaign: number|string) => this
     /** CPA program page settings simple or advanced, depending on the mode. */
     pageSettings: (pageSettings: RequestParams.PostCpaParams["cpa"][number]["pageSettings"]) => this
-    /** undefined */
     display: (display: RequestParams.PostCpaParams["cpa"][number]["display"]) => this
     /** Snippet entry source filter. */
     sources: (sources: RequestParams.PostCpaParams["cpa"][number]["sources"]) => this
@@ -1016,7 +1010,6 @@ export interface PostCpaRequest extends AppendableGateway<PostCpaRequest, CmsRes
 
 export interface PutCpaRequest extends AppendableGateway<PutCpaRequest, CmsResponse, RequestParams.PutCpaParams> {
     cpa: (value: RequestParams.PutCpaParams["cpa"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** The CPA program name. */
     name: (name: string) => this
@@ -1026,7 +1019,6 @@ export interface PutCpaRequest extends AppendableGateway<PutCpaRequest, CmsRespo
     campaign: (campaign: number|string) => this
     /** CPA program page settings simple or advanced, depending on the mode. */
     pageSettings: (pageSettings: RequestParams.PutCpaParams["cpa"][number]["pageSettings"]) => this
-    /** undefined */
     display: (display: RequestParams.PutCpaParams["cpa"][number]["display"]) => this
     /** Snippet entry source filter. */
     sources: (sources: RequestParams.PutCpaParams["cpa"][number]["sources"]) => this
@@ -1332,7 +1324,6 @@ export interface PostMenuRequest extends AppendableGateway<PostMenuRequest, Post
     parent_id: (parent_id: number|string) => this
     /** Menu element text identifier. Example: "item1\item2". */
     parent_textid: (parent_textid: string) => this
-    /**  */
     lang_data: (lang_data: RequestParams.PostMenuParams["menu_list"][number]["lang_data"]) => this
 }
 
@@ -1348,7 +1339,6 @@ export interface PutMenuRequest extends AppendableGateway<PutMenuRequest, PutMen
     item_id: (item_id: number|string) => this
     /** Menu element text identifier. Example: "item1\item2\item3". */
     item_textid: (item_textid: string) => this
-    /**  */
     lang_data: (lang_data: RequestParams.PutMenuParams["menu_list"][number]["lang_data"]) => this
 }
 
@@ -1906,7 +1896,7 @@ export interface PutOrdersShippingCostsRequest extends Gateway {
 
 export interface GetOrdersStatusesRequest extends Gateway<GetOrdersStatusesResponse> {}
 
-export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest, SearchOrdersResponse> {
+export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest, SearchOrdersResponse, RequestParams.SearchOrdersParams> {
     /** Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
     orderPrepaidStatus: (value: "unpaid" | "restored" | "waiting") => this;
     /** Order status. Status list: "new" - not handled, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "finished_ext" - handled in FA application. */
@@ -1926,13 +1916,13 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Order serial numbers. */
     ordersSerialNumbers: (value: number|string|number[]|string[]) => this;
     /** Customer data. */
-    clients: (value: Array<JSObject>) => this;
+    clients: (value: RequestParams.SearchOrdersParams["clients"]) => this;
     /** Ranges of dates or serial numbers. */
-    ordersRange: (value: JSObject) => this;
+    ordersRange: (value: RequestParams.SearchOrdersParams["ordersRange"]) => this;
     /** Order source data. */
-    orderSource: (value: JSObject) => this;
+    orderSource: (value: RequestParams.SearchOrdersParams["orderSource"]) => this;
     /** Products list. */
-    products: (value: Array<JSObject>) => this;
+    products: (value: RequestParams.SearchOrdersParams["products"]) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -1940,11 +1930,11 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Customer asked for invoice. List of parameters: "invoice" - yes (paper invoicing ), "e_invoice" - yes (electronic invoicing ), "n" - no. */
     clientRequestInvoice: (value: string) => this;
     /** Information on consignments. */
-    packages: (value: JSObject) => this;
+    packages: (value: RequestParams.SearchOrdersParams["packages"]) => this;
     /** Stock quantities data. */
-    stocks: (value: Array<JSObject>) => this;
+    stocks: (value: RequestParams.SearchOrdersParams["stocks"]) => this;
     /** Used discount codes data. */
-    campaign: (value: JSObject) => this;
+    campaign: (value: RequestParams.SearchOrdersParams["campaign"]) => this;
     /** Loyalty points. */
     loyaltyPointsMode: (value: 'all'|'given'|'taken'|'given_or_taken'|'given_and_taken'|'not_given_nor_taken') => this;
     /** Order handler. */
@@ -1952,7 +1942,7 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Order picker. */
     orderPackingPersonLogin: (value: string) => this;
     /** Possibility of sorting returned list */
-    ordersBy: (value: Array<JSObject>) => this;
+    ordersBy: (value: RequestParams.SearchOrdersParams["ordersBy"]) => this;
     /** Method of searching orders by handler. */
     searchingOperatorTypeMatch: (value: 'no_assignment'|'no_empty'|'empty') => this;
     /** Orders with the exceeded date of shipment. */
@@ -2181,6 +2171,15 @@ export interface GetProductsSKUbyBarcodeRequest extends Gateway<GetProductsSKUby
     searchOnlyInCodeIai: (value: boolean) => this;
 }
 
+export interface GetProductsAttachmentsGetContentRequest extends Gateway {
+    /** - product identifier value */
+    productIdentValue: (value: string) => this;
+    /** - product identifier type */
+    productIdentType: (value: 'codeExtern'|'codeProducer'|'index'|'id') => this;
+    /** - product attachment ID */
+    attachmentId: (value: number|string) => this;
+}
+
 export interface PutProductsAttachmentsRequest extends AppendableGateway<PutProductsAttachmentsRequest, PutProductsAttachmentsResponse, RequestParams.PutProductsAttachmentsParams> {
     productsAttachments: (value: RequestParams.PutProductsAttachmentsParams["productsAttachments"]) => this;
     /** Stock keeping unit. */
@@ -2263,9 +2262,7 @@ export interface PostProductsBrandsRequest extends AppendableGateway<PostProduct
     producers: (value: RequestParams.PostProductsBrandsParams["producers"]) => this;
     /** Name in panel */
     nameInPanel: (nameInPanel: string) => this
-    /**  */
     imagesSettings: (imagesSettings: RequestParams.PostProductsBrandsParams["producers"][number]["imagesSettings"]) => this
-    /**  */
     languagesConfigurations: (languagesConfigurations: RequestParams.PostProductsBrandsParams["producers"][number]["languagesConfigurations"]) => this
 }
 
@@ -2276,9 +2273,7 @@ export interface PutProductsBrandsRequest extends AppendableGateway<PutProductsB
     id: (id: number|string) => this
     /** Name in panel */
     nameInPanel: (nameInPanel: string) => this
-    /**  */
     imagesSettings: (imagesSettings: RequestParams.PutProductsBrandsParams["producers"][number]["imagesSettings"]) => this
-    /**  */
     languagesConfigurations: (languagesConfigurations: RequestParams.PutProductsBrandsParams["producers"][number]["languagesConfigurations"]) => this
 }
 
@@ -2294,7 +2289,6 @@ export interface DeleteProductsBundlesProductsRequest extends AppendableGateway<
     params: (value: Array<JSObject>) => this;
     /** Products list. */
     products: (products: Array<JSObject>) => this
-    /**  */
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
@@ -2303,7 +2297,6 @@ export interface PostProductsBundlesProductsRequest extends AppendableGateway<Po
     params: (value: Array<JSObject>) => this;
     /** Products list. */
     products: (products: Array<JSObject>) => this
-    /**  */
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
@@ -2312,7 +2305,6 @@ export interface PutProductsBundlesProductsQuantityRequest extends AppendableGat
     params: (value: Array<JSObject>) => this;
     /** Products list. */
     products: (products: Array<JSObject>) => this
-    /**  */
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
@@ -2349,7 +2341,6 @@ export interface PutProductsCategoriesRequest extends AppendableGateway<PutProdu
     priority: (priority: number|string) => this
     /** Operation code. Allowed values. "add" - adds new category, "edit" - edits existing category, "del" - deletes existing category. */
     operation: (operation: string) => this
-    /**  */
     lang_data: (lang_data: RequestParams.PutProductsCategoriesParams["categories"][number]["lang_data"]) => this
 }
 
@@ -2454,7 +2445,6 @@ export interface GetProductsDescriptionsRequest extends Gateway<GetProductsDescr
 export interface PutProductsDescriptionsRequest extends AppendableGateway<PutProductsDescriptionsRequest, ProductIdentResponse, RequestParams.PutProductsDescriptionsParams> {
     /** Products list. */
     products: (value: RequestParams.PutProductsDescriptionsParams["products"]) => this;
-    /**  */
     productIdent: (productIdent: RequestParams.PutProductsDescriptionsParams["products"][number]["productIdent"]) => this
     /** Array of language-dependent elements. */
     productDescriptionsLangData: (productDescriptionsLangData: RequestParams.PutProductsDescriptionsParams["products"][number]["productDescriptionsLangData"]) => this
@@ -2467,14 +2457,12 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
 
 export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest, ProductIdentResponse, RequestParams.PutProductsGroupsMainProductParams> {
     groups: (value: RequestParams.PutProductsGroupsMainProductParams["groups"]) => this;
-    /**  */
     productIdent: (productIdent: RequestParams.PutProductsGroupsMainProductParams["groups"][number]["productIdent"]) => this
     productId: (value: number|string) => this;
 }
 
 export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProductsGroupsOrderRequest, PutProductsGroupsSettingsResponse, RequestParams.PutProductsGroupsOrderParams> {
     groups: (value: RequestParams.PutProductsGroupsOrderParams["groups"]) => this;
-    /**  */
     productsInOrder: (productsInOrder: RequestParams.PutProductsGroupsOrderParams["groups"][number]["productsInOrder"]) => this
     /** Defines order of products within group by automatically setting proprities in order of appearance */
     productIdsInOrder: (productIds: number|string|number[]|string[]) => this;
@@ -2482,7 +2470,6 @@ export interface PutProductsGroupsOrderRequest extends AppendableGateway<PutProd
 
 export interface PutProductsGroupsSettingsRequest extends AppendableGateway<PutProductsGroupsSettingsRequest, PutProductsGroupsSettingsResponse, RequestParams.PutProductsGroupsSettingsParams> {
     groups: (value: RequestParams.PutProductsGroupsSettingsParams["groups"]) => this;
-    /**  */
     productIdent: (productIdent: RequestParams.PutProductsGroupsSettingsParams["groups"][number]["productIdent"]) => this
     /** Display on the product list in the panel. */
     displayInPanel: (displayInPanel: 'firstAvailable'|'all') => this
@@ -2509,7 +2496,6 @@ export interface DeleteProductsImagesRequest extends AppendableGateway<DeletePro
     productId: (productId: number|string) => this
     /** Shop Id */
     shopId: (shopId: number|string) => this
-    /**  */
     productImagesId: (productImagesId: number|string|number[]|string[]) => this
 }
 
@@ -2517,7 +2503,6 @@ export interface PutProductsImagesRequest extends AppendableGateway<PutProductsI
     productsImagesSettings: (value: RequestParams.PutProductsImagesParams["productsImagesSettings"]) => this;
     /** Information on product images */
     productsImages: (value: RequestParams.PutProductsImagesParams["productsImages"]) => this;
-    /**  */
     productIdent: (productIdent: RequestParams.PutProductsImagesParams["productsImages"][number]["productIdent"]) => this
     /** Shop Id */
     shopId: (shopId: number|string) => this
@@ -2539,79 +2524,6 @@ export interface PutProductsImagesRequest extends AppendableGateway<PutProductsI
 export interface GetProductsMarketingAllFacebookCatalogIdsRequest extends Gateway {
     /** Shop Id */
     shopId: (value: number|string) => this;
-}
-
-export interface GetProductsMarketingPromotionRequest extends Gateway<GetProductsMarketingPromotionResponse> {
-    /** Shop Id */
-    shopId: (value: number|string) => this;
-    /** Products list. */
-    products: (value: number|string|number[]|string[]) => this;
-}
-
-export interface PostProductsMarketingPromotionRequest extends AppendableGateway<PostProductsMarketingPromotionRequest, PostProductsMarketingPromotionResponse, RequestParams.PostProductsMarketingPromotionParams> {
-    /** Promotion name */
-    promotionName: (value: string) => this;
-    /** List of stores IDs When mask is determined, this parameter is omitted. */
-    shopsIds: (value: number|string|number[]|string[]) => this;
-    /** Special zones */
-    marketingZones: (value: RequestParams.PostProductsMarketingPromotionParams["marketingZones"]) => this;
-    /** Promotional price settings */
-    newPriceSettings: (value: RequestParams.PostProductsMarketingPromotionParams["newPriceSettings"]) => this;
-    /** Promotion start date in Y-m-d H:i:s format */
-    startDate: (value: string) => this;
-    /** Promotion end date in Y-m-d H:i:s format */
-    endDate: (value: string) => this;
-    /** Change the status of hidden products to visible while starting the special offer */
-    changeProductsToVisibleWhileStarting: (value: 'y'|'n') => this;
-    /** After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
-    removeProductsAfterStockLevelRunsDown: (value: 'y'|'n') => this;
-    /** After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
-    removeProductsAfterOwnStockLevelRunsDown: (value: 'y'|'n') => this;
-    /** Reduce based on price (net/gross) */
-    reduceBasingPrice: (value: 'net'|'gross') => this;
-    /** Price reduction calculation method */
-    calculationMethod: (value: 'sum'|'chooseAdvantageous') => this;
-    /** Elements to be affected by the promotion */
-    promotionElements: (value: RequestParams.PostProductsMarketingPromotionParams["promotionElements"]) => this;
-    /**  */
-    elementType: (elementType: 'product'|'series'|'producer'|'category'|'menu') => this
-    /** Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
-    elementId: (elementId: number|string) => this
-}
-
-export interface PutProductsMarketingPromotionRequest extends AppendableGateway<PutProductsMarketingPromotionRequest, PutProductsMarketingPromotionResponse, RequestParams.PutProductsMarketingPromotionParams> {
-    /** Promotion ID */
-    promotionId: (value: number|string) => this;
-    /** Promotion name */
-    promotionName: (value: string) => this;
-    /** List of stores IDs When mask is determined, this parameter is omitted. */
-    shopsIds: (value: number|string|number[]|string[]) => this;
-    /** Special zones */
-    marketingZones: (value: RequestParams.PutProductsMarketingPromotionParams["marketingZones"]) => this;
-    /** Promotional price settings */
-    newPriceSettings: (value: RequestParams.PutProductsMarketingPromotionParams["newPriceSettings"]) => this;
-    /** Promotion start date in Y-m-d H:i:s format */
-    startDate: (value: string) => this;
-    /** Promotion end date in Y-m-d H:i:s format */
-    endDate: (value: string) => this;
-    /** Change the status of hidden products to visible while starting the special offer */
-    changeProductsToVisibleWhileStarting: (value: 'y'|'n') => this;
-    /** After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
-    removeProductsAfterStockLevelRunsDown: (value: 'y'|'n') => this;
-    /** After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
-    removeProductsAfterOwnStockLevelRunsDown: (value: 'y'|'n') => this;
-    /** Reduce based on price (net/gross) */
-    reduceBasingPrice: (value: 'net'|'gross') => this;
-    /** Price reduction calculation method */
-    calculationMethod: (value: 'sum'|'chooseAdvantageous') => this;
-    /** Specifies whether to remove all existing promotion elements */
-    removeAllPromotionElements: (value: 'y'|'n') => this;
-    /** Elements to be affected by the promotion */
-    promotionElements: (value: RequestParams.PutProductsMarketingPromotionParams["promotionElements"]) => this;
-    /**  */
-    elementType: (elementType: 'product'|'series'|'producer'|'category'|'menu') => this
-    /** Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
-    elementId: (elementId: number|string) => this
 }
 
 export interface GetProductsMarketingZonesRequest extends Gateway<GetProductsMarketingZonesResponse> {
@@ -2692,27 +2604,19 @@ export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOp
 export interface PostProductsOpinionsRequest extends AppendableGateway<PostProductsOpinionsRequest, PostProductsOpinionsResponse, RequestParams.PostProductsOpinionsParams> {
     /** List of reviews */
     opinions: (value: RequestParams.PostProductsOpinionsParams["opinions"]) => this;
-    /**  */
     createDate: (createDate: string) => this
-    /**  */
     confirmed: (confirmed: boolean) => this
-    /**  */
     rating: (rating: string) => this
-    /**  */
     content: (content: string) => this
     /** Customer language ID. */
     language: (language: string) => this
-    /**  */
     picture: (picture: string) => this
     /** Shop Id */
     shopId: (shopId: number|string) => this
-    /**  */
     host: (host: string) => this
     /** Customer data. */
     clients: (clients: RequestParams.PostProductsOpinionsParams["opinions"][number]["clients"]) => this
-    /**  */
     scorePositive: (scorePositive: number|string) => this
-    /**  */
     scoreNegative: (scoreNegative: number|string) => this
     /** Products list. */
     products: (products: RequestParams.PostProductsOpinionsParams["opinions"][number]["products"]) => this
@@ -2909,14 +2813,6 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     productPictures: (productPictures: string|string[]) => this
     /** List of photos descriptions */
     productDescriptionPictures: (productDescriptionPictures: string|string[]) => this
-    /** Reduced price */
-    productPromotion: (productPromotion: RequestParams.PostProductsParams["products"][number]["productPromotion"]) => this
-    /** Discount for shop. */
-    productDiscount: (productDiscount: RequestParams.PostProductsParams["products"][number]["productDiscount"]) => this
-    /** Distinguished product in store. */
-    productDistinguished: (productDistinguished: RequestParams.PostProductsParams["products"][number]["productDistinguished"]) => this
-    /** Special product in store. */
-    productSpecial: (productSpecial: RequestParams.PostProductsParams["products"][number]["productSpecial"]) => this
     /** Parameters (distinguished). */
     productParametersDistinction: (productParametersDistinction: RequestParams.PostProductsParams["products"][number]["productParametersDistinction"]) => this
     /** List of products recommended with this product */
@@ -2929,7 +2825,6 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     subscription: (subscription: RequestParams.PostProductsParams["products"][number]["subscription"]) => this
     /** Product name. */
     productNames: (productNames: RequestParams.PostProductsParams["products"][number]["productNames"]) => this
-    /**  */
     productDescriptions: (productDescriptions: RequestParams.PostProductsParams["products"][number]["productDescriptions"]) => this
     /** Long product description */
     productLongDescriptions: (productLongDescriptions: RequestParams.PostProductsParams["products"][number]["productLongDescriptions"]) => this
@@ -3134,14 +3029,6 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     productPictures: (productPictures: RequestParams.PutProductsParams["products"][number]["productPictures"]) => this
     /** List of a product's photos with indication of a particular number of the photo. */
     productPicturesReplace: (productPicturesReplace: RequestParams.PutProductsParams["products"][number]["productPicturesReplace"]) => this
-    /** Reduced price */
-    productPromotion: (productPromotion: RequestParams.PutProductsParams["products"][number]["productPromotion"]) => this
-    /** Discount for shop. */
-    productDiscount: (productDiscount: RequestParams.PutProductsParams["products"][number]["productDiscount"]) => this
-    /** Distinguished product in store. */
-    productDistinguished: (productDistinguished: RequestParams.PutProductsParams["products"][number]["productDistinguished"]) => this
-    /** Special product in store. */
-    productSpecial: (productSpecial: RequestParams.PutProductsParams["products"][number]["productSpecial"]) => this
     /** Parameters (distinguished). */
     productParametersDistinction: (productParametersDistinction: RequestParams.PutProductsParams["products"][number]["productParametersDistinction"]) => this
     /** Configuration parameters */
@@ -3202,7 +3089,6 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     productDeliveryTime: (productDeliveryTime: RequestParams.PutProductsParams["products"][number]["productDeliveryTime"]) => this
     /** Parameters. */
     productParameters: (productParameters: RequestParams.PutProductsParams["products"][number]["productParameters"]) => this
-    /**  */
     clearProductParameters: (clearProductParameters: boolean) => this
     /** Change parameter distinction. */
     changeParametersDistinction: (changeParametersDistinction: RequestParams.PutProductsParams["products"][number]["changeParametersDistinction"]) => this
@@ -3240,7 +3126,6 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     standardUnit: (standardUnit: RequestParams.PutProductsParams["products"][number]["standardUnit"]) => this
     /** Minimal number of products in an order */
     minQuantityPerOrder: (minQuantityPerOrder: RequestParams.PutProductsParams["products"][number]["minQuantityPerOrder"]) => this
-    /**  */
     dynamicPricingEnabled: (dynamicPricingEnabled: string) => this
     /** The setting allows you to reset the inventory to zero */
     clearStockQuantities: (clearStockQuantities: RequestParams.PutProductsParams["products"][number]["clearStockQuantities"]) => this
@@ -3571,7 +3456,6 @@ export interface PutProductsSeriesRequest extends AppendableGateway<PutProductsS
     id: (id: number|string) => this
     /** Name in panel */
     nameInPanel: (nameInPanel: string) => this
-    /**  */
     shopsConfigurations: (shopsConfigurations: RequestParams.PutProductsSeriesParams["series"][number]["shopsConfigurations"]) => this
 }
 
@@ -3636,11 +3520,9 @@ export interface GetProductsStocksRequest extends Gateway<GetProductsStocksRespo
 export interface PutProductsStocksRequest extends AppendableGateway<PutProductsStocksRequest, PutProductsStocksResponse, RequestParams.PutProductsStocksParams> {
     /** Products list. */
     products: (value: RequestParams.PutProductsStocksParams["products"]) => this;
-    /**  */
     ident: (ident: RequestParams.PutProductsStocksParams["products"][number]["ident"]) => this
     /** List of sizes */
     sizes: (sizes: RequestParams.PutProductsStocksParams["products"][number]["sizes"]) => this
-    /**  */
     settings: (settings: RequestParams.PutProductsStocksParams["products"][number]["settings"]) => this
     /** Error information. */
     error: (error: RequestParams.PutProductsStocksParams["products"][number]["error"]) => this
@@ -3661,7 +3543,6 @@ export interface PutProductsStrikethroughPricesRequest extends AppendableGateway
     ident: (ident: RequestParams.PutProductsStrikethroughPricesParams["products"][number]["ident"]) => this
     /** List of sizes */
     sizes: (sizes: RequestParams.PutProductsStrikethroughPricesParams["products"][number]["sizes"]) => this
-    /**  */
     stp_settings: (stp_settings: RequestParams.PutProductsStrikethroughPricesParams["products"][number]["stp_settings"]) => this
     /** Strikethrough price settings for the page. */
     shops: (shops: RequestParams.PutProductsStrikethroughPricesParams["products"][number]["shops"]) => this
@@ -4034,6 +3915,21 @@ export interface PutRefundsUpdateRefundRequest extends Gateway {
     refundCurrency: (value: string) => this;
 }
 
+export interface GetRegulationsHistoryRequest extends Gateway {
+    /** Type of history */
+    type: (value: string) => this;
+    /** Shop's ID */
+    shopId: (value: number|string) => this;
+    /** Country ISO code */
+    country: (value: string) => this;
+    /** Language ISO code */
+    langId: (value: string) => this;
+    /** Page with results number. Numeration starts from 0 */
+    resultsPage: (value: number|string) => this;
+    /** Number of results on page. Value from 1 to 100 */
+    resultsLimit: (value: number|string) => this;
+}
+
 export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResponsibilityEntitiesRequest, GetResponsibilityEntitiesResponse> {
     /** List of codes */
     code: (value: string|string[]) => this;
@@ -4156,15 +4052,11 @@ export interface PostReturnsRequest extends AppendableGateway<PostReturnsRequest
     include_shipping_cost: (value: string) => this;
     additional_payment_cost: (value: string) => this;
     emptyReturn: (value: 'n'|'y') => this;
-    /**  */
     id: (id: number|string) => this
-    /**  */
     size: (size: string) => this
-    /**  */
     quantity: (quantity: number) => this
     /** Price. */
     price: (price: number) => this
-    /**  */
     serialNumbers: (serialNumbers: string|string[]) => this
     /** Additional information. */
     productOrderAdditional: (productOrderAdditional: string) => this
@@ -4172,19 +4064,15 @@ export interface PostReturnsRequest extends AppendableGateway<PostReturnsRequest
 
 export interface PutReturnsRequest extends AppendableGateway<PutReturnsRequest, PutReturnsResponse, RequestParams.PutReturnsParams> {
     returns: (value: RequestParams.PutReturnsParams["returns"]) => this;
-    /**  */
     id: (id: number|string) => this
-    /**  */
     status: (status: number|string) => this
     /** Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
     apiFlag: (apiFlag: RequestParams.PutReturnsParams["returns"][number]["apiFlag"]) => this
     /** Products list. */
     products: (products: RequestParams.PutReturnsParams["returns"][number]["products"]) => this
-    /**  */
     userNote: (userNote: string) => this
     /** Notes from customer. */
     clientNote: (clientNote: string) => this
-    /**  */
     tryCorrectInvoice: (tryCorrectInvoice: boolean) => this
 }
 
@@ -4197,7 +4085,6 @@ export interface PutReturnsSerialNumberRequest extends AppendableGateway<PutRetu
     id: (id: number|string) => this
     /** Size ID. */
     size: (size: string) => this
-    /**  */
     serialNumbers: (serialNumbers: string|string[]) => this
 }
 
@@ -4272,7 +4159,6 @@ export interface PutSizechartsRequest extends AppendableGateway<PutSizechartsReq
     nameInPanel: (nameInPanel: string) => this
     /** Display mode */
     displayMode: (displayMode: 'single'|'all') => this
-    /**  */
     languagesData: (languagesData: RequestParams.PutSizechartsParams["sizeCharts"][number]["languagesData"]) => this
 }
 
@@ -4298,7 +4184,6 @@ export interface PutSizesRequest extends AppendableGateway<PutSizesRequest, PutS
     description: (description: string) => this
     /** Operation type: add, edit, del */
     operation: (operation: string) => this
-    /**  */
     lang_data: (lang_data: RequestParams.PutSizesParams["sizes"][number]["lang_data"]) => this
 }
 
@@ -4317,7 +4202,6 @@ export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCa
 
 export interface PostSnippetsCampaignRequest extends AppendableGateway<PostSnippetsCampaignRequest, CmsCampaignResponse, RequestParams.PostSnippetsCampaignParams> {
     campaigns: (value: RequestParams.PostSnippetsCampaignParams["campaigns"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** Snippet campaign name */
     name: (name: string) => this
@@ -4329,7 +4213,6 @@ export interface PostSnippetsCampaignRequest extends AppendableGateway<PostSnipp
     active: (active: 'y'|'n') => this
     /** Snippet order. */
     order: (order: number|string) => this
-    /** undefined */
     configVariables: (configVariables: RequestParams.PostSnippetsCampaignParams["campaigns"][number]["configVariables"]) => this
 }
 
@@ -4347,7 +4230,6 @@ export interface PutSnippetsCampaignRequest extends AppendableGateway<PutSnippet
     active: (active: 'y'|'n') => this
     /** Snippet order. */
     order: (order: number|string) => this
-    /** undefined */
     configVariables: (configVariables: RequestParams.PutSnippetsCampaignParams["campaigns"][number]["configVariables"]) => this
 }
 
@@ -4367,7 +4249,6 @@ export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCoo
 
 export interface PostSnippetsCookiesRequest extends AppendableGateway<PostSnippetsCookiesRequest, CmsResponse, RequestParams.PostSnippetsCookiesParams> {
     cookies: (value: RequestParams.PostSnippetsCookiesParams["cookies"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** Id of the snippet code. */
     snippetId: (snippetId: number|string) => this
@@ -4389,7 +4270,6 @@ export interface PostSnippetsCookiesRequest extends AppendableGateway<PostSnippe
 
 export interface PutSnippetsCookiesRequest extends AppendableGateway<PutSnippetsCookiesRequest, CmsResponse, RequestParams.PutSnippetsCookiesParams> {
     cookies: (value: RequestParams.PutSnippetsCookiesParams["cookies"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** Id of the snippet code. */
     snippetId: (snippetId: number|string) => this
@@ -4429,7 +4309,6 @@ export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest, G
 
 export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsRequest, CmsResponse, RequestParams.PostSnippetsParams> {
     snippets: (value: RequestParams.PostSnippetsParams["snippets"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** The snippet name. */
     name: (name: string) => this
@@ -4437,7 +4316,6 @@ export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsReque
     active: (active: 'y'|'n') => this
     /** Snippet campaign id */
     campaign: (campaign: number|string) => this
-    /** undefined */
     dateBegin: (dateBegin: RequestParams.PostSnippetsParams["snippets"][number]["dateBegin"]) => this
     /** Filter to control snippet activation. */
     dateEnd: (dateEnd: RequestParams.PostSnippetsParams["snippets"][number]["dateEnd"]) => this
@@ -4455,9 +4333,7 @@ export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsReque
     order: (order: number|string) => this
     /** Snippet content for each language. */
     body: (body: RequestParams.PostSnippetsParams["snippets"][number]["body"]) => this
-    /** undefined */
     display: (display: RequestParams.PostSnippetsParams["snippets"][number]["display"]) => this
-    /** undefined */
     pages: (pages: RequestParams.PostSnippetsParams["snippets"][number]["pages"]) => this
     /** Snippet entry source filter. */
     sources: (sources: RequestParams.PostSnippetsParams["snippets"][number]["sources"]) => this
@@ -4465,7 +4341,6 @@ export interface PostSnippetsRequest extends AppendableGateway<PostSnippetsReque
 
 export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest, CmsResponse, RequestParams.PutSnippetsParams> {
     snippets: (value: RequestParams.PutSnippetsParams["snippets"]) => this;
-    /** undefined */
     id: (id: number|string) => this
     /** The snippet name. */
     name: (name: string) => this
@@ -4473,7 +4348,6 @@ export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest
     active: (active: 'y'|'n') => this
     /** Snippet campaign id */
     campaign: (campaign: number|string) => this
-    /** undefined */
     dateBegin: (dateBegin: RequestParams.PutSnippetsParams["snippets"][number]["dateBegin"]) => this
     /** Filter to control snippet activation. */
     dateEnd: (dateEnd: RequestParams.PutSnippetsParams["snippets"][number]["dateEnd"]) => this
@@ -4491,9 +4365,7 @@ export interface PutSnippetsRequest extends AppendableGateway<PutSnippetsRequest
     order: (order: number|string) => this
     /** Snippet content for each language. */
     body: (body: RequestParams.PutSnippetsParams["snippets"][number]["body"]) => this
-    /** undefined */
     display: (display: RequestParams.PutSnippetsParams["snippets"][number]["display"]) => this
-    /** undefined */
     pages: (pages: RequestParams.PutSnippetsParams["snippets"][number]["pages"]) => this
     /** Snippet entry source filter. */
     sources: (sources: RequestParams.PutSnippetsParams["snippets"][number]["sources"]) => this
@@ -4765,7 +4637,6 @@ export interface PostVouchersRequest extends AppendableGateway<PostVouchersReque
     balance: (balance: RequestParams.PostVouchersParams["vouchers"][number]["balance"]) => this
     /** List of shops the voucher is active in */
     shops: (shops: number|string|number[]|string[]) => this
-    /**  */
     note: (note: string) => this
 }
 
@@ -4786,7 +4657,6 @@ export interface PutVouchersRequest extends AppendableGateway<PutVouchersRequest
     balance: (balance: RequestParams.PutVouchersParams["vouchers"][number]["balance"]) => this
     /** List of shops the voucher is active in */
     shops: (shops: number|string|number[]|string[]) => this
-    /**  */
     note: (note: string) => this
     /** Status, possible values: - used - used, - unused - unused, */
     status: (status: 'used'|'unused') => this
@@ -4800,7 +4670,6 @@ export interface PutWarrantiesLanguageDataRequest extends AppendableGateway<PutW
     lang_data: (value: RequestParams.PutWarrantiesLanguageDataParams["lang_data"]) => this;
     /** Warranty ID (numeric or text based). */
     warranty_id: (warranty_id: number|string) => this
-    /**  */
     lang: (lang: RequestParams.PutWarrantiesLanguageDataParams["lang_data"][number]["lang"]) => this
 }
 
@@ -4821,7 +4690,6 @@ export interface PostWarrantiesRequest extends AppendableGateway<PostWarrantiesR
     warranties: (value: RequestParams.PostWarrantiesParams["warranties"]) => this;
     /** Name. */
     name: (name: string) => this
-    /**  */
     type: (type: 'seller'|'producer') => this
     /** Warranty time. Default value 12. */
     period: (period: number|string) => this
@@ -4837,7 +4705,6 @@ export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesReq
     id: (id: number|string) => this
     /** Name. */
     name: (name: string) => this
-    /**  */
     type: (type: 'seller'|'producer') => this
     /** Warranty time. Default value 12. */
     period: (period: number|string) => this
@@ -5105,6 +4972,77 @@ export interface PutWmsSuppliersRequest extends AppendableGateway<PutWmsSupplier
     workDays: (workDays: RequestParams.PutWmsSuppliersParams["suppliers"][number]["workDays"]) => this
 }
 
+export interface GetProductsMarketingPromotionRequest extends Gateway<GetProductsMarketingPromotionResponse> {
+    /** Shop Id */
+    shopId: (value: number|string) => this;
+    /** Products list. */
+    products: (value: number|string|number[]|string[]) => this;
+}
+
+export interface PostProductsMarketingPromotionRequest extends AppendableGateway<PostProductsMarketingPromotionRequest, PostProductsMarketingPromotionResponse, RequestParams.PostProductsMarketingPromotionParams> {
+    /** Promotion name */
+    promotionName: (value: string) => this;
+    /** List of stores IDs When mask is determined, this parameter is omitted. */
+    shopsIds: (value: number|string|number[]|string[]) => this;
+    /** Special zones */
+    marketingZones: (value: RequestParams.PostProductsMarketingPromotionParams["marketingZones"]) => this;
+    /** Promotional price settings */
+    newPriceSettings: (value: RequestParams.PostProductsMarketingPromotionParams["newPriceSettings"]) => this;
+    /** Promotion start date in Y-m-d H:i:s format */
+    startDate: (value: string) => this;
+    /** Promotion end date in Y-m-d H:i:s format */
+    endDate: (value: string) => this;
+    /** Change the status of hidden products to visible while starting the special offer */
+    changeProductsToVisibleWhileStarting: (value: 'y'|'n') => this;
+    /** After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
+    removeProductsAfterStockLevelRunsDown: (value: 'y'|'n') => this;
+    /** After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
+    removeProductsAfterOwnStockLevelRunsDown: (value: 'y'|'n') => this;
+    /** Reduce based on price (net/gross) */
+    reduceBasingPrice: (value: 'net'|'gross') => this;
+    /** Price reduction calculation method */
+    calculationMethod: (value: 'sum'|'chooseAdvantageous') => this;
+    /** Elements to be affected by the promotion */
+    promotionElements: (value: RequestParams.PostProductsMarketingPromotionParams["promotionElements"]) => this;
+    elementType: (elementType: 'product'|'series'|'producer'|'category'|'menu') => this
+    /** Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
+    elementId: (elementId: number|string) => this
+}
+
+export interface PutProductsMarketingPromotionRequest extends AppendableGateway<PutProductsMarketingPromotionRequest, PutProductsMarketingPromotionResponse, RequestParams.PutProductsMarketingPromotionParams> {
+    /** Promotion ID */
+    promotionId: (value: number|string) => this;
+    /** Promotion name */
+    promotionName: (value: string) => this;
+    /** List of stores IDs When mask is determined, this parameter is omitted. */
+    shopsIds: (value: number|string|number[]|string[]) => this;
+    /** Special zones */
+    marketingZones: (value: RequestParams.PutProductsMarketingPromotionParams["marketingZones"]) => this;
+    /** Promotional price settings */
+    newPriceSettings: (value: RequestParams.PutProductsMarketingPromotionParams["newPriceSettings"]) => this;
+    /** Promotion start date in Y-m-d H:i:s format */
+    startDate: (value: string) => this;
+    /** Promotion end date in Y-m-d H:i:s format */
+    endDate: (value: string) => this;
+    /** Change the status of hidden products to visible while starting the special offer */
+    changeProductsToVisibleWhileStarting: (value: 'y'|'n') => this;
+    /** After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
+    removeProductsAfterStockLevelRunsDown: (value: 'y'|'n') => this;
+    /** After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)  */
+    removeProductsAfterOwnStockLevelRunsDown: (value: 'y'|'n') => this;
+    /** Reduce based on price (net/gross) */
+    reduceBasingPrice: (value: 'net'|'gross') => this;
+    /** Price reduction calculation method */
+    calculationMethod: (value: 'sum'|'chooseAdvantageous') => this;
+    /** Specifies whether to remove all existing promotion elements */
+    removeAllPromotionElements: (value: 'y'|'n') => this;
+    /** Elements to be affected by the promotion */
+    promotionElements: (value: RequestParams.PutProductsMarketingPromotionParams["promotionElements"]) => this;
+    elementType: (elementType: 'product'|'series'|'producer'|'category'|'menu') => this
+    /** Identifier of the element affected by the promotion (in the case of a menu in the format: storeId-menuId-itemId) */
+    elementId: (elementId: number|string) => this
+}
+
 export interface Gateways {
     getClientsBalance: GetClientsBalanceRequest,
     postClientsBalance: PostClientsBalanceRequest,
@@ -5254,6 +5192,7 @@ export interface Gateways {
     getPaymentsProfiles: GetPaymentsProfilesRequest,
     postPaymentsRepayment: PostPaymentsRepaymentRequest,
     getProductsSKUbyBarcode: GetProductsSKUbyBarcodeRequest,
+    getProductsAttachmentsGetContent: GetProductsAttachmentsGetContentRequest,
     putProductsAttachments: PutProductsAttachmentsRequest,
     getProductsAuctions: GetProductsAuctionsRequest,
     deleteProductsBrands: DeleteProductsBrandsRequest,
@@ -5286,9 +5225,6 @@ export interface Gateways {
     deleteProductsImages: DeleteProductsImagesRequest,
     putProductsImages: PutProductsImagesRequest,
     getProductsMarketingAllFacebookCatalogIds: GetProductsMarketingAllFacebookCatalogIdsRequest,
-    getProductsMarketingPromotion: GetProductsMarketingPromotionRequest,
-    postProductsMarketingPromotion: PostProductsMarketingPromotionRequest,
-    putProductsMarketingPromotion: PutProductsMarketingPromotionRequest,
     getProductsMarketingZones: GetProductsMarketingZonesRequest,
     putProductsMarketingZones: PutProductsMarketingZonesRequest,
     getProductsOmnibusPrices: GetProductsOmnibusPricesRequest,
@@ -5357,6 +5293,7 @@ export interface Gateways {
     getRefundsGetRefundStatus: GetRefundsGetRefundStatusRequest,
     getRefundsRetrieveRefundsList: GetRefundsRetrieveRefundsListRequest,
     putRefundsUpdateRefund: PutRefundsUpdateRefundRequest,
+    getRegulationsHistory: GetRegulationsHistoryRequest,
     getResponsibilityEntities: GetResponsibilityEntitiesRequest,
     postResponsibilityEntities: PostResponsibilityEntitiesRequest,
     putResponsibilityEntities: PutResponsibilityEntitiesRequest,
@@ -5441,38 +5378,44 @@ export interface Gateways {
     deleteWmsSuppliers: DeleteWmsSuppliersRequest,
     getWmsSuppliers: GetWmsSuppliersRequest,
     putWmsSuppliers: PutWmsSuppliersRequest,
-    /** @deprecated */
-    listProducts: SearchProductsRequest
-    /** @deprecated */
-    listOrders: SearchOrdersRequest
-    /** @deprecated */
-    listOrdersUnfinished: SearchOrdersUnfinishedRequest
-    /** @deprecated */
-    getClientsGiftcards: SearchClientsGiftcardsRequest
-    /** @deprecated */
-    getClientsCrm: SearchClientsCrmRequest
-    /** @deprecated */
-    getClientsNewsletterEmailShops: SearchClientsNewsletterEmailRequest
-    /** @deprecated */
-    getClientsNewsletterEmailSMS: SearchClientsNewsletterSmsRequest
-    /** @deprecated */
-    getOrdersOpinions: SearchOrdersOpinionsRequest
-    /** @deprecated */
-    getPackages: SearchPackagesRequest
-    /** @deprecated */
-    getProductsCategoriesIdosell: SearchProductsCategoriesIdosellRequest
-    /** @deprecated */
-    getProductsDeliveryTime: SearchProductsDeliveryTimeRequest
-    /** @deprecated */
-    getProductsProductsProductsToFacebookCatalog: GetProductsToFacebookCatalogRequest
-    /** @deprecated */
-    postProductsProductsToPromotion: PostProductsToPromotionRequest
-    /** @deprecated */
-    postProductsProductsToFacebookCatalog: PostProductsToFacebookCatalogRequest
-    /** @deprecated */
-    deleteProductsProductsToFacebookCatalog: DeleteProductsToFacebookCatalogRequest
-    /** @deprecated */
-    deleteProductsProductsToPromotion: DeleteProductsToPromotionRequest
+    /** @deprecated This endpoint is enforced at v7 and is not available in v8 or later. */
+    getProductsMarketingPromotion: GetProductsMarketingPromotionRequest,
+    /** @deprecated This endpoint is enforced at v7 and is not available in v8 or later. */
+    postProductsMarketingPromotion: PostProductsMarketingPromotionRequest,
+    /** @deprecated This endpoint is enforced at v7 and is not available in v8 or later. */
+    putProductsMarketingPromotion: PutProductsMarketingPromotionRequest,
+    /** @deprecated Alias - use searchProducts instead */
+    listProducts: SearchProductsRequest,
+    /** @deprecated Alias - use searchOrders instead */
+    listOrders: SearchOrdersRequest,
+    /** @deprecated Alias - use searchOrdersUnfinished instead */
+    listOrdersUnfinished: SearchOrdersUnfinishedRequest,
+    /** @deprecated Alias - use searchClientsGiftcards instead */
+    getClientsGiftcards: SearchClientsGiftcardsRequest,
+    /** @deprecated Alias - use searchClientsCrm instead */
+    getClientsCrm: SearchClientsCrmRequest,
+    /** @deprecated Alias - use searchClientsNewsletterEmail instead */
+    getClientsNewsletterEmailShops: SearchClientsNewsletterEmailRequest,
+    /** @deprecated Alias - use searchClientsNewsletterSms instead */
+    getClientsNewsletterEmailSMS: SearchClientsNewsletterSmsRequest,
+    /** @deprecated Alias - use searchOrdersOpinions instead */
+    getOrdersOpinions: SearchOrdersOpinionsRequest,
+    /** @deprecated Alias - use searchPackages instead */
+    getPackages: SearchPackagesRequest,
+    /** @deprecated Alias - use searchProductsCategoriesIdosell instead */
+    getProductsCategoriesIdosell: SearchProductsCategoriesIdosellRequest,
+    /** @deprecated Alias - use searchProductsDeliveryTime instead */
+    getProductsDeliveryTime: SearchProductsDeliveryTimeRequest,
+    /** @deprecated Alias - use getProductsToFacebookCatalog instead */
+    getProductsProductsProductsToFacebookCatalog: GetProductsToFacebookCatalogRequest,
+    /** @deprecated Alias - use postProductsToPromotion instead */
+    postProductsProductsToPromotion: PostProductsToPromotionRequest,
+    /** @deprecated Alias - use postProductsToFacebookCatalog instead */
+    postProductsProductsToFacebookCatalog: PostProductsToFacebookCatalogRequest,
+    /** @deprecated Alias - use deleteProductsToFacebookCatalog instead */
+    deleteProductsProductsToFacebookCatalog: DeleteProductsToFacebookCatalogRequest,
+    /** @deprecated Alias - use deleteProductsToPromotion instead */
+    deleteProductsProductsToPromotion: DeleteProductsToPromotionRequest,
 }
 
 declare const defaultExport: (url: string, apiKey: string, version?: number | string) => Gateways;

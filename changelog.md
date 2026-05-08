@@ -5,11 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.30] - 2025-04-06
+### Changed
+- Updated to Idosell Rest API v8.1
+- Some methods removed from api v8.1, still availible through v7 enpoints - version is enforced for those enpoints
+
 ## [0.4.27] - 2025-04-06
+### Changed
 - Addded missing promotions types
 - Fixed paging for promotions
 
 ## [0.4.25] - 2025-04-04
+### Changed
 - Updated to v7.19
 - Added promotion routes
 - Changed routes that have ProductsProducts to Products like getProductsToFacebookCatalog (before: getProductsProductsToFacebookCatalog)
