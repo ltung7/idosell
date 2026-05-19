@@ -4,7 +4,7 @@ export default (object) => {
     object.gate = { method: 'post', node: '/clients/newsletter/email/search' };
     object.custom = {
         dates: dateRange({ "nodeName": "date", "fromName": "from", "toName": "to" }),
-        page
+        page: (pageIndex, limit) => page(pageIndex, limit, true)
     };
     object.snakeCase = true;
     object.arrays = ["shops", "return_elements"];

@@ -52,29 +52,28 @@ const checkNext = (request, response, logPage) => {
         };
         throw new IdosellFaultStringError(response.errors.faultString, faultStructure);
     }
-    function handlePagination(currentPage, totalPages, request, paramsUpdate) {
-        request.next = currentPage + 1 < totalPages;
-        if (paramsUpdate)
-            Object.assign(request.params, paramsUpdate);
+    function handlePagination(currentPage, totalPages, limit, request) {
+        const nextPage = currentPage + 1;
+        request.next = nextPage < totalPages;
         if (typeof logPage === 'function') {
             logPage('Page: ' + currentPage + ' / ' + totalPages);
         }
+        if (request.custom && request.custom.page) {
+            const pageObj = request.custom.page(nextPage, limit);
+            Object.assign(request.params, pageObj);
+        }
     }
     if (response.resultsNumberPage) {
-        handlePagination(response.resultsPage, response.resultsNumberPage, request, { resultsPage: response.resultsPage + 1 });
+        handlePagination(response.resultsPage, response.resultsNumberPage, response.resultsLimit, request);
     }
     else if (response.results_number_page) {
-        handlePagination(response.results_page, response.results_number_page, request, { results_page: response.results_page + 1 });
+        handlePagination(response.results_page, response.results_number_page, response.results_limit, request);
     }
     else if (response.pagination) {
-        request.params.pagination.page = response.pagination.resultsPage + 1;
-        handlePagination(response.pagination.resultsPage, response.pagination.resultsNumberPage, request);
+        handlePagination(response.pagination.resultsPage, response.pagination.resultsNumberPage, response.pagination.resultsLimit, request);
     }
     else if (response.data?.pagination) {
-        if (!request.params.pagination)
-            request.params.pagination = {};
-        request.params.pagination.page = response.data.pagination.resultsPage + 1;
-        handlePagination(response.data.pagination.resultsPage, response.data.pagination.resultsNumberPage, request);
+        handlePagination(response.data.pagination.resultsPage, response.data.pagination.resultsNumberPage, response.data.pagination.resultsLimit, request);
     }
     return response;
 };

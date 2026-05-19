@@ -7067,7 +7067,7 @@ type PaginationParam = {
     perPage?: number;
 };
 
-type DateRangeParam = {
+export type DateRangeParam = {
     /** Format: date
      * @description Date "from" (RFC) */
     from?: string | null;

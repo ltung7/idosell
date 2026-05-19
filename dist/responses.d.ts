@@ -3492,10 +3492,10 @@ export type PutProductsMarketingZonesResponse = {
 
 export type GetProductsOmnibusPricesResponse = {
     /** @description Products list. */
-    products: never[] | Record<string, {
+    products: {
         /** @description Product ID */
         productId: number;
-        shops: never[] | Record<string, {
+        shops: {
             /** @description Shop Id */
             shop_id: number;
             /** @description Lowest retail price before active promotion (gross). */
@@ -3505,7 +3505,7 @@ export type GetProductsOmnibusPricesResponse = {
             /** @description How to manage the lowest price before promotion. */
             omnibusPriceManagement: "automatic" | "manual";
             /** @description List of sizes */
-            sizes: never[] | Record<string, {
+            sizes: {
                 /** @description Identifier type. */
                 ident: {
                     /** */
@@ -3518,9 +3518,12 @@ export type GetProductsOmnibusPricesResponse = {
                 /** @description Lowest wholesale price before active promotion (gross). */
                 omnibusPriceWholesale: number;
                 /** @description How to manage the lowest price before promotion. */
-                omnibusPriceManagement: "automatic" | "manual"}>}>;
+                omnibusPriceManagement: "automatic" | "manual";
+            }[];
+        }[];
         /** @description Error information. */
-        error?: FaultCodeString}>;
+        error?: FaultCodeString;
+    }[];
 };
 
 export type GetProductsOpinionsRateResponse = {
@@ -9274,7 +9277,7 @@ export type GetRegulationsHistoryResponse = {
         /** @description User. */
         user: string;
         /** @description Change type. */
-        changeType: "auto" | "user";
+        changeType: "" | "auto" | "user";
         /** @description Change source (y - auto, m - markdown editor, n - WYSIWYG/HTML editor). */
         isDefault: "y" | "m" | "n";
         /** @description Setting to check if revision was published in shop. */
@@ -9282,17 +9285,7 @@ export type GetRegulationsHistoryResponse = {
         /** @description 2-letter ISO country code. */
         country: string;
     }[];
-    pagination: {
-        /** @description Pagination settings. */
-        appliedFilter: {
-            /** @description Page index (starting from 0)
-             * @default 0 */
-            page: number;
-            /** @description Number of records per page.
-             * @default 100 */
-            perPage: number;
-        };
-    };
+    pagination: PagedResponse;
 };
 
 export { };

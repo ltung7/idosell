@@ -1,4 +1,4 @@
-import ENUMS from "./enums.js";
+import { ENUMS } from "./enums.js";
 const getIaiCode = (productId, sizeId) => {
     if (sizeId === 'uniw')
         return productId.toString();

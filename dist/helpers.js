@@ -1,5 +1,5 @@
 const getStandardizedDate = (dateValue) => {
-    if (!dateValue)
+    if (typeof dateValue === 'undefined')
         return new Date();
     if (typeof dateValue === 'string' && dateValue.length === 10) {
         dateValue += ' 00:00:00';

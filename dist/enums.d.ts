@@ -1,143 +1,145 @@
-export enum PRODUCTS_RETURN_ELEMENTS {
-    LANG_DATA = 'lang_data',
-    ADDING_TIME = 'adding_time',
-    DELETED = 'deleted',
-    CODE = 'code',
-    NOTE = 'note',
-    TAXCODE = 'taxcode',
-    INWRAPPER = 'inwrapper',
-    SELLBY_RETAIL = 'sellby_retail',
-    SELLBY_WHOLESALE = 'sellby_wholesale',
-    PRODUCER_ID = 'producer_id',
-    PRODUCER_NAME = 'producer_name',
-    IAI_CATEGORY_ID = 'iaiCategoryId',
-    IAI_CATEGORY_NAME = 'iaiCategoryName',
-    IAI_CATEGORY_PATH = 'iaiCategoryPath',
-    CATEGORY_ID = 'category_id',
-    CATEGORY_NAME = 'category_name',
-    SIZE_GROUP_ID = 'size_group_id',
-    MODIFICATION_TIME = 'modification_time',
-    CURRENCY = 'currency',
-    CURRENCY_SHOP = 'currency_shop',
-    BESTSELLER = 'bestseller',
-    NEW_PRODUCT = 'new_product',
-    RETAIL_PRICE = 'retail_price',
-    WHOLESALE_PRICE = 'wholesale_price',
-    MINIMAL_PRICE = 'minimal_price',
-    AUTOMATIC_CALCULATION_PRICE = 'automatic_calculation_price',
-    POS_PRICE = 'pos_price',
-    STRIKETHROUGH_RETAIL_PRICE = 'strikethrough_retail_price',
-    STRIKETHROUGH_WHOLESALE_PRICE = 'strikethrough_wholesale_price',
-    LAST_PURCHASE_PRICE = 'last_purchase_price',
-    PURCHASE_PRICE_NET_AVERAGE = 'purchase_price_net_average',
-    PURCHASE_PRICE_NET_LAST = 'purchase_price_net_last',
-    PURCHASE_PRICE_GROSS_AVERAGE = 'purchase_price_gross_average',
-    PURCHASE_PRICE_GROSS_LAST = 'purchase_price_gross_last',
-    VAT = 'vat',
-    VAT_FREE = 'vat_free',
-    REBATE = 'rebate',
-    HOTSPOTS_ZONES = 'hotspots_zones',
-    PROFIT_POINTS = 'profit_points',
-    POINTS = 'points',
-    WEIGHT = 'weight',
-    EXPORT_TO_PRICECOMPARERS = 'export_to_pricecomparers',
-    EXPORT_TO_AMAZON_MARKETPLACE = 'export_to_amazon_marketplace',
-    ENABLE_IN_POS = 'enable_in_pos',
-    COMPLEX_NOTES = 'complex_notes',
-    AVAILABLE_PROFILE = 'available_profile',
-    TRAITS = 'traits',
-    PARAMETERS = 'parameters',
-    VERSION_DATA = 'version_data',
-    ADVANCE = 'advance',
-    PROMOTION = 'promotion',
-    DISCOUNT = 'discount',
-    DISTINGUISHED = 'distinguished',
-    SPECIAL = 'special',
-    VISIBLE = 'visible',
-    PERSISTENT = 'persistent',
-    PRIORITY = 'priority',
-    SHOPS_MASK = 'shops_mask',
-    ICON = 'icon',
-    ICON_FOR_AUCTIONS = 'icon_for_auctions',
-    ICON_FOR_GROUP = 'icon_for_group',
-    PICTURES = 'pictures',
-    UNIT = 'unit',
-    WARRANTY = 'warranty',
-    SERIES = 'series',
-    PRODUCTS_ASSOCIATED = 'products_associated',
-    SHOPS = 'shops',
-    QUANTITIES = 'quantities',
-    SIZES_ATTRIBUTES = 'sizes_attributes',
-    SHOPS_ATTRIBUTES = 'shops_attributes',
-    AUCTION_PRICES = 'auction_prices',
-    PRICE_COMPARERS_PRICES = 'price_comparers_prices',
-    DELIVERER = 'deliverer',
-    SIZES = 'sizes',
-    SIZE_GROUP_NAME = 'size_group_name',
-    PICTURES_COUNT = 'pictures_count',
-    PRODUCT_TYPE = 'product_type',
-    PRICE_CHANGED_TIME = 'price_changed_time',
-    QUANTITY_CHANGED_TIME = 'quantity_changed_time',
-    DELIVERER_NAME = 'deliverer_name',
-    AVAILABLE_PROFILE_NAME = 'available_profile_name',
-    AVAILABILITY_MANAGEMENT_TYPE = 'availability_management_type',
-    SUM_IN_BASKET = 'sum_in_basket',
-    MENU = 'menu',
-    AUCTION_SETTINGS = 'auction_settings',
-    BUNDLE = 'bundle',
-    SIZESCHART_ID = 'sizeschart_id',
-    SIZESCHART_NAME = 'sizeschart_name',
-    SERIALNUMBERS = 'serialnumbers',
-    PRODUCER_CODES_STANDARD = 'producer_codes_standard',
-    JAVASCRIPT_IN_THE_ITEM_CARD = 'javaScriptInTheItemCard',
-    PRODUCT_AUCTION_DESCRIPTIONS_DATA = 'productAuctionDescriptionsData',
-    PRICE_FORMULA = 'priceFormula',
-    PRODUCT_INDIVIDUAL_DESCRIPTIONS_DATA = 'productIndividualDescriptionsData',
-    PRODUCT_INDIVIDUAL_URLS_DATA = 'productIndividualUrlsData',
-    PRODUCT_SERVICES_DESCRIPTIONS_DATA = 'productServicesDescriptionsData',
-    CN_TARIC_CODE = 'cnTaricCode',
-    PRODUCT_IS_GRATIS = 'productIsGratis',
-    DIMENSIONS = 'dimensions',
-    RESPONSIBLE_PRODUCER_CODE = 'responsibleProducerCode',
-    RESPONSIBLE_PERSON_CODE = 'responsiblePersonCode',
+declare enum PRODUCTS_RETURN_ELEMENTS {
+    LANG_DATA = "lang_data",
+    ADDING_TIME = "adding_time",
+    DELETED = "deleted",
+    CODE = "code",
+    NOTE = "note",
+    TAXCODE = "taxcode",
+    INWRAPPER = "inwrapper",
+    SELLBY_RETAIL = "sellby_retail",
+    SELLBY_WHOLESALE = "sellby_wholesale",
+    PRODUCER_ID = "producer_id",
+    PRODUCER_NAME = "producer_name",
+    IAI_CATEGORY_ID = "iaiCategoryId",
+    IAI_CATEGORY_NAME = "iaiCategoryName",
+    IAI_CATEGORY_PATH = "iaiCategoryPath",
+    CATEGORY_ID = "category_id",
+    CATEGORY_NAME = "category_name",
+    SIZE_GROUP_ID = "size_group_id",
+    MODIFICATION_TIME = "modification_time",
+    CURRENCY = "currency",
+    CURRENCY_SHOP = "currency_shop",
+    BESTSELLER = "bestseller",
+    NEW_PRODUCT = "new_product",
+    RETAIL_PRICE = "retail_price",
+    WHOLESALE_PRICE = "wholesale_price",
+    MINIMAL_PRICE = "minimal_price",
+    AUTOMATIC_CALCULATION_PRICE = "automatic_calculation_price",
+    POS_PRICE = "pos_price",
+    STRIKETHROUGH_RETAIL_PRICE = "strikethrough_retail_price",
+    STRIKETHROUGH_WHOLESALE_PRICE = "strikethrough_wholesale_price",
+    LAST_PURCHASE_PRICE = "last_purchase_price",
+    PURCHASE_PRICE_NET_AVERAGE = "purchase_price_net_average",
+    PURCHASE_PRICE_NET_LAST = "purchase_price_net_last",
+    PURCHASE_PRICE_GROSS_AVERAGE = "purchase_price_gross_average",
+    PURCHASE_PRICE_GROSS_LAST = "purchase_price_gross_last",
+    VAT = "vat",
+    VAT_FREE = "vat_free",
+    REBATE = "rebate",
+    HOTSPOTS_ZONES = "hotspots_zones",
+    PROFIT_POINTS = "profit_points",
+    POINTS = "points",
+    WEIGHT = "weight",
+    EXPORT_TO_PRICECOMPARERS = "export_to_pricecomparers",
+    EXPORT_TO_AMAZON_MARKETPLACE = "export_to_amazon_marketplace",
+    ENABLE_IN_POS = "enable_in_pos",
+    COMPLEX_NOTES = "complex_notes",
+    AVAILABLE_PROFILE = "available_profile",
+    TRAITS = "traits",
+    PARAMETERS = "parameters",
+    VERSION_DATA = "version_data",
+    ADVANCE = "advance",
+    PROMOTION = "promotion",
+    DISCOUNT = "discount",
+    DISTINGUISHED = "distinguished",
+    SPECIAL = "special",
+    VISIBLE = "visible",
+    PERSISTENT = "persistent",
+    PRIORITY = "priority",
+    SHOPS_MASK = "shops_mask",
+    ICON = "icon",
+    ICON_FOR_AUCTIONS = "icon_for_auctions",
+    ICON_FOR_GROUP = "icon_for_group",
+    PICTURES = "pictures",
+    UNIT = "unit",
+    WARRANTY = "warranty",
+    SERIES = "series",
+    PRODUCTS_ASSOCIATED = "products_associated",
+    SHOPS = "shops",
+    QUANTITIES = "quantities",
+    SIZES_ATTRIBUTES = "sizes_attributes",
+    SHOPS_ATTRIBUTES = "shops_attributes",
+    AUCTION_PRICES = "auction_prices",
+    PRICE_COMPARERS_PRICES = "price_comparers_prices",
+    DELIVERER = "deliverer",
+    SIZES = "sizes",
+    SIZE_GROUP_NAME = "size_group_name",
+    PICTURES_COUNT = "pictures_count",
+    PRODUCT_TYPE = "product_type",
+    PRICE_CHANGED_TIME = "price_changed_time",
+    QUANTITY_CHANGED_TIME = "quantity_changed_time",
+    DELIVERER_NAME = "deliverer_name",
+    AVAILABLE_PROFILE_NAME = "available_profile_name",
+    AVAILABILITY_MANAGEMENT_TYPE = "availability_management_type",
+    SUM_IN_BASKET = "sum_in_basket",
+    MENU = "menu",
+    AUCTION_SETTINGS = "auction_settings",
+    BUNDLE = "bundle",
+    SIZESCHART_ID = "sizeschart_id",
+    SIZESCHART_NAME = "sizeschart_name",
+    SERIALNUMBERS = "serialnumbers",
+    PRODUCER_CODES_STANDARD = "producer_codes_standard",
+    JAVASCRIPT_IN_THE_ITEM_CARD = "javaScriptInTheItemCard",
+    PRODUCT_AUCTION_DESCRIPTIONS_DATA = "productAuctionDescriptionsData",
+    PRICE_FORMULA = "priceFormula",
+    PRODUCT_INDIVIDUAL_DESCRIPTIONS_DATA = "productIndividualDescriptionsData",
+    PRODUCT_INDIVIDUAL_URLS_DATA = "productIndividualUrlsData",
+    PRODUCT_SERVICES_DESCRIPTIONS_DATA = "productServicesDescriptionsData",
+    CN_TARIC_CODE = "cnTaricCode",
+    PRODUCT_IS_GRATIS = "productIsGratis",
+    DIMENSIONS = "dimensions",
+    RESPONSIBLE_PRODUCER_CODE = "responsibleProducerCode",
+    RESPONSIBLE_PERSON_CODE = "responsiblePersonCode",
+    DEPOSIT_PRODUCT_ID = "depositProductId",
+    DEPOSIT_TYPE = "depositType",
+    DEPOSIT_COUNT = "depositCount",
+    MIN_STOCK_LEVEL = "minStockLevel",
+    PRODUCT_ATTACHMENTS = "productAttachments"
 }
-  
-export enum ORDER_STATUS {
-    NEW = 'new',
-    ON_ORDER = 'on_order',
-    PACKED = 'packed',
-    PACKED_FULFILLMENT = 'packed_fulfillment',
-    PACKED_READY = 'packed_ready',
-    READY = 'ready',
-    PAYMENT_WAITING = 'payment_waiting',
-    DELIVERY_WAITING = 'delivery_waiting',
-    WAIT_FOR_DISPATCH = 'wait_for_dispatch',
-    SUSPENDED = 'suspended',
-    FINISHED_EXT = 'finished_ext',
-    JOINED = 'joined',
-    FALSE = 'false',
-    CANCELED = 'canceled',
-    LOST = 'lost',
-    MISSING = 'missing',
-    WAIT_FOR_PACKAGING = 'wait_for_packaging',
-    WAIT_FOR_RECEIVE = 'wait_for_receive',
-    FINISHED = 'finished',
-    RETURNED = 'returned',
-    COMPLAINED = 'complained'
+declare enum ORDER_STATUS {
+    NEW = "new",
+    ON_ORDER = "on_order",
+    PACKED = "packed",
+    PACKED_FULFILLMENT = "packed_fulfillment",
+    PACKED_READY = "packed_ready",
+    READY = "ready",
+    PAYMENT_WAITING = "payment_waiting",
+    DELIVERY_WAITING = "delivery_waiting",
+    WAIT_FOR_DISPATCH = "wait_for_dispatch",
+    SUSPENDED = "suspended",
+    FINISHED_EXT = "finished_ext",
+    JOINED = "joined",
+    FALSE = "false",
+    CANCELED = "canceled",
+    LOST = "lost",
+    MISSING = "missing",
+    WAIT_FOR_PACKAGING = "wait_for_packaging",
+    WAIT_FOR_RECEIVE = "wait_for_receive",
+    FINISHED = "finished",
+    RETURNED = "returned",
+    COMPLAINED = "complained"
 }
-
-export enum STOCK_DOCUMENT_TYPE {
-    PZ = 'pz',
-    PW = 'pw',
-    PX = 'px',
-    RX = 'rx',
-    RW = 'rw',
-    MM = 'mm',
-    WZ = 'wz',
-    ZW = 'zw',
+declare enum STOCK_DOCUMENT_TYPE {
+    PZ = "pz",
+    PW = "pw",
+    PX = "px",
+    RX = "rx",
+    RW = "rw",
+    MM = "mm",
+    WZ = "wz",
+    ZW = "zw"
 }
-
-export enum RETURN_STATUS {
+declare enum RETURN_STATUS {
     /** @description Zwrot nieobsłużony */
     NOT_HANDLED = 1,
     /** @description Zwrot rozpatrzony pozytywnie */
@@ -173,10 +175,9 @@ export enum RETURN_STATUS {
     /** @description Zwrot rozpatrzony pozytywnie - Oczekiwanie na zatwierdzenie faktury korygującej */
     ACCEPTED_AWAITING_INVOICE = 19,
     /** @description Zwrot rozpatrzony pozytywnie - Zwrot pieniędzy - przygotowanie faktury korygującej */
-    ACCEPTED_PENDING_INVOICE = 20,
+    ACCEPTED_PENDING_INVOICE = 20
 }
-
-export enum RMA_STATUS {
+declare enum RMA_STATUS {
     /** @description Reklamacja rozpatrywana - Skierowano do testów */
     PENDING_RETEST = 4,
     /** @description Reklamacja rozpatrywana - Produkt wysłany do producenta */
@@ -230,10 +231,9 @@ export enum RMA_STATUS {
     /** @description Reklamacja rozpatrzona pozytywnie - Oczekiwanie na zatwierdzenie faktury korygującej */
     ACCEPTED_AWAITING_INVOICE = 31,
     /** @description Reklamacja rozpatrzona pozytywnie - Zwrot pieniędzy - przygotowanie faktury korygujące */
-    ACCEPTED_PENDING_INVOICE = 34,
+    ACCEPTED_PENDING_INVOICE = 34
 }
-
-export enum PAYMENT_FORMS {
+declare enum PAYMENT_FORMS {
     /** @description 1 - HHTransfer */
     HHTRANSFER = 1,
     /** @description 2 - Karty podarunkowe i bony towarowe */
@@ -371,34 +371,56 @@ export enum PAYMENT_FORMS {
     /** @description 73 - InPost Pay */
     INPOST_PAY = 73,
     /** @description 74 - Straal */
-    STRAAL = 74,
+    STRAAL = 74
 }
-
-export enum PRODUCT_SIZE_COUNTABLE {
-    QUANTITY = 'productSizeQuantity',
-    QUANTITY_OWN = 'productSizeQuantityOwnStock',
-    QUANTITY_OUTSIDE = 'productSizeQuantityOutsideStock',
-    QUANTITY_ALL = 'productSizeQuantityAllStocks',
-    QUANTITY_UNFINISHED = 'productOrdersUnfinishedQuantities',
-    DELIVERIES = 'productSizesDeliveries',
-    AUCTIONS = 'productSizesDispositionsInAuctions',
-    RESERVATIONS = 'productSizeReservationOrder'
+declare enum PRODUCT_SIZE_COUNTABLE {
+    QUANTITY = "productSizeQuantity",
+    QUANTITY_OWN = "productSizeQuantityOwnStock",
+    QUANTITY_OUTSIDE = "productSizeQuantityOutsideStock",
+    QUANTITY_ALL = "productSizeQuantityAllStocks",
+    QUANTITY_UNFINISHED = "productOrdersUnfinishedQuantities",
+    DELIVERIES = "productSizesDeliveries",
+    AUCTIONS = "productSizesDispositionsInAuctions",
+    RESERVATIONS = "productSizeReservationOrder"
 }
-
-export enum PRODUCT_SIZE_CODES {
-    NAME = 'sizePanelName',
-    CODE_PRODUCER = 'productSizeCodeProducer',
-    CODE_EXTERNAL = 'productSizeCodeExternal'
+declare enum PRODUCT_SIZE_CODES {
+    NAME = "sizePanelName",
+    CODE_PRODUCER = "productSizeCodeProducer",
+    CODE_EXTERNAL = "productSizeCodeExternal"
 }
-
-export enum PRODUCT_SIZE_LOCATIONS {
-    CODE = 'stockLocationCode',
-    NAME = 'stockLocationTextId',
-    ID = 'stockLocationId'
+declare enum PRODUCT_SIZE_LOCATIONS {
+    CODE = "stockLocationCode",
+    NAME = "stockLocationTextId",
+    ID = "stockLocationId"
 }
-
-export enum PRODUCE_SIZE_INDEX {
-    NAME = 'sizePanelName',
-    ID = 'sizeId',
-    IAI_CODE = 'iaiCode'
+declare enum PRODUCE_SIZE_INDEX {
+    NAME = "sizePanelName",
+    ID = "sizeId",
+    IAI_CODE = "iaiCode"
 }
+declare const ENUMS: {
+    PRODUCTS_RETURN_ELEMENTS: typeof PRODUCTS_RETURN_ELEMENTS;
+    ORDER_STATUS: typeof ORDER_STATUS;
+    STOCK_DOCUMENT_TYPE: typeof STOCK_DOCUMENT_TYPE;
+    RETURN_STATUS: typeof RETURN_STATUS;
+    RMA_STATUS: typeof RMA_STATUS;
+    PAYMENT_FORMS: typeof PAYMENT_FORMS;
+    PRODUCT_SIZE_COUNTABLE: typeof PRODUCT_SIZE_COUNTABLE;
+    PRODUCT_SIZE_CODES: typeof PRODUCT_SIZE_CODES;
+    PRODUCT_SIZE_LOCATIONS: typeof PRODUCT_SIZE_LOCATIONS;
+    PRODUCE_SIZE_INDEX: typeof PRODUCE_SIZE_INDEX;
+};
+export declare namespace ENUMS {
+    type PRODUCTS_RETURN_ELEMENTS = typeof PRODUCTS_RETURN_ELEMENTS[keyof typeof PRODUCTS_RETURN_ELEMENTS];
+    type ORDER_STATUS = typeof ORDER_STATUS[keyof typeof ORDER_STATUS];
+    type STOCK_DOCUMENT_TYPE = typeof STOCK_DOCUMENT_TYPE[keyof typeof STOCK_DOCUMENT_TYPE];
+    type RETURN_STATUS = typeof RETURN_STATUS[keyof typeof RETURN_STATUS];
+    type RMA_STATUS = typeof RMA_STATUS[keyof typeof RMA_STATUS];
+    type PAYMENT_FORMS = typeof PAYMENT_FORMS[keyof typeof PAYMENT_FORMS];
+    type PRODUCT_SIZE_COUNTABLE = typeof PRODUCT_SIZE_COUNTABLE[keyof typeof PRODUCT_SIZE_COUNTABLE];
+    type PRODUCT_SIZE_CODES = typeof PRODUCT_SIZE_CODES[keyof typeof PRODUCT_SIZE_CODES];
+    type PRODUCT_SIZE_LOCATIONS = typeof PRODUCT_SIZE_LOCATIONS[keyof typeof PRODUCT_SIZE_LOCATIONS];
+    type PRODUCE_SIZE_INDEX = typeof PRODUCE_SIZE_INDEX[keyof typeof PRODUCE_SIZE_INDEX];
+}
+export { ENUMS };
+export default ENUMS;
