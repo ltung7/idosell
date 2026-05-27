@@ -696,6 +696,6 @@ export const gateProxy = {
             return object;
         if (!gates[property])
             throw new Error("Invalid gate: " + property);
-        return gates[property](object);
+        return gates[property]({ ...object, params: {} });
     }
 };

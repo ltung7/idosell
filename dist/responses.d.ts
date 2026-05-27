@@ -2208,6 +2208,8 @@ export type SearchOrdersResponse = {
                 longitude: number;
                 /** @description Name. */
                 name: string;
+                /** @description Country (2 letter country code). */
+                country: string;
             };
             /** @description Buyer's address data. */
             payerAddress?: {
@@ -2272,7 +2274,11 @@ export type SearchOrdersResponse = {
             /** @description Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
             orderStatus: string;
             /** @description Order status id. */
-            orderStatusId: number;
+            orderStatusId?: number;
+            /** @description Transaction type. */
+            transactionType: null |"national" | "oss" | "export" | "intra";
+            /** @description Split payment MPP marking */
+            splitPayment: boolean;
             /** @example dropshippingOrderStatus */
             dropshippingOrderStatus: string;
             /** @description Type of order confirmation. Confirmations listing: "none" - order unconfirmed , "email" - order confirmed by e-mail, "phone_client" - order confirmed by phone call made by client, "phone_service" - order confirmed by phone call made by staff, "postauction" - order confirmed by auction return page, "willingness" - confirmed by willingness to buy letter, "auctionfod" - confirmed by after-sales form Allegro. */
@@ -4415,7 +4421,7 @@ export type SearchProductsResponse = {
                 productSizeQuantity: number;
             }[];
             /** @description Size data */
-            productSizesStocksLocations: {
+            productSizesStocksLocations?: {
                 /** @description Stock ID */
                 stockId: number;
                 productSizesLocation: {
@@ -4500,11 +4506,11 @@ export type SearchProductsResponse = {
                 /** @description Gross price */
                 productRetailPrice: number;
                 /** @description Gross price after promotion. The item is returned when the 'showPromotionsPrices' parameter is specified in the request */
-                productPromoRetailPrice: number;
+                productPromoRetailPrice?: number;
                 /** @description Wholesale price */
                 productWholesalePrice: number;
                 /** @description Wholesale price after promotion. The item is returned when the 'showPromotionsPrices' parameter is specified in the request */
-                productPromoWholesalePrice: number;
+                productPromoWholesalePrice?: number;
                 /** @description Minimal price */
                 productMinimalPrice: number;
                 /** @description Price for automatic calculations */
@@ -4782,7 +4788,7 @@ export type SearchProductsResponse = {
                 sizePanelName: string;
             }[];
             /** @description Available sizes of products in a set or collection for marketplaces */
-            bundledAvailableSizesInAuctions: {
+            bundledAvailableSizesInAuctions?: {
                 /** @description Size identifier */
                 sizeId: string;
                 /** @description Size name */
@@ -4816,7 +4822,7 @@ export type SearchProductsResponse = {
                 }[];
             }[];
             /** @description Parameter values */
-            parameterValues?: {
+            parameterValues?: null | {
                 /** @description Parameter value ID */
                 parameterValueId: number;
                 /** @description Language data */
@@ -4976,6 +4982,72 @@ export type SearchProductsResponse = {
         responsiblePersonCode?: string | null;
         /** @description Minimum stock level */
         minStockLevel?: number;
+        productAttachments?: {
+            /** @description Product attachments list. */
+            attachments?: {
+                /** @description Attachment ID. */
+                attachmentId: number;
+                /** @description Attachment name. */
+                attachmentName: string;
+                /** @description Attachment number. */
+                attachmentPriority: number;
+                /** @description Type of customer, attachment should be available for: 'all','ordered','wholesaler','wholesaler_or_ordered','wholesaler_and_ordered'. */
+                attachmentEnable: "all" | "ordered" | "wholesaler" | "wholesaler_or_orderer" | "wholesaler_and_ordered";
+                /** @description File type: audio, video, doc, other. */
+                attachmentFileType: "audio" | "video" | "doc" | "other" | "image";
+                /** @description Attachment file extension. */
+                attachmentFileExtension: string;
+                /** @description Attachment downloads record. */
+                attachmentDownloadLog: "y" | "n";
+                /** @description Language ID */
+                langId: string;
+                /** @description Attachment document types list. */
+                documentTypes?: {
+                    /** @description Document type. */
+                    documentType: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "software_data_processing" | "hardware_data_processing" | "others";
+                    /** @description Additional description. */
+                    documentName: string;
+                    /** @description Additional description. */
+                    description: string;
+                }[];
+            }[];
+            /** @description List of product's virtual attachments. */
+            virtualAttachments?: {
+                /** @description Attachment ID. */
+                attachmentId: number;
+                /** @description Full version or sample. */
+                attachmentType: "full" | "demo";
+                /** @description Attachment number. */
+                attachmentPriority: number;
+                /** @description Specifies where the attachment content comes from: 'local' for a file uploaded with the request, or 'url' for a remotely hosted file accessible via a URL. */
+                attachmentSourceType: "local" | "url";
+                /** @description File type: audio, video, doc, other. */
+                attachmentFileType: "audio" | "video" | "doc" | "other" | "image";
+                /** @description Attachment file extension. */
+                attachmentFileExtension: string;
+                /** @description Attachment file size in megabytes (MB). */
+                attachmentFileSize: string;
+                /** @description Attachment file hash. */
+                attachmentFileHash: string;
+                /** @description Number of attachment downloads limit. */
+                attachmentLimits: {
+                    /** @description Number of downloads limit. */
+                    attachmentDownloadsLimit: number;
+                    /** @description Number of days file should be available. */
+                    attachmentDaysLimit: number;
+                };
+                /** @description Attachment name. */
+                attachmentName: {
+                    /** @description List of languages. */
+                    attachmentLanguages: {
+                        /** @description Language ID */
+                        langId: string;
+                        /** @description Literal in selected language. */
+                        langValue: string;
+                    }[];
+                };
+            }[];
+        };
     }[];
 } & PagedResponse;
 
@@ -5964,6 +6036,10 @@ export type PutReturnsSerialNumberResponse = {
 export type GetRmaResponse = {
     /** @description Complaints. */
     rmas: {
+        /** @description Corresponding order serial number */
+        orderSn: number;
+        /** @description Rma currency */
+        currency: string;
         /** @description Complaint id. */
         rmaId: number;
         /** @description Customer's login. */
@@ -6511,6 +6587,8 @@ export type GetSystemConfigResponse = {
             /** @description Configuration of default currency rate for orders */
             currencyRate: "currentDay" | "previousDay" | null;
         };
+        /** @description Whether setting different prices per size is blocked. */
+        sizesDifferentPricesBlocked: boolean;
     };
     panel_literals: {
         /** @description "Reduced price" - name in the panel. */
@@ -6640,7 +6718,7 @@ export type GetSystemConfigResponse = {
         /** @description Name */
         name: string;
     }[];
-    product_deliverers: {
+    product_deliverers?: {
         /** @description Id */
         id: number;
         /** @description Name */
@@ -6813,8 +6891,45 @@ export type GetSystemServerTimeResponse = {
     time: number;
 };
 
-export type GetSystemShopsDataResponse = Omit<GetSystemConfigResponse, 'panel_settings'|'shops'> & {
-/** @description Shop contact data */
+export type GetSystemShopsDataResponse = {
+    /** @description Customer ID. */
+    client_id: number;
+    /** @description Dedicated server. */
+    dedicated_server: boolean;
+    shop_owner_data: {
+        /** @description Full company name. */
+        company_name: string;
+        /** @description Company short name. */
+        company_short_name: string;
+        /** @description NIP [TIN]. */
+        nip: string;
+        /** @description CRN. */
+        regon: string;
+        /** @description no of entry to NCR. */
+        krs: string;
+        /** @example address */
+        address: string;
+        /** @description ZIP / Post code. */
+        zipcode: string;
+        /** @description Town / City. */
+        city: string;
+        /** @description region. */
+        country: string;
+        /** @description VAT registered. */
+        VATRegistered: boolean;
+    };
+    /** @description List of languages configured in the administration panel. */
+    languages: {
+        /** @description Language code. Codes are compliant with ISO-639-3 standard. */
+        lang_id: string;
+        /** @description Language name. */
+        lang_name: string;
+    }[];
+    /** @description Code of default panel language in ISO-639-3 standard. */
+    panel_lang_id_default: string;
+    /** @description Panel base currency ID. */
+    panel_basecurrency_id: string;
+    /** @description Shop contact data */
     shop_contact: {
         /** @description shop ID */
         shop_id: number;
@@ -6830,7 +6945,47 @@ export type GetSystemShopsDataResponse = Omit<GetSystemConfigResponse, 'panel_se
             contact_phone_number: string;
         }[];
     }[];
-    panel_settings: ShopsPanelSettings;
+    panel_settings: {
+        /** @description Default panel language. */
+        default_lang_id: string;
+        /** @description Panel base currency. */
+        basecurrency_id: string;
+        /** @description Manual stock quantity modification restriction. */
+        stocks_change_disabled: string;
+        /** */
+        stock_state_config: "uncontrolled" | "bridge" | "outside";
+        /** */
+        main_stock_system: "other" | "iai";
+        /** @description Sales documents in third party application. */
+        salesDocumentsAreCreatedByClient: boolean;
+        search_by_code: {
+            /** @description IAI code. */
+            code_iai: boolean;
+            /** @description External system code. */
+            code_extern: boolean;
+            /** @description Producer code. */
+            code_producer: boolean;
+        };
+        /** @description Whether setting different prices per size is blocked. */
+        sizesDifferentPricesBlocked: boolean;
+    };
+    panel_literals: {
+        /** @description "Reduced price" - name in the panel. */
+        promotion: string;
+        /** @description "Sale" - name in panel. */
+        discount: string;
+        /** @description "Distinguished product" - name in panel. */
+        distinguished: string;
+        /** @description "Warranty" - name in shop. */
+        warranty: string;
+    };
+    /** @description List of warehouses. */
+    stocks: {
+        /** @description Stock ID. */
+        stock_id: number;
+        /** @description Stock name. */
+        stock_name: string;
+    }[];
     /** @description List of stores. */
     shops: {
         /** @description Shop Id. */
@@ -6844,7 +6999,7 @@ export type GetSystemShopsDataResponse = Omit<GetSystemConfigResponse, 'panel_se
         active_price_comparers: {
             /** @example 1 */
             id: number;
-            /* @description Default price difference. */
+            /** @description Default price difference. */
             default_price_percent_diff: number;
         }[];
         /** @description Url to default product icon. */
@@ -6895,6 +7050,146 @@ export type GetSystemShopsDataResponse = Omit<GetSystemConfigResponse, 'panel_se
             active: boolean;
         };
     }[];
+    /** @description List of size units. */
+    units: {
+        /** @description Unit of measure ID. */
+        unit_id: number;
+        /** @description Unit of measure name in panel. */
+        unit_name: string;
+        /** @description Accuracy (number of places after comma). */
+        unit_precision: number;
+        /** @description Object determines unit visibility in panel. List of values: "y" - unit visible in panel, "n" - unit invisible in panel. */
+        unit_visible: string;
+        lang_data: {
+            /** @description Language code. Codes are compliant with ISO-639-3 standard. */
+            lang_id: string;
+            /** @description Name (singular). */
+            singular_name: string;
+            /** @description Name (plural). */
+            plural_name: string;
+            /** @description Name (by fractions). */
+            fraction_name: string;
+        }[];
+    }[];
+    /** @description List of warranties. */
+    warranties: {
+        /** @example 1 */
+        id: number;
+        /** @example name */
+        name: string;
+    }[];
+    /** @description List of parcel delivery companies. */
+    deliverers: {
+        /** @example 1 */
+        id: number;
+        /** @example name */
+        name: string;
+    }[];
+    product_deliverers?: {
+        /** @example 1 */
+        id: number;
+        /** @example name */
+        name: string;
+    }[];
+    vat_rates: {
+        /** @example 1 */
+        id: number;
+        /** @description VAT rate value. */
+        value: number;
+    }[];
+    auction_systems?: {
+        /** @description Auction system ID. */
+        auction_id: number;
+        /** @description Auction site ID. */
+        site_id: number;
+        /** @description Auction site currency ID. */
+        currency_id: string;
+        /** @description Auction site description. */
+        description: string;
+    }[];
+    availability_profiles: {
+        /** @example 1 */
+        id: number;
+        /** @example name */
+        name: string;
+    }[];
+    rebate_profiles: {
+        /** @example 1 */
+        id: number;
+        /** @example name */
+        name: string;
+    }[];
+    pictures_settings: {
+        /** @description Object determines if the product icon should be scaled. List of values: "y" - icon is scaled, "n" - icon is unscaled. */
+        icon_resize: string;
+        /** @description Graphic quality in percent (0-100). . "0" - the worst quality, "100" - the best quality (no compression). */
+        icon_quality: number;
+        /** @description Large icon width in pixels. */
+        icon_large_width: number;
+        /** @description Large icon height in pixels. */
+        icon_large_height: number;
+        /** @description Small icon width in pixels. */
+        icon_small_width: number;
+        /** @description Small icon height in pixels. */
+        icon_small_height: number;
+        /** @description Width of an icon on the marketplaces. */
+        auction_icon_height: number;
+        /** @description Hight of an icon on the marketplaces. */
+        auction_icon_width: number;
+        /** @description Group icon width in pixels. */
+        group_icon_height: number;
+        /** @description Group icon height in pixels. */
+        group_icon_width: number;
+        /** @description Photo quality in percents (0-100). "0" - the worst quality, "100" - the best quality (no compression). */
+        picture_quality: number;
+        /** @description Large photo width in pixels. */
+        picture_large_width: number;
+        /** @description Large photo height in pixels. */
+        picture_large_height: number;
+        /** @description Medium photo width in pixels. */
+        picture_medium_width: number;
+        /** @description Medium photo height in pixels. */
+        picture_medium_height: number;
+        /** @description Small photo width in pixels. */
+        picture_small_width: number;
+        /** @description Small photo height in pixels. */
+        picture_small_height: number;
+    };
+    price_comparers: never[] | Record<string, {
+        /** @example 1 */
+        id?: number;
+        /** @example key */
+        key?: string;
+        /** @example name */
+        name?: string;
+        /** @description Information about whether price comparison service is active. */
+        active?: string}>;
+    /** @description Content of the column "Product or service name" on sales documents. */
+    inv_prod_name_templace: string;
+    /** @description List of document printers. */
+    printers: {
+        /** @example 1 */
+        id: number;
+        /** @example name */
+        name: string;
+        /** @example address */
+        address: string;
+        /** @example key */
+        key: string;
+    }[];
+    /** @description List of fiscal printers. */
+    fiscal_printers: {
+        /** @example 1 */
+        id: number;
+        /** @example name */
+        name: string;
+        /** @example address */
+        address: string;
+        /** @example key */
+        key: string;
+    }[];
+    /** @description Monitoring address protocol from the main Printer window. */
+    typeOfPrinterProtocolAdress: string;
 };
 
 export type GetSystemUnitsResponse = {

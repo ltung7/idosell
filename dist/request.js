@@ -117,7 +117,7 @@ const isMissingRequirement = (obj, required) => {
             return false;
         }
         for (const field of required.any) {
-            if (obj[field])
+            if (obj[field] === undefined || obj[field] === null)
                 return false;
         }
         return required.any.join(' | ');
