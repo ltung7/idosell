@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import type { PagableGateway, AppendableGateway, Gateway, DateLike, JSObject, IdosellErrorFaultStructure } from "./app.d.ts"
-import type { GetClientsBalanceResponse, BooleanStatusResponse, GetClientsResponse, PostClientsResponse, PutClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PostClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, VouchersResponse, PutVouchersResponse, SearchClientsGiftcardsResponse, GetClientsGiftcardsTypesResponse, GetClientsMembershipCardsResponse, PutClientsMembershipCardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, PostClientsPayerAddressResponse, PutClientsPayerAddressResponse, GetClientsPricelistsClientsResponse, PutClientsPricelistsClientsResponse, GetClientsPricelistsResponse, PostClientsPricelistsResponse, GetClientsPricelistsProductsResponse, PutClientsPricelistsProductsResponse, GetClientsPricesActiveCardResponse, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountsResponse, PutClientsPricesDiscountsResponse, GetClientsProfitPointsResponse, GetClientsProvinceListResponse, GetClientsTagsResponse, PostClientsTagsResponse, PutClientsTagsResponse, GetConfigVariablesResponse, PutConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersResponse, GetCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaCampaignResponse, CmsCampaignResponse, CmsResponse, GetCpaResponse, GetDeliveriesProfilesResponse, GetDeliveriesRegionsResponse, PostDeliveriesRegionsResponse, GetDiscountsGroupsClientsResponse, GetDiscountsGroupsResponse, PostDiscountsGroupsResponse, GetEntriesResponse, PostEntriesResponse, GetEntriesPagesToDisplayResponse, GetEntriesSourcesResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, PutMenuSortResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PutOrdersCourierResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, PostOrdersDocumentsResponse, GetOrdersHandlerResponse, GetOrdersHistoryResponse, GetOrdersImagesResponse, PostOrdersImagesResponse, GetOrdersLabelsResponse, SearchOrdersOpinionsResponse, GetOrdersOpinionsRateResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, PutOrdersPackagesResponse, PutOrdersProductsSerialNumbersResponse, PutOrdersProfitMarginResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetOrdersWarehouseResponse, PostPackagesLabelsResponse, PutPackagesResponse, SearchPackagesResponse, GetPaymentsFormsResponse, GetPaymentsResponse, PostPaymentsResponse, GetPaymentsProfilesResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, PutProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, ProductIdentResponse, PutProductsGroupsSettingsResponse, GetProductsIdBySizecodeResponse, PutProductsImagesResponse, GetProductsMarketingZonesResponse, PutProductsMarketingZonesResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, PostProductsOpinionsResponse, GetProductsOpinionsRateResponse, PutProductsParametersResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, PutProductsMarketingPromotionResponse, GetProductsQuestionsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, PutProductsSeriesResponse, GetProductsSizesResponse, PutProductsSizesResponse, PutProductsStockQuantityResponse, GetProductsStocksResponse, PutProductsStocksResponse, GetProductsStrikethroughPricesResponse, PutProductsSupplierCodeResponse, PutProductsSupplierProductDataResponse, PromotionBoolResponse, SearchPromotionsElementsResponse, SearchPromotionsHistoryResponse, PromotionIdResponse, GetPromotionsResponse, SearchPromotionsListViewResponse, GetPromotionsArchiveResponse, SearchPromotionsArchiveResponse, GetPromotionsSettingsResponse, GetRegulationsHistoryResponse, GetResponsibilityEntitiesResponse, PutResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, PutReturnsSerialNumberResponse, GetRmaResponse, PutRmaResponse, GetRmaStatusesResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, PutSizechartsResponse, GetSizesResponse, PutSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, PutSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemServerLoadResponse, GetSystemServerTimeResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, PutSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesCountTotalResponse, PutWarrantiesLanguageDataResponse, GetWarrantiesResponse, PutWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, PutWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse, PutWmsSuppliersResponse, GetProductsMarketingPromotionResponse, PostProductsMarketingPromotionResponse } from "./responses.d.ts"
+import type { GetClientsBalanceResponse, BooleanStatusResponse, GetClientsResponse, PostClientsResponse, PutClientsResponse, SearchClientsCrmResponse, GetClientsDeliveryAddressResponse, PostClientsDeliveryAddressResponse, PutClientsDeliveryAddressResponse, VouchersResponse, PutVouchersResponse, SearchClientsGiftcardsResponse, GetClientsGiftcardsTypesResponse, GetClientsMembershipCardsResponse, PutClientsMembershipCardsResponse, SearchClientsNewsletterEmailResponse, SearchClientsNewsletterSmsResponse, GetClientsPayerAddressResponse, PostClientsPayerAddressResponse, PutClientsPayerAddressResponse, GetClientsPricelistsClientsResponse, PutClientsPricelistsClientsResponse, GetClientsPricelistsResponse, PostClientsPricelistsResponse, GetClientsPricelistsProductsResponse, PutClientsPricelistsProductsResponse, GetClientsPricesActiveCardResponse, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountsResponse, PutClientsPricesDiscountsResponse, GetClientsProfitPointsResponse, GetClientsProvinceListResponse, GetClientsTagsResponse, PostClientsTagsResponse, PutClientsTagsResponse, GetConfigVariablesResponse, PutConfigVariablesResponse, GetCouriersAssignedToShippingProfilesResponse, GetCouriersResponse, GetCouriersPickupPointsResponse, PutCouriersPickupPointsResponse, GetCpaCampaignResponse, CmsCampaignResponse, CmsResponse, GetCpaResponse, GetDeliveriesProfilesResponse, GetDeliveriesRegionsResponse, PostDeliveriesRegionsResponse, GetDiscountsGroupsClientsResponse, GetDiscountsGroupsResponse, PostDiscountsGroupsResponse, GetEntriesResponse, PostEntriesResponse, GetEntriesPagesToDisplayResponse, GetEntriesSourcesResponse, GetMenuResponse, PostMenuResponse, PutMenuResponse, PutMenuSortResponse, GetOrdersAnalyticsResponse, GetOrdersAuctionDetailsResponse, PutOrdersCourierResponse, PostOrdersDocumentsCreateResponse, GetOrdersDocumentsResponse, PostOrdersDocumentsResponse, GetOrdersHandlerResponse, GetOrdersHistoryResponse, GetOrdersImagesResponse, PostOrdersImagesResponse, GetOrdersLabelsResponse, SearchOrdersOpinionsResponse, GetOrdersOpinionsRateResponse, SearchOrdersResponse, PostOrdersResponse, PutOrdersResponse, GetOrdersPackagesResponse, PutOrdersPackagesResponse, PutOrdersProductsSerialNumbersResponse, PutOrdersProfitMarginResponse, GetOrdersProfitabilityResponse, GetOrdersStatusesResponse, GetOrdersWarehouseResponse, PostPackagesLabelsResponse, PutPackagesResponse, SearchPackagesResponse, GetPaymentsFormsResponse, GetPaymentsResponse, PostPaymentsResponse, GetPaymentsProfilesResponse, PostPaymentsRepaymentResponse, GetProductsSKUbyBarcodeResponse, GetProductsAttachmentsGetContentResponse, PutProductsAttachmentsResponse, GetProductsAuctionsResponse, GetProductsBrandsResponse, PutProductsBrandsResponse, GetProductsCategoriesResponse, PutProductsCategoriesResponse, SearchProductsCategoriesIdosellResponse, GetProductsCodeExistenceResponse, SearchProductsDeliveryTimeResponse, GetProductsDescriptionsResponse, ProductIdentResponse, PutProductsGroupsSettingsResponse, GetProductsIdBySizecodeResponse, PutProductsImagesResponse, GetProductsMarketingZonesResponse, PutProductsMarketingZonesResponse, GetProductsOmnibusPricesResponse, GetProductsOpinionsResponse, PostProductsOpinionsResponse, GetProductsOpinionsRateResponse, PutProductsParametersResponse, SearchProductsParametersResponse, SearchProductsResponse, PostProductsResponse, PutProductsResponse, PutProductsMarketingPromotionResponse, GetProductsQuestionsResponse, GetProductsReservationsResponse, GetProductsSeriesResponse, PutProductsSeriesResponse, GetProductsSizesResponse, PutProductsSizesResponse, PutProductsStockQuantityResponse, GetProductsStocksResponse, PutProductsStocksResponse, GetProductsStrikethroughPricesResponse, PutProductsSupplierCodeResponse, PutProductsSupplierProductDataResponse, PromotionBoolResponse, SearchPromotionsElementsResponse, SearchPromotionsHistoryResponse, PromotionIdResponse, GetPromotionsResponse, SearchPromotionsListViewResponse, GetPromotionsArchiveResponse, SearchPromotionsArchiveResponse, GetPromotionsSettingsResponse, GetRegulationsHistoryResponse, GetResponsibilityEntitiesResponse, PutResponsibilityEntitiesResponse, GetReturnsResponse, PostReturnsResponse, PutReturnsResponse, PutReturnsSerialNumberResponse, GetRmaResponse, PutRmaResponse, GetRmaStatusesResponse, GetShopsCurrenciesResponse, GetShopsLanguagesResponse, GetSizechartsResponse, PutSizechartsResponse, GetSizesResponse, PutSizesResponse, GetSnippetsCampaignResponse, GetSnippetsCookiesResponse, GetSnippetsResponse, GetSystemConfigResponse, GetSystemCurrenciesResponse, PutSystemCurrenciesResponse, GetSystemProcessesAutomationResponse, GetSystemServerLoadResponse, GetSystemServerTimeResponse, GetSystemShopsDataResponse, GetSystemUnitsResponse, PutSystemUnitsResponse, GetSystemUsersResponse, GetVouchersTypesResponse, GetVouchersResponse, GetWarrantiesCountTotalResponse, PutWarrantiesLanguageDataResponse, GetWarrantiesResponse, PutWarrantiesResponse, GetWmsLocationsResponse, GetWmsStocksdocumentsDocumentsResponse, PostWmsStocksdocumentsDocumentsResponse, PutWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsProductsResponse, PutWmsStocksdocumentsProductsResponse, GetWmsSuppliersResponse, PutWmsSuppliersResponse, GetProductsMarketingPromotionResponse, PostProductsMarketingPromotionResponse } from "./responses.d.ts"
 import type * as RequestParams from "./reqparams.d.ts";
 import { ENUMS } from "./enums";
 import utils from "./utils";
 
 type ProductReturnElement = `${ENUMS.PRODUCTS_RETURN_ELEMENTS}`;
+type LangId = `${ENUMS.LANG_IDS}`;
 
 export class IdosellFaultStringError extends Error {
     cause: IdosellFaultStringError;
@@ -123,7 +124,7 @@ export interface PostClientsRequest extends AppendableGateway<PostClientsRequest
     /** Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
     client_type: (client_type: 'person'|'person_male'|'person_female'|'firm') => this
     /** Customer language ID. */
-    language: (language: string) => this
+    language: (language: LangId) => this
     /** Determines, in which store account should be active. */
     shops: (shops: number|string|number[]|string[]) => this
     /** Defines availability of log in to other pages than the ones given in the element: shops . */
@@ -189,7 +190,7 @@ export interface PutClientsRequest extends AppendableGateway<PutClientsRequest, 
     /** Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
     clientType: (clientType: 'person'|'person_male'|'person_female'|'firm') => this
     /** Language ID */
-    langId: (langId: string) => this
+    langId: (langId: LangId) => this
     /** Defines availability of log in to other pages than the ones given in the element: shops . */
     blockLoginToOtherShops: (blockLoginToOtherShops: boolean) => this
     /** List of stores IDs When mask is determined, this parameter is omitted. */
@@ -236,7 +237,7 @@ export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrm
     /** Country ID in accordance with ISO-3166. */
     clientCountryId: (value: string) => this;
     /** Language ID */
-    langId: (value: string) => this;
+    langId: (value: LangId) => this;
     /** Customer service representative. */
     clientCustomerServiceRepresentativeLogin: (value: string) => this;
     /** Customer group number */
@@ -522,7 +523,7 @@ export interface PutClientsMembershipCardsRequest extends AppendableGateway<PutC
 export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest, SearchClientsNewsletterEmailResponse, RequestParams.SearchClientsNewsletterEmailParams> {
     shops: (value: RequestParams.SearchClientsNewsletterEmailParams["shops"]) => this;
     /** Customer language ID. */
-    language: (value: string) => this;
+    language: (value: LangId) => this;
     date: (value: RequestParams.SearchClientsNewsletterEmailParams["date"]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     return_elements: (value: string|string[]) => this;
@@ -537,7 +538,7 @@ export interface SearchClientsNewsletterEmailRequest extends PagableGateway<Sear
 export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest, SearchClientsNewsletterSmsResponse, RequestParams.SearchClientsNewsletterSmsParams> {
     shops: (value: RequestParams.SearchClientsNewsletterSmsParams["shops"]) => this;
     /** Customer language ID. */
-    language: (value: string) => this;
+    language: (value: LangId) => this;
     date: (value: RequestParams.SearchClientsNewsletterSmsParams["date"]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned */
     return_elements: (value: string|string[]) => this;
@@ -1174,7 +1175,7 @@ export interface GetEntriesRequest extends Gateway<GetEntriesResponse> {
     /** Entry ID */
     entryId: (value: number|string) => this;
     /** Language ID */
-    langId: (value: string) => this;
+    langId: (value: LangId) => this;
 }
 
 export interface PostEntriesRequest extends AppendableGateway<PostEntriesRequest, PostEntriesResponse, RequestParams.PostEntriesParams> {
@@ -1197,7 +1198,7 @@ export interface PostEntriesRequest extends AppendableGateway<PostEntriesRequest
     /** Provided URL (for link to specified URL option) */
     link: (value: string) => this;
     /** Language ID */
-    langId: (langId: string) => this
+    langId: (langId: LangId) => this
     /** Name on the page */
     title: (title: string) => this
     /** short description */
@@ -1241,7 +1242,7 @@ export interface PutEntriesRequest extends Gateway {
 
 export interface GetEntriesPagesToDisplayRequest extends Gateway<GetEntriesPagesToDisplayResponse> {
     /** Language ID */
-    langId: (value: string) => this;
+    langId: (value: LangId) => this;
 }
 
 export interface GetEntriesSourcesRequest extends Gateway<GetEntriesSourcesResponse> {
@@ -1253,7 +1254,7 @@ export interface GetMenuFilterRequest extends Gateway {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
-    languageId: (value: string) => this;
+    languageId: (value: LangId) => this;
     /** Tree menu ID. */
     productMenuTreeId: (value: number|string) => this;
     /** Menu element ID. */
@@ -1264,7 +1265,7 @@ export interface PutMenuFilterRequest extends AppendableGateway<PutMenuFilterReq
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
-    languageId: (value: string) => this;
+    languageId: (value: LangId) => this;
     /** Tree menu ID. */
     productMenuTreeId: (value: number|string) => this;
     /** Menu element ID. */
@@ -1305,7 +1306,7 @@ export interface GetMenuRequest extends Gateway<GetMenuResponse> {
     /** Tree menu ID. */
     menu_id: (value: number|string) => this;
     /** Language ID. */
-    lang_id: (value: string) => this;
+    lang_id: (value: LangId) => this;
     /** Menu node ID. */
     node_id: (value: number|string) => this;
     /** Number of levels. */
@@ -1353,7 +1354,7 @@ export interface PutMenuSortRequest extends AppendableGateway<PutMenuSortRequest
     /** Menu ID. */
     menu_id: (menu_id: number|string) => this
     /** Language ID. */
-    lang_id: (lang_id: string) => this
+    lang_id: (lang_id: LangId) => this
     /** Menu element text identifier. */
     parent_id: (parent_id: number|string) => this
     /** Menu element text identifier. Example: "item1\item2\item3". */
@@ -1605,7 +1606,7 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     /** Orders. */
     orders: (value: RequestParams.PostOrdersParams["orders"]) => this;
     /** Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail" */
-    orderType: (orderType: string) => this
+    orderType: (orderType: "retail" | "wholesale") => this
     /** Shop Id */
     shopId: (shopId: number|string) => this
     /** Stock ID */
@@ -1615,7 +1616,7 @@ export interface PostOrdersRequest extends AppendableGateway<PostOrdersRequest, 
     /** Currency ID */
     currencyId: (currencyId: string) => this
     /** Determines if customer unregistered. Allowed values. "y" - casual client, "n" - registered customer. Default value:: "y". If customer is unregistered, enter customer details in element: "clientWithoutAccountData". For client with account - existing login should be stored in: "clientLogin". */
-    clientWithoutAccount: (clientWithoutAccount: string) => this
+    clientWithoutAccount: (clientWithoutAccount: "y" | "n") => this
     /** Balance data for casual client. Object is necessary for casual clients (in case of client_once has y value). */
     clientWithoutAccountData: (clientWithoutAccountData: RequestParams.PostOrdersParams["orders"][number]["clientWithoutAccountData"]) => this
     /** Customer's login. */
@@ -1726,7 +1727,7 @@ export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest,
     /** Courier service identifiers */
     couriersId: (value: number|string|number[]|string[]) => this;
     /** Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit. */
-    orderPaymentType: (value: string) => this;
+    orderPaymentType: (value: "cash_on_delivery" | "prepaid" | "tradecredit") => this;
     withMissingSalesDocuments: (value: string|string[]) => this;
     /** Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail" */
     orderType: (value: 'wholesale'|'retail'|'dropshipping'|'deliverer') => this;
@@ -1908,7 +1909,7 @@ export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrde
     /** Shipping companies (packages deliverers). */
     couriersName: (value: string|string[]) => this;
     /** Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit. */
-    orderPaymentType: (value: string) => this;
+    orderPaymentType: (value: "cash_on_delivery" | "prepaid" | "tradecredit") => this;
     /** Order type. Allowed values: "retail" - retail order, "wholesale" - whiolesale order , "dropshipping" - order to be handled, "deliverer" - order sent to the supplier. */
     orderType: (value: 'wholesale'|'retail'|'dropshipping'|'deliverer') => this;
     /** Dropshipping order status in the supplier's system. Allowed values: "all" - all, "finished" - sent, "canceled" - canceled, "notCanceled" - failed to cancel. */
@@ -2173,7 +2174,7 @@ export interface GetProductsSKUbyBarcodeRequest extends Gateway<GetProductsSKUby
     searchOnlyInCodeIai: (value: boolean) => this;
 }
 
-export interface GetProductsAttachmentsGetContentRequest extends Gateway {
+export interface GetProductsAttachmentsGetContentRequest extends Gateway<GetProductsAttachmentsGetContentResponse, RequestParams.GetProductsAttachmentsGetContentParams> {
     /** - product identifier value */
     productIdentValue: (value: string) => this;
     /** - product identifier type */
@@ -2223,7 +2224,7 @@ export interface GetProductsBrandsFilterRequest extends Gateway {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
-    languageId: (value: string) => this;
+    languageId: (value: LangId) => this;
     /** Brand ID */
     producerId: (value: number|string) => this;
 }
@@ -2232,7 +2233,7 @@ export interface PutProductsBrandsFilterRequest extends AppendableGateway<PutPro
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
-    languageId: (value: string) => this;
+    languageId: (value: LangId) => this;
     /** Brand ID */
     producerId: (value: number|string) => this;
     filterForNodeIsDefault: (value: 'y'|'n') => this;
@@ -2256,7 +2257,7 @@ export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBran
     /** Number of results on page. */
     results_limit: (value: number|string) => this;
     /** List of languages */
-    languagesIds: (value: string|string[]) => this;
+    languagesIds: (value: LangId|(LangId)[]) => this;
 }
 
 export interface PostProductsBrandsRequest extends AppendableGateway<PostProductsBrandsRequest, PutProductsBrandsResponse, RequestParams.PostProductsBrandsParams> {
@@ -2323,7 +2324,7 @@ export interface GetProductsCategoriesRequest extends PagableGateway<GetProducts
     /** List of product category identifiers in the panel */
     ids: (value: number|string|number[]|string[]) => this;
     /** Array of languages categories names should be returned in. "Defaults" value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages. */
-    languages: (value: string|string[]) => this;
+    languages: (value: LangId|(LangId)[]) => this;
     /** Result page number. */
     results_page: (value: number|string) => this;
     /** Number of results on page. */
@@ -2342,13 +2343,13 @@ export interface PutProductsCategoriesRequest extends AppendableGateway<PutProdu
     /** Category priority. Value from 1 to 19. */
     priority: (priority: number|string) => this
     /** Operation code. Allowed values. "add" - adds new category, "edit" - edits existing category, "del" - deletes existing category. */
-    operation: (operation: string) => this
+    operation: (operation: "add" | "edit" | "del") => this
     lang_data: (lang_data: RequestParams.PutProductsCategoriesParams["categories"][number]["lang_data"]) => this
 }
 
 export interface SearchProductsCategoriesIdosellRequest extends PagableGateway<SearchProductsCategoriesIdosellRequest, SearchProductsCategoriesIdosellResponse, RequestParams.SearchProductsCategoriesIdosellParams> {
     /** List of languages */
-    languagesIds: (value: string|string[]) => this;
+    languagesIds: (value: LangId|(LangId)[]) => this;
     /** Number of IdoSell Categories identifiers */
     categoriesIdoSellIds: (value: string|string[]) => this;
     /** IdoSell Categories name list */
@@ -2359,8 +2360,6 @@ export interface SearchProductsCategoriesIdosellRequest extends PagableGateway<S
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
     resultsLimit: (value: number|string) => this;
-    /** Define languagesIds values by passing them as an array */
-    languages: (values: number|string|number[]|string[]) => this;
 }
 
 export interface GetProductsCodeExistenceRequest extends Gateway<GetProductsCodeExistenceResponse> {
@@ -2454,7 +2453,7 @@ export interface PutProductsDescriptionsRequest extends AppendableGateway<PutPro
     productAuctionDescriptionsData: (productAuctionDescriptionsData: RequestParams.PutProductsDescriptionsParams["products"][number]["productAuctionDescriptionsData"]) => this
     productId: (value: number|string) => this;
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type?: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords", language?: string, shopId?: number|string) => this;
+    setText: (text: string, type?: "productName"|"productAuctionName"|"productPriceComparerName"|"productDescription"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeywords", language?: LangId, shopId?: number|string) => this;
 }
 
 export interface PutProductsGroupsMainProductRequest extends AppendableGateway<PutProductsGroupsMainProductRequest, ProductIdentResponse, RequestParams.PutProductsGroupsMainProductParams> {
@@ -2611,7 +2610,7 @@ export interface PostProductsOpinionsRequest extends AppendableGateway<PostProdu
     rating: (rating: string) => this
     content: (content: string) => this
     /** Customer language ID. */
-    language: (language: string) => this
+    language: (language: LangId) => this
     picture: (picture: string) => this
     /** Shop Id */
     shopId: (shopId: number|string) => this
@@ -2636,7 +2635,7 @@ export interface PutProductsOpinionsRequest extends Gateway {
     rating: (value: '1'|'2'|'3'|'4'|'5') => this;
     content: (value: string) => this;
     /** Customer language ID. */
-    language: (value: string) => this;
+    language: (value: LangId) => this;
     /** Reply to an opinion */
     shopAnswer: (value: string) => this;
     picture: (value: string) => this;
@@ -2685,7 +2684,7 @@ export interface SearchProductsParametersRequest extends PagableGateway<SearchPr
     /** Element text ID - can be entered instead of "id". */
     textIds: (value: RequestParams.SearchProductsParametersParams["textIds"]) => this;
     /** List of languages */
-    languagesIds: (value: string|string[]) => this;
+    languagesIds: (value: LangId|(LangId)[]) => this;
     /** Whether to return a list of parameter value IDs */
     parameterValueIds: (value: boolean) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -2871,7 +2870,7 @@ export interface PostProductsRequest extends AppendableGateway<PostProductsReque
     /** Product deposit count */
     depositCount: (depositCount: number|string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: string, shopId?: number|string) => this;
+    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: LangId, shopId?: number|string) => this;
     /** Sets product price by amount */
     setPrice: (value: number, type?: 'retail'|'wholesale'|'pos'|'minimal'|'strikethroughRetail'|'strikethroughWholesale'|'suggested'|'automaticCalculation') => this;
 }
@@ -3144,7 +3143,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     /** Product deposit count */
     depositCount: (depositCount: number|string) => this
     /** Set various types of names or descriptions to the product */
-    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: string, shopId?: number|string) => this;
+    setText: (text: string, type?: "productName"|"productParamDescriptions"|"productLongDescription"|"productMetaTitle"|"productMetaDescription"|"productMetaKeyword"|"productAuctionName"|"productAuctionDescription"|"productAuctionAdditionalName"|"productNameInPriceComparer", language?: LangId, shopId?: number|string) => this;
     /** Set edit mode - disables adding new product */
     editMode: () => this;
     /** Set add mode - Api is allowed to create new products */
@@ -3226,7 +3225,7 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Possibility of sorting returned list */
     ordersBy: (value: RequestParams.SearchProductsParams["ordersBy"]) => this;
     /** Language ID that allows to search and return data in chosen language. This parameter is optional. If it's lacking, she search process unfolds in all available languages. */
-    productSearchingLangId: (value: string) => this;
+    productSearchingLangId: (value: LangId) => this;
     /** Currency ID allowing to search and browse products in given currency. This parameter is optional, when it's lacking, the search process unfolds in all available currencies.  */
     productSearchingCurrencyId: (value: string) => this;
     /** Currency ID allowing for returning all product prices in an indicated currency */
@@ -3256,7 +3255,7 @@ export interface SearchProductsRequest extends PagableGateway<SearchProductsRequ
     /** Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock. */
     productInPersistent: (value: "y" | "n") => this;
     /** Settings of products returned with variants All products with variants are returned by default Available values: version_all - returns all variants, version_main - returns only main variant. */
-    returnProductsVersions: (value: string) => this;
+    returnProductsVersions: (value: "version_all" | "version_main") => this;
     /** Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
     productInSumInBasket: (value: "y" | "n") => this;
     /** Product type. Allowed values: "product_item" - Goods, "product_packaging" - packaging, "product_bundle" - set. "product_collection" - collection. "product_service" - service. "product_virtual" - virtual product. "product_configurable" - configurable product. */
@@ -3359,7 +3358,7 @@ export interface PutProductsQuestionsRequest extends AppendableGateway<PutProduc
     /** Question ID. */
     id: (id: number|string) => this
     /** Language of the question e.g. 'pol', 'eng'. */
-    lang: (lang: string) => this
+    lang: (lang: LangId) => this
     /** Your question(base64). */
     question: (question: string) => this
     /** Content of the answer(base64). */
@@ -3409,7 +3408,7 @@ export interface GetProductsSeriesFilterRequest extends Gateway {
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
-    languageId: (value: string) => this;
+    languageId: (value: LangId) => this;
     /** Series Id */
     serieId: (value: number|string) => this;
 }
@@ -3418,7 +3417,7 @@ export interface PutProductsSeriesFilterRequest extends AppendableGateway<PutPro
     /** Shop Id */
     shopId: (value: number|string) => this;
     /** Language ID (code in ISO 639-2). */
-    languageId: (value: string) => this;
+    languageId: (value: LangId) => this;
     /** Series Id */
     serieId: (value: number|string) => this;
     filterForNodeIsDefault: (value: 'y'|'n') => this;
@@ -3444,7 +3443,7 @@ export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeri
     /** Names */
     names: (value: string|string[]) => this;
     /** List of languages */
-    languagesIds: (value: string|string[]) => this;
+    languagesIds: (value: LangId|(LangId)[]) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -3925,7 +3924,7 @@ export interface GetRegulationsHistoryRequest extends PagableGateway<GetRegulati
     /** Country ISO code */
     country: (value: string) => this;
     /** Language ISO code */
-    langId: (value: string) => this;
+    langId: (value: LangId) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4146,7 +4145,7 @@ export interface GetSizechartsRequest extends PagableGateway<GetSizechartsReques
     /** Names of size charts */
     names: (value: string|string[]) => this;
     /** List of languages */
-    languages: (value: string|string[]) => this;
+    languages: (value: LangId|(LangId)[]) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4527,7 +4526,7 @@ export interface GetSystemShopsDataRequest extends Gateway<GetSystemShopsDataRes
 
 export interface GetSystemUnitsRequest extends Gateway<GetSystemUnitsResponse> {
     /** List of languages */
-    languagesIds: (value: string|string[]) => this;
+    languagesIds: (value: LangId|(LangId)[]) => this;
 }
 
 export interface PutSystemUnitsRequest extends AppendableGateway<PutSystemUnitsRequest, PutSystemUnitsResponse, RequestParams.PutSystemUnitsParams> {
@@ -4712,7 +4711,7 @@ export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesReq
     period: (period: number|string) => this
 }
 
-export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest, GetWmsLocationsResponse> {
+export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest, GetWmsLocationsResponse, RequestParams.GetWmsLocationsParams> {
     /** Warehouse location ID */
     locationId: (value: number|string) => this;
     /** Storage location code */
@@ -4720,7 +4719,7 @@ export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRe
     /** Stock ID */
     stockId: (value: number|string) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available values: locationName, locationPath, locationCode, stockId, products */
-    returnElements: (value: string|string[]) => this;
+    returnElements: (value: "locationName" | "locationPath" | "locationCode" | "stockId" | "products" | ("locationName" | "locationPath" | "locationCode" | "stockId" | "products")[]) => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */

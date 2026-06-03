@@ -11,6 +11,16 @@ type GetLangDataFunction = <T extends {
     langId: string;
 }>(_array: T[], _langId?: string) => T | undefined;
 type ClearParametersLangDataFunction = (_products: SearchProductsResponse['results'], _langId?: string) => SearchProductsResponse['results'];
+type MappedParameterValue = {
+    valueId: number;
+    value: string;
+};
+type MappedParameter = {
+    id: number;
+    name: string;
+    values: MappedParameterValue[];
+};
+type MapProductParametersFunction = (_product: IdosellProduct, _langId?: string) => MappedParameter[];
 declare const _default: {
     /** @description The method allows you to build an IAI code from the product ID and size ID. */
     getIaiCode: GetIaICodeFunction;
@@ -30,5 +40,7 @@ declare const _default: {
     clearParametersLangData: ClearParametersLangDataFunction;
     /** @description Removes attachments to RMA that are returned by default, helps to reduce data if serialized or forwarded */
     removeRmaAttachments: (rmaResponse: GetRmaResponse) => GetRmaResponse;
+    /** @description Maps product parameters to a simplified structure for a given language. Skips parameters with no values. */
+    mapProductParameters: MapProductParametersFunction;
 };
 export default _default;

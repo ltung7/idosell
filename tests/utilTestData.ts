@@ -342,3 +342,240 @@ export const STOCK_PRODUCT: SearchProductsResponse['results'][number] = {
         }
     ]
 }
+
+export const PARAMETER_PRODUCT: SearchProductsResponse['results'][number] = {
+    "productId": 356,
+    "productParameters": [
+        {
+            "parameterId": 326,
+            "parameterType": "parameter",
+            "parameterDescriptionsLangData": [
+                {
+                    "langId": "eng",
+                    "parameterName": "Kolor akcentów",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "ger",
+                    "parameterName": "Kolor akcentów",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "pol",
+                    "parameterName": "Kolor akcentów",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                }
+            ],
+            "parameterValues": [
+                {
+                    "parameterValueId": 399,
+                    "parameterValueDescriptionsLangData": [
+                        {
+                            "langId": "eng",
+                            "parameterValueName": "Czarny",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "ger",
+                            "parameterValueName": "Czarny",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "pol",
+                            "parameterValueName": "Czarny",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "parameterId": 173,
+            "parameterType": "parameter",
+            "parameterDescriptionsLangData": [
+                {
+                    "langId": "eng",
+                    "parameterName": "Waga całkowita",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "ger",
+                    "parameterName": "Waga całkowita",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "pol",
+                    "parameterName": "Waga całkowita",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                }
+            ],
+            "parameterValues": [
+                {
+                    "parameterValueId": 522,
+                    "parameterValueDescriptionsLangData": [
+                        {
+                            "langId": "eng",
+                            "parameterValueName": "100g",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "ger",
+                            "parameterValueName": "100g",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "pol",
+                            "parameterValueName": "100g",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "parameterId": 521,
+            "parameterType": "section",
+            "parameterDescriptionsLangData": [
+                {
+                    "langId": "eng",
+                    "parameterName": "XCut",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "ger",
+                    "parameterName": "XCut",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "pol",
+                    "parameterName": "XCut",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                }
+            ]
+        },
+        {
+            "parameterId": 26,
+            "parameterType": "parameter",
+            "parameterDescriptionsLangData": [
+                {
+                    "langId": "eng",
+                    "parameterName": "Color",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "ger",
+                    "parameterName": "Kolor",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                },
+                {
+                    "langId": "pol",
+                    "parameterName": "Kolor",
+                    "parameterDescription": "",
+                    "parameterShopsData": []
+                }
+            ],
+            "parameterValues": [
+                {
+                    "parameterValueId": 48,
+                    "parameterValueDescriptionsLangData": [
+                        {
+                            "langId": "eng",
+                            "parameterValueName": "Black",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "ger",
+                            "parameterValueName": "czarny",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "pol",
+                            "parameterValueName": "czarny",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        }
+                    ]
+                },
+                {
+                    "parameterValueId": 96,
+                    "parameterValueDescriptionsLangData": [
+                        {
+                            "langId": "eng",
+                            "parameterValueName": "red",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "ger",
+                            "parameterValueName": "czerwony",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        },
+                        {
+                            "langId": "pol",
+                            "parameterValueName": "czerwony",
+                            "parameterValueDescription": "",
+                            "parameterValueShopsData": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+export const PARAMETER_PRODUCT_RESULT = [
+    {
+        "id": 326,
+        "name": "Kolor akcentów",
+        "values": [
+            {
+                "valueId": 399,
+                "value": "Czarny"
+            }
+        ]
+    },
+    {
+        "id": 173,
+        "name": "Waga całkowita",
+        "values": [
+            {
+                "valueId": 522,
+                "value": "100g"
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "name": "Kolor",
+        "values": [
+            {
+                "valueId": 48,
+                "value": "czarny"
+            },
+            {
+                "valueId": 96,
+                "value": "czerwony"
+            }
+        ]
+    }
+]

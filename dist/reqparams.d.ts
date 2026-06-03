@@ -1,8 +1,12 @@
+import { ENUMS } from "./enums";
+type ProductReturnElement = `${ENUMS.PRODUCTS_RETURN_ELEMENTS}`;
+type LangId = `${ENUMS.LANG_IDS}`;
+
 export type PostOrdersParams = {
     /** @description Orders. */
     orders: {
         /** @description Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail" */
-        orderType?: string;
+        orderType?: "retail" | "wholesale";
         /** @description Shop Id */
         shopId?: number;
         /** @description Stock ID */
@@ -12,7 +16,7 @@ export type PostOrdersParams = {
         /** @description Currency ID */
         currencyId: string;
         /** @description Determines if customer unregistered. Allowed values. "y" - casual client, "n" - registered customer. Default value:: "y". If customer is unregistered, enter customer details in element: "clientWithoutAccountData". For client with account - existing login should be stored in: "clientLogin". */
-        clientWithoutAccount: string;
+        clientWithoutAccount: "y" | "n";
         /** @description Balance data for casual client. Object is necessary for casual clients (in case of client_once has y value). */
         clientWithoutAccountData?: {
             /** @description Customer's first name. */
@@ -38,7 +42,7 @@ export type PostOrdersParams = {
             /** @description Land line. */
             clientPhone2?: string;
             /** @description Language ID */
-            langId?: string;
+            langId?: LangId;
         };
         /** @description Customer's login. */
         clientLogin?: string;
@@ -117,7 +121,7 @@ export type PostOrdersParams = {
             /** @description Value of VAT */
             productVat?: number;
             /** @description Is product VAT free Allowed values "y" - yes, "n" - no. */
-            productVatFree?: string;
+            productVatFree?: "y" | "n";
             /** @description Information on used discount code. */
             discountCode?: {
                 /** @description Name. */
@@ -162,6 +166,8 @@ export type PostOrdersParams = {
         billingCurrencyRate?: number;
         /** @description Sale date. ISO 8602 format. */
         purchaseDate?: string;
+        /** @description Split payment MPP marking */
+        splitPayment?: boolean;
     }[];
 };
 
@@ -171,13 +177,13 @@ export type PostProductsParams = {
         /** @description Price format. Parameter is currently unused. */
         settingPriceFormat?: string;
         /** @description Object determines if new categories can be added when category linked with product couldn't be found in system. Allowed values "n" - adding new categories not allowed (default value), "y" - adding new categories is possible. */
-        settingAddingCategoryAllowed?: string;
+        settingAddingCategoryAllowed?: "n" | "y";
         /** @description Object determines if new product sizes can be added when size linked with product couldn't be found in system. Allowed values "n" - adding new sizes not allowed (default value), "y" - adding new sizes is possible. */
-        settingAddingSizeAllowed?: string;
+        settingAddingSizeAllowed?: "n" | "y";
         /** @description Object determines if new producers can be added when producer linked with product couldn't be found in system. Allowed values "n" - you have no rights to add new manufacturers (default value), "y" - adding new producer is possible. */
-        settingAddingProducerAllowed?: string;
+        settingAddingProducerAllowed?: "n" | "y";
         /** @description Object determines if new product series can be added when series linked with product couldn't be found in system. Allowed values "n" - you have no rights to add new product series (default value), "y" - adding new series is possible. */
-        settingAddingSeriesAllowed?: string;
+        settingAddingSeriesAllowed?: "n" | "y";
         /** @description Object determines default category which will be linked with product when it will not be linked with any category.. */
         settingDefaultCategory?: {
             /** @description Category id */
@@ -202,11 +208,11 @@ export type PostProductsParams = {
         /** @description Object determines photo URL. */
         picturesSettingInitialUrlPart?: string;
         /** @description Object determines the method of adding photos in "pictures" object. Allowed values "base64" - photos added in base64 coding algorithm, "url" - photos added as URLs to external systems. */
-        picturesSettingInputType?: string;
+        picturesSettingInputType?: "base64" | "url";
         /** @description Object determines the method of adding product photos. Allowed values "n" - photos are uploaded from the first free place, "y" - photos are uploaded from the first place. */
-        picturesSettingOverwrite?: string;
+        picturesSettingOverwrite?: "n" | "y";
         /** @description Object determines if the photo should be scaled. Allowed values "n" - no scaling allowance, "y" - scaling allowance. */
-        picturesSettingScaling?: string;
+        picturesSettingScaling?: "n" | "y";
     };
     /** @description Products list. */
     products: {
@@ -249,7 +255,7 @@ export type PostProductsParams = {
         /** @description Size group ID Change of one size group to another results in zeroing all stock quantities in all stocks. Change of size group can be made, if product is not present in any unhandled orders nor listed on auctions. */
         sizesGroupId?: number;
         /** @description Optional element, that determines prices edition mode. Default value is "amount_set", when indicated element is omitted in API gate call.. Allowed values "amount_set" - sets product prices to desired value (default mode), "amount_diff" - sets sum difference between prices set (adds or subtracts entered sum from the current price), "percent_diff" - sets percentage difference between prices set (adds or subtracts entered percent from the current price). */
-        priceChangeMode?: string;
+        priceChangeMode?: "amount_set" | "amount_diff" | "percent_diff";
         /** @description The JavaScript formula calculating prices */
         priceFormula?: {
             /** @description Formula parameters for calculating price */
@@ -270,7 +276,7 @@ export type PostProductsParams = {
         /** @description Value of VAT */
         productVat?: number;
         /** @description Is product VAT free Allowed values "y" - yes, "n" - no. */
-        productVatFree?: string;
+        productVatFree?: "y" | "n";
         /** @description Different prices for price comparison websites. */
         productPriceComparisonSitesPrices?: {
             /** @description price comparison website ID */
@@ -279,7 +285,7 @@ export type PostProductsParams = {
             productPriceComparisonSitePrice?: number;
         }[];
         /** @description Object determines if the product is available in POS sale Available values: "n" - no, "y" - yes. */
-        productEnableInPos?: string;
+        productEnableInPos?: "n" | "y";
         /** @description Required advance payment in percents */
         productAdvancePrice?: number;
         /** @description Annotation. */
@@ -289,15 +295,15 @@ export type PostProductsParams = {
         /** @description Weight. */
         productWeight?: number;
         /** @description Product visibility. Allowed values "y" - product visible, "n" - product not visible. */
-        productInVisible?: string;
+        productInVisible?: "y" | "n";
         /** @description Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock. */
-        productInPersistent?: string;
+        productInPersistent?: "y" | "n";
         /** @description Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. */
         shopsMask: number;
         /** @description Complex rating Available values: "0" - no, "1" - yes. */
         productComplexNotes?: number;
         /** @description Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - yes (selected), "n" - invisible. */
-        productInExportToPriceComparisonSites?: string;
+        productInExportToPriceComparisonSites?: "y" | "selected" | "n";
         /** @description Selection of comparison sites for which the product visibility will be changed */
         priceComparisonSites?: {
             /** @description Shop Id */
@@ -306,7 +312,7 @@ export type PostProductsParams = {
             priceComparisonSiteId?: number;
         }[];
         /** @description Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible. */
-        productInExportToAmazonMarketplace?: string;
+        productInExportToAmazonMarketplace?: "y" | "selected" | "n";
         /** @description Availability profile ID. */
         availableProfile?: number;
         /** @description Discount profile ID */
@@ -377,7 +383,7 @@ export type PostProductsParams = {
             /** @description External product system code */
             productCode?: string;
             /** @description Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock. */
-            productInPersistent?: string;
+            productInPersistent?: "y" | "n";
             /** @description Product stock quantity data. */
             productStocksData?: {
                 /** @description Object contains information on product quantity */
@@ -438,7 +444,7 @@ export type PostProductsParams = {
         productNames?: {
             productNamesLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Product name. */
                 productName?: string;
             }[];
@@ -447,7 +453,7 @@ export type PostProductsParams = {
             /** @description Array of language-dependent elements. */
             productDescriptionsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Short product description. */
                 productDescription?: string;
             }[];
@@ -456,7 +462,7 @@ export type PostProductsParams = {
         productLongDescriptions?: {
             productLongDescriptionsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Long product description. */
                 productLongDescription?: string;
             }[];
@@ -478,7 +484,7 @@ export type PostProductsParams = {
         productMetaTitles?: {
             productMetaTitlesLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Language name */
                 langName?: string;
                 /** @description Product meta title. */
@@ -489,7 +495,7 @@ export type PostProductsParams = {
         productMetaDescriptions?: {
             productMetaDescriptionsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Language name */
                 langName?: string;
                 /** @description Product meta description. */
@@ -500,7 +506,7 @@ export type PostProductsParams = {
         productMetaKeywords?: {
             productMetaKeywordsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Language name */
                 langName?: string;
                 /** @description Product meta keywords. */
@@ -513,7 +519,7 @@ export type PostProductsParams = {
                 /** @description Shop Id */
                 shopId?: number;
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @example url */
                 url?: string;
             }[];
@@ -527,82 +533,82 @@ export type PostProductsParams = {
             /** @description Settings for groups of items (variants) */
             versionSettings?: {
                 /** @description Show in shop. Available values: "y" - all products from group, "n" - only the first product from group. */
-                versionDisplayAllInShop?: string;
+                versionDisplayAllInShop?: "y" | "n";
                 /** @description The same code. Available values: "y" - yes, "n" - no. */
-                versionCommonCode?: string;
+                versionCommonCode?: "y" | "n";
                 /** @description The same brand. Available values: "y" - yes, "n" - no. */
-                versionCommonProducer?: string;
+                versionCommonProducer?: "y" | "n";
                 /** @description The same annotation. Available values: "y" - yes, "n" - no. */
-                versionCommonNote?: string;
+                versionCommonNote?: "y" | "n";
                 /** @description The same warranty. Available values: "y" - yes, "n" - no. */
-                versionCommonWarranty?: string;
+                versionCommonWarranty?: "y" | "n";
                 /** @description The same series. Available values: "y" - yes, "n" - no. */
-                versionCommonSeries?: string;
+                versionCommonSeries?: "y" | "n";
                 /** @description The same category. Available values: "y" - yes, "n" - no. */
-                versionCommonCategory?: string;
+                versionCommonCategory?: "y" | "n";
                 /** @description The same price. Available values: "y" - yes, "n" - no. */
-                versionCommonPrice?: string;
+                versionCommonPrice?: "y" | "n";
                 /** @description Same price for auction services. possible values "y" - yes, "n" - no. */
                 versionCommonAuctionsPrice?: string;
                 /** @description Same advance. Available values: "y" - yes, "n" - no. */
-                versionCommonAdvance?: string;
+                versionCommonAdvance?: "y" | "n";
                 /** @description Same quantity discount. Available values: "y" - yes, "n" - no. */
-                versionCommonRebate?: string;
+                versionCommonRebate?: "y" | "n";
                 /** @description the same VAT rate. Available values: "y" - yes, "n" - no. */
-                versionCommonVat?: string;
+                versionCommonVat?: "y" | "n";
                 /** @description The same loyalty points. Available values: "y" - yes, "n" - no. */
-                versionCommonProfitPoints?: string;
+                versionCommonProfitPoints?: "y" | "n";
                 /** @description The same promotion. Available values: "y" - yes, "n" - no. */
-                versionCommonPromotion?: string;
+                versionCommonPromotion?: "y" | "n";
                 /** @description The same loyalty discount. Available values: "y" - yes, "n" - no. */
-                versionCommonDiscount?: string;
+                versionCommonDiscount?: "y" | "n";
                 /** @description The same privileged products. Available values: "y" - yes, "n" - no. */
-                versionCommonDistinguished?: string;
+                versionCommonDistinguished?: "y" | "n";
                 /** @description The same for special. Available values: "y" - yes, "n" - no. */
-                versionCommonSpecial?: string;
+                versionCommonSpecial?: "y" | "n";
                 /** @description DEPRECATED */
                 versionCommonTraits?: string;
                 /** @description The same related product. Available values: "y" - yes, "n" - no. */
-                versionCommonAssociated?: string;
+                versionCommonAssociated?: "y" | "n";
                 /** @description The same visibility. Available values: "y" - yes, "n" - no. */
-                versionCommonVisibility?: string;
+                versionCommonVisibility?: "y" | "n";
                 /** @description Same display when not in stock. Available values: "y" - yes, "n" - no. */
-                versionCommonPersistent?: string;
+                versionCommonPersistent?: "y" | "n";
                 /** @description The same priority. Available values: "y" - yes, "n" - no. */
-                versionCommonPriority?: string;
+                versionCommonPriority?: "y" | "n";
                 /** @description The same shops. Available values: "y" - yes, "n" - no. */
-                versionCommonShops?: string;
+                versionCommonShops?: "y" | "n";
                 /** @description The same sizes. Available values: "y" - yes, "n" - no. */
-                versionCommonSizes?: string;
+                versionCommonSizes?: "y" | "n";
                 /** @description The same unit of measure. Available values: "y" - yes, "n" - no. */
-                versionCommonUnit?: string;
+                versionCommonUnit?: "y" | "n";
                 /** @description The same weight. Available values: "y" - yes, "n" - no. */
-                versionCommonWeight?: string;
+                versionCommonWeight?: "y" | "n";
                 /** @description The same parameters. possible values "y" - yes, "n" - no. */
                 versionCommonDictionary?: string;
                 /** @description The same name. Available values: "y" - yes, "n" - no. */
-                versionCommonName?: string;
+                versionCommonName?: "y" | "n";
                 /** @description The same short description. Available values: "y" - yes, "n" - no. */
-                versionCommonDescription?: string;
+                versionCommonDescription?: "y" | "n";
                 /** @description The same long description. Available values: "y" - yes, "n" - no. */
-                versionCommonLongDescription?: string;
+                versionCommonLongDescription?: "y" | "n";
                 /** @description The same icon. Available values: "y" - yes, "n" - no. */
-                versionCommonIcon?: string;
+                versionCommonIcon?: "y" | "n";
                 /** @description The same large photos. Available values: "y" - yes, "n" - no. */
-                versionCommonPhotos?: string;
+                versionCommonPhotos?: "y" | "n";
                 /** @description The same availability profile. Available values: "y" - yes, "n" - no. */
-                versionCommonAvailableProfile?: string;
+                versionCommonAvailableProfile?: "y" | "n";
                 /** @description The same complex rating. Available values: "y" - yes, "n" - no. */
-                versionCommonComplexNotes?: string;
+                versionCommonComplexNotes?: "y" | "n";
                 /** @description Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-                versionCommonSumInBasket?: string;
+                versionCommonSumInBasket?: "y" | "n";
             };
             /** @description Parameter value names */
             versionNames?: {
                 /** @description Array of languages, values are displayed in. */
                 versionNamesLangData?: {
                     /** @description Language ID */
-                    langId?: string;
+                    langId?: LangId;
                     /** @description Name of the parameter value, e.g. orange, green, red */
                     versionName?: string;
                 }[];
@@ -612,7 +618,7 @@ export type PostProductsParams = {
                 /** @description Parameter name */
                 versionGroupNamesLangData?: {
                     /** @description Language ID */
-                    langId?: string;
+                    langId?: LangId;
                     /** @description Parameter name, e.g. color, width */
                     versionGroupName?: string;
                 }[];
@@ -632,7 +638,7 @@ export type PostProductsParams = {
             productDeliveryTimeValue?: number;
         };
         /** @description Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-        productSumInBasket?: string;
+        productSumInBasket?: "y" | "n";
         /** @description Shipping, returns and complaints settings */
         dispatchSettings?: {
             enabled?: boolean;
@@ -874,7 +880,7 @@ export type PutProductsParams = {
         /** @description Size group name. */
         sizesGroupName?: string;
         /** @description Optional element, that determines prices edition mode. Default value is "amount_set", when indicated element is omitted in API gate call.. Allowed values "amount_set" - sets product prices to desired value (default mode), "amount_diff" - sets sum difference between prices set (adds or subtracts entered sum from the current price), "percent_diff" - sets percentage difference between prices set (adds or subtracts entered percent from the current price). */
-        priceChangeMode?: string;
+        priceChangeMode?: "amount_set" | "amount_diff" | "percent_diff";
         /** @description Gross price */
         productRetailPrice?: number;
         /** @description Net retail price for every shop. */
@@ -910,7 +916,7 @@ export type PutProductsParams = {
         /** @description Value of VAT */
         productVat?: number;
         /** @description Is product VAT free Allowed values "y" - yes, "n" - no. */
-        productVatFree?: string;
+        productVatFree?: "y" | "n";
         /** @description Different prices for price comparison websites. */
         productPriceComparisonSitesPrices?: {
             /** @description price comparison website ID */
@@ -921,7 +927,7 @@ export type PutProductsParams = {
             productPriceComparisonSitePriceNet?: number;
         }[];
         /** @description Object determines if the product is available in POS sale Available values: "n" - no, "y" - yes. */
-        productEnableInPos?: string;
+        productEnableInPos?: "n" | "y";
         /** @description Required advance payment in percents */
         productAdvancePrice?: number;
         /** @description Annotation. */
@@ -968,7 +974,7 @@ export type PutProductsParams = {
         /** @description Weight. */
         productWeight?: number;
         /** @description Product visibility. Allowed values "y" - product visible, "n" - product not visible. */
-        productInVisible?: string;
+        productInVisible?: "y" | "n";
         /** @description Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. */
         shopsMask?: number;
         /** @description Complex rating Available values: "0" - no, "1" - yes. */
@@ -983,7 +989,7 @@ export type PutProductsParams = {
             priceComparisonSiteId?: number;
         }[];
         /** @description Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible. */
-        productInExportToAmazonMarketplace?: string;
+        productInExportToAmazonMarketplace?: "y" | "selected" | "n";
         /** @description Array */
         exportToAmazonMarketplacesList?: string[];
         /** @description Export sizes to Amazon: Available values: "y" - all, "n" - leave without change. */
@@ -1150,7 +1156,7 @@ export type PutProductsParams = {
                 /** @description List of languages. */
                 attachmentLanguages?: {
                     /** @description Language ID */
-                    langId?: string;
+                    langId?: LangId;
                     /** @description Language name */
                     langName?: string;
                     /** @description Literal in selected language. */
@@ -1180,7 +1186,7 @@ export type PutProductsParams = {
         /** @description The list of attachments to be deleted. */
         removeAttachments?: {
             /** @description Language ID */
-            langId?: string;
+            langId?: LangId;
         }[];
         /** @description Do you want to delete attachments for digital files. */
         virtualAttachmentsToRemove?: boolean;
@@ -1193,7 +1199,7 @@ export type PutProductsParams = {
                 /** @description List of languages. */
                 attachmentLanguages?: {
                     /** @description Language ID */
-                    langId?: string;
+                    langId?: LangId;
                     /** @description Language name */
                     langName?: string;
                     /** @description Literal in selected language. */
@@ -1460,7 +1466,7 @@ export type PutProductsParams = {
         productNames?: {
             productNamesLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Product name. */
                 productName?: string;
                 /** @description Shop Id */
@@ -1473,7 +1479,7 @@ export type PutProductsParams = {
         productNamesInAuction?: {
             productNamesInAuctionLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @example productNameInAuction */
                 productNameInAuction?: string;
             }[];
@@ -1482,7 +1488,7 @@ export type PutProductsParams = {
         productNamesInPriceComparer?: {
             productNamesInPriceComparerLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Product name for price comparison websites. */
                 productNameInPriceComparer?: string;
             }[];
@@ -1491,7 +1497,7 @@ export type PutProductsParams = {
         productParamDescriptions?: {
             productParamDescriptionsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Product short description */
                 productParamDescriptions?: string;
                 /** @description Shop Id */
@@ -1504,7 +1510,7 @@ export type PutProductsParams = {
         productLongDescriptions?: {
             productLongDescriptionsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Long product description. */
                 productLongDescription?: string;
                 /** @description Shop Id */
@@ -1517,7 +1523,7 @@ export type PutProductsParams = {
         productLongDescriptionsInAuction?: {
             productLongDescriptionsInAuctionLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @example productLongDescriptionInAuction */
                 productLongDescriptionInAuction?: string;
             }[];
@@ -1541,7 +1547,7 @@ export type PutProductsParams = {
                 /** @description Shop Id */
                 shopId?: number;
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Language name */
                 langName?: string;
                 /** @description Product meta title. */
@@ -1554,7 +1560,7 @@ export type PutProductsParams = {
                 /** @description Shop Id */
                 shopId?: number;
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Language name */
                 langName?: string;
                 /** @description Product meta description. */
@@ -1567,7 +1573,7 @@ export type PutProductsParams = {
                 /** @description Shop Id */
                 shopId?: number;
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Language name */
                 langName?: string;
                 /** @description Product meta keywords. */
@@ -1580,7 +1586,7 @@ export type PutProductsParams = {
                 /** @description Shop Id */
                 shopId?: number;
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @example url */
                 url?: string;
             }[];
@@ -1599,94 +1605,94 @@ export type PutProductsParams = {
             /** @description Settings for groups of items (variants) */
             versionSettings?: {
                 /** @description Show in shop. Available values: "y" - all products from group, "n" - only the first product from group. */
-                versionDisplayAllInShop?: string;
+                versionDisplayAllInShop?: "y" | "n";
                 /** @description Show in panel. Available values: "y" - wszystkie towary z grupy, "n" - only the first product from group. */
-                versionDisplayAllInPanel?: string;
+                versionDisplayAllInPanel?: "y" | "n";
                 /** @description Adding the canonical links to the site. Available values: "y" - on, "n" - Off. */
-                versionDisplayRelCanonicalInShop?: string;
+                versionDisplayRelCanonicalInShop?: "y" | "n";
                 /** @description The same code. Available values: "y" - yes, "n" - no. */
-                versionCommonCode?: string;
+                versionCommonCode?: "y" | "n";
                 /** @description The same brand. Available values: "y" - yes, "n" - no. */
-                versionCommonProducer?: string;
+                versionCommonProducer?: "y" | "n";
                 /** @description The same annotation. Available values: "y" - yes, "n" - no. */
-                versionCommonNote?: string;
+                versionCommonNote?: "y" | "n";
                 /** @description The same warranty. Available values: "y" - yes, "n" - no. */
-                versionCommonWarranty?: string;
+                versionCommonWarranty?: "y" | "n";
                 /** @description The same for size chart. Available values: "y" - yes, "n" - no. */
-                versionCommonSizesChart?: string;
+                versionCommonSizesChart?: "y" | "n";
                 /** @description The same series. Available values: "y" - yes, "n" - no. */
-                versionCommonSeries?: string;
+                versionCommonSeries?: "y" | "n";
                 /** @description The same category. Available values: "y" - yes, "n" - no. */
-                versionCommonCategory?: string;
+                versionCommonCategory?: "y" | "n";
                 /** @description The same price. Available values: "y" - yes, "n" - no. */
-                versionCommonPrice?: string;
+                versionCommonPrice?: "y" | "n";
                 /** @description Same advance. Available values: "y" - yes, "n" - no. */
-                versionCommonAdvance?: string;
+                versionCommonAdvance?: "y" | "n";
                 /** @description Same quantity discount. Available values: "y" - yes, "n" - no. */
-                versionCommonRebate?: string;
+                versionCommonRebate?: "y" | "n";
                 /** @description the same VAT rate. Available values: "y" - yes, "n" - no. */
-                versionCommonVat?: string;
+                versionCommonVat?: "y" | "n";
                 /** @description The same loyalty points. Available values: "y" - yes, "n" - no. */
-                versionCommonProfitPoints?: string;
+                versionCommonProfitPoints?: "y" | "n";
                 /** @description The same related product. Available values: "y" - yes, "n" - no. */
-                versionCommonAssociated?: string;
+                versionCommonAssociated?: "y" | "n";
                 /** @description The same visibility. Available values: "y" - yes, "n" - no. */
-                versionCommonVisibility?: string;
+                versionCommonVisibility?: "y" | "n";
                 /** @description The same priority. Available values: "y" - yes, "n" - no. */
-                versionCommonPriority?: string;
+                versionCommonPriority?: "y" | "n";
                 /** @description The same shops. Available values: "y" - yes, "n" - no. */
-                versionCommonShops?: string;
+                versionCommonShops?: "y" | "n";
                 /** @description The same sizes. Available values: "y" - yes, "n" - no. */
-                versionCommonSizes?: string;
+                versionCommonSizes?: "y" | "n";
                 /** @description The same weight. Available values: "y" - yes, "n" - no. */
-                versionCommonWeight?: string;
+                versionCommonWeight?: "y" | "n";
                 /** @description The same name. Available values: "y" - yes, "n" - no. */
-                versionCommonName?: string;
+                versionCommonName?: "y" | "n";
                 /** @description The same product's name for Internet auctions. Available values: "y" - yes, "n" - no. */
-                versionCommonAuctionName?: string;
+                versionCommonAuctionName?: "y" | "n";
                 /** @description The same short description. Available values: "y" - yes, "n" - no. */
-                versionCommonDescription?: string;
+                versionCommonDescription?: "y" | "n";
                 /** @description The same long description. Available values: "y" - yes, "n" - no. */
-                versionCommonLongDescription?: string;
+                versionCommonLongDescription?: "y" | "n";
                 /** @description The same icon. Available values: "y" - yes, "n" - no. */
-                versionCommonIcon?: string;
+                versionCommonIcon?: "y" | "n";
                 /** @description The same large photos. Available values: "y" - yes, "n" - no. */
-                versionCommonPhotos?: string;
+                versionCommonPhotos?: "y" | "n";
                 /** @description The same availability profile. Available values: "y" - yes, "n" - no. */
-                versionCommonAvailableProfile?: string;
+                versionCommonAvailableProfile?: "y" | "n";
                 /** @description The same complex rating. Available values: "y" - yes, "n" - no. */
-                versionCommonComplexNotes?: string;
+                versionCommonComplexNotes?: "y" | "n";
                 /** @description Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-                versionCommonSumInBasket?: string;
+                versionCommonSumInBasket?: "y" | "n";
                 /** @description The same objects in menu Available values: "y" - yes, "n" - no. */
-                versionCommonMenuItems?: string;
+                versionCommonMenuItems?: "y" | "n";
                 /** @description The same supplier. Available values: "y" - yes, "n" - no. */
-                versionCommonDeliverer?: string;
+                versionCommonDeliverer?: "y" | "n";
                 /** @description The same attachments Available values: "y" - yes, "n" - no. */
-                versionCommonAttachments?: string;
+                versionCommonAttachments?: "y" | "n";
                 /** @description The same icons for auctions Available values: "y" - yes, "n" - no. */
-                versionCommonAuctionIcon?: string;
+                versionCommonAuctionIcon?: "y" | "n";
                 /** @description The same serial numbers Available values: "y" - yes, "n" - no. */
-                versionCommonSerialNumbers?: string;
+                versionCommonSerialNumbers?: "y" | "n";
                 /** @description The same parameters. possible values "y" - yes, "n" - no. */
                 versionCommonDictionary?: string;
                 /** @description Same promotions Available values: "y" - yes, "n" - no. */
-                versionCommonPromotions?: string;
+                versionCommonPromotions?: "y" | "n";
                 /** @description The same meta settings Available values: "y" - yes, "n" - no. */
-                versionCommonMetaTags?: string;
+                versionCommonMetaTags?: "y" | "n";
                 /** @description The same currency. Available values: "y" - yes, "n" - no. */
-                versionCommonCurrency?: string;
+                versionCommonCurrency?: "y" | "n";
                 /** @description The same formula for calculating prices Available values: "y" - yes, "n" - no. */
-                versionCommonPriceFormula?: string;
+                versionCommonPriceFormula?: "y" | "n";
                 /** @description The same JavaScript displayed on the product card Available values: "y" - yes, "n" - no. */
-                versionCommonJavaScriptOnCard?: string;
+                versionCommonJavaScriptOnCard?: "y" | "n";
             };
             /** @description Parameter value names */
             versionNames?: {
                 /** @description Array of languages, values are displayed in. */
                 versionNamesLangData?: {
                     /** @description Language ID */
-                    langId?: string;
+                    langId?: LangId;
                     /** @description Name of the parameter value, e.g. orange, green, red */
                     versionName?: string;
                 }[];
@@ -1696,7 +1702,7 @@ export type PutProductsParams = {
                 /** @description Parameter name */
                 versionGroupNamesLangData?: {
                     /** @description Language ID */
-                    langId?: string;
+                    langId?: LangId;
                     /** @description Parameter name, e.g. color, width */
                     versionGroupName?: string;
                 }[];
@@ -1737,16 +1743,16 @@ export type PutProductsParams = {
             /** @description Allows to enter parameter name i multiple languages at the same time. If it is used, item_textid and lang_id are ingored. */
             productParameterTextIdsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Parameter ID. */
                 productParameterTextId?: string;
             }[];
             /** @description Language ID */
-            langId?: string;
+            langId?: LangId;
             /** @description Parameters descriptions in indicated language versions. */
             productParametersDescriptionsLangData?: {
                 /** @description Language ID */
-                langId?: string;
+                langId?: LangId;
                 /** @description Parameter description */
                 productParametersDescription?: string;
             }[];
@@ -1759,7 +1765,7 @@ export type PutProductsParams = {
             /** @description Parameter name (if ID was not used). */
             productParameterTextIdent?: string;
             /** @description Language ID */
-            langId?: string;
+            langId?: LangId;
             /** @description Available values: distinction - Set as distinguished on product card, list of products (distinguished), projector_hide - Set as hidden on list of parameters on product card, group_distinction - Set as parameter differentiating products in group  (nieaktywne), auction_template_hide - Hidden for a variable [iai:product_parameters] in auction templates . */
             productParameterDescriptionType?: "distinction" | "group_distinction" | "projector_hide" | "auction_template_hide";
             /** @description Value. Allowed values: "y" "n" */
@@ -1788,7 +1794,7 @@ export type PutProductsParams = {
             menuId?: number;
         };
         /** @description Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-        productSumInBasket?: string;
+        productSumInBasket?: "y" | "n";
         /** @description Settings of prices for shop. Values allowed: "same_prices" - prices in each shop are the same, "different_prices" - prices in each shop are different. */
         productShopsPricesConfig?: "same_prices" | "different_prices";
         /** @description Price settings for POS. Allowed values: "pos_equals_retail" - sets POS price the same as retail price. Possible to set only if the "shops_prices_config" parameter is set to jest same_prices or there is only one shop in panel, "pos_notequals_retail" - Price for POS different than retail price, "not_available_in_pos" - Product not available for POS sales. "sizes_pos_price_as_base_price" - Remove prices for sizes and set a sale price which equals a basic price. */
@@ -1926,6 +1932,8 @@ export type PutOrdersParams = {
         orderStatus?: string;
         /** @description Order status id . */
         orderStatusId?: number;
+        /** @description Transaction type. */
+        transactionType?: "national" | "oss" | "export" | "intra";
         /** @description Flag informing on order registration or completion in external program through API. Allowed values. "none" - order was not registered in external program, "registered" - order was registered in external program, "realized" - order was completed in external program, "registered_pos" - order was registered in external program, "realized_pos" - order was completed in external program. */
         apiFlag?: "none" | "registered" | "realized" | "registered_pos" | "realized_pos" | "registration_fault";
         /** @description API note added to order. */
@@ -1961,7 +1969,7 @@ export type PutOrdersParams = {
             /** @description Value of VAT */
             productVat?: number;
             /** @description Is product VAT free Allowed values "y" - yes, "n" - no. */
-            productVatFree?: string;
+            productVatFree?: "y" | "n";
             /** @description Client's remarks on product. */
             remarksToProduct?: string;
             /** @description Label for grouping products. */
@@ -2015,6 +2023,10 @@ export type PutOrdersParams = {
         purchaseDate?: string;
         /** @description Estimated date of shipment of the order in format Y-m-d H:i */
         estimatedDeliveryDate?: string;
+        /** @description Split payment MPP marking */
+        splitPayment?: boolean;
+        /** @description Planned date of packing */
+        plannedDateOfPacking?: string;
     }[];
 };
 
@@ -2027,7 +2039,7 @@ export type PostCouriersPickupPointsParams = {
         /** @description collection point details. */
         descriptions?: {
             /** @description Language ID (code in ISO 639-2). */
-            languageId?: string;
+            languageId?: LangId;
             /** @description Name of the pickup point. */
             name?: string;
             /** @description collection point description . */
@@ -2082,7 +2094,7 @@ export type PutCouriersPickupPointsParams = {
         /** @description collection point details. */
         descriptions?: {
             /** @description Language ID (code in ISO 639-2). */
-            languageId?: string;
+            languageId?: LangId;
             /** @description Name of the pickup point. */
             name?: string;
             /** @description collection point description . */
@@ -2203,7 +2215,7 @@ export type PostClientsParams = {
         /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
         client_type?: "person" | "person_male" | "person_female" | "firm";
         /** @description Customer language ID. */
-        language?: string;
+        language?: LangId;
         /** @description Determines, in which store account should be active. */
         shops: number[];
         /** @description Defines availability of log in to other pages than the ones given in the element: shops  . */
@@ -2440,7 +2452,7 @@ export type PostMenuParams = {
         parent_textid?: string;
         lang_data: {
             /** @description Language ID. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Menu element name. */
             name?: string;
             /** @description Menu element order. */
@@ -2650,26 +2662,26 @@ export type PutProductsAttachmentsParams = {
         /** @description Stock keeping unit. */
         productIdent: {
             /** @description ID value. */
-            identValue: string | number;
+            identValue?: string | number;
             /** @description Identifier type. */
-            productIdentType: "id" | "index" | "codeExtern" | "codeProducer";
+            productIdentType?: "id" | "index" | "codeExtern" | "codeProducer";
         };
         /** @description Product attachments list. */
         attachments?: {
             /** @description Attachment file link. */
-            attachmentUrl: string;
+            attachmentUrl?: string;
             /** @description Attachment name. */
-            attachmentName: string;
+            attachmentName?: string;
             /** @description Language ID */
-            langId: string;
+            langId?: LangId;
             /** @description File type: audio, video, doc, other. */
-            attachmentFileType: "audio" | "video" | "doc" | "other" | "image";
+            attachmentFileType?: "audio" | "video" | "doc" | "other" | "image";
             /** @description Type of customer, attachment should be available for: 'all','ordered','wholesaler','wholesaler_or_ordered','wholesaler_and_ordered'. */
-            attachmentEnable: "all" | "ordered" | "wholesaler" | "wholesaler_or_orderer" | "wholesaler_and_ordered";
+            attachmentEnable?: "all" | "ordered" | "wholesaler" | "wholesaler_or_orderer" | "wholesaler_and_ordered";
             /** @description Attachment ID. */
             attachmentId?: number;
             /** @description Attachment downloads record. */
-            attachmentDownloadLog: "y" | "n";
+            attachmentDownloadLog?: "y" | "n";
             /** @description Attachment file extension. */
             attachmentFileExtension?: string;
             /** @description Attachment number. */
@@ -2679,7 +2691,7 @@ export type PutProductsAttachmentsParams = {
             /** @description Attachment document types list. */
             documentTypes?: {
                 /** @description Document type. */
-                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "others";
+                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "software_data_processing" | "hardware_data_processing" | "others";
                 /** @description Additional description. */
                 description?: string;
             }[];
@@ -2693,7 +2705,7 @@ export type PutProductsAttachmentsParams = {
                 /** @description List of languages. */
                 attachmentLanguages?: {
                     /** @description Language ID */
-                    langId?: string;
+                    langId?: LangId;
                     /** @description Language name */
                     langName?: string;
                     /** @description Literal in selected language. */
@@ -2749,7 +2761,7 @@ export type PutMenuParams = {
         item_textid?: string;
         lang_data?: {
             /** @description Language ID. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Menu element name. */
             name?: string;
             /** @description Menu element order. */
@@ -2991,10 +3003,10 @@ export type PutProductsCategoriesParams = {
         /** @description Category priority. Value from 1 to 19. */
         priority?: number;
         /** @description Operation code. Allowed values. "add" - adds new category, "edit" - edits existing category, "del" - deletes existing category. */
-        operation?: string;
+        operation?: "add" | "edit" | "del";
         lang_data?: {
             /** @description Language code. Codes are compliant with ISO-639-3 standard. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Category singular name. */
             singular_name?: string;
             /** @description Category plural name. */
@@ -3051,31 +3063,31 @@ export type SearchProductsParams = {
         };
     };
     /** @description Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash. */
-    returnProducts?: string;
-    /** @description Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode */
+    returnProducts?: "active" | "deleted" | "in_trash";
+    /** @description Elements to be returned by the endpoint. By default all elements are returned Available values: * lang_data * adding_time, * deleted, * code, * note, * taxcode, * inwrapper, * sellby_retail, * sellby_wholesale, * producer_id, * producer_name, * iaiCategoryId, * iaiCategoryName, * iaiCategoryPath, * category_id, * category_name, * size_group_id, * modification_time, * currency, * currency_shop, * bestseller, * new_product, * retail_price, * wholesale_price, * minimal_price, * automatic_calculation_price, * pos_price, * strikethrough_retail_price, * strikethrough_wholesale_price, * last_purchase_price, * purchase_price_net_average, * purchase_price_net_last, * purchase_price_gross_average, * purchase_price_gross_last, * vat, * vat_free, * rebate, * hotspots_zones, * profit_points, * points, * weight, * export_to_pricecomparers, * export_to_amazon_marketplace, * enable_in_pos, * complex_notes, * available_profile, * traits, * parameters, * version_data, * advance, * promotion, * discount, * distinguished, * special, * visible, * persistent, * priority, * shops_mask, * icon, * icon_for_auctions, * icon_for_group, * pictures, * unit, * warranty, * series, * products_associated, * shops, * quantities, * sizes_attributes, * shops_attributes, * auction_prices, * price_comparers_prices, * deliverer, * sizes, * size_group_name, * pictures_count, * product_type, * price_changed_time, * quantity_changed_time, * deliverer_name, * available_profile_name, * availability_management_type, * sum_in_basket, * menu, * auction_settings, * bundle, * sizeschart_id, * sizeschart_name, * serialnumbers, * producer_codes_standard, * javaScriptInTheItemCard, * productAuctionDescriptionsData, * priceFormula, * productIndividualDescriptionsData, * productIndividualUrlsData, * productServicesDescriptionsData, * cnTaricCode, * productIsGratis, * dimensions, * responsibleProducerCode, * responsiblePersonCode, * dimensions, * depositProductId, * depositType, * depositCount, * minStockLevel, * productAttachments */
     returnElements?: string[];
     /** @description Product availability. Available values: "y" - available, "n" - unavailable. */
-    productIsAvailable?: string;
+    productIsAvailable?: "y" | "n";
     /** @description Product visibility in store Available values: "y" - Visible, "n" - Invisible. */
-    productIsVisible?: string;
+    productIsVisible?: "y" | "n";
     /** @description Product group ID */
     productVersionId?: number;
     /** @description Promoted product. Available values: "y" - promoted, "n" - not promoted. */
-    productInPromotion?: string;
+    productInPromotion?: "y" | "n";
     /** @description Product on sale. Available values: "y" - on sale, "n" - not on sale. */
-    productInDiscount?: string;
+    productInDiscount?: "y" | "n";
     /** @description Distinguished product. Available values: "y" - distinguished, "n" - not distinguished. */
-    productInDistinguished?: string;
+    productInDistinguished?: "y" | "n";
     /** @description Special product. Available values: "y" - #!specjalny!#, "n" - not special. */
-    productInSpecial?: string;
+    productInSpecial?: "y" | "n";
     /** @description Product available for points. Available values: "y" - Available for points, "n" - Unavailable for points. */
-    productInForPointsSelling?: string;
+    productInForPointsSelling?: "y" | "n";
     /** @description Observed product. Available values: "Y" - observed, "n" - not observed. */
-    productIsObservedByClients?: string;
+    productIsObservedByClients?: "Y" | "n";
     /** @description Element determines if default product (with 0 ID, contains settings of newly added products) should be omitted Available values: "y" - omits default product, "n" - allows to download default product. */
-    skipDefaultProduct?: string;
+    skipDefaultProduct?: "y" | "n";
     /** @description The item specifies whether promotional prices are to be shown in price nodes. Available values: "y" - show promotional prices, "n" - do not show promotional prices. (default value) */
-    showPromotionsPrices?: string;
+    showPromotionsPrices?: "y" | "n";
     /** @description List of categories in which sought products are present. */
     categories?: {
         /** @description Category id */
@@ -3122,7 +3134,7 @@ export type SearchProductsParams = {
     /** @description Settings concerning narrowing list of products found by date. */
     productDate?: {
         /** @description Date type. Allowed values "added" - #!dataDodaniaProduktu!#, "finished" - date of running out of product, "resumed" - date of resuming product, "modified" - date of last modification of product, "quantity_changed" - date of last product stock quantity modification, "price_changed" - date of last price change, "modified_and_quantity_changed" - date of last modification and stock quantity change. */
-        productDateMode?: string;
+        productDateMode?: "added" | "finished" | "resumed" | "modified" | "quantity_changed" | "price_changed" | "modified_and_quantity_changed";
         /** @description Starting date in the YYYY-MM-DD format */
         productDateBegin?: string;
         /** @description End date in the YYYY-MM-DD format */
@@ -3155,7 +3167,7 @@ export type SearchProductsParams = {
             /** @description Name of series in indicated language */
             seriesName?: string;
             /** @description Language ID */
-            langId?: string;
+            langId?: LangId;
         }[];
     }[];
     /** @description List of units of measure assigned to sought products. */
@@ -3183,14 +3195,14 @@ export type SearchProductsParams = {
     /** @description Product availability in stocks */
     productAvailableInStocks?: {
         /** @description Determines whether availability in stocks has been set. Available values: "y" - is available in stocks, "n" - unavailable in stocks. */
-        productIsAvailableInStocks?: string;
+        productIsAvailableInStocks?: "y" | "n";
         /** @description Narrowing list to stocks sought trough Empty list concerns all stocks. */
         productAvailableInStocksIds?: number[];
     };
     /** @description Product availability on auctions */
     productAvailableInAuctions?: {
         /** @description Determines whether availability on auctions has been set. Available values: "y" - is available on auctions, "n" - is not available on auctions. */
-        productIsAvailableInAuctions?: string;
+        productIsAvailableInAuctions?: "y" | "n";
         /** @description Narrow list of auction accounts sought through. */
         productAvailableInAuctionsAccountsIds?: number[];
     };
@@ -3206,7 +3218,7 @@ export type SearchProductsParams = {
         sortDirection?: string;
     }[];
     /** @description Language ID that allows to search and return data in chosen language. This parameter is optional. If it's lacking, she search process unfolds in all available languages. */
-    productSearchingLangId?: string;
+    productSearchingLangId?: LangId;
     /** @description Currency ID allowing to search and browse products in given currency. This parameter is optional, when it's lacking, the search process unfolds in all available currencies. */
     productSearchingCurrencyId?: string;
     /** @description Currency ID allowing for returning all product prices in an indicated currency */
@@ -3214,19 +3226,19 @@ export type SearchProductsParams = {
     /** @description Annotation contains text. */
     productHasNote?: string;
     /** @description Product visibility in export to price comparison and marketplaces. Available values: "y" - Visible, "selected" - Selected, "assign_selected" - Enable the visibility of the product in the export to price comparison sites passed in the priceComparisonSites node. Price comparison sites previously assigned to the commodity will be retained, "unassign_selected" - Disable product visibility in exports to price comparison sites passed in the priceComparisonSites node, "n" - invisible. */
-    productInExportToPriceComparisonSites?: string;
+    productInExportToPriceComparisonSites?: "y" | "selected" | "assign_selected" | "unassign_selected" | "n";
     /** @description Visibility of an item in an export to Amazon Marketplace. Available values: "y" - Visible, "selected" - Visible on selected regional services, "n" - invisible. */
-    productInExportToAmazonMarketplace?: string;
+    productInExportToAmazonMarketplace?: "y" | "selected" | "n";
     /** @description List of Amazon regional sites to which the product is exported (only in case of "selected" option) */
     selectedAmazonMarketplacesList?: string[];
     /** @description Product is bestseller. Available values: "n" - no, "y" - yes. */
-    productInBestseller?: string;
+    productInBestseller?: "n" | "y";
     /** @description Product is new. Available values: "y" - is new, "n" - is not new. */
-    productInNew?: string;
+    productInNew?: "y" | "n";
     /** @description Shops */
     searchByShops?: {
         /** @description Determine data search method on basis of options set for stores. Available values: "in_one_of_selected" - in one of indicated stores, "in_all_of_selected" - in all indicated stores, This parameter is optional. When it's lacking, search is performed by option: in one of indicated stores (in_one_of_selected). */
-        searchModeInShops?: string;
+        searchModeInShops?: "in_one_of_selected" | "in_all_of_selected";
         /** @description Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. */
         shopsMask?: number;
         /** @description List of stores IDs When mask is determined, this parameter is omitted. */
@@ -3235,7 +3247,7 @@ export type SearchProductsParams = {
     /** @description Price range for sought products. */
     productSearchPriceRange?: {
         /** @description Determines price type for indicated values. Available values: "retail_price" - Retail price of the product, "wholesale_price" - Wholesale price of the product, "minimal_price" - Product minimal price, "pos_price" - price for POS, "last_purchase_price" - Last purchase price. */
-        productSearchPriceMode?: string;
+        productSearchPriceMode?: "retail_price" | "wholesale_price" | "minimal_price" | "pos_price" | "last_purchase_price";
         /** @description Minimal price for product. */
         productSearchPriceMin?: number;
         /** @description Maximum price for product. */
@@ -3246,15 +3258,15 @@ export type SearchProductsParams = {
     /** @description VAT value for sought products */
     productVatRates?: number[];
     /** @description Is product VAT-free Allowed values "y" - yes, "n" - no. */
-    productIsVatFree?: string;
+    productIsVatFree?: "y" | "n";
     /** @description Product has defined wholesale price. Available values: "y" - has wholesale price, "n" - does not have wholesale price. */
-    productHasWholesalePrice?: string;
+    productHasWholesalePrice?: "y" | "n";
     /** @description Product visible even though out of stock Available values: "y" - visible even though out of stock, "n" - not visible when out of stock. */
-    productInPersistent?: string;
+    productInPersistent?: "y" | "n";
     /** @description Settings of products returned with variants All products with variants are returned by default Available values: version_all - returns all variants, version_main - returns only main variant. */
-    returnProductsVersions?: string;
+    returnProductsVersions?: "version_all" | "version_main";
     /** @description Do You wish to sum up the products in the basket as a one order? Available values: "y" - yes, "n" - no. */
-    productInSumInBasket?: string;
+    productInSumInBasket?: "y" | "n";
     /** @description Product type. Allowed values: "product_item" - Goods, "product_packaging" - packaging, "product_bundle" - set. "product_collection" - collection. "product_service" - service. "product_virtual" - virtual product. "product_configurable" - configurable product. */
     productType?: {
         /** @description Should products be returned on list. By default this parameter is set on true. */
@@ -3316,6 +3328,8 @@ export type SearchOrdersParams = {
     ordersStatuses?: string[];
     /** @description Order statusses ids. */
     ordersStatusesIds?: number[];
+    /** @description Transaction type. */
+    transactionType?: "national" | "oss" | "export" | "intra";
     /** */
     shippmentStatus?: "all" | "received" | "non-received";
     /** @description Shipping companies (packages deliverers). */
@@ -3323,7 +3337,7 @@ export type SearchOrdersParams = {
     /** @description Courier service identifiers */
     couriersId?: number[];
     /** @description Order payment method. Allowed values. "cash_on_delivery" - cash on delivery, "prepaid" - prepayment, "tradecredit" - Trade credit. */
-    orderPaymentType?: string;
+    orderPaymentType?: "cash_on_delivery" | "prepaid" | "tradecredit";
     withMissingSalesDocuments?: string[];
     /** @description Order type. Allowed values. "retail" - retail order, "wholesale" - wholesale order (can be added only by customer with wholesale account registered). Default value:: "retail" */
     orderType?: "wholesale" | "retail" | "dropshipping" | "deliverer";
@@ -3348,9 +3362,9 @@ export type SearchOrdersParams = {
         /** @description E-mail address. */
         clientEmail?: string;
         /** @description Parameter can be used to search for orders assigned to customer with VAT number. Available values: "y" - customer has VAT number, "n" - customer does not have VAT number. */
-        clientHasTaxNumber?: string;
+        clientHasTaxNumber?: "y" | "n";
         /** @description Parameter allows to choose, by which data orders should be searched. Includes city, firstname, lastname. Available values: "billing_data" - search by billing data - default, "delivery_data"- search by delivery data, "billing_delivery_data" - search by billing and delivery data. */
-        clientSearchingMode?: string;
+        clientSearchingMode?: "billing_data" | "delivery_data" | "billing_delivery_data";
         /** @description Customer's company name. */
         clientFirm?: string;
         /** @description Customer Tax no. */
@@ -3434,7 +3448,7 @@ export type SearchOrdersParams = {
         /** @description Consignments numbers. */
         packagesNumbers?: string[];
         /** @description Does order have consignment number assigned. Available values: "y" - yes, "n" - no. */
-        orderHasPackageNumbers?: string;
+        orderHasPackageNumbers?: "y" | "n";
         /** @description Multipack order. Available values: "y" - yes, "n" - no. */
         hasMultiPackages?: "y" | "n";
     };
@@ -3458,7 +3472,7 @@ export type SearchOrdersParams = {
     orderPackingPersonLogin?: string;
     /** @description Possibility of sorting returned list */
     ordersBy?: {
-        /** @description Name of field, list will be sorted by. Available values: "id" - product ID, "name" - Product name, "code" - Product code, "product_sizecode" - External system code, "code_producer" - Producer code, "retail_price" - Retail price of the product, "pos_price" - price for POS, "vat" - Value of VAT, "wholesale_price" - wholesale price, "minimal_price" - Minimal price, "pictures_count" - number of product photos, "auction_name" - product name for auction sites, "pricecomparer_name" - Product name for price comparison websites, "version_name" - Name of the good in the group, "series_name" - Name of the batch, "category_name" - Category name, "deliverer_name" - Supplier name, "adding_time" - Date of entry, "modification_time" - date modified, "price_changed_time" - Date of last price change, "quantity_changed_time" - Date of modification of stock levels, "currency" - Currency DEPRECATED. This parameter is deprecated, "currency_shop" - Currency, "taxcode" - PKWiU [PCPandS], "meta_title" - Products meta titles, "meta_description" - Products meta description, "meta_keywords" - Products meta keywords, "suggested_price" - Recommended price. "observed_clients" - Number of visitors, who signed up to re-availability notifications "observed_time" - Average time of waiting for availability notification "wishes_clients" - Customers, who added product to favorites "wishes_time" - Average number of days, product is in favorites */
+        /** @description Name of field, list will be sorted by. Available values: "id" - Order ID, "sn" - Order ID, "order_time" - Order placement time, "status" - Status order: t - finished , n - new, w - payment_waiting, d - delivery_waiting, o - on_order, b - packed, br - packed_ready, bf - packed_fulfillment, p - ready, wd - wait_for_dispatch, k - canceled, i - false, s - lost, z - returned, r - complainted, h - suspended, j - joined, l - missing, a - finished_ext, u - unconfirmed, "order_source" - Order source, "order_cost" - order cost calculated as a sum of: base order worth, delivery cost, payform cost, insurance cost, "discount_code" - order discount code, "ready_to_send_date" - orders with status p - ready first, "order_value" - order value calculated as a sum of: base order worth, delivery cost, payform cost, insurance cost */
         elementName?: string;
         /** @description Determines sorting direction. Available values: "ASC" - ascending, "DESC" - descending. */
         sortDirection?: string;
@@ -3473,6 +3487,12 @@ export type SearchOrdersParams = {
     orderExternalId?: string;
     /** @description Order currency */
     orderCurrency?: string;
+    /** @description Subscription id */
+    subscription?: number;
+    /** @description Subscription ids */
+    subscriptionIds?: number[];
+    /** @description Orders from subscriptions */
+    subscriptionsOrders?: "y" | "n";
 };
 
 export type SearchProductsParametersParams = {
@@ -3481,12 +3501,12 @@ export type SearchProductsParametersParams = {
     /** @description Element text ID - can be entered instead of "id". */
     textIds?: {
         /** @description Language ID */
-        languageId?: string;
+        languageId?: LangId;
         /** @description Text value */
         value?: string;
     }[];
     /** @description List of languages */
-    languagesIds?: string[];
+    languagesIds?: LangId[];
     /** @description Whether to return a list of parameter value IDs */
     parameterValueIds?: boolean;
     /** @description Page with results number. Numeration starts from 0 */
@@ -3536,7 +3556,7 @@ export type SearchClientsCrmParams = {
     /** @description Country ID in accordance with ISO-3166. */
     clientCountryId?: string;
     /** @description Language ID */
-    langId?: string;
+    langId?: LangId;
     /** @description Customer service representative. */
     clientCustomerServiceRepresentativeLogin?: string;
     /** @description Customer group number */
@@ -3855,7 +3875,7 @@ export type PutSystemUnitsParams = {
         /** @description Unit names */
         descriptions?: {
             /** @description ISO-639-3 Language */
-            language?: string;
+            language?: LangId;
             /** @description Name (singular) (limit of 30 characters) */
             nameSingular?: string;
             /** @description Name (plural) (limit of 30 characters) */
@@ -3885,7 +3905,7 @@ export type PutSizesParams = {
         operation: string;
         lang_data?: {
             /** @description Language code. Codes are compliant with ISO-639-3 standard. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Category plural name. */
             name?: string;
         }[];
@@ -3902,7 +3922,7 @@ export type PutSizechartsParams = {
         displayMode: "single" | "all";
         languagesData?: {
             /** @description Customer language ID. */
-            language?: string;
+            language?: LangId;
             columns?: {
                 /** @description Column number */
                 columnNumber?: number;
@@ -3934,28 +3954,28 @@ export type PutProductsParametersParams = {
         /** @description Element text ID - can be entered instead of "id". Recognized save format: "section" (without backslash), "parameter\" (parameter without assigned value). */
         item_text_ids?: {
             /** @description Language ID. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Text value. */
             value?: string;
         }[];
         /** @description Names of section, parameter or value. */
         names?: {
             /** @description Language ID. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Text value. */
             value?: string;
         }[];
         /** @description Descriptions of section, parameter or value. */
         descriptions?: {
             /** @description Language ID. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Text value. */
             value?: string;
         }[];
         /** @description Search descriptions of parameter value. */
         search_description?: {
             /** @description Language ID */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Text value */
             value?: string;
             /** @description Shop Id */
@@ -3964,7 +3984,7 @@ export type PutProductsParametersParams = {
         /** @description Icons of section, parameter or value to display on the product card. */
         card_icons?: {
             /** @description Language ID. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Text value. */
             value?: string;
             /** @description Shop Id */
@@ -3973,7 +3993,7 @@ export type PutProductsParametersParams = {
         /** @description Icons of section, parameter or value to display on the list of products. */
         link_icons?: {
             /** @description Language ID. */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Text value. */
             value?: string;
             /** @description Shop Id */
@@ -4026,9 +4046,9 @@ export type PostWarrantiesParams = {
         shopname?: {
             languages?: {
                 /** @description Language ID. */
-                language_id?: string;
+                language_id?: LangId;
                 /** @description Language name. */
-                language_name?: string;
+                language_name?: LangId;
                 /** @description Literal in selected language. */
                 value?: string;
             }[];
@@ -4037,9 +4057,9 @@ export type PostWarrantiesParams = {
         description?: {
             languages?: {
                 /** @description Language ID. */
-                language_id?: string;
+                language_id?: LangId;
                 /** @description Language name. */
-                language_name?: string;
+                language_name?: LangId;
                 /** @description Literal in selected language. */
                 value?: string;
             }[];
@@ -4099,7 +4119,7 @@ export type PostEntriesParams = {
     /** @description Element including entry content in selected languages */
     langs: {
         /** @description Language ID */
-        langId: string;
+        langId: LangId;
         /** @description Name on the page */
         title?: string;
         /** @description short description */
@@ -4362,7 +4382,7 @@ export type PostSnippetsCookiesParams = {
         /** @description Cookie description for each language. */
         description?: {
             /** @description Language code. */
-            lang?: string;
+            lang?: LangId;
             /** @example Hello world */
             body?: string;
         }[];
@@ -4567,7 +4587,7 @@ export type PutClientsParams = {
         /** @description Customer type, possible values: - person - if client sex is not determined, - person_male - when client is a male, - person_female - when a customer is a woman, - firm - when client is company. */
         clientType?: "person" | "person_male" | "person_female" | "firm";
         /** @description Language ID */
-        langId?: string;
+        langId?: LangId;
         /** @description Defines availability of log in to other pages than the ones given in the element: shops  . */
         blockLoginToOtherShops?: boolean;
         /** @description List of stores IDs When mask is determined, this parameter is omitted. */
@@ -5027,7 +5047,7 @@ export type PutEntriesParams = {
     /** @description Element including entry content in selected languages */
     langs?: {
         /** @description Language ID */
-        langId?: string;
+        langId?: LangId;
         /** @description Name on the page */
         title?: string;
         /** @description short description */
@@ -5156,7 +5176,7 @@ export type PutProductsBrandsParams = {
                 phoneGraphic?: string;
             };
             /** @description Language ID (code in ISO 639-2). */
-            languageId?: string;
+            languageId?: LangId;
             shopsConfigurations?: {
                 /** @description Name. */
                 name?: string;
@@ -5207,7 +5227,7 @@ export type PutProductsDescriptionsParams = {
         /** @description Array of language-dependent elements. */
         productDescriptionsLangData?: {
             /** @description Language ID */
-            langId?: string;
+            langId?: LangId;
             /** @description Shop Id */
             shopId?: number;
             /** @description Product name. */
@@ -5297,7 +5317,7 @@ export type PostProductsBrandsParams = {
                 phoneGraphic?: string;
             };
             /** @description Language ID (code in ISO 639-2). */
-            languageId?: string;
+            languageId?: LangId;
             shopsConfigurations?: {
                 /** @description Name. */
                 name?: string;
@@ -5347,7 +5367,7 @@ export type PostProductsOpinionsParams = {
         /** @example content */
         content?: string;
         /** @description Customer language ID. */
-        language?: string;
+        language?: LangId;
         /** @example picture */
         picture?: string;
         /** @description Shop Id */
@@ -5395,7 +5415,7 @@ export type PutProductsOpinionsParams = {
     /** @example content */
     content?: string;
     /** @description Customer language ID. */
-    language?: string;
+    language?: LangId;
     /** @description Reply to an opinion */
     shopAnswer?: string;
     /** @example picture */
@@ -5600,7 +5620,7 @@ export type PutProductsSeriesParams = {
             /** @description Shop Id */
             shopId?: number;
             /** @description Customer language ID. */
-            language?: string;
+            language?: LangId;
             /** @description Name on the page */
             nameOnPage?: string;
             /** @description Name displayed in the website header */
@@ -5964,7 +5984,7 @@ export type PutProductsQuestionsParams = {
         /** @description Question ID. */
         id?: number;
         /** @description Language of the question e.g. 'pol', 'eng'. */
-        lang?: string;
+        lang?: LangId;
         /** @description Your question(base64). */
         question?: string;
         /** @description Content of the answer(base64). */
@@ -6886,7 +6906,7 @@ export type PutMenuSortParams = {
         /** @description Menu ID. */
         menu_id: number;
         /** @description Language ID. */
-        lang_id: string;
+        lang_id: LangId;
         /** @description Menu element text identifier. */
         parent_id?: number;
         /** @description Menu element text identifier. Example: "item1\item2\item3". */
@@ -6952,7 +6972,7 @@ export type PutWarrantiesLanguageDataParams = {
         warranty_id: string;
         lang: {
             /** @description Warranty language id (numeric) (three letter sequence). */
-            lang_id?: string;
+            lang_id?: LangId;
             /** @description Warranty name. */
             name?: string;
             /** @description warranty icon for language. */
@@ -7223,6 +7243,21 @@ export type GetProductsAttachmentsGetContentParams = {
     productIdentType: "codeExtern" | "codeProducer" | "index" | "id";
     /** @description - product attachment ID */
     attachmentId: number;
+};
+
+export type GetWmsLocationsParams =  {
+    /** @description Warehouse location ID */
+    locationId?: number;
+    /** @description Storage location code */
+    locationCode?: string;
+    /** @description Stock ID */
+    stockId?: number;
+    /** @description Elements to be returned by the endpoint. By default all elements are returned. Available values: locationName, locationPath, locationCode, stockId, products */
+    returnElements?: ("locationName" | "locationPath" | "locationCode" | "stockId" | "products")[];
+    /** @description Page with results number. Numeration starts from 0 */
+    resultsPage?: number;
+    /** @description Number of results on page. Value from 1 to 100 */
+    resultsLimit?: number;
 };
 
 export { };

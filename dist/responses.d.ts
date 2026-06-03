@@ -8404,7 +8404,7 @@ export type GetProductsResponse = {
                 productSizeQuantity: number;
             }[];
             /** @description Size data */
-            productSizesStocksLocations: {
+            productSizesStocksLocations?: {
                 /** @description Stock ID */
                 stockId: number;
                 productSizesLocation: {
@@ -8489,11 +8489,11 @@ export type GetProductsResponse = {
                 /** @description Gross price */
                 productRetailPrice: number;
                 /** @description Gross price after promotion. The item is returned when the 'showPromotionsPrices' parameter is specified in the request */
-                productPromoRetailPrice: number;
+                productPromoRetailPrice?: number;
                 /** @description Wholesale price */
                 productWholesalePrice: number;
                 /** @description Wholesale price after promotion. The item is returned when the 'showPromotionsPrices' parameter is specified in the request */
-                productPromoWholesalePrice: number;
+                productPromoWholesalePrice?: number;
                 /** @description Minimal price */
                 productMinimalPrice: number;
                 /** @description Price for automatic calculations */
@@ -8771,7 +8771,7 @@ export type GetProductsResponse = {
                 sizePanelName: string;
             }[];
             /** @description Available sizes of products in a set or collection for marketplaces */
-            bundledAvailableSizesInAuctions: {
+            bundledAvailableSizesInAuctions?: {
                 /** @description Size identifier */
                 sizeId: string;
                 /** @description Size name */
@@ -8805,7 +8805,7 @@ export type GetProductsResponse = {
                 }[];
             }[];
             /** @description Parameter values */
-            parameterValues?: {
+            parameterValues?: null | {
                 /** @description Parameter value ID */
                 parameterValueId: number;
                 /** @description Language data */
@@ -8972,7 +8972,7 @@ export type GetProductsResponse = {
         /** @description Minimum stock level */
         minStockLevel?: number;
     }[];
-} & { resultsLimit: number; };
+} & { resultsLimit: number };
 
 export type GetOrdersResponse = {
     Results: {
@@ -8997,7 +8997,7 @@ export type GetOrdersResponse = {
                 /** @description Customer's company name. */
                 clientFirm: string;
                 /** @description Product suggestion. */
-                clientAdditional: string;
+                clientAdditional?: string;
                 /** @description Street and number. */
                 clientStreet: string;
                 /** @description Customer's postal code. */
@@ -9007,7 +9007,7 @@ export type GetOrdersResponse = {
                 /** @description Region name takes priority over clientCountryId. */
                 clientCountryName: string;
                 /** @description Client NIP verification status */
-                clientNipUeVerified: string;
+                clientNipUeVerified: string | null;
                 /** @description Country ID in accordance with ISO-3166. */
                 clientCountryId: string;
                 /** @description Cell phone. */
@@ -9052,9 +9052,10 @@ export type GetOrdersResponse = {
                 /** @description Internal Receiving Point Identifier. */
                 clientDeliveryAddressPickupPointInternalId: number;
             };
-            clientPickupPointAddress: {
+            clientPickupPointAddress?: {
                 /** @description Collection point ID. */
-                pickupPointId: string;
+                pickupPointId: number;
+                externalPickupPointId?: string;
                 /** @description External service collection point ID. */
                 externalPickupPointId: string;
                 /** @description Town / City. */
@@ -9071,9 +9072,11 @@ export type GetOrdersResponse = {
                 longitude: number;
                 /** @description Name. */
                 name: string;
+                /** @description Country (2 letter country code). */
+                country: string;
             };
             /** @description Buyer's address data. */
-            payerAddress: {
+            payerAddress?: {
                 /** @description Buyer's address id. */
                 payerAddressId: string;
                 /** @description Buyer's first name. */
@@ -9137,9 +9140,13 @@ export type GetOrdersResponse = {
             /** @description Order status. Allowed values: "finished_ext" - order status: completed in FA application, "finished" - completed, "new" - not handled, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "joined" - merged, "missing" - missing, "lost" - lost, "false" - false, "canceled" - Customer canceled. */
             orderStatus: string;
             /** @description Order status id */
-            orderStatusId: string;
+            orderStatusId?: number;
             /** @description Date of change of status to the currently set status in YYYY-MM-DD HH:MM:SS format. */
             orderStatusChangeDate: string;
+            /** @description Split payment MPP marking */
+            splitPayment: boolean;
+            /** @description Transaction type. */
+            transactionType: null |"national" | "oss" | "export" | "intra";
             /** @example dropshippingOrderStatus */
             dropshippingOrderStatus: string;
             /** @description Type of order confirmation. Confirmations listing: "none" - order unconfirmed , "email" - order confirmed by e-mail, "phone_client" - order confirmed by phone call made by client, "phone_service" - order confirmed by phone call made by staff, "postauction" - order confirmed by auction return page, "willingness" - confirmed by willingness to buy letter, "auctionfod" - confirmed by after-sales form Allegro. */
@@ -9147,11 +9154,11 @@ export type GetOrdersResponse = {
             /** @description Date of order placing in YYYY-MM-DD HH:MM:SS format. */
             orderAddDate: string;
             /** @description Date of order sending in YYYY-MM-DD HH:MM:SS format. */
-            orderDispatchDate: string | null;
+            orderDispatchDate: 0 | string | null;
             /** @example receivedDate */
             receivedDate: string;
             /** @description Order handling time in seconds. */
-            orderPrepareTime: string;
+            orderPrepareTime: number | null;
             /** @description Customer comments on order. */
             clientNoteToOrder: string;
             /** @description Customer remarks for courier. */
@@ -9171,7 +9178,7 @@ export type GetOrdersResponse = {
                     /** @description Currency average rate set for order (by default, an average rate of order adding date, if it wasn't manually changed). */
                     orderCurrencyValue: number;
                     /** @description Currency scaler. */
-                    orderCurrencyScale: number;
+                    orderCurrencyScale?: number;
                     /** @description Panel billing currency exchange rate in relation to billing currency in the shop . */
                     billingCurrencyRate: number;
                     /** @description Products cost. */
@@ -9204,7 +9211,7 @@ export type GetOrdersResponse = {
                 };
                 /** @description Order currency squaring method. "gross" - calculated in gross prices, "net" - squared in net prices. */
                 orderWorthCalculateType: "gross" | "net";
-                /** @description Information if the VAT for the current order was calculated: "y" - yes, "n" - no. */
+                /** @description Information if the VAT for the current order was calculated: "y" - yes, "n" - no, "p"  – requires approval by the store staff. */
                 orderVatExists: string;
             };
             /** @description Information about prepayment for the order. */
@@ -9236,9 +9243,9 @@ export type GetOrdersResponse = {
                 /** @description Currency ID */
                 currencyId: string;
                 /** @description Number of voucher used in a payment. */
-                voucherNumber: string;
+                voucherNumber?: string;
                 /** @description Number of gift card used in a payment. */
-                giftCardNumber: string;
+                giftCardNumber?: string;
             }[];
             /** @description Order source data. */
             orderSourceResults: {
@@ -9247,7 +9254,7 @@ export type GetOrdersResponse = {
                 /** @description Shop Id */
                 shopId: number;
                 /** @description Auction site order comes from. Auction sites listing: "allegro" - Allegro.pl, "testwebapi" - Allegro.pl test site, "ebay" - eBay. */
-                auctionsServiceName: string;
+                auctionsServiceName: string | null;
                 /** @description Detailed information on order source. */
                 orderSourceDetails: {
                     /** @description order source type - possible values:. "self_added" - Orders from panel, "shop" - Orders from shop, "search_engine" - Orders from search engines, "auction" - Orders from auctions, "advertisement_campaign" - Advertisement campaigns, "price_comparer" - Price comparison sites, "affiliate_program" - Affiliate programme, "api" - Order from API, "eletronic_offer" - Order from ODT price lst, "cpa" - Order from CPA program, "refferer_site" - Order from reference sites, "pos" - Orders from POS, "marketplace" - Order from the Marketplace, "iai_ads" - Orders from IAI Ads */
@@ -9259,11 +9266,11 @@ export type GetOrdersResponse = {
                     /** @description Numerical ID of order source. */
                     orderSourceId: number;
                     /** @example 1 */
-                    entryProductIdBeforeOrder: number;
+                    entryProductIdBeforeOrder?: number;
                     /** @example sourcePageUrl */
-                    sourcePageUrl: string;
+                    sourcePageUrl?: string;
                     /** @description The order ID of the external service */
-                    orderExternalId: string;
+                    orderExternalId: string | null;
                     /** @description Order from the InPost Fresh marketplace */
                     fresh: "y" | "n";
                     /** @description Order supported by InPost fulfillment */
@@ -9285,16 +9292,16 @@ export type GetOrdersResponse = {
             /** @description Data of auction, order comes from (only if it comes from auction). */
             auctionInfo: {
                 /** @description Account ID on auction site. */
-                auctionClientId: string;
+                auctionClientId?: string;
                 /** @description Account login on auction site. */
-                auctionClientLogin: string;
+                auctionClientLogin?: string;
                 /** @description #!TablicaNumerowAukcjiDoZamowienia!#. */
-                auctionItemsIds: {
+                auctionItemsIds?: {
                     /** @description Auction number. */
                     auctionItemId: string;
                 }[];
                 /** @description The customer's email address at the auction service. */
-                auctionClientEmail: string;
+                auctionClientEmail?: string;
             };
             /** @description Consignment data. */
             dispatch: {
@@ -9324,7 +9331,7 @@ export type GetOrdersResponse = {
                 /** @description External product system code */
                 productCode: string;
                 /** @description Name of the parameter value, e.g. orange, green, red */
-                versionName: string;
+                versionName?: string;
                 /** @description Size identifier */
                 sizeId: string;
                 /** @description Size name */
@@ -9334,7 +9341,7 @@ export type GetOrdersResponse = {
                 /** @description Stock ID */
                 stockId: number;
                 /** @description Serial number of the product. */
-                productSerialNumber: string;
+                productSerialNumber?: string;
                 /** @description Product quantity. */
                 productQuantity: number;
                 /** @description Weight. */
@@ -9342,7 +9349,7 @@ export type GetOrdersResponse = {
                 /** @description Value of VAT */
                 productVat: number;
                 /** @description Is product VAT free Allowed values "y" - yes, "n" - no. */
-                productVatFree: string;
+                productVatFree?: string;
                 /** @description Gross price of the product in the currency of the administration panel. */
                 productPanelPrice: number;
                 /** @description Net price of the product in the currency of the administration panel. */
@@ -9356,7 +9363,7 @@ export type GetOrdersResponse = {
                 /** @description Product net price of order in shop account currency. */
                 productOrderPriceNetBaseCurrency: number;
                 /** @description List of product suggestions . */
-                orderAdditionalList: {
+                orderAdditionalList?: {
                     /** @description Product suggestion. */
                     orderAdditional: {
                         /** @description Name of suggestion. */
@@ -9368,13 +9375,13 @@ export type GetOrdersResponse = {
                 /** @description Client's remarks on product. */
                 remarksToProduct: string;
                 /** @description Label for grouping products. */
-                label: string;
+                label: string | null;
                 /** @description Product selling mode. Available values: "money", "gift", "points". */
                 orderSalesMode: "money" | "gift" | "points";
                 /** @description A set's ID. */
                 bundleId: number;
                 /** @description Serial numbers. */
-                productSerialNumbers: string;
+                productSerialNumbers: string | null;
                 /** @description Additional information. */
                 productOrderAdditional: string;
                 /** @description Item in basket. */
@@ -9382,7 +9389,7 @@ export type GetOrdersResponse = {
                 /** @description price information. */
                 productPriceLog: string;
                 /** @description Information about the selected parameters in the configurator. */
-                priceFormulaParameters: {
+                priceFormulaParameters?: {
                     /** @description Parameter ID */
                     parameterId: string;
                     /** @description Parameter name. */
@@ -9409,7 +9416,7 @@ export type GetOrdersResponse = {
             /** @description Note to the order. */
             orderNote: string;
             /** @description Information on used discount code. */
-            discountCode: {
+            discountCode?: {
                 /** @description Campaign ID. */
                 campaignId: string;
                 /** @description Name of code. */
@@ -9418,14 +9425,14 @@ export type GetOrdersResponse = {
                 discountCodeValue: string;
             };
             /** @description Discount card */
-            discountCard: {
+            discountCard?: {
                 /** @description Name of card */
                 discountCardName: string;
             };
             /** @description Order handler. */
             orderOperatorLogin: string;
             /** @description Order picker. */
-            orderPackingPersonLogin: string;
+            orderPackingPersonLogin: string | null;
             /** @description Sale date. ISO 8602 format. */
             purchaseDate: string;
             /** @description Modification date in YYYY-MM-DD HH:MM:SS format . */
@@ -9440,14 +9447,9 @@ export type GetOrdersResponse = {
             verified: boolean;
         };
         /** @description Information on error that occurred during gate call. */
-        errors: {
-            /** @description Error code. */
-            faultCode: number;
-            /** @description Error description. */
-            faultString: string;
-        }[];
+        errors: FaultCodeString[];
     }[];
-};
+} & { resultsNumberAll: number };
 
 type PromotionErrorEntry = {
     /** @description Error code. */
@@ -9581,6 +9583,32 @@ export type GetRegulationsHistoryResponse = {
         country: string;
     }[];
     pagination: PagedResponse;
+};
+
+export type GetProductsAttachmentsGetContentResponse = {
+    /** @description Product attachment content */
+    data: {
+        /** @description Product attachment content */
+        attachmentContent: string | null;
+        /** @description Product attachment content representation
+|null} */
+        attachmentContentRepresentation: "base64" | "url" | null;
+        /** @description Product attachment file extension */
+        attachmentContentFileExtension: string | null;
+    };
+    isError: boolean;
+    errors: {
+        /** @description Error code. */
+        code: string;
+        /** @description Field associated with the error. */
+        field: string | null;
+        /** @description Error description. */
+        message: string | null;
+        /** @description Value associated with the error. */
+        value: string | null;
+        /** @description Unique identifier of the error (for support). */
+        uid: string | null;
+    }[];
 };
 
 export { };

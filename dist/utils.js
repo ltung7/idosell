@@ -269,6 +269,23 @@ const removeRmaAttachments = (rmaResponse) => {
     }
     return rmaResponse;
 };
+const mapProductParameters = (product, langId = 'pol') => {
+    if (!product.productParameters)
+        return [];
+    return product.productParameters.reduce((acc, param) => {
+        if (!param.parameterValues?.length)
+            return acc;
+        const name = param.parameterDescriptionsLangData.find((l) => l.langId === langId)?.parameterName ?? '';
+        const values = param.parameterValues.reduce((valAcc, pv) => {
+            const value = pv.parameterValueDescriptionsLangData.find((l) => l.langId === langId)
+                ?.parameterValueName ?? '';
+            valAcc.push({ valueId: pv.parameterValueId, value });
+            return valAcc;
+        }, []);
+        acc.push({ id: param.parameterId, name, values });
+        return acc;
+    }, []);
+};
 export default {
     /** @description The method allows you to build an IAI code from the product ID and size ID. */
     getIaiCode,
@@ -287,5 +304,7 @@ export default {
     /** @description Modifies product response by removing all parameter names nad values that are not in selected langId */
     clearParametersLangData,
     /** @description Removes attachments to RMA that are returned by default, helps to reduce data if serialized or forwarded */
-    removeRmaAttachments
+    removeRmaAttachments,
+    /** @description Maps product parameters to a simplified structure for a given language. Skips parameters with no values. */
+    mapProductParameters,
 };
