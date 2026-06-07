@@ -2,8 +2,6 @@
 
 This package wraps around the Idosell REST Api to make it easier to use by implementing chainable options, more intuitive methods and helpers to format requests more easily. [Official Idosell documentation](https://idosell.readme.io/docs) is still applicable for the most part.
 
-Visit [This page](https://idosell-converter.vercel.app/) for more detailed usage and examples.
-
 [![npm version](https://img.shields.io/npm/v/idosell.svg)](https://www.npmjs.com/package/idosell)
 
 ## Basic use
@@ -17,7 +15,7 @@ const idosellRequest = idosell('SHOP_URL', 'API_KEY', API_VERSION)
 
 **API_KEY** can be obtained in your Idosell panel.
 **SHOP_URL** is the base URI of your shop. 
-**API_VERSION** version of the API to call, current default version is **v7**
+**API_VERSION** version of the API to call, current default version is **v8**
 Here are some examples:
 ```
 https://yourdomain.com
@@ -353,6 +351,26 @@ const orderRequest = idosellRequest.searchOrders.ordersSerialNumbers([123, 456, 
 // Will return Object: { ordersSerialNumbers: [ 123, 456, 789 ] }
 ```
 
+## Webhooks
+
+The package provides a convenient `webhooks` helper to handle Idosell webhook events with full TypeScript typings.
+
+```javascript
+import { webhooks, type IaiWebhookHeaders } from "idosell";
+
+// Validate incoming webhook request headers and handle events
+webhooks
+  .validateHeaders((headers) => headers.token === TOKEN) // header validation
+  .on("productUpdated", ({ headers, body }) => {
+    console.log({ panelId: headers.panelId, code: body.results[0].productDisplayedCode });
+  })
+  .on("orderCreated", ({ headers, body }) => {
+    console.log({ panelId: headers.panelId, order: body.Results[0].orderSerialNumber });
+  })
+  .handle(request) // process the request
+  .catch(console.error); // standard error handling
+```
+
 ## Examples
 
-Read documentation from this package and more examples on [This page](https://idosell-converter.vercel.app/examples)
+Read documentation from this package and more examples on [This page](https://idosell-converter.vercel.app)

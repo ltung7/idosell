@@ -9055,7 +9055,6 @@ export type GetOrdersResponse = {
             clientPickupPointAddress?: {
                 /** @description Collection point ID. */
                 pickupPointId: number;
-                externalPickupPointId?: string;
                 /** @description External service collection point ID. */
                 externalPickupPointId: string;
                 /** @description Town / City. */

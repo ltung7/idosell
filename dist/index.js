@@ -1,5 +1,6 @@
 import ENUMS from "./enums.js";
 import utils from "./utils.js";
+import webhooks from "./webhooks.js";
 import { gateProxy } from "./gates.js";
 import { IdosellFaultStringError, catchEmptyList } from "./errors.js";
 export const DEFAULT_VERSION = 8;
@@ -27,4 +28,4 @@ const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
     return new Proxy(element, gateProxy);
 };
 export default idosell;
-export { ENUMS, utils, IdosellFaultStringError, catchEmptyList };
+export { ENUMS, utils, webhooks, IdosellFaultStringError, catchEmptyList };

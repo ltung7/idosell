@@ -1,3 +1,11 @@
+import type {
+    GetProductsResponse,
+    GetRmaResponse,
+    GetReturnsResponse,
+    GetOrdersResponse,
+    GetClientsResponse,
+} from "./responses.d.ts";
+
 export interface ExecutableDumpParams {
 	url: string;
 	method: string;
@@ -103,5 +111,136 @@ export interface IdosellErrorFaultStructure {
 	faultCode: number;
 	faultString: string;
 }
+
+// ─── Final normalized shape ──────────────────────────────────────────────────
+
+export interface NormalizedIaiRequest<T = unknown> {
+    headers: IaiWebhookHeaders;
+    body: T;
+}
+
+export declare const WEBHOOK_OBJECT_TYPE: {
+    readonly CLIENT: "client";
+    readonly PRODUCT: "product";
+    readonly ORDER: "order";
+    readonly RETURN: "return";
+    readonly RMA: "rma";
+};
+
+export declare const WEBHOOK_EVENT_TYPE: {
+    readonly CLIENT_CREATED: "clientCreated";
+    readonly CLIENT_UPDATED: "clientUpdated";
+    readonly PRODUCT_CREATED: "productCreated";
+    readonly PRODUCT_UPDATED: "productUpdated";
+    readonly PRODUCT_PRICE_UPDATED: "productPriceUpdated";
+    readonly PRODUCT_STOCK_UPDATED: "productStockUpdated";
+    readonly PRODUCT_DISPOSITION_UPDATED: "productDispositionUpdated";
+    readonly ORDER_CREATED: "orderCreated";
+    readonly ORDER_UPDATED: "orderUpdated";
+    readonly ORDER_PAID: "orderPaid";
+    readonly ORDER_STATUS_UPDATED: "orderStatusUpdated";
+    readonly ORDER_PACKAGE_CREATED: "orderPackageCreated";
+    readonly ORDER_FILES_CREATED: "orderFilesCreated";
+    readonly ORDER_SALE_DOCUMENT_CREATED: "orderSaleDocumentCreated";
+    readonly ORDER_SALE_DOCUMENT_UPDATED: "orderSaleDocumentUpdated";
+    readonly ORDER_SENT: "orderSent";
+    readonly ORDER_DELIVERED: "orderDelivered";
+    readonly ORDER_CANCELED: "orderCanceled";
+    readonly RETURN_CREATED: "returnCreated";
+    readonly RETURN_UPDATED: "returnUpdated";
+    readonly RETURN_FUNDS_CONFIRMED: "returnFundsConfirmed";
+    readonly RETURN_PACKAGE_CREATED: "returnPackageCreated";
+    readonly RETURN_CONFIRMED: "returnConfirmed";
+    readonly RETURN_CANCELED: "returnCanceled";
+    readonly RMA_CREATED: "rmaCreated";
+    readonly RMA_UPDATED: "rmaUpdated";
+    readonly RMA_PACKAGE_CREATED: "rmaPackageCreated";
+    readonly RMA_APPROVED: "rmaApproved";
+    readonly RMA_REJECTED: "rmaRejected";
+};
+
+export type WebhookObjectType = typeof WEBHOOK_OBJECT_TYPE[keyof typeof WEBHOOK_OBJECT_TYPE];
+export type WebhookEventType = typeof WEBHOOK_EVENT_TYPE[keyof typeof WEBHOOK_EVENT_TYPE];
+
+interface ObjectBodyMap {
+    "client": GetClientsResponse;
+    "product": GetProductsResponse;
+    "order": GetOrdersResponse;
+    "return": GetReturnsResponse;
+    "rma": GetRmaResponse;
+}
+
+interface EventObjectMap {
+    "clientCreated": "client";
+    "clientUpdated": "client";
+    "productCreated": "product";
+    "productUpdated": "product";
+    "productPriceUpdated": "product";
+    "productStockUpdated": "product";
+    "productDispositionUpdated": "product";
+    "orderCreated": "order";
+    "orderUpdated": "order";
+    "orderPaid": "order";
+    "orderStatusUpdated": "order";
+    "orderPackageCreated": "order";
+    "orderFilesCreated": "order";
+    "orderSaleDocumentCreated": "order";
+    "orderSaleDocumentUpdated": "order";
+    "orderSent": "order";
+    "orderDelivered": "order";
+    "orderCanceled": "order";
+    "returnCreated": "return";
+    "returnUpdated": "return";
+    "returnFundsConfirmed": "return";
+    "returnPackageCreated": "return";
+    "returnConfirmed": "return";
+    "returnCanceled": "return";
+    "rmaCreated": "rma";
+    "rmaUpdated": "rma";
+    "rmaPackageCreated": "rma";
+    "rmaApproved": "rma";
+    "rmaRejected": "rma";
+}
+
+// ─── Parsed & renamed headers ────────────────────────────────────────────────
+
+export interface IaiWebhookHeaders {
+    token: string;
+    apiVersion: number;
+    eventTime: Date;
+    objectType: WebhookObjectType;
+    eventType: WebhookEventType;
+    eventUid: string;
+    panelId: number;
+    signature: string;
+    webhookTime: Date;
+}
+
+export interface WebhookContext<E extends WebhookEventType> {
+    headers: IaiWebhookHeaders;
+    body: ObjectBodyMap[EventObjectMap[E]];
+}
+
+export type WebhookHandler<E extends WebhookEventType> =
+    (ctx: WebhookContext<E>) => Promise<void> | void;
+
+export type HeaderValidator =
+    (headers: IaiWebhookHeaders) => Promise<boolean> | boolean;
+
+export type DispatchResult =
+    | { matched: true; eventType: WebhookEventType }
+    | { matched: false; eventType: string }
+    | { matched: false; eventType: null; reason: "validation_failed" };
+
+export declare class WebhookChain {
+    validateHeaders(validator: HeaderValidator): this;
+    on<E extends WebhookEventType>(eventType: E, handler: WebhookHandler<E>): this;
+    handle(req: import("node:http").IncomingMessage | Request): Promise<DispatchResult>;
+}
+
+export type Webhooks = {
+    validateHeaders(validator: HeaderValidator): WebhookChain;
+    on<E extends WebhookEventType>(eventType: E, handler: WebhookHandler<E>): WebhookChain;
+};
 
 export {};

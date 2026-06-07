@@ -398,18 +398,44 @@ declare enum PRODUCE_SIZE_INDEX {
     ID = "sizeId",
     IAI_CODE = "iaiCode"
 }
-declare const ENUMS: {
-    PRODUCTS_RETURN_ELEMENTS: typeof PRODUCTS_RETURN_ELEMENTS;
-    ORDER_STATUS: typeof ORDER_STATUS;
-    STOCK_DOCUMENT_TYPE: typeof STOCK_DOCUMENT_TYPE;
-    RETURN_STATUS: typeof RETURN_STATUS;
-    RMA_STATUS: typeof RMA_STATUS;
-    PAYMENT_FORMS: typeof PAYMENT_FORMS;
-    PRODUCT_SIZE_COUNTABLE: typeof PRODUCT_SIZE_COUNTABLE;
-    PRODUCT_SIZE_CODES: typeof PRODUCT_SIZE_CODES;
-    PRODUCT_SIZE_LOCATIONS: typeof PRODUCT_SIZE_LOCATIONS;
-    PRODUCE_SIZE_INDEX: typeof PRODUCE_SIZE_INDEX;
-};
+declare enum WEBHOOK_OBJECT_TYPE {
+    CLIENT = "client",
+    PRODUCT = "product",
+    ORDER = "order",
+    RETURN = "return",
+    RMA = "rma"
+}
+declare enum WEBHOOK_EVENT_TYPE {
+    CLIENT_CREATED = "clientCreated",
+    CLIENT_UPDATED = "clientUpdated",
+    PRODUCT_CREATED = "productCreated",
+    PRODUCT_UPDATED = "productUpdated",
+    PRODUCT_PRICE_UPDATED = "productPriceUpdated",
+    PRODUCT_STOCK_UPDATED = "productStockUpdated",
+    PRODUCT_DISPOSITION_UPDATED = "productDispositionUpdated",
+    ORDER_CREATED = "orderCreated",
+    ORDER_UPDATED = "orderUpdated",
+    ORDER_PAID = "orderPaid",
+    ORDER_STATUS_UPDATED = "orderStatusUpdated",
+    ORDER_PACKAGE_CREATED = "orderPackageCreated",
+    ORDER_FILES_CREATED = "orderFilesCreated",
+    ORDER_SALE_DOCUMENT_CREATED = "orderSaleDocumentCreated",
+    ORDER_SALE_DOCUMENT_UPDATED = "orderSaleDocumentUpdated",
+    ORDER_SENT = "orderSent",
+    ORDER_DELIVERED = "orderDelivered",
+    ORDER_CANCELED = "orderCanceled",
+    RETURN_CREATED = "returnCreated",
+    RETURN_UPDATED = "returnUpdated",
+    RETURN_FUNDS_CONFIRMED = "returnFundsConfirmed",
+    RETURN_PACKAGE_CREATED = "returnPackageCreated",
+    RETURN_CONFIRMED = "returnConfirmed",
+    RETURN_CANCELED = "returnCanceled",
+    RMA_CREATED = "rmaCreated",
+    RMA_UPDATED = "rmaUpdated",
+    RMA_PACKAGE_CREATED = "rmaPackageCreated",
+    RMA_APPROVED = "rmaApproved",
+    RMA_REJECTED = "rmaRejected"
+}
 declare enum LANG_IDS {
     ABCHASKI = "abk",
     ACHINSKI = "ace",
@@ -584,6 +610,21 @@ declare enum LANG_IDS {
     ZULUS = "zul",
     ZUNI = "zun"
 }
+declare const ENUMS: {
+    PRODUCTS_RETURN_ELEMENTS: typeof PRODUCTS_RETURN_ELEMENTS;
+    ORDER_STATUS: typeof ORDER_STATUS;
+    STOCK_DOCUMENT_TYPE: typeof STOCK_DOCUMENT_TYPE;
+    RETURN_STATUS: typeof RETURN_STATUS;
+    RMA_STATUS: typeof RMA_STATUS;
+    PAYMENT_FORMS: typeof PAYMENT_FORMS;
+    PRODUCT_SIZE_COUNTABLE: typeof PRODUCT_SIZE_COUNTABLE;
+    PRODUCT_SIZE_CODES: typeof PRODUCT_SIZE_CODES;
+    PRODUCT_SIZE_LOCATIONS: typeof PRODUCT_SIZE_LOCATIONS;
+    PRODUCE_SIZE_INDEX: typeof PRODUCE_SIZE_INDEX;
+    LANG_IDS: typeof LANG_IDS;
+    WEBHOOK_OBJECT_TYPE: typeof WEBHOOK_OBJECT_TYPE;
+    WEBHOOK_EVENT_TYPE: typeof WEBHOOK_EVENT_TYPE;
+};
 export declare namespace ENUMS {
     type PRODUCTS_RETURN_ELEMENTS = typeof PRODUCTS_RETURN_ELEMENTS[keyof typeof PRODUCTS_RETURN_ELEMENTS];
     type ORDER_STATUS = typeof ORDER_STATUS[keyof typeof ORDER_STATUS];
@@ -596,6 +637,8 @@ export declare namespace ENUMS {
     type PRODUCT_SIZE_LOCATIONS = typeof PRODUCT_SIZE_LOCATIONS[keyof typeof PRODUCT_SIZE_LOCATIONS];
     type PRODUCE_SIZE_INDEX = typeof PRODUCE_SIZE_INDEX[keyof typeof PRODUCE_SIZE_INDEX];
     type LANG_IDS = typeof LANG_IDS[keyof typeof LANG_IDS];
+    type WEBHOOK_OBJECT_TYPE = typeof WEBHOOK_OBJECT_TYPE[keyof typeof WEBHOOK_OBJECT_TYPE];
+    type WEBHOOK_EVENT_TYPE = typeof WEBHOOK_EVENT_TYPE[keyof typeof WEBHOOK_EVENT_TYPE];
 }
 export { ENUMS };
 export default ENUMS;
