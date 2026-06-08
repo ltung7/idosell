@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { normalizeIaiRequest, WebhookValidationError } from "./webhooks.normalizer.js";
+import { createHmac } from "node:crypto";
 // ─── Runtime constants ────────────────────────────────────────────────────────
 export const WEBHOOK_OBJECT_TYPE = {
     CLIENT: "client",
@@ -74,19 +75,37 @@ const EVENT_OBJECT_MAP = {
 export class WebhookChain {
     slots = [];
     validator = null;
+    hmacKey;
     validateHeaders(validator) {
         this.validator = validator;
         return this;
     }
-    on(eventType, handler) {
-        this.slots.push({
-            eventType,
-            fn: handler,
-        });
+    /**
+     * Validate the request signature using HMAC SHA256.
+     * @param hmacKey Secret key used to compute the HMAC.
+     * @throws WebhookValidationError if the computed signature does not match the header.
+     */
+    validateSignature(hmacKey) {
+        this.hmacKey = hmacKey;
+        return this;
+    }
+    on(eventTypeOrObject, handler) {
+        const isObjectType = Object.values(WEBHOOK_OBJECT_TYPE).includes(eventTypeOrObject);
+        if (isObjectType) {
+            const matchedEvents = Object.entries(EVENT_OBJECT_MAP)
+                .filter(([, obj]) => obj === eventTypeOrObject)
+                .map(([evt]) => evt);
+            for (const evt of matchedEvents) {
+                this.slots.push({ eventType: evt, fn: handler });
+            }
+        }
+        else {
+            this.slots.push({ eventType: eventTypeOrObject, fn: handler });
+        }
         return this;
     }
     async handle(req) {
-        const { headers, body } = await normalizeIaiRequest(req);
+        const { headers, body, rawBody } = await normalizeIaiRequest(req);
         if (this.validator !== null) {
             let valid = false;
             try {
@@ -99,6 +118,13 @@ export class WebhookChain {
                 return { matched: false, eventType: null, reason: "validation_failed" };
             }
         }
+        // Validate signature if a key was provided
+        if (this.hmacKey) {
+            const computed = createHmac("sha256", this.hmacKey).update(rawBody).digest("hex");
+            if (computed !== headers.signature) {
+                throw new WebhookValidationError("Invalid webhook signature", "x-iai-signature");
+            }
+        }
         const incomingEvent = headers.eventType;
         const expectedObject = EVENT_OBJECT_MAP[incomingEvent];
         if (expectedObject !== undefined && headers.objectType !== expectedObject) {
@@ -108,7 +134,7 @@ export class WebhookChain {
         if (!slot) {
             return { matched: false, eventType: incomingEvent };
         }
-        await slot.fn({ headers, body });
+        await slot.fn({ headers, body, rawBody });
         return { matched: true, eventType: slot.eventType };
     }
 }
@@ -117,8 +143,11 @@ export const webhooks = {
     validateHeaders(validator) {
         return new WebhookChain().validateHeaders(validator);
     },
-    on(eventType, handler) {
-        return new WebhookChain().on(eventType, handler);
+    validateSignature(hmacKey) {
+        return new WebhookChain().validateSignature(hmacKey);
     },
+    on: ((eventTypeOrObject, handler) => {
+        return new WebhookChain().on(eventTypeOrObject, handler);
+    }),
 };
 export default webhooks;

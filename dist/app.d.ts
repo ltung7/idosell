@@ -1,5 +1,5 @@
 import type {
-    GetProductsResponse,
+    SearchProductsResponse,
     GetRmaResponse,
     GetReturnsResponse,
     GetOrdersResponse,
@@ -117,6 +117,7 @@ export interface IdosellErrorFaultStructure {
 export interface NormalizedIaiRequest<T = unknown> {
     headers: IaiWebhookHeaders;
     body: T;
+    rawBody: string
 }
 
 export declare const WEBHOOK_OBJECT_TYPE: {
@@ -162,9 +163,9 @@ export declare const WEBHOOK_EVENT_TYPE: {
 export type WebhookObjectType = typeof WEBHOOK_OBJECT_TYPE[keyof typeof WEBHOOK_OBJECT_TYPE];
 export type WebhookEventType = typeof WEBHOOK_EVENT_TYPE[keyof typeof WEBHOOK_EVENT_TYPE];
 
-interface ObjectBodyMap {
+export interface ObjectBodyMap {
     "client": GetClientsResponse;
-    "product": GetProductsResponse;
+    "product": SearchProductsResponse;
     "order": GetOrdersResponse;
     "return": GetReturnsResponse;
     "rma": GetRmaResponse;
@@ -214,15 +215,26 @@ export interface IaiWebhookHeaders {
     panelId: number;
     signature: string;
     webhookTime: Date;
+    raw: Record<string, string>
 }
 
 export interface WebhookContext<E extends WebhookEventType> {
     headers: IaiWebhookHeaders;
     body: ObjectBodyMap[EventObjectMap[E]];
+    rawBody: string;
+}
+
+export interface WebhookObjectContext<O extends WebhookObjectType> {
+    headers: IaiWebhookHeaders;
+    body: ObjectBodyMap[O];
+    rawBody: string;
 }
 
 export type WebhookHandler<E extends WebhookEventType> =
     (ctx: WebhookContext<E>) => Promise<void> | void;
+
+export type WebhookObjectHandler<O extends WebhookObjectType> =
+    (ctx: WebhookObjectContext<O>) => Promise<void> | void;
 
 export type HeaderValidator =
     (headers: IaiWebhookHeaders) => Promise<boolean> | boolean;
@@ -234,13 +246,17 @@ export type DispatchResult =
 
 export declare class WebhookChain {
     validateHeaders(validator: HeaderValidator): this;
+    validateSignature(hmacKey: string): this;
     on<E extends WebhookEventType>(eventType: E, handler: WebhookHandler<E>): this;
+    on<O extends WebhookObjectType>(objectType: O, handler: WebhookObjectHandler<O>): this;
     handle(req: import("node:http").IncomingMessage | Request): Promise<DispatchResult>;
 }
 
 export type Webhooks = {
     validateHeaders(validator: HeaderValidator): WebhookChain;
+    validateSignature(hmacKey: string): WebhookChain;
     on<E extends WebhookEventType>(eventType: E, handler: WebhookHandler<E>): WebhookChain;
+    on<O extends WebhookObjectType>(objectType: O, handler: WebhookObjectHandler<O>): WebhookChain;
 };
 
 export {};

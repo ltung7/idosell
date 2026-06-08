@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.43] - 2025-06-07
+### Changed
+- Webhook now supports HMAC checking and groups of webhooks
+- Added raw data to webhook headers and handlers
+
+
 ## [0.4.41] - 2025-06-07
 ### Added
 - Added webook support

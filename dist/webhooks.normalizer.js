@@ -50,6 +50,7 @@ function extractHeaders(raw) {
         panelId: parseIntHeader(raw, "x-iai-panel-id"),
         signature: requireHeader(raw, "x-iai-signature"),
         webhookTime: parseDateHeader(raw, "x-iai-webhook-time"),
+        raw
     };
 }
 // ─── Type guard ──────────────────────────────────────────────────────────────
@@ -136,5 +137,5 @@ export async function normalizeIaiRequest(req) {
         throw new WebhookValidationError("Request body must be a JSON object", "body");
     }
     const headers = extractHeaders(flatHeaders);
-    return { headers, body };
+    return { headers, body, rawBody };
 }
