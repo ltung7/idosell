@@ -7,109 +7,109 @@ import type {
 } from "./responses.d.ts";
 
 export interface ExecutableDumpParams {
-	url: string;
-	method: string;
-	params: Record<string,any>;
+    url: string;
+    method: string;
+    params: Record<string, any>;
 }
 
 export interface ExecutableOptions {
-	log?: boolean | ((obj: ExecutableDumpParams) => void),
+    log?: boolean | ((obj: ExecutableDumpParams) => void),
     dump?: boolean | ((obj: ExecutableDumpParams) => void),
     logPage?: boolean | ((text: string) => void),
-	skipCheck?: boolean
+    skipCheck?: boolean
 }
 
 export type DateLike = string | number | Date;
 
-export type JSObject = Record<string,any>;
+export type JSObject = Record<string, any>;
 
 export type RequestProxyObject = {
-	auth: {
-		url: string, 
-		apiKey: string, 
-		version: number|string
-	},
-	params: Record<string, any>,
+    auth: {
+        url: string,
+        apiKey: string,
+        version: number | string
+    },
+    params: Record<string, any>,
 }
 
 export type RequirementType = {
-	any: string[]|true
-} | string | ((arg: RequestProxyObject | Record<string,any>) => string|false);
+    any: string[] | true
+} | string | ((arg: RequestProxyObject | Record<string, any>) => string | false);
 
 export type GatewayRequestProxyObject = {
-	gate: {
-		method: 'get'|'post'|'put'|'delete',
-		node: string
-	},
-	appendable?: {
-		index: number,
-		arrayNode: string,
-		except: string[]
-	},
-	custom?: Record<string,(..._: any) => false|Record<string,any>>,
-	snakeCase?: boolean,
-	paginationObject?: boolean,
-	next?: boolean,
-	rootparams?: string|boolean,
-	arrays?: string[],
-	req?: RequirementType[],
-	n?: Record<string,number>
+    gate: {
+        method: 'get' | 'post' | 'put' | 'delete',
+        node: string
+    },
+    appendable?: {
+        index: number,
+        arrayNode: string,
+        except: string[]
+    },
+    custom?: Record<string, (..._: any) => false | Record<string, any>>,
+    snakeCase?: boolean,
+    paginationObject?: boolean,
+    next?: boolean,
+    rootparams?: string | boolean,
+    arrays?: string[],
+    req?: RequirementType[],
+    n?: Record<string, number>
 } & RequestProxyObject;
 
 export interface Gateway<R = JSObject, P = JSObject> {
-	/**
-	 * Executes the query to designated API endpoint
-	 * @param options Use options: log - to console log params, url and method, logPage - to console log current page in a loop
-	 * @returns Idosell response
-	 */
-	exec: (options?: ExecutableOptions) => Promise<R>,
+    /**
+     * Executes the query to designated API endpoint
+     * @param options Use options: log - to console log params, url and method, logPage - to console log current page in a loop
+     * @returns Idosell response
+     */
+    exec: (options?: ExecutableOptions) => Promise<R>,
 
-	/**
-	 * @returns Object with currently mapped parameters
-	 */
-	getParams: () => P,
+    /**
+     * @returns Object with currently mapped parameters
+     */
+    getParams: () => P,
 
-	/**
-	 * @description Set object as params
-	 */
-	setParams: (params: P) => this
+    /**
+     * @description Set object as params
+     */
+    setParams: (params: P) => this
 
-	/**
-	 * @description Checks if minimal parameters are provided. If not, throws an error.
-	 */
-	checkParams: () => void
+    /**
+     * @description Checks if minimal parameters are provided. If not, throws an error.
+     */
+    checkParams: () => void
 }
 
-export interface PagableGateway<T,R = JSObject, P = JSObject> extends Gateway<R, P> {
-	/**
+export interface PagableGateway<T, R = JSObject, P = JSObject> extends Gateway<R, P> {
+    /**
      * @returns number of items i.e. products, orders, documents, etc.
      */
-	count: () => Promise<number>,
+    count: () => Promise<number>,
 
-	/**
+    /**
      * Allows to change offset and number of records returned
      * @param pageNumber - The page number to navigate to.
      * @param pageSize - The size of page
      * @returns The updated instance for method chaining.
      */
-	page: (pageNumber: number, pageSize?: number) => T
+    page: (pageNumber: number, pageSize?: number) => T
 
-	/**
-	 * @returns If completed request has more pages
-	 */
-	hasNext: () => boolean
+    /**
+     * @returns If completed request has more pages
+     */
+    hasNext: () => boolean
 }
 
-export interface AppendableGateway<T,R = JSObject, P = JSObject> extends Gateway<R, P> {
-	/**
-	 * Start creating next item in list
-	 */
-	append: () => T
+export interface AppendableGateway<T, R = JSObject, P = JSObject> extends Gateway<R, P> {
+    /**
+     * Start creating next item in list
+     */
+    append: () => T
 }
 
 export interface IdosellErrorFaultStructure {
-	faultCode: number;
-	faultString: string;
+    faultCode: number;
+    faultString: string;
 }
 
 // ─── Final normalized shape ──────────────────────────────────────────────────
@@ -244,12 +244,20 @@ export type DispatchResult =
     | { matched: false; eventType: string }
     | { matched: false; eventType: null; reason: "validation_failed" };
 
+
+export interface RawWebhookInput {
+    headers: Record<string, string>;
+    rawBody: string;           // always string — pre-parse
+    body?: Record<string, unknown>; // optional — caller may pre-parse
+}
+
 export declare class WebhookChain {
     validateHeaders(validator: HeaderValidator): this;
     validateSignature(hmacKey: string): this;
     on<E extends WebhookEventType>(eventType: E, handler: WebhookHandler<E>): this;
     on<O extends WebhookObjectType>(objectType: O, handler: WebhookObjectHandler<O>): this;
     handle(req: import("node:http").IncomingMessage | Request): Promise<DispatchResult>;
+    handleRaw(req: RawWebhookInput): Promise<DispatchResult>;
 }
 
 export type Webhooks = {
@@ -259,4 +267,4 @@ export type Webhooks = {
     on<O extends WebhookObjectType>(objectType: O, handler: WebhookObjectHandler<O>): WebhookChain;
 };
 
-export {};
+export { };

@@ -39,7 +39,7 @@ function parseAuthHeader(headers) {
     }
     return token;
 }
-function extractHeaders(raw) {
+export function extractHeaders(raw) {
     return {
         token: parseAuthHeader(raw),
         apiVersion: parseIntHeader(raw, "x-iai-api-version"),

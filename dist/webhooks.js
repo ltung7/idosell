@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { normalizeIaiRequest, WebhookValidationError } from "./webhooks.normalizer.js";
+import { extractHeaders, normalizeIaiRequest, WebhookValidationError } from "./webhooks.normalizer.js";
 import { createHmac } from "node:crypto";
 // ─── Runtime constants ────────────────────────────────────────────────────────
 export const WEBHOOK_OBJECT_TYPE = {
@@ -106,6 +106,14 @@ export class WebhookChain {
     }
     async handle(req) {
         const { headers, body, rawBody } = await normalizeIaiRequest(req);
+        return this.dispatch(headers, body, rawBody);
+    }
+    async handleRaw({ headers: rawHeaders, rawBody, body }) {
+        const headers = extractHeaders(rawHeaders);
+        const parsedBody = body ?? JSON.parse(rawBody);
+        return this.dispatch(headers, parsedBody, rawBody);
+    }
+    async dispatch(headers, body, rawBody) {
         if (this.validator !== null) {
             let valid = false;
             try {
@@ -118,7 +126,6 @@ export class WebhookChain {
                 return { matched: false, eventType: null, reason: "validation_failed" };
             }
         }
-        // Validate signature if a key was provided
         if (this.hmacKey) {
             const computed = createHmac("sha256", this.hmacKey).update(rawBody).digest("hex");
             if (computed !== headers.signature) {
