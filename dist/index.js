@@ -22,7 +22,12 @@ function normalizeUrl(input = "") {
     return parsed.origin;
 }
 const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
-    const auth = { url: normalizeUrl(url), apiKey, version, apikey: apiKey ? apiKey.slice(0, 6) + '*'.repeat(20) : "" };
+    let hiddenKey = '*'.repeat(10);
+    if (typeof apiKey === 'string')
+        hiddenKey = apiKey.slice(0, 6) + '*'.repeat(20);
+    else
+        hiddenKey = `${apiKey.login}:${apiKey.password.slice(0, 4)}${'*'.repeat(6)}`;
+    const auth = { url: normalizeUrl(url), apiKey, version, apikey: hiddenKey };
     Object.defineProperty(auth, 'apiKey', { enumerable: false });
     const element = { auth, params: {} };
     return new Proxy(element, gateProxy);

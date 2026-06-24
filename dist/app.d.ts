@@ -26,7 +26,7 @@ export type JSObject = Record<string, any>;
 export type RequestProxyObject = {
     auth: {
         url: string,
-        apiKey: string,
+        apiKey: ApyKeyOrOauthCredentials,
         version: number | string
     },
     params: Record<string, any>,
@@ -266,5 +266,12 @@ export type Webhooks = {
     on<E extends WebhookEventType>(eventType: E, handler: WebhookHandler<E>): WebhookChain;
     on<O extends WebhookObjectType>(objectType: O, handler: WebhookObjectHandler<O>): WebhookChain;
 };
+
+export type ApyKeyOrOauthCredentials = string | {
+    login: string;
+    password: string;
+    scope?: ('admin')[];
+    token?: string;
+}
 
 export { };

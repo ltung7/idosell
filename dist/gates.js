@@ -135,6 +135,7 @@ import getPackagesLabels from "./methods/getPackagesLabels.js";
 import postPackagesLabels from "./methods/postPackagesLabels.js";
 import postPackages from "./methods/postPackages.js";
 import putPackages from "./methods/putPackages.js";
+import deletePackages from "./methods/deletePackages.js";
 import searchPackages from "./methods/searchPackages.js";
 import postPaymentsCancel from "./methods/postPaymentsCancel.js";
 import postPaymentsCashback from "./methods/postPaymentsCashback.js";
@@ -473,6 +474,7 @@ const gates = {
     postPackagesLabels,
     postPackages,
     putPackages,
+    deletePackages,
     searchPackages,
     postPaymentsCancel,
     postPaymentsCashback,

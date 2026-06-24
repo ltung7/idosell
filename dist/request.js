@@ -165,9 +165,26 @@ export const sendRequest = async (request, options = {}) => {
     if (!options.skipCheck)
         processRequired(request);
     const headers = {
-        'X-API-KEY': request.auth.apiKey,
         Accept: 'application/json'
     };
+    if (typeof request.auth.apiKey === 'string') {
+        headers['X-API-KEY'] = request.auth.apiKey;
+    }
+    else {
+        const { login, password, scope } = request.auth.apiKey;
+        let token = request.auth.apiKey.token;
+        if (!token) {
+            const base64 = Buffer.from(`${login}:${password}`).toString('base64');
+            const response = await axios.post(`${request.auth.url}/api/authorize/1/authorize/accessToken`, { scope: scope ?? ['admin'] }, { headers: {
+                    authorization: `Basic ${base64}`,
+                } });
+            if (response.data.access_token) {
+                token = response.data.access_token;
+                request.auth.apiKey.token = response.data.access_token;
+            }
+        }
+        headers.authorization = `Bearer ${token}`;
+    }
     request.next = false;
     const { method, node } = request.gate;
     let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;

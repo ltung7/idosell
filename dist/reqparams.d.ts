@@ -2691,7 +2691,7 @@ export type PutProductsAttachmentsParams = {
             /** @description Attachment document types list. */
             documentTypes?: {
                 /** @description Document type. */
-                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "software_data_processing" | "hardware_data_processing" | "others";
+                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "software_data_processing" | "hardware_data_processing" | "image_of_packaging" | "label_of_packaging" | "declaration_of_conformity" | "image_of_ukca_ce_mark" | "others";
                 /** @description Additional description. */
                 description?: string;
             }[];
@@ -7258,6 +7258,46 @@ export type GetWmsLocationsParams =  {
     resultsPage?: number;
     /** @description Number of results on page. Value from 1 to 100 */
     resultsLimit?: number;
+};
+
+export type GetReturnsParams =  {
+    /** @description Search by the order serial number to which a return was added. */
+    order_sn?: number;
+    /** @description Search by return ID. */
+    return_id?: number;
+    /** @description Search by a return shipment number from a customer to the shop . */
+    return_shipping_number?: string;
+    /** @description Date range. */
+    range?: {
+        /** @description Data for date range. */
+        date?: {
+            /** @description Beginning date in YYYY-MM-DD format. */
+            date_begin?: string;
+            /** @description Ending date in YYYY-MM-DD format. */
+            date_end?: string;
+            /** */
+            dates_type?: "date_add" | "date_end";
+        };
+    };
+    /** @description Number of results on page. */
+    results_limit?: number;
+    /** @description Result page number. */
+    results_page?: number;
+    /** @description 1 - Return not handled, 2 - Return accepted, 3 - Return not accepted, 13 - Return canceled by the customer, 14 - Return canceled, 15 - Resend the order, 16 - Abort resending order, 17 - A customer generated a return - it will be delivered personally, 18 - A customer generated a return - it will be sent by the customer. */
+    status?: number;
+    /** @description Search by return ID. */
+    return_ids?: number[];
+    /** @description Search by ID of a stock to which a return is sent. */
+    stock_id?: number;
+    /** @description Return a set as its constituent products */
+    bundleAsProducts?: boolean;
+    /** @description Search by ID of a shop to which a return is sent. */
+    shop_ids?: number[];
+};
+
+export type DeletePackagesParams = {
+    /** @description Parcels's ID */
+    packageId: number;
 };
 
 export { };

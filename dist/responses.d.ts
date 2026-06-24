@@ -1436,6 +1436,12 @@ export type GetEntriesResponse = {
             titleLinkType: string;
             /** @description Provided URL (for link to specified URL option) */
             link: string;
+            /** @description Meta title of the entry */
+            metaTitle: string;
+            /** @description Meta description of the entry */
+            metaDescription: string;
+            /** @description Meta keywords of the entry */
+            metaKeywords: string;
         };
     };
 };
@@ -2002,7 +2008,7 @@ export type GetOrdersPackagesResponse = {
                     /** @description Type */
                     type: "radio" | "text" | "select" | "checkbox";
                     /** @description Default value for option */
-                    defaultValue: string;
+                    defaultValue: string | string[];
                     /** @description Available values for the options */
                     options?: {
                         /** @description Id */
@@ -2910,7 +2916,7 @@ export type PutProductsAttachmentsResponse = {
             /** @description Attachment document types list. */
             documentTypes?: {
                 /** @description Document type. */
-                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "others";
+                documentType?: "energy_label" | "instruction_with_safety_information" | "user_manual" | "installation_instructions" | "product_card" | "guide" | "software_data_processing" | "hardware_data_processing" | "image_of_packaging" | "label_of_packaging" | "declaration_of_conformity" | "image_of_ukca_ce_mark" | "others";
                 /** @description Additional description. */
                 description?: string;
             }[];
@@ -7190,6 +7196,45 @@ export type GetSystemShopsDataResponse = {
     }[];
     /** @description Monitoring address protocol from the main Printer window. */
     typeOfPrinterProtocolAdress: string;
+    /** @description List of inherited settings. */
+    shop_inherit_settings: {
+        /** @description Shop ID */
+        shop_id: number;
+        /** @description Determines whether inheritance is active. */
+        shop_inherit_on: "y" | "n";
+        /** @description Shop ID from which the settings are inherited. */
+        shop_inherit_from: number;
+        /** @description Determines whether inheritance in enabled for offers. */
+        shop_inherit_offer: "y" | "n";
+        /** @description Determines whether inheritance in enabled for navigation descriptions. */
+        shop_inherit_navdescs: "y" | "n";
+        /** @description Determines whether inheritance in enabled for configuration. */
+        shop_inherit_config: "y" | "n";
+        /** @description Determines whether inheritance in enabled for country and locale settings. */
+        shop_inherit_country: "y" | "n";
+        /** @description Determines whether inheritance in enabled for banners. */
+        shop_inherit_banners: "y" | "n";
+        /** @description Determines whether inheritance in enabled for HTML and JS snippets. */
+        shop_inherit_snippets: "y" | "n";
+        /** @description Determines whether inheritance in enabled for toplayer settings. */
+        shop_inherit_toplayers: "y" | "n";
+        /** @description Determines whether inheritance in enabled for site masks. */
+        shop_inherit_masks: "y" | "n";
+        /** @description Determines whether inheritance in enabled for CMS pages. */
+        shop_inherit_cms: "y" | "n";
+        /** @description Determines whether inheritance in enabled for CPA programs. */
+        shop_inherit_cpa: "y" | "n";
+        /** @description Determines whether inheritance in enabled for affiliate programs. */
+        shop_inherit_affiliate: "y" | "n";
+        /** @description Determines whether inheritance in enabled for rebate programs. */
+        shop_inherit_rebates: "y" | "n";
+        /** @description Determines whether inheritance in enabled for prices. */
+        shop_inherit_prices: "y" | "n";
+        /** @description Determines whether inheritance in enabled for sale and shipment documents. */
+        shop_inherit_invoices: "y" | "n";
+        /** @description Determines whether inheritance in enabled for process automation. */
+        shop_inherit_automats: "y" | "n";
+    }[];
 };
 
 export type GetSystemUnitsResponse = {
@@ -9608,6 +9653,11 @@ export type GetProductsAttachmentsGetContentResponse = {
         /** @description Unique identifier of the error (for support). */
         uid: string | null;
     }[];
+};
+
+export type DeletePackagesResponse = {
+    /** @description request status */
+    result: string;
 };
 
 export { };

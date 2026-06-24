@@ -5,33 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.45] - 2025-06-07
+## [0.4.47] - 2026-06-24
+### Added
+- Added optional OAuth2 authentication instead of API key authentication
+- Updated to latest v8.7
+
+
+## [0.4.45] - 2026-06-07
 ### Added
 - Added handleRaw to pass raw data instead of request
 - Added test to webhooks
 
 
-## [0.4.43] - 2025-06-07
+## [0.4.43] - 2026-06-07
 ### Changed
 - Webhook now supports HMAC checking and groups of webhooks
 - Added raw data to webhook headers and handlers
 
 
-## [0.4.41] - 2025-06-07
+## [0.4.41] - 2026-06-07
 ### Added
 - Added webook support
 - Added LANG_ID enumerator
 - Added mapProductParameters utils helper
 
 
-## [0.4.38] - 2025-06-03
+## [0.4.38] - 2026-06-03
 ### Changed
 - Added enum types from description
 - Updated types to latest versions
 - Updated axios version to latest
 - Added mapping parameters to utils
 
-## [0.4.34] - 2025-05-27
+## [0.4.34] - 2026-05-27
 ### Fixed
 - Reusing idosell object unintentionally copied some fields
 - Requiremens check failed on falsy (0 or empty string), not only fails when undefined or null
@@ -39,33 +45,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Fixed missing types
 
-## [0.4.32] - 2025-05-19
+## [0.4.32] - 2026-05-19
 ### Changed
 - Fixed some latest types
 - Fxied paging
 
-## [0.4.30] - 2025-05-07
+## [0.4.30] - 2026-05-07
 ### Changed
 - Updated to Idosell Rest API v8.1
 - Some methods removed from api v8.1, still availible through v7 enpoints - version is enforced for those enpoints
 
-## [0.4.27] - 2025-04-06
+## [0.4.27] - 2026-04-06
 ### Changed
 - Addded missing promotions types
 - Fixed paging for promotions
 
-## [0.4.25] - 2025-04-04
+## [0.4.25] - 2026-04-04
 ### Changed
 - Updated to v7.19
 - Added promotion routes
 - Changed routes that have ProductsProducts to Products like getProductsToFacebookCatalog (before: getProductsProductsToFacebookCatalog)
 
-## [0.4.24] - 2025-03-21
+## [0.4.24] - 2026-03-21
 ### Changed
 - Updated to v7.13
 - Fixed url format
 
-## [0.4.23] - 2025-03-11
+## [0.4.23] - 2026-03-11
 ### Changed
 - Added custom error class
 - Fixed types for ids that can be integer instead of string
