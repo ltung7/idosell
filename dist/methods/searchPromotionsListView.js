@@ -16,6 +16,5 @@ export default (object) => {
         dateRange: nest("dateRange", "filter", {}, false),
         productsNotInPromotion: nest("productsNotInPromotion", "filter", {}, true)
     };
-    object.paginationObject = true;
     return new Proxy(object, paramsProxy);
 };

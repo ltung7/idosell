@@ -21,6 +21,13 @@ type MappedParameter = {
     values: MappedParameterValue[];
 };
 type MapProductParametersFunction = (_product: IdosellProduct, _langId?: string) => MappedParameter[];
+interface PaginationInfo {
+    currentPage: number;
+    totalPages: number;
+    totalRecords: number;
+    limit: number;
+}
+type GetPaginationFunction = (_response: any) => PaginationInfo | null;
 declare const _default: {
     /** @description The method allows you to build an IAI code from the product ID and size ID. */
     getIaiCode: GetIaICodeFunction;
@@ -42,5 +49,9 @@ declare const _default: {
     removeRmaAttachments: (rmaResponse: GetRmaResponse) => GetRmaResponse;
     /** @description Maps product parameters to a simplified structure for a given language. Skips parameters with no values. */
     mapProductParameters: MapProductParametersFunction;
+    /** @description ormalizes pagination data from inconsistent API response shapes (top-level vs. nested, camelCase vs. snake_case) into a single type */
+    getPagination: GetPaginationFunction;
+    /** @description Check if request has next page based on raw response */
+    hasNext: (response: any) => boolean | null;
 };
 export default _default;

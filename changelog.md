@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.49] - 2026-07-02
+### Fixed
+- Fixed looping / pagination errors
+
+### Added
+- Added utils.getPaginnation and utils.hasNext function for pagination
+- Added infinite loop detection
+- Updated types
+
 ## [0.4.47] - 2026-06-24
 ### Added
 - Added optional OAuth2 authentication instead of API key authentication

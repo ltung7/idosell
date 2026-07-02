@@ -7300,4 +7300,11 @@ export type DeletePackagesParams = {
     packageId: number;
 };
 
+export type GetEntriesParams =  {
+    /** @description Entry ID */
+    entryId: number;
+    /** @description Language ID */
+    langId: LangId;
+};
+
 export { };

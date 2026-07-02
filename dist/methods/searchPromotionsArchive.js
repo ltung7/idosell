@@ -9,6 +9,5 @@ export default (object) => {
         shops: nest("shops", "filter", {}, true),
         archivedDate: nest("archivedDate", "filter", {}, false)
     };
-    object.paginationObject = true;
     return new Proxy(object, paramsProxy);
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { page } from "./helpers.js";
 import { IdosellFaultStringError } from "./errors.js";
+import utils from "./utils.js";
 const DECODE_TABLE = [
     ['Å\x82', "ł"],
     ['Ä\x99', 'ę']
@@ -40,6 +40,26 @@ const catchIdosellError = (err) => {
     }
     throw new Error(`${err.response.status}: ${message}`, { cause: err.response.status });
 };
+function deepEqual(obj1, obj2) {
+    if (obj1 === obj2)
+        return true;
+    if (obj1 && obj2 && typeof obj1 === 'object' && typeof obj2 === 'object') {
+        const keys1 = Object.keys(obj1);
+        const keys2 = Object.keys(obj2);
+        if (keys1.length !== keys2.length)
+            return false;
+        for (let i = 0; i < keys1.length; i++) {
+            const key = keys1[i];
+            // If B doesn't have the key, or the values aren't deeply equal, fail early
+            if (!Object.prototype.hasOwnProperty.call(obj2, key) || !deepEqual(obj1[key], obj2[key])) {
+                return false;
+            }
+        }
+        return true;
+    }
+    // Handles cases where one is an object and the other is a primitive
+    return false;
+}
 const checkNext = (request, response, logPage) => {
     if (logPage === true)
         logPage = DEFAULT_LOG_FUNCTION;
@@ -52,28 +72,23 @@ const checkNext = (request, response, logPage) => {
         };
         throw new IdosellFaultStringError(response.errors.faultString, faultStructure);
     }
-    function handlePagination(currentPage, totalPages, limit, request) {
-        const nextPage = currentPage + 1;
-        request.next = nextPage < totalPages;
+    const pagination = utils.getPagination(response);
+    if (pagination) {
+        const nextPage = pagination.currentPage + 1;
+        request.next = nextPage < pagination.totalPages;
+        if (request.prev) {
+            const deq = deepEqual(request.prev, request.params);
+            if (deq)
+                throw new Error("Infinite loop detected - reevaluate your request");
+        }
+        request.prev = { ...request.params };
         if (typeof logPage === 'function') {
-            logPage('Page: ' + currentPage + ' / ' + totalPages);
+            logPage('Page: ' + pagination.currentPage + ' / ' + pagination.totalPages);
         }
         if (request.custom && request.custom.page) {
-            const pageObj = request.custom.page(nextPage, limit);
+            const pageObj = request.custom.page(nextPage, pagination.limit);
             Object.assign(request.params, pageObj);
         }
-    }
-    if (response.resultsNumberPage) {
-        handlePagination(response.resultsPage, response.resultsNumberPage, response.resultsLimit, request);
-    }
-    else if (response.results_number_page) {
-        handlePagination(response.results_page, response.results_number_page, response.results_limit, request);
-    }
-    else if (response.pagination) {
-        handlePagination(response.pagination.resultsPage, response.pagination.resultsNumberPage, response.pagination.resultsLimit, request);
-    }
-    else if (response.data?.pagination) {
-        handlePagination(response.data.pagination.resultsPage, response.data.pagination.resultsNumberPage, response.data.pagination.resultsLimit, request);
     }
     return response;
 };
@@ -175,9 +190,11 @@ export const sendRequest = async (request, options = {}) => {
         let token = request.auth.apiKey.token;
         if (!token) {
             const base64 = Buffer.from(`${login}:${password}`).toString('base64');
-            const response = await axios.post(`${request.auth.url}/api/authorize/1/authorize/accessToken`, { scope: scope ?? ['admin'] }, { headers: {
+            const response = await axios.post(`${request.auth.url}/api/authorize/1/authorize/accessToken`, { scope: scope ?? ['admin'] }, {
+                headers: {
                     authorization: `Basic ${base64}`,
-                } });
+                }
+            });
             if (response.data.access_token) {
                 token = response.data.access_token;
                 request.auth.apiKey.token = response.data.access_token;
@@ -222,17 +239,17 @@ export const sendRequest = async (request, options = {}) => {
     }
 };
 export const countResults = async (request, options) => {
-    const pageData = page(0, 1, request.snakeCase);
+    if (!request.custom?.page)
+        throw new Error("This request is not countable");
+    const pageData = request.custom.page(0, 1);
     Object.assign(request.params, pageData);
     const response = await sendRequest(request, options);
     if (!response)
         return 0;
-    if (request.snakeCase)
-        return parseInt(response.results_number_all);
-    else if (request.paginationObject)
-        return response.pagination.resultsNumberAll;
-    else
-        return response.resultsNumberAll;
+    const pagination = utils.getPagination(response);
+    if (pagination)
+        return pagination.totalPages;
+    return 0;
 };
 export const getParams = (request) => JSON.parse(JSON.stringify(request.params));
 export const checkParams = (request) => {

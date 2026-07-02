@@ -7,7 +7,6 @@ export default (object) => {
         page: paginationObject,
         promotionId: nest("promotionId", "filter", {}, false)
     };
-    object.paginationObject = true;
     object.req = ["filter"];
     return new Proxy(object, paramsProxy);
 };

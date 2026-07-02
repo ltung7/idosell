@@ -286,6 +286,42 @@ const mapProductParameters = (product, langId = 'pol') => {
         return acc;
     }, []);
 };
+const getPagination = (response) => {
+    // 1. Check snake_case on the top-level response before checking candidates
+    if (response?.results_number_page !== undefined) {
+        return {
+            currentPage: response.results_page,
+            totalPages: response.results_number_page,
+            totalRecords: response.results_number_all,
+            limit: response.results_limit,
+        };
+    }
+    // 2. Define candidates including response.results
+    const candidates = [
+        response,
+        response?.pagination,
+        response?.data?.pagination,
+        response?.results,
+    ];
+    // 3. Loop through candidates for camelCase options
+    for (const c of candidates) {
+        if (!c)
+            continue;
+        if (c.resultsNumberPage !== undefined) {
+            return {
+                currentPage: c.resultsPage,
+                totalPages: c.resultsNumberPage,
+                totalRecords: c.resultsNumberAll,
+                limit: c.resultsLimit,
+            };
+        }
+    }
+    return null;
+};
+const hasNext = (response) => {
+    const pagination = getPagination(response);
+    return pagination && (pagination.currentPage + 1 < pagination.totalPages);
+};
 export default {
     /** @description The method allows you to build an IAI code from the product ID and size ID. */
     getIaiCode,
@@ -307,4 +343,8 @@ export default {
     removeRmaAttachments,
     /** @description Maps product parameters to a simplified structure for a given language. Skips parameters with no values. */
     mapProductParameters,
+    /** @description ormalizes pagination data from inconsistent API response shapes (top-level vs. nested, camelCase vs. snake_case) into a single type */
+    getPagination,
+    /** @description Check if request has next page based on raw response */
+    hasNext
 };

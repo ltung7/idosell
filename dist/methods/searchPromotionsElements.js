@@ -10,6 +10,5 @@ export default (object) => {
         types: nest("types", "filter", {}, true),
         promotionIds: nest("promotionIds", "filter", {}, true)
     };
-    object.paginationObject = true;
     return new Proxy(object, paramsProxy);
 };

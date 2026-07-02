@@ -3484,10 +3484,7 @@ export interface DeleteProductsSizesRequest extends AppendableGateway<DeleteProd
     sizes: (sizes: Array<JSObject>) => this
 }
 
-export interface GetProductsSizesRequest extends Gateway<GetProductsSizesResponse> {
-    /** Allows to change offset and number of records returned */
-    page: (pagenumber: number, pageSize?: number) => this;
-}
+export interface GetProductsSizesRequest extends Gateway<GetProductsSizesResponse> {}
 
 export interface PutProductsSizesRequest extends AppendableGateway<PutProductsSizesRequest, PutProductsSizesResponse, RequestParams.PutProductsSizesParams> {
     /** Edition mode */
@@ -3946,7 +3943,7 @@ export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResp
     /** List of codes */
     code: (value: string|string[]) => this;
     /** Type of entity */
-    type: (value: string) => this;
+    type: (value: "producer" | "person") => this;
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
