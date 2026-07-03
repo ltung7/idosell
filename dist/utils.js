@@ -288,7 +288,7 @@ const mapProductParameters = (product, langId = 'pol') => {
 };
 const getPagination = (response) => {
     // 1. Check snake_case on the top-level response before checking candidates
-    if (response?.results_number_page !== undefined) {
+    if (response?.results_page !== undefined) {
         return {
             currentPage: response.results_page,
             totalPages: response.results_number_page,
@@ -307,7 +307,7 @@ const getPagination = (response) => {
     for (const c of candidates) {
         if (!c)
             continue;
-        if (c.resultsNumberPage !== undefined) {
+        if (c.resultsPage !== undefined) {
             return {
                 currentPage: c.resultsPage,
                 totalPages: c.resultsNumberPage,

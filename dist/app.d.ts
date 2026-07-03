@@ -16,7 +16,8 @@ export interface ExecutableOptions {
     log?: boolean | ((obj: ExecutableDumpParams) => void),
     dump?: boolean | ((obj: ExecutableDumpParams) => void),
     logPage?: boolean | ((text: string) => void),
-    skipCheck?: boolean
+    skipCheck?: boolean,
+    parallel?: number
 }
 
 export type DateLike = string | number | Date;

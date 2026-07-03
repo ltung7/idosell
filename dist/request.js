@@ -169,7 +169,7 @@ const processRequired = (request) => {
     if (missing.size)
         throw new Error(`Brak wymaganych pól: ${[...missing].join(', ')}`);
 };
-export const sendRequest = async (request, options = {}) => {
+export const _sendRequest = async (request, options = {}) => {
     if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {
         const array = request.params[request.appendable.arrayNode];
         const last = array[array.length - 1];
@@ -237,6 +237,139 @@ export const sendRequest = async (request, options = {}) => {
         const response = await axios[method](url, body, { headers }).then(response => response.data).catch(catchIdosellError);
         return checkNext(request, response, options.logPage);
     }
+};
+/**
+ * Everything that needs to happen once, before any axios call is made:
+ * appendable array cleanup, required-field validation, auth/token resolution,
+ * and base url construction.
+ */
+const prepareRequest = async (request, options = {}) => {
+    if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {
+        const array = request.params[request.appendable.arrayNode];
+        const last = array[array.length - 1];
+        if (typeof last === 'object' && Object.keys(last).length === 0) {
+            array.pop();
+        }
+    }
+    if (!options.skipCheck)
+        processRequired(request);
+    const headers = {
+        Accept: 'application/json',
+    };
+    if (typeof request.auth.apiKey === 'string') {
+        headers['X-API-KEY'] = request.auth.apiKey;
+    }
+    else {
+        const { login, password, scope } = request.auth.apiKey;
+        let token = request.auth.apiKey.token;
+        if (!token) {
+            const base64 = Buffer.from(`${login}:${password}`).toString('base64');
+            const response = await axios.post(`${request.auth.url}/api/authorize/1/authorize/accessToken`, { scope: scope ?? ['admin'] }, { headers: { authorization: `Basic ${base64}` } });
+            if (response.data.access_token) {
+                token = response.data.access_token;
+                request.auth.apiKey.token = response.data.access_token;
+            }
+        }
+        headers.authorization = `Bearer ${token}`;
+    }
+    request.next = false;
+    const { method, node } = request.gate;
+    const baseUrl = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
+    return { headers, baseUrl, method };
+};
+/**
+ * Executes a single axios call for a given set of params, using an already
+ * prepared (auth'd) request context. Handles dump/log short-circuiting,
+ * GET/DELETE query building vs POST/PUT body building, and checkNext.
+ */
+const executeCall = async (request, params, prepared, options = {}) => {
+    const { headers, baseUrl, method } = prepared;
+    let url = baseUrl;
+    if (options.dump || options.log) {
+        const dumpData = { params, method, url };
+        if (options.dump) {
+            if (options.dump === true)
+                DEFAULT_LOG_FUNCTION(dumpData);
+            else
+                options.dump(dumpData);
+            return {};
+        }
+        else if (options.log) {
+            if (options.log === true)
+                DEFAULT_LOG_FUNCTION(dumpData);
+            else
+                options.log(dumpData);
+        }
+    }
+    if (method === 'get' || method === 'delete') {
+        url += '?' + queryfy(params);
+        return await axios[method](url, { headers }).then(r => r.data).catch(catchIdosellError);
+    }
+    else {
+        let body = { params };
+        if (request.rootparams) {
+            if (request.rootparams === true)
+                body = params;
+            else
+                body = { [request.rootparams]: params };
+        }
+        return await axios[method](url, body, { headers }).then(r => r.data).catch(catchIdosellError);
+    }
+};
+/**
+ * Finds the first property on the response whose value is an array.
+ * The API names this differently per-endpoint (results, Results, returns,
+ * campaigns, etc) so we detect it structurally instead of by name.
+ */
+const findArrayKey = (obj) => {
+    return Object.keys(obj).find(key => Array.isArray(obj[key]));
+};
+/**
+ * Merges an array of same-shaped responses into one, concatenating the
+ * paginated array property (whatever it's called) in call order.
+ * Non-array properties are taken from the first defined response.
+ * Responses that errored (undefined) are skipped.
+ */
+const mergeResponses = (responses) => {
+    const defined = responses.filter((r) => r !== undefined && !r.errors);
+    if (defined.length === 0)
+        return undefined;
+    const base = defined[defined.length - 1];
+    const arrayKey = findArrayKey(base);
+    if (!arrayKey) {
+        // Nothing array-shaped to merge, just return the first response as-is.
+        return base;
+    }
+    const merged = { ...base };
+    merged[arrayKey] = defined.flatMap(r => (Array.isArray(r[arrayKey]) ? r[arrayKey] : []));
+    return merged;
+};
+export const sendRequest = async (request, options = {}) => {
+    if (options.parallel && options.parallel > 1 && request.custom && request.custom.page)
+        return sendMultipleRequest(request, options);
+    const prepared = await prepareRequest(request, options);
+    const response = await executeCall(request, request.params, prepared, options);
+    return checkNext(request, response, options.logPage);
+};
+const sendMultipleRequest = async (request, options) => {
+    const prepared = await prepareRequest(request, options);
+    const pagination = utils.getPagination(request.params);
+    const currentPage = pagination ? pagination.currentPage : 0;
+    const limit = pagination ? pagination.limit : 100;
+    const calls = Array.from({ length: options.parallel }, (_, i) => {
+        const targetPage = currentPage + i;
+        const params = { ...request.params };
+        if (typeof request.custom?.page === 'function') {
+            const pageObject = request.custom.page(targetPage, limit);
+            Object.assign(params, pageObject);
+        }
+        return executeCall(request, params, prepared, options);
+    });
+    const responses = await Promise.all(calls);
+    const merged = mergeResponses(responses);
+    if (merged === undefined)
+        return undefined;
+    return checkNext(request, merged, options.logPage);
 };
 export const countResults = async (request, options) => {
     if (!request.custom?.page)
