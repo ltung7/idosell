@@ -384,6 +384,27 @@ export const countResults = async (request, options) => {
         return pagination.totalPages;
     return 0;
 };
+export const getFirstRecord = async (request, options) => {
+    if (!request.custom?.page)
+        throw new Error("This request is not countable");
+    const pageData = request.custom.page(0, 1);
+    Object.assign(request.params, pageData);
+    const response = await sendRequest(request, options).catch(err => {
+        const cause = err.cause;
+        if (cause && 'faultCode' in cause && cause.faultCode === 2)
+            return;
+        throw err;
+    });
+    if (!response)
+        return;
+    const findArrayKey = (obj) => {
+        return Object.keys(obj).find(key => Array.isArray(obj[key]));
+    };
+    const arrayKey = findArrayKey(response);
+    if (!arrayKey)
+        throw new Error("Response contains no arrays");
+    return response[arrayKey][0];
+};
 export const getParams = (request) => JSON.parse(JSON.stringify(request.params));
 export const checkParams = (request) => {
     if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {

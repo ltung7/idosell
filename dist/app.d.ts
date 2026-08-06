@@ -82,7 +82,7 @@ export interface Gateway<R = JSObject, P = JSObject> {
     checkParams: () => void
 }
 
-export interface PagableGateway<T, R = JSObject, P = JSObject> extends Gateway<R, P> {
+export interface PagableGateway<T, R = JSObject, P = JSObject, S = JSObject> extends Gateway<R, P> {
     /**
      * @returns number of items i.e. products, orders, documents, etc.
      */
@@ -100,6 +100,11 @@ export interface PagableGateway<T, R = JSObject, P = JSObject> extends Gateway<R
      * @returns If completed request has more pages
      */
     hasNext: () => boolean
+
+    /**
+     * @returns First record of array or undefined
+     */
+    first: () => Promise<S | undefined>
 }
 
 export interface AppendableGateway<T, R = JSObject, P = JSObject> extends Gateway<R, P> {

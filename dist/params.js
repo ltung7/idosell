@@ -1,8 +1,9 @@
-import { sendRequest, countResults, getParams, checkParams, hasNext, toString } from "./request.js";
+import { sendRequest, countResults, getParams, checkParams, hasNext, toString, getFirstRecord } from "./request.js";
 const getAttributes = (obj) => Object.keys(obj).slice(3);
 const requests = {
     exec: sendRequest,
     count: countResults,
+    first: getFirstRecord,
     getParams,
     checkParams,
     hasNext,

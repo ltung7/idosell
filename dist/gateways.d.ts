@@ -16,7 +16,7 @@ export class IdosellFaultStringError extends Error {
 export function catchEmptyList(): (_err: IdosellFaultStringError) => undefined;
 export function catchEmptyList<T>(_defaultValue: T): (_err: IdosellFaultStringError) => T;
 
-export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest, GetClientsBalanceResponse> {
+export interface GetClientsBalanceRequest extends PagableGateway<GetClientsBalanceRequest, GetClientsBalanceResponse, GetClientsBalanceResponse['clientsBalance'][number]> {
     /** Customer Id */
     clientNumbers: (value: number|string|number[]|string[]) => this;
     /** Text search through customer data. */
@@ -54,7 +54,7 @@ export interface PostClientsBalanceRequest extends Gateway<BooleanStatusResponse
     remove: (balance: number, currency?: string) => this;
 }
 
-export interface GetClientsRequest extends PagableGateway<GetClientsRequest, GetClientsResponse> {
+export interface GetClientsRequest extends PagableGateway<GetClientsRequest, GetClientsResponse, GetClientsResponse['results'][number]> {
     /** Customer numbers. */
     clientsIds: (value: number|string|number[]|string[]) => this;
     /** External system codes list */
@@ -229,7 +229,7 @@ export interface PutClientsRequest extends AppendableGateway<PutClientsRequest, 
     clientNote: (clientNote: string) => this
 }
 
-export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrmRequest, SearchClientsCrmResponse, RequestParams.SearchClientsCrmParams> {
+export interface SearchClientsCrmRequest extends PagableGateway<SearchClientsCrmRequest, SearchClientsCrmResponse, RequestParams.SearchClientsCrmParams, SearchClientsCrmResponse['clientsResults'][number]> {
     /** Customer's login. */
     clientLogin: (value: string) => this;
     /** Determines, whether client is a wholesaler. */
@@ -473,7 +473,7 @@ export interface SearchClientsGiftcardsRequest extends Gateway<SearchClientsGift
     pins: (values: number|string|number[]|string[]) => this;
 }
 
-export interface GetClientsGiftcardsTypesRequest extends PagableGateway<GetClientsGiftcardsTypesRequest, GetClientsGiftcardsTypesResponse> {
+export interface GetClientsGiftcardsTypesRequest extends PagableGateway<GetClientsGiftcardsTypesRequest, GetClientsGiftcardsTypesResponse, GetClientsGiftcardsTypesResponse['giftCardsTypes'][number]> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -520,7 +520,7 @@ export interface PutClientsMembershipCardsRequest extends AppendableGateway<PutC
     errors: (errors: RequestParams.PutClientsMembershipCardsParams["membership_cards"][number]["errors"]) => this
 }
 
-export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest, SearchClientsNewsletterEmailResponse, RequestParams.SearchClientsNewsletterEmailParams> {
+export interface SearchClientsNewsletterEmailRequest extends PagableGateway<SearchClientsNewsletterEmailRequest, SearchClientsNewsletterEmailResponse, RequestParams.SearchClientsNewsletterEmailParams, SearchClientsNewsletterEmailResponse['clients'][number]> {
     shops: (value: RequestParams.SearchClientsNewsletterEmailParams["shops"]) => this;
     /** Customer language ID. */
     language: (value: LangId) => this;
@@ -535,7 +535,7 @@ export interface SearchClientsNewsletterEmailRequest extends PagableGateway<Sear
     dates: (dateFrom: DateLike, dateTo: DateLike) => this;
 }
 
-export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest, SearchClientsNewsletterSmsResponse, RequestParams.SearchClientsNewsletterSmsParams> {
+export interface SearchClientsNewsletterSmsRequest extends PagableGateway<SearchClientsNewsletterSmsRequest, SearchClientsNewsletterSmsResponse, RequestParams.SearchClientsNewsletterSmsParams, SearchClientsNewsletterSmsResponse['clients'][number]> {
     shops: (value: RequestParams.SearchClientsNewsletterSmsParams["shops"]) => this;
     /** Customer language ID. */
     language: (value: LangId) => this;
@@ -558,7 +558,7 @@ export interface DeleteClientsPayerAddressRequest extends AppendableGateway<Dele
     payerAddressId: (payerAddressId: number|string) => this
 }
 
-export interface GetClientsPayerAddressRequest extends PagableGateway<GetClientsPayerAddressRequest, GetClientsPayerAddressResponse> {
+export interface GetClientsPayerAddressRequest extends PagableGateway<GetClientsPayerAddressRequest, GetClientsPayerAddressResponse, GetClientsPayerAddressResponse['payerAddressesResults'][number]> {
     /** Unique client's number. */
     clientId: (value: number|string) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -634,7 +634,7 @@ export interface DeleteClientsPricelistsRequest extends Gateway {
     priceListId: (value: number|string) => this;
 }
 
-export interface GetClientsPricelistsRequest extends PagableGateway<GetClientsPricelistsRequest, GetClientsPricelistsResponse> {
+export interface GetClientsPricelistsRequest extends PagableGateway<GetClientsPricelistsRequest, GetClientsPricelistsResponse, GetClientsPricelistsResponse['result'][number]> {
     /** List of individual price lists. */
     priceListIds: (value: number|string|number[]|string[]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available elements: - priceListId - priceListName - onlyOrderProductsWithManuallySetPrices - onlySeeProductsWithManuallySetPrices */
@@ -697,7 +697,7 @@ export interface PutClientsPricelistsRenameRequest extends Gateway {
 
 export interface GetClientsPricesActiveCardRequest extends Gateway<GetClientsPricesActiveCardResponse> {}
 
-export interface GetClientsPricesDiscountGroupsRequest extends PagableGateway<GetClientsPricesDiscountGroupsRequest, GetClientsPricesDiscountGroupsResponse> {
+export interface GetClientsPricesDiscountGroupsRequest extends PagableGateway<GetClientsPricesDiscountGroupsRequest, GetClientsPricesDiscountGroupsResponse, GetClientsPricesDiscountGroupsResponse['results'][number]> {
     /** Customer groups. */
     clientDiscountGroupsNumbers: (value: number|string|number[]|string[]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available elements: - clientDiscountGroupNumber - clientDiscountGroupIsCombined - clientDiscountGroupType - clientDiscountGroupValue - clientDiscountGroupName */
@@ -708,7 +708,7 @@ export interface GetClientsPricesDiscountGroupsRequest extends PagableGateway<Ge
     resultsLimit: (value: number|string) => this;
 }
 
-export interface GetClientsPricesDiscountsRequest extends PagableGateway<GetClientsPricesDiscountsRequest, GetClientsPricesDiscountsResponse> {
+export interface GetClientsPricesDiscountsRequest extends PagableGateway<GetClientsPricesDiscountsRequest, GetClientsPricesDiscountsResponse, GetClientsPricesDiscountsResponse['clientDiscounts'][number]> {
     /** Customer numbers. */
     clientsIds: (value: number|string|number[]|string[]) => this;
     /** Text search through customer data. */
@@ -744,7 +744,7 @@ export interface PutClientsPricesDiscountsRequest extends AppendableGateway<PutC
     discount_value: (discount_value: number) => this
 }
 
-export interface GetClientsProfitPointsRequest extends PagableGateway<GetClientsProfitPointsRequest, GetClientsProfitPointsResponse> {
+export interface GetClientsProfitPointsRequest extends PagableGateway<GetClientsProfitPointsRequest, GetClientsProfitPointsResponse, GetClientsProfitPointsResponse['clientsProfitPointsResults'][number]> {
     /** Customer numbers. */
     clientsIds: (value: number|string|number[]|string[]) => this;
     /** Text search through customer data. */
@@ -829,7 +829,7 @@ export interface PutClientsTagsRequest extends AppendableGateway<PutClientsTagsR
     tagValue: (tagValue: number|string) => this
 }
 
-export interface GetConfigVariablesRequest extends PagableGateway<GetConfigVariablesRequest, GetConfigVariablesResponse> {
+export interface GetConfigVariablesRequest extends PagableGateway<GetConfigVariablesRequest, GetConfigVariablesResponse, GetConfigVariablesResponse['results'][number]> {
     /** Which component is affected by the configuration. */
     type: (value: 'snippets_campaign') => this;
     /** List of item identifiers for given configuration type. Eg. snippet campaign identifiers. */
@@ -865,7 +865,7 @@ export interface DeleteConfigVariablesRequest extends Gateway {
 
 export interface GetCouriersAssignedToShippingProfilesRequest extends Gateway<GetCouriersAssignedToShippingProfilesResponse> {}
 
-export interface GetCouriersRequest extends PagableGateway<GetCouriersRequest, GetCouriersResponse> {
+export interface GetCouriersRequest extends PagableGateway<GetCouriersRequest, GetCouriersResponse, GetCouriersResponse['result'][number]> {
     /** Country code in ISO 3166-1 standard. */
     countryCode: (value: string) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -884,7 +884,7 @@ export interface DeleteCouriersPickupPointsRequest extends AppendableGateway<Del
     courierId: (courierId: number|string) => this
 }
 
-export interface GetCouriersPickupPointsRequest extends PagableGateway<GetCouriersPickupPointsRequest, GetCouriersPickupPointsResponse> {
+export interface GetCouriersPickupPointsRequest extends PagableGateway<GetCouriersPickupPointsRequest, GetCouriersPickupPointsResponse, GetCouriersPickupPointsResponse['result'][number]> {
     /** Courier ID. */
     courierId: (value: number|string) => this;
     /** Collection point ID. */
@@ -939,7 +939,7 @@ export interface PutCouriersPickupPointsRequest extends AppendableGateway<PutCou
     operatingDays: (operatingDays: RequestParams.PutCouriersPickupPointsParams["pickupPoints"][number]["operatingDays"]) => this
 }
 
-export interface GetCpaCampaignRequest extends PagableGateway<GetCpaCampaignRequest, GetCpaCampaignResponse> {
+export interface GetCpaCampaignRequest extends PagableGateway<GetCpaCampaignRequest, GetCpaCampaignResponse, GetCpaCampaignResponse['results'][number]> {
     /** List of shop identifiers */
     shopId: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -982,7 +982,7 @@ export interface DeleteCpaCampaignRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetCpaRequest extends PagableGateway<GetCpaRequest, GetCpaResponse> {
+export interface GetCpaRequest extends PagableGateway<GetCpaRequest, GetCpaResponse, GetCpaResponse['results'][number]> {
     /** List of campaign identifiers */
     campaign: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -1045,7 +1045,7 @@ export interface PutDeliveriesDefaultProfilesRequest extends Gateway {
     wholesaleProfileId: (value: number|string) => this;
 }
 
-export interface GetDeliveriesProfilesRequest extends PagableGateway<GetDeliveriesProfilesRequest, GetDeliveriesProfilesResponse> {
+export interface GetDeliveriesProfilesRequest extends PagableGateway<GetDeliveriesProfilesRequest, GetDeliveriesProfilesResponse, GetDeliveriesProfilesResponse['deliveryProfiles'][number]> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -1080,7 +1080,7 @@ export interface DeleteDiscountsGroupsRequest extends Gateway {
     discountGroupId: (value: number|string) => this;
 }
 
-export interface GetDiscountsGroupsRequest extends PagableGateway<GetDiscountsGroupsRequest, GetDiscountsGroupsResponse> {
+export interface GetDiscountsGroupsRequest extends PagableGateway<GetDiscountsGroupsRequest, GetDiscountsGroupsResponse, GetDiscountsGroupsResponse['groups'][number]> {
     groupNumbers: (value: number|string|number[]|string[]) => this;
     /** Elements to be returned by the endpoint. By default all elements are returned. Available elements: - groupNumber - groupCombined - groupType - groupRebate - groupName */
     returnElements: (value: string|string[]) => this;
@@ -1568,7 +1568,7 @@ export interface GetOrdersLabelsRequest extends Gateway<GetOrdersLabelsResponse>
     orderSerialNumber: (value: number|string) => this;
 }
 
-export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrdersOpinionsRequest, SearchOrdersOpinionsResponse, RequestParams.SearchOrdersOpinionsParams> {
+export interface SearchOrdersOpinionsRequest extends PagableGateway<SearchOrdersOpinionsRequest, SearchOrdersOpinionsResponse, RequestParams.SearchOrdersOpinionsParams, SearchOrdersOpinionsResponse['results'][number]> {
     /** Review identification */
     opinion: (value: RequestParams.SearchOrdersOpinionsParams["opinion"]) => this;
     /** Orders. */
@@ -1718,7 +1718,7 @@ export interface PutOrdersRequest extends AppendableGateway<PutOrdersRequest, Pu
     plannedDateOfPacking: (plannedDateOfPacking: string) => this
 }
 
-export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest, SearchOrdersResponse, RequestParams.SearchOrdersParams> {
+export interface SearchOrdersRequest extends PagableGateway<SearchOrdersRequest, SearchOrdersResponse, RequestParams.SearchOrdersParams, SearchOrdersResponse['Results'][number]> {
     /** Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
     orderPrepaidStatus: (value: "unpaid" | "restored" | "waiting") => this;
     /** Order status. Status list: "new" - not handled, "finished" - completed, "false" - false, "lost" - lost, "on_order" - in progress, "packed" - being picked, "ready" - ready, "canceled" - canceled by customer, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "suspended" - on hold, "joined" - merged, "finished_ext" - handled in FA application. */
@@ -1905,7 +1905,7 @@ export interface PutOrdersShippingCostsRequest extends Gateway {
 
 export interface GetOrdersStatusesRequest extends Gateway<GetOrdersStatusesResponse> {}
 
-export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest, SearchOrdersResponse, RequestParams.SearchOrdersParams> {
+export interface SearchOrdersUnfinishedRequest extends PagableGateway<SearchOrdersUnfinishedRequest, SearchOrdersResponse, RequestParams.SearchOrdersParams, SearchOrdersResponse['Results'][number]> {
     /** Prepayment status. Status list: "unpaid" - not paid, "restored" - returned, "waiting" - not registered. */
     orderPrepaidStatus: (value: "unpaid" | "restored" | "waiting") => this;
     /** Order status. Status list: "new" - not handled, "on_order" - in progress, "packed" - being picked, "packed_fulfillment" - being picked - fulfilment, "packed_ready" - packed, "ready" - ready, "payment_waiting" - awaiting payment, "delivery_waiting" - awaiting delivery, "wait_for_dispatch" - awaiting dispatch date, "suspended" - on hold, "finished_ext" - handled in FA application. */
@@ -2154,7 +2154,7 @@ export interface PutPaymentsRequest extends Gateway {
     externalPaymentId: (value: string) => this;
 }
 
-export interface GetPaymentsProfilesRequest extends PagableGateway<GetPaymentsProfilesRequest, GetPaymentsProfilesResponse> {
+export interface GetPaymentsProfilesRequest extends PagableGateway<GetPaymentsProfilesRequest, GetPaymentsProfilesResponse, GetPaymentsProfilesResponse['paymentProfiles'][number]> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -2262,7 +2262,7 @@ export interface PutProductsBrandsFilterRequest extends AppendableGateway<PutPro
     filterDefaultEnabled: (filterDefaultEnabled: 'y'|'n') => this
 }
 
-export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBrandsRequest, GetProductsBrandsResponse> {
+export interface GetProductsBrandsRequest extends PagableGateway<GetProductsBrandsRequest, GetProductsBrandsResponse, GetProductsBrandsResponse['producers'][number]> {
     /** Result page number. */
     results_page: (value: number|string) => this;
     /** Number of results on page. */
@@ -2331,7 +2331,7 @@ export interface PutProductsBundlesRenewRequest extends AppendableGateway<PutPro
     bundleIdent: (bundleIdent: JSObject) => this
 }
 
-export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest, GetProductsCategoriesResponse> {
+export interface GetProductsCategoriesRequest extends PagableGateway<GetProductsCategoriesRequest, GetProductsCategoriesResponse, GetProductsCategoriesResponse['categories'][number]> {
     /** List of product category identifiers in the panel */
     ids: (value: number|string|number[]|string[]) => this;
     /** Array of languages categories names should be returned in. "Defaults" value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages. */
@@ -2358,7 +2358,7 @@ export interface PutProductsCategoriesRequest extends AppendableGateway<PutProdu
     lang_data: (lang_data: RequestParams.PutProductsCategoriesParams["categories"][number]["lang_data"]) => this
 }
 
-export interface SearchProductsCategoriesIdosellRequest extends PagableGateway<SearchProductsCategoriesIdosellRequest, SearchProductsCategoriesIdosellResponse, RequestParams.SearchProductsCategoriesIdosellParams> {
+export interface SearchProductsCategoriesIdosellRequest extends PagableGateway<SearchProductsCategoriesIdosellRequest, SearchProductsCategoriesIdosellResponse, RequestParams.SearchProductsCategoriesIdosellParams, SearchProductsCategoriesIdosellResponse['categoriesIdoSell'][number]> {
     /** List of languages */
     languagesIds: (value: LangId|(LangId)[]) => this;
     /** Number of IdoSell Categories identifiers */
@@ -2588,7 +2588,7 @@ export interface DeleteProductsOpinionsRequest extends Gateway {
     id: (value: number|string) => this;
 }
 
-export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOpinionsRequest, GetProductsOpinionsResponse> {
+export interface GetProductsOpinionsRequest extends PagableGateway<GetProductsOpinionsRequest, GetProductsOpinionsResponse, GetProductsOpinionsResponse['results'][number]> {
     /** Review identification */
     opinion: (value: JSObject) => this;
     /** Products list. */
@@ -2689,7 +2689,7 @@ export interface PutProductsParametersRequest extends AppendableGateway<PutProdu
     context_value_id: (context_value_id: number|string) => this
 }
 
-export interface SearchProductsParametersRequest extends PagableGateway<SearchProductsParametersRequest, SearchProductsParametersResponse, RequestParams.SearchProductsParametersParams> {
+export interface SearchProductsParametersRequest extends PagableGateway<SearchProductsParametersRequest, SearchProductsParametersResponse, RequestParams.SearchProductsParametersParams, SearchProductsParametersResponse['parametersResult'][number]> {
     /** List of identifiers */
     ids: (value: number|string|number[]|string[]) => this;
     /** Element text ID - can be entered instead of "id". */
@@ -3169,7 +3169,7 @@ export interface PutProductsRequest extends AppendableGateway<PutProductsRequest
     pictures: (picturesArray: string|string[]) => this;
 }
 
-export interface SearchProductsRequest extends PagableGateway<SearchProductsRequest, SearchProductsResponse, RequestParams.SearchProductsParams> {
+export interface SearchProductsRequest extends PagableGateway<SearchProductsRequest, SearchProductsResponse, RequestParams.SearchProductsParams, SearchProductsResponse['results'][number]> {
     dispatchSettings: (value: RequestParams.SearchProductsParams["dispatchSettings"]) => this;
     /** Element determines which products should be returned by the gate. Undeleted products are returned by default. Available values: "active" - undeleted products, "deleted" - deleted products. "in_trash" - products in the trash. */
     returnProducts: (value: "active" | "deleted" | "in_trash") => this;
@@ -3446,7 +3446,7 @@ export interface PutProductsSeriesFilterRequest extends AppendableGateway<PutPro
     filterDefaultEnabled: (filterDefaultEnabled: 'y'|'n') => this
 }
 
-export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeriesRequest, GetProductsSeriesResponse> {
+export interface GetProductsSeriesRequest extends PagableGateway<GetProductsSeriesRequest, GetProductsSeriesResponse, GetProductsSeriesResponse['series'][number]> {
     /** With "y" value it returns the last series modification date in YYYY-MM-DD HH:MM:SS format. */
     return_last_changed_time: (value: string) => this;
     /** IDs */
@@ -3624,7 +3624,7 @@ export interface PostPromotionsElementsRequest extends AppendableGateway<PostPro
     correlatedElementsId: (correlatedElementsId: number|string|number[]|string[]) => this
 }
 
-export interface SearchPromotionsElementsRequest extends PagableGateway<SearchPromotionsElementsRequest, SearchPromotionsElementsResponse, RequestParams.SearchPromotionsElementsParams> {
+export interface SearchPromotionsElementsRequest extends PagableGateway<SearchPromotionsElementsRequest, SearchPromotionsElementsResponse, RequestParams.SearchPromotionsElementsParams, SearchPromotionsElementsResponse['errors'][number]> {
     filter: (value: RequestParams.SearchPromotionsElementsParams["filter"]) => this;
     /** Pagination settings. */
     pagination: (value: RequestParams.SearchPromotionsElementsParams["pagination"]) => this;
@@ -3655,7 +3655,7 @@ export interface DeletePromotionsElementsRequest extends AppendableGateway<Delet
     correlatedElementsId: (correlatedElementsId: number|string|number[]|string[]) => this
 }
 
-export interface SearchPromotionsHistoryRequest extends PagableGateway<SearchPromotionsHistoryRequest, SearchPromotionsHistoryResponse, RequestParams.SearchPromotionsHistoryParams> {
+export interface SearchPromotionsHistoryRequest extends PagableGateway<SearchPromotionsHistoryRequest, SearchPromotionsHistoryResponse, RequestParams.SearchPromotionsHistoryParams, SearchPromotionsHistoryResponse['errors'][number]> {
     /** Filters that limit the result of a customer query. */
     filter: (value: RequestParams.SearchPromotionsHistoryParams["filter"]) => this;
     /** Pagination settings. */
@@ -3757,7 +3757,7 @@ export interface GetPromotionsRequest extends Gateway<GetPromotionsResponse, Req
     promotionId: (value: number|string) => this;
 }
 
-export interface SearchPromotionsListViewRequest extends PagableGateway<SearchPromotionsListViewRequest, SearchPromotionsListViewResponse, RequestParams.SearchPromotionsListViewParams> {
+export interface SearchPromotionsListViewRequest extends PagableGateway<SearchPromotionsListViewRequest, SearchPromotionsListViewResponse, RequestParams.SearchPromotionsListViewParams, SearchPromotionsListViewResponse['errors'][number]> {
     /** Filters that limit the result of a customer query. */
     filter: (value: RequestParams.SearchPromotionsListViewParams["filter"]) => this;
     /** Pagination settings. */
@@ -3799,7 +3799,7 @@ export interface GetPromotionsArchiveRequest extends Gateway<GetPromotionsArchiv
     promotionId: (value: number|string) => this;
 }
 
-export interface SearchPromotionsArchiveRequest extends PagableGateway<SearchPromotionsArchiveRequest, SearchPromotionsArchiveResponse, RequestParams.SearchPromotionsArchiveParams> {
+export interface SearchPromotionsArchiveRequest extends PagableGateway<SearchPromotionsArchiveRequest, SearchPromotionsArchiveResponse, RequestParams.SearchPromotionsArchiveParams, SearchPromotionsArchiveResponse['errors'][number]> {
     /** Filters that limit the result of a customer query. */
     filter: (value: RequestParams.SearchPromotionsArchiveParams["filter"]) => this;
     /** Pagination settings. */
@@ -3924,7 +3924,7 @@ export interface PutRefundsUpdateRefundRequest extends Gateway {
     refundCurrency: (value: string) => this;
 }
 
-export interface GetRegulationsHistoryRequest extends PagableGateway<GetRegulationsHistoryRequest, GetRegulationsHistoryResponse> {
+export interface GetRegulationsHistoryRequest extends PagableGateway<GetRegulationsHistoryRequest, GetRegulationsHistoryResponse, GetRegulationsHistoryResponse['results'][number]> {
     /** Type of history */
     type: (value: string) => this;
     /** Shop's ID */
@@ -3939,7 +3939,7 @@ export interface GetRegulationsHistoryRequest extends PagableGateway<GetRegulati
     resultsLimit: (value: number|string) => this;
 }
 
-export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResponsibilityEntitiesRequest, GetResponsibilityEntitiesResponse> {
+export interface GetResponsibilityEntitiesRequest extends PagableGateway<GetResponsibilityEntitiesRequest, GetResponsibilityEntitiesResponse, GetResponsibilityEntitiesResponse['results'][number]> {
     /** List of codes */
     code: (value: string|string[]) => this;
     /** Type of entity */
@@ -4021,7 +4021,7 @@ export interface DeleteResponsibilityEntitiesRequest extends Gateway {
     type: (value: string) => this;
 }
 
-export interface GetReturnsRequest extends PagableGateway<GetReturnsRequest, GetReturnsResponse> {
+export interface GetReturnsRequest extends PagableGateway<GetReturnsRequest, GetReturnsResponse, GetReturnsResponse['returns'][number]> {
     /** Search by the order serial number to which a return was added. */
     order_sn: (value: number|string) => this;
     /** Search by return ID. */
@@ -4101,7 +4101,7 @@ export interface PutReturnsSerialNumberRequest extends AppendableGateway<PutRetu
 
 export interface GetReturnsStatusesRequest extends Gateway {}
 
-export interface GetRmaRequest extends PagableGateway<GetRmaRequest, GetRmaResponse> {
+export interface GetRmaRequest extends PagableGateway<GetRmaRequest, GetRmaResponse, GetRmaResponse['rmas'][number]> {
     rmaIds: (value: number|string|number[]|string[]) => this;
     /** Stock ID */
     stockId: (value: number|string) => this;
@@ -4149,7 +4149,7 @@ export interface DeleteSizechartsRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest, GetSizechartsResponse> {
+export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest, GetSizechartsResponse, GetSizechartsResponse['sizeCharts'][number]> {
     /** IDs */
     ids: (value: number|string|number[]|string[]) => this;
     /** Names of size charts */
@@ -4198,7 +4198,7 @@ export interface PutSizesRequest extends AppendableGateway<PutSizesRequest, PutS
     lang_data: (lang_data: RequestParams.PutSizesParams["sizes"][number]["lang_data"]) => this
 }
 
-export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCampaignRequest, GetSnippetsCampaignResponse> {
+export interface GetSnippetsCampaignRequest extends PagableGateway<GetSnippetsCampaignRequest, GetSnippetsCampaignResponse, GetSnippetsCampaignResponse['results'][number]> {
     /** List of shop identifiers */
     shopId: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -4249,7 +4249,7 @@ export interface DeleteSnippetsCampaignRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCookiesRequest, GetSnippetsCookiesResponse> {
+export interface GetSnippetsCookiesRequest extends PagableGateway<GetSnippetsCookiesRequest, GetSnippetsCookiesResponse, GetSnippetsCookiesResponse['results'][number]> {
     /** List of identifiers for specific cookies */
     id: (value: number|string|number[]|string[]) => this;
     /** Page with results number. Numeration starts from 0 */
@@ -4305,7 +4305,7 @@ export interface DeleteSnippetsCookiesRequest extends Gateway {
     id: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest, GetSnippetsResponse> {
+export interface GetSnippetsRequest extends PagableGateway<GetSnippetsRequest, GetSnippetsResponse, GetSnippetsResponse['results'][number]> {
     /** List of campaign identifiers */
     campaign: (value: number|string|number[]|string[]) => this;
     /** List of identifiers */
@@ -4566,7 +4566,7 @@ export interface PutVouchersBlockRequest extends AppendableGateway<PutVouchersBl
     number: (number: string) => this
 }
 
-export interface GetVouchersTypesRequest extends PagableGateway<GetVouchersTypesRequest, GetVouchersTypesResponse> {
+export interface GetVouchersTypesRequest extends PagableGateway<GetVouchersTypesRequest, GetVouchersTypesResponse, GetVouchersTypesResponse['vouchersTypes'][number]> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
@@ -4589,7 +4589,7 @@ export interface DeleteVouchersRequest extends AppendableGateway<DeleteVouchersR
     number: (number: string) => this
 }
 
-export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest, GetVouchersResponse> {
+export interface GetVouchersRequest extends PagableGateway<GetVouchersRequest, GetVouchersResponse, GetVouchersResponse['result'][number]> {
     vouchers: (value: Array<JSObject>) => this;
     /** Discount code campaign ID */
     voucherTypeId: (value: number|string) => this;
@@ -4688,7 +4688,7 @@ export interface DeleteWarrantiesRequest extends Gateway {
     warranty_ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesRequest, GetWarrantiesResponse> {
+export interface GetWarrantiesRequest extends PagableGateway<GetWarrantiesRequest, GetWarrantiesResponse, GetWarrantiesResponse['warranties'][number]> {
     warranty_ids: (value: number|string|number[]|string[]) => this;
     /** Number of results on page. */
     results_limit: (value: number|string) => this;
@@ -4721,7 +4721,7 @@ export interface PutWarrantiesRequest extends AppendableGateway<PutWarrantiesReq
     period: (period: number|string) => this
 }
 
-export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest, GetWmsLocationsResponse, RequestParams.GetWmsLocationsParams> {
+export interface GetWmsLocationsRequest extends PagableGateway<GetWmsLocationsRequest, GetWmsLocationsResponse, RequestParams.GetWmsLocationsParams, GetWmsLocationsResponse['results'][number]> {
     /** Warehouse location ID */
     locationId: (value: number|string) => this;
     /** Storage location code */
@@ -4753,7 +4753,7 @@ export interface DeleteWmsStocksdocumentsDocumentsRequest extends Gateway {
     id: (value: number|string) => this;
 }
 
-export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsDocumentsRequest, GetWmsStocksdocumentsDocumentsResponse> {
+export interface GetWmsStocksdocumentsDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsDocumentsRequest, GetWmsStocksdocumentsDocumentsResponse, GetWmsStocksdocumentsDocumentsResponse['stocksDocuments'][number]> {
     /** Document type. */
     stockDocumentType: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'wz'|'mm'|'zw') => this;
     /** Document status. */
@@ -4845,7 +4845,7 @@ export interface PutWmsStocksdocumentsDocumentsRequest extends Gateway<PutWmsSto
     verificationUser: (value: string) => this;
 }
 
-export interface GetWmsStocksdocumentsOpenedDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsOpenedDocumentsRequest, GetWmsStocksdocumentsOpenedDocumentsResponse> {
+export interface GetWmsStocksdocumentsOpenedDocumentsRequest extends PagableGateway<GetWmsStocksdocumentsOpenedDocumentsRequest, GetWmsStocksdocumentsOpenedDocumentsResponse, GetWmsStocksdocumentsOpenedDocumentsResponse['documents'][number]> {
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm') => this;
     status: (value: 'open'|'on_the_way'|'all') => this;
     /** Target warehouse ID. The list of available warehouses can be downloaded via the method <a href = "en/shop/api/?action=method&function=systemconfig&method=get">#get</a> in gateway <a href = "en/shop/api/?action=documentation&function=systemconfig">SystemConfig</a>. */
@@ -4874,7 +4874,7 @@ export interface DeleteWmsStocksdocumentsProductsRequest extends AppendableGatew
     size: (size: string) => this
 }
 
-export interface GetWmsStocksdocumentsProductsRequest extends PagableGateway<GetWmsStocksdocumentsProductsRequest, GetWmsStocksdocumentsProductsResponse> {
+export interface GetWmsStocksdocumentsProductsRequest extends PagableGateway<GetWmsStocksdocumentsProductsRequest, GetWmsStocksdocumentsProductsResponse, GetWmsStocksdocumentsProductsResponse['products'][number]> {
     type: (value: 'pz'|'pw'|'px'|'rx'|'rw'|'mm'|'wz'|'zw') => this;
     /** Document identifier. */
     id: (value: number|string) => this;
@@ -4938,7 +4938,7 @@ export interface DeleteWmsSuppliersRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetWmsSuppliersRequest extends PagableGateway<GetWmsSuppliersRequest, GetWmsSuppliersResponse> {
+export interface GetWmsSuppliersRequest extends PagableGateway<GetWmsSuppliersRequest, GetWmsSuppliersResponse, GetWmsSuppliersResponse['suppliers'][number]> {
     /** Page with results number. Numeration starts from 0 */
     resultsPage: (value: number|string) => this;
     /** Number of results on page. Value from 1 to 100 */
