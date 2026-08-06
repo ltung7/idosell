@@ -4149,7 +4149,7 @@ export interface DeleteSizechartsRequest extends Gateway {
     ids: (value: number|string|number[]|string[]) => this;
 }
 
-export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest, GetSizechartsResponse, GetSizechartsResponse['sizeCharts'][number]> {
+export interface GetSizechartsRequest extends PagableGateway<GetSizechartsRequest, GetSizechartsResponse> {
     /** IDs */
     ids: (value: number|string|number[]|string[]) => this;
     /** Names of size charts */
