@@ -132,7 +132,7 @@ const isMissingRequirement = (obj, required) => {
             return false;
         }
         for (const field of required.any) {
-            if (obj[field] === undefined || obj[field] === null)
+            if (obj[field] !== undefined && obj[field] !== null)
                 return false;
         }
         return required.any.join(' | ');
@@ -169,75 +169,6 @@ const processRequired = (request) => {
     if (missing.size)
         throw new Error(`Brak wymaganych pól: ${[...missing].join(', ')}`);
 };
-export const _sendRequest = async (request, options = {}) => {
-    if (request.appendable?.arrayNode && request.params[request.appendable.arrayNode]) {
-        const array = request.params[request.appendable.arrayNode];
-        const last = array[array.length - 1];
-        if (typeof last === 'object' && Object.keys(last).length === 0) {
-            array.pop();
-        }
-    }
-    if (!options.skipCheck)
-        processRequired(request);
-    const headers = {
-        Accept: 'application/json'
-    };
-    if (typeof request.auth.apiKey === 'string') {
-        headers['X-API-KEY'] = request.auth.apiKey;
-    }
-    else {
-        const { login, password, scope } = request.auth.apiKey;
-        let token = request.auth.apiKey.token;
-        if (!token) {
-            const base64 = Buffer.from(`${login}:${password}`).toString('base64');
-            const response = await axios.post(`${request.auth.url}/api/authorize/1/authorize/accessToken`, { scope: scope ?? ['admin'] }, {
-                headers: {
-                    authorization: `Basic ${base64}`,
-                }
-            });
-            if (response.data.access_token) {
-                token = response.data.access_token;
-                request.auth.apiKey.token = response.data.access_token;
-            }
-        }
-        headers.authorization = `Bearer ${token}`;
-    }
-    request.next = false;
-    const { method, node } = request.gate;
-    let url = `${request.auth.url}/api/admin/v${request.auth.version}${node}`;
-    if (options.dump || options.log) {
-        const dumpData = { params: request.params, method, url };
-        if (options.dump) {
-            if (options.dump === true)
-                DEFAULT_LOG_FUNCTION(dumpData);
-            else
-                options.dump(dumpData);
-            return {};
-        }
-        else if (options.log) {
-            if (options.log === true)
-                DEFAULT_LOG_FUNCTION(dumpData);
-            else
-                options.log(dumpData);
-        }
-    }
-    if (method === 'get' || method === 'delete') {
-        url += '?' + queryfy(request.params);
-        const response = await axios[method](url, { headers }).then(response => response.data).catch(catchIdosellError);
-        return checkNext(request, response, options.logPage);
-    }
-    else {
-        let body = { params: request.params };
-        if (request.rootparams) {
-            if (request.rootparams === true)
-                body = request.params;
-            else
-                body = { [request.rootparams]: request.params };
-        }
-        const response = await axios[method](url, body, { headers }).then(response => response.data).catch(catchIdosellError);
-        return checkNext(request, response, options.logPage);
-    }
-};
 /**
  * Everything that needs to happen once, before any axios call is made:
  * appendable array cleanup, required-field validation, auth/token resolution,
@@ -259,7 +190,7 @@ const prepareRequest = async (request, options = {}) => {
     if (typeof request.auth.apiKey === 'string') {
         headers['X-API-KEY'] = request.auth.apiKey;
     }
-    else {
+    else if (typeof request.auth.apiKey === 'object') {
         const { login, password, scope } = request.auth.apiKey;
         let token = request.auth.apiKey.token;
         if (!token) {

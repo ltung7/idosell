@@ -25,7 +25,7 @@ const idosell = (url, apiKey, version = DEFAULT_VERSION) => {
     let hiddenKey = '*'.repeat(10);
     if (typeof apiKey === 'string')
         hiddenKey = apiKey.slice(0, 6) + '*'.repeat(20);
-    else
+    else if (typeof apiKey === 'object')
         hiddenKey = `${apiKey.login}:${apiKey.password.slice(0, 4)}${'*'.repeat(6)}`;
     const auth = { url: normalizeUrl(url), apiKey, version, apikey: hiddenKey };
     Object.defineProperty(auth, 'apiKey', { enumerable: false });
