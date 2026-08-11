@@ -81,7 +81,7 @@ const checkNext = (request, response, logPage) => {
             if (deq)
                 throw new Error("Infinite loop detected - reevaluate your request");
         }
-        request.prev = { ...request.params };
+        request.prev = structuredClone(request.params);
         if (typeof logPage === 'function') {
             logPage('Page: ' + pagination.currentPage + ' / ' + pagination.totalPages);
         }
